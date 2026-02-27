@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menachot 50 — Daf Yomi Visual Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide {
+    min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c;
+    position: relative;
+  }
+  .slide-num {
+    position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7;
+  }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 540px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 820px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; line-height: 1.4; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 420px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; line-height: 1.4; }
+  .compare-box li:last-child { border-bottom: none; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 720px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75em; flex-shrink: 0; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }
+  .process-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 18px; text-align: center; flex: 1; min-width: 160px; max-width: 200px; }
+  .process-step .step-num { font-size: 1.6em; color: #c9a84c; font-weight: bold; }
+  .process-step .step-text { font-size: 0.9em; margin-top: 8px; line-height: 1.4; }
+  .process-arrow { font-size: 24px; color: #c9a84c; display: flex; align-items: center; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size: 3em; margin-bottom: 20px;">📜</div>
+  <h1>Menachot 50</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size: 1.3em; margin: 20px 0;">מנחות נ׳</div>
+  <div style="margin-top: 30px; text-align: center; max-width: 600px; line-height: 1.8; color: #aaa;">
+    <strong style="color: #c9a84c;">Key Topics:</strong><br>
+    🕯️ Omitted Tamid / Ketores — when can you make it up?<br>
+    🏗️ Chinuch ha'Mizbeach — inauguration of the altars<br>
+    ⚡ R' Shimon: Ones vs. Mezid — the sinning Kohanim penalty<br>
+    🚫 Voluntary Ketores — forbidden for individuals AND community<br>
+    🍞 Chavitin of the Kohen Gadol — whole Isaron, split in half
+  </div>
+</div>
+
+<!-- SLIDE 2: Omitted Morning Tamid -->
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🐑 Mishnah: What If the Morning Tamid Was Skipped?</h2>
+  <div class="flowchart">
+    <div class="flow-box question">The morning Tamid was <strong>not offered</strong>. Can the afternoon Tamid still be brought?</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">Was the Mizbeach already <strong>inaugurated</strong> (Chinuch)?</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-label">Never inaugurated</div>
+        <div class="flow-box result-bad">❌ <strong>Do NOT offer</strong> the afternoon Tamid<br><br>
+        <span class="hebrew">את הכבש <em>השני</em> תעשה בין הערבים</span><br>
+        "The <em>second</em> lamb you shall offer in the afternoon" — it must be the second, not the first-ever offering!</div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-label">Already inaugurated</div>
+        <div class="flow-box result-good">✅ <strong>Offer</strong> the afternoon Tamid<br><br>The word "second" only applies to the very first offering on a new Mizbeach. Once inaugurated, the afternoon Tamid stands on its own.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: R' Shimon — Ones vs. Mezid -->
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚡ R' Shimon: Ones/Shogeg vs. Mezid</h2>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #4caf50;">
+      <h3>Ones or Shogeg</h3>
+      <ul>
+        <li>The Kohanim were <strong>forced</strong> or <strong>made an honest mistake</strong></li>
+        <li>Afternoon Tamid: ✅ Offered (if Mizbeach was inaugurated)</li>
+        <li>Ketores: ✅ Offered in the afternoon</li>
+        <li>No penalty — circumstances beyond control</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3>Mezid (Intentional)</h3>
+      <ul>
+        <li>The Kohanim <strong>deliberately</strong> skipped the morning Tamid</li>
+        <li>Afternoon Tamid: ❌ <em>Those</em> Kohanim may not offer it</li>
+        <li>But <strong>other</strong> Kohanim may offer it (Rava)</li>
+        <li>Ketores: ✅ Even those same Kohanim may offer it — no fine needed</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 15px;">
+    <strong>The Gemara's objection:</strong> "Because the Kohanim sinned, the Mizbeach should sit idle?!" <strong>Rava resolves:</strong> The <em>transgressing Kohanim</em> are fined — but other Kohanim step in. The Mizbeach is never idle.
+  </div>
+</div>
+
+<!-- SLIDE 4: Why No Fine for Ketores? -->
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>💰 Why No Fine for Ketores?</h2>
+  <div class="callout" style="max-width: 650px;">
+    <strong>The Gemara's reasoning:</strong><br><br>
+    🔹 Offering Ketores is <strong>uncommon</strong> — unlike the Tamid (an Olah, which can also be brought as a Nedavah), there is no voluntary Ketores. Each Kohen may only offer it once in a lifetime!<br><br>
+    🔹 The Kohen who offers Ketores is <strong>blessed with wealth</strong> (מעתרא — literally "it enriches").<br><br>
+    🔹 Because it's so rare and lucrative, Kohanim <strong>would never be negligent</strong> about it. They don't need a penalty to incentivize them — the opportunity itself is the motivator.<br><br>
+    <em style="color: #aaa;">This is why even the transgressing Kohanim can offer the afternoon Ketores — there's no concern they were negligent about it.</em>
+  </div>
+</div>
+
+<!-- SLIDE 5: Chinuch of the Golden Altar -->
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🏗️ When Is the Golden Altar Inaugurated?</h2>
+  <div class="debate">
+    <div class="debate-line">
+      <div class="speaker">R"S</div>
+      <div class="speech"><strong>R' Shimon (Mishnah):</strong> The inner Mizbeach must be inaugurated with <strong>afternoon Ketores</strong> (Ketores ha'Samim shel Bein ha'Arbayim).</div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker">T2</div>
+      <div class="speech"><strong>Contradicting Beraisa:</strong> No — it must be inaugurated with <strong>morning Ketores</strong> (Ketores ha'Samim shel Shachar)!</div>
+    </div>
+    <div class="debate-line">
+      <div class="speaker">Gem</div>
+      <div class="speech"><strong>Resolution:</strong> It's a <em>Tannaitic machloket</em>. Both opinions exist.</div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker">Aby</div>
+      <div class="speech"><strong>Abaye says</strong> the afternoon opinion is more reasonable. <strong>Proof:</strong> "בבוקר בבוקר בהיטיבו את הנרות יקטירנה" — morning Ketores accompanies <em>cleaning</em> the Menorah lamps. But you can only clean lamps that were <em>already lit</em> — meaning the Menorah must have been lit the previous afternoon. So Chinuch starts in the afternoon!</div>
+    </div>
+    <div class="debate-line">
+      <div class="speaker">T2</div>
+      <div class="speech"><strong>The morning opinion</strong> derives from the outer Mizbeach: just as Chinuch of the outer Mizbeach is with the <em>morning</em> Tamid, so too the inner Mizbeach is inaugurated in the morning.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Inauguration of All Temple Vessels -->
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏛️ Inaugurating the Temple Vessels</h2>
+  <table>
+    <tr><th>Vessel</th><th>Inaugurated With</th><th>When</th></tr>
+    <tr><td><strong>Outer Mizbeach</strong></td><td>Morning Tamid (Korban Olah)</td><td>Morning</td></tr>
+    <tr><td><strong>Inner (Golden) Mizbeach</strong></td><td>Ketores ha'Samim</td><td>Machloket: Morning or Afternoon</td></tr>
+    <tr><td><strong>Shulchan</strong></td><td>Lechem ha'Panim</td><td>Shabbos only</td></tr>
+    <tr><td><strong>Menorah</strong></td><td>Hadlakas ha'Neros (7 lamps)</td><td>Afternoon (Bein ha'Arbayim)</td></tr>
+  </table>
+  <div class="callout" style="margin-top: 15px;">
+    <strong>Key point about the Shulchan:</strong> Both Chinuch (inauguration) <em>and</em> Kiddush (sanctification of the bread) happen only on Shabbos. You can't inaugurate the Shulchan on a weekday, even by placing bread on it — the Mishnah rules both happen together.
+  </div>
+</div>
+
+<!-- SLIDE 7: Voluntary Ketores Forbidden -->
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🚫 No Voluntary Ketores — Triple Lock</h2>
+  <div class="flowchart">
+    <div class="flow-box question">Can anyone bring <strong>voluntary (Nedavah) Ketores</strong>?</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad"><strong>Individual on Inner Mizbeach?</strong> ❌<br>"לא תעלו עליו קטרת זרה" — "You shall not offer strange incense" (Shemos 30:9)</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad"><strong>Community on Inner Mizbeach?</strong> ❌<br>"לא תעלו" — plural form includes the Tzibur too</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad"><strong>Community on Outer Mizbeach?</strong> ❌<br>"ככל אשר צויתיך יעשו" — only what was commanded, nothing more (Shemos 31:11)</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box"><strong>What about the Nesi'im?</strong> They offered Ketores on the outer altar!<br><strong>Rav Papa:</strong> That was a הוראת שעה (one-time emergency ruling) — not a precedent.</div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Chavitin of the Kohen Gadol -->
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>🍞 Chavitin: The Kohen Gadol's Daily Minchah</h2>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #c9a84c;">
+      <h3>📖 The Rule</h3>
+      <ul>
+        <li>The Kohen Gadol brings a <strong>full Isaron</strong> (tenth of an Ephah) of flour</li>
+        <li>Makes 12 <strong>Matzah loaves</strong> from the entire Isaron</li>
+        <li>Divides in half: <strong>6 loaves morning</strong>, <strong>6 loaves afternoon</strong></li>
+        <li>He does NOT bring two separate half-Isarons</li>
+        <li>Source: "חציה בבוקר וחציה בערב" — "Half of <em>it</em>" — half of a complete unit</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3>💀 If the Kohen Gadol Dies Mid-Day</h3>
+      <ul>
+        <li>KG #1 offered the morning half and then died</li>
+        <li>KG #2 is appointed as replacement</li>
+        <li>KG #2 does NOT use KG #1's remaining half</li>
+        <li>KG #2 does NOT bring just a half-Isaron from home</li>
+        <li>KG #2 brings a <strong>full new Isaron</strong>, splits it, offers half</li>
+        <li><strong>Result:</strong> Two halves are offered, two halves are lost (Ibur Tzurah → burned in Beis ha'Sereifah)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 15px;">
+    <strong>What if the afternoon half was lost/became Tamei?</strong> Same rule — bring a new full Isaron, split it, offer half, lose the other half. The Torah requires "half of <em>it</em>" — always half of a complete unit, never an independent half-portion.
+  </div>
+</div>
+
+<!-- SLIDE 9: Summary -->
+<div class="slide">
+  <div class="slide-num">9 / 9</div>
+  <h2>🗺️ Daf 50 — Summary Map</h2>
+  <table>
+    <tr><th>Topic</th><th>Key Ruling / Takeaway</th></tr>
+    <tr><td>Omitted morning Tamid</td><td>If Mizbeach inaugurated → offer afternoon. If not → don't.</td></tr>
+    <tr><td>R' Shimon: Mezid</td><td>Transgressing Kohanim fined (can't offer), but others step in.</td></tr>
+    <tr><td>Ketores — no fine</td><td>Ketores makes you rich + once-in-a-lifetime → no negligence concern.</td></tr>
+    <tr><td>Chinuch of golden altar</td><td>Machloket Tanna'im: morning or afternoon Ketores. Abaye favors afternoon.</td></tr>
+    <tr><td>Temple vessel inaugurations</td><td>Outer = morning Tamid; Inner = Ketores; Shulchan = Shabbos; Menorah = afternoon.</td></tr>
+    <tr><td>Voluntary Ketores</td><td>Forbidden for individual AND Tzibur, on inner AND outer altar. Nesi'im = Hora'as Sha'ah.</td></tr>
+    <tr><td>Chavitin</td><td>Full Isaron → split → half morning, half afternoon. Always "half of a complete unit."</td></tr>
+    <tr><td>KG dies mid-day</td><td>Replacement brings new full Isaron. Two halves offered, two lost.</td></tr>
+  </table>
+  <div style="margin-top: 40px; text-align: center;">
+    <a href="quiz.html" style="background: #c9a84c; color: #1a1a2e; padding: 14px 36px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.1em;">Take the Quiz →</a>
+  </div>
+  <div style="margin-top: 20px; text-align: center;">
+    <a href="../" style="color: #c9a84c; text-decoration: none; font-size: 0.9em;">← Back to Menachot Index</a>
+  </div>
+</div>
+
+<div class="nav">
+  <a href="../49/">← Daf 49</a>
+  <a href="../51/">Daf 51 →</a>
+</div>
+</body>
+</html>
