@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menachot 3 — Quiz</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; } .breadcrumb a { color: #c9a84c; text-decoration: none; } .breadcrumb a:hover { text-decoration: underline; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; } .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; } .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; } .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:hover { background: #dab95c; } .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; } .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; line-height: 1.5; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size: 2em; margin-bottom: 10px;">📝</div>
+<h1>Menachot 3 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">The Gemara asks: if Kodshei Kodashim were slaughtered in the north l'Shem Kodashim Kalim, shouldn't it be "Ma'aseha Mochichin" (provably wrong intent)? Why doesn't the Gemara accept this?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Kodashim Kalim can only be slaughtered in the south</div>
+      <div class="option" onclick="select(1,this,1)">B. Kodashim Kalim may be slaughtered anywhere in the Azarah, including the north — so the location proves nothing</div>
+      <div class="option" onclick="select(1,this,2)">C. The Kohen cannot determine his own location in the Azarah</div>
+      <div class="option" onclick="select(1,this,3)">D. R' Shimon doesn't apply his principle to Kodashim</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B.</strong> The Mishnah in Zevachim states: "Shechitasan b'chol makom ba'Azarah" — Kodashim Kalim can be slaughtered anywhere. So slaughtering in the north doesn't prove it's Kodshei Kodashim.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">The Gemara asks: an Olah (male) slaughtered l'Shem Chatas (female) — shouldn't the gender difference prove the intent is wrong? What is the Gemara's answer?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Male and female animals look identical</div>
+      <div class="option" onclick="select(2,this,1)">B. There is a male Chatas — the Se'ir Nasi — so the gender doesn't conclusively prove anything</div>
+      <div class="option" onclick="select(2,this,2)">C. The Torah doesn't distinguish between male and female offerings</div>
+      <div class="option" onclick="select(2,this,3)">D. Gender is irrelevant for Kodashim</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B.</strong> Since the Se'ir (goat) of a Nasi is a male Chatas, one cannot definitively conclude from the animal's gender that it cannot be a Chatas. Even after narrowing to "Chatas of an individual" (female), the Gemara says people simply don't pay attention to gender — "lav a'da'ataihu d'inshi."</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">According to Rava's resolution, what verse teaches that all Menachot share one law, allowing a Minchah offered l'Shem a different Minchah to still fulfill the obligation?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. "V'Shachat Osah l'Chatas" (Vayikra 4:33)</div>
+      <div class="option" onclick="select(3,this,1)">B. "Kodesh Kodashim Hi ka'Chatas" (Vayikra 6:10)</div>
+      <div class="option" onclick="select(3,this,2)">C. "V'Zos Toras HaMinchah" (Vayikra 6:7) — one law for all Menachot</div>
+      <div class="option" onclick="select(3,this,3)">D. "Motza Sefatecha Tishmor" (Devarim 23:24)</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C.</strong> Rava derives from "V'Zos Toras HaMinchah" that there is "Torah Achas l'chol HaMenuchos" — one law for all meal offerings. Therefore, offering one Minchah l'Shem a different Minchah is like offering it Lishmah. But the Torah does NOT write "V'Zos Toras HaMinchah v'Zevach," so Minchah l'Shem Zevach does NOT work.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">According to Rav Ashi, what is the critical distinction in R' Shimon's position?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Whether the intent was Shinuy Kodesh or Shinuy Ba'alim</div>
+      <div class="option" onclick="select(4,this,1)">B. Whether the intent concerned the vessel (e.g., "l'Shem Marcheshes") or the offering itself (e.g., "l'Shem Minchas Marcheshes")</div>
+      <div class="option" onclick="select(4,this,2)">C. Whether the Minchah was Charevah or Blulah</div>
+      <div class="option" onclick="select(4,this,3)">D. Whether the Kohen or the owner had the wrong intent</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B.</strong> Rav Ashi distinguishes: if the Kohen said "l'Shem Marcheshes" (just the vessel name), his intent is about the Kli — vessel intent doesn't disqualify, so the offering is valid. But if he said "l'Shem Minchas Marcheshes" (the offering name), his intent concerns the offering itself, which DOES disqualify.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">What is the fundamental disagreement between Rabba on one side and Rava/Rav Ashi on the other regarding recognizable false intent (Machshavah d'Minakra)?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Rabba says it only applies to Menachot; Rava says it applies to all Kodashim</div>
+      <div class="option" onclick="select(5,this,1)">B. Rabba says recognizable false intent is IGNORED (validates the offering); Rava/Rav Ashi say it should DISQUALIFY even more</div>
+      <div class="option" onclick="select(5,this,2)">C. Rabba says it's a Torah law; Rava says it's Rabbinic</div>
+      <div class="option" onclick="select(5,this,3)">D. They agree on the principle but disagree about which cases are "recognizable"</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B.</strong> This is the core inversion. Rabba holds that if the false intent is recognizable (everyone can see it's wrong), it's ignored — the offering is valid. Rava and Rav Ashi hold the opposite: "Adrabba, Machshavah d'Minakra Pasal Rachmana" — recognizable false intent should disqualify even more! They need different mechanisms (the verse, vessel intent) to explain why R' Shimon validates.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left: 10px;">Try Again ↻</button>
+</div>
+<script>
+const answers={1:1,2:1,3:2,4:1,5:1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');opts.forEach((o,i)=>{o.classList.add('disabled');if(i===answers[q])o.classList.add('right');if(i===selected[q]&&i!==answers[q])o.classList.add('wrong');});if(selected[q]===answers[q]){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';document.getElementById('results').classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will lock it in. 👍","Solid! You know your daf. 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>o.classList.remove('selected','right','wrong','disabled'));document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>
