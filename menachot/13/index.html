@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menachot 13 — Daf Yomi Visual Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 540px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 820px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; line-height: 1.4; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 420px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; line-height: 1.4; }
+  .compare-box li:last-child { border-bottom: none; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 720px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75em; flex-shrink: 0; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide">
+  <span class="slide-num">1 / 8</span>
+  <h1>📜 Menachot 13</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <p class="hebrew" style="font-size: 1.3em; margin-bottom: 20px;">מנחות י״ג</p>
+  <div style="max-width: 600px; text-align: center; line-height: 1.7; font-size: 1.05em;">
+    <p>The Mishnah at the top of the Perek raises R. Yosi's position: Levonah is <em>not</em> from the same species as the Minchah. Can it become Mefagel? A stunning machloket between R. Yosi and Chachamim unfolds — with Reish Lakish drawing dramatic consequences for the two frankincense spoons of the Lechem ha'Panim.</p>
+  </div>
+  <div style="margin-top: 40px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+    <span style="background: #16213e; padding: 8px 16px; border-radius: 20px; border: 1px solid #c9a84c; font-size: 0.9em;">🌿 Levonah & the Minchah</span>
+    <span style="background: #16213e; padding: 8px 16px; border-radius: 20px; border: 1px solid #c9a84c; font-size: 0.9em;">⚖️ R. Yosi vs. Chachamim</span>
+    <span style="background: #16213e; padding: 8px 16px; border-radius: 20px; border: 1px solid #c9a84c; font-size: 0.9em;">🕯️ Two Bazichei Levonah</span>
+    <span style="background: #16213e; padding: 8px 16px; border-radius: 20px; border: 1px solid #c9a84c; font-size: 0.9em;">🔗 Matir Mefagel Matir</span>
+  </div>
+</div>
+
+<!-- SLIDE 2: The Mishnah — Intent for Levonah -->
+<div class="slide">
+  <span class="slide-num">2 / 8</span>
+  <h2>🌿 The New Mishnah — Intent for the Levonah</h2>
+  <p class="hebrew" style="margin-bottom: 20px; text-align: center;">הַקּוֹמֵץ אֶת הַמִּנְחָה לְהַקְטִיר לְבוֹנָתָהּ לְמָחָר — ר׳ יוֹסֵי אוֹמֵר פָּסוּל וְאֵין בּוֹ כָּרֵת</p>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #4caf50;">
+      <h3 style="color: #4caf50;">R. Yosi Agrees — Karet</h3>
+      <ul>
+        <li>Intent to eat the <strong>Shirayim</strong> tomorrow → Pigul + Karet</li>
+        <li>Intent to burn the <strong>Kometz</strong> tomorrow → Pigul + Karet</li>
+        <li>These are intents within the same <em>Min</em> (species) as the Minchah</li>
+        <li>Kometz/Shirayim are the same flour — they are one Min</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3 style="color: #e74c3c;">R. Yosi Disagrees — No Karet</h3>
+      <ul>
+        <li>Intent to burn the <strong>Levonah</strong> tomorrow → R. Yosi: Pasul, no Karet</li>
+        <li>Chachamim say: Pigul + Karet</li>
+        <li>R. Yosi's reason: Levonah is <em>not from the Min</em> of the Minchah</li>
+        <li>A Matir cannot be Mefagel a different-species Matir</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: R. Yosi's Reasoning -->
+<div class="slide">
+  <span class="slide-num">3 / 8</span>
+  <h2>🧠 R. Yosi's Reasoning — "Eino Min Ha-Minchah"</h2>
+  <div class="debate">
+    <div class="debate-line">
+      <div class="speaker">CHK</div>
+      <div class="speech"><strong>Chachamim challenge R. Yosi:</strong> How is Levonah different from the Zevach? Blood, meat, and fat of an animal all permit each other — and they are one Min. Levonah should work the same way!</div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker">R.Y</div>
+      <div class="speech"><strong>R. Yosi responds:</strong> A Zevach is one body — blood, flesh, and Chelev all come from the same animal. But <em>Levonah is not from the Min of the Minchah</em>. The flour and oil of a Minchah are one type; frankincense is a completely different species.</div>
+    </div>
+    <div class="debate-line">
+      <div class="speaker">GEM</div>
+      <div class="speech"><strong>Reish Lakish clarifies:</strong> R. Yosi's real principle is that <em>one Matir cannot be Mefagel another Matir</em>. Even though Kometz and Levonah are both Matirim for the same Minchah, intent during one cannot create Pigul in the other.</div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Reish Lakish's definition:</strong> "One Matir is not Mefagel another Matir" — this is R. Yosi's foundational rule. Even when they share the same Kli together (Kometz and Levonah are placed in one vessel), each is a separate Matir for its own part.
+  </div>
+</div>
+
+<!-- SLIDE 4: The Two Bazichei Levonah -->
+<div class="slide">
+  <span class="slide-num">4 / 8</span>
+  <h2>🕯️ The Two Bazichei Levonah — Lechem ha'Panim</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 20px;">Reish Lakish applies R. Yosi's principle to the Shewbread's two frankincense spoons</p>
+  <div class="flowchart">
+    <div class="flow-box action">Lechem ha'Panim (Shewbread) is permitted by <strong>two Bazichim</strong> (spoons) of Levonah — each burns one portion</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">If one Bazich is burned with Chutz li'Zmano intent — does it make the other Bazich Pigul?</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-label">Reish Lakish (R. Yosi's view)</div>
+        <div class="flow-box result-bad" style="min-width: 150px;">NO — one Matir does not make another Matir Pigul, even between two Levonah portions of the same Min</div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-label">Chachamim</div>
+        <div class="flow-box result-good" style="min-width: 150px;">YES — they were placed in one Kli together and are thus considered as ONE Matir. Each can be Mefagel the other.</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Why does Reish Lakish extend this to same-Min Levonah?</strong> One might have thought that R. Yosi's exemption is only because Levonah is a different Min from the Minchah (flour/oil). But Reish Lakish teaches that even two Bazichim of Levonah (same Min!) cannot be Mefagel each other — because one Matir never makes another Matir Pigul, period.
+  </div>
+</div>
+
+<!-- SLIDE 5: Chachamim's Counter — The Kli Factor -->
+<div class="slide">
+  <span class="slide-num">5 / 8</span>
+  <h2>🫙 Chachamim's Counter — The Kli Factor</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 20px;">Why do Chachamim disagree about the two Bazichim?</p>
+  <div class="flowchart">
+    <div class="flow-box action">Kometz and Levonah placed in <strong>one Kli</strong> (vessel) together</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">Chachamim: being placed in one Kli means they are "Ikve'u" — fixed together as one unit</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good">When two Matirim share the same Kli, they become like <em>one Matir</em> — so each CAN be Mefagel the other</div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>The rule about Kli for the lambs:</strong> The two lambs of Shtei ha'Lechem are <em>never</em> placed in one Kli. Therefore, even Chachamim agree that one lamb cannot be Mefagel the other (slaughtering one with Chutz li'Zmano intent does not create Pigul in the second lamb). The Kli factor is decisive.
+  </div>
+  <table style="max-width: 650px; margin-top: 20px;">
+    <tr><th>Item</th><th>Share a Kli?</th><th>Can one be Mefagel the other? (Chachamim)</th></tr>
+    <tr><td>Kometz + Levonah</td><td><span class="check">✓</span> Yes</td><td><span class="check">✓</span> Yes</td></tr>
+    <tr><td>Two Bazichim of Levonah</td><td><span class="check">✓</span> Yes</td><td><span class="check">✓</span> Yes</td></tr>
+    <tr><td>Two Shavuot lambs</td><td><span class="cross">✗</span> No</td><td><span class="cross">✗</span> No</td></tr>
+  </table>
+</div>
+
+<!-- SLIDE 6: Removing the Levonah of Lechem ha'Panim -->
+<div class="slide">
+  <span class="slide-num">6 / 8</span>
+  <h2>🔄 Removing the Levonah from Lechem ha'Panim</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 20px;">A new question: what if the Levonah is removed <em>without</em> Pigul intent? Must it be done by a Kohen?</p>
+  <div class="callout">
+    <strong>The Mishnah (end of 13b) teaches:</strong> One who removes the Levonah that accompanies the Lechem ha'Panim must do so in the proper manner. The question arises whether the removal requires a Kohen or may be done by a Yisrael.
+  </div>
+  <div class="flowchart" style="margin-top: 20px;">
+    <div class="flow-box question">Is removal of Levonah from the Lechem ha'Panim an "Avodah" requiring a Kohen?</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-label">If it IS an Avodah</div>
+        <div class="flow-box action" style="min-width: 150px;">Requires a Kohen; invalid if done by Yisrael; creates Pigul if done with improper intent</div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-label">If NOT an Avodah</div>
+        <div class="flow-box result-good" style="min-width: 150px;">A Yisrael may remove it; no Pigul created even with improper intent</div>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good"><strong>Answer:</strong> It IS an Avodah — the removal is treated like Kemitzah. A Kohen must do it, and it can generate Pigul.</div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Summary Table -->
+<div class="slide">
+  <span class="slide-num">7 / 8</span>
+  <h2>📊 R. Yosi vs. Chachamim — Full Comparison</h2>
+  <table>
+    <tr><th>Scenario</th><th>R. Yosi</th><th>Chachamim</th></tr>
+    <tr><td>Intent to burn Levonah tomorrow (during Kemitzah)</td><td>Pasul, no Karet</td><td>Pigul + Karet</td></tr>
+    <tr><td>Intent to eat Shirayim tomorrow</td><td>Pigul + Karet ✓</td><td>Pigul + Karet ✓</td></tr>
+    <tr><td>Intent to burn Kometz tomorrow</td><td>Pigul + Karet ✓</td><td>Pigul + Karet ✓</td></tr>
+    <tr><td>One Bazich Levonah Mefagel another Bazich</td><td>No — one Matir ≠ Mefagel another</td><td>Yes — same Kli = one unit</td></tr>
+    <tr><td>One Shavuot lamb Mefagel another lamb</td><td>No</td><td>No — never in one Kli</td></tr>
+  </table>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>R. Yosi's key principle:</strong> "Ain Matir Mefagel et ha'Matir" — one permitting factor cannot render another permitting factor Pigul. This applies regardless of whether they share a Kli or not, and regardless of Min.
+  </div>
+</div>
+
+<!-- SLIDE 8: Summary Map -->
+<div class="slide">
+  <span class="slide-num">8 / 8</span>
+  <h2>🗺️ Daf 13 — Summary Map</h2>
+  <table style="max-width: 750px;">
+    <tr><th>#</th><th>Topic</th><th>Key Takeaway</th></tr>
+    <tr><td>1</td><td>R. Yosi on Levonah</td><td>Intent to burn Levonah tomorrow = Pasul, no Karet (R. Yosi); Pigul + Karet (Chachamim)</td></tr>
+    <tr><td>2</td><td>R. Yosi's reasoning</td><td>"Levonah is not from the Min of the Minchah" = one Matir cannot Mefagel another Matir</td></tr>
+    <tr><td>3</td><td>Two Bazichei Levonah</td><td>R. Yosi: neither can Mefagel the other; Chachamim: same Kli = one Matir = yes</td></tr>
+    <tr><td>4</td><td>Kli factor</td><td>Chachamim require same Kli for Matirim to be "as one"; Shavuot lambs never share Kli → neither can Mefagel</td></tr>
+    <tr><td>5</td><td>Removal of Levonah</td><td>This act is an Avodah requiring a Kohen; generates Pigul if done with improper intent</td></tr>
+  </table>
+  <div style="margin-top: 40px; text-align: center;">
+    <a href="quiz.html" style="background: #c9a84c; color: #1a1a2e; padding: 14px 36px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.1em;">📝 Take the Quiz →</a>
+  </div>
+  <div style="margin-top: 20px; text-align: center;">
+    <a href="../" style="color: #c9a84c; text-decoration: none; font-size: 0.9em;">← Back to Menachot Index</a>
+  </div>
+</div>
+
+<div class="nav">
+  <a href="../12/">← Daf 12</a>
+  <a href="../14/">Daf 14 →</a>
+</div>
+
+</body>
+</html>

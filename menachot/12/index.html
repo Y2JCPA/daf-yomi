@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menachot 12 — Daf Yomi Visual Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 540px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 820px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; line-height: 1.4; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 420px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; line-height: 1.4; }
+  .compare-box li:last-child { border-bottom: none; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 720px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75em; flex-shrink: 0; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }
+  .process-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 18px; text-align: center; flex: 1; min-width: 160px; max-width: 200px; }
+  .process-step .step-num { font-size: 1.6em; color: #c9a84c; font-weight: bold; }
+  .process-step .step-text { font-size: 0.9em; margin-top: 8px; line-height: 1.4; }
+  .process-arrow { font-size: 24px; color: #c9a84c; display: flex; align-items: center; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide">
+  <span class="slide-num">1 / 9</span>
+  <h1>📜 Menachot 12</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <p class="hebrew" style="font-size: 1.3em; margin-bottom: 20px;">מנחות י״ב</p>
+  <div style="max-width: 600px; text-align: center; line-height: 1.7; font-size: 1.05em;">
+    <p>The Gemara concludes the Chaser Minchah analysis and moves into the major new Perek — <em>Pe'rek Ha'Kometz et Ha'Minchah</em>. What makes a Pigul intent effective? Can intents of eating and burning combine? Do two halves of an olive-bulk's worth of improper intent join together across different actions?</p>
+  </div>
+  <div style="margin-top: 40px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+    <span style="background: #16213e; padding: 8px 16px; border-radius: 20px; border: 1px solid #c9a84c; font-size: 0.9em;">📉 Chaser Minchah Conclusion</span>
+    <span style="background: #16213e; padding: 8px 16px; border-radius: 20px; border: 1px solid #c9a84c; font-size: 0.9em;">🧩 Joining Intents</span>
+    <span style="background: #16213e; padding: 8px 16px; border-radius: 20px; border: 1px solid #c9a84c; font-size: 0.9em;">🔥 Eat vs. Burn Intent</span>
+    <span style="background: #16213e; padding: 8px 16px; border-radius: 20px; border: 1px solid #c9a84c; font-size: 0.9em;">📏 Derech Achilas / Haktarah</span>
+  </div>
+</div>
+
+<!-- SLIDE 2: Chaser — Conclusion -->
+<div class="slide">
+  <span class="slide-num">2 / 9</span>
+  <h2>📉 Chaser Minchah — Final Resolution</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 20px;">From Daf 11: Does burning a Chaser Kometz create Pigul for the deficient Shirayim?</p>
+  <div class="flowchart">
+    <div class="flow-box question">R. Chiya's Baraisa mentions Kemitzah with Chutz li'Zmano intent "for the Shirayim" — <em>without</em> requiring a k'Zayis of Shirayim</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box action">Gemara suggests: perhaps this describes a Chaser case, where less than k'Zayis remains</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">The Seifa teaches that eating the Shirayim incurs Karet — proving Haktarah <em>did</em> help the Chaser Shirayim</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good"><strong>Rava is supported:</strong> Haktarah is effective for a Chaser Minchah. The Shirayim become Pigul even when deficient.</div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Rav Huna's final position:</strong> He distinguishes Yotzei from Chaser: R. Eliezer would not help Yotzei because it left the Azarah, but <em>might</em> still help Chaser. This reconciles the positions — everyone agrees Haktarah helps Chaser.
+  </div>
+</div>
+
+<!-- SLIDE 3: New Perek — Kometz es ha'Minchah -->
+<div class="slide">
+  <span class="slide-num">3 / 9</span>
+  <h2>📖 New Perek: Ha'Kometz et Ha'Minchah</h2>
+  <p class="hebrew" style="margin-bottom: 20px; text-align: center;">הַקּוֹמֵץ אֶת הַמִּנְחָה לֶאֱכֹל דָּבָר שֶׁדַּרְכּוֹ לֶאֱכֹל חוּץ לִמְקוֹמוֹ — פָּסוּל וְאֵין בּוֹ כָּרֵת</p>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #f39c12;">
+      <h3 style="color: #f39c12;">Derech Achilah (Normal Eating)</h3>
+      <ul>
+        <li>Eating the <strong>Shirayim</strong> — normally eaten by Kohanim</li>
+        <li>Burning the <strong>Kometz</strong> — normally burned on altar</li>
+        <li>Intent Chutz li'Mkomo for these → <strong>Pasul</strong></li>
+        <li>Intent Chutz li'Zmano for these → <strong>Pigul</strong></li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #9b59b6;">
+      <h3 style="color: #9b59b6;">Not Derech Achilah (Abnormal)</h3>
+      <ul>
+        <li>Eating the <strong>Kometz</strong> — not normally eaten</li>
+        <li>Burning the <strong>Shirayim</strong> — not normally burned</li>
+        <li>Intent Chutz li'Mkomo for these → <strong>Pasul</strong></li>
+        <li>Intent Chutz li'Zmano for these → ???</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>The Mishnah's key question:</strong> If one removes the Kometz intending to eat the Kometz (abnormal), or intending to eat it <em>tomorrow</em> — is this Pigul with Karet? The answer hinges on whether "abnormal" intents count at all for Pigul.
+  </div>
+</div>
+
+<!-- SLIDE 4: Does Abnormal Intent Create Pigul? -->
+<div class="slide">
+  <span class="slide-num">4 / 9</span>
+  <h2>🔍 Abnormal Intent — Does It Create Pigul?</h2>
+  <div class="flowchart">
+    <div class="flow-box action">Kemitzah done with intent to eat the <strong>Kometz</strong> itself (not the Shirayim) — <em>tomorrow</em></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">Is this "Pigul"? Three options:</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-label">Option A: Pasul only</div>
+        <div class="flow-box result-bad" style="min-width: 150px;">Eating Kometz is abnormal → intent doesn't create Pigul at all</div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-label">Option B: Pigul + Karet</div>
+        <div class="flow-box result-good" style="min-width: 150px;">The intent was Chutz li'Zmano → Pigul regardless of normalcy</div>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad"><strong>Mishnah rules:</strong> Intent to eat/burn the wrong item (e.g., eating the Kometz or burning the Shirayim) → <strong>Pasul, no Karet</strong> — even if the intent was for the next day!</div>
+  </div>
+</div>
+
+<!-- SLIDE 5: Joining Intents — Eating + Burning -->
+<div class="slide">
+  <span class="slide-num">5 / 9</span>
+  <h2>🧩 Do Eating Intent and Burning Intent Join?</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 20px;">Can ½ k'Zayis intent to eat + ½ k'Zayis intent to burn combine to create Pigul?</p>
+  <div class="debate">
+    <div class="debate-line">
+      <div class="speaker">MIS</div>
+      <div class="speech"><strong>Mishnah rules:</strong> If one intends to eat ½ k'Zayis Chutz li'Mkomo + burn ½ k'Zayis Chutz li'Mkomo — <strong>Pasul, no Karet</strong>.</div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker">GEM</div>
+      <div class="speech"><strong>Gemara asks:</strong> Could we infer from the Mishnah that eating + eating intents <em>do</em> combine (creating Pigul), while eating + burning do <em>not</em>?</div>
+    </div>
+    <div class="debate-line">
+      <div class="speaker">MIS</div>
+      <div class="speech"><strong>Answer:</strong> Yes! Two eating-intents for items normally eaten combine. But eating + burning never combine — they are inherently different acts. The Mishnah must teach both explicitly.</div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker">ABY</div>
+      <div class="speech"><strong>Abaye's analysis:</strong> One might have thought that eating + burning <em>do</em> combine — since both types of intent are "normal" for <em>their respective</em> part of the Minchah. The Mishnah teaches us they still do not combine!</div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Rule:</strong> Only intents of the <em>same type</em> (eating + eating, or burning + burning) can combine for Pigul. Eating + burning intents always remain separate — regardless of how "normal" each individual intent is.
+  </div>
+</div>
+
+<!-- SLIDE 6: Half + Half Same Type — Do They Combine? -->
+<div class="slide">
+  <span class="slide-num">6 / 9</span>
+  <h2>📏 Half k'Zayis + Half k'Zayis (Same Type)</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 20px;">Two half-olive-bulk intents of the <em>same type</em> but from different Avodos</p>
+  <table style="max-width: 700px;">
+    <tr><th>Intent in Avodah 1</th><th>Intent in Avodah 2</th><th>Result</th></tr>
+    <tr><td>½ k'Zayis eat <em>tomorrow</em></td><td>½ k'Zayis eat <em>tomorrow</em></td><td><span class="check">✓</span> Pigul + Karet</td></tr>
+    <tr><td>½ k'Zayis eat <em>outside</em></td><td>½ k'Zayis eat <em>tomorrow</em></td><td><span class="cross">✗</span> Pasul, no Karet</td></tr>
+    <tr><td>½ k'Zayis burn <em>tomorrow</em></td><td>½ k'Zayis burn <em>tomorrow</em></td><td><span class="check">✓</span> Pigul + Karet</td></tr>
+    <tr><td>½ k'Zayis eat <em>tomorrow</em></td><td>½ k'Zayis burn <em>tomorrow</em></td><td><span class="cross">✗</span> Pasul, no Karet</td></tr>
+    <tr><td>½ k'Zayis eat (abnormal)</td><td>½ k'Zayis eat <em>tomorrow</em></td><td><span class="cross">✗</span> Pasul, no Karet</td></tr>
+  </table>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Key principle:</strong> Two half-k'Zayis intents combine only when they are (1) the <em>same type</em> (both eating normal items or both burning normal items), and (2) both <em>Chutz li'Zmano</em>. Any mixing of types or directions = Pasul without Karet.
+  </div>
+</div>
+
+<!-- SLIDE 7: Eat Something Normally Burned -->
+<div class="slide">
+  <span class="slide-num">7 / 9</span>
+  <h2>🔥 Intent to Eat Something Normally Burned</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 20px;">What if the intent is to eat the <em>Kometz</em> (normally burned) tomorrow?</p>
+  <div class="flowchart">
+    <div class="flow-box action">Kemitzah done with intent to eat the Kometz itself <em>tomorrow</em></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">Is this Chutz li'Zmano (creating Pigul) or just abnormal (Pasul)?</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad">
+      <strong>Answer: Pasul, no Karet</strong><br>
+      Reason: One cannot create Pigul by intending to eat something that is <em>never meant to be eaten</em>. The concept of "eating past its time" only applies to items that are supposed to be eaten.
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">Similarly: Intent to <em>burn</em> the Shirayim (normally eaten) tomorrow = <strong>Pasul, no Karet</strong></div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>The symmetry:</strong> Eating intent only matters for items normally eaten; burning intent only matters for items normally burned. "Outside its time" requires that there <em>was</em> a valid time in the first place.
+  </div>
+</div>
+
+<!-- SLIDE 8: Summary of Daf 12 Rules -->
+<div class="slide">
+  <span class="slide-num">8 / 9</span>
+  <h2>📊 Daf 12 Key Rules Summary</h2>
+  <table>
+    <tr><th>Scenario</th><th>Result</th><th>Karet?</th></tr>
+    <tr><td>Eat Shirayim tomorrow (normal eat, Chutz li'Zmano)</td><td>Pigul</td><td><span class="check">✓</span></td></tr>
+    <tr><td>Eat Shirayim outside (Chutz li'Mkomo)</td><td>Pasul</td><td><span class="cross">✗</span></td></tr>
+    <tr><td>Eat Kometz tomorrow (eat what's normally burned)</td><td>Pasul</td><td><span class="cross">✗</span></td></tr>
+    <tr><td>Burn Shirayim tomorrow (burn what's normally eaten)</td><td>Pasul</td><td><span class="cross">✗</span></td></tr>
+    <tr><td>½ eat tomorrow + ½ eat tomorrow = combined</td><td>Pigul</td><td><span class="check">✓</span></td></tr>
+    <tr><td>½ eat tomorrow + ½ burn tomorrow</td><td>Pasul</td><td><span class="cross">✗</span></td></tr>
+    <tr><td>½ eat outside + ½ eat tomorrow</td><td>Pasul</td><td><span class="cross">✗</span></td></tr>
+    <tr><td>Chaser Shirayim — Haktarah done</td><td>Pigul (Rava)</td><td><span class="check">✓</span></td></tr>
+  </table>
+</div>
+
+<!-- SLIDE 9: Summary Map -->
+<div class="slide">
+  <span class="slide-num">9 / 9</span>
+  <h2>🗺️ Daf 12 — Summary Map</h2>
+  <table style="max-width: 750px;">
+    <tr><th>#</th><th>Topic</th><th>Key Takeaway</th></tr>
+    <tr><td>1</td><td>Chaser Minchah</td><td>Rava supported: Haktarah creates Pigul even for deficient Shirayim (still in Azarah)</td></tr>
+    <tr><td>2</td><td>Normal vs. Abnormal Intent</td><td>Only intents regarding items normally eaten/burned are relevant for Pigul; abnormal intents = Pasul only</td></tr>
+    <tr><td>3</td><td>Combining Intents</td><td>Only same-type Chutz li'Zmano intents combine; eating + burning never combine</td></tr>
+    <tr><td>4</td><td>Half k'Zayis joining</td><td>Two halves combine only if both are the same type and both Chutz li'Zmano</td></tr>
+    <tr><td>5</td><td>Eat what's burned / Burn what's eaten</td><td>No Pigul — these acts have no "proper time" to be outside of</td></tr>
+  </table>
+  <div style="margin-top: 40px; text-align: center;">
+    <a href="quiz.html" style="background: #c9a84c; color: #1a1a2e; padding: 14px 36px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.1em;">📝 Take the Quiz →</a>
+  </div>
+  <div style="margin-top: 20px; text-align: center;">
+    <a href="../" style="color: #c9a84c; text-decoration: none; font-size: 0.9em;">← Back to Menachot Index</a>
+  </div>
+</div>
+
+<div class="nav">
+  <a href="../11/">← Daf 11</a>
+  <a href="../13/">Daf 13 →</a>
+</div>
+
+</body>
+</html>
