@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menachot 2 — Daf Yomi Visual Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 540px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 820px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 420px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; line-height: 1.4; }
+  .compare-box li:last-child { border-bottom: none; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 720px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .process-bar { display: flex; align-items: center; gap: 0; max-width: 800px; width: 100%; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 50%; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 0.85em; padding: 8px; line-height: 1.2; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 0 6px; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75em; flex-shrink: 0; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size: 3em; margin-bottom: 20px;">📜</div>
+  <h1>Menachot 2</h1>
+  <div class="subtitle">Daf Yomi Visual Guide — The Opening Mishnah</div>
+  <div class="hebrew" style="font-size: 1.3em; margin: 20px 0;">מנחות ב׳ · כל המנחות</div>
+  <div style="margin-top: 30px; text-align: center; max-width: 600px; line-height: 1.8; color: #aaa;">
+    <strong style="color: #c9a84c;">Key Topics:</strong><br>
+    🌾 The opening Mishnah: Menachot done "Lo Lishmah"<br>
+    ⚖️ Minchas Chotei & Minchas Kenaot — the two exceptions<br>
+    🔒 Rava's rule: once you deviate, you can't keep deviating<br>
+    🤔 R' Shimon's principle: "Ma'aseha Mochichin" — actions prove intent<br>
+    🐦 Bird offerings — testing R' Shimon's limits
+  </div>
+</div>
+
+<!-- SLIDE 2: The Meal Offering Process -->
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌾 The Minchah Process — Four Avodos</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 15px;">Every meal offering goes through four service steps. Improper intent at ANY step matters.</div>
+  <div class="process-bar">
+    <div class="process-step highlight">✊<br><strong>Kemitzah</strong><br><small>Remove a handful</small></div>
+    <div class="process-arrow">→</div>
+    <div class="process-step">🏺<br><strong>Nesinah</strong><br><small>Place in a vessel</small></div>
+    <div class="process-arrow">→</div>
+    <div class="process-step">🚶<br><strong>Holachah</strong><br><small>Convey to altar</small></div>
+    <div class="process-arrow">→</div>
+    <div class="process-step">🔥<br><strong>Haktarah</strong><br><small>Burn on Mizbeach</small></div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Key rule:</strong> After the Kometz is burned, the <em>remainder</em> is permitted to the Kohanim to eat, and the owner has fulfilled his obligation — but only if everything was done Lishmah (for its own sake).
+  </div>
+</div>
+
+<!-- SLIDE 3: The Mishnah's Rule -->
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📋 The Opening Mishnah</h2>
+  <div class="hebrew" style="text-align: center; margin-bottom: 20px; font-size: 1.2em;">כל המנחות שנקמצו שלא לשמן — כשירות, אלא שלא עלו לבעלים לשם חובה</div>
+  <div class="flowchart">
+    <div class="flow-box action">🌾 Any Minchah — Kemitzah done <strong>Lo Lishmah</strong><br><small>(e.g., said "l'Shem Marcheshes" but it was really Machavas)</small></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-label">Most Menachot</div>
+        <div class="flow-box result-good">
+          ✅ <strong>Kosher</strong><br>
+          Kometz is burned, remainder is eaten<br>
+          ❌ But does NOT fulfill owner's obligation
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-label">Two Exceptions</div>
+        <div class="flow-box result-bad">
+          ❌ <strong>Pasul</strong> (disqualified entirely)<br>
+          🔹 Minchas Chotei (sinner's offering)<br>
+          🔹 Minchas Kenaot (Sotah's offering)
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Why these two?</strong> They parallel Chatas (sin offering) — just as a Chatas slaughtered Lo Lishmah is Pasul, so too these meal offerings. The Torah says: <span class="hebrew">"קדש קדשים היא כחטאת וכאשם"</span>
+  </div>
+</div>
+
+<!-- SLIDE 4: Lishmah/Lo Lishmah Combinations -->
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔄 Four Scenarios for Minchas Chotei / Kenaot</h2>
+  <table>
+    <tr>
+      <th>Scenario</th>
+      <th>Example</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td><strong>All Lishmah</strong></td>
+      <td>Every step: "l'Shem Minchas Chotei"</td>
+      <td style="color: #4caf50; font-weight: bold;">✅ Kosher + fulfills obligation</td>
+    </tr>
+    <tr>
+      <td><strong>All Lo Lishmah</strong></td>
+      <td>Every step: "l'Shem Minchas Nedavah"</td>
+      <td style="color: #e74c3c; font-weight: bold;">❌ Pasul</td>
+    </tr>
+    <tr>
+      <td><strong>Lishmah → Lo Lishmah</strong></td>
+      <td>Kemitzah: l'Shem Chotei<br>Haktarah: l'Shem Nedavah</td>
+      <td style="color: #e74c3c; font-weight: bold;">❌ Pasul</td>
+    </tr>
+    <tr>
+      <td><strong>Lo Lishmah → Lishmah</strong></td>
+      <td>Kemitzah: l'Shem Nedavah<br>Haktarah: l'Shem Chotei</td>
+      <td style="color: #e74c3c; font-weight: bold;">❌ Pasul</td>
+    </tr>
+  </table>
+  <div class="callout">
+    <strong>Bottom line:</strong> For Minchas Chotei and Minchas Kenaot, ANY Lo Lishmah intent at ANY stage — even mixed with Lishmah — makes it Pasul. One bad step ruins it all.
+  </div>
+</div>
+
+<!-- SLIDE 5: Rava's Rule -->
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔒 Rava's Rule: "Asur l'Shanuyei"</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    The Gemara asks: why does the Mishnah say "ella" (but)? What does that extra word teach?
+  </div>
+  <div class="flowchart">
+    <div class="flow-box action">🔪 Olah slaughtered <strong>Lo Lishmah</strong><br><small>Still Kosher (for most korbanos), just doesn't fulfill obligation</small></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">❓ Can you now do Zerikah (blood sprinkling) Lo Lishmah too?</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad">
+      ❌ <strong>NO!</strong> (Rava)<br>
+      It is <strong>forbidden to continue deviating</strong>.<br>
+      One mistake doesn't justify more mistakes.
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Two proofs:</strong><br>
+    🧠 <strong>Sevara (logic):</strong> Just because you deviated once, should you keep deviating in every subsequent step?!<br>
+    📖 <strong>Pasuk:</strong> "Motza sefatecha tishmor v'asita" (Devarim 23:24) — if you do as you vowed, it's a Neder. If not, it's only a Nedavah. But even a Nedavah — you may not offer it Lo Lishmah!
+  </div>
+</div>
+
+<!-- SLIDE 6: R' Shimon's Principle -->
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🤔 R' Shimon: "Ma'aseha Mochichin"</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 15px;">"Its actions prove what it really is"</div>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #4caf50;">
+      <h3 style="color: #4caf50;">R' Shimon on Menachot</h3>
+      <ul>
+        <li>🌾 If you say "l'Shem Marcheshes" but it's Machavas — <strong>you can SEE it's a Machavas</strong> (different texture)</li>
+        <li>🌾 If you say "l'Shem Blulah" but it's Charevah — <strong>you can SEE there's no oil</strong></li>
+        <li>✅ Therefore: <strong>Kosher AND fulfills obligation</strong></li>
+        <li>💡 The physical evidence overrides the verbal intent</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3 style="color: #e74c3c;">R' Shimon on Zevachim</h3>
+      <ul>
+        <li>🐑 All slaughter looks the same</li>
+        <li>🩸 All blood-sprinkling looks the same</li>
+        <li>🤲 All collection looks the same</li>
+        <li>❌ Therefore: <strong>Lo Lishmah matters</strong> — nothing visible disproves the wrong intent</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>R' Shimon's core logic:</strong> The Torah disqualifies intent that is <em>not recognizably false</em>. If the physical offering itself contradicts the wrong intent, the intent is meaningless.<br>
+    <span class="hebrew">מחשבה דלא מינכרא — פסל רחמנא. מחשבה דמינכרא — לא פסל רחמנא.</span>
+  </div>
+</div>
+
+<!-- SLIDE 7: Testing R' Shimon with Bird Offerings -->
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🐦 Testing R' Shimon — Bird Offerings</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 15px;">
+    The Gemara pushes back: if "actions prove," shouldn't these cases also work?
+  </div>
+  <div class="debate">
+    <div class="debate-line">
+      <div class="speaker" style="background: #e74c3c;">Q</div>
+      <div class="speech">🐦 Olas ha'Of — Melikah done <strong>above</strong> the red line, but said "l'Shem Chatas ha'Of." The location proves it's an Olah! (Chatas is done below.) So it should fulfill the obligation!</div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker" style="background: #4caf50;">A</div>
+      <div class="speech">Actually, Melikah of Chatas ha'Of <em>can</em> be done above too! The Master said: Melikah anywhere on the Mizbeach is valid. So the location doesn't prove anything.</div>
+    </div>
+    <div class="debate-line">
+      <div class="speaker" style="background: #e74c3c;">Q</div>
+      <div class="speech">🐦 OK, what about squeezing the blood (Mitzuy) above for Olas ha'Of, said "l'Shem Chatas"? Chatas uses Hazaah (sprinkling) below — the ACTION is different!</div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker" style="background: #4caf50;">A</div>
+      <div class="speech">Chatas ha'Of also has Mitzuy (after Hazaah), and Mitzuy anywhere on the Mizbeach is valid. Still not recognizably different!</div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Pattern:</strong> The Gemara keeps trying to find a bird-offering case where "the actions prove" the intent is wrong — and each time, the answer is: it's not as distinguishable as you think.
+  </div>
+</div>
+
+<!-- SLIDE 8: Summary -->
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Menachot 2 — Summary Map</h2>
+  <div class="flowchart" style="max-width: 800px;">
+    <div class="flow-box" style="background: #2a1a3e; border-color: #c9a84c; font-size: 1.1em;">
+      <strong>Opening Mishnah:</strong> All Menachot done Lo Lishmah are Kosher<br>but don't fulfill the owner's obligation
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-box" style="border-color: #e74c3c;">
+          <strong>Exceptions:</strong><br>
+          Minchas Chotei + Minchas Kenaot<br>
+          <small>Lo Lishmah = Pasul entirely<br>(parallels Chatas)</small>
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-box" style="border-color: #4a90d9;">
+          <strong>Rava's rule:</strong><br>
+          Even if step 1 was Lo Lishmah,<br>
+          <small>you may NOT continue Lo Lishmah<br>in subsequent steps</small>
+        </div>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">
+      <strong>Machloket: Mishnah vs R' Shimon</strong><br>
+      🔹 R' Shimon: "Ma'aseha Mochichin" — if the offering's appearance proves the intent wrong, the intent is ignored<br>
+      🔹 Menachot differ from Zevachim: physical differences are visible<br>
+      🔹 According to Rabba & Rava: Mishnah is NOT like R' Shimon
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box" style="border-color: #9b59b6;">
+      <strong>R' Shimon's internal contradiction (2b):</strong><br>
+      Beraisa 1: Lo Lishmah = Kosher + Alah<br>
+      Beraisa 2: Lo Lishmah = Kosher but Lo Alah<br>
+      <small>Rabba: #1 = Shinuy Kodesh; #2 = Shinuy Ba'alim</small>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good">
+      🎓 <strong>Key principle:</strong> Machshavah d'lo Minakra (non-recognizable intent) is Posel.<br>
+      Machshavah d'Minakra (recognizably false intent) is NOT Posel.
+    </div>
+  </div>
+  <div style="margin-top: 30px; text-align: center; color: #666; font-size: 0.85em;">
+    Menachot 2a-2b · Daf Yomi · Chapter 1: Kol HaMenuchos · Sources: Sefaria, DafYomi.co.il
+  </div>
+</div>
+
+<!-- SLIDE 9: Quiz CTA -->
+<div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size: 3.5em; margin-bottom: 20px;">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color: #aaa; font-size: 1.1em; margin: 20px 0 30px; text-align: center; max-width: 500px; line-height: 1.6;">
+    5 multiple-choice questions on today's daf.<br>
+    Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display: inline-block; padding: 18px 48px; background: #c9a84c; color: #1a1a2e; text-decoration: none; border-radius: 12px; font-size: 1.3em; font-weight: bold; font-family: 'Georgia', serif;">Take the Quiz →</a>
+  <div style="margin-top: 40px; color: #555; font-size: 0.85em;">
+    Menachot 2a-2b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+
+</body>
+</html>
