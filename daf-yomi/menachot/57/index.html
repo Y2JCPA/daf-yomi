@@ -7,38 +7,42 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
-  .slide {
-    min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column;
-    justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c;
-    position: relative;
-  }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
   .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
   h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
   h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
   h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
   .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
   .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
-  .key-box {
-    background: #16213e; border: 2px solid #c9a84c; border-radius: 12px;
-    padding: 20px 28px; margin: 10px; max-width: 680px; width: 90%; font-size: 1em; line-height: 1.7;
-  }
-  .key-box.blue { border-color: #4a90d9; background: #0d1e36; }
-  .key-box.green { border-color: #4caf50; background: #0d2a1a; }
-  .key-box.red { border-color: #e74c3c; background: #2a0d0d; }
-  .key-box.purple { border-color: #9b59b6; background: #1a0d2a; }
-  .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.8em;
-    font-weight: bold; margin-bottom: 8px; letter-spacing: 0.5px; }
-  .tag.gold { background: rgba(201,168,76,0.15); color: #c9a84c; border: 1px solid #c9a84c; }
-  .tag.blue { background: rgba(74,144,217,0.15); color: #4a90d9; border: 1px solid #4a90d9; }
-  .tag.green { background: rgba(76,175,80,0.15); color: #4caf50; border: 1px solid #4caf50; }
-  .tag.red { background: rgba(231,76,60,0.15); color: #e74c3c; border: 1px solid #e74c3c; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 550px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
   table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
   th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
   td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
   tr:nth-child(even) { background: #16213e; }
   tr:nth-child(odd) { background: #1a1a2e; }
-  .check { color: #4caf50; font-size: 1.3em; }
-  .cross { color: #e74c3c; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75em; flex-shrink: 0; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
   .nav { display: flex; justify-content: space-between; padding: 20px 5%; background: #0d1117; }
   .nav a { color: #c9a84c; text-decoration: none; font-size: 1.1em; }
   .nav a:hover { text-decoration: underline; }
@@ -47,71 +51,239 @@
 <body>
 
 <!-- SLIDE 1: Title -->
-<div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
-  <div class="slide-num">1 / 6</div>
-  <div style="font-size: 3.5em; margin-bottom: 20px;">📜</div>
+<div class="slide" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+  <div class="slide-num">1 / 10</div>
+  <h1>מנחות נ״ז</h1>
   <h1>Menachot 57</h1>
-  <div class="subtitle">Honey, Salt & Frankincense</div>
-  <div class="hebrew" style="font-size: 1.3em; margin-bottom: 30px;">דבש, מלח ולבונה</div>
-  <div style="max-width: 600px; text-align: center; color: #aaa; font-size: 1em; line-height: 1.7;">
-    The Gemara explores three substances with unique Temple laws: honey and leaven are forbidden on the altar but permitted as first-fruit offerings; salt is required on all offerings; frankincense is a critical permitting act for meal offerings.
-  </div>
-  <div style="color: #555; font-size: 0.85em; margin-top: 40px;">
-    Sources: Sefaria (William Davidson Edition) · DafYomi.co.il
-  </div>
+  <div class="subtitle">Meat on Coals, Scope of Leavening, and the Measuring Vessels of the Tabernacle</div>
+  <p class="hebrew" style="margin-top: 30px; font-size: 1.3em; max-width: 600px; text-align: center;">
+    כׇּל שְׂאוֹר וְכׇל דְּבַשׁ לֹא תַקְטִירוּ מִמֶּנּוּ
+  </p>
+  <p style="margin-top: 15px; color: #aaa; font-size: 1em;">
+    "Any leaven and any honey — you shall not burn any of it as a fire-offering to the Lord"
+  </p>
 </div>
 
-<!-- SLIDE 2: Honey & Leaven — Prohibited but Not Absent -->
+<!-- SLIDE 2: Meat on Coals — The Shabbat Parallel -->
 <div class="slide">
-  <div class="slide-num">2 / 6</div>
-  <div style="font-size: 2.5em; margin-bottom: 16px;">🍯</div>
-  <h2>Honey & Leaven — Prohibited but Not Absent</h2>
-  <div class="key-box gold">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 14px; line-height: 1.6;">Leviticus 2:11: "No leaven nor any honey shall you offer as a fire-offering to the Lord" — both are prohibited from the altar.</li><li style="margin-bottom: 14px; line-height: 1.6;">Yet: "you shall offer them to the Lord as an offering of first fruits" — leaven and honey <em>may</em> be brought as first fruit offerings (like the two loaves of Shavuot, which contain leaven).</li><li style="margin-bottom: 14px; line-height: 1.6;">The prohibition is altar-specific. They are not forbidden from entering the Temple — only from being burned on the altar.</li><li style="margin-bottom: 14px; line-height: 1.6;">This explains Shavuot's two loaves: they are waved, not burned — thus permitted despite being leavened.</li>
-    </ul>
+  <div class="slide-num">2 / 10</div>
+  <h2>Meat on Coals: Shabbat and Leavening</h2>
+  <p style="margin-bottom: 20px; color: #aaa; max-width: 600px; text-align: center;">
+    The Gemara uses a Shabbat scenario to clarify Rabbi Ami's leavening ruling from the end of Daf 56:
+  </p>
+  <div class="debate">
+    <div class="debate-line">
+      <div class="speaker">RY</div>
+      <div class="speech">
+        <strong>R. Yoḥanan:</strong> One who places meat on coals on Shabbat — if he <strong>turns it over</strong>, he's liable for cooking. If not, he's exempt.
+      </div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker">R</div>
+      <div class="speech">
+        <strong>Rava clarifies:</strong> R. Yoḥanan means exempt only when the meat wouldn't fully cook on one side alone. But if it would inevitably cook (like food of ben Derosai), he's liable even without turning.
+      </div>
+    </div>
+    <div class="debate-line">
+      <div class="speaker">R</div>
+      <div class="speech">
+        <strong>Rava adds:</strong> If a fig-bulk of meat was fully roasted on one side — even if spread across two or three spots — he's liable for cooking on Shabbat.
+      </div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Connection to leavening:</strong> Just as placing meat on coals can create Shabbat liability even without further action, placing leaven on dough creates liability even if one sits and waits passively.
   </div>
 </div>
 
-<!-- SLIDE 3: The Eternal Salt Covenant -->
+<!-- SLIDE 3: Scope of the Leavening Prohibition -->
 <div class="slide">
-  <div class="slide-num">3 / 6</div>
-  <div style="font-size: 2.5em; margin-bottom: 16px;">🧂</div>
-  <h2>The Eternal Salt Covenant</h2>
-  <div class="key-box blue">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 14px; line-height: 1.6;">"Every offering of your meal offering shall you salt with salt" — comprehensive language extending the requirement beyond meal offerings to <em>all</em> altar offerings.</li><li style="margin-bottom: 14px; line-height: 1.6;">The Torah calls it "the salt of the covenant of your God" (Lev. 2:13) — like a covenant, salt accompanies offerings eternally.</li><li style="margin-bottom: 14px; line-height: 1.6;">Salting is required on both the handful burned on the altar <em>and</em> the priestly portions eaten.</li><li style="margin-bottom: 14px; line-height: 1.6;">An offering brought without salt is disqualified from the altar.</li>
-    </ul>
+  <div class="slide-num">3 / 10</div>
+  <h2>Which Meal Offerings Does Leavening Apply To?</h2>
+  <p style="margin-bottom: 20px; color: #aaa; max-width: 600px; text-align: center;">
+    The baraita expounds "no meal offering shall be made with leaven" phrase by phrase to define the scope:
+  </p>
+  <div class="flowchart">
+    <div class="flow-box">
+      <span class="hebrew">לֹא תֵעָשֶׂה חָמֵץ</span><br>
+      "No meal offering shall be made as chametz"
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box action">
+      <strong>"Meal offering"</strong> → includes meal offerings <em>before</em> the handful is removed (not just the remainder)
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box action">
+      <strong>"That you shall bring to the Lord"</strong> → only a <em>fit</em> meal offering; excludes a <strong>disqualified</strong> one
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">
+      <strong>Dispute:</strong> What about the meal offering brought with libations?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-label">R. Yosei HaGelili</div>
+        <div class="flow-box result-good">
+          Included — even though it's kneaded with oil, sometimes water might be mixed in
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-label">R. Akiva</div>
+        <div class="flow-box result-bad">
+          Excluded — "no" (לֹא) limits the scope; libation meal offerings can't practically leaven
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- SLIDE 4: Frankincense as a Permitting Act -->
+<!-- SLIDE 4: Unsolved Dilemmas -->
 <div class="slide">
-  <div class="slide-num">4 / 6</div>
-  <div style="font-size: 2.5em; margin-bottom: 16px;">🌿</div>
-  <h2>Frankincense as a Permitting Act</h2>
-  <div class="key-box purple">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 14px; line-height: 1.6;">Most voluntary meal offerings require a portion of frankincense placed alongside them.</li><li style="margin-bottom: 14px; line-height: 1.6;">The frankincense is one of the <em>matirin</em> (permitting acts): it must be burned to "permit" the priests to eat the remainder.</li><li style="margin-bottom: 14px; line-height: 1.6;">Piggul dispute: if a priest burns the frankincense with intent to eat the offering beyond its time, does this create <em>piggul</em> on the entire meal offering?</li><li style="margin-bottom: 14px; line-height: 1.6;">Since frankincense is an essential permitting act, many hold that improper intent during its burning can indeed invalidate the offering as piggul.</li>
-    </ul>
+  <div class="slide-num">4 / 10</div>
+  <h2>Two Unsolved Dilemmas</h2>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #9b59b6;">
+      <h3>Rav Pappa's Dilemma</h3>
+      <ul>
+        <li><strong>Setup:</strong> One leavened a meal offering while it was fit, then it was taken <em>outside the courtyard</em> (becoming disqualified)</li>
+        <li><strong>Question:</strong> Does the subsequent disqualification retroactively remove the prohibition?</li>
+        <li><strong>Or:</strong> Once the prohibition attached, it stays — even if the offering later becomes unfit?</li>
+        <li style="color: #c9a84c; font-weight: bold;">Unresolved (teiku)</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #4a90d9;">
+      <h3>Rav Mari's Dilemma</h3>
+      <ul>
+        <li><strong>Setup:</strong> A priest leavened a meal offering while standing <em>on top of the altar</em></li>
+        <li><strong>Question:</strong> Is an offering already on the altar considered "action completed" (i.e., already sacrificed)?</li>
+        <li><strong>Or:</strong> Since the burning hasn't been performed yet, it's still subject to the leavening prohibition?</li>
+        <li style="color: #c9a84c; font-weight: bold;">Unresolved (teiku)</li>
+      </ul>
+    </div>
   </div>
 </div>
 
-<!-- SLIDE 5: Offerings Without Oil or Frankincense -->
+<!-- SLIDE 5: Honey and Leaven — Forbidden on the Altar -->
 <div class="slide">
-  <div class="slide-num">5 / 6</div>
-  <div style="font-size: 2.5em; margin-bottom: 16px;">🚫</div>
-  <h2>Offerings Without Oil or Frankincense</h2>
-  <div class="key-box red">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 14px; line-height: 1.6;"><span class="tag red">Sinner's meal offering</span> Brought without oil and without frankincense — "it shall not be anointed with oil nor put frankincense on it" (Lev. 5:11).</li><li style="margin-bottom: 14px; line-height: 1.6;"><span class="tag red">Sota offering</span> The suspected adulteress's barley meal offering is also brought without oil or frankincense.</li><li style="margin-bottom: 14px; line-height: 1.6;">These two offerings are deliberately devoid of "joy" ingredients — fitting their somber, affliction-related context.</li><li style="margin-bottom: 14px; line-height: 1.6;">By contrast, the voluntary meal offering includes oil, salt, and frankincense as expressions of generosity and dedication.</li>
-    </ul>
+  <div class="slide-num">5 / 10</div>
+  <h2>Honey and Leaven on the Altar</h2>
+  <div class="callout">
+    <strong>Verse:</strong> "Any leaven, and any honey, you shall not burn any of it as an offering made by fire to the Lord. As an offering of first produce you may bring <em>them</em> to the Lord, but they shall not go up on the altar" (Lev. 2:11-12).
+  </div>
+  <table>
+    <tr><th>Substance</th><th>On the Altar?</th><th>In the Temple?</th><th>Examples Where Permitted</th></tr>
+    <tr>
+      <td><strong>Leaven</strong></td>
+      <td>❌ Forbidden</td>
+      <td>✅ Yes — as first fruits</td>
+      <td>Two Loaves of Shavuot; Toda (thanks offering) bread</td>
+    </tr>
+    <tr>
+      <td><strong>Honey</strong></td>
+      <td>❌ Forbidden</td>
+      <td>✅ Yes — as first fruits</td>
+      <td>Bikkurim (dates, figs with honey)</td>
+    </tr>
+  </table>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Key distinction:</strong> The prohibition is specifically about <em>burning on the altar</em>. The two loaves of Shavuot contain leaven but are <strong>waved, not burned</strong> — so they're permitted. The word "them" in "you may bring them" teaches that these items can enter the Temple as first-fruit offerings.
   </div>
 </div>
 
-<!-- SLIDE 6: Quiz CTA -->
+<!-- SLIDE 6: Offering Leftover Parts — R. Yoḥanan vs. R. Elazar -->
+<div class="slide">
+  <div class="slide-num">6 / 10</div>
+  <h2>Burning Leftovers on the Ramp</h2>
+  <p style="margin-bottom: 20px; color: #aaa; max-width: 600px; text-align: center;">
+    The baraita teaches: "of it" — once part of an offering is burned in the altar fire, burning leftover parts violates the prohibition. But what about bringing them up to the <em>ramp</em>?
+  </p>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3>R. Yoḥanan</h3>
+      <ul>
+        <li><strong>Liable</strong> for bringing leftovers up to the ramp</li>
+        <li>Source: "You shall not burn <em>any of it</em>" — the ramp is considered part of the altar system</li>
+        <li>The "of it" teaches: once any part has been burned, the rest is included in the prohibition</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #4caf50;">
+      <h3>R. Elazar</h3>
+      <ul>
+        <li><strong>Exempt</strong> for bringing leftovers up to the ramp</li>
+        <li>"You shall not burn any of it as an offering made by fire" — liability requires actual <em>burning</em> on the altar top</li>
+        <li>The ramp is not the altar itself — no fire there</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Were the Measuring Vessels Consecrated? -->
+<div class="slide">
+  <div class="slide-num">7 / 10</div>
+  <h2>The Measuring Vessels of the Tabernacle</h2>
+  <p style="margin-bottom: 20px; color: #aaa; max-width: 600px; text-align: center;">
+    A tangent about the shewbread leads to a fundamental dispute about when items become consecrated:
+  </p>
+  <table>
+    <tr><th>Opinion</th><th>Liquid Measures</th><th>Dry Measures</th><th>When is Shewbread Consecrated?</th></tr>
+    <tr>
+      <td><strong>R. Yoshiya</strong></td>
+      <td>Anointed inside only</td>
+      <td>✅ Anointed (inside only)</td>
+      <td>When flour is placed in the measuring vessel</td>
+    </tr>
+    <tr>
+      <td><strong>R. Yonatan</strong></td>
+      <td>Anointed inside only</td>
+      <td>❌ Not anointed at all</td>
+      <td>Only when placed on the Table in the Sanctuary</td>
+    </tr>
+  </table>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Practical question:</strong> If dry measuring vessels weren't consecrated, and the shewbread isn't sanctified until the Table — what about the kneading stage? <strong>Rav Pappa to Abaye:</strong> Wasn't the shewbread kneaded in a vessel too? <strong>Answer:</strong> The shewbread was kneaded on a leather spread, not in a vessel, since the Torah doesn't specify a vessel for kneading.
+  </div>
+</div>
+
+<!-- SLIDE 8: "Of It" — Burning Parts After the Whole -->
+<div class="slide">
+  <div class="slide-num">8 / 10</div>
+  <h2>The Two Loaves and "Of It"</h2>
+  <div class="callout">
+    <strong>Problem:</strong> "Of it" teaches that if part of an offering was burned, burning the rest violates the prohibition. But the <strong>two loaves</strong> and the <strong>shewbread</strong> — no part of <em>them</em> is ever burned on the altar!
+  </div>
+  <div class="flowchart" style="margin-top: 10px;">
+    <div class="flow-box question">
+      Are the two loaves / shewbread included in the prohibition against burning on the altar?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good">
+      <strong>Rav Sheshet:</strong> Yes — they are not independent. They "come on account of" the lambs (two loaves) or the frankincense bowls (shewbread). Since <em>those</em> are burned on the altar, the loaves/bread are treated as if part of them was burned.
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>The "them" of first fruits:</strong> "As an offering of first produce you may bring <em>them</em>" — "them" = specifically items from leaven or honey that are called "first produce." This means first fruits (bikkurim), which come from dates and figs (honey) and include leavened items. These may be brought to the Temple but never burned on the altar.
+  </div>
+</div>
+
+<!-- SLIDE 9: Summary -->
 <div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
-  <div class="slide-num">6 / 6</div>
+  <div class="slide-num">9 / 10</div>
+  <h2>Key Takeaways — Menachot 57</h2>
+  <div class="callout">
+    <strong>1.</strong> Meat on coals on Shabbat: liable if turned over; if not turned, liable only if a fig-bulk would inevitably cook on one side. Parallels passive leavening liability.<br><br>
+    <strong>2.</strong> Scope of leavening prohibition: applies before and after handful removal, but only to <em>fit</em> offerings. Dispute between R. Yosei HaGelili and R. Akiva about libation meal offerings.<br><br>
+    <strong>3.</strong> Two unsolved dilemmas: (a) does disqualification after leavening remove the prohibition? (b) is an offering on top of the altar considered "completed"?<br><br>
+    <strong>4.</strong> Honey and leaven are forbidden specifically from the altar fire — but may enter the Temple as first-fruit offerings.<br><br>
+    <strong>5.</strong> R. Yoḥanan vs. R. Elazar: dispute whether bringing leftover parts up to the ramp (not the altar) violates the prohibition.<br><br>
+    <strong>6.</strong> R. Yoshiya vs. R. Yonatan: dispute about whether dry measuring vessels were anointed, affecting when shewbread becomes consecrated.<br><br>
+    <strong>7.</strong> The two loaves and shewbread are included in the altar prohibition via "of it" — because they come on account of other offerings that ARE burned.
+  </div>
+</div>
+
+<!-- SLIDE 10: Quiz CTA -->
+<div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
+  <div class="slide-num">10 / 10</div>
   <div style="font-size: 3.5em; margin-bottom: 20px;">📝</div>
   <h2>Ready to Test Yourself?</h2>
   <div style="color: #aaa; font-size: 1.1em; margin: 20px 0 30px; text-align: center; max-width: 500px; line-height: 1.6;">
@@ -121,10 +293,10 @@
   <a href="quiz.html" style="
     display: inline-block; padding: 18px 48px; background: #c9a84c; color: #1a1a2e;
     text-decoration: none; border-radius: 12px; font-size: 1.3em; font-weight: bold;
-    font-family: 'Georgia', serif;
+    font-family: 'Georgia', serif; transition: background 0.2s;
   ">Take the Quiz →</a>
   <div style="margin-top: 40px; color: #555; font-size: 0.85em;">
-    Menachot 57a-57b · Daf Yomi
+    Menachot 57a-57b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
   </div>
 </div>
 

@@ -7,38 +7,42 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
-  .slide {
-    min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column;
-    justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c;
-    position: relative;
-  }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
   .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
   h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
   h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
   h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
   .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
   .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
-  .key-box {
-    background: #16213e; border: 2px solid #c9a84c; border-radius: 12px;
-    padding: 20px 28px; margin: 10px; max-width: 680px; width: 90%; font-size: 1em; line-height: 1.7;
-  }
-  .key-box.blue { border-color: #4a90d9; background: #0d1e36; }
-  .key-box.green { border-color: #4caf50; background: #0d2a1a; }
-  .key-box.red { border-color: #e74c3c; background: #2a0d0d; }
-  .key-box.purple { border-color: #9b59b6; background: #1a0d2a; }
-  .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.8em;
-    font-weight: bold; margin-bottom: 8px; letter-spacing: 0.5px; }
-  .tag.gold { background: rgba(201,168,76,0.15); color: #c9a84c; border: 1px solid #c9a84c; }
-  .tag.blue { background: rgba(74,144,217,0.15); color: #4a90d9; border: 1px solid #4a90d9; }
-  .tag.green { background: rgba(76,175,80,0.15); color: #4caf50; border: 1px solid #4caf50; }
-  .tag.red { background: rgba(231,76,60,0.15); color: #e74c3c; border: 1px solid #e74c3c; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 550px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
   table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
   th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
   td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
   tr:nth-child(even) { background: #16213e; }
   tr:nth-child(odd) { background: #1a1a2e; }
-  .check { color: #4caf50; font-size: 1.3em; }
-  .cross { color: #e74c3c; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75em; flex-shrink: 0; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
   .nav { display: flex; justify-content: space-between; padding: 20px 5%; background: #0d1117; }
   .nav a { color: #c9a84c; text-decoration: none; font-size: 1.1em; }
   .nav a:hover { text-decoration: underline; }
@@ -47,71 +51,200 @@
 <body>
 
 <!-- SLIDE 1: Title -->
-<div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
-  <div class="slide-num">1 / 6</div>
-  <div style="font-size: 3.5em; margin-bottom: 20px;">📜</div>
+<div class="slide" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+  <div class="slide-num">1 / 9</div>
+  <h1>מנחות נ״ח</h1>
   <h1>Menachot 58</h1>
-  <div class="subtitle">Piggul — Improper Intent</div>
-  <div class="hebrew" style="font-size: 1.3em; margin-bottom: 30px;">פיגול</div>
-  <div style="max-width: 600px; text-align: center; color: #aaa; font-size: 1em; line-height: 1.7;">
-    Piggul is one of the most important concepts in korbanos. An offering becomes piggul — and liable for karet if eaten — when the priest performs any of its essential rites with intent to eat it beyond the designated time or place.
-  </div>
-  <div style="color: #555; font-size: 0.85em; margin-top: 40px;">
-    Sources: Sefaria (William Davidson Edition) · DafYomi.co.il
-  </div>
+  <div class="subtitle">Burning Leaven & Honey, the Handful Minimum, and Four Sets of Lashes</div>
+  <p class="hebrew" style="margin-top: 30px; font-size: 1.3em; max-width: 600px; text-align: center;">
+    כׇּל שְׂאוֹר וְכׇל דְּבַשׁ לֹא תַקְטִירוּ מִמֶּנּוּ אִשֶּׁה לַה׳
+  </p>
+  <p style="margin-top: 15px; color: #aaa; font-size: 1em;">
+    "Any leaven and any honey — you shall not burn any of it as a fire-offering to the Lord"
+  </p>
 </div>
 
-<!-- SLIDE 2: What is Piggul? -->
+<!-- SLIDE 2: Can Two Loaves Be Donated Individually? -->
 <div class="slide">
-  <div class="slide-num">2 / 6</div>
-  <div style="font-size: 2.5em; margin-bottom: 16px;">⚠️</div>
-  <h2>What is Piggul?</h2>
-  <div class="key-box red">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 14px; line-height: 1.6;"><strong>Piggul</strong> (פִּגּוּל): An offering rejected due to the priest's improper intent during one of the permitting acts (matirin).</li><li style="margin-bottom: 14px; line-height: 1.6;">The priest must intend to eat or burn the offering <em>beyond the designated time</em> (outside the time limit) during one of the four essential rites.</li><li style="margin-bottom: 14px; line-height: 1.6;">Result: The offering is disqualified from its moment of improper intent. Anyone who subsequently eats it is liable for <strong>karet</strong> (divine excision).</li><li style="margin-bottom: 14px; line-height: 1.6;">Source: "It is piggul, it shall not be accepted... he who eats of it shall bear his iniquity" (Lev. 7:18).</li>
-    </ul>
+  <div class="slide-num">2 / 9</div>
+  <h2>May an Individual Donate Two Loaves?</h2>
+  <div class="flowchart">
+    <div class="flow-box question">
+      Can an individual donate a gift offering similar to the community's two loaves of Shavuot?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">
+      <strong>"As an offering of first produce you may bring <em>them</em>"</strong><br>
+      "You may bring" is plural = addressed to the <em>community</em>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad">
+      ❌ The community brings the two loaves as obligatory — but <strong>neither</strong> the community nor an individual may bring them as a voluntary gift offering
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good">
+      ✅ <strong>"These"</strong> excludes individual voluntary versions → the community brings only the obligatory Shavuot two loaves, nothing extra
+    </div>
   </div>
 </div>
 
-<!-- SLIDE 3: Piggul vs. Notar vs. Tamei -->
+<!-- SLIDE 3: Leaven vs. Honey — Shared & Unique Laws -->
 <div class="slide">
-  <div class="slide-num">3 / 6</div>
-  <div style="font-size: 2.5em; margin-bottom: 16px;">📊</div>
-  <h2>Piggul vs. Notar vs. Tamei</h2>
-  <div class="key-box blue">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 14px; line-height: 1.6;"><span class="tag red">Piggul</span> Wrong intent at time of offering → karet for eating</li><li style="margin-bottom: 14px; line-height: 1.6;"><span class="tag gold">Notar</span> Meat left over beyond permitted time → karet for eating (also prohibited to offer)</li><li style="margin-bottom: 14px; line-height: 1.6;"><span class="tag blue">Tamei</span> Meat that became ritually impure → less severe, not karet in all cases</li><li style="margin-bottom: 14px; line-height: 1.6;">Piggul and notar share the karet punishment; this parallel is taught in the Torah to emphasize their equal severity.</li>
-    </ul>
-  </div>
+  <div class="slide-num">3 / 9</div>
+  <h2>Leaven vs. Honey: What's Unique to Each?</h2>
+  <table>
+    <tr><th>Feature</th><th>Leaven</th><th>Honey</th></tr>
+    <tr>
+      <td>Burned on the altar?</td>
+      <td>❌ Forbidden</td>
+      <td>❌ Forbidden</td>
+    </tr>
+    <tr>
+      <td>Permitted elsewhere in the Temple?</td>
+      <td>✅ Two loaves, toda bread</td>
+      <td>✅ Bikkurim (first fruits)</td>
+    </tr>
+    <tr>
+      <td>Unique stringency</td>
+      <td>Prohibition extends to priests eating the <strong>remainder</strong> with leaven</td>
+      <td>Honey may be eaten with the remainder — no prohibition</td>
+    </tr>
+    <tr>
+      <td>Unique leniency</td>
+      <td>—</td>
+      <td>Permitted in the priestly portions (priests may eat offerings with honey)</td>
+    </tr>
+  </table>
 </div>
 
-<!-- SLIDE 4: Can Two Partial Intents Combine? -->
+<!-- SLIDE 4: Rami bar Ḥama's Dilemma — Bird Sin Offering -->
 <div class="slide">
-  <div class="slide-num">4 / 6</div>
-  <div style="font-size: 2.5em; margin-bottom: 16px;">🔀</div>
-  <h2>Can Two Partial Intents Combine?</h2>
-  <div class="key-box purple">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 14px; line-height: 1.6;">Question: If a priest has intent for wrong <em>time</em> during one rite, and intent for wrong <em>place</em> during another rite — do they combine to create piggul?</li><li style="margin-bottom: 14px; line-height: 1.6;">The Gemara analyzes: piggul requires the disqualifying intent during a <em>permitting act</em> (matir). Can two separate partial intents create one complete disqualification?</li><li style="margin-bottom: 14px; line-height: 1.6;">This is a complex machloket. The practical difference: the offering is either piggul (karet) or merely disqualified (no karet).</li><li style="margin-bottom: 14px; line-height: 1.6;">The stakes are high — karet for the eater vs. a regular prohibition — so precise rules matter greatly.</li>
-    </ul>
+  <div class="slide-num">4 / 9</div>
+  <h2>The Bird Sin Offering Problem</h2>
+  <div class="callout">
+    <strong>Rami bar Ḥama's question to Rav Ḥisda:</strong> What about one who brings up some of a <em>bird</em> sin offering to the altar? The bird sin offering is unusual: its blood is sprinkled, but <strong>no part of the bird's meat itself is burned on the altar</strong> — it goes entirely to the priests.
+  </div>
+  <div class="compare-row" style="margin-top: 20px;">
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3>R. Eliezer</h3>
+      <ul>
+        <li>"Of it" = only items that have had a portion <em>burned in fire</em></li>
+        <li>Bird sin offering: no part burned → <strong>not included</strong> in the prohibition</li>
+        <li>One who brings its meat up to the altar is <strong>exempt</strong></li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #4caf50;">
+      <h3>R. Akiva</h3>
+      <ul>
+        <li>"Of it" = even items that had a portion <em>offered</em> (not necessarily burned)</li>
+        <li>The bird's blood was sprinkled → it <strong>is included</strong></li>
+        <li>One who brings its meat up to the altar <strong>violates the prohibition</strong></li>
+      </ul>
+    </div>
   </div>
 </div>
 
-<!-- SLIDE 5: Blood Collection in Two Cups -->
+<!-- SLIDE 5: Burning "All of It" vs. "Part of It" — Abaye vs. Rava -->
 <div class="slide">
-  <div class="slide-num">5 / 6</div>
-  <div style="font-size: 2.5em; margin-bottom: 16px;">🩸</div>
-  <h2>Blood Collection in Two Cups</h2>
-  <div class="key-box gold">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 14px; line-height: 1.6;">If blood was collected in two cups, the <em>first</em> cup's blood is used for the required sprinklings.</li><li style="margin-bottom: 14px; line-height: 1.6;">The second cup's blood is poured on the altar base — the standard disposal for remaining blood.</li><li style="margin-bottom: 14px; line-height: 1.6;">Question: If piggul intent occurs during collection of the first cup only — is the whole offering piggul, or just the portion connected to that cup?</li><li style="margin-bottom: 14px; line-height: 1.6;">Since the first cup's blood is the operative portion (used for sprinkling), improper intent during its collection can affect the entire offering's status.</li>
-    </ul>
+  <div class="slide-num">5 / 9</div>
+  <h2>"Do Not Burn" — All or Part?</h2>
+  <p style="margin-bottom: 20px; color: #aaa; max-width: 650px; text-align: center;">
+    The verse says "do not burn <em>it</em>" about leaven. What's the minimum quantity that triggers liability?
+  </p>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #4a90d9;">
+      <h3>Abaye</h3>
+      <ul>
+        <li>A handful CAN be less than two olive-bulks</li>
+        <li>Burning CAN be significant even with less than one olive-bulk</li>
+        <li>"Any leaven" teaches: even burning <strong>less than an olive-bulk</strong> of leaven creates liability</li>
+        <li>Similarly for honey</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #9b59b6;">
+      <h3>Rava</h3>
+      <ul>
+        <li>A handful is NEVER less than two olive-bulks</li>
+        <li>There's no significant burning with less than one olive-bulk</li>
+        <li>"Do not burn it" = the full handful (two olive-bulks)</li>
+        <li>"Any leaven" teaches: even burning <strong>one</strong> olive-bulk creates liability (half the handful)</li>
+      </ul>
+    </div>
   </div>
 </div>
 
-<!-- SLIDE 6: Quiz CTA -->
+<!-- SLIDE 6: Four Sets of Lashes — Rava's Count -->
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Burning a Leaven-Honey Mixture: How Many Lashes?</h2>
+  <div class="debate">
+    <div class="debate-line">
+      <div class="speaker">R</div>
+      <div class="speech">
+        <strong>Rava:</strong> One who offers a mixture of leaven AND honey on the altar receives <strong>four</strong> sets of lashes:<br>
+        ① "Any leaven" → for the leaven<br>
+        ② "Any honey" → for the honey<br>
+        ③ "You shall not burn" → general prohibition against burning either<br>
+        ④ "Any of it" → for burning part of the offering
+      </div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker">A</div>
+      <div class="speech">
+        <strong>Abaye:</strong> One is <strong>not flogged</strong> for a "general prohibition" (lav she'bichlalut) — a single verse covering multiple acts. Since "you shall not burn" covers both leaven AND honey, it's a general prohibition and doesn't add separate lashes.
+      </div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Internal dispute about Abaye:</strong> Some say Abaye concedes to <em>two</em> sets of lashes (one for leaven, one for honey — each has its own specific prohibition). Others say Abaye holds he's not even flogged with one set, since the verse is not specific to one substance.
+  </div>
+</div>
+
+<!-- SLIDE 7: The Leper's Oil Log — Another Application -->
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Leper's Oil — Rav vs. Levi</h2>
+  <div class="callout">
+    <strong>Context:</strong> What's the practical difference between R. Eliezer and R. Akiva's positions about "of it"? Beyond the bird sin offering, there's another case:
+  </div>
+  <div class="flowchart" style="margin-top: 10px;">
+    <div class="flow-box">
+      <strong>The log of oil</strong> accompanying the guilt offering of a recovered leper (metzora)
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">
+      No part of this oil is burned on the altar — it is sprinkled and applied to the leper. If someone brings it up to the altar, is he liable?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-label">R. Eliezer's approach</div>
+        <div class="flow-box result-good">Exempt — no part was "burned in fire"</div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-label">R. Akiva's approach</div>
+        <div class="flow-box result-bad">Liable — "of it" includes items that had a portion <em>offered</em> in any sacrificial manner</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Summary -->
 <div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
-  <div class="slide-num">6 / 6</div>
+  <div class="slide-num">8 / 9</div>
+  <h2>Key Takeaways — Menachot 58</h2>
+  <div class="callout">
+    <strong>1.</strong> Neither the community nor individuals may bring the two loaves as a voluntary gift offering — only as the obligatory Shavuot offering.<br><br>
+    <strong>2.</strong> Leaven is stricter than honey in one way (prohibition on priestly consumption), but honey has no equivalent leniency.<br><br>
+    <strong>3.</strong> R. Eliezer vs. R. Akiva: the scope of "of it" — is burning specifically required, or does any offering act suffice? Practical difference: bird sin offering, leper's oil log.<br><br>
+    <strong>4.</strong> Abaye vs. Rava on the handful minimum: Can a handful be less than two olive-bulks? This determines what "any leaven" comes to include.<br><br>
+    <strong>5.</strong> Burning a leaven-honey mixture: Rava says four sets of lashes; Abaye says you can't be flogged for a "general prohibition" that covers multiple acts in one verse.
+  </div>
+</div>
+
+<!-- SLIDE 9: Quiz CTA -->
+<div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
+  <div class="slide-num">9 / 9</div>
   <div style="font-size: 3.5em; margin-bottom: 20px;">📝</div>
   <h2>Ready to Test Yourself?</h2>
   <div style="color: #aaa; font-size: 1.1em; margin: 20px 0 30px; text-align: center; max-width: 500px; line-height: 1.6;">
@@ -124,7 +257,7 @@
     font-family: 'Georgia', serif;
   ">Take the Quiz →</a>
   <div style="margin-top: 40px; color: #555; font-size: 0.85em;">
-    Menachot 58a-58b · Daf Yomi
+    Menachot 58a-58b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
   </div>
 </div>
 

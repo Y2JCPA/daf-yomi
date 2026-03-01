@@ -6,51 +6,34 @@
 <title>Menachot 59 — Quiz</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
-  .breadcrumb { margin-bottom: 30px; }
-  .breadcrumb a { color: #c9a84c; text-decoration: none; }
-  .breadcrumb a:hover { text-decoration: underline; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; } .breadcrumb a { color: #c9a84c; text-decoration: none; } .breadcrumb a:hover { text-decoration: underline; }
   h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
   .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
   .quiz { max-width: 650px; width: 100%; }
-  .question { background: #16213e; border: 2px solid #333; border-radius: 12px;
-    padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
-  .question.correct { border-color: #4caf50; }
-  .question.incorrect { border-color: #e74c3c; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; } .question.incorrect { border-color: #e74c3c; }
   .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
   .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
   .options { display: flex; flex-direction: column; gap: 8px; }
-  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px;
-    padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
-  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
-  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
-  .option.right { border-color: #4caf50; background: #1a3a2a; }
-  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
-  .option.disabled { pointer-events: none; opacity: 0.7; }
-  .option.disabled.right { opacity: 1; }
-  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a;
-    border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; } .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; } .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; } .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
   .explanation.show { display: block; }
-  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e;
-    border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer;
-    font-family: 'Georgia', serif; transition: background 0.2s; }
-  .submit-btn:hover { background: #dab95c; }
-  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
-  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c;
-    border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:hover { background: #dab95c; } .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
   .results.show { display: block; }
-  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
-  .score-label { color: #aaa; margin-top: 6px; font-size: 1em; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; } .score-label { color: #aaa; margin-top: 6px; font-size: 1em; }
   .score-msg { margin-top: 14px; font-size: 1.1em; line-height: 1.5; }
-  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent;
-    color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em;
-    cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
   .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }
 </style>
 </head>
 <body>
-
 <div class="breadcrumb"><a href="./">← Back to Slides</a></div>
 <div style="font-size: 2em; margin-bottom: 10px;">📝</div>
 <h1>Menachot 59 Quiz</h1>
@@ -60,78 +43,77 @@
 
   <div class="question" id="q1">
     <div class="q-num">QUESTION 1 OF 5</div>
-    <div class="q-text">What is the status of a meal offering prepared with more oil than prescribed?</div>
+    <div class="q-text">Which meal offering requires frankincense but NOT oil, according to the mishna?</div>
     <div class="options">
-      <div class="option" onclick="select(1, this, 0)">A. Disqualified</div>
-      <div class="option" onclick="select(1, this, 1)">B. Valid — excess oil has no legal significance</div>
-      <div class="option" onclick="select(1, this, 2)">C. The excess oil is simply removed</div>
-      <div class="option" onclick="select(1, this, 3)">D. It becomes a voluntary freewill offering instead</div>
+      <div class="option" onclick="select(1, this, 0)">A. The sinner's meal offering</div>
+      <div class="option" onclick="select(1, this, 1)">B. The meal offering brought with libations (nesakhim)</div>
+      <div class="option" onclick="select(1, this, 2)">C. The shewbread (leḥem hapanim)</div>
+      <div class="option" onclick="select(1, this, 3)">D. The two loaves of Shavuot</div>
     </div>
     <div class="explanation" id="e1">
-      <strong>Correct: A.</strong> The Mishnah establishes that each type of meal offering has a specific oil measurement. Adding more than the prescribed amount disqualifies the offering entirely.
+      <strong>Correct: C.</strong> The shewbread is placed on the Table with frankincense bowls on the sides — it requires frankincense but no oil. The meal offering with libations is the opposite: oil but no frankincense. The sinner's offering and two loaves require neither.
     </div>
   </div>
 
   <div class="question" id="q2">
     <div class="q-num">QUESTION 2 OF 5</div>
-    <div class="q-text">Which meal offerings are brought without oil?</div>
+    <div class="q-text">What does Rav Pappa's principle mean when the mishna says "one brings a meal offering"?</div>
     <div class="options">
-      <div class="option" onclick="select(2, this, 0)">A. The sinner's meal offering and the sota offering</div>
-      <div class="option" onclick="select(2, this, 1)">B. All meal offerings brought by Kohanim</div>
-      <div class="option" onclick="select(2, this, 2)">C. No meal offerings — all require oil</div>
-      <div class="option" onclick="select(2, this, 3)">D. The two loaves of Shavuot</div>
+      <div class="option" onclick="select(2, this, 0)">A. One may bring any quantity he wishes</div>
+      <div class="option" onclick="select(2, this, 1)">B. He must bring exactly ten items of one type — either all loaves or all wafers</div>
+      <div class="option" onclick="select(2, this, 2)">C. He may bring five loaves and five wafers</div>
+      <div class="option" onclick="select(2, this, 3)">D. He brings one loaf as a sample and then brings the rest</div>
     </div>
     <div class="explanation" id="e2">
-      <strong>Correct: A.</strong> The sinner's meal offering (representing affliction, not celebration) and the sota's offering are explicitly brought without oil, as the Torah indicates they are expressions of humility rather than blessing.
+      <strong>Correct: B.</strong> Rav Pappa rules that "one brings a meal offering" always means ten items of one type — either ten loaves or ten wafers, never a mix. This excludes Rabbi Shimon's position that one may fulfill the obligation with five loaves and five wafers.
     </div>
   </div>
 
   <div class="question" id="q3">
     <div class="q-num">QUESTION 3 OF 5</div>
-    <div class="q-text">How is the kemitza (handful) properly performed?</div>
+    <div class="q-text">Why is the shewbread excluded from the oil requirement while the priestly meal offering is included?</div>
     <div class="options">
-      <div class="option" onclick="select(3, this, 0)">A. With three middle fingers, leveled at the palm</div>
-      <div class="option" onclick="select(3, this, 1)">B. With the full fist</div>
-      <div class="option" onclick="select(3, this, 2)">C. With the thumb and forefinger only</div>
-      <div class="option" onclick="select(3, this, 3)">D. Any amount that fills the hand is valid</div>
+      <div class="option" onclick="select(3, this, 0)">A. The shewbread is wheat, not barley</div>
+      <div class="option" onclick="select(3, this, 1)">B. The priestly meal offering shares more features with the omer — it is brought near, a handful is taken, it is offered on the outer altar, and change of form applies</div>
+      <div class="option" onclick="select(3, this, 2)">C. The shewbread is offered by the community, not individuals</div>
+      <div class="option" onclick="select(3, this, 3)">D. The priestly meal offering is more expensive and thus requires more ingredients</div>
     </div>
     <div class="explanation" id="e3">
-      <strong>Correct: A.</strong> The kemitza requires scooping with three middle fingers while leveling the dough at the palm — a precise action requiring priestly skill. This handful is what gets burned on the altar.
+      <strong>Correct: B.</strong> The Gemara compares each offering to the omer. The priestly meal offering shares four key features with the omer (brought near, handful taken, offered on outer altar, change of form). The shewbread lacks these — it's placed on the Table inside the Sanctuary and no handful is taken.
     </div>
   </div>
 
   <div class="question" id="q4">
     <div class="q-num">QUESTION 4 OF 5</div>
-    <div class="q-text">What happens if a non-priest (zar) performs the kemitza?</div>
+    <div class="q-text">What is the difference between placing oil vs. placing frankincense on a sinner's meal offering?</div>
     <div class="options">
-      <div class="option" onclick="select(4, this, 0)">A. The meal offering is disqualified</div>
-      <div class="option" onclick="select(4, this, 1)">B. Valid after the fact if no alternative</div>
-      <div class="option" onclick="select(4, this, 2)">C. The non-priest pays a fine but the offering stands</div>
-      <div class="option" onclick="select(4, this, 3)">D. The kemitza must simply be repeated by a priest</div>
+      <div class="option" onclick="select(4, this, 0)">A. Both disqualify the offering</div>
+      <div class="option" onclick="select(4, this, 1)">B. Both can be remedied by removing the substance</div>
+      <div class="option" onclick="select(4, this, 2)">C. Oil disqualifies; frankincense can be gathered and removed, leaving the offering valid</div>
+      <div class="option" onclick="select(4, this, 3)">D. Frankincense disqualifies; oil can be absorbed and ignored</div>
     </div>
     <div class="explanation" id="e4">
-      <strong>Correct: A.</strong> Kemitza is a priestly service (avodah). If performed by a non-priest, the offering is irreversibly disqualified — it cannot be corrected by a subsequent priestly kemitza.
+      <strong>Correct: C.</strong> Oil is absorbed into the dough — once it touches the offering, the offering is permanently disqualified. Frankincense, however, sits on top and can be physically gathered and removed. After removal, the offering is valid — "for it is a sin offering" reaffirms its status.
     </div>
   </div>
 
   <div class="question" id="q5">
     <div class="q-num">QUESTION 5 OF 5</div>
-    <div class="q-text">What does the Mishnah teach about a meal offering that lacked the required frankincense?</div>
+    <div class="q-text">What does the resolution of Rabba bar Rav Huna's dilemma about ground frankincense teach us?</div>
     <div class="options">
-      <div class="option" onclick="select(5, this, 0)">A. The offering is invalid until frankincense is added</div>
-      <div class="option" onclick="select(5, this, 1)">B. It is valid since frankincense is only rabbinically required</div>
-      <div class="option" onclick="select(5, this, 2)">C. Only the handful can be burned, without permitting the remainder</div>
-      <div class="option" onclick="select(5, this, 3)">D. The priest may supplement from communal Temple stores</div>
+      <div class="option" onclick="select(5, this, 0)">A. Frankincense never disqualifies a sinner's offering regardless of form</div>
+      <div class="option" onclick="select(5, this, 1)">B. The offering is valid only because the frankincense can be removed — ground powder (irremovable) disqualifies</div>
+      <div class="option" onclick="select(5, this, 2)">C. Ground frankincense nullifies itself and is treated as if not there</div>
+      <div class="option" onclick="select(5, this, 3)">D. The priest must replace the offering if frankincense contacts it in any form</div>
     </div>
     <div class="explanation" id="e5">
-      <strong>Correct: A.</strong> The frankincense on a meal offering is a permitting act (matir) for eating the remainder. Without it placed on the offering, the handful may not be burned and the priests may not eat the remainder.
+      <strong>Correct: B.</strong> Rav Naḥman bar Yitzḥak resolves from a baraita: ground frankincense on a sinner's offering disqualifies it. This proves the offering's validity is contingent on the frankincense being removable — not on frankincense inherently having no effect.
     </div>
   </div>
 
 </div>
 
 <button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
-
 <div class="results" id="results">
   <div class="score" id="scoreNum"></div>
   <div class="score-label">out of 5 correct</div>
@@ -141,46 +123,32 @@
 </div>
 
 <script>
-const answers = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+const answers = { 1: 2, 2: 1, 3: 1, 4: 2, 5: 1 };
 const selected = {};
 function select(q, el, idx) {
   if (document.getElementById('q'+q).classList.contains('correct') || document.getElementById('q'+q).classList.contains('incorrect')) return;
-  const opts = el.parentElement.children;
-  for (let o of opts) o.classList.remove('selected');
-  el.classList.add('selected');
-  selected[q] = idx;
+  const opts = el.parentElement.children; for (let o of opts) o.classList.remove('selected');
+  el.classList.add('selected'); selected[q] = idx;
   document.getElementById('submitBtn').disabled = Object.keys(selected).length < 5;
   if (Object.keys(selected).length >= 5) document.getElementById('submitBtn').textContent = 'Submit Answers ✓';
 }
 function grade() {
   let score = 0;
   for (let q = 1; q <= 5; q++) {
-    const qEl = document.getElementById('q'+q);
-    const opts = qEl.querySelectorAll('.option');
-    const correct = answers[q], picked = selected[q];
+    const qEl = document.getElementById('q'+q), opts = qEl.querySelectorAll('.option'), correct = answers[q], picked = selected[q];
     opts.forEach((o,i) => { o.classList.add('disabled'); if(i===correct) o.classList.add('right'); if(i===picked && i!==correct) o.classList.add('wrong'); });
     if (picked===correct) { qEl.classList.add('correct'); score++; } else { qEl.classList.add('incorrect'); }
     document.getElementById('e'+q).classList.add('show');
   }
-  document.getElementById('submitBtn').style.display='none';
-  document.getElementById('results').classList.add('show');
-  document.getElementById('scoreNum').textContent = score+' / 5';
-  const msgs=["Don't worry — review the slides and try again! 📖","Getting there! A quick review will solidify it. 💪","Not bad! One more pass will lock it in. 👍","Solid! You clearly learned the daf well. 🎯","Almost perfect — you really know your Menachot! 🔥","Perfect score! Talmid Chacham status. 🏆"];
-  document.getElementById('scoreMsg').textContent = msgs[score];
+  document.getElementById('submitBtn').style.display='none'; document.getElementById('results').classList.add('show');
+  document.getElementById('scoreNum').textContent=score+' / 5';
+  const msgs=["Don't worry — review the slides and try again! Every chazarah helps. 📖","Getting there! A quick review of the sugya will solidify it. 💪","Not bad! You're getting the main ideas. One more pass will lock it in. 👍","Solid! You clearly learned the daf well. 🎯","Great work! Almost perfect — you really know your Menachot! 🔥","Perfect score! You crushed it! Talmid Chacham status. 🏆"];
+  document.getElementById('scoreMsg').textContent=msgs[score];
 }
 function retry() {
-  for (let q=1;q<=5;q++) {
-    const qEl=document.getElementById('q'+q);
-    qEl.classList.remove('correct','incorrect');
-    qEl.querySelectorAll('.option').forEach(o=>o.classList.remove('selected','right','wrong','disabled'));
-    document.getElementById('e'+q).classList.remove('show');
-  }
-  Object.keys(selected).forEach(k=>delete selected[k]);
-  document.getElementById('submitBtn').style.display='block';
-  document.getElementById('submitBtn').disabled=true;
-  document.getElementById('submitBtn').textContent='Answer all 5 to submit';
-  document.getElementById('results').classList.remove('show');
-  window.scrollTo({top:0,behavior:'smooth'});
+  for (let q=1;q<=5;q++) { const qEl=document.getElementById('q'+q); qEl.classList.remove('correct','incorrect'); qEl.querySelectorAll('.option').forEach(o=>o.classList.remove('selected','right','wrong','disabled')); document.getElementById('e'+q).classList.remove('show'); }
+  Object.keys(selected).forEach(k=>delete selected[k]); document.getElementById('submitBtn').style.display='block'; document.getElementById('submitBtn').disabled=true;
+  document.getElementById('submitBtn').textContent='Answer all 5 to submit'; document.getElementById('results').classList.remove('show'); window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
 </body>

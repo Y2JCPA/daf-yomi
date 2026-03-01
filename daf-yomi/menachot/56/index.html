@@ -7,38 +7,42 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
-  .slide {
-    min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column;
-    justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c;
-    position: relative;
-  }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
   .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
   h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
   h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
   h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
   .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
   .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
-  .key-box {
-    background: #16213e; border: 2px solid #c9a84c; border-radius: 12px;
-    padding: 20px 28px; margin: 10px; max-width: 680px; width: 90%; font-size: 1em; line-height: 1.7;
-  }
-  .key-box.blue { border-color: #4a90d9; background: #0d1e36; }
-  .key-box.green { border-color: #4caf50; background: #0d2a1a; }
-  .key-box.red { border-color: #e74c3c; background: #2a0d0d; }
-  .key-box.purple { border-color: #9b59b6; background: #1a0d2a; }
-  .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.8em;
-    font-weight: bold; margin-bottom: 8px; letter-spacing: 0.5px; }
-  .tag.gold { background: rgba(201,168,76,0.15); color: #c9a84c; border: 1px solid #c9a84c; }
-  .tag.blue { background: rgba(74,144,217,0.15); color: #4a90d9; border: 1px solid #4a90d9; }
-  .tag.green { background: rgba(76,175,80,0.15); color: #4caf50; border: 1px solid #4caf50; }
-  .tag.red { background: rgba(231,76,60,0.15); color: #e74c3c; border: 1px solid #e74c3c; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 500px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
   table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
   th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
   td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
   tr:nth-child(even) { background: #16213e; }
   tr:nth-child(odd) { background: #1a1a2e; }
-  .check { color: #4caf50; font-size: 1.3em; }
-  .cross { color: #e74c3c; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75em; flex-shrink: 0; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
   .nav { display: flex; justify-content: space-between; padding: 20px 5%; background: #0d1117; }
   .nav a { color: #c9a84c; text-decoration: none; font-size: 1.1em; }
   .nav a:hover { text-decoration: underline; }
@@ -47,59 +51,227 @@
 <body>
 
 <!-- SLIDE 1: Title -->
-<div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
-  <div class="slide-num">1 / 5</div>
-  <div style="font-size: 3.5em; margin-bottom: 20px;">📜</div>
+<div class="slide" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+  <div class="slide-num">1 / 9</div>
+  <h1>מנחות נ״ו</h1>
   <h1>Menachot 56</h1>
-  <div class="subtitle">Slaughter, Blemishes & Leavening</div>
-  <div class="hebrew" style="font-size: 1.3em; margin-bottom: 30px;">שחיטה, מומים וחימוץ</div>
-  <div style="max-width: 600px; text-align: center; color: #aaa; font-size: 1em; line-height: 1.7;">
-    The Gemara explores the precise requirements for where an animal must be positioned during slaughter, the prohibition against inflicting blemishes on consecrated animals, and liability for leavening a meal offering.
-  </div>
-  <div style="color: #555; font-size: 0.85em; margin-top: 40px;">
-    Sources: Sefaria (William Davidson Edition) · DafYomi.co.il
-  </div>
+  <div class="subtitle">The Exclusion of "It," Leavening After Leavening, and Blemishing Consecrated Animals</div>
+  <p class="hebrew" style="margin-top: 30px; font-size: 1.3em; max-width: 600px; text-align: center;">
+    אוֹתוֹ — בַּצָּפוֹן, וְאֵין הַשּׁוֹחֵט בַּצָּפוֹן
+  </p>
+  <p style="margin-top: 15px; color: #aaa; font-size: 1em;">
+    "It" — the animal must be in the north, but the one who slaughters need not be in the north
+  </p>
 </div>
 
-<!-- SLIDE 2: Slaughter in the North -->
+<!-- SLIDE 2: What does "It" Exclude? -->
 <div class="slide">
-  <div class="slide-num">2 / 5</div>
-  <div style="font-size: 2.5em; margin-bottom: 16px;">📍</div>
-  <h2>Slaughter in the North</h2>
-  <div class="key-box blue">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 14px; line-height: 1.6;">The term "it" regarding the king's sin offering teaches: <em>the animal</em> must be in the north — but the one slaughtering need not stand in the north.</li><li style="margin-bottom: 14px; line-height: 1.6;">This was already derived from Rabbi Aḥiyya's teaching about burnt offerings — so what extra does this "it" teach?</li><li style="margin-bottom: 14px; line-height: 1.6;">The Gemara concludes: a goat (the king's sin offering) must be slaughtered in the north, but a <em>bird</em> offering is excluded from the north requirement.</li><li style="margin-bottom: 14px; line-height: 1.6;">The Paschal offering is also excluded — derived independently from Rabbi Eliezer ben Yaakov.</li>
-    </ul>
+  <div class="slide-num">2 / 9</div>
+  <h2>What Does "It" (אוֹתוֹ) Exclude?</h2>
+  <p style="margin-bottom: 20px; color: #aaa; max-width: 650px; text-align: center;">
+    The Torah uses the word "it" regarding the king's sin offering — indicating the <em>animal</em> must be in the north, but the slaughterer doesn't need to stand there. But Rabbi Aḥiyya already taught this from the burnt offering! So what does "it" come to exclude?
+  </p>
+  <div class="flowchart">
+    <div class="flow-box question">
+      "It" is written regarding the king's sin offering<br>
+      What does it come to <strong>exclude</strong>?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">
+      <strong>Attempt 1:</strong> Exclude the offering of Nahshon from the north requirement?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad">
+      ❌ Rejected — Nahshon's offering can't be compared to regular sin offerings; "we don't learn inauguration offerings from future generations"
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">
+      <strong>Attempt 2:</strong> Exclude a <strong>bird</strong> offering from the north requirement?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad">
+      ❌ Rejected — A bird can't be derived from a sheep anyway (a bird uses fingernail pinching, not a knife)
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">
+      <strong>Attempt 3:</strong> Exclude the <strong>Paschal offering</strong>?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad">
+      ❌ Rejected — Rabbi Eliezer ben Yaakov already derived this independently
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good">
+      ✅ <strong>Final answer:</strong> "It" teaches that the <em>animal</em> must be in the north, but the <em>slaughterer</em> need not stand in the north.<br>
+      <small>This tanna disagrees with R. Aḥiyya's source and derives it from the king's sin offering instead.</small>
+    </div>
   </div>
 </div>
 
-<!-- SLIDE 3: Leavening a Meal Offering -->
+<!-- SLIDE 3: Rav Pappa — Double Lashes for Baking -->
 <div class="slide">
-  <div class="slide-num">3 / 5</div>
-  <div style="font-size: 2.5em; margin-bottom: 16px;">🔥</div>
-  <h2>Leavening a Meal Offering</h2>
-  <div class="key-box gold">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 14px; line-height: 1.6;">Rabbi Yoḥanan: All Sages agree — one who leavens a meal offering <em>after another already leavened it</em> is still liable.</li><li style="margin-bottom: 14px; line-height: 1.6;">Source: Two separate verses — "it shall not be made with leaven" AND "it shall not be baked with leaven" — creating independent prohibitions.</li><li style="margin-bottom: 14px; line-height: 1.6;">Similarly: one who castrates after another castrates is liable — derived from the verse listing "bruised, crushed, detached, or cut."</li><li style="margin-bottom: 14px; line-height: 1.6;">Rabbi Ami: If one places leaven on dough and sits down — and the dough leavens on its own — he is <em>liable</em>. Like indirect causation on Shabbat.</li>
-    </ul>
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav Pappa: Double Lashes for Baking?</h2>
+  <p style="margin-bottom: 20px; color: #aaa; max-width: 600px; text-align: center;">
+    Continuing from Daf 55's mishna: each stage of leavening a meal offering carries independent liability.
+  </p>
+  <div class="debate">
+    <div class="debate-line">
+      <div class="speaker">RP</div>
+      <div class="speech">
+        <strong>Rav Pappa:</strong> One who bakes a meal offering as chametz receives <strong>two</strong> sets of lashes — one for shaping and one for baking.
+      </div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker">?</div>
+      <div class="speech">
+        <strong>Objection:</strong> But the baraita says baking is "a single action with one set of lashes"!
+      </div>
+    </div>
+    <div class="debate-line">
+      <div class="speaker">RP</div>
+      <div class="speech">
+        <strong>Resolution:</strong> The baraita = same person shaped AND baked (already liable from shaping; baking adds only one more). Rav Pappa = a <em>different</em> person shaped, and he only baked — so baking alone carries two: one for the baking action, one because baking inherently includes the final shaping.
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- SLIDE 4: Blemishes on Consecrated Animals -->
+<!-- SLIDE 4: Bloodletting a Firstborn — The Blemish Dispute -->
 <div class="slide">
-  <div class="slide-num">4 / 5</div>
-  <div style="font-size: 2.5em; margin-bottom: 16px;">⚖️</div>
-  <h2>Blemishes on Consecrated Animals</h2>
-  <div class="key-box purple">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 14px; line-height: 1.6;"><span class="tag gold">Rabbi Meir</span> "There shall be no blemish in it" — prohibits inflicting <em>any</em> blemish on a consecrated animal, even one already blemished.</li><li style="margin-bottom: 14px; line-height: 1.6;"><span class="tag blue">The Rabbis</span> "It shall be perfect to be accepted" — the prohibition only applies to an animal currently fit for the altar (i.e., unblemished).</li><li style="margin-bottom: 14px; line-height: 1.6;">All agree: one may not cause a blemish <em>indirectly</em> — e.g., placing dough on an animal's ear to attract a dog that will bite it.</li><li style="margin-bottom: 14px; line-height: 1.6;">After redemption of a disqualified consecrated animal: even Rabbi Meir agrees one may inflict a blemish — "perfect to be accepted" excludes redeemed animals.</li>
-    </ul>
+  <div class="slide-num">4 / 9</div>
+  <h2>Bloodletting a Firstborn Animal</h2>
+  <p style="margin-bottom: 20px; color: #aaa; max-width: 600px; text-align: center;">
+    An unblemished firstborn kosher animal has restricted blood circulation. May one let blood in a way that creates a blemish?
+  </p>
+  <table>
+    <tr><th>Opinion</th><th>May one bloodlet where it causes a blemish?</th><th>May one slaughter on that blemish?</th></tr>
+    <tr>
+      <td><strong>Tanna Kamma</strong></td>
+      <td>❌ No — only where no blemish results</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td><strong>The Rabbis</strong></td>
+      <td>✅ Yes — even where a blemish results</td>
+      <td>❌ Not on <em>that</em> blemish — wait for a different one</td>
+    </tr>
+    <tr>
+      <td><strong>Rabbi Shimon</strong></td>
+      <td>✅ Yes</td>
+      <td>✅ Yes — even on that very blemish</td>
+    </tr>
+    <tr>
+      <td><strong>Rabbi Yehuda</strong></td>
+      <td>❌ Never — even if the animal would die without bloodletting</td>
+      <td>N/A</td>
+    </tr>
+  </table>
+</div>
+
+<!-- SLIDE 5: Leavening After Leavening -->
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Leavening After Leavening: Still Liable</h2>
+  <div class="callout">
+    <strong>Rabbi Yoḥanan:</strong> All Sages agree — one who leavens a meal offering <em>after someone else already leavened it</em> is still liable.<br><br>
+    <strong>Source:</strong> Two separate verses create independent prohibitions:
+  </div>
+  <div class="flowchart" style="margin-top: 10px;">
+    <div class="flow-box action">
+      <span class="hebrew">לֹא תֵעָשֶׂה חָמֵץ</span><br>
+      "It shall not be <strong>made</strong> with leaven" (Lev. 2:11)
+    </div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-box action">
+      <span class="hebrew">לֹא תֵאָפֶה חָמֵץ</span><br>
+      "It shall not be <strong>baked</strong> with leaven" (Lev. 6:10)
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good">
+      Two independent <em>lavim</em> → even someone who leavens after leavening transgresses a fresh prohibition
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Parallel — Castration after Castration:</strong> The verse lists "bruised, crushed, detached, or cut" (Lev. 22:24). Since "cut" is less severe than "detached," the extra word includes one who detaches <em>after</em> another already cut — still liable.
   </div>
 </div>
 
-<!-- SLIDE 5: Quiz CTA -->
+<!-- SLIDE 6: Rabbi Meir vs. The Rabbis — Blemishing Consecrated Animals -->
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Blemishing a Consecrated Animal</h2>
+  <p style="margin-bottom: 20px; color: #aaa; max-width: 600px; text-align: center;">
+    The dispute about the bloodletting of a firstborn animal is rooted in a deeper disagreement about blemishing consecrated animals:
+  </p>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3>Rabbi Meir</h3>
+      <ul>
+        <li>Source: <span class="hebrew">לֹא יִהְיֶה בוֹ מוּם</span> — "There shall be <strong>no</strong> blemish in it" (Lev. 22:21)</li>
+        <li>This is categorical — even blemishing an <em>already-blemished</em> animal is prohibited</li>
+        <li>Exception: an animal born blemished (it's "like a palm tree" — never eligible for the altar)</li>
+        <li>Exception: after redemption, a consecrated animal that was disqualified is no longer subject to the prohibition</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #4a90d9;">
+      <h3>The Rabbis</h3>
+      <ul>
+        <li>Source: <span class="hebrew">תָּמִים יִהְיֶה לְרָצוֹן</span> — "It shall be <strong>perfect</strong> to be accepted" (Lev. 22:21)</li>
+        <li>"Perfect to be accepted" = the prohibition only protects animals <em>currently fit</em> for the altar</li>
+        <li>An already-blemished animal? No additional prohibition against further blemishing</li>
+        <li>"There shall be no blemish" → teaches: you may not <em>cause</em> a blemish even by verbal instruction to a non-Jew</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Rabbi Ami — Indirect Leavening -->
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabbi Ami: Passive Leavening = Liable</h2>
+  <div class="callout">
+    <strong>Rabbi Ami:</strong> If one placed leaven (שְׂאוֹר — a potent leavening agent) on top of meal offering dough, then <strong>went and sat down</strong> to wait — performing no further action — and the dough leavened on its own: <strong>he is liable</strong>.
+  </div>
+  <div class="flowchart" style="margin-top: 10px;">
+    <div class="flow-box action">
+      Places leaven on the meal offering dough
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">
+      Sits down and waits — takes no further action
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">
+      The dough leavens on its own
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad">
+      <strong>Liable!</strong> — Similar to indirect causation on Shabbat
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Shabbat Parallel (R. Yoḥanan):</strong> One who places meat on coals on Shabbat — if he turns it over, he's liable for cooking. And Rava clarifies: even <em>without</em> turning it over, if the result was inevitable, he's liable. Same principle applies here to leavening.
+  </div>
+</div>
+
+<!-- SLIDE 8: Summary -->
 <div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
-  <div class="slide-num">5 / 5</div>
+  <div class="slide-num">8 / 9</div>
+  <h2>Key Takeaways — Menachot 56</h2>
+  <div class="callout">
+    <strong>1.</strong> The word "it" (אוֹתוֹ) in the king's sin offering excludes the slaughterer from the northward requirement — the animal must be in the north, but the person need not be.<br><br>
+    <strong>2.</strong> Rav Pappa: One who bakes a leavened meal offering may receive two sets of lashes — if he only baked (without shaping), the baking act itself carries liability for both.<br><br>
+    <strong>3.</strong> R. Yoḥanan: All agree that one who leavens a meal offering after another already leavened it is still liable — derived from two independent verses.<br><br>
+    <strong>4.</strong> Castrating after castrating: similarly liable — derived from the multiple terms in "bruised, crushed, detached, or cut."<br><br>
+    <strong>5.</strong> Rabbi Meir vs. The Rabbis: dispute whether blemishing an already-blemished consecrated animal is prohibited. Depends on whether the source is "no blemish in it" (R. Meir — broad) or "perfect to be accepted" (Rabbis — only currently fit animals).<br><br>
+    <strong>6.</strong> Rabbi Ami: placing leaven on dough and sitting down = liable even though you took no further action, based on the Shabbat principle of inevitable results.
+  </div>
+</div>
+
+<!-- SLIDE 9: Quiz CTA -->
+<div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
+  <div class="slide-num">9 / 9</div>
   <div style="font-size: 3.5em; margin-bottom: 20px;">📝</div>
   <h2>Ready to Test Yourself?</h2>
   <div style="color: #aaa; font-size: 1.1em; margin: 20px 0 30px; text-align: center; max-width: 500px; line-height: 1.6;">
@@ -109,10 +281,10 @@
   <a href="quiz.html" style="
     display: inline-block; padding: 18px 48px; background: #c9a84c; color: #1a1a2e;
     text-decoration: none; border-radius: 12px; font-size: 1.3em; font-weight: bold;
-    font-family: 'Georgia', serif;
+    font-family: 'Georgia', serif; transition: background 0.2s;
   ">Take the Quiz →</a>
   <div style="margin-top: 40px; color: #555; font-size: 0.85em;">
-    Menachot 56a-56b · Daf Yomi
+    Menachot 56a-56b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
   </div>
 </div>
 
