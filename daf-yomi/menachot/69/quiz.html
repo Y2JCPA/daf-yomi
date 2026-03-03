@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menachot 69 — Quiz</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; line-height: 1.5; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px;">📝</div>
+<h1>Menachot 69 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+
+<div class="quiz" id="quiz">
+
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">Rabba asks whether the Two Loaves of Shavuot can come from last year's wheat. The Gemara concludes they cannot. What is the reason?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Last year's wheat is considered Yashan and cannot be used for Bikkurim</div>
+      <div class="option" onclick="select(1,this,1)">B. "Bikkurim" means first fruits brought to the altar this year — and the altar already received from this year's fruit via the Omer</div>
+      <div class="option" onclick="select(1,this,2)">C. Last year's wheat is Chadash from the previous year and thus forbidden</div>
+      <div class="option" onclick="select(1,this,3)">D. The Torah explicitly requires the Two Loaves to be ground within 30 days of harvest</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B.</strong> The Gemara interprets "Bikkurim" as "first fruits brought to the altar." Since the altar already received new wheat this year via the Omer (on 16 Nisan), it has already consumed the "first" of this year's fruit. Therefore, last year's wheat cannot serve as the Two Loaves — the altar's "first fruits" slot is taken.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">For grain, what stage of growth is required before the Omer in order for it to be permitted by the Omer offering?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. The grain must be fully ripe (dried and ready for harvest)</div>
+      <div class="option" onclick="select(2,this,1)">B. The grain must have formed heads (Melilot)</div>
+      <div class="option" onclick="select(2,this,2)">C. The grain must have taken root (Hashrashah)</div>
+      <div class="option" onclick="select(2,this,3)">D. The grain must have been planted during the Omer period</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — Taking root (Hashrashah).</strong> Even grain that has only taken root before the Omer is offered — even if it hasn't yet sprouted or formed heads — is permitted by the Omer. This is a relatively early stage in the plant's development, which is why Rami bar Chama wonders whether the equivalent early stage for fruit trees (leaf budding) similarly triggers permission from the Two Loaves.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Rami bar Chama raises a dilemma about what stage a fruit tree must reach for its fruit to be permitted by the Two Loaves. What does he actually ask?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Whether the fruit must be fully formed or just beginning to bud</div>
+      <div class="option" onclick="select(3,this,1)">B. Whether the budding of the tree's leaves (not fruit) is equivalent to the "taking root" of grain</div>
+      <div class="option" onclick="select(3,this,2)">C. Whether trees outside of Israel are subject to the Two Loaves at all</div>
+      <div class="option" onclick="select(3,this,3)">D. Whether fruit that grew before Shavuot last year can be offered as Bikkurim this year</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B.</strong> After the Gemara clarifies that he's not asking about the fruit itself (since grain taking root suffices, obviously budded/formed fruit would too), Rami bar Chama's real question is about the <em>leaves</em> of the fruit tree. Is the budding of the tree's leaves equivalent to grain "taking root"? If yes, the tree's fruit is permitted by the Two Loaves. The dilemma is left unresolved (Teiku).</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">The Gemara discusses a wicker basket woven from palm leaves that an elephant swallowed and excreted. What is the halachic question?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Whether the basket may be used on Shabbat, since it was processed through an animal</div>
+      <div class="option" onclick="select(4,this,1)">B. Whether the basket is susceptible to ritual impurity — is it considered "digested" (like dung, which is exempt) or still a normal wooden vessel?</div>
+      <div class="option" onclick="select(4,this,2)">C. Whether benefit may be derived from the basket, since it came from an impure animal</div>
+      <div class="option" onclick="select(4,this,3)">D. Whether the basket may be used in the Temple, since it passed through a non-kosher animal</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B.</strong> Stone, dung, and earth vessels are not susceptible to ritual impurity. If the palm leaves are truly "digested," the basket should be like a dung vessel — exempt from impurity. But if the palm leaves remain intact (not truly digested), it remains a regular wooden vessel and is susceptible. The Gemara attempts to resolve this from the case of wolves swallowing children but ultimately cannot, as flesh and bone behave differently from palm leaves.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Why do only the five species of grain (wheat, barley, spelt, oats, rye) apply to Chalah, Chadash, and Matzah obligations — and not rice or millet?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Rice and millet were not grown in the Land of Israel during the Biblical period</div>
+      <div class="option" onclick="select(5,this,1)">B. Only these five species can become chametz (leavened); rice and millet merely decay/ferment but do not leaven</div>
+      <div class="option" onclick="select(5,this,2)">C. The five species were specifically selected by Moshe at Sinai</div>
+      <div class="option" onclick="select(5,this,3)">D. Rice and millet have their own separate set of agricultural obligations</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B.</strong> The Gemara derives via a Gezerah Shavah (verbal analogy) between "bread" in the context of Chalah and "bread" in the context of Matzah: just as Matzah must come from grain that can become chametz, so Chalah (and by extension other grain obligations) applies only to grains that can leaven. Rice and millet, when mixed with water, don't leaven — they simply decay (sirchon). Therefore they are excluded from these obligations.</div>
+  </div>
+
+</div>
+
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px;">Try Again ↻</button>
+</div>
+
+<script>
+const answers={1:1,2:2,3:1,4:1,5:1};
+const selected={};
+function select(q,el,idx){
+  if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;
+  const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');
+  el.classList.add('selected');selected[q]=idx;
+  document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;
+  if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';
+}
+function grade(){
+  let score=0;
+  for(let q=1;q<=5;q++){
+    const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];
+    opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});
+    if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}
+    document.getElementById('e'+q).classList.add('show');
+  }
+  document.getElementById('submitBtn').style.display='none';
+  document.getElementById('results').classList.add('show');
+  document.getElementById('scoreNum').textContent=score+' / 5';
+  const msgs=["Don't worry — review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will lock it in. 👍","Solid! You clearly learned the daf. 🎯","Great work! 🔥","Perfect score! Talmid Chacham status! 🏆"];
+  document.getElementById('scoreMsg').textContent=msgs[score];
+}
+function retry(){
+  for(let q=1;q<=5;q++){
+    const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');
+    qEl.querySelectorAll('.option').forEach(o=>o.classList.remove('selected','right','wrong','disabled'));
+    document.getElementById('e'+q).classList.remove('show');
+  }
+  Object.keys(selected).forEach(k=>delete selected[k]);
+  document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;
+  document.getElementById('submitBtn').textContent='Answer all 5 to submit';
+  document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

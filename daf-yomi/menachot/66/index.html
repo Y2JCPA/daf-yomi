@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menachot 66 — Daf Yomi Visual Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide {
+    min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c;
+    position: relative;
+  }
+  .slide-num {
+    position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7;
+  }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box {
+    background: #16213e; border: 2px solid #c9a84c; border-radius: 12px;
+    padding: 16px 24px; text-align: center; min-width: 280px; max-width: 500px;
+    font-size: 1em; line-height: 1.5;
+  }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box {
+    flex: 1; min-width: 260px; max-width: 400px; background: #16213e;
+    border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c;
+  }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar {
+    display: flex; align-items: center; gap: 0; max-width: 800px; width: 100%;
+    justify-content: center; flex-wrap: wrap; margin: 20px 0;
+  }
+  .process-step {
+    background: #16213e; border: 2px solid #c9a84c; border-radius: 50%;
+    width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: 0.85em; padding: 8px; line-height: 1.2;
+  }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 0 6px; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout {
+    background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px;
+    max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0;
+    font-size: 1.05em; line-height: 1.6;
+  }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker {
+    background: #c9a84c; color: #1a1a2e; border-radius: 50%; width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center; font-weight: bold;
+    font-size: 0.75em; flex-shrink: 0;
+  }
+  .speech {
+    background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px;
+    line-height: 1.5; font-size: 0.95em;
+  }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }
+</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100;"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:0.85em;opacity:0.8;">← Menachot Index</a></div>
+
+<!-- SLIDE 1: Title -->
+<div class="slide" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size: 3em; margin-bottom: 20px;">📜</div>
+  <h1>Menachot 66</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size: 1.3em; margin: 20px 0;">מנחות ס״ו</div>
+  <div style="margin-top: 30px; text-align: center; max-width: 600px; line-height: 1.8; color: #aaa;">
+    <strong style="color: #c9a84c;">Key Topics:</strong><br>
+    📅 When to start counting the Omer — "Shabbat" = Yom Tov or Shabbat?<br>
+    ⚔️ The Boethusian controversy over the Omer date<br>
+    📖 Multiple proofs that "Shabbat" means the first day of Pesach<br>
+    🌾 The Omer: reaping at night, offering by day<br>
+    🔥 How the Omer grain was parched — the Kali process
+  </div>
+</div>
+
+<!-- SLIDE 2: The Central Question -->
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📅 The Great Debate: When Do We Count?</h2>
+  <div class="callout">
+    <strong>The Torah says:</strong> <span class="hebrew">וּסְפַרְתֶּם לָכֶם מִמׇּחֳרַת הַשַּׁבָּת</span><br><br>
+    "You shall count for yourselves from the morrow after <strong>the Shabbat</strong>" (Vayikra 23:15)<br><br>
+    But what does <strong>"Shabbat"</strong> mean here?
+  </div>
+  <div class="compare-row" style="margin-top: 20px;">
+    <div class="compare-box" style="border-top-color: #4caf50;">
+      <h3 style="color: #4caf50;">Chachamim (Our Tradition)</h3>
+      <ul>
+        <li>📌 "Shabbat" = <strong>Yom Tov</strong> (first day of Pesach)</li>
+        <li>📅 Count starts: <strong>16 Nisan</strong> (always)</li>
+        <li>🌾 Omer brought on 16 Nisan every year</li>
+        <li>✅ Fixed calendar date</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3 style="color: #e74c3c;">Boethusians (Tzedukim)</h3>
+      <ul>
+        <li>📌 "Shabbat" = <strong>literal Shabbat</strong> during Pesach</li>
+        <li>📅 Count starts: <strong>Sunday</strong> after Shabbat of Pesach</li>
+        <li>🌾 Omer date changes yearly</li>
+        <li>❌ Shavuot always falls on Sunday</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: Seven Proofs -->
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📖 The Proofs: "Shabbat" = Yom Tov</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Tanna</th>
+      <th>Proof</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>R' Yishmael</td>
+      <td>"Count 50 days" — if from Shabbat, the count would never be exactly 50 from Pesach</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>R' Yehuda ben Beseira</td>
+      <td>"Tispar <strong>Lach</strong>" — counting depends on <em>Beis Din</em>, who set Yom Tov, not Shabbat (which everyone knows)</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>R' Yosi</td>
+      <td>"Shabbat" appears at the end of the count (Shavuot) meaning <em>Regel</em> — so it means Regel at the start too</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>R' Shimon b. Elazar</td>
+      <td>"Six days eat matzah" vs "seven days" — resolved only if Omer is on 16 Nisan (new grain permitted for 6 remaining days)</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>R' Yosi b'R' Yehuda</td>
+      <td>Derives from multiple verses that reaping is at night, counting at night, offering by day — only works with fixed date</td>
+    </tr>
+  </table>
+  <div class="callout">
+    <strong>Rava's assessment:</strong> All proofs can be challenged <em>except</em> the last two Tanna'im in each Baraita — R' Yishmael and R' Yehuda ben Beseira (in Baraita #1), and R' Shimon ben Elazar and R' Yosi b'R' Yehuda (in Baraita #2).
+  </div>
+</div>
+
+<!-- SLIDE 4: The Omer Process -->
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🌾 The Omer Offering — Step by Step</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    Derived from the interplay of three verses (Vayikra 23:15-16, Devarim 16:9)
+  </div>
+  <div class="process-bar">
+    <div class="process-step">🌙<br>Reap<br>at Night</div>
+    <div class="process-arrow">→</div>
+    <div class="process-step">🌙<br>Count<br>at Night</div>
+    <div class="process-arrow">→</div>
+    <div class="process-step highlight">☀️<br>Offer<br>by Day</div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>How do we know this sequence?</strong><br>
+    • <span class="hebrew">מֵהָחֵל חֶרְמֵשׁ בַּקָּמָה תָּחֵל לִסְפֹּר</span> — "From when the sickle is put to grain, begin to count" → Reaping and counting happen together<br>
+    • <span class="hebrew">שֶׁבַע שַׁבָּתוֹת תְּמִימֹת</span> — "Seven <strong>complete</strong> weeks" → Must start counting at nightfall (for complete weeks)<br>
+    • <span class="hebrew">מִיּוֹם הֲבִיאֲכֶם</span> — "From the <strong>day</strong> you bring" → The offering is brought during the day
+  </div>
+</div>
+
+<!-- SLIDE 5: Abaye's Rule — Counting Days and Weeks -->
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔢 Abaye: Count Days AND Weeks</h2>
+  <div class="debate">
+    <div class="debate-line">
+      <div class="speaker" style="background: #4a90d9;">Ab</div>
+      <div class="speech">There's a mitzvah to count the <strong>days</strong> and a separate mitzvah to count the <strong>weeks</strong>!</div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker" style="background: #e67e22;">Q</div>
+      <div class="speech">Where does Abaye learn this from?</div>
+    </div>
+    <div class="debate-line">
+      <div class="speaker" style="background: #4a90d9;">Ab</div>
+      <div class="speech">One verse says "count 50 <strong>days</strong>" and another says "count seven <strong>weeks</strong>" — both are mitzvot!</div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Practical impact:</strong> This is why we say each night: "Today is X days, which is Y weeks and Z days of the Omer." We count <em>both</em> the total days and the weeks — fulfilling both mitzvot per Abaye.
+  </div>
+  <div class="hebrew" style="text-align: center; margin-top: 15px; font-size: 1.2em;">
+    מִצְוָה לְמִימְנֵי יוֹמֵי וּמִצְוָה לְמִימְנֵי שָׁבוּעֵי
+  </div>
+</div>
+
+<!-- SLIDE 6: How the Omer Was Parched — Kali -->
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔥 Parching the Omer Grain</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    The Torah says: <span class="hebrew">אָבִיב קָלוּי בָּאֵשׁ גֶּרֶשׂ כַּרְמֶל</span> — "Grain in the ear, parched with fire, groats of the fresh ear" (Vayikra 2:14)
+  </div>
+  <div class="flowchart">
+    <div class="flow-box question">🤔 What does "Kali" (parched) mean?<br><small>Direct fire? Or something else?</small></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box action">
+      <strong>Answer:</strong> "Kali" = <strong>Kalil</strong> (burnished)<br>
+      A perforated brass vessel, like a sieve<br>
+      Fire reaches all the grain evenly through the holes
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good">
+      ✅ Grain parched inside a vessel — not directly in fire<br>
+      <small>The verse "interrupted the matter" — parching applies to the stalks, not the ground groats</small>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>"Karmel" = Rakh u'Mal</strong> (soft and malleable)<br>
+    The Omer grain must be fresh and tender — not dry or hard. The Gemara brings several examples of compressed words (<em>notarikon</em>) to prove this interpretation.
+  </div>
+</div>
+
+<!-- SLIDE 7: The Verse Sequence -->
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Which Verse Teaches What?</h2>
+  <table>
+    <tr>
+      <th>Verse</th>
+      <th>Teaches</th>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><span class="hebrew">מִמׇּחֳרַת הַשַּׁבָּת</span></td>
+      <td style="text-align: left;">Count from the day after Yom Tov (16 Nisan)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><span class="hebrew">תִּסְפֹּר לָךְ</span></td>
+      <td style="text-align: left;">Counting depends on Beis Din (not automatic like Shabbat)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><span class="hebrew">שֶׁבַע שַׁבָּתוֹת תְּמִימֹת</span></td>
+      <td style="text-align: left;">Start at night — for "complete" weeks</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><span class="hebrew">מִיּוֹם הֲבִיאֲכֶם</span></td>
+      <td style="text-align: left;">The offering is brought by day</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><span class="hebrew">מֵהָחֵל חֶרְמֵשׁ בַּקָּמָה</span></td>
+      <td style="text-align: left;">Reaping and counting happen together (at night)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><span class="hebrew">שִׁשֶּׁת יָמִים / שִׁבְעַת יָמִים</span></td>
+      <td style="text-align: left;">Omer on 16 Nisan — new grain permitted for 6 of 7 Pesach days</td>
+    </tr>
+  </table>
+</div>
+
+<!-- SLIDE 8: Summary -->
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Menachot 66 — Summary Map</h2>
+  <div class="flowchart" style="max-width: 800px;">
+    <div class="flow-box" style="background: #2a1a3e; border-color: #c9a84c; font-size: 1.1em;">
+      <strong>Central Question:</strong> When does the Omer count begin?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-box result-good">
+          <strong>Chachamim:</strong><br>"Shabbat" = Yom Tov<br>Always 16 Nisan
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-box result-bad">
+          <strong>Boethusians:</strong><br>"Shabbat" = literal Shabbat<br>❌ Rejected
+        </div>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">
+      <strong>Related topics explored:</strong><br>
+      🔹 Five Tannaitic proofs for Chachamim's position<br>
+      🔹 Rava's critique — which proofs are unchallengeable<br>
+      🔹 Abaye: mitzvah to count days AND weeks<br>
+      🔹 The Kali process — how Omer grain was parched
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good" style="font-size: 1.05em;">
+      🎓 <strong>Key Takeaway:</strong> The Omer count is anchored to 16 Nisan by multiple independent proofs.
+      The reaping/counting/offering sequence (night-night-day) is derived from the interplay of three verses.
+    </div>
+  </div>
+  <div style="margin-top: 30px; text-align: center; color: #666; font-size: 0.85em;">
+    Menachot 66a-66b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+
+<!-- SLIDE 9: Quiz CTA -->
+<div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size: 3.5em; margin-bottom: 20px;">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color: #aaa; font-size: 1.1em; margin: 20px 0 30px; text-align: center; max-width: 500px; line-height: 1.6;">
+    5 multiple-choice questions on today's daf.<br>
+    Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="
+    display: inline-block; padding: 18px 48px; background: #c9a84c; color: #1a1a2e;
+    text-decoration: none; border-radius: 12px; font-size: 1.3em; font-weight: bold;
+    font-family: 'Georgia', serif; transition: background 0.2s;
+  ">Take the Quiz →</a>
+  <div style="margin-top: 40px; color: #555; font-size: 0.85em;">
+    Menachot 66a-66b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+
+<div class="nav"><a href="../65/">← Daf 65</a><a href="../67/">Daf 67 →</a></div>
+</body>
+</html>
