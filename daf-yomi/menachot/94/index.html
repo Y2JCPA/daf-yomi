@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menachot 94 — Daf Yomi Visual Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide {
+    min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c;
+    position: relative;
+  }
+  .slide-num {
+    position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7;
+  }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+
+  .flowchart {
+    display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%;
+  }
+  .flow-box {
+    background: #16213e; border: 2px solid #c9a84c; border-radius: 12px;
+    padding: 16px 24px; text-align: center; min-width: 280px; max-width: 500px;
+    font-size: 1em; line-height: 1.5;
+  }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%;
+  }
+  .flow-branch .flow-col {
+    display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px;
+  }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+
+  table {
+    border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%;
+  }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+
+  .compare-row {
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%;
+  }
+  .compare-box {
+    flex: 1; min-width: 260px; max-width: 400px; background: #16213e;
+    border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c;
+  }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+
+  .process-bar {
+    display: flex; align-items: center; gap: 0; max-width: 800px; width: 100%;
+    justify-content: center; flex-wrap: wrap; margin: 20px 0;
+  }
+  .process-step {
+    background: #16213e; border: 2px solid #c9a84c; border-radius: 50%;
+    width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: 0.85em; padding: 8px; line-height: 1.2;
+  }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 0 6px; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+
+  .callout {
+    background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px;
+    max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0;
+    font-size: 1.05em; line-height: 1.6;
+  }
+  .callout strong { color: #c9a84c; }
+
+  /* Bread shape diagram */
+  .bread-diagram {
+    display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin: 20px 0;
+  }
+  .bread-shape {
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .bread-box { width: 100px; height: 70px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.8em; text-align: center; color: #fff; }
+  .bread-open-box { background: #4a3a1a; border: 2px solid #c9a84c; border-radius: 4px; position: relative; }
+  .bread-boat { background: #1a3a5c; border: 2px solid #4a90d9; clip-path: polygon(10% 100%, 50% 0%, 90% 100%); }
+
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }
+</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100;"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:0.85em;opacity:0.8;">← Menachot Index</a></div>
+
+<!-- SLIDE 1: Title -->
+<div class="slide" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size: 3em; margin-bottom: 20px;">🍞</div>
+  <h1>Menachot 94</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size: 1.3em; margin: 20px 0;">מנחות צ״ד</div>
+  <div style="margin-top: 30px; text-align: center; max-width: 600px; line-height: 1.8; color: #aaa;">
+    <strong style="color: #c9a84c;">Key Topics:</strong><br>
+    🫸 Tenufah vs. Semikha — a comparison of scope<br>
+    🔪 High Priest's Semikha on slaughtered limbs — special case<br>
+    🍞 Two Loaves (Shavuot) and Shewbread — baking rules<br>
+    📐 The mold (Defus) — shape preservation in and out of the oven<br>
+    🛶 What shape was the Lechem HaPanim? Box vs. Boat
+  </div>
+</div>
+
+<!-- SLIDE 2: Tenufah vs Semikha — Full Comparison -->
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Tenufah vs. Semikha — Head-to-Head</h2>
+  <table>
+    <tr>
+      <th>Dimension</th>
+      <th>🫸 Tenufah (Waving)</th>
+      <th>🤲 Semikha (Placing Hands)</th>
+    </tr>
+    <tr>
+      <td>Applies to live animals?</td>
+      <td><span class="check">✓</span> Yes</td>
+      <td><span class="check">✓</span> Yes</td>
+    </tr>
+    <tr>
+      <td>Applies to slaughtered animals?</td>
+      <td><span class="check">✓</span> Yes (breast, thigh)</td>
+      <td><span class="cross">✗</span> No</td>
+    </tr>
+    <tr>
+      <td>Applies to items without life?</td>
+      <td><span class="check">✓</span> Yes (Omer, Sotah, loaves)</td>
+      <td><span class="cross">✗</span> No — only living animals</td>
+    </tr>
+    <tr>
+      <td>All co-owners must perform it?</td>
+      <td><span class="cross">✗</span> One acts for all</td>
+      <td><span class="check">✓</span> Each one individually</td>
+    </tr>
+    <tr>
+      <td>Can an agent perform it?</td>
+      <td><span class="cross">✗</span> No</td>
+      <td><span class="cross">✗</span> No</td>
+    </tr>
+  </table>
+  <div class="callout">
+    <strong>The paradox:</strong> Tenufah has broader scope (applies to slaughtered animals + non-living items), 
+    yet only one partner waves. Semikha has narrower scope (living animals only), 
+    yet ALL partners must place their hands. The verse "korbano" overrides any kal va'chomer.
+  </div>
+</div>
+
+<!-- SLIDE 3: Kohen Gadol's Semikha on Limbs -->
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏛️ The Kohen Gadol's Special Semikha</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    From Masechet Tamid: When the Kohen Gadol wanted to sacrifice the daily offering (Tamid), 
+    he placed his hands on each limb as it was handed to him before throwing it on the altar.
+  </div>
+  <div class="process-bar">
+    <div class="process-step">👐<br>Priest holds<br>limb out</div>
+    <div class="process-arrow">→</div>
+    <div class="process-step highlight">🤲<br>Kohen Gadol<br>places hands</div>
+    <div class="process-arrow">→</div>
+    <div class="process-step" style="border-color: #e74c3c;">🔥<br>Throws limb<br>on altar</div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>But wait — isn't Semikha only for live animals?</strong><br><br>
+    Abaye answers: This isn't Semikha in the halachic sense at all. 
+    The Kohen Gadol places his hands on the limbs as a mark of <em>honor and prestige</em> 
+    (Kavod Kohen Gadol) — not as a fulfillment of the mitzva of Semikha.
+    It's a ceremonial gesture to distinguish the High Priest's service.
+  </div>
+</div>
+
+<!-- SLIDE 4: The New Mishna — Two Loaves vs Shewbread -->
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 New Mishna: Two Loaves vs. Shewbread</h2>
+  <table>
+    <tr>
+      <th>Rule</th>
+      <th>🐑 Shtei HaLechem (Two Loaves / Shavuot)</th>
+      <th>🕎 Lechem HaPanim (Shewbread)</th>
+    </tr>
+    <tr>
+      <td>Kneaded</td>
+      <td>One by one</td>
+      <td>One by one</td>
+    </tr>
+    <tr>
+      <td>Baked</td>
+      <td>One by one</td>
+      <td><strong>Two by two</strong></td>
+    </tr>
+    <tr>
+      <td>Mold used?</td>
+      <td>No mold mentioned</td>
+      <td>✅ Defus (mold) — before AND after baking</td>
+    </tr>
+    <tr>
+      <td>Amount</td>
+      <td>2 loaves × 2/10 ephah each</td>
+      <td>12 loaves × 2/10 ephah each</td>
+    </tr>
+    <tr>
+      <td>Chametz or Matzah?</td>
+      <td>Chametz (leavened!)</td>
+      <td>Matzah (unleavened)</td>
+    </tr>
+  </table>
+  <div class="callout">
+    <strong>The Defus (מוּד):</strong> The baker used a mold for the Shewbread 
+    when forming the dough AND again when removing it from the oven — 
+    to ensure the loaves kept their special shape and didn't get misshapen.
+  </div>
+</div>
+
+<!-- SLIDE 5: The Shape Debate — Box vs Boat -->
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🛶 What Shape Was the Lechem HaPanim?</h2>
+  <div style="margin-bottom: 15px; text-align: center; color: #aaa;">
+    The Gemara debates two Amoraim: R' Chanina vs. R' Yochanan
+  </div>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #4a90d9;">
+      <h3 style="color: #4a90d9;">R' Chanina — "Open Box" 📦</h3>
+      <ul>
+        <li>📐 Wide flat base, two parallel walls on the sides</li>
+        <li>🔓 Open on two ends (like a rectangular box with no lid and no short ends)</li>
+        <li>✅ Bowls of frankincense can rest on the flat top</li>
+        <li>✅ Rods can rest stably on the flat surface</li>
+        <li>📌 Panels placed on the <strong>ground</strong> (not on the Table)</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3 style="color: #e74c3c;">R' Yochanan — "Rocking Boat" 🛶</h3>
+      <ul>
+        <li>📐 Narrow base, two walls angling outward and upward</li>
+        <li>🛶 Triangular cross-section, rocks if not supported</li>
+        <li>✅ Explains why the panels were essential (to stop it rocking)</li>
+        <li>📌 Panels placed on the <strong>Table</strong> (not on the ground)</li>
+        <li>⚠️ Bowls placed in a specially prepared flat spot</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>A Baraita supports R' Yochanan:</strong> "There were four gold panels there, 
+    which split up at their upper ends like forked branches — 
+    because the bread resembled a rocking boat and was supported by them."
+  </div>
+</div>
+
+<!-- SLIDE 6: The Arrangement on the Table -->
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🕎 The Shulchan — How the Loaves Were Arranged</h2>
+  <div class="flowchart">
+    <div class="flow-box action">
+      📏 The Shulchan HaPanim (Table of Shewbread)<br>
+      <small>2 cubits × 1 cubit surface, in the Heichal (Sanctuary)</small>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-label">Arrangement</div>
+        <div class="flow-box" style="border-color: #4caf50;">
+          12 loaves in <strong>2 stacks of 6</strong><br>
+          <small>One stack on each side of the Table</small>
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-label">Separation</div>
+        <div class="flow-box" style="border-color: #f39c12;">
+          <strong>14 gold rods per stack</strong><br>
+          <small>3 rods per loaf, 2 under the top loaf</small>
+        </div>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">
+      <strong>2 Bazichim</strong> — gold bowls of Levonah (frankincense)<br>
+      <small>One on top of each stack — the Levonah is burned, not the bread</small>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-label">Box opinion</div>
+        <div class="flow-box result-bad">
+          Panels on the <strong>ground</strong><br>
+          <small>Loaves have wide base, don't need ground support — panels prevent crushing</small>
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-label">Boat opinion</div>
+        <div class="flow-box result-good">
+          Panels on the <strong>Table</strong><br>
+          <small>Narrow base needs stability from the start</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: "Bishlamah" Structure — The Gemara's Method -->
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔍 "Granted / But According to..." — Gemara's Logic</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    The Gemara uses the classic <em>bishlamah... ella</em> pattern to test each opinion:
+  </div>
+  <table>
+    <tr>
+      <th>Question</th>
+      <th>Box (R' Chanina)</th>
+      <th>Boat (R' Yochanan)</th>
+    </tr>
+    <tr>
+      <td>Where do the bowls rest?</td>
+      <td><span class="check">✓</span> On the flat top</td>
+      <td>Made a special flat spot</td>
+    </tr>
+    <tr>
+      <td>How do the rods rest?</td>
+      <td><span class="check">✓</span> On the flat surface</td>
+      <td>Made a protrusion at the base</td>
+    </tr>
+    <tr>
+      <td>Why do panels exist?</td>
+      <td>Prevent crushing from weight above</td>
+      <td><span class="check">✓</span> Loaves need lateral support</td>
+    </tr>
+    <tr>
+      <td>Where are panels placed?</td>
+      <td>On the ground</td>
+      <td><span class="check">✓</span> On the Table (per Baraita)</td>
+    </tr>
+    <tr>
+      <td>R' Yehuda: "Bread supports panels + panels support bread"?</td>
+      <td><span class="cross">✗</span> Doesn't work (panels on ground)</td>
+      <td><span class="check">✓</span> Works perfectly (mutual leaning)</td>
+    </tr>
+  </table>
+  <div class="callout" style="margin-top: 10px;">
+    <strong>Bottom line:</strong> The Baraita about the forked gold panels aligns with R' Yochanan's "rocking boat" shape. The structure of the Temple service required the panels precisely because the narrow-based boat shape was unstable without lateral support.
+  </div>
+</div>
+
+<!-- SLIDE 8: Summary Map -->
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Menachot 94 — Summary Map</h2>
+  <div class="flowchart" style="max-width: 800px;">
+    <div class="flow-box" style="background: #2a1a3e; border-color: #c9a84c; font-size: 1.1em;">
+      <strong>Two Topics:</strong> Completing the Semikha laws + The Bread of the Temple
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-box" style="border-color: #9b59b6;">
+          <strong>Tenufah vs. Semikha</strong>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box" style="border-color: #9b59b6; font-size: 0.9em;">
+          Tenufah: broader scope<br>
+          (dead + inanimate items too)<br>
+          Semikha: all partners required<br>
+          (cannot be delegated)
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-box" style="border-color: #c9a84c;">
+          <strong>Temple Breads</strong>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box" style="border-color: #c9a84c; font-size: 0.9em;">
+          Two Loaves: baked 1×1<br>
+          Shewbread: baked 2×2, with mold<br>
+          Shape dispute: Box or Boat
+        </div>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">
+      <strong>Key tensions:</strong><br>
+      🔹 Tenufah has wider scope yet narrower personal obligation than Semikha<br>
+      🔹 Kohen Gadol's "Semikha" on limbs is ceremonial, not halachic<br>
+      🔹 The Lechem HaPanim shape: Baraita supports R' Yochanan's boat
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good" style="font-size: 1.05em;">
+      🎓 <strong>Key Principle:</strong> The Temple service was architectural precision — 
+      even the shape of the bread had halachic implications for how it was supported, 
+      how panels were placed, and how the gold rods functioned.
+    </div>
+  </div>
+  <div style="margin-top: 30px; text-align: center; color: #666; font-size: 0.85em;">
+    Menachot 94a-94b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+
+<!-- SLIDE 9: Quiz CTA -->
+<div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size: 3.5em; margin-bottom: 20px;">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color: #aaa; font-size: 1.1em; margin: 20px 0 30px; text-align: center; max-width: 500px; line-height: 1.6;">
+    5 multiple-choice questions on today's daf.<br>
+    Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="
+    display: inline-block; padding: 18px 48px; background: #c9a84c; color: #1a1a2e;
+    text-decoration: none; border-radius: 12px; font-size: 1.3em; font-weight: bold;
+    font-family: 'Georgia', serif; transition: background 0.2s;
+  ">Take the Quiz →</a>
+  <div style="margin-top: 40px; color: #555; font-size: 0.85em;">
+    Menachot 94a-94b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+
+<div class="nav"><a href="../93/">← Daf 93</a><a href="../95/">Daf 95 →</a></div>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menachot 93 — Daf Yomi Visual Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide {
+    min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c;
+    position: relative;
+  }
+  .slide-num {
+    position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7;
+  }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+
+  .flowchart {
+    display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%;
+  }
+  .flow-box {
+    background: #16213e; border: 2px solid #c9a84c; border-radius: 12px;
+    padding: 16px 24px; text-align: center; min-width: 280px; max-width: 500px;
+    font-size: 1em; line-height: 1.5;
+  }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%;
+  }
+  .flow-branch .flow-col {
+    display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px;
+  }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+
+  table {
+    border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%;
+  }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+
+  .compare-row {
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%;
+  }
+  .compare-box {
+    flex: 1; min-width: 260px; max-width: 400px; background: #16213e;
+    border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c;
+  }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+
+  .process-bar {
+    display: flex; align-items: center; gap: 0; max-width: 800px; width: 100%;
+    justify-content: center; flex-wrap: wrap; margin: 20px 0;
+  }
+  .process-step {
+    background: #16213e; border: 2px solid #c9a84c; border-radius: 50%;
+    width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: 0.85em; padding: 8px; line-height: 1.2;
+  }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 0 6px; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+
+  .callout {
+    background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px;
+    max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0;
+    font-size: 1.05em; line-height: 1.6;
+  }
+  .callout strong { color: #c9a84c; }
+
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker {
+    background: #c9a84c; color: #1a1a2e; border-radius: 50%; width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center; font-weight: bold;
+    font-size: 0.75em; flex-shrink: 0;
+  }
+  .speech {
+    background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px;
+    line-height: 1.5; font-size: 0.95em;
+  }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }
+</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100;"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:0.85em;opacity:0.8;">← Menachot Index</a></div>
+
+<!-- SLIDE 1: Title -->
+<div class="slide" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size: 3em; margin-bottom: 20px;">✋</div>
+  <h1>Menachot 93</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size: 1.3em; margin: 20px 0;">מנחות צ״ג</div>
+  <div style="margin-top: 30px; text-align: center; max-width: 600px; line-height: 1.8; color: #aaa;">
+    <strong style="color: #c9a84c;">Key Topics:</strong><br>
+    ✋ Who CAN'T do Semikha — the exclusion list<br>
+    📖 "Yado" (his hand) — three exclusions from three verses<br>
+    🤲 Two hands required, on the head only<br>
+    ⚖️ Is Semikha essential (Me'akev) or non-essential?<br>
+    🔪 Immediately after Semikha comes Shechitah
+  </div>
+</div>
+
+<!-- SLIDE 2: The Mishna — Who Can't Do Semikha -->
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🚫 The Exclusion List — Who Can't Do Semikha</h2>
+  <table>
+    <tr>
+      <th>Person</th>
+      <th>Can Do Semikha?</th>
+      <th>Reason</th>
+    </tr>
+    <tr>
+      <td>🧏 Cheresh (Deaf-mute)</td>
+      <td><span class="cross">✗</span></td>
+      <td>Lacks da'at (legal competence)</td>
+    </tr>
+    <tr>
+      <td>🤪 Shoteh (Imbecile)</td>
+      <td><span class="cross">✗</span></td>
+      <td>Lacks da'at</td>
+    </tr>
+    <tr>
+      <td>👶 Katan (Minor)</td>
+      <td><span class="cross">✗</span></td>
+      <td>Lacks da'at</td>
+    </tr>
+    <tr>
+      <td>👨‍🦯 Suma (Blind Person)</td>
+      <td><span class="cross">✗</span></td>
+      <td>Derived from communal Semikha (see below)</td>
+    </tr>
+    <tr>
+      <td>🌍 Nochri (Gentile)</td>
+      <td><span class="cross">✗</span></td>
+      <td>"His hand" — not a gentile's hand</td>
+    </tr>
+    <tr>
+      <td>⛓️ Eved Kena'ani (Slave)</td>
+      <td><span class="cross">✗</span></td>
+      <td>"His hand" — not his slave's hand</td>
+    </tr>
+    <tr>
+      <td>📬 Shaliach (Agent)</td>
+      <td><span class="cross">✗</span></td>
+      <td>"His hand" — not his agent's hand</td>
+    </tr>
+    <tr>
+      <td>👩 Ishah (Woman)</td>
+      <td><span class="cross">✗</span></td>
+      <td>"His hand" — not his wife's hand</td>
+    </tr>
+  </table>
+  <div class="callout">
+    <strong>Key point:</strong> Despite the general rule that "a person's agent is like himself," 
+    Semikha is an exception — it must be performed personally by the owner.
+  </div>
+</div>
+
+<!-- SLIDE 3: "Yado" — Three Exclusions -->
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📖 "Yado" (His Hand) — Three Exclusions</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    "His hand" appears three times in Vayikra Chapter 3. Each exclusion builds on the previous:
+  </div>
+  <div class="flowchart">
+    <div class="flow-box action">
+      <strong>"Yado" #1</strong> (3:2)<br>
+      → Not the hand of his <strong>slave</strong><br>
+      <small>A slave isn't commanded in mitzvot → clearly excluded</small>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box" style="border-color: #f39c12; background: #4a3a1a;">
+      <strong>"Yado" #2</strong> (3:8)<br>
+      → Not the hand of his <strong>agent</strong><br>
+      <small>An agent IS commanded + "shlucho k'moso" — so we need a verse!</small>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box" style="border-color: #9b59b6; background: #3a1a4a;">
+      <strong>"Yado" #3</strong> (3:13)<br>
+      → Not the hand of his <strong>wife</strong><br>
+      <small>A wife is "like his own flesh" — strongest case, still excluded!</small>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Why all three?</strong> Each verse excludes a progressively "closer" relationship. 
+    If we only had one verse, we'd think the exclusion applies only to the weakest case (slave). 
+    The Torah needed to build up to the wife — who is "his own flesh" — to make it clear: 
+    Semikha is strictly personal.
+  </div>
+</div>
+
+<!-- SLIDE 4: Blind Person — Two Sources -->
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>👨‍🦯 The Blind Person — How Do We Derive It?</h2>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #4a90d9;">
+      <h3 style="color: #4a90d9;">Approach 1: From the Elders</h3>
+      <ul>
+        <li>📖 The elders of the Sanhedrin do Semikha on the communal bull</li>
+        <li>🔗 Derive individual Semikha from communal Semikha</li>
+        <li>👨‍🦳 Elders must be fit judges → blind people can't serve as judges</li>
+        <li>💡 Therefore: blind people can't do Semikha</li>
+        <li>⚠️ This works because communal Semikha explicitly writes "placing hands"</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3 style="color: #e74c3c;">Approach 2: From the Olat Re'iyah</h3>
+      <ul>
+        <li>📖 The burnt offering of "appearance" (re'iyah) requires Semikha</li>
+        <li>🔗 Derive: whoever is obligated in re'iyah can do Semikha</li>
+        <li>👨‍🦯 Blind people are exempt from re'iyah (the mitzva of "appearing")</li>
+        <li>💡 Therefore: blind people can't do Semikha</li>
+        <li>⚠️ This derives individual from individual (preferred by some)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>The methodological debate:</strong> Do we derive individual cases from individual cases, 
+    or from communal cases? Each approach has a different logic for why the source is authoritative.
+  </div>
+</div>
+
+<!-- SLIDE 5: How Semikha Is Done -->
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🤲 How Semikha Is Performed</h2>
+  <div class="process-bar">
+    <div class="process-step">🤲<br>Two<br>Hands</div>
+    <div class="process-arrow">→</div>
+    <div class="process-step highlight">🐂<br>On the<br>Head</div>
+    <div class="process-arrow">→</div>
+    <div class="process-step">📍<br>Same<br>Spot</div>
+    <div class="process-arrow">→</div>
+    <div class="process-step" style="border-color: #e74c3c;">🔪<br>Immediate<br>Shechitah</div>
+  </div>
+  <div style="margin-top: 30px;">
+    <table>
+      <tr>
+        <th>Rule</th>
+        <th>Source</th>
+        <th>Details</th>
+      </tr>
+      <tr>
+        <td><strong>Two hands</strong></td>
+        <td>"His hand" (singular) + "hands" elsewhere</td>
+        <td>Must lean with BOTH hands — full force</td>
+      </tr>
+      <tr>
+        <td><strong>On the head only</strong></td>
+        <td>"Upon the head" ×3 (Vayikra 3)</td>
+        <td>Not neck, not back, not breast</td>
+      </tr>
+      <tr>
+        <td><strong>Same location</strong></td>
+        <td>Juxtaposition in the verse</td>
+        <td>Semikha and Shechitah happen in the same place</td>
+      </tr>
+      <tr>
+        <td><strong>Immediate sequence</strong></td>
+        <td>Proximity in the verse</td>
+        <td>Right after Semikha → slaughter (no delay)</td>
+      </tr>
+    </table>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Why three "upon the head" exclusions?</strong><br>
+    • "Upon the head" — not upon the <strong>neck</strong><br>
+    • "Upon the head" — not upon the <strong>back</strong><br>
+    • "Upon the head" — not upon the <strong>breast</strong><br>
+    All three needed because each body part is progressively closer to the head.
+  </div>
+</div>
+
+<!-- SLIDE 6: Non-Essential Mitzva -->
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ Is Semikha Essential or Non-Essential?</h2>
+  <div class="debate">
+    <div class="debate-line">
+      <div class="speaker" style="background: #9b59b6;">Q</div>
+      <div class="speech">The verse says: "He shall place his hand... and it shall be accepted to effect atonement." That sounds like Semikha IS needed for atonement! <span class="emoji">🤔</span></div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker" style="background: #4a90d9;">A</div>
+      <div class="speech">But atonement comes through the BLOOD, not through hands! "For it is the blood that effects atonement" (Vayikra 17:11). <span class="emoji">🩸</span></div>
+    </div>
+    <div class="debate-line">
+      <div class="speaker" style="background: #9b59b6;">Q</div>
+      <div class="speech">So what does the verse about Semikha mean?</div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker" style="background: #4a90d9;">A</div>
+      <div class="speech">If someone treats Semikha as unimportant and skips it, the verse ascribes blame as if he didn't atone. But in reality — the korban still works. <span class="emoji">✅</span></div>
+    </div>
+  </div>
+  <div class="compare-row" style="margin-top: 30px;">
+    <div class="compare-box" style="border-top-color: #4caf50;">
+      <h3 style="color: #4caf50;">Semikha</h3>
+      <ul>
+        <li>🤲 Non-essential (Eino Me'akev)</li>
+        <li>📖 "He shall place his hand... and it shall be accepted"</li>
+        <li>⚠️ Blamed if skipped, but atonement still works</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #f39c12;">
+      <h3 style="color: #f39c12;">Tenufah (Waving)</h3>
+      <ul>
+        <li>🫸 Also non-essential (Eino Me'akev)</li>
+        <li>📖 "To be waved to effect atonement" (Vayikra 14:21)</li>
+        <li>⚠️ Same rule: blamed if skipped, but works regardless</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Partners & Co-Owners -->
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>👥 Partners — Everyone Places Hands</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    If multiple people co-own an offering, do all of them do Semikha?
+  </div>
+  <div class="flowchart">
+    <div class="flow-box question">
+      <strong>The attempted Kal va'Chomer:</strong><br>
+      Tenufah applies to slaughtered animals (broader scope)<br>
+      yet only ONE partner waves.<br>
+      Semikha only applies to live animals (narrower scope) —<br>
+      so surely only ONE partner should need to do Semikha?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad">
+      <strong>Rejected!</strong> "Korbano" teaches: ALL co-owners must do Semikha.
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box" style="border-color: #9b59b6;">
+      <strong>Why not the reverse for Tenufah?</strong><br>
+      If all partners must do Semikha → shouldn't all wave?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good">
+      <strong>Impossible!</strong> Multiple people waving creates a <em>chatzitzah</em> (interposition).<br>
+      And sequential waving = multiple wavings, but Torah says ONE waving.<br>
+      <small>So Tenufah is inherently limited to one person.</small>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Summary Map -->
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Menachot 93 — Summary Map</h2>
+  <div class="flowchart" style="max-width: 800px;">
+    <div class="flow-box" style="background: #2a1a3e; border-color: #c9a84c; font-size: 1.1em;">
+      <strong>Central Question:</strong> Who does Semikha, and how?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-box" style="border-color: #e74c3c;">
+          <strong>Who CAN'T</strong><br>8 exclusions
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box" style="border-color: #e74c3c; font-size: 0.9em;">
+          Deaf-mute, imbecile, minor,<br>
+          blind, gentile, slave,<br>
+          agent, woman
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-box" style="border-color: #4caf50;">
+          <strong>How It's Done</strong><br>4 rules
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box" style="border-color: #4caf50; font-size: 0.9em;">
+          Two hands, on head,<br>
+          same spot as Shechitah,<br>
+          immediate sequence
+        </div>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">
+      <strong>Key principles:</strong><br>
+      🔹 Semikha is non-essential — skipping it doesn't invalidate the korban<br>
+      🔹 "Yado" × 3 → excludes slave, agent, wife (progressive closeness)<br>
+      🔹 All co-owners must each do Semikha (unlike Tenufah)<br>
+      🔹 Blind person: derived from elders OR from Olat Re'iyah
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good" style="font-size: 1.05em;">
+      🎓 <strong>Key Principle:</strong> Semikha is the most personal act in the 
+      sacrificial process — it cannot be delegated, it must be with full force, 
+      and it anchors the owner to the offering at the moment of slaughter.
+    </div>
+  </div>
+  <div style="margin-top: 30px; text-align: center; color: #666; font-size: 0.85em;">
+    Menachot 93a-93b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+
+<!-- SLIDE 9: Quiz CTA -->
+<div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size: 3.5em; margin-bottom: 20px;">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color: #aaa; font-size: 1.1em; margin: 20px 0 30px; text-align: center; max-width: 500px; line-height: 1.6;">
+    5 multiple-choice questions on today's daf.<br>
+    Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="
+    display: inline-block; padding: 18px 48px; background: #c9a84c; color: #1a1a2e;
+    text-decoration: none; border-radius: 12px; font-size: 1.3em; font-weight: bold;
+    font-family: 'Georgia', serif; transition: background 0.2s;
+  ">Take the Quiz →</a>
+  <div style="margin-top: 40px; color: #555; font-size: 0.85em;">
+    Menachot 93a-93b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+
+<div class="nav"><a href="../92/">← Daf 92</a><a href="../94/">Daf 94 →</a></div>
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menachot 95 — Daf Yomi Visual Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide {
+    min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c;
+    position: relative;
+  }
+  .slide-num {
+    position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7;
+  }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+
+  .flowchart {
+    display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%;
+  }
+  .flow-box {
+    background: #16213e; border: 2px solid #c9a84c; border-radius: 12px;
+    padding: 16px 24px; text-align: center; min-width: 280px; max-width: 500px;
+    font-size: 1em; line-height: 1.5;
+  }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%;
+  }
+  .flow-branch .flow-col {
+    display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px;
+  }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+
+  table {
+    border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%;
+  }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+
+  .compare-row {
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%;
+  }
+  .compare-box {
+    flex: 1; min-width: 260px; max-width: 400px; background: #16213e;
+    border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c;
+  }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+
+  .process-bar {
+    display: flex; align-items: center; gap: 0; max-width: 800px; width: 100%;
+    justify-content: center; flex-wrap: wrap; margin: 20px 0;
+  }
+  .process-step {
+    background: #16213e; border: 2px solid #c9a84c; border-radius: 50%;
+    width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: 0.85em; padding: 8px; line-height: 1.2;
+  }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 0 6px; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+
+  .callout {
+    background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px;
+    max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0;
+    font-size: 1.05em; line-height: 1.6;
+  }
+  .callout strong { color: #c9a84c; }
+
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker {
+    background: #c9a84c; color: #1a1a2e; border-radius: 50%; width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center; font-weight: bold;
+    font-size: 0.75em; flex-shrink: 0;
+  }
+  .speech {
+    background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px;
+    line-height: 1.5; font-size: 0.95em;
+  }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }
+</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100;"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:0.85em;opacity:0.8;">← Menachot Index</a></div>
+
+<!-- SLIDE 1: Title -->
+<div class="slide" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size: 3em; margin-bottom: 20px;">🏕️</div>
+  <h1>Menachot 95</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size: 1.3em; margin: 20px 0;">מנחות צ״ה</div>
+  <div style="margin-top: 30px; text-align: center; max-width: 600px; line-height: 1.8; color: #aaa;">
+    <strong style="color: #c9a84c;">Key Topics:</strong><br>
+    🏕️ Does Shewbread disqualify during the Wilderness journeys?<br>
+    📖 "As they encamp, so shall they journey" — two readings<br>
+    🏛️ Inside vs. Outside — where must the breads be prepared?<br>
+    🤔 Does the <em>oven</em> sanctify? Does the <em>vessel</em> sanctify?<br>
+    ⚡ Three Tanna'im: R' Yehuda, R' Shimon, and the First Tanna
+  </div>
+</div>
+
+<!-- SLIDE 2: Shewbread During the Journeys -->
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🏕️ The Wilderness Journey — Does Shewbread Disqualify?</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    When the Jewish people traveled in the desert, the Mishkan was dismantled and the Shulchan 
+    was carried — with the Shewbread still on it. Was the bread disqualified (as "Yotzei")?
+  </div>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3 style="color: #e74c3c;">Opinion A — Disqualified During Journey</h3>
+      <ul>
+        <li>📖 "As they encamp, so shall they journey" (Bamidbar 2:17)</li>
+        <li>🔗 Journey = same rules as encampment</li>
+        <li>✂️ During encampment: leaving the Mishkan disqualifies</li>
+        <li>💡 Therefore: during journeys too, leaving the Mishkan disqualifies</li>
+        <li>⚠️ If removed from the Table → disqualified</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #4caf50;">
+      <h3 style="color: #4caf50;">Opinion B — NOT Disqualified During Journey</h3>
+      <ul>
+        <li>📖 "The continual bread shall remain upon it" (Bamidbar 4:7)</li>
+        <li>🔗 "Continual" = retains status even during the journey</li>
+        <li>✅ As long as bread stays on the Table: valid</li>
+        <li>💡 "Tent of Meeting shall journey" — it remains the Tent of Meeting even in transit</li>
+        <li>⚠️ Only disqualified if removed FROM the Table</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: Rav Dimi's Resolution -->
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>💡 Rav Dimi's Resolution</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    When Rav Dimi came from Eretz Yisrael to Babylon, he clarified the real dispute:
+  </div>
+  <div class="flowchart">
+    <div class="flow-box result-good">
+      <strong>Case 1: Bread remains on the Table during the journey</strong><br>
+      → <span style="color:#4caf50;">EVERYONE agrees: NOT disqualified</span>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">
+      <strong>Case 2: Bread was REMOVED from the Table before the journey began</strong><br>
+      → This is where R' Yochanan and R' Yehoshua ben Levi dispute
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-label">Disqualified</div>
+        <div class="flow-box result-bad">
+          <strong>One view:</strong><br>
+          "As they encamp, so they journey" = journey mirrors encampment rules.<br>
+          Outside the Mishkan boundaries → Yotzei → Pasul
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-label">Not Disqualified</div>
+        <div class="flow-box result-good">
+          <strong>Other view:</strong><br>
+          "Then the Tent of Meeting shall journey" = still the Tent of Meeting.<br>
+          The Mishkan's sanctity travels with it.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: The New Mishna — Inside vs Outside -->
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Inside vs. Outside — Three Opinions</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    Where must the Two Loaves and Shewbread be prepared — inside or outside the Azarah?
+  </div>
+  <table>
+    <tr>
+      <th>Stage</th>
+      <th>First Tanna</th>
+      <th>R' Yehuda</th>
+      <th>R' Shimon</th>
+    </tr>
+    <tr>
+      <td>Kneading (Lisha)</td>
+      <td>🌍 Outside</td>
+      <td>🏛️ Inside</td>
+      <td>🌍 Outside (or inside)</td>
+    </tr>
+    <tr>
+      <td>Forming (Itzuv)</td>
+      <td>🌍 Outside</td>
+      <td>🏛️ Inside</td>
+      <td>🌍 Outside (or inside)</td>
+    </tr>
+    <tr>
+      <td>Baking (Afiya)</td>
+      <td>🏛️ Inside</td>
+      <td>🏛️ Inside</td>
+      <td>🏛️ Inside OR Beit Pagei</td>
+    </tr>
+    <tr>
+      <td>Overrides Shabbat?</td>
+      <td><span class="cross">✗</span> No</td>
+      <td><span class="cross">✗</span> No</td>
+      <td><span class="cross">✗</span> No</td>
+    </tr>
+  </table>
+  <div class="callout">
+    <strong>R' Shimon's bold position:</strong> The Two Loaves and Shewbread are valid whether baked 
+    inside the Temple courtyard <em>or</em> in Beit Pagei — an area outside the Temple Mount entirely. 
+    He disagrees with both the First Tanna and R' Yehuda on the baking location.
+  </div>
+</div>
+
+<!-- SLIDE 5: The Inner Contradiction in the First Tanna -->
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🤔 The Inner Contradiction — Rav Sheshes's Challenge</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    The First Tanna says: knead/form <em>outside</em>, but bake <em>inside</em>. This seems contradictory!
+  </div>
+  <div class="debate">
+    <div class="debate-line">
+      <div class="speaker" style="background: #9b59b6;">RS</div>
+      <div class="speech">You say kneading is done OUTSIDE → the dry measure (1/10 ephah vessel) must NOT sanctify the flour. <span class="emoji">🤔</span></div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker" style="background: #4a90d9;">?</div>
+      <div class="speech">Correct — if it sanctified, you couldn't knead outside!</div>
+    </div>
+    <div class="debate-line">
+      <div class="speaker" style="background: #9b59b6;">RS</div>
+      <div class="speech">But you say baking must be INSIDE — as if the flour IS already sanctified! <span class="emoji">❓</span></div>
+    </div>
+    <div class="debate-line right">
+      <div class="speaker" style="background: #4a90d9;">?</div>
+      <div class="speech">Maybe the <em>oven</em> is what sanctifies — not the measuring vessel! Then baking inside is required because the oven consecrates it at that moment.</div>
+    </div>
+    <div class="debate-line">
+      <div class="speaker" style="background: #9b59b6;">RS</div>
+      <div class="speech">But then — if the oven sanctifies DURING baking, and baking doesn't override Shabbat... the bread would be LEFT OVERNIGHT in the oven unsanctified, and be Pasul from Linah! <span class="emoji">⚠️</span></div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Rav Sheshes's difficulty:</strong> No matter how you read the Mishna, there's a tension. 
+    Rabba called this person "a formidable man, tough as iron." The dilemma remains sharp 
+    until Rava's resolution (see next slide).
+  </div>
+</div>
+
+<!-- SLIDE 6: The Attempted Resolutions -->
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔍 Attempted Resolutions — Rava and Rav Ashi</h2>
+  <div class="flowchart">
+    <div class="flow-box question">
+      <strong>The Core Contradiction:</strong><br>
+      If measure doesn't sanctify → why must baking be inside?<br>
+      If oven sanctifies → why doesn't bread go Pasul from Linah before Shabbat?
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-label">Rava's reading</div>
+        <div class="flow-box result-good">
+          The Mishna itself is difficult from a different angle:<br>
+          <strong>"Baking inside" implies oven sanctifies</strong><br>
+          But "doesn't override Shabbat" implies it DOESN'T<br>
+          This is the real tension. Rav Sheshes → iron-tough challenge.
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-label">Rav Ashi's attempt</div>
+        <div class="flow-box result-partial">
+          Maybe "baking inside" just means "where vigilant priests supervise" — not about sanctity!<br>
+          <strong style="color: #e74c3c;">Rejected!</strong> If vigilance matters for baking, it should also matter for kneading.
+        </div>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-bad">
+      <strong>The Gemara concludes:</strong> Rav Ashi's explanation is an error (<em>baruta</em>). 
+      You can't differentiate kneading from baking based on "vigilance." The difficulty stands.
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: R' Yehuda vs R' Shimon — Source from the Same Verse -->
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚔️ R' Yehuda vs. R' Shimon — Same Verse, Different Readings</h2>
+  <div style="text-align: center; color: #aaa; margin-bottom: 20px;">
+    R' Abbahu bar Kahana: Both Tanna'im derive their positions from the same verse!
+  </div>
+  <div class="callout" style="margin-bottom: 20px;">
+    <strong>Source verse:</strong> <span class="hebrew" style="font-size: 0.95em;">וְלָקַחְתָּ סֹלֶת וְאָפִיתָ אֹתָהּ שְׁתֵּים עֶשְׂרֵה חַלּוֹת</span><br>
+    "And you shall take fine flour and bake it into twelve loaves" (Vayikra 24:5)
+  </div>
+  <div class="compare-row">
+    <div class="compare-box" style="border-top-color: #4a90d9;">
+      <h3 style="color: #4a90d9;">R' Yehuda — Everything Inside</h3>
+      <ul>
+        <li>📖 "And you shall take [in the Mishkan] and bake"</li>
+        <li>💡 Both taking (preparation) AND baking happen in the same place</li>
+        <li>🏛️ The context: the verse speaks about the Mishkan → everything inside</li>
+        <li>⚡ Kneading and forming must also be inside the Azarah</li>
+      </ul>
+    </div>
+    <div class="compare-box" style="border-top-color: #e74c3c;">
+      <h3 style="color: #e74c3c;">R' Shimon — Baking Can Be Anywhere</h3>
+      <ul>
+        <li>📖 "And you shall bake" — the Torah specifies only the final product (12 loaves)</li>
+        <li>💡 Baking just means the bread must be correctly made — location is flexible</li>
+        <li>🌍 Valid even from Beit Pagei (outside Temple Mount entirely)</li>
+        <li>⚡ As long as the final loaves meet the spec, where doesn't matter</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Summary Map -->
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Menachot 95 — Summary Map</h2>
+  <div class="flowchart" style="max-width: 800px;">
+    <div class="flow-box" style="background: #2a1a3e; border-color: #c9a84c; font-size: 1.1em;">
+      <strong>Two Sugyot:</strong> Shewbread during Journeys + Preparation Locations
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-col">
+        <div class="flow-box" style="border-color: #9b59b6;">
+          <strong>Journey Question</strong>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box" style="border-color: #9b59b6; font-size: 0.9em;">
+          On the Table = not Pasul (everyone agrees)<br>
+          Removed from Table = machloket<br>
+          Resolved by Rav Dimi
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-box" style="border-color: #c9a84c;">
+          <strong>Preparation Locations</strong>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box" style="border-color: #c9a84c; font-size: 0.9em;">
+          Tanna Kamma: knead outside, bake inside<br>
+          R' Yehuda: all inside<br>
+          R' Shimon: valid even from Beit Pagei
+        </div>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box question">
+      <strong>The unsolved tension:</strong><br>
+      🔹 Does the measuring vessel sanctify? The oven?<br>
+      🔹 If oven → why no Linah problem before Shabbat?<br>
+      🔹 Rav Ashi's "vigilance" answer rejected as an error (baruta)<br>
+      🔹 R' Yehuda & R' Shimon both read from same verse — opposite conclusions
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box result-good" style="font-size: 1.05em;">
+      🎓 <strong>Key Principle:</strong> The Mishna's deliberate split between kneading (outside) 
+      and baking (inside) hides a deep dispute about what actually consecrates the bread — 
+      a question the Gemara flags but does not fully resolve.
+    </div>
+  </div>
+  <div style="margin-top: 30px; text-align: center; color: #666; font-size: 0.85em;">
+    Menachot 95a-95b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+
+<!-- SLIDE 9: Quiz CTA -->
+<div class="slide" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size: 3.5em; margin-bottom: 20px;">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color: #aaa; font-size: 1.1em; margin: 20px 0 30px; text-align: center; max-width: 500px; line-height: 1.6;">
+    5 multiple-choice questions on today's daf.<br>
+    Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="
+    display: inline-block; padding: 18px 48px; background: #c9a84c; color: #1a1a2e;
+    text-decoration: none; border-radius: 12px; font-size: 1.3em; font-weight: bold;
+    font-family: 'Georgia', serif; transition: background 0.2s;
+  ">Take the Quiz →</a>
+  <div style="margin-top: 40px; color: #555; font-size: 0.85em;">
+    Menachot 95a-95b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+
+<div class="nav"><a href="../94/">← Daf 94</a><a href="../96/">Daf 96 →</a></div>
+</body>
+</html>
