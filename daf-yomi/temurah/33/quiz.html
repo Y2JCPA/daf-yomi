@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temurah 33 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Temurah 33 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Shmuel, on which side of the doorpost must the mezuza be placed, and how is that side determined?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. The left side, determined by the direction one exits</div>
+      <div class="option" onclick="select(1,this,1)">B. The right side, determined by the direction one enters the room</div>
+      <div class="option" onclick="select(1,this,2)">C. Whichever side bears the door hinges</div>
+      <div class="option" onclick="select(1,this,3)">D. Either side is acceptable as long as it is visible</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Shmuel rules the mezuza must be on the right side of the doorpost, with 'right' determined by the direction from which one enters the room — not by hinge placement or any other factor.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">What is the ruling if a mezuza is written on two separate sheets of parchment?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Valid if both sheets are placed together on the same doorpost</div>
+      <div class="option" onclick="select(2,this,1)">B. Valid if one sheet has Shema and the other has VeHaya</div>
+      <div class="option" onclick="select(2,this,2)">C. Unfit regardless of how it is placed</div>
+      <div class="option" onclick="select(2,this,3)">D. Valid only if wrapped in a protective tube</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>Rav Yehuda citing Shmuel rules a mezuza on two sheets is unfit. The supporting baraita confirms: even placing them on two doorposts does not help — it remains unfit.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">In Rabbi Ḥanina's analogy contrasting God and a human king, what is the key difference regarding protection?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. A human king protects from outside; God protects from inside the palace</div>
+      <div class="option" onclick="select(3,this,1)">B. A human king is protected from outside by servants; God stands at Israel's doorpost protecting those inside</div>
+      <div class="option" onclick="select(3,this,2)">C. Both kings are protected from outside; only the method differs</div>
+      <div class="option" onclick="select(3,this,3)">D. God's servants protect Him, unlike a human king whose servants protect the people</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Rabbi Ḥanina teaches that unlike a human king whose servants guard him from outside, God stands at His servants' doorpost (the mezuza) to protect Israel dwelling inside — a remarkable reversal of the protective role.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">How many mezuzot does a bei harziki require, and what makes it unique?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. One mezuza; it is a portico open on the front</div>
+      <div class="option" onclick="select(4,this,1)">B. Two mezuzot; it is a gatehouse opening to a courtyard onto which houses also open</div>
+      <div class="option" onclick="select(4,this,2)">C. Three mezuzot; it has entrances on three sides</div>
+      <div class="option" onclick="select(4,this,3)">D. None; it is exempt as a non-dwelling space</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>A bei harziki is a gatehouse that opens to a courtyard from which houses are also entered. Both of its entrances — street-side and courtyard-side — require a mezuza, totaling two.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">How does Rav Huna bar Rav Natan resolve the contradiction between Shmuel's 'upper third' ruling and the opinions of Rabbi Yosei and Rabbi Yehuda?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Shmuel follows Rabbi Yehuda and means the mezuza must be exactly at the top</div>
+      <div class="option" onclick="select(5,this,1)">B. Shmuel created a new third opinion between Rabbi Yosei and Rabbi Yehuda</div>
+      <div class="option" onclick="select(5,this,2)">C. Shmuel follows Rabbi Yosei: 'upper third' means do not place the mezuza lower than one-third from the top</div>
+      <div class="option" onclick="select(5,this,3)">D. Shmuel's ruling applies only to unusually tall doorposts</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>Rav Huna bar Rav Natan resolves that Shmuel follows Rabbi Yosei. 'Beginning of the upper third' sets a maximum distance — the mezuza must not be placed more than one-third of the doorpost's height below the crossbeam. It is a limit, not a pinpoint target.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":1,"4":1,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>
