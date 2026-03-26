@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 68 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Chullin 68 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">If a laboring animal's fetus extends its foreleg BEFORE shechita, what is the status of that limb?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Permitted — shechita covers the entire fetus</div>
+      <div class="option" onclick="select(1,this,1)">B. Forbidden as ever min hachai</div>
+      <div class="option" onclick="select(1,this,2)">C. Requires separate shechita to become permitted</div>
+      <div class="option" onclick="select(1,this,3)">D. Permitted only if the limb is returned inside first</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>A limb that protrudes from the live fetus before shechita acquires the prohibition of ever min hachai (אבר מן החי) — a limb from a living creature. The mother's subsequent shechita cannot retroactively remove this prohibition from the limb, though the rest of the fetus is permitted.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">What is a 'ben pekuah' (בן פקועה)?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. An animal that resisted slaughter and had to be forced</div>
+      <div class="option" onclick="select(2,this,1)">B. A live fetus found inside a properly slaughtered mother</div>
+      <div class="option" onclick="select(2,this,2)">C. A firstborn animal redeemed by a Kohen</div>
+      <div class="option" onclick="select(2,this,3)">D. An animal born prematurely before 9 months</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>Ben pekuah is a fetus found alive inside an animal after valid shechita. Since its mother was slaughtered, the fetus is treated as if it too was slaughtered (ירך אמו — 'the thigh of its mother') and does not require its own ritual slaughter.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">What is the dispute between Rabbi Yochanan and Reish Lakish on Chullin 68?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Whether ben pekuah requires its own shechita</div>
+      <div class="option" onclick="select(3,this,1)">B. Whether a human fetus follows the same rules as an animal fetus</div>
+      <div class="option" onclick="select(3,this,2)">C. Whether returning an emerged limb before shechita removes the ever min hachai prohibition</div>
+      <div class="option" onclick="select(3,this,3)">D. Whether the mother's shechita requires kavvanah (intent)</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>Rabbi Yochanan holds that pushing the limb back inside before shechita resolves the problem — the limb was never truly detached. Reish Lakish disagrees: once the prohibition of ever min hachai attached upon emergence, returning the limb cannot undo it.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">If a fetus is entirely inside the mother at the moment of shechita, what is its status?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Forbidden — it requires its own shechita</div>
+      <div class="option" onclick="select(4,this,1)">B. Permitted — shechita covers all contents of the animal</div>
+      <div class="option" onclick="select(4,this,2)">C. Permitted only if it is already fully developed</div>
+      <div class="option" onclick="select(4,this,3)">D. Depends on whether it is alive or dead at the time</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>The halachic principle is that shechita covers whatever is fully inside the animal at the moment of slaughter. The fetus is treated as ירך אמו ('the thigh of its mother'), an organic part of her body, and is fully permitted by her shechita.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Why does the fetus's limb that emerged AFTER shechita have no ever min hachai problem?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Because the limb emerged after the animal was already dead</div>
+      <div class="option" onclick="select(5,this,1)">B. Because a fetus's limbs have a different legal status than an adult animal's</div>
+      <div class="option" onclick="select(5,this,2)">C. Because the prohibition of ever min hachai only applies to humans</div>
+      <div class="option" onclick="select(5,this,3)">D. Because the shechita must have preceded the emergence to be effective</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: A — </strong>Once shechita is completed, the animal is halachically dead. A limb that extends after this point is not emerging from a living creature. Therefore ever min hachai — which requires a living animal — cannot apply, and the entire fetus including the limb is permitted.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":1,"3":2,"4":1,"5":0};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

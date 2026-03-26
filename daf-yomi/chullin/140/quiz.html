@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 140 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Chullin 140 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to the halakhic ruling on Chullin 140b, if a mother bird is hovering over her nest with wings spread but not physically touching the eggs, what is the law?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. She is exempt from shiluach haken since she is not 'sitting' (רֹבֶצֶת)</div>
+      <div class="option" onclick="select(1,this,1)">B. Shiluach haken applies — hovering with spread wings is considered 'sitting' per Chachamim</div>
+      <div class="option" onclick="select(1,this,2)">C. One sends her away but recites no blessing</div>
+      <div class="option" onclick="select(1,this,3)">D. The case is left as a teku (unresolved question)</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>The halakha follows Chachamim over Rabbi Yehuda: a mother bird spreading her wings over the nest is considered רֹבֶצֶת and the full obligation of shiluach haken applies.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Why is shiluach haken NOT required when a domestic chicken is found sitting on eggs in a courtyard?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Chickens lay unfertilized eggs, which are always exempt</div>
+      <div class="option" onclick="select(2,this,1)">B. Domestic birds are not encountered 'by chance' (דרך מציאה) as the Torah implies</div>
+      <div class="option" onclick="select(2,this,2)">C. The chicken is considered treifa by rabbinic decree</div>
+      <div class="option" onclick="select(2,this,3)">D. The eggs of domestic birds are not considered 'eggs' under Torah law</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>The Torah says 'if a nest happens before you (כִּי יִקָּרֵא)' — implying a chance encounter with a wild bird. Domestic birds, kept in one's domain, do not meet this criterion.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">If a wild dove is found sitting on eggs that belong to a chicken (a different species), what is the ruling regarding shiluach haken?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Shiluach applies because a kosher wild bird is present</div>
+      <div class="option" onclick="select(3,this,1)">B. Shiluach does not apply because the mother and eggs must be the same species</div>
+      <div class="option" onclick="select(3,this,2)">C. Shiluach applies but without reciting a blessing</div>
+      <div class="option" onclick="select(3,this,3)">D. One must send away the dove and the eggs are forbidden to take</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>The mitzvah requires a match between mother and offspring. When the sitting bird is not the species that produced the eggs, the natural mother-child relationship is absent and shiluach haken does not apply.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">The Gemara records that one who prays 'just as Your mercy extends to the bird's nest, so extend it to us' is silenced. Why?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Because this prayer contains God's name used incorrectly</div>
+      <div class="option" onclick="select(4,this,1)">B. Because the commandments must be treated as divine decrees, not expressions of God's attribute of mercy</div>
+      <div class="option" onclick="select(4,this,2)">C. Because shiluach haken is not a compassion-based commandment at all</div>
+      <div class="option" onclick="select(4,this,3)">D. Because only a Cohen may invoke mercy in the Temple service</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>The Gemara rejects treating the mitzvot as purely expressions of divine mercy, lest it imply God's qualities are limited. Mitzvot are royal decrees (גזרות) to be fulfilled regardless of our reasoning about them.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">What is the Torah's stated reward for performing the mitzvah of shiluach haken?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Wealth and prosperity in this world</div>
+      <div class="option" onclick="select(5,this,1)">B. Atonement for sins committed unintentionally</div>
+      <div class="option" onclick="select(5,this,2)">C. Length of days (אֲרִיכוּת יָמִים) and good fortune</div>
+      <div class="option" onclick="select(5,this,3)">D. The merit to bring a korban in the Beit HaMikdash</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>Devarim 22:7 states: 'לְמַעַן יִיטַב לָךְ וְהַאֲרַכְתָּ יָמִים' — 'that it may be well with you and you may lengthen your days.' This makes shiluach haken one of only two mitzvot with an explicit reward of long life (the other being honoring one's parents).</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":1,"3":1,"4":1,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

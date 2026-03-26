@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 60 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌙</div>
+  <h1>Chullin 60</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין ס׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌕 Two Great Lights — created equal, one diminished<br>
+    🐪 Four One-Sign Animals — camel, hare, hyrax, pig<br>
+    🌑 Moon's Complaint — two kings, one crown<br>
+    🐐 Rosh Chodesh Goat — God's own atonement<br>
+    📜 Torah's Proof — divine authorship from animal signs<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌙 The Moon Argues Before the Holy One</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Moon</div><div class="speech">Master of the Universe! <strong>אי אפשר לשני מלכים שישתמשו בכתר אחד</strong> — Is it possible for two kings to share one crown? Both of us were created equal — this cannot stand!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">God</div><div class="speech"><strong>לְכִי וּמַעֲטִי אֶת עַצְמֵךְ</strong> — Go and diminish yourself. The greater light shall rule the day; the lesser light shall rule the night.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Moon</div><div class="speech">Because I said something <em>proper and logical</em>, I should be punished?! What shall I do now — rule by day alongside the sun?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">God</div><div class="speech">Rule the night. Israel will count <strong>months and years</strong> by you. The righteous will be named after you. And Israel shall bring <strong>atonement for Me</strong> on Rosh Chodesh.</div></div></div><div class="callout" style="margin-top:20px"><strong>Divine Atonement</strong> The Rosh Chodesh musaf goat is called חַטָּאת לַה׳ — God says 'bring atonement for Me' because He diminished the moon. Unique in the Torah: a korban offered as if God Himself needs kapparah.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🌕 From Equal Lights to Lesser Luminary</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Bereishit 1:16</strong><br>"וַיַּעַשׂ אֱלֹהִים אֶת שְׁנֵי הַמְּאֹרֹת הַגְּדֹלִים"<br><small>Both luminaries were equal — the same size and brightness</small></div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Same verse continues:</strong> "הַמָּאוֹר הַגָּדֹל" and "הַמָּאוֹר הַקָּטֹן"<br><small>Now one is great and one is small — what happened?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Moon Diminished</div><div class="flow-box result-bad">Goes from equal to lesser luminary — rules the night, accompanies the stars</div></div><div class="flow-col"><div class="flow-label">Moon Consoled</div><div class="flow-box result-good">Israel counts months by it; righteous compared to moon; Rosh Chodesh offerings in its honor</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🐪 The Four One-Sign Animals (Vayikra 11)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">🐪 Camel — גָּמָל</h3><ul><li>✅ Chews its cud (מַעֲלֵה גֵרָה)</li><li>❌ Hoof not split (פַּרְסָה לֹא מַפְרִיס)</li><li>Status: <strong>Non-kosher</strong></li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">🐇 Hare — אַרְנֶבֶת</h3><ul><li>✅ Chews its cud</li><li>❌ Hoof not split</li><li>Status: <strong>Non-kosher</strong></li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#ffffff">🦔 Hyrax — שָׁפָן</h3><ul><li>✅ Chews its cud</li><li>❌ Hoof not split</li><li>Status: <strong>Non-kosher</strong></li></ul></div><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">🐷 Pig — חֲזִיר</h3><ul><li>❌ Does not chew its cud</li><li>✅ Split hoof (פַּרְסָה מַפְרֶסֶת)</li><li>Status: <strong>Non-kosher</strong></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🐐 God's Atonement — The Rosh Chodesh Offering</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אָמַר הַקָּדוֹשׁ בָּרוּךְ הוּא הָבִיאוּ כַּפָּרָה עָלַי עַל שֶׁמִּעַטְתִּי אֶת הַיָּרֵחַ</div><div class="callout"><strong>חַטָּאת לַה׳</strong> After diminishing the moon, God said to Israel: <strong>'Bring atonement for Me, for I diminished the moon.'</strong> This is why the Rosh Chodesh additional offering is uniquely described in the Torah as <em>חַטָּאת לַה׳</em> — a sin-offering directed at God Himself. No other korban in the Torah is phrased this way. The monthly new moon ceremony thus carries a cosmic weight: it is simultaneously Israel's renewal and a divine acknowledgment of an ancient injustice.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📜 The Torah's Listing as Proof of Divine Authorship</h2>
+  
+  <table><tr><th>Animal</th><th>Sign Present</th><th>Sign Absent</th><th>Significance</th></tr><tr><td>Camel</td><td>Chews cud</td><td>Split hoof</td><td>Only cud-chewer without split hooves in the world</td></tr><tr><td>Hare</td><td>Chews cud</td><td>Split hoof</td><td>No other hare-like animal has split hooves</td></tr><tr><td>Hyrax</td><td>Chews cud</td><td>Split hoof</td><td>Confirms completeness of the list globally</td></tr><tr><td>Pig</td><td>Split hoof</td><td>Chews cud</td><td>Only split-hooved animal that does not chew cud</td></tr><tr><td>The Four Together</td><td>—</td><td>—</td><td>Moshe in the desert could not have surveyed all animals — only God could</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🌑 The Moon's Diminishment: The Full Sequence</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Day One equivalent / Day Four:</strong> God creates both luminaries equal — "two great lights"</div><div class="process-arrow">↓</div><div class="process-step"><strong>Moon complains:</strong> Argues logically that two equal rulers cannot coexist — two kings, one crown</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>God decrees:</strong> "Go and diminish yourself" — the moon becomes the lesser luminary</div><div class="process-arrow">↓</div><div class="process-step"><strong>Moon protests:</strong> "Because I said something proper I am punished?!" — the Talmud acknowledges the moon's claim had merit</div><div class="process-arrow">↓</div><div class="process-step"><strong>God offers consolations:</strong> Israel counts months by the moon; the righteous (Yaakov, David) are compared to the moon; stars accompany it</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Divine atonement instituted:</strong> God commands: bring <em>חַטָּאת לַה׳</em> on Rosh Chodesh — a monthly acknowledgment of the moon's diminishment</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 60 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:white;padding:10px;border-radius:8px;text-align:center;"><strong>Two Equal Lights Created</strong><br><small>שְׁנֵי הַמְּאֹרֹת הַגְּדֹלִים — Bereishit 1:16</small></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#16213e;color:white;padding:10px;border-radius:8px;text-align:center;"><strong>Moon's Complaint</strong><br><small>Two kings cannot share one crown</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center;"><strong>Moon Diminished</strong><br><small>Lesser luminary, rules the night</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center;"><strong>Rosh Chodesh Goat</strong><br><small>חַטָּאת לַה׳ — monthly divine kapparah</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center;"><strong>Four One-Sign Animals</strong><br><small>Torah's listing = proof of divine knowledge</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 60a-60b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 60a-60b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../59/">← Daf 59</a><a href="../61/">Daf 61 →</a></div>
+</body>
+</html>

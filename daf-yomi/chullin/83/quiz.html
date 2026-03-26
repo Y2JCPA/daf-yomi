@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 83 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Chullin 83 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">If Reuven slaughters the mother and Shimon (a completely different person and owner) slaughters the offspring on the same day — who is liable for violating oto v'et beno?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Reuven, because he slaughtered first and 'started' the problem</div>
+      <div class="option" onclick="select(1,this,1)">B. Shimon, because he completed the forbidden pair with the second slaughter</div>
+      <div class="option" onclick="select(1,this,2)">C. Both are equally liable for the same violation</div>
+      <div class="option" onclick="select(1,this,3)">D. Neither — the prohibition only applies when one person owns both animals</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>The Gemara rules that the second slaughterer bears the prohibition — the Torah's 'do not slaughter it and its offspring' falls on whoever completes the pair on that day. The first slaughterer acted permissibly. Ownership is irrelevant to liability.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Why does the Mishnah permit butchers in four or five adjacent stalls to sell freely on erev Yom Tov without checking for oto v'et beno?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Erev Yom Tov is entirely exempt from oto v'et beno as a Rabbinic enactment</div>
+      <div class="option" onclick="select(2,this,1)">B. The Rabbis waived the prohibition purely for economic reasons with no legal basis</div>
+      <div class="option" onclick="select(2,this,2)">C. The large number of animals makes it statistically improbable (rov) that any two animals sold are mother and offspring</div>
+      <div class="option" onclick="select(2,this,3)">D. The prohibition only applies to one's own animals, not to purchased ones</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>The dispensation is based on rov (statistical majority) — with so many animals slaughtered on erev Yom Tov, the chance that any two animals sold across stalls are actually a mother-offspring pair is negligible, and the Rabbis therefore permitted selling freely.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">If Reuven slaughters the mother and then declares the offspring 'hefker' (ownerless) before Shimon slaughters it on the same day — does this likely circumvent the oto v'et beno prohibition?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Yes — Shimon is a new, unrelated owner with no connection to Reuven's slaughter</div>
+      <div class="option" onclick="select(3,this,1)">B. No — the prohibition attaches to the animal's status on that day, not to who owns it</div>
+      <div class="option" onclick="select(3,this,2)">C. Only if Shimon genuinely did not know the mother had been slaughtered</div>
+      <div class="option" onclick="select(3,this,3)">D. Yes — hefker always legally severs the chain between prior and subsequent acts</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>The Gemara holds that oto v'et beno attaches to the animal itself. Once the mother was slaughtered that day, the offspring became the 'second half' of a forbidden pair for that calendar day. Declaring it hefker cannot reset that animal's status — the day remains the same.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">What is the biblical source for the prohibition of oto v'et beno?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Deuteronomy 22:6 — the commandment to send away the mother bird from the nest</div>
+      <div class="option" onclick="select(4,this,1)">B. Leviticus 22:28 — 'Do not slaughter it and its offspring on the same day'</div>
+      <div class="option" onclick="select(4,this,2)">C. Exodus 23:19 — 'Do not boil a kid in its mother's milk'</div>
+      <div class="option" onclick="select(4,this,3)">D. Numbers 19:2 — the laws of the red heifer</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>Leviticus 22:28 states: וְשׁוֹר אוֹ שֶׂה אֹתוֹ וְאֶת בְּנוֹ לֹא תִשְׁחֲטוּ בְּיוֹם אֶחָד — 'An ox or sheep, you shall not slaughter it and its offspring on the same day.' This verse is the direct biblical source for oto v'et beno.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Does the prohibition of oto v'et beno apply only when the mother is slaughtered before the offspring, or also when the offspring is slaughtered before the mother?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Only when the mother is slaughtered first — she is the 'primary' animal protected</div>
+      <div class="option" onclick="select(5,this,1)">B. Only when the offspring is slaughtered first — protecting the continuation of the species</div>
+      <div class="option" onclick="select(5,this,2)">C. Both orders are forbidden — slaughtering either one first and then the other on the same day violates the prohibition</div>
+      <div class="option" onclick="select(5,this,3)">D. The order is irrelevant for the prohibition itself but determines who receives malkot</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>The prohibition applies in both orders — whether the mother is slaughtered first or the offspring is slaughtered first. The Torah forbids slaughtering 'it and its offspring' (in any combination) on the same day. The second act, regardless of which animal it involves, triggers the violation.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":1,"4":1,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 140 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐦</div>
+  <h1>Chullin 140</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין קמ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐦 Shiluach HaKen — sending away the mother bird before taking eggs<br>
+    🥚 Which eggs obligate the mitzvah — fertilized, unfertilized, blood-spotted<br>
+    ⚖️ Valid mother bird — species match, treifa status, and hovering vs. sitting<br>
+    🏠 Field vs. domestic nests — where the mitzvah applies<br>
+    🩸 Eggs with blood spots — impurity and mitzvah applicability<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🐦 The Core Dispute: Which Eggs Require Shiluach HaKen?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">Even unfertilized eggs (שאינם מוזרות) obligate שילוח הקן — the mother's presence over them is sufficient.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">Only fertilized eggs (מוזרות) — eggs capable of producing life — trigger the obligation of שילוח הקן.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Huna</div><div class="speech">Even spoiled eggs (זקוקין) that will never hatch require the mother to be sent away, since the Torah says 'eggs' without qualification (דְּבָרִים).</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rava</div><div class="speech">The Torah's intent is for viable potential life. Eggs that cannot produce offspring have no sacred status requiring shiluach — we follow the purpose of the commandment.</div></div></div><div class="callout" style="margin-top:20px"><strong>📜 Torah Source</strong> כִּי יִקָּרֵא קַן צִפּוֹר לְפָנֶיךָ... וְהָאֵם רֹבֶצֶת עַל הָאֶפְרֹחִים אוֹ עַל הַבֵּיצִים — 'If a bird's nest happens before you… and the mother is sitting upon the chicks or upon the eggs' (Devarim 22:6)</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔍 Does This Nest Require Shiluach HaKen?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">You find a mother bird sitting on a nest</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Domestic bird
+(e.g. chicken)</div><div class="flow-box result-bad">No obligation — domestic birds do not require shiluach haken (they are not found 'by chance' — דרך מציאה)</div></div><div class="flow-col"><div class="flow-label">Wild kosher bird
+(e.g. dove, pigeon)</div><div class="flow-box result-good">Obligation potentially applies — continue checking</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Mother is a Treifa
+(mortally injured)</div><div class="flow-box result-bad">Exempt — a treifa cannot sustain life; Rabbis debate whether to send her away without a blessing</div></div><div class="flow-col"><div class="flow-label">Mother is healthy
+and kosher species</div><div class="flow-box result-good">Obligation applies — you must send her away before taking eggs or chicks</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">✅ Send the mother bird and then take what you need</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🕊️ Hovering vs. Sitting — Does It Count?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Yehuda</div><div class="speech">The Torah says רֹבֶצֶת — 'sitting.' If the mother's wings merely hover (פורשת כנפיה) over the eggs without touching them, she is NOT considered 'sitting' and you are not obligated to send her away.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Chachamim</div><div class="speech">Hovering with wings spread over the nest IS considered רֹבֶצֶת. A bird in that posture is protecting and incubating — the spirit of the verse applies. You MUST send her away.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">Support for Rabbi Yehuda: the Torah specified 'sitting' precisely to exclude hovering. The verse's word choice is deliberate — physical contact with the nest is required.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rava</div><div class="speech">The halakha follows Chachamim. A bird spreading wings over her nest fulfills the essence of רֹבֶצֶת, and the mitzvah of shiluach applies. The wing-spread is the mother's embrace.</div></div></div><div class="callout" style="margin-top:20px"><strong>⚖️ Practical Ruling</strong> Halakha follows Chachamim: even a hovering mother bird requires shiluach haken before taking her eggs or chicks.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🥚 Types of Eggs and Shiluach HaKen Status</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e8f8f0"><h3 style="color:#2ecc71">✅ Obligates Shiluach</h3><ul><li>Fertilized eggs (מוזרות) — viable, capable of hatching</li><li>Eggs with chick embryo visible inside</li><li>Eggs the mother was incubating (regardless of stage)</li><li>Live chicks still in the nest under the mother</li><li>Chicks that cannot yet fly (fledglings)</li></ul></div><div class="compare-box" style="border-top-color:#fef9f0"><h3 style="color:#e67e22">❌ Does Not Obligate Shiluach</h3><ul><li>Unfertilized eggs (per Beit Hillel's ruling)</li><li>Completely rotten/spoiled eggs with no life potential</li><li>Eggs of a non-kosher species</li><li>Eggs the mother was NOT sitting on (not her nest)</li><li>Domestic poultry (chickens, geese in the house)</li></ul></div><div class="compare-box" style="border-top-color:#f0f4fe"><h3 style="color:#4a90d9">⚠️ Disputed Cases</h3><ul><li>Eggs with blood spots — purity debate affects ruling</li><li>Mixed batch: some valid, some not</li><li>Treifa bird's eggs — mother cannot be sent away with blessing</li><li>Eggs of one species with mother of another species</li><li>Eggs found alone with no mother present at the time</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📋 Shiluach HaKen: Scenarios and Rulings</h2>
+  
+  <table><tr><th>Scenario</th><th>Mother Status</th><th>Eggs/Chicks</th><th>Obligation?</th><th>Source/Authority</th></tr><tr><td>Wild dove on her own nest in a field</td><td>Healthy, kosher</td><td>Fertilized dove eggs</td><td>✅ Yes — full obligation</td><td>Torah law (Devarim 22:6)</td></tr><tr><td>Chicken sitting on eggs in a courtyard</td><td>Healthy, kosher</td><td>Chicken eggs</td><td>❌ No — domestic bird exempt</td><td>Mishnah, Chullin 12:1</td></tr><tr><td>Wild bird on another species' eggs</td><td>Healthy dove</td><td>Chicken eggs beneath her</td><td>❌ No — mother ≠ species of eggs</td><td>Gemara, Chullin 140a</td></tr><tr><td>Treifa bird found sitting on nest</td><td>Mortally injured</td><td>Her own eggs</td><td>⚠️ Exempt from blessing; debate on act itself</td><td>Rav Huna, Chullin 140b</td></tr><tr><td>Mother hovering, wings spread</td><td>Healthy, kosher</td><td>Her chicks beneath wings</td><td>✅ Yes — halakha follows Chachamim</td><td>Rava, Chullin 140b</td></tr><tr><td>Bird on unfertilized eggs</td><td>Healthy, kosher</td><td>Non-viable eggs</td><td>⚠️ Beit Hillel: No; Beit Shammai: Yes</td><td>Mishnah debate, Chullin 140a</td></tr><tr><td>Eggs with blood spots (dam)</td><td>Healthy, kosher</td><td>Spotted eggs</td><td>⚠️ Depends: if forbidden to eat, no obligation</td><td>Gemara 140a</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>💡 The Deep Reason Behind Shiluach HaKen</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">הָאֵם רֹבֶצֶת עַל הָאֶפְרֹחִים אוֹ עַל הַבֵּיצִים — לֹא תִקַּח הָאֵם עַל הַבָּנִים (דברים כב:ו)</div><div class="callout"><strong>🌿 Philosophical Foundation</strong> The Rambam (Moreh Nevuchim 3:48) explains: the Torah seeks to instill compassion (מידת הרחמים) — we must not take the mother together with her young, lest we cause her anguish. This parallels the prohibition of slaughtering a cow and her calf on the same day (Vayikra 22:28). <br><br>The Ramban disagrees: the commandment has no reason we can fully grasp — it is a <em>chok</em>, a divine decree, and performing it earns merit regardless of any rationale. <br><br>The Gemara here notes: one who says 'just as Your mercy extends to the bird's nest, so extend Your mercy to us' — is silenced, because the commandments must not be treated as expressions of God's mercy alone, but as <strong>royal decrees</strong> we accept unconditionally.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 140 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;border:2px solid #c9a84c;"><strong>Find a nest</strong><br><small>Wild kosher bird sitting on eggs or chicks</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #e74c3c;"><strong>❌ Exempt</strong><br>Domestic bird · Non-kosher species · No mother present · Treifa mother · Non-viable eggs</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #2ecc71;"><strong>✅ Obligated</strong><br>Wild kosher bird · Mother sitting or hovering · Fertilized eggs or live chicks · Same species</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;border:2px solid #4a90d9;"><strong>Send away the mother</strong><br><small>Grab her and release her, or shoo her away — then take the eggs/chicks</small></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;border:2px solid #9b59b6;font-size:0.95em;"><strong>Reward: אֲרִיכוּת יָמִים</strong> — Length of days<br><em>One of only two mitzvot whose reward is stated explicitly in the Torah (alongside honoring one's parents)</em></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 140a-140b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 140a-140b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../139/">← Daf 139</a><a href="../141/">Daf 141 →</a></div>
+</body>
+</html>

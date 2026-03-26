@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 127 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🦎</div>
+  <h1>Chullin 127</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין קכז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🦎 Eight Sheratzim — Torah-listed creeping creatures that convey tumah<br>
+    ⚖️ Shiur K'adasha — lentil-size minimum for sheretz impurity<br>
+    ✂️ Chatzi Sheretz — does half a sheretz convey tumah?<br>
+    💧 Tzir HaSheretz — does the brine/liquid of a sheretz transmit impurity?<br>
+    🔗 Ever vs. Basar — limb-impurity versus flesh-impurity distinctions<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🦎 Sheretz Tumah: Size, Parts, and Liquids</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Torah Source (Vayikra 11:29–30)</strong><br>Eight sheratzim convey tumah<br><small>חֹלֶד, עַכְבָּר, צָב, עַכְבָּר, וְכוּ׳</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Shiur (Minimum Size)</div><div class="flow-box result-good">A k'adasha (lentil-size) is required for tumah — derived from the word <em>הָאֹכֵל</em></div></div><div class="flow-col"><div class="flow-label">Chatzi Sheretz</div><div class="flow-box question">If half a sheretz = k'adasha, does it convey tumah? <strong>Machloket</strong></div></div><div class="flow-col"><div class="flow-label">Tzir (Liquid)</div><div class="flow-box question">Brine/juice that drips from a sheretz — does it share the sheretz's tumah status?</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Practical Halakha:</strong> A whole sheretz the size of a lentil is tamei; disputes remain about subdivided or liquefied sheretz-matter</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚔️ Does Chatzi Sheretz (Half a Creeping Creature) Convey Tumah?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">A half-sheretz that totals a k'adasha is <strong>tamei</strong>. The Torah says 'the sheretz' — it does not require the complete body, only the requisite volume of sheretz-matter.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">A half-sheretz is <strong>tahor</strong>. The Torah's tumah is tied to the whole creature as a named entity — splitting it removes that designation, even if volume is met.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Yochanan</div><div class="speech">I agree with Rav's ruling in practice. The shiur k'adasha functions independently of wholeness — it is a volume standard, not a form standard.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">We must ask: was the piece cut <em>while the creature was alive</em> or <em>after death</em>? The circumstance of cutting changes the analysis entirely.</div></div></div><div class="callout" style="margin-top:20px"><strong>📌 Core Question</strong> Is the k'adasha shiur a measure of 'sheretz-ness' (permitting any portion) or a size-threshold requiring the creature's identity to remain intact?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>💧 Tzir HaSheretz — Brine/Liquid of Creeping Creatures</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">View A: Tzir IS Tamei</h3><ul><li>The tzir (צִיר) of a sheretz flows from its body and retains sheretz-identity</li><li>Just as tzir of a fish can be significant for kashrut, so too for tumah</li><li>The liquid is considered an extension of the creature's substance</li><li>Source: analogy to dam (blood) — blood of sheratzim is tamei</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">View B: Tzir is NOT Tamei</h3><ul><li>Tzir is a <em>pirsha b'alma</em> — mere secretion with no tumah force</li><li>The Torah specifies 'the sheretz' — only solid body-matter qualifies</li><li>Liquid cannot achieve a k'adasha shiur in the normal sense</li><li>Tzir of neveilah is also debated similarly — same logic applies here</li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#fff">Practical Outcome</h3><ul><li>Majority ruling: tzir of sheretz does NOT convey tumah</li><li>Dam (blood) of sheretz IS tamei — distinguished from tzir</li><li>The distinction: blood is categorized as part of the body; tzir is waste</li><li>Applies to: handling sheretz liquid, vessels that contain it</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📋 The Eight Sheratzim and Their Tumah Properties</h2>
+  
+  <table><tr><th>Sheretz (Hebrew)</th><th>Common ID</th><th>Tumah Shiur</th><th>Special Notes</th></tr><tr><td>חֹלֶד (choled)</td><td>Weasel/mole</td><td>K'adasha (lentil)</td><td>Standard sheretz tumah</td></tr><tr><td>עַכְבָּר (achbar)</td><td>Mouse/rat</td><td>K'adasha (lentil)</td><td>Most commonly discussed</td></tr><tr><td>צָב (tzav)</td><td>Lizard/tortoise</td><td>K'adasha (lentil)</td><td>Debate on species identity</td></tr><tr><td>אֲנָקָה (anakah)</td><td>Gecko/ferret</td><td>K'adasha (lentil)</td><td>Listed among eight</td></tr><tr><td>כֹּחַ (koach)</td><td>Monitor lizard</td><td>K'adasha (lentil)</td><td>Large creature, same shiur</td></tr><tr><td>לְטָאָה (letaah)</td><td>Lizard</td><td>K'adasha (lentil)</td><td>Covered in Vayikra 11:30</td></tr><tr><td>חֹמֶט (chomet)</td><td>Sand lizard/snail</td><td>K'adasha (lentil)</td><td>Disputed species</td></tr><tr><td>תִּנְשֶׁמֶת (tinshemet)</td><td>Chameleon/mole</td><td>K'adasha (lentil)</td><td>Same word in birds — different creature</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔗 Ever min HaChai from Non-Kosher Animals</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אֵבֶר מִן הַחַי מִן הַבְּהֵמָה הַטְּמֵאָה — טָמֵא טֻמְאַת נְבֵלוֹת</div><div class="callout"><strong>⚠️ Key Distinction</strong> A limb separated from a <strong>living non-kosher animal</strong> (ever min hachai) presents a dual-tumah problem: (1) it may convey neveilah-tumah and (2) it may convey sheretz-type tumah if the animal is among the sheratzim. The Gemara asks: if a sheretz is still alive and a limb falls off, is that limb tamei as a sheretz-portion or as an ever min hachai? These are governed by different rules and different shiurim.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ How to Determine if a Sheretz Portion is Tamei — Step by Step</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1: Identify the creature.</strong> Is it one of the eight sheratzim listed in Vayikra 11:29–30? If not, no sheretz-tumah applies (though other tumah categories may).</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 2: Check if the creature is dead.</strong> Sheretz tumah applies to the carcass. A living sheretz does not convey tumah through contact in the same way.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 3: Measure the portion.</strong> Is the piece at least a k'adasha (lentil-size, approximately 100 mg)? If below this shiur, it is tahor regardless of source.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 4: Assess integrity.</strong> Is this a whole small sheretz, or a piece of a larger one? Apply the machloket of Rav vs. Shmuel regarding chatzi sheretz.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 5: Check for tzir or dam.</strong> If only liquid is present, apply the ruling that tzir is tahor but dam (blood) of sheretz retains tumah status.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 6: Determine tumah transmission.</strong> Sheretz conveys tumah by <em>maga</em> (touch) and <em>masa</em> (carrying) — but NOT by <em>ohel</em> (tent/overhang), unlike a human corpse.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 127 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;"><strong>Sheretz Carcass</strong><br><small>One of eight Torah-listed creatures</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Whole creature ≥ k'adasha</strong><br>✅ Tamei — all agree</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Half-creature = k'adasha</strong><br>⚖️ Machloket Rav/Shmuel</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Tzir (liquid) of sheretz</strong><br>❌ Tahor — majority ruling</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Dam (blood) of sheretz</strong><br>✅ Tamei — retained tumah</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;"><strong>Tumah Transmission:</strong> Touch (מַגָּע) and Carry (מַשָּׂא) — <em>but NOT ohel</em><br><small>This distinguishes sheretz tumah from corpse tumah</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 127a-127b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 127a-127b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../126/">← Daf 126</a><a href="../128/">Daf 128 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 64 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🥚</div>
+  <h1>Chullin 64</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין סד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔍 Kosher Egg Signs — shape and yolk placement as identifiers<br>
+    🐦 Slaughtered Bird's Eggs — permitted when shell is complete<br>
+    ⚠️ Treifah Bird's Eggs — dispute over whether prohibition transfers<br>
+    🔴 Blood Spot in Egg — location determines whether egg is forbidden<br>
+    📏 Majority Rule (Rov) — applying rov to eggs of unknown origin<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🥚 Determining if an Egg is Kosher</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Egg found — species of parent bird unknown</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✅ Kosher Sign</div><div class="flow-box result-good">One end <strong>pointed</strong>,<br>one end <strong>round</strong></div></div><div class="flow-col"><div class="flow-label">❌ Non-Kosher Sign</div><div class="flow-box result-bad">Both ends <strong>equal</strong><br>(round-round or pointed-pointed)</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✅ Kosher Sign</div><div class="flow-box result-good">Yolk (חלמון) <strong>inside</strong>,<br>white (חלבון) surrounds it</div></div><div class="flow-col"><div class="flow-label">❌ Non-Kosher Sign</div><div class="flow-box result-bad">Yolk <strong>outside</strong>,<br>white inside (inverted)</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Permitted</div><div class="flow-box result-good"><strong>Both signs kosher</strong> →<br>egg may be eaten</div></div><div class="flow-col"><div class="flow-label">Forbidden</div><div class="flow-box result-bad"><strong>Either sign non-kosher</strong> →<br>egg is prohibited</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🥚 Kosher vs. Non-Kosher Egg — The Two Signs</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#fff">Kosher Egg ✅</h3><ul><li>One end <strong>pointed</strong>, one end <strong>round</strong></li><li>Yolk <strong>(חלמון)</strong> located <em>inside</em></li><li>White <strong>(חלבון)</strong> surrounds the yolk</li><li>Both signs must be present to permit</li></ul></div><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">Non-Kosher Egg ❌</h3><ul><li>Both ends are <strong>equal</strong> (round-round or pointed-pointed)</li><li>Yolk <strong>(חלמון)</strong> located <em>outside</em></li><li>White <strong>(חלבון)</strong> is inside — inverted structure</li><li>Either sign alone renders it suspect</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚔️ Treifah Bird's Eggs — Do They Become Forbidden?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav</div><div class="speech">Eggs produced by a <em>treifah</em> bird are <strong>forbidden</strong>. The prohibition of treifah extends to its products — what emerges from the forbidden is itself forbidden.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Shmuel</div><div class="speech">Eggs of a <em>treifah</em> bird are <strong>permitted</strong>. The egg is a distinct entity; the treifah status of the mother does not transfer to a separate product she produces.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">The halacha follows <strong>Shmuel</strong>: eggs of a treifah are permitted. The egg was formed independently and is not subsumed within the treifah prohibition itself.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> The debate hinges on whether eggs are considered an extension of the bird's body or an independent entity. Shmuel's view — they are independent — becomes normative practice.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📋 Eggs Found Inside a Slaughtered Bird — Step by Step</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1:</strong> A kosher bird undergoes valid <em>shechita</em> (ritual slaughter)</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 2:</strong> Eggs are discovered in the oviduct (בֵּית הָרֶחֶם) of the slaughtered bird</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 3 — Key Question:</strong> Are the eggs <em>gulmerin</em> — fully formed with a complete shell?</div><div class="process-arrow">↓</div><div class="process-step"><strong>If shell is complete:</strong> Eggs are <strong>permitted</strong> — treated as separate entities, not part of the mother</div><div class="process-arrow">↓</div><div class="process-step"><strong>If shell is incomplete:</strong> Eggs are still <strong>permitted</strong> — they are included within the shechita of the mother bird</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Critical Exception:</strong> If the mother was a <em>treifah</em>, the eggs are subject to the Rav–Shmuel dispute — but the ruling follows Shmuel: permitted</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔴 Blood Spots in Eggs — Halachic Chart</h2>
+  
+  <table><tr><th>Location of Blood</th><th>Status of Egg</th><th>Ruling & Reason</th></tr><tr><td>On the <strong>yolk</strong> (חלמון)</td><td>❌ Entire egg forbidden</td><td>Indicates fertilization / embryonic development — egg is considered 'living'</td></tr><tr><td>On the <strong>white</strong> (חלבון)</td><td>⚠️ Remove blood; egg may be eaten</td><td>Blood is from the egg's membrane, not an embryo — Rabbinic caution only</td></tr><tr><td>Blood found <strong>after boiling</strong></td><td>❌ Egg forbidden</td><td>Cannot extract and discard once cooked; forbidden as a unit</td></tr><tr><td><strong>Unfertilized egg</strong> (modern)</td><td>Leniency applies</td><td>Modern eggs are commercially unfertilized; many poskim permit discarding blood spot and eating egg</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📖 Why the Torah Doesn't List Egg Signs Explicitly</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">סִימָנֵי בֵּיצִים: חֶלְמוֹן מִבִּפְנִים וְחֶלְבּוֹן מִבַּחוּץ — כְּשֵׁרָה; חֶלְמוֹן מִבַּחוּץ וְחֶלְבּוֹן מִבִּפְנִים — טְרֵפָה</div><div class="callout"><strong>Rabbinic Derivation</strong> The Torah specifies signs for kosher animals (split hoof + chews cud) and fish (fins + scales), but not for eggs. The Rabbis of the Gemara derived egg signs by <strong>logical inference</strong>: since a kosher bird produces the egg, the egg's physical characteristics must reflect its kosher origin. <strong>Rav taught</strong> that these signs — shape and yolk placement — are reliable enough to permit eggs found in the marketplace, even without witnessing the parent bird. This parallels the principle that observable physical markers suffice as halachic identifiers.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 64 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#16213e;color:white;padding:10px;border-radius:6px;text-align:center;"><strong>Unknown egg found</strong><br><small>Parent bird not seen</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center;"><strong>✅ Both signs kosher</strong><br><small>Pointed end + yolk inside</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center;"><strong>❌ Sign(s) non-kosher</strong><br><small>Equal ends or yolk outside</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:white;padding:10px;border-radius:6px;text-align:center;"><strong>Egg from slaughtered bird?</strong><br><small>Shell complete → permitted as separate entity<br>Shell incomplete → included in shechita, permitted</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center;"><strong>Blood on yolk?</strong><br><small>→ Entire egg forbidden</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center;"><strong>Blood on white?</strong><br><small>→ Remove blood; egg permitted</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 64a-64b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 64a-64b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../63/">← Daf 63</a><a href="../65/">Daf 65 →</a></div>
+</body>
+</html>

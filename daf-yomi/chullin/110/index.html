@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 110 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍗</div>
+  <h1>Chullin 110</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין קי׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔁 Nat Bar Nat — Second-degree indirect flavor transfer<br>
+    🧂 Meluach K'Mevushal — Salting legally equals cooking<br>
+    🥛 Bird & Milk — Scope of the Rabbinic decree<br>
+    🍞 Bread in a Meat Oven — Vapor absorption and dairy<br>
+    ⚖️ Practical Rulings — Rav and Shmuel on absorbed flavors<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🔁 When Does Absorbed Flavor Prohibit?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Food comes into contact with<br>meat or dairy substance</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Direct Contact</div><div class="flow-box result-bad">Flavor absorbed in one step<br><em>nat</em> — first degree</div></div><div class="flow-col"><div class="flow-label">Indirect Contact</div><div class="flow-box action">Flavor absorbed through<br>neutral intermediary<br><em>nat bar nat</em> — second degree</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Nat bar nat dehetera:</strong> when the intermediary is itself a permitted food,<br>the absorbed flavor is too weak to prohibit — <strong>the food remains permitted</strong></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">נ"ט בר נ"ט דהיתירא — שרי</div><div class="callout"><strong>📖 Core Concept of the Daf</strong> <strong>Nat bar nat</strong> (טעם בר טעם — "flavor of a flavor") is the principle that a food absorbing flavor <em>indirectly</em>, through a neutral intermediary, receives only a second-degree taste. When the original source was itself permitted, this attenuated flavor does not render the food forbidden from being combined with the opposing category (meat or dairy). The Gemara applies this across several practical cases on this daf.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🍞 May Bread Baked in a Meat Oven Be Eaten with Cheese?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Questioner</div><div class="speech">Meat was roasting in an oven and bread was baked alongside it simultaneously. The bread absorbed the steam and vapor of the roasting meat. May this bread now be eaten with cheese?</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Stringent Position</div><div class="speech">The bread absorbed genuine meat flavor — the vapor rose directly into the bread. This is no different from cooking with meat. The bread should be treated as meaty and forbidden with dairy.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Mar bar Rav Ashi</div><div class="speech">Vapor is already an indirect medium. The meat first gave off vapor (first degree), and the vapor then entered the bread (second degree). This is nat bar nat — and since the meat itself was permitted, this second-degree absorption does not prohibit the bread.</div></div></div><div class="callout" style="margin-top:20px"><strong>Gemara's Ruling</strong> The bread may be eaten with dairy. Vapor-based absorption constitutes nat bar nat — an indirect transfer through a neutral intermediary — and is therefore permitted.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🧂 Meluach K'Mevushal — Key Applications</h2>
+  
+  <table><tr><th>Case</th><th>Halachic Status</th><th>Principle Applied</th></tr><tr><td>Meat and fish salted together</td><td>Forbidden — fish acquires meat flavor</td><td>Direct salt contact = direct flavor transfer</td></tr><tr><td>Fish placed on plate with meat residue</td><td>Permitted — nat bar nat via plate</td><td>Indirect second-degree transfer through intermediary</td></tr><tr><td>Meat salted for a full 24 hours</td><td>Treated as fully cooked</td><td>Meluach k'mevushal: prolonged salting draws and transmits flavor like heat</td></tr><tr><td>Bread salted alongside meat</td><td>Requires case analysis</td><td>Duration and directness of contact determine degree of absorption</td></tr><tr><td>Salted fish later combined with dairy</td><td>Permitted if no direct meat contact</td><td>Nat bar nat from permitted source allows leniency</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🥛 Bird with Milk: Biblical vs. Rabbinic Prohibition</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fdf3e7"><h3 style="color:#e67e22">Biblical Prohibition (De'oraita)</h3><ul><li>Applies only to domesticated animals (behemot)</li><li>Derived from: "Do not cook a kid in its mother's milk"</li><li>Requires potential mother-child nursing relationship</li><li>Three Biblical mentions: cooking, eating, deriving benefit</li><li>Stringent — no nat bar nat leniency at Biblical level</li></ul></div><div class="compare-box" style="border-top-color:#eaf4fb"><h3 style="color:#4a90d9">Rabbinic Prohibition (Derabanan)</h3><ul><li>Applies to birds (עוף) with milk — no nursing relationship</li><li>Decreed as a protective fence (seyag) around Torah law</li><li>Nat bar nat of poultry flavor is more readily permitted</li><li>Poultry/dairy mixture may not be cooked but some leniences apply</li><li>Some Rishonim debate exact scope and circumstances of decree</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Halachic Decision Tree: Is This Absorbed Flavor Prohibited?</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1:</strong> Identify the source — is the flavor coming from meat, dairy, or something pareve?</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 2:</strong> Count the degrees of separation between the original source and the food in question.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 3:</strong> First-degree direct contact → the food takes on the identity of the source (meat or dairy) and is forbidden with the opposite.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 4:</strong> Second-degree indirect absorption (nat bar nat) from a <em>permitted</em> intermediary → apply leniency; the food may be combined with the opposite category.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 5:</strong> Apply meluach k'mevushal rule — if salted for 24 hours, treat all resulting contact as equivalent to direct cooking. No nat bar nat leniency.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 6:</strong> Assess whether the original item was itself forbidden or permitted — nat bar nat of a forbidden source (nat bar nat de'issura) is more stringent.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 110 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#16213e;border:2px solid #c9a84c;padding:10px;border-radius:8px;"><strong>Flavor Source</strong><br>Meat or Dairy item</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #e74c3c;padding:10px;border-radius:8px;"><strong>Direct Transfer</strong><br>First-degree absorption<br><small>→ Food becomes meat/dairy<br>→ Forbidden with opposite</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #2ecc71;padding:10px;border-radius:8px;"><strong>Indirect Transfer</strong><br>Nat bar nat (2nd degree)<br><small>→ Flavor is attenuated<br>→ Permitted with opposite</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;border:2px solid #4a90d9;padding:10px;border-radius:8px;"><strong>Exception — Meluach K'Mevushal</strong><br>24-hour salting = cooking<br><small>Overrides nat bar nat leniency;<br>apply stringency of direct cooking</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 110a-110b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 110a-110b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../109/">← Daf 109</a><a href="../111/">Daf 111 →</a></div>
+</body>
+</html>

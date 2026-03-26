@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 99 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍲</div>
+  <h1>Chullin 99</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין צט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🦴 Gid HaNasheh in Mixtures — sciatic nerve that fell into a pot of meat<br>
+    ⚖️ Bitul B'Shishim — sixty-to-one ratio required to nullify forbidden items<br>
+    👅 Ta'am K'Ikar — forbidden flavor renders entire mixture prohibited<br>
+    🔀 Min B'Mino vs. Min B'She'eino Mino — same vs. different species nullification<br>
+    📖 Nazir Derivation — biblical proof-text that taste equals substance<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🍲 Forbidden Item Falls into a Pot: Is the Mixture Permitted?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Forbidden item (e.g., <strong>gid hanasheh</strong>) enters a pot of permitted meat</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Cooked together — flavor imparted</div><div class="flow-box result-bad">Mixture is <strong>forbidden</strong> — <em>ta'am k'ikar</em> applies regardless of ratio</div></div><div class="flow-col"><div class="flow-label">Cold / no cooking — no flavor transfer</div><div class="flow-box question">Count the ratio: is there <strong>60× the forbidden item</strong>?</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — 60:1 or more</div><div class="flow-box result-good">Forbidden item is <strong>batel b'shishim</strong> — mixture is permitted</div></div><div class="flow-col"><div class="flow-label">No — less than 60:1</div><div class="flow-box result-bad">Mixture is <strong>forbidden</strong>; consult a posek</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">טַעַם כְּעִיקָּר — הַטַּעַם אָסוּר כִּגּוּף הָאִיסּוּר עַצְמוֹ</div><div class="callout"><strong>📖 Ta'am K'Ikar — Taste Is Equivalent to Substance</strong> One of the most foundational principles in hilchot ta'arovot (mixture laws) is established here: the <strong>flavor</strong> (ta'am) imparted by a forbidden food is treated as equivalent to the forbidden food itself (<em>k'ikar</em> = the substance).
+
+<br><br>If gid hanasheh is cooked in a pot of permitted meat, even if the gid itself is removed, the broth and meat that absorbed its taste are <strong>forbidden</strong>. The Torah does not distinguish between eating the forbidden item and tasting its flavor — both constitute a violation.
+
+<br><br><strong>Source:</strong> Derived from the Nazir (Bamidbar 6:4) — the Torah forbids a Nazir even grape seeds and grape skin, which themselves are not wine but merely <em>give taste</em> to it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Is Ta'am K'Ikar Biblical or Rabbinic?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">The prohibition of <em>ta'am k'ikar</em> is <strong>d'oraita</strong> — biblical. The proof is from the <strong>Nazir</strong>: the Torah explicitly prohibits grape seeds and skin (Bamidbar 6:4), which are mere flavor-givers. We derive that anywhere forbidden flavor is imparted, the Torah treats it as eating the substance itself.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Resh Lakish</div><div class="speech">I agree it applies broadly, but the Nazir case may be a <em>chiddush</em> (novel stringency) specific to the Nazir's vow — not necessarily a general biblical rule. One could argue <em>ta'am k'ikar</em> in other contexts is <strong>d'rabbanan</strong> (rabbinic), and the Nazir verse cannot be extended universally.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halacha L'Ma'aseh</strong> The accepted ruling follows R' Yochanan: ta'am k'ikar is d'oraita. One who eats a mixture where forbidden flavor was imparted transgresses a biblical prohibition.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔀 Min B'Mino vs. Min B'She'eino Mino</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e8f0fd"><h3 style="color:#4a90d9">Min B'Mino — Same Species</h3><ul><li>Forbidden item is the <strong>same species</strong> as the permitted food</li><li>Example: non-kosher meat mixed into kosher meat</li><li>Both taste <em>identical</em> — a taster cannot detect the forbidden item</li><li>Since ta'am cannot distinguish them, you cannot rely on rov (majority)</li><li>Requires full <strong>bitul b'shishim</strong> (60:1 ratio) to be permitted</li><li>Some hold: min b'mino is <em>never</em> batel by taste — only by strict count</li></ul></div><div class="compare-box" style="border-top-color:#fef6e8"><h3 style="color:#e67e22">Min B'She'eino Mino — Different Species</h3><ul><li>Forbidden item is a <strong>different species</strong> from permitted food</li><li>Example: non-kosher fish cooked into chicken broth</li><li>A <em>chakham</em> (expert taster) can potentially detect the foreign flavor</li><li>Standard rule: forbidden item nullified if 60× or more present</li><li>If detectable flavor remains even with 60× → mixture is <strong>still forbidden</strong></li><li>If no detectable flavor and 60× present → <strong>permitted</strong></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ Nullification Scenarios: Practical Rulings</h2>
+  
+  <table><tr><th>Case</th><th>Type of Mixture</th><th>Condition</th><th>Ruling</th></tr><tr><td>Gid hanasheh in <strong>cold</strong> pot</td><td>Min b'mino (meat/meat)</td><td>Not cooked; 60× present</td><td>✅ Batel b'shishim — permitted</td></tr><tr><td>Gid hanasheh <strong>cooked</strong> in pot</td><td>Min b'mino (meat/meat)</td><td>Cooked; flavor imparted</td><td>❌ Forbidden — ta'am k'ikar</td></tr><tr><td>Chelev (forbidden fat) in soup</td><td>Min b'she'eino mino</td><td>Imparts flavor, any amount</td><td>❌ Forbidden — biblical d'oraita</td></tr><tr><td>Non-kosher meat + kosher meat</td><td>Min b'mino</td><td>Less than 60:1 ratio</td><td>❌ Forbidden — insufficient bitul</td></tr><tr><td>Non-kosher fish in chicken broth</td><td>Min b'she'eino mino</td><td>60× present; no detectable taste</td><td>✅ Batel — mixture permitted</td></tr><tr><td>Ever min hachai in cold pot</td><td>Min b'mino (meat/meat)</td><td>60× present; no cooking</td><td>✅ Batel b'shishim — permitted</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🧪 How to Rule on a Ta'arovet: Step-by-Step</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1 — Identify the issur:</strong> What is the forbidden item? Is it d'oraita (biblical) or d'rabbanan (rabbinic)? Biblical issurim are treated more stringently.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 2 — Check for cooking/heat:</strong> Was the forbidden item cooked together with the permitted food in a hot pot (<em>kli rishon</em>)? Heat transfers flavor.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 3 — Ta'am k'ikar test:</strong> If cooked together and flavor was imparted → the mixture is <strong>forbidden</strong> regardless of ratio. Remove what you can; consult a posek.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 4 — Count the ratio:</strong> If no flavor was imparted, measure the ratio of permitted to forbidden. Is there <strong>60 times</strong> the volume of the forbidden item?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 5 — Min b'mino check:</strong> Is the forbidden item the same species as the permitted food? If so, rov alone is insufficient — you must have 60:1. If yes to 60:1 → <strong>permitted</strong>. If not → forbidden.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 99 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;border-color:#9b59b6;color:#333"><strong>Forbidden item</strong> enters permitted mixture<br><small>(gid hanasheh, ever min hachai, chelev, etc.)</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border-color:#e74c3c;color:#333"><strong>🔥 Cooked / hot</strong><br><em>Ta'am imparted</em><br><small>Ta'am k'ikar applies</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border-color:#2ecc71;color:#333"><strong>❄️ Cold / no cooking</strong><br><em>No flavor transfer</em><br><small>Count the ratio</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border-color:#e74c3c;color:#c0392b"><strong>❌ FORBIDDEN</strong><br><em>Biblical prohibition</em><br><small>Eating forbidden taste = eating the substance</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border-color:#c9a84c;color:#333"><strong>60:1 ratio?</strong><br>✅ Yes → <strong>Batel — Permitted</strong><br>❌ No → <strong>Forbidden</strong></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 99a-99b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 99a-99b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../98/">← Daf 98</a><a href="../100/">Daf 100 →</a></div>
+</body>
+</html>

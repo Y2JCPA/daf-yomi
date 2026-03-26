@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 76 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🤱</div>
+  <h1>Chullin 76</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין עו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🤱 Protruding Fetal Limb — ever min hachai during difficult birth<br>
+    ⚖️ Ever Min HaChai — limb from a living animal forbidden<br>
+    🦵 Gid HaNasheh — sciatic nerve of the protruding hindleg<br>
+    🔄 Retraction Before Slaughter — does it remove the prohibition?<br>
+    🔢 Double Prohibition — foreleg vs. hindleg compared<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🤱 Status of a Protruding Fetal Limb</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Fetus thrusts a limb outside during difficult birth (dystocia)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Foreleg protrudes</div><div class="flow-box result-bad"><strong>Ever min hachai</strong> takes effect — 1 prohibition</div></div><div class="flow-col"><div class="flow-label">Hindleg protrudes</div><div class="flow-box result-bad"><strong>Ever min hachai</strong> + <strong>Gid HaNasheh</strong> — 2 prohibitions</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Limb is retracted — does return inside the mother</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Mother is slaughtered (shechita) — but <em>shechita does not cure the limb</em></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Protruded limb remains <strong>forbidden</strong> — ever min hachai took hold at moment of protrusion</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📜 The Mishnah</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">הוֹצִיא הָעֻבָּר אֶת יָדוֹ וְהֶחְזִירָהּ — אָסוּר מִשּׁוּם אֵבֶר מִן הַחַי</div><div class="callout"><strong>MISHNA — CHULLIN 76</strong> If an animal was giving birth with difficulty and <strong>the fetus thrust forth its foreleg and retracted it</strong>, and the mother was then slaughtered — the foreleg is <em>forbidden</em> because of <strong>ever min hachai</strong> (אֵבֶר מִן הַחַי), a limb from a living animal. The retraction does not undo the prohibition — it applied the moment the limb left the mother's body.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🗣️ Gid HaNasheh of the Protruding Hindleg</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">If the <strong>hindleg</strong> of the fetus protrudes, the <em>gid hanasheh</em> within it is <strong>also forbidden</strong>. The limb was outside the mother — it acquired ever min hachai status — and everything within that limb, including the sciatic nerve, is subsumed in the prohibition.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">The gid hanasheh prohibition is <em>independent</em> of ever min hachai. One cannot automatically apply both prohibitions to the same act of protrusion without a specific derivation. Each issur stands on its own.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">Precisely because the gid hanasheh <em>is</em> a separate Torah prohibition, the hindleg now carries <strong>two independent counts of liability</strong> — ever min hachai and gid hanasheh simultaneously.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">Agreed that both apply — the question is whether one who eats it receives one set of lashes or two. I hold: two distinct prohibitions mean <strong>two sets of malkot</strong>.</div></div></div><div class="callout" style="margin-top:20px"><strong>HALACHA</strong> The hindleg carries both prohibitions. One who eats the gid hanasheh of such a limb violates two independent Torah prohibitions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🦵 Foreleg vs. Hindleg — Halakhic Comparison</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Foreleg (יָד)</h3><ul><li>Explicitly mentioned in the Mishnah</li><li>Forbidden as <strong>ever min hachai</strong> upon protrusion</li><li>No gid hanasheh present in foreleg</li><li><strong>One prohibition</strong> applies</li><li>Shechita of mother does not rectify it</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">Hindleg (רֶגֶל)</h3><ul><li>Derived from Mishnah by extension</li><li>Forbidden as <strong>ever min hachai</strong> upon protrusion</li><li><em>Gid hanasheh</em> runs through the hindleg</li><li><strong>Two prohibitions</strong> apply simultaneously</li><li>Eating it may incur two sets of malkot</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔄 Step-by-Step: The Protruding Hindleg</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Stage 1:</strong> Animal enters difficult labor — fetus cannot emerge normally</div><div class="process-arrow">↓</div><div class="process-step"><strong>Stage 2:</strong> Fetus thrusts hindleg outside the mother's body</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Stage 3:</strong> At the moment of full protrusion — <em>ever min hachai</em> takes hold AND <em>gid hanasheh</em> prohibition applies to that exposed nerve</div><div class="process-arrow">↓</div><div class="process-step"><strong>Stage 4:</strong> Limb is pushed or pulled back inside the mother</div><div class="process-arrow">↓</div><div class="process-step"><strong>Stage 5:</strong> The mother is slaughtered with valid shechita</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Stage 6:</strong> The previously-protruded hindleg is <em>forbidden to eat</em> — neither retraction nor shechita removed the prohibition</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Stage 7:</strong> The gid hanasheh within that leg is ALSO separately forbidden — two issurim, potentially two sets of lashes</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📊 Summary Table — All Cases of Protruding Limbs</h2>
+  
+  <table><tr><th>Case</th><th>Ever Min HaChai?</th><th>Gid HaNasheh?</th><th>After Shechita of Mother</th><th>Result</th></tr><tr><td>Foreleg protrudes, then retracts</td><td>Yes</td><td>N/A</td><td>Still forbidden</td><td>✗ Assur</td></tr><tr><td>Hindleg protrudes, then retracts</td><td>Yes</td><td>Also forbidden</td><td>Still forbidden</td><td>✗ Assur (2 issurim)</td></tr><tr><td>Hindleg protrudes, NOT retracted</td><td>Yes</td><td>Also forbidden</td><td>Limb needs own slaughter</td><td>✗ Assur without separate act</td></tr><tr><td>Normal birth — no protrusion</td><td>No</td><td>Gid always forbidden</td><td>Mother's shechita works</td><td>✓ Mutar (except gid)</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 76 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:white;padding:8px;border-radius:6px;"><strong>Difficult birth</strong><br><small>עוּבָּר יוֹצֵא</small></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#16213e;color:white;padding:8px;border-radius:6px;"><strong>Limb protrudes outside</strong><br><small>Ever min hachai takes effect instantly</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;"><strong>Foreleg</strong><br><small>1 issur: ever min hachai</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;"><strong>Hindleg</strong><br><small>2 issurim: ever min hachai + gid hanasheh</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#16213e;color:white;padding:8px;border-radius:6px;"><strong>Shechita of mother does NOT help</strong><br><small>Prohibition is permanent — the limb is forbidden</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 76a-76b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 76a-76b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../75/">← Daf 75</a><a href="../77/">Daf 77 →</a></div>
+</body>
+</html>

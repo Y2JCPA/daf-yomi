@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 120 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🫒</div>
+  <h1>Chullin 120</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין קכ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🫒 Kezayit — minimum measure for neveilah tumah<br>
+    🍖 Ochel — what qualifies as 'food' for ritual impurity<br>
+    ⚖️ Tziruf — can partial pieces combine to form a shiur?<br>
+    🦴 Excluded Parts — bone, sinew, and hide from neveilah<br>
+    🔁 Dual Tumah — tum'at neveilah vs. tum'at ochlin<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🫒 Neveilah Tumah — Establishing the Minimum Measure</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Is neveilah flesh present?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Single piece</div><div class="flow-box result-good"><strong>≥ kezayit?</strong><br><small>Conveys tum'at neveilah directly</small></div></div><div class="flow-col"><div class="flow-label">Multiple pieces</div><div class="flow-box action"><strong>Combine?</strong><br><small>Rav: yes | Shmuel: no</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Secondarily: does it also reach <strong>k'beitza</strong> for <em>tum'at ochlin</em>?</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Both tumot</strong> may apply simultaneously at different thresholds</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Rav vs. Shmuel — Do Pieces of Neveilah Combine?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">Two partial pieces of neveilah flesh combine (tziruf) to constitute a kezayit. The Torah says 'neveilah' without restricting it to one continuous piece.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">Pieces do not combine. Each piece must itself be a kezayit. The Torah's shiur requires a single complete unit — fragments cannot be aggregated.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">We find that tum'at ochlin allows combining pieces to reach k'beitza — the same logic applies to neveilah reaching kezayit.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">Tum'at ochlin is different — it is a rabbinic category with looser aggregation rules. Torah-level neveilah tumah demands a stricter standard.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halacha</strong> The halacha follows <strong>Rav</strong>: partial pieces of neveilah flesh may combine (tziruf) to form a kezayit for the purpose of tum'at neveilah.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔁 Two Categories of Tumah from Neveilah</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">Tum'at Neveilah</h3><ul><li>Minimum: <strong>k'zayit</strong> (olive's bulk)</li><li>Source: <em>Torah</em> — <em>וְהַנֹּשֵׂא אֶת נִבְלָתָהּ</em></li><li>Acquired by <strong>carrying or contact</strong></li><li>Applies to flesh and fat of carcass</li><li>Bones, sinew, hide: <strong>excluded</strong></li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Tum'at Ochlin</h3><ul><li>Minimum: <strong>k'beitza</strong> (egg's bulk)</li><li>Source: <em>Rabbinic / derived</em></li><li>Requires prior <strong>hechsher</strong> (liquid contact)</li><li>Neveilah can qualify as <em>ochel</em></li><li>Intent (<em>machshava</em>) can establish ochel status</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🍖 When Is Neveilah Considered 'Ochel' (Food)?</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כָּל שֶׁהוּא רָאוּי לַאֲכִילָה — חָשִׁיב אוֹכֶל לְעִנְיַן טוּמְאָה</div><div class="callout"><strong>Core Principle</strong> The Gemara debates whether neveilah retains the legal status of <strong>ochel</strong> for tum'at ochlin. Abaye holds that since neveilah flesh is still <em>fit for consumption</em> (it may be sold to a non-Jew), it remains categorized as ochel and can become susceptible to food-impurity. Rava teaches that <strong>human intention (machshava)</strong> is the decisive factor — if one designates the meat as food, it acquires ochel status regardless of its neveilah classification.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🦴 Which Parts of Neveilah Convey Tumah?</h2>
+  
+  <table><tr><th>Part of Animal</th><th>Conveys Neveilah Tumah?</th><th>Authority</th><th>Notes</th></tr><tr><td>Flesh (בָּשָׂר)</td><td>✅ Yes</td><td>Torah</td><td>Requires kezayit</td></tr><tr><td>Fat (חֵלֶב)</td><td>✅ Yes</td><td>Included with flesh</td><td>Even if forbidden to eat</td></tr><tr><td>Bone (עֶצֶם)</td><td>❌ No</td><td>Gezeirat hakatuv</td><td>Excluded by biblical decree</td></tr><tr><td>Sinew (גִּיד)</td><td>❌ No</td><td>Gezeirat hakatuv</td><td>Not within 'neveilah' category</td></tr><tr><td>Hide (עוֹר)</td><td>❌ Mostly No</td><td>Rabbinic exclusion</td><td>Soft/edible hide may differ</td></tr><tr><td>Blood (דָּם)</td><td>❌ No</td><td>Separate tumah rules</td><td>Governed by distinct laws</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔎 Determining Neveilah Tumah — Step by Step</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1 — Identify the material:</strong> Is it flesh or fat of neveilah? Bone, sinew, and hide are excluded.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 2 — Measure the quantity:</strong> Does a single piece reach a <em>kezayit</em> (olive's bulk)?</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 3 — If below kezayit:</strong> Can partial pieces combine? Per Rav (halacha): <em>yes</em>, tziruf applies.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 4 — Tumah is conveyed</strong> to anyone who carries or contacts the kezayit of neveilah flesh.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 5 — Secondary check:</strong> Does the amount reach k'beitza? If yes, tum'at ochlin may also apply (requires prior hechsher).</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 120 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Neveilah flesh identified</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>≥ kezayit</strong><br><em>Tum'at neveilah</em> applies immediately</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>< kezayit</strong><br>Tziruf: pieces combine (Rav)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Does it reach k'beitza?</strong><br>Check for <em>tum'at ochlin</em> (requires hechsher + machshava)</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Halacha:</strong> Both tumot may apply — different shiurim, different mechanisms</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 120a-120b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 120a-120b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../119/">← Daf 119</a><a href="../121/">Daf 121 →</a></div>
+</body>
+</html>

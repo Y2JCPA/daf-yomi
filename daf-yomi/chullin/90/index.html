@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 90 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📏</div>
+  <h1>Chullin 90</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין צ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📏 Lashon Gozmah — Torah's use of exaggerated language<br>
+    🤫 Virtue of Silence — Israel's greatness through humility<br>
+    🏙️ Cities to the Sky — Biblical hyperbole and its limits<br>
+    🩸 Blood to the Bridles — Prophetic exaggeration examples<br>
+    ⚖️ Gid HaNashe — Concluding rulings on the sciatic nerve<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📏 Does Torah Speak in Exaggeration?</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">תּוֹרָה דִּבְּרָה לְשׁוֹן גּוּזְמָא</div><div class="callout"><strong>Core Question</strong> Chullin 90 explores a profound tension: the Torah, which is entirely true, sometimes employs hyperbolic language. The Sages teach <strong>"Torah dibra lashon gozmah"</strong> — the Torah spoke in exaggerated terms — explaining verses like "cities great and fortified up to the heavens" (Deut. 1:28). The daf also praises <em>silence and humility</em> as the secret source of Israel's spiritual greatness.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🤫 The Merit of Silence</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">גְּדוּלָּתָן מִקַּטְנוּתָן — Their greatness comes from their smallness</div><div class="callout"><strong>Aggadic Teaching</strong> The Sages teach: <strong>Israel's greatness comes from their humility.</strong> When God declared 'I am the Lord your God' (Ex. 20:2), Israel held silent before Him. Said the Holy One: <em>'By your life — because you held your mouths closed before Me, I will repay you greatly.'</em> The same mouth that proclaimed 'I am the Lord' also commanded 'Honor your father and mother' — equating reverence for God with reverence for parents. <br><br>The formula: <strong>גְּדוּלָּתָן מִקַּטְנוּתָן</strong> — their greatness flows from their smallness.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📖 Lashon Gozmah: Exaggerated Text vs. The Principle</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Exaggerated Statements</h3><ul><li>"Cities great and fortified <strong>up to the heavens</strong>" (Deut. 1:28) — the spies' intimidated report</li><li>"Blood reached the <strong>horses' bridles</strong>" — prophetic end-of-days imagery (cf. Joel, Zech.)</li><li>"We were like <strong>grasshoppers</strong> in our own eyes" (Num. 13:33) — spies' self-perception</li><li>Og's iron bed: <strong>nine cubits long</strong> — conveying his terrifying giant stature (Deut. 3:11)</li></ul></div><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#ffffff">The Governing Principle</h3><ul><li>Torah speaks in human language — including hyperbole</li><li>Gozmah does <em>not</em> compromise Torah's truthfulness</li><li>It communicates <strong>emotional reality</strong>, not literal measurement</li><li>Prophets and Sages also used gozmah when the context prevents confusion</li><li>A scholar must be careful: only where it is obviously non-literal</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚖️ May Scholars Use Exaggerated Language?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Restrictive View</div><div class="speech">A Torah scholar must never depart from strict truth. Scripture's gozmah is a unique dispensation for sacred text — it does not license ordinary Rabbinic speech or teaching to employ hyperbole.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Permissive View</div><div class="speech">The Sages themselves used gozmah to make teachings vivid and memorable. When the statement is so extreme that every listener understands it cannot be literal — a 'davar she-eino' — it is entirely permitted.</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Talmudic Resolution</div><div class="speech">Three places are identified where the Rabbis employed lashon gozmah: the size of Og's bed, the magnitude of a great army, and dimensions of the Temple Court — all recognized as rhetorical intensification, not deception.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakhic Bottom Line</strong> Gozmah is a legitimate rhetorical device when context makes it unmistakably figurative. A Torah scholar must guard his speech carefully — exaggeration that could mislead is forbidden.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📋 Catalogue of Gozmah Examples Across Sources</h2>
+  
+  <table><tr><th>Source</th><th>Exaggerated Statement</th><th>Rhetorical Function</th></tr><tr><td>Torah — Deut. 1:28</td><td>"Cities fortified up to the heavens"</td><td>Conveys the spies' overwhelming fear and intimidation</td></tr><tr><td>Torah — Num. 13:33</td><td>"We were like grasshoppers in our eyes"</td><td>Expresses crushing insignificance felt before Canaanite giants</td></tr><tr><td>Prophets — Joel / Zech.</td><td>"Blood reaching the horses' bridles"</td><td>Apocalyptic imagery of total, catastrophic devastation</td></tr><tr><td>Torah — Deut. 3:11</td><td>"Og's iron bed — nine cubits long"</td><td>Vivid marker of Og's fearsome, superhuman stature</td></tr><tr><td>Rabbinic / Haggadah</td><td>Temple court dimensions; vast crowd descriptions</td><td>Conveys grandeur and awe — understood as hyperbole by listeners</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔗 Flow of the Sugya: From Gid HaNashe to Gozmah</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1:</strong> Daf opens completing the laws of <em>Gid HaNashe</em> — the sciatic nerve prohibition rooted in Jacob's wrestling with the angel (Gen. 32)</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 2:</strong> Aggadic bridge — Jacob 'was left alone' (וַיִּוָּתֵר יַעֲקֹב לְבַדּוֹ) — solitude, struggle, and spiritual resilience</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 3:</strong> Praise of Israel's <em>silence at Sinai</em> — holding their mouths before God is the root of their greatness: <strong>גְּדוּלָּתָן מִקַּטְנוּתָן</strong></div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 4:</strong> Core principle articulated — <em>Torah dibra lashon gozmah</em>: the Torah speaks in human language including deliberate hyperbole</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 5:</strong> Biblical, prophetic, and Rabbinic examples catalogued; limits on when scholars may use gozmah are debated and resolved</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 90 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center"><strong>Gid HaNashe Laws Concluded</strong><br><small>Jacob's wrestle → permanent dietary commemoration</small></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center"><strong>Aggadah: Israel Silent at Sinai</strong><br><small>Humility → Divine reward → Enduring greatness</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center"><strong>Principle: Torah Dibra Lashon Gozmah</strong><br><small>Truth and hyperbole are not opposites</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center"><strong>Torah Gozmah</strong><br>"Cities to the sky"<br>Spies: "like grasshoppers"</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center"><strong>Prophetic Gozmah</strong><br>"Blood to horse bridles"<br>Apocalyptic end-of-days</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center"><strong>Rabbinic Gozmah</strong><br>Og's bed, Temple scale<br>Vivid but non-literal</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center"><strong>Rule:</strong> Gozmah is permitted when context prevents confusion — but scholars must guard truth carefully</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 90a-90b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 90a-90b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../89/">← Daf 89</a><a href="../91/">Daf 91 →</a></div>
+</body>
+</html>

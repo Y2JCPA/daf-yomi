@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 75 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐄</div>
+  <h1>Chullin 75</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין עה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐄 Ben Peku'a — fetus found alive in slaughtered mother<br>
+    ⚔️ Shechita Exemption — mother's slaughter covers the fetus<br>
+    🦴 Eiver Min HaChai — limb severed from living ben peku'a<br>
+    🩸 Kisuy HaDam — blood-covering obligation for ben peku'a<br>
+    👶 Offspring Status — does ben peku'a's dispensation transfer?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚔️ Does Ben Peku'a Require Its Own Shechita?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Meir</div><div class="speech">A ben peku'a — a live fetus extracted from a properly slaughtered mother — requires NO further shechita to be eaten. The mother's slaughter covers it entirely.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Shimon</div><div class="speech">Agreed that no separate shechita is needed. Moreover, even if the ben peku'a later dies on its own, it cannot become neveilah — it is already in a state of permitted-ness from birth.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">The operative principle: <strong>שחיטת אמו מטהרתו</strong> — the mother's slaughter purifies it. Yet secondary laws (kisuy, eiver min hachai) remain disputed for this unique category.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Term</strong> בן פקועה (Ben Peku'a) — lit. 'the extracted one'; a live, full-term fetus removed from a ritually slaughtered animal. It occupies a unique halachic category unlike any normal-born animal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📜 What Is Ben Peku'a?</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">בהמה שנשחטה ונמצא בה עובר — שחיטת אמו מטהרתו (חולין עה)</div><div class="callout"><strong>Foundation</strong> When a pregnant animal undergoes valid <strong>shechita</strong> and a live fetus is found inside, that fetus is a <strong>בן פקועה</strong>. The Torah's slaughter requirement is considered fulfilled through the mother. But this creates cascading questions: Can it become <em>neveilah</em>? Must its blood be covered? What of its limbs while alive?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔄 Ben Peku'a Permissibility Tree</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Pregnant animal receives valid shechita</strong></div><div class="flow-arrow">↓</div><div class="flow-box question">Is a live fetus found inside?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — live fetus</div><div class="flow-box result-good">Ben peku'a! Permitted to eat without further shechita.</div></div><div class="flow-col"><div class="flow-label">Dead fetus</div><div class="flow-box result-bad">Treated as part of mother — no special ben peku'a status applies.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Is the fetus full-term (ben 9 months)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Full-term viable</div><div class="flow-box result-good">Full ben peku'a status — all leniencies apply per the Tannaim.</div></div><div class="flow-col"><div class="flow-label">Not full-term</div><div class="flow-box result-bad">Disputed — may be treated merely as a limb of the mother.</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚖️ Ben Peku'a vs. Normally Born Animal</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Ben Peku'a</h3><ul><li>No shechita required to eat</li><li>Cannot become neveilah upon death</li><li>Kisuy hadam: disputed (some exempt it)</li><li>Eiver min hachai from it: disputed</li><li>Unique pariah category — sui generis</li></ul></div><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Normally Born Animal</h3><ul><li>Requires full shechita to be permitted</li><li>Dies without shechita → neveilah</li><li>Kisuy hadam required if it is a chaya</li><li>Eiver min hachai prohibition fully applies</li><li>Standard halachic category</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🩸 Kisuy HaDam — When Must Blood Be Covered?</h2>
+  
+  <table><tr><th>Case</th><th>Kisuy Required?</th><th>Authority / Reasoning</th></tr><tr><td>Regular chaya (wild animal) slaughtered</td><td>Yes — always</td><td>Torah obligation: וְשָׁפַךְ...וְכִסָּהוּ</td></tr><tr><td>Ben peku'a slaughtered separately as adult</td><td>Disputed</td><td>Does shechita here trigger a fresh kisuy?</td></tr><tr><td>Ben peku'a dies without shechita</td><td>No</td><td>No shechita event = no kisuy trigger</td></tr><tr><td>Offspring of ben peku'a slaughtered</td><td>Disputed by Rishonim</td><td>Whether inherited status affects obligation</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🦴 Eiver Min HaChai — Limb from Living Ben Peku'a</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Question:</strong> A limb is severed from a living ben peku'a. Does <em>eiver min hachai</em> (limb from a living creature) apply?</div><div class="process-arrow">↓</div><div class="process-step"><strong>R' Yochanan:</strong> The prohibition of eiver min hachai still applies. The ben peku'a's body was never individually 'slaughtered' — the mother's shechita covered the whole but not severed parts.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Resh Lakish:</strong> The mother's shechita creates a blanket dispensation for the entire fetus and all it contains — the limb is therefore permitted.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Implication:</strong> If eiver min hachai applies, the limb is forbidden even though eating the whole ben peku'a is permitted — a novel asymmetry.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Practical ruling:</strong> A limb severed from a living ben peku'a requires its own shechita or is otherwise prohibited. The whole-body heter does not extend to actively severed parts.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 75 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e;color:white;border-radius:6px;padding:8px"><strong>Valid Shechita</strong><br><small>Mother slaughtered properly</small></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;color:white;border-radius:6px;padding:8px"><strong>Ben Peku'a Found Alive</strong><br><small>Full-term fetus extracted</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:6px;border-radius:4px"><strong>Eating the whole animal</strong><br><em>Permitted</em> — no shechita needed</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:6px;border-radius:4px"><strong>Severed limb while alive</strong><br><em>Forbidden</em> — eiver min hachai</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:6px;border-radius:4px"><strong>Blood covering</strong><br><em>Disputed</em> — R' Meir vs. others</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:6px;border-radius:4px"><strong>Death without shechita</strong><br><em>Not neveilah</em> — already permitted</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 75a-75b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 75a-75b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../74/">← Daf 74</a><a href="../76/">Daf 76 →</a></div>
+</body>
+</html>

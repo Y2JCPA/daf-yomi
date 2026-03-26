@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 80 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐄</div>
+  <h1>Chullin 80</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין פ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐄 Oto V'et Bno — same-day slaughter of parent and offspring forbidden<br>
+    ❓ Safek Lineage — rulings when animal relationship is uncertain<br>
+    ⚧️ Tumtum & Androginos — uncertain-gender animals and the prohibition<br>
+    🔨 Malkot — when lashes are and are not administered<br>
+    📜 Biblical Scope — which animals and relationships the verse covers<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🐄 Oto V'et Bno: Structure of the Prohibition</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Vayikra 22:28:</strong><br>"Do not slaughter an ox or sheep —<br>it and its offspring — on the same day"<br><small>וְאֹתוֹ וְאֶת-בְּנוֹ לֹא תִשְׁחֲטוּ בְּיוֹם אֶחָד</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Definite case</div><div class="flow-box result-bad">Known parent-offspring pair, domestic animal → Full Torah prohibition applies</div></div><div class="flow-col"><div class="flow-label">Safek case</div><div class="flow-box action">Uncertain relationship or uncertain sale order → Rabbinic restriction, no malkot</div></div><div class="flow-col"><div class="flow-label">Tumtum / Androginos</div><div class="flow-box action">Uncertain sex → No malkot; precautionary stringency only</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Key Rule:</strong> Malkot requires <em>vadai</em> (certainty).<br>Doubt eliminates lashes but not the prohibition itself.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📜 The Biblical Source and Its Scope</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">ויקרא כב:כח — אֹתוֹ וְאֶת-בְּנוֹ לֹא תִשְׁחֲטוּ בְּיוֹם אֶחָד</div><div class="callout"><strong>Vayikra 22:28</strong> The Torah forbids slaughtering <strong>an ox or a sheep together with its young on the same day</strong>. The Gemara on Daf 80 probes the precise limits of this verse: Does it cover <em>chayot</em> (wild animals) as well as <em>behemot</em> (domestic animals)? Does it apply when the sex of the animal is unknown — a tumtum or androginos? And what level of certainty about the relationship is required before the prohibition is triggered? Each boundary determines both the <em>issur</em> and whether <strong>malkot</strong> (lashes) follow a violation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚧️ Tumtum and Androginos: Are They Subject to Oto V'et Bno?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">A <strong>tumtum</strong> IS subject to oto v'et bno. The Torah says <em>"oto"</em> and <em>"bno"</em>, but these words describe the <em>relationship</em>, not the sex. Wherever a genuine parent-offspring bond exists, the prohibition applies — the animal's unresolved gender does not eliminate that biological reality.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">The verse uses explicit masculine language throughout. A tumtum's sex is entirely unresolved — it may not be male at all. Since malkot requires that the violator acted against a <strong>definite</strong> Torah prohibition, the uncertainty in gender creates a <em>safek</em> that bars lashes entirely.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">Agreed on malkot — no lashes in the safek. But <em>l'chatchila</em> one must still refrain. The precautionary stringency stands even when the Torah-level issur is uncertain. We do not permit the act just because lashes cannot follow.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">And an <strong>androginos</strong> — having both male and female organs — is its own category of doubt. It is neither definitively male nor definitively female. It receives the same treatment: no malkot, but rabbinic caution applies.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halacha l'ma'aseh</strong> Tumtum and androginos: no malkot, but the act is rabbinically forbidden as a safek violation of oto v'et bno.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>❓ Three Categories of Safek in Oto V'et Bno</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e8f4f8"><h3 style="color:#4a90d9">Seller's Uncertainty</h3><ul><li>Sold a cow AND its calf on the same day</li><li>Uncertain which sale occurred first</li><li>Seller cannot slaughter the remaining animal that day</li><li>The safek binds the one who HAS knowledge of the relationship</li><li>Buyer who is unaware faces no prohibition</li></ul></div><div class="compare-box" style="border-top-color:#fef9e7"><h3 style="color:#c9a84c">Unknown Parentage</h3><ul><li>Animal's lineage is entirely unknown</li><li>Cannot identify whether two animals are related</li><li>No prohibition applies in a pure safek of identity</li><li>But if circumstantial evidence suggests relationship — be stringent</li><li>The doubt must be genuine, not manufactured to evade the law</li></ul></div><div class="compare-box" style="border-top-color:#fdf2f8"><h3 style="color:#9b59b6">Two Buyers, Same Day</h3><ul><li>Two people buy one animal each from a known pair</li><li>Both slaughter on the same day</li><li>The SECOND slaughter violates oto v'et bno</li><li>If simultaneous — neither receives malkot (cannot determine sequence)</li><li>The issur was still violated even without malkot</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔨 Malkot: When Lashes Apply and When They Do Not</h2>
+  
+  <table><tr><th>Scenario</th><th>Prohibition Level</th><th>Malkot?</th><th>Reason</th></tr><tr><td>Knowingly slaughtered mother then offspring, warned beforehand</td><td>Torah — vadai</td><td>Yes</td><td>Clear violation with hasra'ah; all conditions met</td></tr><tr><td>Slaughtered both without prior warning</td><td>Torah — vadai</td><td>No</td><td>Malkot requires hasra'ah (prior warning) — absent here</td></tr><tr><td>Tumtum or androginos involved</td><td>Rabbinic stringency</td><td>No</td><td>Safek in gender; Torah-level violation not certain</td></tr><tr><td>Relationship between animals unknown</td><td>No issur applies</td><td>N/A</td><td>Without known relationship, no prohibition is triggered</td></tr><tr><td>Wild animal (chayah) — debated if verse applies</td><td>Disputed</td><td>No</td><td>Uncertainty whether verse covers chayot bars malkot</td></tr><tr><td>One animal slaughtered, other died naturally</td><td>No violation</td><td>N/A</td><td>'Lo tishchatu' — only slaughter triggers the issur, not natural death</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔍 Step-by-Step: Ruling a Safek Oto V'et Bno Case</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1 — Identify the Relationship:</strong> Is there a known or suspected parent-offspring bond between the two animals? If none can be established at all, no prohibition applies.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 2 — Assess Knowledge:</strong> Who is aware of the relationship — the seller, the buyer, or both? The prohibition falls on the person who <em>knows</em> the connection exists.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 3 — Check for Certainty:</strong> Is the relationship a <em>vadai</em> (certainty) or a <em>safek</em> (doubt)? Certainty → full Torah prohibition. Doubt → rabbinic stringency only.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 4 — Gender Certainty:</strong> Is the animal definitively male or female? If tumtum or androginos, no malkot can be given regardless of other factors.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 5 — Apply the Dual Rule:</strong> Rule <em>l'chumra</em> (stringently) for the prohibition itself in all safek cases — do not slaughter. But rule <em>l'kula</em> for malkot — lashes require absolute certainty at every level.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 80 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e;color:white;padding:10px;border-radius:8px;text-align:center;"><strong>Oto V'et Bno</strong><br>Vayikra 22:28 — same-day slaughter<br>of parent and offspring forbidden</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #4a90d9;padding:8px;border-radius:6px;"><strong>Vadai (Certain)</strong><br>Known animals<br>Known relationship<br>Prior warning given<br><br>→ Full prohibition<br>→ <strong>Malkot applies</strong></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #c9a84c;padding:8px;border-radius:6px;"><strong>Safek (Doubt)</strong><br>Uncertain lineage<br>or uncertain sale order<br><br>→ Rabbinic restriction<br>→ <strong>No malkot</strong></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #9b59b6;padding:8px;border-radius:6px;"><strong>Tumtum / Androginos</strong><br>Uncertain biological sex<br><br>→ Precautionary only<br>→ <strong>No malkot</strong></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;color:white;padding:10px;border-radius:8px;text-align:center;"><em>Core Principle:</em> Safek in any element — relationship, gender, or warning — eliminates malkot. The prohibition itself remains stringent.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 80a-80b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 80a-80b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../79/">← Daf 79</a><a href="../81/">Daf 81 →</a></div>
+</body>
+</html>

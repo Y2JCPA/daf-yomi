@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 101 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🦴</div>
+  <h1>Chullin 101</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין קא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🦴 Gid HaNashe — minimum shiur for lashes<br>
+    ⚖️ One act, two prohibitions — can they combine?<br>
+    🫙 Gid in a pot — does it impart flavor?<br>
+    🐄 Gid from neveilah vs. kosher animal<br>
+    🔢 Kol she'hu vs. k'zayit — debating the threshold<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ How Much Gid to Be Liable?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna Kamma</div><div class="speech">One who eats the gid ha-nashe is liable only if he eats a <strong>k'zayit</strong> (olive's bulk). This is the standard shiur for food prohibitions.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yehuda</div><div class="speech">The gid is <em>chashuv</em> — significant in its own right. Even eating <strong>mashehu</strong> (any amount at all) from the gid incurs lashes, because its prohibition comes from its identity, not its bulk.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">The dispute hinges on whether the gid is treated like other forbidden foods (requiring k'zayit) or like distinct prohibited objects (e.g., shkotzim) where any amount triggers liability.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> Is gid ha-nashe prohibited because of what it is (intrinsic, identity-based) or because of what it is eaten (quantity-based)? The answer determines the shiur for lashes.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🦴 The Gid HaNashe — Background</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">עַל כֵּן לֹא יֹאכְלוּ בְנֵי יִשְׂרָאֵל אֶת גִּיד הַנָּשֶׁה (בראשית לב:לג)</div><div class="callout"><strong>Foundational Prohibition</strong> The <strong>gid ha-nashe</strong> (sciatic nerve) is forbidden by Torah law (<em>Bereishit 32:33</em>), commemorating Jacob's injury. It applies to both the hindquarters of <em>pure</em> (kosher) and <em>impure</em> (non-kosher) animals — a point debated extensively on this daf.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🐄 Gid from a Non-Kosher Animal — Two Prohibitions or One?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yochanan</div><div class="speech">If one eats the gid ha-nashe of a <strong>neveilah</strong> (improperly slaughtered animal), he is liable for <em>two sets</em> of lashes: one for gid ha-nashe and one for neveilah. These are distinct prohibitions and do not merge.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">He is liable for only <em>one</em> set of lashes. The neveilah prohibition <strong>subsumes</strong> the gid prohibition — the gid is already prohibited as part of the neveilah, so it adds nothing new.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">Rabbi Yochanan's view follows the principle of <em>chavilot chavilot</em> — each prohibition stands independently, and a person can receive separate lashes for each distinct biblical transgression committed in a single act.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakhic Principle</strong> Can a single act of eating violate two separate negative commandments simultaneously, triggering double lashes? This depends on whether the prohibitions are truly independent.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🫙 Does Gid Impart Flavor to the Pot?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Gid ha-nashe falls into a pot of permitted meat while cooking</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — it imparts flavor</div><div class="flow-box result-bad">The entire pot becomes <strong>forbidden</strong>. Gid, like other prohibited substances, transmits its forbidden status through taste (<em>ta'am k'ikar</em>).</div></div><div class="flow-col"><div class="flow-label">No — it does not impart flavor</div><div class="flow-box result-good">The pot remains <strong>permitted</strong>. Gid is sinew, not meat; it has no real taste to transmit.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Practical ruling: The gid is removed and the pot's status depends on whether the ratio allows bitul (nullification) and whether flavor was actually imparted</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ Shiur Comparison: Gid vs. Other Prohibitions</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fdf3e3"><h3 style="color:#c9a84c">Gid HaNashe</h3><ul><li>Tanna Kamma: k'zayit required</li><li>Rabbi Yehuda: mashehu (any amount)</li><li>Dispute: is it quantity- or identity-based?</li><li>Applies to kosher and non-kosher animals</li></ul></div><div class="compare-box" style="border-top-color:#eaf4fb"><h3 style="color:#4a90d9">Neveilah / Treifah</h3><ul><li>Standard shiur: k'zayit</li><li>Applies only to kosher species</li><li>Lashes for eating minimum amount</li><li>Gid of neveilah — double prohibition debate</li></ul></div><div class="compare-box" style="border-top-color:#f9ebea"><h3 style="color:#e74c3c">Sheretz / Non-Kosher Creatures</h3><ul><li>Mashehu — any amount incurs lashes</li><li>Prohibition is identity-based, not quantity</li><li>Classic case of non-bulk prohibition</li><li>Contrast with food-based prohibitions</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔢 How the Gemara Derives the Shiur for Gid</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Starting point:</strong> All food prohibitions generally require a k'zayit to incur Torah lashes — based on the verse linking eating to prohibition.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Exception raised:</strong> Sheretz (creeping creatures) incurs lashes for any amount — because the prohibition attaches to the <em>object</em> itself, not to the act of eating a quantity.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Question applied to gid:</strong> Is gid more like neveilah (quantity-based prohibition, needs k'zayit) or more like sheretz (identity-based, any amount)?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Yehuda's position:</strong> Gid is chashuv — it is a distinct forbidden entity. Like sheretz, mashehu suffices. The Torah forbade the gid as an object, not merely as food.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Practical outcome:</strong> The halakha is disputed; one should be stringent and avoid even a mashehu of gid, while the standard shiur for lashes follows the majority Tannaic view of k'zayit.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 101 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box step" style="background:#16213e;border:2px solid #c9a84c;padding:8px;border-radius:6px;"><strong>Act:</strong> Eating gid ha-nashe</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #4a90d9;padding:8px;border-radius:6px;"><strong>From kosher animal</strong><br><small>One prohibition: gid ha-nashe<br>Shiur dispute: k'zayit vs. mashehu</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #e74c3c;padding:8px;border-radius:6px;"><strong>From neveilah</strong><br><small>R. Yochanan: two sets of lashes<br>Reish Lakish: one set of lashes</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#16213e;border:2px solid #9b59b6;padding:8px;border-radius:6px;"><strong>Additional question:</strong> If gid fell into a pot — does it impart flavor? If yes → pot forbidden. Gid as sinew may not transmit taste like meat does.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 101a-101b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 101a-101b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../100/">← Daf 100</a><a href="../102/">Daf 102 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chullin 69 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chullin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐄</div>
+  <h1>Chullin 69</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חולין סט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐄 Fetus as Mother's Thigh — ירך אמו permits fetus through mother's shechita<br>
+    🦵 Protruding Limb — ever min hachai status of limb outside the womb<br>
+    🔄 Retracted Limb — limb that re-entered womb before slaughter is fully covered<br>
+    ⚖️ R. Meir vs. R. Shimon — dispute over exposed fetus limb at moment of shechita<br>
+    🔪 Scope of Shechita — what the mother's slaughter covers and what it excludes<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🐄 Does the Mother's Shechita Cover the Fetus?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Mother animal receives valid shechita (שחיטה כשרה)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Fetus entirely inside womb</div><div class="flow-box result-good">✅ Permitted — fetus is ירך אמו, the mother's thigh</div></div><div class="flow-col"><div class="flow-label">Limb protruded, then retracted before shechita</div><div class="flow-box result-good">✅ Permitted — retraction restores coverage; all agree</div></div><div class="flow-col"><div class="flow-label">Limb protruded and remained outside at shechita</div><div class="flow-box question">⚠️ Disputed — R. Meir forbids as ever min hachai; R. Shimon permits</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🐄 Slide 1: The Foundational Principle — ירך אמו</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">עוּבָּר יֶרֶךְ אִמּוֹ — The fetus is [like] the thigh of its mother (Chullin 69a)</div><div class="callout"><strong>עוּבָּר יֶרֶךְ אִמּוֹ הוּא</strong> A fetus found inside a slaughtered animal is permitted for consumption without any additional act of shechita. The Gemara derives this from the principle that <strong>the fetus is considered like the thigh of its mother</strong> — an integral, inseparable part of her body. When valid shechita is performed on the mother, it automatically extends to cover everything within her body, including the fetus, regardless of its stage of development.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Slide 2: The Dispute — Limb Outside the Womb at Shechita</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R. Meir</div><div class="speech">If a limb of the fetus protruded out of the womb before shechita and remained there, it is <strong>forbidden</strong>. The womb is the boundary of the mother's body-domain. A limb outside that boundary is no longer covered by her shechita — it is treated as ever min hachai, a limb severed from a living creature, and is biblically prohibited.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R. Shimon</div><div class="speech">The fetus is still physically attached to the mother as a whole unit. The protruding limb has not separated — only its location changed. Since the fetus body itself remains inside, all of its parts — including the external limb — are still covered by the mother's shechita. Location within or outside the womb is not legally determinative.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Disagreement</strong> Is the womb a legal boundary that severs coverage, or is physical attachment of the fetus body the sole criterion for ירך אמו status?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔄 Slide 3: Three Cases of the Fetus Limb Compared</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#fff">Limb Never Protruded</h3><ul><li>Fetus entirely inside womb at shechita</li><li>No dispute — universally permitted</li><li>Shechita of mother covers completely</li><li>Zero ever min hachai concern</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Limb Protruded Then Retracted</h3><ul><li>Limb exited, then re-entered before slaughter</li><li>Permitted — all Tannaim agree</li><li>Retraction restores legal status as part of mother</li><li>The prior exit creates no lasting consequence</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#fff">Limb Protruded and Stayed Out</h3><ul><li>Limb outside womb at moment of shechita</li><li>R. Meir: limb forbidden as ever min hachai</li><li>R. Shimon: limb permitted via mother's shechita</li><li>Fetus body itself is permitted in both opinions</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📋 Slide 4: Ruling Matrix — Fetus and Limb Status</h2>
+  
+  <table><tr><th>Scenario</th><th>Fetus Body</th><th>Protruding Limb</th><th>Who Rules This</th></tr><tr><td>Fetus fully inside womb</td><td>✅ Permitted</td><td>N/A — inside</td><td>All agree</td></tr><tr><td>Limb exited and retracted before shechita</td><td>✅ Permitted</td><td>✅ Permitted</td><td>All agree</td></tr><tr><td>Limb exited, still outside at shechita</td><td>✅ Permitted</td><td>❌ Forbidden (ever min hachai)</td><td>R. Meir</td></tr><tr><td>Limb exited, still outside at shechita</td><td>✅ Permitted</td><td>✅ Permitted</td><td>R. Shimon</td></tr><tr><td>Fetus head partially emerged from womb</td><td>Special case</td><td>Fetus may need own shechita</td><td>Mishnah, Ch. 4</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔪 Slide 5: The Legal Logic Step by Step</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1 — Base Rule:</strong> A fetus inside a slaughtered mother is permitted by her shechita. It requires no independent slaughter — it is part of her body (ירך אמו).</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 2 — The Principle's Basis:</strong> The fetus has no independent halakhic status while inside the mother. It is legally subsumed into her body, just as any internal organ would be.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 3 — The Complication:</strong> A limb of the fetus extends outside the womb before shechita. Does it now exist in 'two worlds' — inside (fetus body) and outside (limb)?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 4 — R. Meir's Logic:</strong> The womb defines the mother's domain. Exit = separation from coverage. The limb is now like ever min hachai — from a living animal's perspective, it was severed.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 5 — R. Shimon's Logic:</strong> Physical attachment is the only criterion. The fetus is still one organism connected to the mother. No part of an attached fetus can acquire independent 'living limb' status.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chullin 69 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:10px 14px;border-radius:8px;font-size:1em;"><strong>Mother slaughtered — valid shechita performed</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:10px;border-radius:8px;"><strong>Fetus entirely inside</strong><br><small>✅ Permitted — ירך אמו applies in full</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:10px;border-radius:8px;"><strong>Limb protruded &amp; retracted</strong><br><small>✅ Permitted — all agree; retraction = restoration</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:10px;border-radius:8px;"><strong>Limb protruded &amp; stayed outside</strong><br><small>⚠️ <em>R. Meir:</em> forbidden / <em>R. Shimon:</em> permitted</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chullin 69a-69b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chullin 69a-69b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../68/">← Daf 68</a><a href="../70/">Daf 70 →</a></div>
+</body>
+</html>
