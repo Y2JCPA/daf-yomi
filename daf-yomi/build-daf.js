@@ -72,16 +72,17 @@ const CSS = `* { margin: 0; padding: 0; box-sizing: border-box; }
   .compare-box ul { list-style: none; padding: 0; }
   .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
   .compare-box li:last-child { border-bottom: none; }
-  .process-bar { display: flex; align-items: center; gap: 0; max-width: 800px; width: 100%; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
-  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 50%; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 0.85em; padding: 8px; line-height: 1.2; }
-  .process-arrow { font-size: 24px; color: #c9a84c; padding: 0 6px; }
+  .process-bar { display: flex; align-items: center; gap: 8px; max-width: 800px; width: 100%; justify-content: center; flex-wrap: nowrap; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; min-width: 80px; padding: 12px 10px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 0.85em; line-height: 1.3; flex: 1; }
+  .process-arrow { font-size: 20px; color: #c9a84c; padding: 0 2px; flex-shrink: 0; }
   .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  @media(max-width:600px){ .process-bar { flex-direction: column; align-items: stretch; } .process-step { min-width: 0; } .process-arrow { text-align: center; transform: rotate(90deg); padding: 4px 0; } }
   .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
   .callout strong { color: #c9a84c; }
   .debate { max-width: 650px; width: 100%; }
   .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
   .debate-line.right { flex-direction: row-reverse; text-align: right; }
-  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75em; flex-shrink: 0; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 44px; height: auto; min-height: 40px; padding: 6px 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.7em; flex-shrink: 0; text-align: center; line-height: 1.2; }
   .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
   .debate-line.right .speech { background: #1a3a5c; }
   .emoji { font-size: 1.3em; }
@@ -273,17 +274,31 @@ function buildIndex(data, masechet, daf, totalDapim) {
   // Slide 8: Summary
   const summaryNodes = data.summary.flowSteps || [];
   let summaryFlow = '<div class="flowchart" style="max-width:800px">';
+  // Sanitize styles: strip any background colors that are too light, enforce dark theme
+  function sanitizeStyle(style) {
+    if (!style) return '';
+    // Replace light backgrounds with dark equivalents
+    return style.replace(/background:\s*#[0-9a-fA-F]{6}/gi, (match) => {
+      const hex = match.replace(/background:\s*#/i, '');
+      // If any RGB channel > 0x60, it's too light — force dark
+      const r = parseInt(hex.substr(0,2),16);
+      const g = parseInt(hex.substr(2,2),16);
+      const b = parseInt(hex.substr(4,2),16);
+      if (r > 0x60 || g > 0x60 || b > 0x60) return 'background:#16213e';
+      return match;
+    });
+  }
   for (const node of summaryNodes) {
     if (node.type === 'arrow') {
       summaryFlow += '<div class="flow-arrow">↓</div>';
     } else if (node.type === 'branch') {
       summaryFlow += '<div class="flow-branch">';
       for (const col of node.columns || []) {
-        summaryFlow += `<div class="flow-col"><div class="flow-box" style="${col.style || ''}">${col.content}</div></div>`;
+        summaryFlow += `<div class="flow-col"><div class="flow-box" style="${sanitizeStyle(col.style)}">${col.content}</div></div>`;
       }
       summaryFlow += '</div>';
     } else {
-      summaryFlow += `<div class="flow-box ${node.class || ''}" style="${node.style || ''}">${node.content}</div>`;
+      summaryFlow += `<div class="flow-box ${node.class || ''}" style="${sanitizeStyle(node.style)}">${node.content}</div>`;
     }
   }
   summaryFlow += '</div>';
