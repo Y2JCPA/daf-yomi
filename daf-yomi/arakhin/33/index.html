@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arakhin 33 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Arakhin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🚪</div>
+  <h1>Arakhin 33</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ערכין לג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🚪 Right-Side Rule — mezuza goes on right side as determined by entry direction<br>
+    📍 Height Placement — Shmuel vs. Rav Huna on where on the doorpost<br>
+    🔩 Bolt-Style Mezuza — horizontal affixing is unfit (Rav's ruling)<br>
+    🏛️ Portico & Gatehouse — complex obligations based on structure and function<br>
+    👑 God Guards from Outside — Rabbi Ḥanina on divine vs. human protection<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🚪 Mezuza Placement: Is It Valid?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Is the mezuza written on <strong>one</strong> sheet of parchment?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No — two sheets</div><div class="flow-box result-bad"><strong>Unfit</strong> (Shmuel)</div></div><div class="flow-col"><div class="flow-label">Yes — one sheet</div><div class="flow-box action">Proceed to placement check</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Is it affixed <strong>vertically</strong> on the doorpost?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No — horizontal/bolt</div><div class="flow-box result-bad"><strong>Unfit</strong> (Rav)</div></div><div class="flow-col"><div class="flow-label">Yes — vertical</div><div class="flow-box action">Proceed to side & height check</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Right side of entry (by entry direction) + within upper third of doorpost</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📍 Where on the Doorpost? Height Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">It is a mitzva to place the mezuza at the <strong>beginning of the upper third</strong> of the doorpost — this is the ideal location.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Huna</div><div class="speech">Raise the mezuza <strong>one handbreadth from the ground</strong>, or distance it one handbreadth from the crossbeam. The entire space between is valid.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech"><em>Rav Huna follows Rabbi Yehuda (baraita). But Shmuel — whose opinion does he follow? Not Rabbi Yehuda, not Rabbi Meir…</em></div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rav Huna bar Rav Natan</div><div class="speech">Shmuel follows <strong>Rabbi Yosei</strong>. 'Upper third' means the <em>maximum</em> — do not place it more than a third's distance from the crossbeam.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Both Shmuel and Rav Huna can align with Rabbi Yosei: the upper third sets an upper limit, not a single mandatory spot.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>👑 God Protects from Outside</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מִדַּת בָּשָׂר וָדָם אֵינָהּ כְּמִדַּת הַקָּדוֹשׁ בָּרוּךְ הוּא</div><div class="callout"><strong>Rabbi Ḥanina</strong> <strong>The attribute of flesh and blood is not like the attribute of the Holy One, Blessed be He.</strong><br><br>A <em>human king</em> sits inside his palace — his servants stand outside to guard him.<br><br>But <em>Israel</em> dwells inside, and <strong>the Holy One guards them from outside.</strong><br><br>As it is written: <em>"God will guard your going out and your coming in"</em> — He stands at the door, mezuza-like, shielding those within.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>✅❌ Valid vs. Invalid Mezuza Affixing</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#0d2b1a"><h3 style="color:#2ecc71">✅ Valid</h3><ul><li>Written on one sheet of parchment</li><li>Affixed vertically on the doorpost</li><li>On the right side by entry direction</li><li>Within the upper third of the doorpost</li><li>Carved into reed post (tube method — reed entrance)</li></ul></div><div class="compare-box" style="border-top-color:#2b0d0d"><h3 style="color:#e74c3c">❌ Invalid</h3><ul><li>Written on two separate sheets</li><li>Affixed horizontally like a bolt (Rav)</li><li>Wedged into a hole in the doorpost</li><li>Dug one handbreadth deep into the post (Rav Yosef son of Rava)</li><li>Placed more than upper third from crossbeam</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏛️ Structures and Their Mezuza Obligation</h2>
+  
+  <table><tr><th>Structure</th><th>Obligation?</th><th>Key Reason or Dispute</th></tr><tr><td>Standard house doorway</td><td>✅ Required</td><td>Normal dwelling entrance</td></tr><tr><td>Gatehouse opening to courtyard with houses (bei harziki)</td><td>✅ Two mezuzot</td><td>Serves courtyard + houses; dual function (Rav Pappa/Rav)</td></tr><tr><td>Gatehouse opening to garden + small room</td><td>⚖️ Disputed</td><td>Rabbi Yosei: like small room (required); Rav & Shmuel debate garden-side entrance</td></tr><tr><td>Portico — open-front structure</td><td>❌ Exempt</td><td>Posts only support ceiling, not a real entrance (Rav Ḥisda)</td></tr><tr><td>Portico of Rav Yehuda bar Yitzḥak</td><td>✅ Required</td><td>Specific type with proper doorpost form (baraita)</td></tr><tr><td>Entrance of reed framework</td><td>✅ Required</td><td>Carve a tube from the reed on the right side and insert mezuza</td></tr><tr><td>Broken entrances (pitḥei shima'ei)</td><td>❌ Exempt</td><td>Lack the proper form of a doorway (Rava)</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔩 The Bolt-Mezuza Case: Challenge and Resolution</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rav rules:</strong> A mezuza placed like a bolt — wedged into a hole or affixed horizontally — is <strong>unfit</strong>.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Challenge (Rav Yitzḥak bar Yosef):</strong> He saw Rabbi Yehuda HaNasi's study hall entrance with a mezuza placed <em>horizontally</em> — doesn't this contradict Rav?</div><div class="process-arrow">↓</div><div class="process-step"><strong>Answer:</strong> Rabbi Yehuda HaNasi's doorpost was exceptionally wide — a diagonal placement counted as <em>both</em> horizontal and vertical simultaneously. A special case.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Second challenge:</strong> Rav Yitzḥak also said Rabbi Yehuda HaNasi's entrance had <em>no mezuza at all</em> — but Rav Huna always passed through a different entrance that did have one.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Conclusion:</strong> Rabbi Yehuda HaNasi's specific entrance was exempt (e.g., temporary or lacking proper form). Rav's ruling stands: horizontal affixing is unfit.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Arakhin 33 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Mezuza Validity</strong><br><small>One parchment · written correctly</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#e74c3c"><strong>Orientation</strong><br>Vertical only<br><small>Not bolt/horizontal (Rav)</small></div></div><div class="flow-col"><div class="flow-box" style="border-color:#4a90d9"><strong>Side</strong><br>Right of entry<br><small>By direction one enters (Shmuel)</small></div></div><div class="flow-col"><div class="flow-box" style="border-color:#e67e22"><strong>Height</strong><br>Upper third<br><small>Shmuel/Rav Huna — max from top</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>Structure Must Have Real Doorposts</strong><br><small>Portico / broken entrances exempt · gatehouse may need two</small></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style=""><strong>God Guards from Outside</strong><br><small>Rabbi Ḥanina: Israel inside, God at the door — the mezuza is divine protection</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Arakhin 33a-33b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Arakhin 33a-33b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../32/">← Daf 32</a><a href="../34/">Daf 34 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arakhin 22 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Arakhin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🫙</div>
+  <h1>Arakhin 22</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ערכין כב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🧂 Salt & Wood — from communal Temple funds<br>
+    🪵 Araunah's Threshing Sleds — old wood challenge<br>
+    🫙 Intermingled Handfuls — mishna on kometz mixtures<br>
+    ⚖️ Min B'Mino — same-type non-nullification<br>
+    📜 One Verse, Two Opinions — Rabbi Yochanan's resolution<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ The Great Nullification Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">Items that <strong>ascend to the altar</strong> do not nullify one another — this is the primary rule. A handful mixed with another offering-type is unfit, but not because of min b'mino universally.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yehuda</div><div class="speech"><strong>Min b'mino</strong> — same type in contact with the same type — is <em>never</em> nullified anywhere. A handful mixed with priestly, High Priest, or libation meal offerings is therefore unfit.</div></div></div><div class="callout" style="margin-top:20px"><strong>Rabbi Yochanan's Bombshell</strong> Both the Rabbis and Rabbi Yehuda derive their opposing principles from the very same verse about Yom Kippur blood sprinkling — yet they each emphasize a different facet of it!</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🧂 Salt and Wood Must Come from Communal Funds</h2>
+  
+  <div class="process-bar"><div class="process-step">The Torah grants Israelites the right to use <strong>salt</strong> when bringing their offerings</div><div class="process-arrow">↓</div><div class="process-step highlight">This right belongs specifically to those who donate their <strong>half-shekel</strong> to the Temple chamber</div><div class="process-arrow">↓</div><div class="process-step">The half-shekel chamber funds supply salt applied to <strong>all sacrificial offerings</strong></div><div class="process-arrow">↓</div><div class="process-step">Wood for the altar must likewise come from <strong>communal (public) supplies</strong>, not private prior use</div><div class="process-arrow">↓</div><div class="process-step highlight">R' Elazar ben Shammua: Just as the altar was built exclusively for God, the <strong>wood and fire must also be dedicated</strong> — never previously used by an ordinary person</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🪵 Araunah's Threshing Sleds — What Are Morigim?</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מנחות כ"ב — מוֹרִגִּים הַבָּקָר</div><div class="callout"><strong>Challenge to the Wood Requirement</strong> The Gemara challenges: Didn't David burn <strong>Araunah's threshing sleds (מוֹרִגִּים)</strong> as wood on his altar? That wood had been used previously by an ordinary person!<br><br><strong>Ulla explains:</strong> <em>Morigim</em> means a <em>turbal bed</em> — a sharp threshing instrument.<br><strong>Rav Yehuda clarifies:</strong> It is a device that presses down with teeth and tears apart grain during threshing.<br><br>The challenge dissolves: David's offering was an emergency act — not a model for standard Temple procedure requiring communal wood.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🫙 Mishna: Intermingled Kometz — Who Holds What?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#4a90d9">Rabbis — Rule of Altar Items</h3><ul><li>Handful mixed with another handful: unfit (both ascend — neither nullifies the other)</li><li>Handful mixed with priestly meal offering: unfit (both ascend)</li><li>Handful mixed with High Priest's meal offering: unfit (both ascend)</li><li>Core principle: anything that ascends to the altar cannot be nullified by a fellow altar-item</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3a"><h3 style="color:#9b59b6">Rabbi Yehuda — Rule of Min B'Mino</h3><ul><li>Handful mixed with priestly meal offering: unfit — min b'mino (flour/meal touching flour/meal)</li><li>Handful mixed with anointed priest's offering: unfit — min b'mino</li><li>Handful mixed with libation meal offering: unfit — min b'mino</li><li>Core principle: same type touching same type is NEVER nullified, period</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📜 The Yom Kippur Verse — Two Derivations</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">From the verse about Yom Kippur blood sprinkling (bull + goat): since both <strong>ascend to the altar</strong>, they cannot nullify each other. The altar-context is the operative factor — min b'mino outside that context can still be nullified.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yehuda</div><div class="speech">The same verse teaches: since bull's blood and goat's blood are the <strong>same type</strong> (min b'mino), they never nullify each other. The altar ascent is merely incidental — the same-type rule applies universally.</div></div></div><div class="callout" style="margin-top:20px"><strong>Gemara's Analytic Resolution</strong> Had the verse shown only one feature — either altar-items or same-type — we could not derive the broader rule. Because it shows both simultaneously, each sage uses the dual context to extend his principle beyond the verse's narrow case.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Is a Mixture of Meal Offerings Nullified?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A <strong>kometz (handful)</strong> becomes intermingled with another substance</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Same type (min b'mino) — e.g., flour + flour</div><div class="flow-box result-bad"><strong>Rabbi Yehuda:</strong> Never nullified<br><strong>Rabbis:</strong> Depends on altar status</div></div><div class="flow-col"><div class="flow-label">Different type (min b'she'eino mino)</div><div class="flow-box result-good">Standard majority rule may apply — can be nullified</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Does the mixed substance also <strong>ascend to the altar</strong>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — both altar-items</div><div class="flow-box result-bad"><strong>Rabbis:</strong> Unfit — altar items never nullify each other<br><strong>Rabbi Yehuda:</strong> Same conclusion but via min b'mino logic</div></div><div class="flow-col"><div class="flow-label">No — non-altar mixture</div><div class="flow-box action"><strong>Rabbis:</strong> Majority can nullify<br><strong>Rabbi Yehuda:</strong> If same-type, still not nullified</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Arakhin 22 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#2a2a1a;border-color:#c9a84c"><strong>Communal Supplies</strong><br><small>Salt &amp; wood from half-shekel chamber — not private use</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a2a3a;border-color:#4a90d9"><strong>Mishna: Intermingled Kometz</strong><br><small>Handful mixed with other meal offering types</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a3a;border-color:#4a90d9"><strong>Rabbis</strong><br><small>Altar-items don't nullify each other</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a3a;border-color:#9b59b6"><strong>Rabbi Yehuda</strong><br><small>Min b'mino never nullified</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3a2a;border-color:#2ecc71"><strong>Rabbi Yochanan</strong><br><small>Same Yom Kippur verse — two facets, two derivations, one halakhic reality</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Arakhin 22a-22b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Arakhin 22a-22b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../21/">← Daf 21</a><a href="../23/">Daf 23 →</a></div>
+</body>
+</html>

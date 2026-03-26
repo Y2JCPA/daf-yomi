@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arakhin 15 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Arakhin 15 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to the Gemara, what is the conclusion about the dispute between Rabbi Yehuda and the Rabbis — does it concern the frontplate (Tzitz)?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Yes — they dispute whether the Tzitz effects acceptance for impure altar items</div>
+      <div class="option" onclick="select(1,this,1)">B. Yes — they dispute whether the Tzitz effects acceptance for priest-consumed items</div>
+      <div class="option" onclick="select(1,this,2)">C. No — multiple proofs establish their dispute does not concern the Tzitz</div>
+      <div class="option" onclick="select(1,this,3)">D. No — they both agree the Tzitz has no effect whatsoever</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: C — </strong>Through proofs from Rav Huna b. Rav Natan (frankincense baraita), Rav Ashi (Pesachim mishna), and Ravina (two-loaves mishna), the Gemara concludes the Rabbi Yehuda/Rabbis dispute is NOT about the frontplate.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Why does a thanks offering render its loaves piggul, but not the other way around?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. The loaves are more sacred and cannot be made piggul</div>
+      <div class="option" onclick="select(2,this,1)">B. The loaves depend on the offering's blood for their permission — the offering does not depend on the loaves</div>
+      <div class="option" onclick="select(2,this,2)">C. It is a rabbinic decree with no scriptural basis</div>
+      <div class="option" onclick="select(2,this,3)">D. The loaves are brought after the offering, so time-order prevents it</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>Rav Kahana teaches that the loaves are only permitted by the blood of the offering — they depend on it. Since the offering does not depend on the loaves, intent about the loaves cannot affect the offering.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">What is Rav's ruling on Rabbi Elazar's dilemma about combined intent (olive-bulk from offering AND loaves the next day)?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Both the thanks offering and the loaves are rendered piggul</div>
+      <div class="option" onclick="select(3,this,1)">B. Neither is rendered piggul since intent is split</div>
+      <div class="option" onclick="select(3,this,2)">C. The loaves are rendered piggul but the thanks offering is not</div>
+      <div class="option" onclick="select(3,this,3)">D. The thanks offering is rendered piggul but the loaves are not</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>Rav rules the loaves are rendered piggul (since they can be rendered piggul via intent at their own rite), but the thanks offering is not — the asymmetric rule still applies even with combined intent.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">What is Rabbi Meir's position on whether libations become piggul?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Libations can never become piggul because they are always brought independently</div>
+      <div class="option" onclick="select(4,this,1)">B. Libations become piggul only if the kohen had explicit intent about the libations themselves</div>
+      <div class="option" onclick="select(4,this,2)">C. Once designated, libations are fixed to the offering at slaughter and become piggul through the offering's piggul intent</div>
+      <div class="option" onclick="select(4,this,3)">D. Libations become piggul only at the moment they are poured on the altar</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>Rava explains that Rabbi Meir holds designated libations are fixed (קבועים) to the specific offering at the moment of slaughter — therefore piggul intent during slaughter renders them piggul as well.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Regarding the Shavuot lambs and two loaves, the Gemara says both cases (thanks offering + loaves AND lambs + two loaves) must be taught. Why?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Because the rules are different in each case and cannot be derived from one another</div>
+      <div class="option" onclick="select(5,this,1)">B. Because if only the thanks offering case were taught, one might think the loaves can render the offering piggul in the Shavuot case</div>
+      <div class="option" onclick="select(5,this,2)">C. Because the Shavuot case involves a stricter standard of piggul than the thanks offering</div>
+      <div class="option" onclick="select(5,this,3)">D. Because the loaves of a thanks offering and the two loaves of Shavuot have different levels of sanctity</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>The Gemara explains: had only the thanks offering case been taught, one might have thought the asymmetry is unique to it and that for Shavuot the loaves CAN render the lambs piggul. Both cases are necessary to establish the universal rule.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":2,"2":1,"3":2,"4":2,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

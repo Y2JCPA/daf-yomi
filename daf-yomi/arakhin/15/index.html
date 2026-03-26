@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arakhin 15 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Arakhin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍞</div>
+  <h1>Arakhin 15</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ערכין טו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏅 Frontplate Debate — Tzitz and impure items: what does it effect acceptance for?<br>
+    🍞 Thanks Offering & Piggul — asymmetric: offering renders loaves piggul, not vice versa<br>
+    🐑 Shavuot Lambs — lambs render two loaves piggul, loaves cannot reciprocate<br>
+    🤔 Rabbi Elazar's Dilemma — combined intent across offering and accompanying loaves<br>
+    🍷 Libations Piggul — Rabbi Meir vs. Rabbis on when libations become fixed to an offering<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🏅 Is the Frontplate (Tzitz) the Subject of the Rabbi Yehuda / Rabbis Dispute?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">The frontplate effects acceptance for items normally <strong>consumed by priests</strong> that became impure — the blood sprinkling is fully valid and permits the loaves.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yehuda</div><div class="speech">The frontplate only effects acceptance for items that <strong>ascend upon the altar</strong> — it does not work for priest-consumed items.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Huna b. Rav Natan</div><div class="speech">Challenge! Rabbi Yehuda himself <em>concedes</em> the frontplate works for altar items (e.g., impure frankincense bowls). So their dispute <strong>cannot be about the frontplate at all!</strong></div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rav Ashi + Ravina</div><div class="speech">Additional proofs from the Pesachim mishna and the two-loaves mishna confirm: the Rabbi Yehuda / Rabbis dispute is <strong>not about the Tzitz</strong>.</div></div></div><div class="callout" style="margin-top:20px"><strong>📌 Gemara's Conclusion</strong> Multiple proofs (baraita, Pesachim mishna, two-loaves mishna) establish that the dispute between Rabbi Yehuda and the Rabbis does NOT concern the frontplate. Their disagreement lies elsewhere.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🍞 How a Thanks Offering Renders Its Loaves Piggul</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Kohen slaughters the <strong>thanks offering</strong> with intent to consume it <em>after its permitted time</em> (next day)</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">The <strong>thanks offering itself becomes piggul</strong> — invalid, subject to karet if eaten</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">The accompanying <strong>loaves are also rendered piggul</strong> — they depend on the offering's blood for permission</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✅ Works (offering → loaves):</div><div class="flow-box result-bad">Intent at slaughter of offering <strong>renders loaves piggul</strong></div></div><div class="flow-col"><div class="flow-label">❌ Does NOT work (loaves → offering):</div><div class="flow-box result-good">Intent regarding the loaves alone <strong>cannot render the offering piggul</strong></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔄 Two Parallel Cases of Asymmetric Piggul</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">Thanks Offering + Loaves</h3><ul><li>✅ Thanks offering renders its loaves piggul</li><li>❌ Loaves do NOT render the thanks offering piggul</li><li>Why? Loaves are only permitted by the offering's blood — full dependency</li><li>Source: Rav Kahana — loaves sanctified only through the blood rite of the offering</li></ul></div><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Shavuot Lambs + Two Loaves</h3><ul><li>✅ Lambs render the two loaves piggul</li><li>❌ Two loaves do NOT render the lambs piggul</li><li>Why? Same asymmetric dependency — loaves derive their sanctity from the lambs</li><li>Both cases are necessary: neither alone teaches the other (different structures)</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🤔 Rabbi Elazar's Dilemma: Does Combined Intent Across Offering + Loaves Work?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Elazar</div><div class="speech">Dilemma: A kohen slaughters the thanks offering intending to eat <strong>an olive-bulk from the offering AND from its loaves</strong> the next day. Does the intent for the offering <em>combine</em> with intent for the loaves to render both piggul?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">Even here: the <strong>loaves are rendered piggul</strong> — but the <strong>thanks offering is NOT rendered piggul</strong>. The asymmetry still holds.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara Challenge</div><div class="speech">Kal va-chomer objection: if the <em>thanks offering itself</em> — which CAN render loaves piggul — is not rendered piggul, surely the loaves (which cannot render the offering piggul) should also not be rendered piggul!</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Resolution</div><div class="speech">We do NOT apply this a fortiori. Proof from the seeds-in-vineyard incident: Torah-prohibited items (hemp/arum) are forbidden; rabbinically-prohibited seeds are permitted — kal va-chomer does not automatically transfer stringencies.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Rule</strong> Piggul intent regarding the loaves can render them piggul via their own independent rite — even when identical intent does not render the accompanying offering piggul.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🍷 Rabbi Meir vs. Rabbis: Libations, Leper's Oil, and Piggul</h2>
+  
+  <table><tr><th>Issue</th><th>Rabbi Meir</th><th>Rabbis</th></tr><tr><td>Are libations rendered piggul by intent at slaughter?</td><td>YES — fixed to this offering at slaughter</td><td>NO — blood of offering does not permit libations</td></tr><tr><td>Can libations be used with a different offering?</td><td>NO — irrevocably fixed at moment of slaughter</td><td>YES — may bring offering today, libations up to 10 days later</td></tr><tr><td>What permits the libations?</td><td>Blood of THIS specific offering at its slaughter</td><td>Libations are brought independently; offering's blood does not permit them</td></tr><tr><td>Log of oil of the leper (Vayikra 14)</td><td>One IS liable for piggul if guilt offering became piggul — oil is fixed to it</td><td>Oil CAN be switched to another offering — NOT bound by guilt offering's status</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📜 Rava's Explanation of Rabbi Meir (Amud Bet)</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Setup:</strong> Rabbis challenge Rabbi Meir — a person may bring his offering today and libations up to 10 days later, so the blood clearly does NOT permit the libations at the time of slaughter</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Meir's Response:</strong> I too speak only about libations that were already designated at slaughter — these become fixed to this offering and may not be used with another</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rava's Clarification:</strong> Rabbi Meir holds that designated libations are <em>fixed</em> (קבועים) to the offering at slaughter — therefore piggul intent during slaughter reaches them</div><div class="process-arrow">↓</div><div class="process-step"><strong>Parallel Case — Leper's Oil:</strong> Same dispute applies: Rabbi Meir says oil is fixed to its guilt offering; Rabbis say it can be substituted, so it is not bound</div><div class="process-arrow">↓</div><div class="process-step"><strong>Practical Implication:</strong> According to Rabbi Meir, liability for eating piggul extends to libations and leper's oil when the primary offering had piggul intent during its qualifying rite</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Arakhin 15 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Frontplate (Tzitz):</strong> All agree it works for impure <em>altar items</em>; dispute about priest-consumed items — but this is NOT the Rabbi Yehuda/Rabbis dispute</div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style=""><strong>Core Piggul Asymmetry:</strong> Offering → renders accompaniments piggul | Accompaniments → cannot render offering piggul</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#c9a84c"><strong>Thanks Offering</strong><br>Renders loaves piggul; loaves cannot reciprocate</div></div><div class="flow-col"><div class="flow-box" style="border-color:#4a90d9"><strong>Shavuot Lambs</strong><br>Render two loaves piggul; two loaves cannot reciprocate</div></div><div class="flow-col"><div class="flow-box" style="border-color:#9b59b6"><strong>Libations / Leper's Oil</strong><br><em>Rabbi Meir:</em> fixed at slaughter, rendered piggul<br><em>Rabbis:</em> independent, not rendered piggul</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Arakhin 15a-15b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Arakhin 15a-15b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../14/">← Daf 14</a><a href="../16/">Daf 16 →</a></div>
+</body>
+</html>

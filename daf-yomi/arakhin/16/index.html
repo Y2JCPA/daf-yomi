@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arakhin 16 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Arakhin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌾</div>
+  <h1>Arakhin 16</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ערכין טז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔥 Piggul Intent — handful vs. frankincense as permitting factors<br>
+    ⚖️ Rav vs. Shmuel — when does the Rabbi Meir/Rabbis dispute apply?<br>
+    🩸 Yom Kippur Blood Presentations — 43, 47, or 48?<br>
+    🚶 Conveying the Handful — Reish Lakish vs. Rabbi Yoḥanan<br>
+    🌿 Sesame-Seed Burning — can partial burning create piggul?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ The Core Dispute: Does Partial Piggul Intent Disqualify?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Meir</div><div class="speech">Intent of piggul during the burning of <em>either</em> the handful <em>or</em> the frankincense renders the meal offering piggul — even one of two permitting factors suffices.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">The offering is only piggul if the priest had piggul intent during <em>both</em> permitting factors — partial intent, covering only the handful or only the frankincense, is insufficient.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">This dispute applies only when one permitting factor was performed <em>in silence</em> and the other with piggul intent. If the handful was burned first with piggul intent, all agree the offering is piggul.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Shmuel</div><div class="speech">The dispute applies even when both permitting factors were performed with piggul intent — Rabbi Meir and the Rabbis disagree about the required threshold in all such configurations.</div></div></div><div class="callout" style="margin-top:20px"><strong>Universal Exception</strong> For the <strong>sinner's meal offering</strong> and the <strong>sotah offering</strong>, all agree that piggul intent during the handful alone renders the offering piggul — because the handful is the <em>sole</em> permitting factor; there is no frankincense.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔥 Two-Stage Burning: How Piggul Intent Is Distributed</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Remove (קְמִיצָה):</strong> Priest removes the <em>kometz</em> (handful) from the meal offering — the first critical act</div><div class="process-arrow">↓</div><div class="process-step"><strong>Convey (הוֹלָכָה):</strong> Priest carries the handful and the frankincense vessel toward the altar — debated whether this triggers piggul</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Burn the handful (הַקְטָרַת הַקֹּמֶץ):</strong> Placed on the altar fire — <strong>Permitting Factor #1</strong></div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Burn the frankincense (לְבוֹנָה):</strong> Placed on the altar fire — <strong>Permitting Factor #2</strong></div><div class="process-arrow">↓</div><div class="process-step">Together the two burnings <em>permit</em> the remainder for priestly consumption — both are required to complete the permitting process</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rav's ruling:</strong> If Stage 3 had piggul intent, the offering is already disqualified before Stage 4 — all agree it is piggul. Dispute only when one stage was silent.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🚶 Conveying the Handful: Does It Create Piggul?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">Conveying (הוֹלָכָה) is only <em>part</em> of the permitting process — since frankincense must also be conveyed and burned, piggul intent during carrying the handful alone does <strong>not</strong> render the offering piggul.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabbi Yoḥanan</div><div class="speech">The halakha of conveying is like that of removing the handful. Just as removal alone creates piggul (being the sole removing act), so too conveying the handful alone creates piggul — each act is judged within its own category.</div></div></div><div class="callout" style="margin-top:20px"><strong>Underlying Logic</strong> Conveying is not itself a permitting factor — it merely transports the handful to the altar. <strong>Reish Lakish:</strong> examine the full set of permitting factors (handful + frankincense). <strong>Rabbi Yoḥanan:</strong> any non-permitting rite is judged by its own rite-category, not the overall permitting set.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🩸 Yom Kippur Blood Presentations: Counting the Discrepancy</h2>
+  
+  <table><tr><th>Source / Authority</th><th>Count</th><th>What Is Included</th><th>Relevance to Piggul</th></tr><tr><td>Baraita A (base)</td><td>43</td><td>Bull + goat presentations inside Holy of Holies, on the Curtain, and on the golden inner altar</td><td>Used in the piggul discussion — three 'sets' across which intent is distributed</td></tr><tr><td>Baraita B</td><td>47</td><td>Adds presentations on the outer copper altar — additional sprinklings counted separately</td><td>Rabba: the 43-count baraita deals with extra bulls/goats (spilled blood replaced)</td></tr><tr><td>Baraita C — Rabbi Meir</td><td>48</td><td>Rabbi Meir counts one additional presentation using his unique method of tallying blood rites</td><td>Rava: even with one bull/goat, disqualified blood still joins in creating piggul</td></tr><tr><td>Gemara's resolution</td><td>All valid</td><td>Different tannaim count different presentations based on scope of service covered</td><td>The three 'sets' structure enables piggul across non-contiguous presentations</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🌿 Sesame-Seed Burning: A New Piggul Scenario</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Scenario:</strong> Priest burns only a <em>sesame-seed</em> amount of handful + frankincense, each time intending to eat a sesame-seed of remainder <em>the next day</em></div><div class="flow-arrow">↓</div><div class="flow-box question">Can we derive the ruling from the existing three-way dispute (Rabbi Meir / Rabbis / Rabbi Yehuda HaNasi)?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Opinion: Piggul</div><div class="flow-box result-good">The <em>manner of consumption</em> of this offering is in small portions — so burning in small portions with such intent is valid piggul</div></div><div class="flow-col"><div class="flow-label">Opinion: Not Piggul</div><div class="flow-box result-bad">A minimum olive-bulk is required to trigger piggul — a sesame-seed amount is fundamentally insufficient regardless of intent</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Gemara's conclusion:</strong> The sesame-seed case cannot be resolved from existing disputes — each sage may hold their position only for their specific case. The question remains open (תֵּיקוּ).</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🐑 Shavuot Lambs & Loaves: Piggul Intent Across Offerings</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#c9a84c">Lamb slaughtered re: Two Loaves</h3><ul><li>Slaughter one lamb intending to eat the two loaves tomorrow</li><li>Rabbi Meir: PIGGUL — lamb's slaughter is a permitting factor for the loaves</li><li>Rabbis: NOT piggul — slaughter alone is not the complete permitting act for loaves</li><li>Rava: slaughter itself sanctifies the loaves; blood-sprinkling merely permits them</li></ul></div><div class="compare-box" style="border-top-color:#1a2a1a"><h3 style="color:#2ecc71">Lamb slaughtered re: Other Lamb</h3><ul><li>Slaughter Lamb A intending to eat Lamb B tomorrow</li><li>Result: BOTH lambs remain fit offerings</li><li>Reason: piggul intent must concern the offering whose permitting act is being performed</li><li>Cross-offering piggul intent has no legal effect</li></ul></div><div class="compare-box" style="border-top-color:#2e1a2e"><h3 style="color:#9b59b6">Frankincense Bowl re: Shewbread</h3><ul><li>One of two frankincense bowls burned with intent to eat shewbread tomorrow</li><li>Rabbi Meir: PIGGUL — the bowl is a permitting factor for the shewbread</li><li>Rabbis: NOT piggul — both bowls are permitting factors; burning only one is incomplete</li><li>Abaye's challenge to Rava: this case tests the 'partial permitting factor' theory</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Arakhin 16 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#1a2a3a;border:2px solid #c9a84c;padding:12px;border-radius:8px;text-align:center;"><strong>Core Question:</strong> Can <em>partial</em> piggul intent — during only one of two permitting factors — render an offering piggul?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a2a;border:2px solid #9b59b6;padding:10px;border-radius:6px;"><strong>Rabbi Meir:</strong> Yes — intent during <em>either</em> permitting factor suffices for piggul</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2030;border:2px solid #4a90d9;padding:10px;border-radius:6px;"><strong>Rabbis:</strong> No — piggul requires intent spanning the <em>entire</em> permitting process</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2a1a10;border:2px solid #e67e22;padding:12px;border-radius:8px;text-align:center;"><strong>Rav narrows the dispute:</strong> Only applies when one act was in <em>silence</em>; if the first act had piggul intent, all agree it is piggul — the second act is already performed on a disqualified offering</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#0a2a1a;border:2px solid #2ecc71;padding:12px;border-radius:8px;text-align:center;"><strong>Extended Applications:</strong> Yom Kippur blood (3 sets, 43 presentations) • Shavuot lambs &amp; loaves • Conveying the handful (R. Yoḥanan vs. Reish Lakish) • Sesame-seed burning (unresolved)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Arakhin 16a-16b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Arakhin 16a-16b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../15/">← Daf 15</a><a href="../17/">Daf 17 →</a></div>
+</body>
+</html>

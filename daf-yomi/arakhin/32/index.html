@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arakhin 32 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Arakhin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Arakhin 32</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ערכין לב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Open vs. Closed Mezuza — Debate over how to write the passages<br>
+    📏 Spaces Above & Below — R. Shimon ben Elazar's requirement<br>
+    🔄 Sanctity Levels — Can worn tefillin become a mezuza?<br>
+    👟 Ḥalitza Customs — Rav on the binding force of established practice<br>
+    🚪 Mezuza Placement — Doorpost, scoring, intent, and airspace<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📜 How Must a Mezuza Be Written?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">R. Shimon ben Elazar</div><div class="speech">Leave a <strong>space above and below</strong> the text, and write the passages in the <strong>open manner</strong> (petucha) — begin the second passage on the line following the end of the first.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The <em>halakha</em> follows R. Shimon ben Elazar — but only regarding the <strong>required spaces</strong> above and below, not necessarily the open manner of writing.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Naḥman bar Yitzḥak</div><div class="speech">It is a mitzva <em>ab initio</em> to write the passages in the <strong>closed manner</strong> (setuma). If written in the open manner it is still <strong>permitted</strong> — b'dieved.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">But Rav holds one must follow <strong>established custom</strong> — proven from his ḥalitza ruling! Custom carries binding force and cannot be uprooted even by a new ruling.</div></div></div><div class="callout" style="margin-top:20px"><strong>Bottom Line</strong> L'chatchila write the mezuza in the closed manner with spaces above and below; b'dieved the open manner is valid. Rav's ruling on spaces follows R. Shimon ben Elazar.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔄 Can Worn Tefillin Become a Mezuza?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Worn tefillin parchment</strong> — may it be repurposed as a mezuza? <small>(Reducing sanctity: tefillin → mezuza)</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Supports Permitting</div><div class="flow-box result-good">A Torah scroll (closed passages) may be converted — evidenced by the baraita on reducing sanctity levels downward</div></div><div class="flow-col"><div class="flow-label">Complication</div><div class="flow-box result-bad">Baraita: changing between <strong>klaf and dokhsostos</strong> renders the item unfit — tefillin and mezuza use different parchment sides!</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Resolution:</strong> The 'change of material' prohibition applies to tefillin written on dokhsostos on the flesh side. A mezuza written on <strong>klaf</strong> from worn tefillin parchment remains <strong>valid</strong>.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📋 Writing Requirements: Tefillin vs. Mezuza vs. Torah Scroll</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a4a"><h3 style="color:#4a90d9">Tefillin</h3><ul><li>Written on <strong>klaf</strong> (hair side)</li><li>Scoring (sirtut): <strong>not required</strong></li><li>Must copy from a <strong>written text</strong></li><li>Passages: <strong>closed manner</strong> (setuma)</li></ul></div><div class="compare-box" style="border-top-color:#1a3a2a"><h3 style="color:#2ecc71">Mezuza</h3><ul><li>Written on <strong>klaf</strong> — dokhsostos is invalid</li><li>Scoring (sirtut): <strong>required</strong> — halakha l'Moshe miSinai</li><li>May be written <strong>from memory</strong> (no source text needed)</li><li>L'chatchila: closed; b'dieved <strong>open is valid</strong></li></ul></div><div class="compare-box" style="border-top-color:#2a1a3a"><h3 style="color:#9b59b6">Torah Scroll</h3><ul><li>Written on <strong>klaf</strong> (hair side)</li><li>Scoring (sirtut): <strong>required</strong></li><li>Must copy from a <strong>written text</strong></li><li>Passages: <strong>closed manner</strong> — more stringent</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🚪 What Makes a Mezuza Valid?</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Material — Klaf:</strong> Written on the hair side of parchment. Using dokhsostos (flesh side) renders it <em>unfit</em>.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Scoring (Sirtut):</strong> The parchment must have ruled lines scored into it — a binding halakha for mezuza specifically.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Intent (Lishmah):</strong> Must be written for the sake of the mitzva. Writing it casually 'like a letter to a friend' renders it <em>invalid</em>.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Passage style:</strong> L'chatchila in the closed manner (setuma); b'dieved the open manner (petucha) is permitted.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Affixed to the doorpost:</strong> Must be attached to the post itself. Hanging on a stick in the entranceway is <em>invalid</em> — 'write them on your doorposts.'</div><div class="process-arrow">↓</div><div class="process-step"><strong>Placement — within the airspace:</strong> Must be inside the entrance, not on the exterior — fulfilling 'upon your gates.'</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>👟 Ḥalitza: Can Custom Ever Be Overridden?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav (Version 1, via Rav Ḥananel)</div><div class="speech">If Elijah says one may <strong>not</strong> perform ḥalitza with a shoe — the Sages listen. If he says one <strong>may</strong> not do it with a sandal — they do <em>not</em> listen, for we are already accustomed to using a sandal.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav (Version 2, via Rav Kahana)</div><div class="speech">If Elijah says one may not do ḥalitza with a sandal — they do <strong>not</strong> listen, because it is an established custom. We do not uproot what communities have accepted as binding practice.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">The practical difference: whether a <strong>shoe may be used ab initio</strong>. But both versions agree — Rav treats established <em>minhag</em> as binding, which informs how we understand his mezuza ruling.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle — מנהג</strong> Rav holds that established custom (minhag) carries binding halakhic force. Even prophetic guidance cannot override what a community has accepted — this principle applies across domains, from ḥalitza to mezuza writing.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>✅ Valid or Invalid? Mezuza Scenarios</h2>
+  
+  <table><tr><th>Situation</th><th>Ruling</th><th>Reason</th></tr><tr><td>Written in open manner (petucha)</td><td>✅ Valid — b'dieved</td><td>L'chatchila closed preferred; open permitted after the fact</td></tr><tr><td>Written on dokhsostos (flesh side)</td><td>❌ Invalid</td><td>Mezuza requires klaf — the hair side of parchment only</td></tr><tr><td>Written 'like a letter to a friend' — no lishmah</td><td>❌ Invalid</td><td>Shmuel: intent for the mitzva is essential to validity</td></tr><tr><td>Hung on a stick in the entryway</td><td>❌ Invalid</td><td>'Write on your doorposts' — must be affixed to the post itself</td></tr><tr><td>Placed outside the entrance airspace</td><td>❌ Invalid</td><td>'Upon your gates' demands placement within the entrance</td></tr><tr><td>Made from worn tefillin klaf parchment</td><td>✅ Valid</td><td>Reducing sanctity is permitted; klaf is the correct material</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Arakhin 32 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#2a2a4a;border-color:#4a90d9;color:#e8e8e8"><strong>Mezuza Writing Begins</strong><br><small>Two passages: שְׁמַע & וְהָיָה</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border-color:#2ecc71;color:#e8e8e8"><strong>L'chatchila:</strong><br>Closed manner (סְתוּמָה)<br>Spaces above & below</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a;border-color:#e67e22;color:#e8e8e8"><strong>B'dieved:</strong><br>Open manner (פְּתוּחָה)<br>Permitted after the fact</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2a1a3a;border-color:#9b59b6;color:#e8e8e8"><strong>Material:</strong> Klaf only (hair side) ✓<br><strong>Scoring:</strong> Sirtut required ✓<br><strong>Intent:</strong> Lishmah — for the mitzva ✓</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border-color:#2ecc71;color:#e8e8e8">✅ <strong>Affixed to doorpost</strong><br>within entrance airspace<br><small>Mitzva fulfilled</small></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a;border-color:#e74c3c;color:#e8e8e8">❌ <strong>Hung on stick</strong><br>or placed outside<br><small>Invalid — no mitzva</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Arakhin 32a-32b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Arakhin 32a-32b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../31/">← Daf 31</a><a href="../33/">Daf 33 →</a></div>
+</body>
+</html>
