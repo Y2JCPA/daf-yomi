@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temurah 2 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Temurah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌾</div>
+  <h1>Temurah 2</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמורה ב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🫳 Kemitza — The Four Rites of Meal Offering<br>
+    🔄 Shelo Lishmah — Rites Performed Without Proper Intent<br>
+    ⚖️ Meal Offerings vs. Slaughtered Offerings<br>
+    🧠 Rabbi Shimon's Contradiction Resolved by Rabba<br>
+    🎯 Recognizably False Intent — The Key Distinction<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌾 The Meal Offering Ritual — Four Essential Rites</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>קְמִיצָה — Kemitza</strong><br>Priest removes a <em>handful</em> from the meal offering with three fingers</div><div class="process-arrow">↓</div><div class="process-step"><strong>Placing in Vessel — נְתִינָה לְכֶלִי</strong><br>The handful is placed into a sacred service vessel</div><div class="process-arrow">↓</div><div class="process-step"><strong>Conveying to Altar — הוֹלָכָה</strong><br>Priest carries the vessel with the handful to the altar</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Burning — הַקְטָרָה</strong><br>Handful burned on altar; <em>remainder (שְׁיָרַיִם) permitted to priests</em></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔄 Shelo Lishmah — Valid or Disqualified?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A meal offering rite performed <strong>שֶׁלֹּא לִשְׁמָהּ</strong><br><small>(not for the sake of this offering)</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Most voluntary meal offerings</div><div class="flow-box result-good"><strong>✓ Valid offering</strong><br>Remainder permitted to priests<br><em>But owner's obligation NOT fulfilled</em></div></div><div class="flow-col"><div class="flow-label">Sinner's / Jealousy offering</div><div class="flow-box result-bad"><strong>✗ Disqualified</strong><br>These must be performed specifically for their own sake — no exceptions</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">⚠️ Even when valid: the offering <strong>cannot simply be replaced</strong><br><small>Proven from Deut. 23:24 — the original offering still stands and binds the owner</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Shelo Lishmah — Meal Offerings vs. Slaughtered Offerings</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1a0e"><h3 style="color:#c9a84c">🌾 Meal Offerings</h3><ul><li>Different modes of preparation for each type</li><li>Sinner's offering: no oil or frankincense</li><li>Jealousy offering: no oil or frankincense</li><li>Wrong intent is <strong>recognizably false</strong> — mode of prep betrays the intent</li><li>Therefore: shelo lishmah can disqualify certain types</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#4a90d9">🐂 Slaughtered Offerings</h3><ul><li>One manner of <em>shechita</em> (slaughter) for all offerings</li><li>One manner of blood collection for all</li><li>One manner of blood sprinkling for all</li><li>Wrong intent is <strong>not recognizable</strong> — no external difference</li><li>Therefore: shelo lishmah does NOT disqualify at all</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🧠 Resolving Rabbi Shimon's Apparent Contradiction</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Shimon (Ruling 1)</div><div class="speech">A sinner's meal offering performed shelo lishmah is DISQUALIFIED — just like a sin offering slaughtered not for its sake</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rabbi Shimon (Ruling 2)</div><div class="speech">A voluntary meal offering performed for the sake of another type is VALID — like a guilt offering: valid but does not fulfill the owner's obligation</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Talmud</div><div class="speech">Contradiction! Why does the sinner's offering get disqualified but the voluntary does not?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">No contradiction: 'disqualified' = change of SANCTITY (e.g., sinner's offering → voluntary). 'Valid but unfulfilled' = change of NAME (e.g., one voluntary offering → another voluntary)</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Abaye</div><div class="speech">The Torah derives disqualification by comparing meal offerings to sin/guilt offerings — so why should detectability matter? Wrong intent is wrong intent!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">Rabbi Shimon's reasoning is not purely from analogy — it is based on svara (logic): the mode of preparation PROVES the intent. Only undetectably wrong intent can disqualify, since the rite itself shows no contradiction</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> מוּכְחָא מִילְּתָא — 'The matter is self-evident': only intent that is not contradicted by the visible rite can disqualify an offering (Rabbi Shimon's view)</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📊 Shelo Lishmah Scenarios — Summary of Rulings</h2>
+  
+  <table><tr><th>Scenario</th><th>Type of Deviation</th><th>Valid?</th><th>Fulfills Obligation?</th></tr><tr><td>Voluntary offering → sake of another voluntary</td><td>Change of Name (שינוי שם)</td><td>✓ Yes (R. Shimon)</td><td>✗ No</td></tr><tr><td>Sinner's offering → sake of voluntary</td><td>Change of Sanctity (שינוי קודש)</td><td>✗ Disqualified (R. Shimon)</td><td>✗ No</td></tr><tr><td>Voluntary offering → sake of sinner's</td><td>Change of Sanctity</td><td>✗ Disqualified (R. Shimon)</td><td>✗ No</td></tr><tr><td>Any offering with mixed intent (two names)</td><td>Partial deviation</td><td>✓ Valid</td><td>✗ No</td></tr><tr><td>Slaughtered offering → sake of another type</td><td>No visible difference</td><td>✓ Yes (all opinions)</td><td>✓ Yes (Tanna Kamma)</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📜 Verse Proof — Why the Valid-but-Shelo-Lishmah Offering Cannot Be Replaced</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מוֹצָא שְׂפָתֶיךָ תִּשְׁמֹר וְעָשִׂיתָ כַּאֲשֶׁר נָדַרְתָּ לַה' אֱלֹקֶיךָ נְדָבָה — דברים כג:כד</div><div class="callout"><strong>Deuteronomy 23:24</strong> The Gemara proves: once a meal offering has been validly performed — even shelo lishmah — the owner may NOT deviate from it by substituting another. The offering remains bound by its original vow. This proves the original offering is still halakhically standing and valid, even though it failed to fulfill the owner's obligation. The owner must bring an additional offering to satisfy his vow.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Temurah 2 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style=""><strong>Meal offering rite performed <em>shelo lishmah</em></strong><br><small>e.g., kemitza with wrong intent</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#c9a84c"><strong>Change of Name</strong><br><small>voluntary → another voluntary</small><br>✓ Valid; does NOT fulfill obligation<br><em>(R. Shimon: intent undetectable)</em></div></div><div class="flow-col"><div class="flow-box" style="border-color:#e74c3c"><strong>Change of Sanctity</strong><br><small>sinner's → voluntary</small><br>✗ Disqualified<br><em>(R. Shimon: intent is recognizable)</em></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style=""><strong>Even when valid:</strong> Owner must bring a <em>new</em> offering<br><small>The original offering still legally stands — Deut. 23:24 prohibits deviation from it</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Temurah 2a-2b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Temurah 2a-2b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">Daf 3 →</a></div>
+</body>
+</html>

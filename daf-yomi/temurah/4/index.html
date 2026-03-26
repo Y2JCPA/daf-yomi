@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temurah 4 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Temurah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌾</div>
+  <h1>Temurah 4</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמורה ד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔄 Rabbi Shimon's Dilemma — two possible reasons for his ruling<br>
+    ⚖️ Gezeirah Shava — 'iniquity' links jealousy offering to sin offering<br>
+    🚫 The 'It' (הוא) Exclusion — sin vs. guilt offering logic<br>
+    🌾 Omer Exception — communal and time-fixed disqualified<br>
+    🔑 Rendering Fit — nazirite and leper guilt offerings are stricter<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Which Offerings Are Disqualified When Not For Their Sake?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>General Rule</strong><br>All offerings performed not for their sake are <em>valid</em> but do not fulfill the owner's obligation</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">❌ Disqualified Entirely</div><div class="flow-box result-bad"><strong>Sin offering</strong><br>Meal offering of sinner<br>Meal offering of jealousy<br>Guilt offerings of nazirite &amp; leper<br>Omer</div></div><div class="flow-col"><div class="flow-label">✅ Valid but Unfulfilled</div><div class="flow-box result-good"><strong>All other offerings</strong><br>Standard meal offerings, peace offerings, burnt offerings, most guilt offerings</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🤔 Rav Hoshaya's Dilemma: Why Does Rabbi Shimon Validate?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Option A</div><div class="speech">Rabbi Shimon requires deliberate mislabeling to disqualify — removing the handful for the sake of another offering is not intentional enough to invalidate</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Option B</div><div class="speech">'This is the law of the meal offering' (Lev. 6:7) establishes one unified law for all meal offerings — no distinction between types, even jealousy vs. standard</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">Distinguishes between removing a handful for another offering of the same vessel vs. a different vessel — but Rav Asi cannot apply this to resolve the dilemma</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Ashi</div><div class="speech">Distinguishes vessel type — but this premise also fails to settle whether Rabbi Shimon's rule rests on intentionality or on the unifying verse</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Result</div><div class="speech">Dilemma remains unresolved — we do not know Rabbi Shimon's exact reasoning, and this affects whether the jealousy offering would be valid if removed not for its sake</div></div></div><div class="callout" style="margin-top:20px"><strong>The Stakes</strong> If Rabbi Shimon's reason is the unifying verse, then even the jealousy offering (which resembles a sin offering) should be valid — against the mishna's ruling</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔗 Gezeirah Shava: How 'Iniquity' Links Jealousy Offering to Sin Offering</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Meal Offering of Jealousy</strong><br><small>Numbers 5:15 — 'bringing iniquity (<em>avon</em>) to remembrance'</small></div><div class="flow-arrow">↓</div><div class="flow-box question">Verbal analogy (gezeirah shava) on word <strong>avon</strong> (עָוֹן)</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Sin Offering</strong><br><small>Leviticus 10:17 — 'to bear the iniquity (<em>avon</em>) of the congregation'</small></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Therefore: jealousy offering is <strong>disqualified</strong> when not sacrificed for its sake — like a sin offering</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Why NOT guilt offering?</div><div class="flow-box result-good">Guilt offering uses <em>avono</em> (his iniquity) — different grammatical form breaks the analogy</div></div><div class="flow-col"><div class="flow-label">Scope of the Analogy</div><div class="flow-box action">Torah revealed sin offering halakha cannot spread further — gezeirah shava applies only to the surplus funds rule, not to disqualification logic</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📊 The 'It' (הוא) Exclusion — Sin Offering vs. Guilt Offering</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2a1a1a"><h3 style="color:#e74c3c">חַטָּאת — Sin Offering</h3><ul><li>Verse: 'It (הוא) is a sin offering' — Lev. 4:24</li><li>'It' excludes: disqualified when slaughtered not for its sake</li><li>Derives disqualification for: meal offering of sinner</li><li>Derives disqualification for: meal offering of jealousy (via gezeirah shava)</li><li>Halakha cannot be derived from sin offering to extend to other offerings</li></ul></div><div class="compare-box" style="border-top-color:#1a2a1a"><h3 style="color:#2ecc71">אָשָׁם — Guilt Offering</h3><ul><li>Verse: 'It (הוא) is a guilt offering' — Lev. 7:5</li><li>'It' does NOT disqualify when not for its sake</li><li>Instead: 'It' teaches Rav Huna's ruling in Rav's name</li><li>If owner died or transgression was atoned → guilt offering grazes</li><li>After grazing: valid if slaughtered as a burnt offering</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🌾 Why the Omer Is Excluded From the General Rule</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Mishna's General Rule:</strong> All meal offerings not for their sake are valid but unfulfilled</div><div class="process-arrow">↓</div><div class="process-step"><strong>Limitation 1 — Individual Only:</strong> The mishna speaks only of meal offerings brought on behalf of an <em>individual</em>, not the community</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Limitation 2 — No Fixed Time:</strong> The mishna speaks only of offerings that <em>may be brought on any date</em> (no fixed time)</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>The Omer Fails Both:</strong> It is (1) a <em>communal</em> offering and (2) has a <em>fixed time</em> — the 16th of Nisan</div><div class="process-arrow">↓</div><div class="process-step"><strong>Result:</strong> The Omer is disqualified if the handful was removed not for its sake — it falls entirely outside the mishna's leniency</div><div class="process-arrow">↓</div><div class="process-step"><strong>Similarly:</strong> The Two Loaves of Shavuot — also communal and time-fixed — would likewise be excluded</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔑 Nazirite & Leper Guilt Offerings — Why More Stringent?</h2>
+  
+  <table><tr><th>Feature</th><th>Standard Guilt Offerings</th><th>Nazirite & Leper Guilt Offerings</th></tr><tr><td>Purpose</td><td>Atone for a specific transgression</td><td>Render the person <em>fit</em> (machshir) — enable re-entry to camp / partaking of offerings</td></tr><tr><td>If not for their sake</td><td>Valid, obligation unfulfilled</td><td>Disqualified entirely</td></tr><tr><td>Reason for stringency</td><td>Atonement is flexible — person's sin is forgiven regardless</td><td>Must specifically enable fitness; improper performance defeats their entire purpose</td></tr><tr><td>Do other guilt offerings come after death?</td><td>Yes — surplus funds go to communal gifts</td><td>No — posthumous offerings cannot render the person fit; purpose lapses</td></tr><tr><td>Mishna source</td><td>Zevachim 2a — general rule</td><td>Menachot 4b — this sugya</td></tr><tr><td>Rabbi Yirmeya's principle</td><td>—</td><td>Torah is more stringent for offerings that 'render fit' than for those that merely 'atone'</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Temurah 4 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>General Rule</strong><br>Not for its sake = valid but obligation unfulfilled</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#e74c3c;color:#e74c3c"><strong>Sin Offering</strong><br>'It' (הוא) → disqualified<br><small>Lev. 4:24</small></div></div><div class="flow-col"><div class="flow-box" style="border-color:#9b59b6;color:#9b59b6"><strong>Jealousy Offering</strong><br>Gezeirah shava<br><small>avon = avon</small></div></div><div class="flow-col"><div class="flow-box" style="border-color:#e67e22;color:#e67e22"><strong>Nazirite/Leper Guilt</strong><br>Render fit (machshir)<br><small>must be precise</small></div></div><div class="flow-col"><div class="flow-box" style="border-color:#4a90d9;color:#4a90d9"><strong>Omer</strong><br>Communal + time-fixed<br><small>outside mishna's rule</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style=""><strong>Guilt Offering 'It'</strong> repurposed: owner died or sin atoned → graze → valid as burnt offering<br><small>(Rav Huna citing Rav)</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Temurah 4a-4b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Temurah 4a-4b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">← Daf 3</a><a href="../5/">Daf 5 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temurah 6 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Temurah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌾</div>
+  <h1>Temurah 6</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמורה ו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Tereifa Needs a Verse — every logical proof can be refuted<br>
+    🔄 Common Element Arguments — each rebounds on itself<br>
+    🌾 Meal Offering Mishna — who disqualifies by removing the handful<br>
+    👋 Non-Priest's Handful — Rav rules it may be returned<br>
+    🔁 Ben Beteira's Rule — left hand removal → return and redo<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Why Tereifa's Disqualification Requires a Verse</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Goal:</strong> Prove a <em>tereifa</em> is unfit for sacrifice without a verse</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Attempt 1: A fortiori from blemished animal</div><div class="flow-box action">Blemished animal is unfit → tereifa should be too</div></div><div class="flow-col"><div class="flow-label">Refutation</div><div class="flow-box result-bad">Unique to blemished: Torah equated blemished <em>priests</em> with blemished animals — no parallel for tereifa</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Attempt 2: Common element (blemished + caesarean)</div><div class="flow-box action">Both unfit for sacrifice → tereifa fits the pattern</div></div><div class="flow-col"><div class="flow-label">Refutation</div><div class="flow-box result-bad">Their common element: never permitted for sacrifice. But tereifa was 'permitted' via bird sin-offering pinching!</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Conclusion (Rav Ashi):</strong> A verse is essential — all logical paths are blocked by unique features</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚔️ Rav Ashi vs. Rav Aḥa Sava: Can Logic Disqualify a Tereifa?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ashi</div><div class="speech">The a fortiori fails from the start. A blemished animal has a unique feature: the Torah equated blemished priests with blemished animals. No such parallel exists for tereifa.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Aḥa Sava</div><div class="speech">But a caesarean-born animal proves otherwise — the Torah did NOT equate priests with it, yet it is still unfit! The 'blemished priest' feature therefore does not block the inference.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ashi</div><div class="speech">A caesarean-born has its own unique feature: it cannot receive firstborn sanctity, whereas a tereifa firstborn IS sanctified. This blocks using it as proof.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Aḥa Sava</div><div class="speech">Combine both! Their common element is: permitted to humans, forbidden to the Most High. Neither was ever permitted for sacrifice — so tereifa should be the same.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ashi</div><div class="speech">That common element has its own unique feature: their prohibition was never lifted. But tereifa was effectively 'permitted' — the pinching of a bird sin-offering works even on a tereifa bird. The verse remains necessary!</div></div></div><div class="callout" style="margin-top:20px"><strong>Bottom Line</strong> Every logical path to disqualifying a tereifa is blocked — Scripture alone suffices</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🌾 Mishna: Actions and Persons That Disqualify Handful Removal</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Non-priest (זר)</strong> removed the handful → offering unfit</div><div class="process-arrow">↓</div><div class="process-step"><strong>Acute mourner (אונן)</strong> — relative died, not yet buried → unfit</div><div class="process-arrow">↓</div><div class="process-step"><strong>Immersed that day (טבול יום)</strong> — awaiting sunset after immersion → unfit</div><div class="process-arrow">↓</div><div class="process-step"><strong>Lacking atonement (מחוסר כיפורים)</strong> — awaiting final offerings → unfit</div><div class="process-arrow">↓</div><div class="process-step"><strong>Impure priest</strong> who served while impure → unfit</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Left hand</strong> used for removal → <em>Ben Beteira:</em> return handful to vessel, redo with right hand</div><div class="process-arrow">↓</div><div class="process-step"><strong>Stone, salt, or frankincense</strong> emerged with the handful → unfit (handful is 'outsized' or 'lacking')</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔍 Three Unfit Animals — Key Distinctions</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2535"><h3 style="color:#c9a84c">Blemished Animal (בעל מום)</h3><ul><li>Unfit for sacrifice</li><li>Permitted for human consumption</li><li>Receives firstborn sanctity</li><li>Torah equated blemished priests with it</li><li>Prohibition never temporarily lifted for the altar</li></ul></div><div class="compare-box" style="border-top-color:#1a2535"><h3 style="color:#4a90d9">Caesarean-Born (יוצא דופן)</h3><ul><li>Unfit for sacrifice</li><li>Permitted for human consumption</li><li>Does NOT receive firstborn sanctity</li><li>Torah did NOT equate priests with it</li><li>Prohibition never temporarily lifted for the altar</li></ul></div><div class="compare-box" style="border-top-color:#1a2535"><h3 style="color:#e74c3c">Tereifa (טריפה)</h3><ul><li>Unfit for sacrifice — needs a verse</li><li>Permitted for human consumption</li><li>A tereifa firstborn IS sanctified</li><li>No priestly parallel</li><li>Prohibition was 'lifted': bird sin-offering pinching is valid even on a tereifa</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>👋 Handful Removal Scenarios — Rulings at a Glance</h2>
+  
+  <table><tr><th>Scenario</th><th>Basic Ruling</th><th>Ben Beteira / Rav's Position</th><th>Key Reason</th></tr><tr><td>Qualified priest, right hand</td><td>✅ Fit</td><td>—</td><td>Standard valid performance</td></tr><tr><td>Priest uses left hand</td><td>❌ Unfit</td><td>Return to vessel, redo with right hand</td><td>Left hand is invalid but rite not yet finalized</td></tr><tr><td>Non-priest removes handful</td><td>❌ Unfit</td><td>Rav: return per ben Beteira's logic</td><td>Slaughter is not a Temple rite; handful removal is — but return permitted before sanctification</td></tr><tr><td>Handful not yet placed in vessel</td><td>❌ but correctable</td><td>Ben Beteira permits return</td><td>Rite incomplete until placed in service vessel (Rav Naḥman)</td></tr><tr><td>Handful already sanctified in vessel</td><td>Debated</td><td>Some: return no longer helps; others: still permitted</td><td>Placement in vessel may finalize the disqualifying act</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔁 Rav Naḥman's Resolution: When Is the Handful Rite Complete?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Unfit person removes the handful</strong> (non-priest, left hand, etc.)</div><div class="flow-arrow">↓</div><div class="flow-box question">Is this removal a <em>complete</em> sacrificial rite?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">If fully complete at removal</div><div class="flow-box result-bad">Disqualifies immediately → return should be impossible. <br><small>But then why does ben Beteira ever allow return?</small></div></div><div class="flow-col"><div class="flow-label">If not a rite at all</div><div class="flow-box result-bad">Should always be returnable and never disqualify. <br><small>But the mishna says it does disqualify!</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Rav Naḥman's Answer:</strong> Removal <em>begins</em> the rite — but it is only <em>complete</em> when the handful is placed in a service vessel. Before placement, ben Beteira permits return and a valid redo.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Temurah 6 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style=""><strong>Can tereifa's disqualification be derived by a fortiori?</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="color:#c9a84c"><strong>From blemished animal?</strong><br><small>❌ Unique: blemished priest parallel</small></div></div><div class="flow-col"><div class="flow-box" style="color:#4a90d9"><strong>From caesarean-born?</strong><br><small>❌ Unique: no firstborn sanctity</small></div></div><div class="flow-col"><div class="flow-box" style="color:#e74c3c"><strong>Common element?</strong><br><small>❌ Unique: tereifa's prohibition was once 'lifted'</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style=""><strong>Verse required</strong> — no logical proof survives scrutiny</div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>Mishna:</strong> Non-priest, onen, tevul yom, mechusar kippurim, impure priest, left hand → all disqualify handful removal</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style=""><strong>Ben Beteira + Rav Naḥman:</strong> Rite is incomplete until handful enters service vessel → return and redo is permitted before that point</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Temurah 6a-6b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Temurah 6a-6b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../5/">← Daf 5</a><a href="../7/">Daf 7 →</a></div>
+</body>
+</html>

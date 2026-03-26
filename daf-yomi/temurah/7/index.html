@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temurah 7 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Temurah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏺</div>
+  <h1>Temurah 7</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמורה ז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏺 Service Vessels & Intent — do they sanctify automatically?<br>
+    🤲 Returning the Handful — heaped bowl and furrow problems<br>
+    👨‍🏫 Avimi & Rav Ḥisda — the teacher who forgot<br>
+    ⬆️ Vessel on the Ground — valid for removal and sanctification?<br>
+    🩸 Blood Collection — full measure in one vessel required<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🏺 Central Question: Do Service Vessels Sanctify Without Intent?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Problem:</strong> If a priest returns the handful to the service vessel, does the vessel re-sanctify (and thereby disqualify) the handful?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Yoḥanan</div><div class="flow-box result-good">Vessels only sanctify <em>with intent</em> — returning the handful without intent does not sanctify it</div></div><div class="flow-col"><div class="flow-label">Challenge</div><div class="flow-box result-bad">But Reish Lakish raised this as an <em>unresolved dilemma</em> — implying it was never definitively answered</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Rav Amram's Solution:</strong> Return the handful to a heaped bowl (<em>levisa</em>) — the handful rests above the rim, technically outside the vessel</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Counter:</strong> Once the handful was removed, a furrow formed — returning it places it <em>inside</em> the vessel again!</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🗣️ Service Vessels: Sanctification With or Without Intent?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech">Service vessels sanctify items placed in them <strong>only when placed there with specific intent</strong>. Returning the handful without intent causes no re-sanctification.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">But I raised this very issue as an <em>unresolved dilemma</em> before you! If you had already ruled, why did I still have the doubt?</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Amram</div><div class="speech">Even if vessels sanctify without intent, we can return the handful to a <strong>heaped bowl (levisa)</strong> where it rests above the rim — outside the vessel entirely.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">If the offering was heaped, how was the handful removed in the first place? And once removed, a furrow forms — returning it places it <em>inside</em> the vessel once again!</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> The debate hinges on whether service vessel sanctification requires intent (כוונה) — with practical consequences for every step of the meal offering service.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>👨‍🏫 Avimi Teaches Rav Naḥman: Proper Handful Procedure</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Scene:</strong> Rav Naḥman meets Avimi returning from Rav Ḥisda's study hall and asks: <em>How does one properly remove a handful from a meal offering?</em></div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 1 — Removal:</strong> Avimi pointed to a <strong>raised vessel</strong> (held off the ground). The handful must be removed from a vessel that is elevated, not resting on the ground.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 2 — Sanctification:</strong> Avimi pointed to a vessel <strong>resting on the ground</strong> and said: The priest places the handful into this vessel to sanctify it.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rav Naḥman's Objection:</strong> This requires <em>three priests</em> — one to raise the vessel for removal, one to sanctify, and one to actually remove the handful!</div><div class="process-arrow">↓</div><div class="process-step"><strong>Avimi's Response:</strong> <em>"And let it require even three priests!"</em> — Multiple priests for a single rite poses no halakhic problem.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rav Naḥman's Counter from the Mishna (12a):</strong> The mishna lists <em>all</em> rites of a meal offering and never mentions raising the vessel — implying it is <strong>not required</strong>.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📖 The Story of Avimi and Rav Ḥisda — Humility in Torah</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">איעקר מיניה מסכת מנחות — "tractate Menaḥot was uprooted from him"</div><div class="callout"><strong>Role Reversal</strong> Rav Ḥisda said: "I absorbed many blows (kulfei) from Avimi — he would mock me when I questioned him." This implies Avimi was Rav Ḥisda's teacher. Yet the Gemara also says Rabbi Avimi "learned in the study hall of Rav Ḥisda" — as if Rav Ḥisda were the teacher!
+
+Resolution: Avimi was originally the teacher, but tractate Menaḥot was 'uprooted' from him — he forgot it entirely. So Avimi humbled himself and came before his own student, Rav Ḥisda, to relearn what he had lost. When Rav Naḥman encountered Avimi, he was returning from this very session.
+
+Lesson: Even a great Sage must humble himself to relearn — even from his own student.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⬆️ Rava's Two Dilemmas: Vessel Resting on the Ground</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Removing the Handful</h3><ul><li><strong>Rava: Obviously permitted</strong></li><li>Proof: The frankincense bowls rest on the Table of the shewbread — the Table is not held off the ground</li><li>Rav Sheshet: Supported this ruling from the mishna about the shewbread replacement</li><li><strong>Conclusion: Valid to remove a handful from a vessel resting on the ground</strong></li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Sanctifying the Handful</h3><ul><li><strong>Rava: Unresolved dilemma</strong></li><li>If derived from meal offering sanctification → may require raising off ground</li><li>If derived from blood collection laws → ground-level placement may be valid</li><li>Gemara challenges: Rava's own ruling on blood suggests he derives from blood — yet he still left this unresolved</li><li><strong>Conclusion: The dilemma stands (תיקו)</strong></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🩸 Laws of Blood Collection for Sin Offering Sprinkling</h2>
+  
+  <table><tr><th>Requirement</th><th>Derivation</th><th>Practical Ruling</th></tr><tr><td>Full measure collected in <em>one</em> vessel</td><td>Rav Taḥlifa bar Avimi from 'dip his finger in the blood'</td><td>Blood collected split across two vessels is not sanctified</td></tr><tr><td>Full measure must be present <em>initially</em></td><td>'In the blood' — a full dip-measure must be in the vessel at the start</td><td>Even if blood depletes during sprinkling, the initial collection must be complete</td></tr><tr><td>Must <em>dip</em>, not wipe</td><td>'And the priest shall dip' — active dipping required</td><td>If the priest resorts to wiping his finger, the sprinkling is invalid</td></tr><tr><td>Must sprinkle from fresh blood</td><td>'Of the blood' — sprinkle from the blood of the matter itself</td><td>Remainder on finger from a previous sprinkling is excluded; priest must re-dip</td></tr><tr><td>Wipe finger between sprinklings</td><td>Keforei (Ezra 1:10) — root kafar = to wipe; bowls serve as wiping station</td><td>Priest wipes finger on edge of bowl between sprinklings; wipes hand on heifer after all sprinklings</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Temurah 7 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2a2a4a;border:2px solid #4a90d9"><strong>Main Question:</strong> Do service vessels sanctify automatically or only with intent?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a5c;border:1px solid #4a90d9"><strong>Rabbi Yoḥanan:</strong><br>Only with intent (כוונה)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a3a;border:1px solid #9b59b6"><strong>Reish Lakish:</strong><br>Raised as unresolved dilemma</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2a3a2a;border:2px solid #2ecc71"><strong>Avimi's Teaching</strong> (relearned from student Rav Ḥisda):<br>Removal = raised vessel • Sanctification = vessel placed down • Three priests allowed</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border:1px solid #2ecc71"><strong>Vessel on Ground — Removal:</strong><br>✓ Valid (Rava; proof from frankincense bowls)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a;border:1px solid #e67e22"><strong>Vessel on Ground — Sanctification:</strong><br>? Unresolved dilemma (Rava)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#3a1a1a;border:2px solid #e74c3c"><strong>Blood Laws:</strong> Full measure in one vessel • Must dip, not wipe • Wipe finger on bowl edge between sprinklings • Wipe hand on heifer after completion</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Temurah 7a-7b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Temurah 7a-7b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../6/">← Daf 6</a><a href="../8/">Daf 8 →</a></div>
+</body>
+</html>
