@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keritot 21 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Keritot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🧂</div>
+  <h1>Keritot 21</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כריתות כא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🧂 Salt Exclusions — which offerings need no salt<br>
+    🩸 Cooked Blood — does the prohibition apply?<br>
+    🏛️ Temple Salt — three locations and ordinance<br>
+    📖 Verse Interpretation — 'you shall season with salt'<br>
+    ⚖️ Priests & Shekel — ben Bukhri's testimony<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🧂 Does Blood Require Salt?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna Kamma</div><div class="speech">Blood does not require salt — the verse explicitly excludes it. Wine libations and wood are likewise excluded.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara Challenge</div><div class="speech">But if salting already disqualifies blood by drawing it out, why do we even need a verse to exclude blood from salting?</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Resolution</div><div class="speech">Lest one think even a minimal amount of salt should be applied for fulfillment of the mitzva — the verse teaches that even a tiny application to blood is forbidden.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> Salt is mandatory for all meal offerings and sacrificial limbs on the altar. But blood, wine libations, wood, and incense are excluded by verse or logic — each for its own reason.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔍 What Is Excluded from the Salt Requirement?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Verse:</strong> 'Every meal offering of yours you shall season with salt' (Lev. 2:13)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">🪵 Wood</div><div class="flow-box result-bad">Not susceptible to ritual impurity → excluded from salting requirement</div></div><div class="flow-col"><div class="flow-label">🍷 Wine & Blood</div><div class="flow-box result-bad">Not placed on altar fire — sprinkled on corner of altar → excluded</div></div><div class="flow-col"><div class="flow-label">🌿 Incense</div><div class="flow-box result-bad">Sacrificed separately on its own altar → excluded</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>R. Yishmael b. R. Yochanan ben Beroka:</strong> Each exclusion is derived from the verse — 'every offering of yours' narrows the scope to only certain sacrificial items</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🩸 Cooked/Curdled Blood — Liability for Consumption?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Ze'eiri (R. Ḥanina)</div><div class="speech">Blood that one cooked — one does NOT transgress the prohibition of consuming blood by drinking it. The prohibition no longer applies.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Abaye</div><div class="speech">Objection from a baraita! Curdled blood seems still subject to the blood prohibition — this contradicts Ze'eiri!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">No contradiction: Ze'eiri speaks of blood curdled by FIRE (truly transformed in identity), the baraita speaks of blood curdled by the SUN (still blood-like in character).</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Ḥisda</div><div class="speech">Congealed blood of EXTERNAL sin offerings — if one ate it, he is liable. 'The priest shall take' implies it retains sacrificial blood status.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rava (adds)</div><div class="speech">Even blood of INNER sin offerings — one is liable, since comparable blood of external sin offerings IS placed on the altar. Rav Pappa draws the practical implication from this.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Fire-curdled blood loses its blood identity entirely. Sun-curdled blood retains it. Inner vs. outer sin-offering blood differs in altar use but both can carry liability.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🏛️ Three Locations of Salt in the Temple</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">Chamber of Salt</h3><ul><li>Main storage location in the Temple</li><li>Salt kept perpetually available</li><li>Salt here IS subject to misuse of consecrated property (me'ila)</li><li>Source supply for all Temple needs</li></ul></div><div class="compare-box" style="border-top-color:#1e2d1e"><h3 style="color:#2ecc71">On the Ramp</h3><ul><li>Stationed for convenient priestly access</li><li>NOT subject to me'ila laws</li><li>Dedicated entirely to use on offerings</li><li>Positioned between storage and altar</li></ul></div><div class="compare-box" style="border-top-color:#3d1a1a"><h3 style="color:#e74c3c">On Top of the Altar</h3><ul><li>Applied immediately before burning</li><li>NOT subject to me'ila laws</li><li>BUT: salt already on a limb IS subject to me'ila</li><li>Final application point in the salting process</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📖 Interpreting 'You Shall Season with Salt' — Rabbinic Readings</h2>
+  
+  <table><tr><th>Amora / Source</th><th>Phrase</th><th>Interpretation</th><th>Practical Ruling</th></tr><tr><td>Baraita</td><td>תַּשְׁבִּית (tashbit)</td><td>Salt that never rests — always present in Temple</td><td>Use Sodom salt; it is continuously available</td></tr><tr><td>Rabba bar Ulla</td><td>תְּבוּנֵהוּ (tevonehu)</td><td>Do not mix in large amounts like straw into clay</td><td>Apply salt to the surface only — do not over-saturate</td></tr><tr><td>Rav Ashi</td><td>תְּבוּנֵהוּ (tevonehu)</td><td>Do not infuse entirely with salt taste like wisdom/bina fills a person</td><td>Surface application only — no deep infusion required</td></tr><tr><td>Abaye</td><td>Practical law for meat</td><td>Salt both sides of meat to draw blood, then wash</td><td>Sufficient to apply, drain, and wash before cooking</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ The Salt Ordinance and Ben Bukhri's Testimony</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>The Court's Ordinance (Shekalim 7:7):</strong> The Sages instituted that the Temple provides salt for all offerings — neither priests nor Israelites must bring their own salt</div><div class="process-arrow">↓</div><div class="process-step"><strong>Shmuel's Interpretation:</strong> The ordinance permits priests to add Temple salt when <em>eating</em> the meat of their sacrificial portions in the Temple courtyard — the novel permission is eating with salt, not just salting before the altar</div><div class="process-arrow">↓</div><div class="process-step"><strong>Ravina's Support:</strong> If the ordinance only covered salting before burning, it would be obvious; the novelty is permitting salt with the priestly meal — hence Shmuel's reading is correct</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Ben Bukhri's Testimony at Yavne:</strong> A priest who contributes his half-shekel is not a sinner — priestly contribution is voluntary, not obligatory, since their offerings are subsumed in public ones</div><div class="process-arrow">↓</div><div class="process-step"><strong>Relevance to Salt Ordinance:</strong> According to ben Bukhri, priests' offerings merge with public communal offerings — thus the Temple's salt fully covers the priestly portion without any individual obligation</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Keritot 21 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box start" style="background:#1a3a5c;border:2px solid #c9a84c;color:#fff"><strong>🧂 Salt Requirement (Lev. 2:13)</strong><br><small>'Every meal offering shall be seasoned with salt'</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3d1a1a;border:1px solid #e74c3c;color:#fff"><strong>❌ Excluded</strong><br><small>Blood, wine libations,<br>incense, wood</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3d1a;border:1px solid #2ecc71;color:#fff"><strong>✅ Required</strong><br><small>Meal offerings, burnt-<br>offering limbs on altar</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box detail" style="background:#2a1a3d;border:1px solid #9b59b6;color:#fff"><strong>🩸 Cooked Blood Rule</strong><br><small>Fire-curdled → no prohibition | Sun-curdled → prohibition applies | Congealed sin-offering blood → liable</small></div><div class="flow-arrow">↓</div><div class="flow-box end" style="background:#1a3a5c;border:2px solid #c9a84c;color:#fff"><strong>🏛️ Temple Salt Ordinance</strong><br><small>Three locations in Temple • Priests may use for eating sacrificial portions • ben Bukhri: priestly shekel voluntary</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Keritot 21a-21b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Keritot 21a-21b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../20/">← Daf 20</a><a href="../22/">Daf 22 →</a></div>
+</body>
+</html>

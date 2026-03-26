@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keritot 8 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Keritot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🫓</div>
+  <h1>Keritot 8</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כריתות ח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🫓 Griddle-Cake in Halves — High Priest's offering: whole or divided?<br>
+    🏺 Sanctification Without Components — flour, oil, frankincense independence<br>
+    ✋ Handful Removal — Sanctuary vs. courtyard validity<br>
+    🔗 Analogical Reasoning — deriving laws across offering types<br>
+    🕍 Peace Offerings — slaughtered inside the Sanctuary<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Can Half Sanctify? The Core Debate of Daf 8</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech">The High Priest's griddle-cake offering is <strong>not sanctified in halves</strong>. Like all meal offerings, it must be brought as a whole unit.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Elazar</div><div class="speech">Since this offering <em>is sacrificed</em> in halves — half in the morning, half in the evening — it <strong>is sanctified as halves</strong> from the outset.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Mishna (50b)</div><div class="speech"><em>Objection:</em> The mishna states the griddle-cake did <strong>not come in halves</strong> — the High Priest brings a full tenth of an ephah, then divides it!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Elazar</div><div class="speech">That requirement is only <em>l'chatchila</em> (ab initio). After the fact, if half a tenth was brought in the morning, the offering is <strong>valid</strong>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> Does an offering that is ultimately divided into halves become sanctified as halves, or must it always begin as a whole unit? And does this rule extend to all meal offerings?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔍 Can a Standard Meal Offering Be Sanctified with Half a Measure?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">One sets aside <strong>half a tenth of an ephah</strong> intending to add more to reach a full tenth</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav</div><div class="flow-box result-bad"><strong>Not sanctified</strong> — derives from the griddle-cake: a half measure can never be sanctified for any meal offering</div></div><div class="flow-col"><div class="flow-label">Rabbi Yoḥanan</div><div class="flow-box result-good"><strong>Sanctified</strong> — the half is consecrated; one may add to complete the measure. Griddle-cake is a unique case.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Tension:</strong> Rabbi Yoḥanan elsewhere derives laws across consecrated items (e.g., peace offerings in the Sanctuary). If he does analogize, why doesn't he apply the griddle-cake rule universally?</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Resolution:</strong> Rabbi Yoḥanan <em>does</em> derive across offering types — but the griddle-cake is exceptional because it is <em>designed</em> to be sacrificed in halves, unlike other meal offerings</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🏺 Must All Components Be Together for Sanctification?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">A meal offering <strong>is sanctified</strong> by a service vessel even <em>without its oil</em> — just as shewbread (לחם הפנים) is sanctified without oil.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Ḥanina</div><div class="speech">A meal offering requiring oil <strong>is not sanctified</strong> without it. All components — flour, oil, frankincense — must enter the vessel <em>together</em>.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">Oil and frankincense are each sanctified <strong>independently</strong> — oil like the leper's log (לוג השמן), frankincense like the bowls placed upon the shewbread.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Ḥanina</div><div class="speech">Those are <em>exceptional cases</em>. For a standard meal offering, neither component is sanctified <strong>separately</strong>. The tenth-ephah vessel exists only for measuring; the log vessel only for the leper.</div></div></div><div class="callout" style="margin-top:20px"><strong>Shmuel's Support for Rav</strong> Shmuel derives from Zevaḥim 88a: bowls (liquid vessels) sanctify dry goods — proving flour can be sanctified even without oil present in the same vessel.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📊 Three Opinions on Meal Offering Sanctification</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#fff">Rav</h3><ul><li>Flour sanctified without oil ✓</li><li>Oil sanctified without frankincense ✓</li><li>Frankincense sanctified without oil ✓</li><li>Half-measure: NOT sanctified ✗</li><li>Derives laws across offering types ✓</li><li>Source: shewbread, leper's log</li></ul></div><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">Rabbi Ḥanina</h3><ul><li>Flour NOT sanctified without oil ✗</li><li>Oil NOT sanctified without flour ✗</li><li>All components must enter together</li><li>Tenth-ephah vessel: measuring only</li><li>Log vessel: leper's offering only</li><li>No component sanctified independently</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Rabbi Yoḥanan</h3><ul><li>Half-measure CAN be sanctified ✓</li><li>Griddle-cake rule is exceptional</li><li>Derives across consecrated items ✓</li><li>Peace offering in Sanctuary: valid</li><li>Handful removed in Sanctuary: valid</li><li>Greater sanctity does not disqualify</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>✋ Removing the Handful (קומץ) — Location Rules</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Standard rule:</strong> The handful is removed in the <em>Temple courtyard</em> (עזרה) — derived from Leviticus 2:2: 'he shall bring it to Aaron's sons the priests; and he shall remove from there his handful'</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Elazar's ruling:</strong> If removed <em>inside the Sanctuary</em> (היכל), the meal offering is still <strong>valid</strong> — the Sanctuary is more sacred, not less sacred, than the courtyard</div><div class="process-arrow">↓</div><div class="process-step"><strong>Baraita challenge:</strong> The verse's language about the left-hand disqualification implies that only the <em>designated location</em> is valid — location is a strict condition</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Resolution (Rabbi Ya'akov / some say Rabbi Yirmeya):</strong> The verse is needed to permit the entire courtyard — one might think only proximity to the altar suffices. The verse extends validity to the <em>whole azarah</em></div><div class="process-arrow">↓</div><div class="process-step"><strong>Analogies rejected:</strong> Cannot derive from burnt offering (more sacred — entirely consumed), sin offering (stricter atonement laws), or guilt offering (blood-atonement type) — each has a distinguishing feature</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🕍 Peace Offerings Slaughtered in the Sanctuary — The Argument Chain</h2>
+  
+  <table><tr><th>Stage</th><th>Position</th><th>Reasoning</th><th>Outcome</th></tr><tr><td>Rabbi Yoḥanan's ruling</td><td>Valid</td><td>Lev. 3:2 sets minimum location, not maximum; Sanctuary is more sacred</td><td>Upheld</td></tr><tr><td>Baraita objection</td><td>Seemingly invalid</td><td>Verse implies courtyard is the required and exclusive location</td><td>Needs resolution</td></tr><tr><td>Analogy: burnt offering</td><td>Rejected as source</td><td>Burnt offering is more sacred — entirely consumed on altar</td><td>Cannot derive</td></tr><tr><td>Analogy: sin offering</td><td>Rejected as source</td><td>Sin offering has stricter laws — atones for karet-level sins</td><td>Cannot derive</td></tr><tr><td>Analogy: guilt offering</td><td>Rejected as source</td><td>Guilt offering is loftier — blood-atonement animal offering</td><td>Cannot derive</td></tr><tr><td>Final resolution</td><td>Valid (b'diavad)</td><td>Verse permits the whole courtyard; more sacred spaces valid post-facto</td><td>Rabbi Yoḥanan confirmed</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Keritot 8 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2c3e50;border:2px solid #c9a84c;padding:12px;border-radius:6px;text-align:center;"><strong>Central Question:</strong> Can components of an offering be sanctified <em>independently</em> or <em>partially</em>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;padding:10px;border-radius:6px;"><strong>Rav:</strong><br>Half-measure = <em>not</em> sanctified<br>But flour/oil/frankincense each sanctified independently<br><small>Source: shewbread, leper's log</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;padding:10px;border-radius:6px;"><strong>R. Yoḥanan:</strong><br>Half-measure = <em>sanctified</em> for standard offerings<br>Griddle-cake is unique — designed to be divided<br><small>Does derive laws across offerings</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;padding:10px;border-radius:6px;"><strong>R. Ḥanina:</strong><br>All components must enter vessel <em>together</em><br>No independent sanctification<br><small>Measuring vessels ≠ sanctifying vessels</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#4a235a;padding:12px;border-radius:6px;border:2px solid #9b59b6;text-align:center;"><strong>Location Principle</strong> (R. Elazar &amp; R. Yoḥanan agree): Handful removed in Sanctuary ✓ — Peace offering slaughtered in Sanctuary ✓<br><em>More sacred space never disqualifies</em></div><div class="flow-arrow">↓</div><div class="flow-box principle" style="background:#16213e;padding:12px;border-radius:6px;border:2px solid #4a90d9;text-align:center;"><strong>Unifying Rule:</strong> <em>L'chatchila</em> — follow prescribed procedure exactly. <em>B'diavad</em> — greater sanctity, partial fulfillment of conditions, or wrong-but-more-sacred location does not invalidate.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Keritot 8a-8b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Keritot 8a-8b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../7/">← Daf 7</a><a href="../9/">Daf 9 →</a></div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keritot 11 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Keritot 11 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">If a grain of salt is found in the priest's hand together with the handful of flour, what is the status of the meal offering, and why?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Fit — salt is a valid Temple ingredient and does not disqualify</div>
+      <div class="option" onclick="select(1,this,1)">B. Unfit — the salt diminishes the flour, leaving the handful lacking its full measure</div>
+      <div class="option" onclick="select(1,this,2)">C. Fit — only non-food objects like stones can disqualify the handful</div>
+      <div class="option" onclick="select(1,this,3)">D. Unfit — salt must never touch the handful, only the whole offering</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>The Gemara needs all three cases (stone, salt, frankincense) because each teaches a unique lesson: salt is a Temple ingredient yet still disqualifies, because it was not 'fixed' together with the whole meal offering at the outset — it is salted onto the handful separately.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">According to Rav (cited by Rav Zutra bar Toviyya), what is the precise physical technique for removing the handful?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Scoop with all five fingertips pressed together pointing downward</div>
+      <div class="option" onclick="select(2,this,1)">B. Press the flat of the palm against the flour and lift</div>
+      <div class="option" onclick="select(2,this,2)">C. Bend the middle three fingers until their tips reach the palm, filling the space with flour</div>
+      <div class="option" onclick="select(2,this,3)">D. Use only the thumb and forefinger to pinch exactly one handful</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>Rav teaches that the priest bends the middle three fingers until their tips reach the palm. The flour fills the space between the bent fingers and the palm — this constitutes exactly one handful, neither lacking nor overflowing.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">What is the specific function of the little finger in the kometz removal, according to the Gemara's resolution?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. It has no role — only the middle three fingers and thumb are used</div>
+      <div class="option" onclick="select(3,this,1)">B. It sets the lower boundary of the handful from beneath the hand</div>
+      <div class="option" onclick="select(3,this,2)">C. It first helps scoop a full handful, then wipes away overflow from above to level it</div>
+      <div class="option" onclick="select(3,this,3)">D. It holds the measuring vessel steady while the other fingers scoop</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>The Gemara resolves that the little finger participates in the initial removal (ensuring the handful is not lacking) and then serves as the leveling instrument, wiping excess flour from above (ensuring it is not oversized). Both roles are necessary.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">Rabbi Yitzḥak bar Yosef says that Rabbi Yoḥanan notes all three tanna'im agree about frankincense that 'comes by itself.' What do they all agree upon?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Frankincense that comes alone is never disqualified by any decrease</div>
+      <div class="option" onclick="select(4,this,1)">B. A handful of standalone frankincense that became lacking may still be burned and is valid</div>
+      <div class="option" onclick="select(4,this,2)">C. Standalone frankincense requires the same rules as frankincense with a meal offering</div>
+      <div class="option" onclick="select(4,this,3)">D. Standalone frankincense is always burned in its entirety with no exceptions</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>Rabbi Yoḥanan teaches that the tannaic dispute only concerns frankincense that accompanies a meal offering. For frankincense that comes by itself (as an independent offering), all three tanna'im agree it may be burned even if lacking — the dispute about minimum measure does not apply.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">The Gemara infers from the Mishna's ruling on frankincense that 'if he increased the frankincense, it is fit.' What ruling does it then cite that appears to contradict this?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. A baraita ruling that any change in frankincense — increase or decrease — disqualifies</div>
+      <div class="option" onclick="select(5,this,1)">B. Rav Pappa's ruling that increased frankincense renders the handful oversized</div>
+      <div class="option" onclick="select(5,this,2)">C. Rami bar Hama's ruling that extra separated frankincense retroactively disqualifies</div>
+      <div class="option" onclick="select(5,this,3)">D. Rabbi Eliezer's ruling that the 'it is not necessary' principle applies to frankincense as well</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: A — </strong>A baraita is cited that teaches any deviation — increase or decrease — from the proper frankincense measure disqualifies. The Gemara must then reconcile this with the Mishna's apparent ruling that only a decrease disqualifies. The answer involves reinterpreting the baraita's language.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":2,"4":1,"5":0};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

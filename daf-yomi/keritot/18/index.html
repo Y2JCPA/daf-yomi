@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keritot 18 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Keritot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🫙</div>
+  <h1>Keritot 18</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כריתות יח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🩸 Blood & Overnight Intent — machshava dispute resolved<br>
+    📜 Yosef the Babylonian — persistence in Torah scholarship<br>
+    🫙 Meal Offering Mishna — omitted rites and their validity<br>
+    🤲 Non-Priest Rites — who may perform preparatory actions<br>
+    🎁 Priestly Gifts — link to admitting validity of rites<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🫙 Menachot 18 — Intent, Story & Meal Offering Rites</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">Gemara resolves: Rabbi Yehuda's position on <em>machshava</em> — intention to leave blood overnight</div><div class="process-arrow">↓</div><div class="process-step">Aggadic gem: Yosef the Babylonian's three-day quest yields tears of joy from Rabbi Elazar ben Shammua</div><div class="process-arrow">↓</div><div class="process-step highlight">Mishna: List of omitted meal offering rites (pouring oil, mixing, breaking, salting, waving) — all <strong>fit</strong></div><div class="process-arrow">↓</div><div class="process-step">Gemara analysis: 'Did not pour oil' means a non-priest poured it, not that no one did</div><div class="process-arrow">↓</div><div class="process-step highlight">Dispute: Rav Naḥman vs. Rava — priests' vs. Israelites' meal offerings, and priestly gift eligibility</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🩸 Does Intent to Leave Blood Overnight Invalidate?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabbi Yehuda</div><div class="speech">All agree — Rabbis and Rabbi Eliezer alike — that if the priest <em>intended</em> to leave the blood until the next day, the offering is <strong>unfit</strong>. Just as the act itself renders it unfit, so too the intent.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara Objection</div><div class="speech">But the baraita shows Yosef the Babylonian repeatedly insisted the offering is <em>fit</em>! If all agreed it was unfit, what did he mean when he said 'you returned to me what I had lost'?</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Rabbi Elazar ben Shammua</div><div class="speech">I had momentarily wavered — thinking perhaps the offering is unfit. Yosef pressed me three times until I held firm: the offering is <strong>fit</strong>. He rejoiced that I returned to the correct ruling.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara Resolution</div><div class="speech">Rabbi Yehuda taught all-agree-unfit. Rabbi Elazar temporarily adopted this view, then corrected himself to <em>fit</em> (the Rabbis' view). Yosef's joy was that the true halakha was restored.</div></div></div><div class="callout" style="margin-top:20px"><strong>Bottom Line</strong> Rabbis: intent to leave blood overnight → offering is <strong>fit</strong>. Rabbi Eliezer: unfit. Rabbi Yehuda claims all agree it is unfit — but the story of Yosef complicates this claim.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Yosef the Babylonian — Torah's Price</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אַשְׁרֵיכֶם תַּלְמִידֵי חֲכָמִים שֶׁדִּבְרֵי תוֹרָה חֲבִיבִין עֲלֵיכֶם בְּיוֹתֵר</div><div class="callout"><strong>Aggadic Story</strong> <strong>Yosef the Babylonian</strong> asked Rabbi Elazar ben Shammua the same question three times:<br><em>"If the priest intended to leave the blood overnight — is the offering fit?"</em><br><br>• <strong>Afternoon:</strong> Rabbi Elazar said: <em>Fit.</em><br>• <strong>Evening:</strong> Rabbi Elazar said: <em>Fit.</em><br>• <strong>Morning:</strong> Rabbi Elazar, now doubting himself, said: <em>"It seems my halakhot were inaccurate — perhaps it is unfit."</em><br><br>Yosef replied: <em>"No! The offering IS fit, as you always said, my teacher."</em><br><br>Upon hearing this, <strong>Rabbi Elazar's eyes streamed with tears</strong> and he declared:<br><em>"Happy are you, Torah scholars, for whom matters of Torah are exceedingly dear!"</em></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🫙 Mishna Analysis — Omitted Rites & Meal Offering Validity</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Mishna: Priest omits a preparatory rite<br><small>pouring oil · mixing · breaking · salting · waving · bringing to altar</small></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Ruling: <strong>Meal offering is FIT</strong><br><small>These preparatory rites are obligatory but not indispensable</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">'Did not pour oil' — what does this mean?</div><div class="flow-box result-good"><strong>Non-priest poured it</strong><br>Gemara: this is the case the Mishna addresses<br><em>→ Still fit</em></div></div><div class="flow-col"><div class="flow-label">No one poured at all?</div><div class="flow-box result-bad"><strong>Torah says: 'He shall pour oil'</strong><br>Verse requires it — omission entirely would be problematic<br><em>→ Mishna cannot mean this</em></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Rabbi Zeira: For any flour-measure <em>suitable</em> for mixing — lack of mixing does not invalidate<br><small>Exception: 61 tenths of an ephah cannot all fit in one vessel → must separate</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🎁 Rav Naḥman vs. Rava — Non-Priest Pouring Oil</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3040"><h3 style="color:#4a90d9">Rav Naḥman's Distinction</h3><ul><li><strong>Mishna</strong> (non-priest pours → fit) refers to an <em>Israelite's</em> meal offering</li><li><strong>Baraita</strong> (non-priest pours → priest loses priestly gift) refers to a <em>priest's</em> meal offering</li><li>Priest's meal offering: entirely burned on altar — pouring is more central to its rite</li><li>No contradiction — two different subjects</li></ul></div><div class="compare-box" style="border-top-color:#3d1a1a"><h3 style="color:#e74c3c">Rava's Rebuttal</h3><ul><li>The priest's obligation to pour oil is <em>derived from</em> the Israelite's meal offering law</li><li>If non-priest pouring is valid for the source case (Israelite), it must be valid for the derived case (priest) too</li><li>Alternative proposal: Mishna = offerings where handful <em>is</em> removed; Baraita = offerings where it is <em>not</em></li><li>But Rava challenges this too: same derivation logic applies</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📋 Meal Offering Rites — Priest Required?</h2>
+  
+  <table><tr><th>Rite</th><th>Hebrew</th><th>If Omitted / Non-Priest Performs</th><th>Status</th></tr><tr><td>Pouring oil</td><td>יְצִיקָה</td><td>Non-priest pours → Rabbis: fit; Rabbi Shimon: unfit (no priestly gift)</td><td>Disputed</td></tr><tr><td>Mixing oil into flour</td><td>בְּלִילָה</td><td>Omitted or unsuitable measure → fit</td><td>Fit</td></tr><tr><td>Breaking into pieces</td><td>פְּתִיתָה</td><td>Not broken, or broken into large pieces → fit</td><td>Fit</td></tr><tr><td>Salting</td><td>מְלִיחָה</td><td>Omitted → fit</td><td>Fit</td></tr><tr><td>Waving (omer / sota)</td><td>תְּנוּפָה</td><td>Omitted → fit</td><td>Fit</td></tr><tr><td>Removal of handful</td><td>קְמִיצָה</td><td>Must be a priest — non-priest invalidates</td><td>Priest only</td></tr><tr><td>Burning the handful</td><td>הַקְטָרָה</td><td>Must be a priest — central sacrificial rite</td><td>Priest only</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Keritot 18 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2c2416;border:2px solid #c9a84c;"><strong>Machshava Dispute</strong><br><small>Intent to leave blood overnight</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0d2b0d;border:2px solid #2ecc71;"><strong>Rabbis:</strong> Fit<br><small>Intent ≠ action</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2b0d0d;border:2px solid #e74c3c;"><strong>R. Eliezer:</strong> Unfit<br><small>Intent = action</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#0d2b0d;border:2px solid #2ecc71;"><strong>Mishna:</strong> Omitted preparatory rites → <em>Offering is Fit</em><br><small>Pouring · Mixing · Breaking · Salting · Waving</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0d1b2b;border:2px solid #4a90d9;"><strong>Rav Naḥman:</strong> Priests' vs. Israelites' offerings differ</div></div><div class="flow-col"><div class="flow-box" style="background:#2b0d2b;border:2px solid #9b59b6;"><strong>Rava:</strong> Derived law follows its source — same rules apply</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Keritot 18a-18b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Keritot 18a-18b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../17/">← Daf 17</a><a href="../19/">Daf 19 →</a></div>
+</body>
+</html>

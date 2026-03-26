@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keritot 15 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Keritot 15 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">Three Amoraim each bring independent proof that the dispute between Rabbi Yehuda and the Rabbis is not about the tzitz (frontplate). Which of the following is NOT one of those proofs?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. A baraita about the frankincense bowls, where Rabbi Yehuda agrees the tzitz works for altar-bound items</div>
+      <div class="option" onclick="select(1,this,1)">B. The Paschal offering mishna, where Rabbi Yehuda agrees the tzitz works when the whole community is impure</div>
+      <div class="option" onclick="select(1,this,2)">C. The two loaves of Shavuot — if the tzitz were the dispute, Rabbi Yehuda would have said 'both are burned'</div>
+      <div class="option" onclick="select(1,this,3)">D. A dispute about the daily tamid offering where Rabbi Yehuda explicitly invokes the tzitz</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: D — </strong>The three proofs come from Rav Huna b. Rav Natan (frankincense bowls baraita), Rav Ashi (Paschal offering mishna), and Ravina (two loaves of Shavuot). No tamid-based proof appears in this sugya.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Why does the thanks offering render its accompanying loaves piggul, but the loaves cannot render the thanks offering piggul?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. The loaves are consecrated after the offering, so they have less sanctity</div>
+      <div class="option" onclick="select(2,this,1)">B. The offering's blood is the matir (permitting agent) for the loaves — piggul flows only from the matir to what it permits</div>
+      <div class="option" onclick="select(2,this,2)">C. The loaves are of rabbinic origin, while the offering is biblical, and piggul only applies to biblical items</div>
+      <div class="option" onclick="select(2,this,3)">D. The loaves are consumed by priests while the offering is consumed by the owner — different domains</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>The fundamental piggul principle is that the matir transmits piggul to what it permits. The offering's blood is the matir for the loaves, creating a one-way dependency. The loaves have no such permitting function over the offering.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">In Rabbi Elazar's dilemma, what specific scenario does he pose to Rav that is genuinely novel?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. A priest who expressed piggul intent silently rather than aloud</div>
+      <div class="option" onclick="select(3,this,1)">B. Combined intent: half an olive-bulk from the offering plus half an olive-bulk from the loaves, totaling one full olive-bulk</div>
+      <div class="option" onclick="select(3,this,2)">C. Intent to consume the offering on the third day, which is beyond its permitted time</div>
+      <div class="option" onclick="select(3,this,3)">D. A case where two priests each have partial piggul intent — does their intent combine?</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Rabbi Elazar asks whether the priest's intent regarding half an olive-bulk from the offering and half from the loaves can combine to render the loaves piggul — since intent about the loaves alone would not suffice, can the offering's portion supplement it?</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">What is Rava's explanation for why Rabbi Meir holds that piggul intent during slaughter can render the libations piggul?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Rabbi Meir considers libations to be part of the offering itself, not separate accompaniments</div>
+      <div class="option" onclick="select(4,this,1)">B. Once libations are consecrated in a service vessel, they are irrevocably fixed to that offering and cannot be switched — creating the matir relationship</div>
+      <div class="option" onclick="select(4,this,2)">C. Rabbi Meir holds that any item purchased for an offering is automatically bound to it from the moment of purchase</div>
+      <div class="option" onclick="select(4,this,3)">D. The Rabbis misread Rabbi Meir — he actually agrees that libations cannot become piggul</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>Rava explains that according to Rabbi Meir, vessel consecration locks the libations to that particular offering. Unlike the Rabbis who note libations can arrive later, Rabbi Meir holds that once in the vessel, they are permanently designated — making them subject to piggul from the slaughter.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">The Gemara says both the thanks offering case and the Shavuot lambs case must be taught independently. Why?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. They involve different Torah verses and cannot be derived from each other</div>
+      <div class="option" onclick="select(5,this,1)">B. Without the Shavuot case, one might think the thanks offering rule is unique to it; without the thanks offering case, one might think the rule only applies to Shavuot</div>
+      <div class="option" onclick="select(5,this,2)">C. The cases differ because the Shavuot loaves are leavened, requiring a separate ruling</div>
+      <div class="option" onclick="select(5,this,3)">D. The Gemara only says one case is necessary — the other is redundant</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>The Gemara explicitly notes that both cases are necessary: each case has a unique feature that might lead to an incorrect inference if only the other were taught. Together they establish the general rule of piggul asymmetry between offering and accompaniment.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":3,"2":1,"3":1,"4":1,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

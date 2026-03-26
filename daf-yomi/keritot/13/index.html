@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keritot 13 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Keritot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌿</div>
+  <h1>Keritot 13</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כריתות יג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔀 Combining Intent — consume and burn intent cannot join<br>
+    ⚖️ Rabbi Yosei vs. Rabbis — frankincense piggul debate<br>
+    🌿 Permitting Factor Rule — one matir cannot render another piggul<br>
+    🙏 Non-Priest Collecting Frankincense — invalidates the offering<br>
+    🍞 Shavuot Loaves — piggul intent on one does not spread to the other<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Can a Permitting Factor Render Another Permitting Factor Piggul?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">If a priest removes the handful intending to burn the <em>frankincense</em> the next day, the meal offering is <strong>piggul</strong> — one who eats it is liable to karet. Just as in animal offerings!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yosei</div><div class="speech">The frankincense is <strong>not part of the meal offering</strong> — it is a separate, independent permitting factor (matir). One permitting factor cannot render <em>another</em> permitting factor piggul!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">The 'no piggul between permitting factors' rule applies only when they are truly independent of each other. The frankincense accompanies the meal offering — it should render piggul!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yosei</div><div class="speech">Frankincense is not the <em>preclusion</em> (ikuv) of the meal offering. The handful permits the <strong>remainder for priests</strong>; the frankincense permits the <strong>shewbread</strong>. They are categorically distinct.</div></div></div><div class="callout" style="margin-top:20px"><strong>Outcome</strong> Rabbi Yosei: meal offering is pasul (unfit) but no karet. Rabbis: full piggul with karet liability. The Gemara ultimately links this to the shewbread frankincense bowls as well.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔀 Abaye: Can Consume-Intent Join Burn-Intent?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">Why does the mishna need to teach the case of combining <em>consume + burn</em> intent for half an olive-bulk each? Can't we derive this from elsewhere?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The mishna is still necessary! You might think: where each half is in accordance with its typical manner — one consumed normally, one burned normally — perhaps they <em>do</em> combine into a full olive-bulk!</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">And where one intends <em>half to consume</em> and <em>half to burn</em>, with each half typical for its type — wouldn't this be stronger grounds to combine?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">No — intent to <strong>consume</strong> and intent to <strong>burn</strong> are qualitatively distinct acts. They cannot join. The mishna must teach this explicitly because it is not obvious.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Rule</strong> אכילה ועשן אינן מצטרפין — Intent to eat and intent to burn do not combine to form a prohibited olive-bulk of piggul intent.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🫙 Piggul Rulings: Priest Removes Handful With Next-Day Intent</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Priest removes handful</strong> from meal offering with intent for the <em>next day</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Intent: eat the remainder next day</div><div class="flow-box result-bad"><strong>Rabbi Yosei concedes:</strong><br>Full <em>piggul</em> — liable to karet<br><small>(handful is same type as remainder)</small></div></div><div class="flow-col"><div class="flow-label">Intent: burn the handful next day</div><div class="flow-box question"><strong>Rabbi Yosei:</strong><br>Pasul (unfit) — <em>no karet</em><br><small>Handful is the permitting factor itself</small></div></div><div class="flow-col"><div class="flow-label">Intent: burn frankincense next day</div><div class="flow-box question"><strong>Rabbis:</strong> Piggul + karet<br><strong>Rabbi Yosei:</strong> Pasul only<br><small>Frankincense = separate matir</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Reish Lakish extends:</strong> Same dispute applies to the <em>two frankincense bowls</em> accompanying the shewbread — one bowl's improper intent does not render the other piggul per Rabbi Yosei</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🌿 Frankincense as Permitting Factor: Full Comparison</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#f3e5f5"><h3 style="color:#9b59b6">Rabbi Yosei</h3><ul><li>Frankincense is NOT part of the meal offering itself</li><li>It is an independent permitting factor (matir)</li><li>Principle: one matir cannot render another matir piggul</li><li>Same for two frankincense bowls of shewbread</li><li>Meal offering = pasul (unfit) but no karet liability</li><li>"Not part of the meal offering" = not its preclusion (ikuv)</li></ul></div><div class="compare-box" style="border-top-color:#e3f2fd"><h3 style="color:#4a90d9">Rabbis</h3><ul><li>The 'no piggul between matirin' rule applies only to truly independent permitting factors</li><li>Frankincense is bound to the meal offering — it is part of the same sacrificial act</li><li>Intent to burn frankincense next day = full piggul</li><li>Karet liability for one who eats the meal offering</li><li>Animal offering analogy: slaughter with next-day intent = piggul regardless</li><li>Karet requires olive-bulk of intent covering both loaves</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🙏 Rav Mari: Proving Non-Priest Frankincense Collection Is Invalid</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rabbi Yannai's ruling:</strong> A non-priest who collects the frankincense from a meal offering — the act is <em>invalid</em> and <strong>disqualifies</strong> the offering</div><div class="process-arrow">↓</div><div class="process-step"><strong>Question:</strong> What is the source? The Torah only explicitly excludes non-priests from <em>kemitzah</em> (handful removal). Where is the prohibition on non-priest frankincense collection?</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Mari's proof attempt:</strong> From the mishna on 12a — placing the handful in a service vessel renders piggul, just like blood collection into a vessel for animal offerings</div><div class="process-arrow">↓</div><div class="process-step"><strong>Implication:</strong> Blood collection requires a priest. If vessel-placement for handful is comparable, then frankincense collection must also require a priest — proving Rabbi Yannai's ruling</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Gemara's rejection:</strong> The comparison does not prove priestly requirement. Vessel-placement renders piggul for a different reason — it is <em>indispensable</em> (you cannot sacrifice the handful without it), making it a significant rite</div><div class="process-arrow">↓</div><div class="process-step"><strong>Conclusion:</strong> Both blood collection and vessel-placement involve a <em>service vessel sanctifying a permitting factor</em>. This structural equivalence is why both render piggul — but it does not establish priestly requirement for frankincense collection from the mishna alone</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🍞 Rav Huna vs. Rav Naḥman: Paired Offerings and Piggul Spread</h2>
+  
+  <table><tr><th>Case</th><th>Rav Huna (applying R. Yosei)</th><th>Rav Naḥman / Rabbis</th><th>Basis</th></tr><tr><td>Piggul intent on one of two Shavuot loaves</td><td>Only THAT loaf is piggul — other unaffected</td><td>Both loaves become piggul</td><td>Whether piggul 'spreads' between paired items</td></tr><tr><td>Burn one frankincense bowl with next-day intent</td><td>Only that arrangement of shewbread affected</td><td>Both shewbread arrangements become piggul</td><td>Reish Lakish: same principle as meal offering frankincense</td></tr><tr><td>Ritual impurity analogy</td><td>One impure limb ≠ whole animal impure (kal va-chomer: piggul ≤ tumah)</td><td>Piggul is stronger than tumah — affects the whole</td><td>Rav Huna's logical argument from a fortiori</td></tr><tr><td>Karet liability per baraita (Rav Naḥman's objection)</td><td>—</td><td>No karet unless intent covered an olive-bulk of BOTH loaves</td><td>Baraita supports Rabbis, not Rabbi Yosei — per Rav Naḥman</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Keritot 13 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;border:2px solid #c9a84c;padding:10px;border-radius:6px;"><strong>Priest performs rite on meal offering</strong> with <em>next-day (piggul) intent</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:1px solid #e74c3c;padding:8px;border-radius:6px;"><strong>Intent re: handful or remainder</strong><br><small>Same-type permitting factor</small><br><br>→ <strong style='color:#e74c3c'>All agree: Piggul + karet</strong></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:1px solid #e67e22;padding:8px;border-radius:6px;"><strong>Intent re: frankincense</strong><br><small>Different permitting factor</small><br><br>→ Rabbis: <span style='color:#e74c3c'>Piggul + karet</span><br>→ R. Yosei: <span style='color:#e67e22'>Pasul only</span></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;border:2px solid #2ecc71;padding:10px;border-radius:6px;"><strong>Extension to paired offerings:</strong> Rav Huna — piggul intent on one Shavuot loaf or one frankincense bowl does not spread to its pair (per Rabbi Yosei)<br><small>Rav Naḥman objects from baraita: Rabbis require olive-bulk of intent on both</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Keritot 13a-13b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Keritot 13a-13b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../12/">← Daf 12</a><a href="../14/">Daf 14 →</a></div>
+</body>
+</html>

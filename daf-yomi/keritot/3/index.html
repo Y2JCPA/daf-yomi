@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keritot 3 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Keritot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍳</div>
+  <h1>Keritot 3</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כריתות ג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔍 Recognizable Intent — when improper intent is 'nikar' (visible) from the offering<br>
+    🕊️ Bird Sin Offering — sprinkling above vs. below the red line<br>
+    📜 Zot Torat HaMincha — Rava's verse-based resolution (Leviticus 6:7)<br>
+    🍳 Pan vs. Deep-Pan — Rav Ashi: vessel intent is inconsequential<br>
+    ⚖️ Three Resolutions — Rabba, Rava, and Rav Ashi's contrasting frameworks<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Does Improper Intent Invalidate a Sacrifice?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">When improper intent is <strong>recognizably false</strong> — evident from the animal's appearance or the rite performed — the offering is <em>disqualified</em>. When it is not recognizable, the owner fulfills their obligation.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">But a <strong>goat sin offering</strong> slaughtered as a guilt offering — a goat has <em>black hair</em>, a guilt offering is a <em>ram with white wool</em>. Clearly recognizable! Should it not effect acceptance?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">A <strong>calf or bull</strong> slaughtered as a Paschal or guilt offering is utterly unlike either — such large animals are never offered as Paschal or guilt offerings. The difference <em>is</em> recognizable. Disqualified.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">Rather, the age-difference between a <strong>first-year and second-year animal</strong> is not obvious to observers — a large first-year animal can resemble a small second-year one. That distinction is <em>not</em> on people's minds.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Tension</strong> When does improper sacrificial intent become 'recognizably false' enough to disqualify an offering — vs. being overlooked so the owner still fulfills their obligation?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔍 Rabba's Framework: Recognizable vs. Hidden Intent</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Priest performs rite with improper intent</strong><br><small>e.g., slaughters offering A for the sake of offering B</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Intent is RECOGNIZABLE (nikar)</div><div class="flow-box result-bad">Observers can clearly see from the animal's appearance or the rite that the priest's stated intent is implausible</div></div><div class="flow-col"><div class="flow-label">Intent is NOT RECOGNIZABLE</div><div class="flow-box result-good">Observers might plausibly think the intent is legitimate — no visible cause for suspicion</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">❌ Disqualified</div><div class="flow-box result-bad">Offering does <strong>not</strong> effect acceptance — owner has <em>not</em> fulfilled their obligation</div></div><div class="flow-col"><div class="flow-label">✅ Valid</div><div class="flow-box result-good">Offering <strong>effects acceptance</strong> — owner <em>has</em> fulfilled their obligation</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🕊️ The Bird Offering Challenge to Rabba</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">A <strong>bird sin offering</strong> whose blood was sprinkled <em>below</em> the red line for the sake of a <strong>bird burnt offering</strong> should effect acceptance — sprinkling below the line proves it is being treated as a sin offering!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">People might say: Perhaps it <em>is</em> a sin offering whose blood had already been sprinkled — and the squeezing above the line was merely incidental. The false intent is <strong>not recognizable</strong>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">But Rabbi Shimon says the bird offering <em>does</em> effect acceptance! Yet Rabbi Shimon never directly discussed bird offerings — his leniency was specifically articulated for <strong>meal offerings</strong>.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabbi Shimon</div><div class="speech">Meal offerings are <strong>not similar to slaughtered offerings</strong> — the mode of preparation of a meal offering proves its identity. For slaughtered offerings, the name of the offering is what matters: <em>'And this'</em> indicates a specific law.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Rabbi Shimon's leniency stems from the unique self-identifying nature of meal offering preparation — not a general rule for all sacrifices</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚖️ Three Amoraic Resolutions of Rabbi Shimon's Contradiction</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabba</h3><ul><li>Meal offering valid when intent is <em>not recognizably false</em></li><li>The preparation of a meal offering proves its identity</li><li>Slaughtered offerings: even unrecognizable false intent is disqualifying</li><li>Rule: <strong>nikar</strong> (visible) false intent → disqualified in all cases</li></ul></div><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">Rava</h3><ul><li>Meal offering valid via verse: <strong>"Zot torat hamincha"</strong></li><li>One unified law applies to <em>all</em> meal offerings</li><li>Slaughtered offerings: verse <strong>"And slaughter <em>it</em>"</strong> demands specific intent</li><li>Sin offering for fat → for blood offering: invalid per Rabbis; valid per R. Shimon</li></ul></div><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#2ecc71">Rav Ashi</h3><ul><li>Meal offering valid because <em>vessel-type intent</em> is inconsequential</li><li>Pan vs. deep-pan is a formal distinction, not a substantive one</li><li>Slaughtered offerings: even one slaughter method for all, the <strong>name</strong> matters</li><li>Intent <em>shelamim</em> is categorically different — the animal itself is called shelamim</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📜 The Verse: Zot Torat HaMincha</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">ויקרא ו:ז — וְזֹאת תּוֹרַת הַמִּנְחָה | ויקרא ד:לג — וּשְׁחַט אֹתָהּ לְחַטָּאת</div><div class="callout"><strong>וְזֹאת תּוֹרַת הַמִּנְחָה</strong> "<strong>And this is the law of the meal offering</strong>" (Leviticus 6:7) — Rava derives that there is <em>one unified law</em> for all meal offerings. Therefore if a priest removes a handful from a pan meal offering intending it for a deep-pan meal offering, the owner still fulfills their obligation. The single 'law' bridges across different meal offering types.<br><br>By contrast, for slaughtered offerings: <strong>"And slaughter <em>it</em> for a sin offering"</strong> (Leviticus 4:33) — the word <em>otah</em> ('it') indicates that the specific offering must be slaughtered as <em>that</em> offering, demanding proper intent. Rav Aḥa son of Rava: this is the basis for disqualifying all such sin offerings.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🗂️ Cases of Improper Intent: Outcomes by Opinion</h2>
+  
+  <table><tr><th>Case</th><th>Recognizable?</th><th>Rabba</th><th>Rava</th><th>Rav Ashi</th><th>R. Shimon</th></tr><tr><td>Pan meal offering → for deep-pan</td><td>No — vessel only</td><td>✅ Valid</td><td>✅ Valid (one law)</td><td>✅ Valid (vessel irrelevant)</td><td>✅ Valid</td></tr><tr><td>Dry meal offering → for oil-mixed</td><td>No</td><td>✅ Valid</td><td>✅ Valid</td><td>⚠️ Challenged</td><td>✅ Valid</td></tr><tr><td>Burnt offering → for peace offering</td><td>Yes — name differs</td><td>❌ Invalid</td><td>❌ Invalid</td><td>❌ Invalid (shelamim is its name)</td><td>❌ Invalid</td></tr><tr><td>Sin offering → for guilt offering</td><td>Yes — black vs. white wool</td><td>❌ Invalid</td><td>❌ Invalid (Rabbis)</td><td>❌ Invalid</td><td>✅ Valid</td></tr><tr><td>Paschal offering → for guilt offering</td><td>Debated — age unclear</td><td>Debated</td><td>❌ Invalid</td><td>❌ Invalid</td><td>Debated</td></tr><tr><td>Calf/bull → for Paschal or guilt offering</td><td>Yes — totally wrong animal</td><td>❌ Invalid</td><td>❌ Invalid</td><td>❌ Invalid</td><td>❌ Invalid</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Keritot 3 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2a2a4a;border:2px solid #c9a84c;padding:10px;border-radius:6px;text-align:center;"><strong>Core Question:</strong> Does improper intent during a sacrifice disqualify it?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a5c;border-left:4px solid #4a90d9;padding:8px;border-radius:4px;"><strong>Rabba:</strong><br>Depends on whether intent is <em>recognizably false (nikar)</em> from animal appearance or rite</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a5c;border-left:4px solid #c9a84c;padding:8px;border-radius:4px;"><strong>Rava:</strong><br>Meal offerings unified by <em>"Zot torat hamincha"</em>; slaughtered offerings need specific intent per <em>"slaughter <u>it</u>"</em></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a5c;border-left:4px solid #2ecc71;padding:8px;border-radius:4px;"><strong>Rav Ashi:</strong><br>Vessel-type intent is inconsequential; intent about the offering's <em>name/identity</em> is what disqualifies</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#1a3a2a;border:2px solid #2ecc71;padding:10px;border-radius:6px;text-align:center;"><strong>Shared Conclusion:</strong> Meal offering with improper intent for <em>another meal offering</em> → <strong style='color:#2ecc71'>valid</strong>. Slaughtered offering with improper intent for a <em>different category</em> → <strong style='color:#e74c3c'>invalid</strong>.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Keritot 3a-3b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Keritot 3a-3b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../2/">← Daf 2</a><a href="../4/">Daf 4 →</a></div>
+</body>
+</html>

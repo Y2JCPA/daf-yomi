@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keritot 5 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Keritot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌾</div>
+  <h1>Keritot 5</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כריתות ה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌾 Omer Handful — valid if removed not for its own sake?<br>
+    ⏰ 'Time Not Yet Arrived' — Reish Lakish's limiting principle<br>
+    🩹 Leper's Purification — strict order of blood before oil<br>
+    🐑 Tereifa — why a verse is needed to disqualify it from the altar<br>
+    ⚖️ Failed A Fortiori Proofs — every proposed analogy refuted<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌾 Rav vs. Reish Lakish: The Omer Handful</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav</div><div class="speech">An omer meal offering from which a handful was removed <strong>not for its own sake</strong> is <strong>disqualified</strong> — the handful may not be burned on the altar.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech">It is <strong>valid</strong> — the handful is burned on the altar. A second omer must be brought, but this handful is not disqualified.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rav Adda bar Ahava</div><div class="speech">Reish Lakish's logic: an offering is not <em>'before its time'</em> if it will become permitted <strong>that same day</strong>. The omer's new crop is permitted by dawn of 16 Nisan.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Pappa</div><div class="speech">The true reason of Reish Lakish: the <strong>illumination of the eastern horizon</strong> permits the new crop — so when the handful is sacrificed, it is already fit.</div></div></div><div class="callout" style="margin-top:20px"><strong>The Crux</strong> Does 'before its time' apply when the offering's prohibition lifts that same morning? Rav says yes — disqualified. Reish Lakish says no — valid.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⏰ Is the Omer Handful 'Before Its Time'?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Omer handful removed not for its own sake</strong><br><small>Remainder not yet permitted to be eaten — is the handful disqualified?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav — Disqualified</div><div class="flow-box result-bad">Remainder cannot be eaten → handful is <em>before its time</em> → <strong>invalid for the altar</strong></div></div><div class="flow-col"><div class="flow-label">Reish Lakish — Valid</div><div class="flow-box result-good">New crop is permitted at <strong>dawn of 16 Nisan</strong> (same day) → not 'before its time' → <strong>handful may be burned</strong></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Rav Adda son of Rav Yitzḥak objects:</strong> The baraita lists meal offerings as a case where a 'general prohibition was permitted by sanctity.' But if the handful is always fit, there is nothing to permit!</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Gemara answers:</strong> The handful was <em>initially</em> fit — no prohibition was ever permitted. The baraita's formula simply does not apply here.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🩹 Leper's Purification — Required Order of Rites</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Step 1:</strong> Slaughter the <em>asham</em> (guilt offering) — this must come first</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 2:</strong> Place blood of the guilt offering on the leper's right thumb, right big toe, and right ear (Leviticus 14:14)</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 3:</strong> Apply oil (from a log) over the blood — on right thumb and big toe</div><div class="process-arrow">↓</div><div class="process-step highlight">⚠️ <strong>If oil was applied before blood:</strong> oil placement is invalid — must redo</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Sheshet challenges:</strong> If the offering is not 'before its time' once the day has come, why must the oil be redone? The second placement should itself be invalid!</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rav Pappa responds:</strong> The leper's laws are exceptional — the Torah says <em>"This shall be the law of the leper"</em> (Lev. 14:2), indicating the order is <strong>eternally fixed as written</strong>.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🐦 vs. 🫓 Birds vs. Meal Offerings — Distinct Halakhot</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2e3a"><h3 style="color:#4a90d9">Birds Only</h3><ul><li>Bring atonement for <em>zav, zavah, yoledet</em></li><li><strong>Melikah</strong> (pinching the nape) serves as slaughter for the altar</li><li>Pinching a non-sacred bird creates a carcass — yet <strong>pinching is permitted by sanctity</strong> of the altar</li><li>Two birds offered: one as sin offering, one as burnt offering</li></ul></div><div class="compare-box" style="border-top-color:#1a2e1a"><h3 style="color:#2ecc71">Meal Offerings Only</h3><ul><li>Must be placed in a <strong>service vessel</strong> (kli shareit)</li><li>Require <strong>waving</strong> (tenufah) and <strong>bringing near</strong> (hagashah) to the altar corner</li><li>Some types require <strong>oil and frankincense</strong></li><li><strong>Handful (kometz)</strong> separated and burned; remainder eaten by priests</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ Why Can't We Infer Tereifa's Disqualification by A Fortiori?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Baraita</div><div class="speech">A <strong>tereifa</strong> is disqualified from the altar. This cannot be derived by <em>a fortiori</em> from a blemished animal — a verse is required: <em>'from the herd'</em> (Lev. 1:3).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav</div><div class="speech">The <strong>omer</strong> proves the a fortiori fails: omer's new crop is forbidden to all, yet offered on the altar. 'Forbidden to all' does not block the altar — so tereifa needs a verse.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech"><strong>Rejected:</strong> The <em>Sabbatical year omer</em> does not permit the new crop (no valid planting), so the omer is not a consistent counterexample.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech">The <strong>incense preparer</strong> proves it: preparing incense is forbidden to a layperson yet permitted for the Most High — <em>rejected:</em> the prohibition is only rabbinic.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Mar b. Ravina</div><div class="speech"><strong>Shabbat</strong> proves it: forbidden generally, yet Temple service overrides Shabbat — <em>rejected:</em> circumcision also overrides Shabbat, so Shabbat is not purely a divine prohibition.</div></div></div><div class="callout" style="margin-top:20px"><strong>Conclusion</strong> Every proposed proof is refuted in turn. The verse 'from the herd' (Lev. 1:3) is indispensable to explicitly exclude a tereifa from the altar.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📋 Rava's Four Conditions for Improper Intent to Disqualify</h2>
+  
+  <table><tr><th>Condition</th><th>Explanation</th><th>What It Excludes</th></tr><tr><td><strong>Fit for service</strong></td><td>Only a qualified priest's intent counts</td><td>Blemished priests — their intent is irrelevant</td></tr><tr><td><strong>Proper location</strong></td><td>Intent expressed inside the Temple court</td><td>Intent expressed outside the azarah</td></tr><tr><td><strong>Valid sacrificial object</strong></td><td>Intent must concern a legitimately sacred item</td><td>Non-sacred or disqualified items</td></tr><tr><td><strong>During a Temple service act</strong></td><td>Slaughter, sprinkling blood, burning — not mere carrying</td><td>Non-service actions like transporting the offering</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Keritot 5 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#2c1a0e;border-color:#c9a84c;color:#f0e0b0"><strong>Omer handful — removed not for its own sake</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a0e0e;border-color:#e74c3c;color:#f0c0c0"><strong>Rav:</strong> Disqualified<br><small>remainder not yet permitted → premature offering</small></div></div><div class="flow-col"><div class="flow-box" style="background:#0e1a0e;border-color:#2ecc71;color:#c0f0c0"><strong>Reish Lakish:</strong> Valid<br><small>dawn permits new crop same day → not premature</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#0e1a2e;border-color:#4a90d9;color:#b0d0f0"><strong>Leper's purification:</strong> blood → then oil (strict Torah order)<br><em>"This shall be"</em> fixes the sequence eternally (Rav Pappa)</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1e0e2e;border-color:#9b59b6;color:#d8b0f0"><strong>Tereifa disqualified from the altar</strong> — verse required<br><small>Omer, incense, Shabbat, diverse kinds — all proposed proofs refuted</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Keritot 5a-5b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Keritot 5a-5b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../4/">← Daf 4</a><a href="../6/">Daf 6 →</a></div>
+</body>
+</html>
