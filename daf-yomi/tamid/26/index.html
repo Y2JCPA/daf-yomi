@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamid 26 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Tamid Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌾</div>
+  <h1>Tamid 26</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמיד כו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🤲 Handful Sanctification — service vessel required or not?<br>
+    🍯 Remainder Impurity — partial vs. complete affects validity<br>
+    🩸 Olive-bulk Rule — minimum quantity for blood sprinkling<br>
+    🔥 Burning in Two Parts — split burning deemed valid<br>
+    ⏰ Permitting the Remainder — fire ignites vs. majority consumed<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌾 Meal Offering Handful: Central Disputes of the Daf</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Priest removes the <strong>handful (קֹמֶץ)</strong> from the meal offering</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Remainder becomes impure?</div><div class="flow-box question"><strong>R. Eliezer:</strong> Always valid<br><strong>R. Yehoshua:</strong> Invalid if <em>all</em> remainder impure<br><small>Rav: only complete impurity invalidates</small></div></div><div class="flow-col"><div class="flow-label">Handful placed in service vessel?</div><div class="flow-box question"><strong>Rabbis:</strong> Required — otherwise unfit<br><strong>R. Shimon:</strong> Not required — still fit<br><small>Derived from 'most holy as sin offering'</small></div></div><div class="flow-col"><div class="flow-label">Burned in two increments?</div><div class="flow-box result-good">Both opinions: <strong>Valid ✅</strong><br><small>Provided each part ≥ olive-bulk (R. Zeira)</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Once majority consumed by fire → <strong>remainder (שיירים) permitted</strong> for priests to eat (Rabbi Yoḥanan)</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🍯 Does Remainder Impurity Invalidate the Offering?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Eliezer</div><div class="speech">Even if the remainder became impure, was burned, or was lost — the handful is sacrificed and the offering is valid. The handful stands on its own.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Yehoshua</div><div class="speech">If the remainder became impure, the offering is invalid — the handful may not be sacrificed. The remainder and handful are interdependent.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav</div><div class="speech">Rabbi Yehoshua's ruling applies only when ALL the remainder became impure. If only PART became impure, what remains is still significant and the offering is fit.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rava</div><div class="speech">The same logic applies to partial loss or partial burning — what remains is significant and the remaining portion is sacrificed normally. This accords with Rabbi Yehoshua.</div></div></div><div class="callout" style="margin-top:20px"><strong>📌 Key Principle</strong> Rabbi Yehoshua's baraita teaches: any offering with an olive-bulk of meat or fat remaining — the priest sprinkles the blood. Less than that, he does not sprinkle.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🩸 Olive-bulk Rule: When Is Blood Sprinkled?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">After slaughter: what portion of the offering remains?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✅ Sprinkle blood</div><div class="flow-box result-good">Olive-bulk of <strong>meat</strong> remains<br><small>(primary rule)</small></div></div><div class="flow-col"><div class="flow-label">✅ Sprinkle blood</div><div class="flow-box result-good">Olive-bulk of <strong>fat</strong> remains<br><small>Derived: Lev. 17:6 — 'the fat'</small></div></div><div class="flow-col"><div class="flow-label">✅ Sprinkle blood</div><div class="flow-box result-good">Only <strong>lobe of liver</strong> or <strong>kidneys</strong><br><small>Derived: 'for a pleasing aroma to God' — anything offered to God</small></div></div><div class="flow-col"><div class="flow-label">❌ Do NOT sprinkle</div><div class="flow-box result-bad">½ olive-bulk meat + ½ olive-bulk fat<br><small>Combined halves do not join to constitute the required measure</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Source (Rabbi Yoḥanan in name of Rabbi Yishmael):</strong> 'For a pleasing aroma to the Lord' (Lev. 17:6) — blood is sprinkled whenever anything that produces a pleasing aroma remains</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>✋ Must the Handful Be Sanctified in a Service Vessel?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">The Rabbis</h3><ul><li>Handful MUST be sanctified in a service vessel before burning</li><li>Transferring to left hand renders it unfit — permanently</li><li>Returning it to right hand cannot restore its validity</li><li>Reason: vessel sanctification is an indispensable step</li><li>Source: baraita — 'the handful requires sanctification in a service vessel'</li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#ffffff">Rabbi Shimon</h3><ul><li>Service vessel is NOT required for the handful</li><li>Once removed and sanctified, it may be burned even from the hand</li><li>Source: 'It is most holy, as the sin offering' (Lev. 6:10) — sin offering burns without special vessel requirement</li><li>If put in left hand — return to right hand; it remains valid</li><li>Rabbi Yannai: no restrictions on manner of bringing it up to altar</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🤲 Handful Handling: Fit or Unfit?</h2>
+  
+  <table><tr><th>Scenario</th><th>Rabbis</th><th>Rabbi Shimon</th></tr><tr><td>Handful not placed in service vessel at all</td><td>Unfit ❌</td><td>Fit ✅</td></tr><tr><td>Burned in two increments, each ≥ olive-bulk</td><td>Fit ✅</td><td>Fit ✅</td></tr><tr><td>Burned in two increments, each < olive-bulk</td><td>Unfit ❌ (R. Zeira: no significance)</td><td>Unfit ❌</td></tr><tr><td>Transferred to left hand, returned to right</td><td>Unfit ❌ (left hand permanently disqualifies)</td><td>Fit ✅ (return to right is sufficient)</td></tr><tr><td>Handful arranged on altar; wood piled on top</td><td>Dilemma — does this count as burning? (R. Elazar)</td><td>Dilemma — does this count as burning? (R. Elazar)</td></tr><tr><td>Priest intended improper eating while handful in hand</td><td>Not valid, but no karet liability</td><td>Not valid, but no karet liability</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⏰ When Does Burning the Handful Permit the Remainder?</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>The Question:</strong> From precisely which moment does the handful's sacrifice render the שיירים (remainder) permitted for consumption by the priests?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Ḥanina:</strong> From the moment the <em>fire takes hold</em> of the handful — i.e., when it first ignites on the altar</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Yoḥanan:</strong> Only once the <em>majority</em> of the handful is consumed by fire<br><small>Proof: 'smoke of the land went up as smoke of a furnace' (Gen. 19:28) — a furnace releases smoke only after fire consumes the majority</small></div><div class="process-arrow">↓</div><div class="process-step"><strong>Baraita (via Ravin bar Rav Adda):</strong> Items sacrificed by day (handful, frankincense, incense) — from when may they be burned after sunset? Once begun during the day, burning may continue into the night</div><div class="process-arrow">↓</div><div class="process-step"><strong>Challenge:</strong> If lit concurrent with sunset, majority cannot be consumed before nightfall — contradiction with Rabbi Yoḥanan?<br><strong>Rabbi Elazar resolves:</strong> Baraita refers to items already arranged on the altar <em>before</em> sunset; once on the altar, they may burn through the night</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Tamid 26 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box step" style="background:#16213e;color:#000;border-radius:8px;padding:10px;font-weight:bold;"><strong>Meal Offering (מִנְחָה)</strong><br>Handful (קֹמֶץ) removed by priest</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px;"><strong>Remainder valid?</strong><br>R. Eliezer: always<br>R. Yehoshua: not if all impure<br><em>Rav: partial impurity = still fit</em></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px;"><strong>Vessel required?</strong><br>Rabbis: yes — otherwise unfit<br>R. Shimon: no — hand suffices<br><em>Left hand = unfit (Rabbis only)</em></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px;"><strong>Burned when?</strong><br>Can split into 2 (if each ≥ olive-bulk)<br>R. Ḥanina: fire ignites<br>R. Yoḥanan: majority consumed</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#16213e;color:#000;border-radius:8px;padding:10px;font-weight:bold;">✅ <strong>Remainder (שיירים) permitted</strong> to priests once majority of handful is consumed by fire</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Tamid 26a-26b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Tamid 26a-26b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../25/">← Daf 25</a><a href="../27/">Daf 27 →</a></div>
+</body>
+</html>

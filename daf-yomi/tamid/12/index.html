@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamid 12 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Tamid Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🫱</div>
+  <h1>Tamid 12</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמיד יב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔥 Piggul — improper intent during the four rites<br>
+    🫱 The Handful — as the permitting factor (matir)<br>
+    📏 Lacking Remainder — can it still become piggul?<br>
+    ⚖️ Rav Huna vs. Rava — a foundational machlokes<br>
+    🍽️ Eating & Burning — two half-measures don't combine<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ The Great Piggul Debate: Lacking Remainder</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Huna</div><div class="speech">Even according to Rabbi Akiva, burning the handful is <strong>NOT effective</strong> in rendering a lacking remainder as piggul. The deficiency is <em>intrinsic</em> to the remainder itself — unlike an external disqualification such as leaving the Temple.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">On the contrary! Even by Rabbi Eliezer's opinion, burning the handful <strong>IS effective</strong> — it renders even a lacking remainder as piggul and removes it from the laws of misuse of consecrated property.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech"><em>Proof:</em> Rabbi Ḥiyya's mishna omits 'or an olive-bulk' for the remainder — implying the remainder was already lacking in measure, yet piggul still applies!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">No proof from there! Rabbi Ḥiyya follows Rabbi Elazar, who holds one is not liable for burning <em>less than the full handful</em> — so he omits the olive-bulk for the handful too, not because of the remainder's lack.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> If the remainder of a meal offering became lacking in measure after the handful was removed but before it was burned — can burning the handful still render the remainder piggul?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🫱 The Four Rites That Can Create Piggul</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>1. Removal (קְמִיצָה / Kemitzah)</strong> — The priest removes the handful from the meal offering</div><div class="process-arrow">↓</div><div class="process-step"><strong>2. Placement in Vessel (נְתִינַת כְּלִי / Nesinas Kli)</strong> — The handful is placed into a Temple service vessel</div><div class="process-arrow">↓</div><div class="process-step"><strong>3. Conveying to the Altar (הוֹלָכָה / Holachah)</strong> — The vessel is carried toward the altar</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>4. Burning on Altar (הַקְטָרָה / Haktarah)</strong> — The handful is burned on the altar as the permitting factor</div><div class="process-arrow">↓</div><div class="process-step highlight"><em>If any rite is performed with intent to eat the remainder or burn the handful <strong>outside its designated time or place</strong> → the offering becomes <strong>פִּגּוּל</strong> and one is liable to כָּרֵת</em></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📏 Does a Lacking Remainder Become Piggul?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Handful removed from meal offering with <strong>piggul intent</strong></div><div class="flow-arrow">↓</div><div class="flow-box question">Remainder becomes <strong>lacking in measure</strong> (less than olive-bulk) before the handful is burned on the altar</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Huna</div><div class="flow-box result-bad">Burning the handful is <strong>NOT effective</strong> — the intrinsic deficiency of the remainder blocks piggul from taking effect</div></div><div class="flow-col"><div class="flow-label">Rava</div><div class="flow-box result-good">Burning the handful <strong>IS effective</strong> — renders even a lacking remainder as piggul and removes it from מְעִילָה (misuse) liability</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚔️ Rabbi Eliezer vs. The Rabbis — Cross-Intent for Piggul</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbi Eliezer</h3><ul><li>Intent can cross between <strong>eating</strong> and <strong>burning</strong> domains</li><li>Intent to eat what is normally burned = invalidates</li><li>Intent to burn what is normally eaten = invalidates</li><li>Half olive-bulk eaten + half olive-bulk burned <strong>combine</strong> for piggul</li><li>Basis: Mishna 12b follows this view (per Rabbi Yirmeya)</li></ul></div><div class="compare-box" style="border-top-color:#2d1a3a"><h3 style="color:#9b59b6">The Rabbis</h3><ul><li>Intent must match the <strong>normal manner</strong> of the item</li><li>Eating intent applies only to portions normally eaten</li><li>Burning intent applies only to portions normally burned on altar</li><li>Half + half of <em>different</em> types do <strong>NOT combine</strong></li><li>Abaye: mishna can be read in accord with Rabbis too</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔥 Types of Piggul Intent & Outcomes</h2>
+  
+  <table><tr><th>Intent During Rite</th><th>Violation Type</th><th>Outcome</th><th>Karet?</th></tr><tr><td>Eat remainder outside its designated area</td><td>Wrong place</td><td>פִּגּוּל</td><td>Yes</td></tr><tr><td>Eat remainder after its designated time</td><td>Wrong time</td><td>פִּגּוּל</td><td>Yes</td></tr><tr><td>Burn handful outside Temple courtyard</td><td>Wrong place</td><td>פִּגּוּל</td><td>Yes</td></tr><tr><td>Time intent precedes place intent (Rabbi Yehuda)</td><td>Both wrongs</td><td>פִּגּוּל — liable to כָּרֵת</td><td>Yes</td></tr><tr><td>Place intent precedes time intent (Rabbi Yehuda)</td><td>Both wrongs</td><td>פִּגּוּל — no כָּרֵת</td><td>No</td></tr><tr><td>½ olive-bulk eat + ½ olive-bulk burn (Rabbis)</td><td>Mixed domains</td><td>Fit — לֹא מִצְטָרְפִין</td><td>No</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🍽️ Eating & Burning Do Not Combine</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אֲכִילָה וְהַקְטָרָה אֵין מִצְטָרְפִין</div><div class="callout"><strong>Mishna Ruling — Daf 12b</strong> If one intends to eat <strong>half an olive-bulk</strong> of the remainder <em>and</em> burn <strong>half an olive-bulk</strong> of it outside its place or after its time — the offering is <strong>fit (כָּשֵׁר)</strong>. Each intent alone falls short of the required measure (olive-bulk), and the two categories cannot join. <br><br>The Gemara notes: this holds according to the Rabbis. But according to <strong>Rabbi Eliezer</strong>, eating-consumption and altar-consumption <em>do</em> combine — and the mishna may follow him.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Tamid 12 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a3a5c;border-color:#4a90d9"><strong>Piggul</strong> requires improper intent during one of the <em>four rites</em> of the handful (the permitting factor / מַתִּיר)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2c;border-color:#2ecc71"><strong>Remainder intact?</strong><br>→ All agree: piggul applies</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a;border-color:#e74c3c"><strong>Remainder became lacking?</strong><br>→ <em>Rav Huna:</em> No piggul<br>→ <em>Rava:</em> Piggul still applies</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#2a1a3a;border-color:#9b59b6"><strong>Half-measure rule:</strong> Intent to eat ½ olive-bulk <em>and</em> burn ½ olive-bulk = <strong>do not combine</strong> (Rabbis) → offering remains fit. But per Rabbi Eliezer — they <em>do</em> combine.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Tamid 12a-12b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Tamid 12a-12b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../11/">← Daf 11</a><a href="../13/">Daf 13 →</a></div>
+</body>
+</html>

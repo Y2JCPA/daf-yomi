@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamid 19 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Tamid Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌾</div>
+  <h1>Tamid 19</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמיד יט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔀 Verse Context — Preceding & Succeeding Matter<br>
+    📜 Rav's Principle — Law & Statute Signal Indispensability<br>
+    🗓️ Mnemonic: Nazirite, Toda, Leper, Yom Kippur<br>
+    🔁 Repeated Verses = Indispensable Rites (Rav vs Shmuel)<br>
+    🏛️ Location of the Meal Offering at the Altar Corner<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📜 Rav's Foundational Principle</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כל מקום שנאמר תורה וחוק — לא נאמרו אלא לעכב</div><div class="callout"><strong>Core Teaching</strong> Rav establishes: wherever the Torah uses <strong>law (תורה)</strong> and <strong>statute (חוק)</strong> for a sacrificial rite, their combination signals that failure to perform those rites <strong>invalidates the offering</strong>. The Gemara challenges this with cases where only one term appears — nazirite, thanks offering, leper, Yom Kippur — and progressively refines the principle. A parallel dispute between Rav and Shmuel concerns whether <em>repeated verses</em> in the Torah independently mark a rite as indispensable.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔀 Does a Verse Apply to Both Preceding AND Succeeding Matter?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">The phrase <em>'with his finger'</em> in the blood-sprinkling verse applies in <strong>both directions</strong> — to the preceding act (collection of blood) and the succeeding act (placement of blood). A verse may simultaneously govern what comes before and after it.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Shimon</div><div class="speech">A verse <strong>cannot</strong> be interpreted as referring to both preceding and succeeding matter. The term <em>'hand'</em> is stated only for placement, not collection — therefore even disqualified priests may collect blood, as no restriction is written there.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">This is precisely the point of dispute: the Rabbis hold that <em>'with his finger'</em> governs both directions. Rabbi Shimon denies this principle entirely.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Gemara</div><div class="speech">Rabbi Shimon's actual reasoning: the letter <strong>vav (ו)</strong> — 'and he shall bring it <em>to</em> Aaron's sons, the priests' — adds the priest's role to the <em>preceding</em> act of pouring oil, requiring priestly involvement there specifically.</div></div></div><div class="callout" style="margin-top:20px"><strong>Rabbi Shimon's Tool</strong> The conjunctive vav (ו) links the priest to the immediately preceding act. This is not a 'both directions' reading — it is a forward linkage from the pouring of oil to the priest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Rav's Principle: Law & Statute → Indispensability</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Rav's Rule:</strong> Where a verse states both <em>law (תורה)</em> and <em>statute (חוק)</em> for a sacrificial rite, failure to perform that rite <strong>invalidates</strong> the offering</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Only 'Law' stated</div><div class="flow-box question">Nazirite, Thanks Offering (Toda), Leper — yet certain rites ARE indispensable. Challenge!</div></div><div class="flow-col"><div class="flow-label">Only 'Statute' stated</div><div class="flow-box question">Yom Kippur (two goats), Meal Offering eating — yet rites are indispensable. Challenge!</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Resolution:</strong> Rav means: <em>even where only one term appears</em>, either law or statute alone suffices to teach indispensability — both terms express the same principle</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Meal Offering Exception:</strong> The 'statute' written there refers to <em>eating</em> — but the Gemara concludes that statute-by-eating applies to the <em>entire</em> offering. Only rites explicitly <strong>repeated</strong> in verse (groats and oil, Lev. 2:16) are indispensable</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🗓️ Mnemonic Cases Challenging Rav's Principle</h2>
+  
+  <table><tr><th>Case</th><th>Mnemonic Letter</th><th>Term Present</th><th>Rite at Issue</th><th>Resolution</th></tr><tr><td>Nazirite (נזיר)</td><td>נ — Nun</td><td>Law only</td><td>Species of nazirite offering</td><td>Law alone suffices to signal indispensability</td></tr><tr><td>Thanks Offering (תודה)</td><td>ת — Tav</td><td>Law only</td><td>Four types of bread loaves</td><td>Peace-offering law applies; law alone suffices</td></tr><tr><td>Leper (מצורע)</td><td>צ — Tzadi</td><td>Law only</td><td>Four species of purification rite</td><td>Law alone is sufficient here as well</td></tr><tr><td>Yom Kippur (יום כיפור)</td><td>י — Yod</td><td>Statute only</td><td>Two goats must be identical</td><td>Statute alone teaches indispensability</td></tr><tr><td>Meal Offering (מנחה)</td><td>מ — Mem</td><td>Statute (eating)</td><td>Groats and oil (Lev. 2:16)</td><td>Repetition in verse marks these as indispensable</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔁 Rav vs Shmuel — Do Repeated Verses Render Rites Indispensable?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">Rav</h3><ul><li>Every rite of the meal offering that the Torah <strong>repeats</strong> is repeated specifically to teach that its absence <strong>invalidates</strong> the offering</li><li><em>'His handful'</em> (Lev. 2:2) is repeated in Lev. 6:8 — using the hand rather than a utensil is therefore indispensable</li><li>Aaron's eighth-day inauguration service ('he took it in his hand and sacrificed it') confirms 'with the hand' as a binding rule for <strong>all generations</strong></li><li>Repetition = indispensability, regardless of whether the context was permanent or temporary</li></ul></div><div class="compare-box" style="border-top-color:#2c1a5c"><h3 style="color:#9b59b6">Shmuel</h3><ul><li>Shmuel agrees in principle that repeated verses can signal indispensability</li><li>However, Shmuel <strong>refuses to derive permanent halakha</strong> from a temporary, one-time situation — the eighth-day inauguration was never meant to set ongoing law</li><li>Exception: the twelve princes' offerings, each repeated once — Shmuel <em>does</em> derive permanent halakha from those, because twelve-fold repetition is sufficient</li><li>A single temporary instance ≠ established halakha</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🏛️ Where Must the Meal Offering Be Brought — the Altar Corner Debate</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Challenge (Rav Kahana & Rav Asi):</strong> 'Bringing to the corner of the altar' is repeated in verses — yet it is apparently not indispensable? This seems to contradict Rav's principle!</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Answer:</strong> That verse does <em>not</em> repeat a mitzva — it merely <strong>defines the location</strong> where the meal offering is to be brought. Location verses are definitional, not obligatory repetitions.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Baraita — Two Competing Phrases:</strong> <em>'In front of the altar'</em> = southern side of the altar. <em>'Before the Lord'</em> = western side of the altar. They seem to conflict.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Eliezer's Principle:</strong> When fulfilling one phrase would completely nullify the other, choose the reading that preserves <em>both</em> partially — bring the meal offering to the <strong>southwest corner</strong>, satisfying both directions at once.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rav Ashi:</strong> Rabbi Eliezer holds the entire altar stood in the <em>northern part</em> of the Temple courtyard — thus 'before the Lord' (west) and 'in front of the altar' (south) converge at the altar's southwest corner without contradiction.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Tamid 19 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a3a5c;color:#fff;padding:8px;border-radius:6px;"><strong>Opening Question:</strong> Does a priest's involvement extend to preceding and succeeding acts in the same verse?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:6px;border-radius:4px;"><strong>Rabbis:</strong> Yes — verse applies in both directions simultaneously</div></div><div class="flow-col"><div class="flow-box" style="background:#2d1b5e;color:#fff;padding:6px;border-radius:4px;"><strong>Rabbi Shimon:</strong> No — vav links priest only to the <em>preceding</em> act (oil-pouring)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a4a2e;color:#fff;padding:8px;border-radius:6px;"><strong>Rav's Principle:</strong> <em>Law</em> or <em>statute</em> (either term) in a rite-verse → omission of that rite <strong>invalidates</strong> the offering</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#4a2800;color:#fff;padding:6px;border-radius:4px;"><strong>Rav:</strong> Repeated verse = indispensable rite; derives from inauguration service that 'hand not utensil' is permanent law</div></div><div class="flow-col"><div class="flow-box" style="background:#2c1a5c;color:#fff;padding:6px;border-radius:4px;"><strong>Shmuel:</strong> Agrees on repetition principle but refuses to derive permanent law from a one-time temporary situation</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#4a1a1a;color:#fff;padding:8px;border-radius:6px;"><strong>Limiting Rule:</strong> Repeated verses that <em>define location</em> (altar corner) are not mitzva-repetitions — non-performance there does <strong>not</strong> invalidate</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Tamid 19a-19b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Tamid 19a-19b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../18/">← Daf 18</a><a href="../20/">Daf 20 →</a></div>
+</body>
+</html>

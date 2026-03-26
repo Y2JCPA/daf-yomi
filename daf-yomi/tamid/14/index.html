@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamid 14 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Tamid Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍞</div>
+  <h1>Tamid 14</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמיד יד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🎯 Piggul Intent — do half-measures combine?<br>
+    🦴 One Body or Two — thighs, loaves, and identity<br>
+    ⚔️ Rav Huna Challenged — baraitot refute his view<br>
+    📜 Rabbinic Decrees — disqualification by analogy<br>
+    🚿 Impure Loaves — mishna dispute on division<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🔥 The Great Piggul Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Huna</div><div class="speech">The baraita about the two loaves follows Rabbi Yehuda HaNasi, not Rabbi Yosei. We cannot infer from it that Rabbi Yosei considers the two thighs as one body.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Ashi</div><div class="speech">Refutation! A baraita in Rabbi Yosei's name: if one intends to pour the remaining blood outside its boundary the next day, the meat becomes piggul — even though the intent was never about the meat itself!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ravina</div><div class="speech">Refutation from our own mishna! Intent to burn the handful renders the remainder piggul — yet the handful cannot itself become piggul. Indirect intent clearly creates piggul in other parts.</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Rabbi Yoḥanan</div><div class="speech">Rabbi Yosei holds the two thighs are one body — intent for one renders the other piggul. For two loaves: mixed intent (olive-bulk from both) = both piggul; separated intent (one loaf only) = only that loaf piggul.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Rabbi Yoḥanan clarifies Rabbi Yosei's position: the two thighs form one body, as do the two Shavuot loaves. 'Mixing' intent (spanning both) contaminates both; 'separating' intent leaves the other pure.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚔️ Rav Huna vs. Two Challengers</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Huna</div><div class="speech">The baraita about the two loaves is Rabbi Yehuda HaNasi's ruling, not Rabbi Yosei's. Rabbi Yehuda HaNasi requires intent combining both loaves for piggul; we learn nothing about Rabbi Yosei's view on thighs.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Ashi</div><div class="speech">From a baraita: Rabbi Yosei rules that if one slaughters a burnt offering with intent to pour the remaining blood outside tomorrow, the offering is piggul. But blood has no minimum measure! The meat becomes piggul via indirect intent — refuting Rav Huna.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ravina</div><div class="speech">From our mishna (13a): intent to burn the handful tomorrow renders the remainder piggul. But can the handful itself become piggul? No! (Zevahim 42b: 'The permitting factor does not become piggul.') So indirect intent does render other parts piggul.</div></div></div><div class="callout" style="margin-top:20px"><strong>Both Challenges Stand</strong> Rav Huna's view that piggul intent must directly reference the forbidden item is refuted from multiple independent sources. Rav Ashi and Ravina both demonstrate that indirect piggul intent operates across parts of an offering.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔄 When Do Piggul Intentions Combine Across Rites?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Half olive-bulk intent during slaughter</strong> + <strong>half olive-bulk intent during sprinkling</strong> — do they combine?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">"Some Say" (lenient view)</div><div class="flow-box result-good">Both slaughter and sprinkling are <em>permitting factors</em> — yes, the two halves combine to create piggul liability</div></div><div class="flow-col"><div class="flow-label">Levi's Baraita (strict view)</div><div class="flow-box result-bad">Intentions during the <strong>four sacrificial rites</strong> do <em>not</em> combine — each rite stands alone for piggul</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Abaye's Resolution:</strong> Rabbis only decreed disqualification where an analogous <em>full</em> piggul case exists. Where no such analogue exists (e.g., half-measures across two separate lamb slaughterings), there is no decree and no combining.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🍞 Two Loaves: Intent That Mixes vs. Intent That Separates</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c22"><h3 style="color:#e74c3c">Intent 'Mixes' the Loaves</h3><ul><li>Priest intends olive-bulk from both loaves combined</li><li>The verse treats the two loaves as one body (חָדָא גּוּפָא)</li><li>Result: both loaves become piggul</li><li>Rabbi Yosei agrees: mixed intent = one body = both piggul</li><li>Analogous to: both thighs rendered piggul together</li></ul></div><div class="compare-box" style="border-top-color:#2ecc7122"><h3 style="color:#2ecc71">Intent 'Separates' the Loaves</h3><ul><li>Priest intends olive-bulk from only one specific loaf</li><li>He mentally distinguishes between the two loaves</li><li>Result: only the one loaf he intended becomes piggul</li><li>Rabbi Yosei: separated intent = each loaf stands alone</li><li>Open question: what if intent involves only one type among four loaf types of a todah offering?</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📊 Rabbinic Decrees of Disqualification — Analogical Reasoning</h2>
+  
+  <table><tr><th>Case</th><th>Torah-Level Piggul?</th><th>Rabbinic Decree?</th><th>Analogous Case Triggering the Decree</th></tr><tr><td>Intent re: frankincense handful (R. Yosei)</td><td>No — frankincense is not eaten</td><td>Yes — offering disqualified</td><td>Analogous to intent re: meal-offering handful (which is piggul)</td></tr><tr><td>Intent re: frankincense only, not handful (Rabbis)</td><td>Partial only</td><td>Yes — disqualified</td><td>Analogous to meal-offering of a sinner (no frankincense at all — yet piggul applies)</td></tr><tr><td>One lamb slaughtered with intent for both loaves (Rabbis)</td><td>Not full piggul</td><td>Yes — disqualified</td><td>Case where both lambs slaughtered with full intent = clear piggul</td></tr><tr><td>One frankincense bowl with intent for both shewbread arrangements</td><td>Not full piggul</td><td>Yes — disqualified</td><td>Analogous to case where both bowls have such intent = piggul</td></tr><tr><td>Half olive-bulk across two separate lamb slaughterings</td><td>No</td><td>No decree (Abaye)</td><td>No analogous full piggul case exists — decree cannot be extended</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🚿 Mishna: When One Shavuot Loaf Becomes Impure</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">טָמֵא אַחַד מִשְּׁנֵי הַלֶּחֶם — נֶחְלְקוּ רַבִּי יְהוּדָה וַחֲכָמִים</div><div class="callout"><strong>מִשְׁנָה — Menachot 14b</strong> If one of the two Shavuot loaves (or one arrangement of shewbread) became ritually impure:
+
+<strong>Rabbi Yehuda:</strong> Both loaves must go to the place of burning — communal offerings (קָרְבַּן צִבּוּר) cannot be divided; the community brings both or neither.
+
+<strong>The Sages:</strong> The pure loaf is eaten in its sanctity; only the impure loaf is burned.
+
+<strong>Rabbi Elazar (Gemara):</strong> This dispute applies specifically when impurity occurred <em>before</em> blood sprinkling — the act that renders the loaves permitted.
+
+<strong>Rav Pappa:</strong> Their underlying disagreement is whether the High Priest's frontplate (צִיץ) effects atonement for ritual impurity in this case.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Tamid 14 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#16213e22;border:2px solid #4a90d9;border-radius:8px;padding:10px;"><strong>Core Question:</strong> Does piggul intent regarding one part or rite of an offering render another part piggul?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e22;border:1px solid #2ecc71;border-radius:6px;padding:8px;"><strong>Torah: One Body</strong><br><small>Two thighs / two loaves = one unit by verse</small><br>Intent for one = piggul for both</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e22;border:1px solid #c9a84c;border-radius:6px;padding:8px;"><strong>Rabbinic Decree</strong><br><small>Analogous full piggul case exists</small><br>Rabbis extend disqualification by analogy</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e22;border:1px solid #e74c3c;border-radius:6px;padding:8px;"><strong>No Basis</strong><br><small>No Torah unity; no analogous case</small><br>Parts stand independently — no combining</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#16213e22;border:2px solid #9b59b6;border-radius:8px;padding:10px;"><strong>Mishna (14b):</strong> One loaf impure before blood sprinkling → <em>Rabbi Yehuda:</em> both burned (communal offerings not divided) | <em>Sages:</em> pure loaf eaten, impure loaf burned</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Tamid 14a-14b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Tamid 14a-14b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../13/">← Daf 13</a><a href="../15/">Daf 15 →</a></div>
+</body>
+</html>

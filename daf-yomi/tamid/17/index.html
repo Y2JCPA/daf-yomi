@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamid 17 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Tamid Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Tamid 17</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמיד יז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔥 Burning Renders Piggul — Can improper intent during burning create piggul?<br>
+    ⚖️ Rava vs. Rav — Two opposing positions on burning-intent piggul<br>
+    🌿 Rabbi Ḥanina's Riddle — Handful burned with intent for frankincense next day<br>
+    📜 Mishna: Unusual Items — Piggul when intent involves atypical consumption or burning<br>
+    📖 Torah Derivation — The doubled language he'akhol ye'akhel equates burning with eating<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🔥 Does Burning Render Burning Piggul?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Sharp Ones of Pumbedita / Rava</div><div class="speech">Burning <strong>does</strong> render burning piggul — burning the handful with intent to burn the frankincense the next day renders the entire meal offering piggul, even according to the Rabbis.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Ḥisda citing Rav</div><div class="speech">Burning does <strong>not</strong> render burning piggul — Rabbi Meir's rule applies only when improper intent involves the handful, the actual permitting factor for the remainder. Frankincense is not the handful's permitting factor.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> The handful (kometz) permits the meal offering's remainder. Frankincense (levona) permits its own portion. Can intent during one permitting act contaminate the other? Abaye confirmed: Rav Ḥisda stated this ruling explicitly in the name of Rav himself.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ The Central Dispute: Can Burning Create Piggul?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rava (citing Mishna 12a)</div><div class="speech"><strong>Burning DOES render burning piggul.</strong> The mishna lists four permitting acts: removing the handful, placing it in a vessel, conveying it to the altar, and burning it. Since wrong intent during any of these creates piggul, burning with intent to burn the frankincense the next day should likewise create piggul — the acts are analogous.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Ḥisda / Rav</div><div class="speech"><strong>Burning does NOT render burning piggul.</strong> The Gemara rejects Rava's analogy: for the other three acts, wrong intent to eat the remainder OR burn the frankincense equally creates piggul. But for burning specifically, only intent to eat the remainder (the normal permitting act) counts — not intent regarding the frankincense.</div></div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Verification</strong> Rav Menashya bar Gadda sat before Abaye and reported this ruling. Abaye pressed him: did Rav Ḥisda say this in Rav's name? Confirmed: yes. It was also stated explicitly that Rav Ḥisda says that Rav says: burning does not render burning piggul.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🌿 Rabbi Ḥanina's Teaching — A Significant Novelty</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">קִטֵּר קֹמֶץ עַל מְנָת לְקַטֵּר לְבוֹנָה לְמָחָר — פִּגּוּל וְחַיָּיב כָּרֵת</div><div class="callout"><strong>Rav Hamnuna: Equivalent to All My Learning</strong> <strong>The Case:</strong> One burned the handful with intent to burn the frankincense the next day — <em>and then also</em> burned the frankincense with intent to burn it the next day.<br><br><strong>Result (per Rav Adda bar Ahava):</strong> The offering is <strong>piggul and one is liable for karet</strong>.<br><br><strong>Why the novelty?</strong> Rabbi Ḥanina holds that burning the handful alone ≠ piggul (like Rav). But when <em>both</em> the handful and the frankincense are burned with improper intent, they together complete the permitting act — and the combined wrong intent triggers full piggul with karet.<br><br><small>This resolves the ambiguity: Rabbi Ḥanina agrees with Rav on burning alone, yet finds a scenario where karet applies.</small></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔀 Rav Adda's Resolution of Rabbi Ḥanina</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Priest performs burning of the meal offering</strong><br>Both handful and frankincense are burned</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Only handful burned with wrong intent</div><div class="flow-box result-bad"><strong>NOT piggul</strong><br>Frankincense is not the permitting factor for the remainder; burning alone cannot create piggul (per Rav / Rabbi Ḥanina)</div></div><div class="flow-col"><div class="flow-label">Both handful AND frankincense burned with wrong intent</div><div class="flow-box result-good"><strong>PIGGUL — karet</strong><br>Together they complete the permitting act; combined improper intent triggers full piggul liability</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📜 Mishna Debate: Piggul for Unusual Items</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Rabbi Eliezer</h3><ul><li>Intent to <em>consume</em> an item not normally consumed (e.g., the handful) beyond its time → offering is <strong>unfit</strong></li><li>Intent to <em>burn</em> an item not normally burned beyond its time → offering is <strong>unfit</strong></li><li>Derives from doubled language <em>he'akhol ye'akhel</em>: burning and eating are equated, so unusual consumption/burning creates unfitness</li><li>One opinion: liable by Torah law and subject to karet</li></ul></div><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">The Rabbis</h3><ul><li>Improper intent involving items NOT typically consumed or burned does <strong>not</strong> render piggul</li><li>Only intent regarding the <em>typical</em> act — eating what is eaten, burning what is burned — creates piggul</li><li>The doubled Torah language teaches: an olive-bulk minimum applies equally to both eating and burning intent</li><li>Unusual intent → offering is merely <strong>unfit (pasul)</strong>, not piggul; no karet</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📊 Piggul Intent Cases: Full Map</h2>
+  
+  <table><tr><th>Intent During Service</th><th>Item Involved</th><th>Rabbi Eliezer</th><th>The Rabbis</th></tr><tr><td>Eat the remainder the <em>next day</em></td><td>Remainder — normally eaten</td><td>Piggul + karet</td><td>Piggul + karet</td></tr><tr><td>Eat the <em>handful</em> the next day</td><td>Handful — not normally eaten</td><td>Unfit (pasul), debated karet</td><td>Unfit only, no piggul</td></tr><tr><td>Burn the <em>remainder</em> the next day</td><td>Remainder — not normally burned</td><td>Unfit — liable</td><td>Unfit / fit debated</td></tr><tr><td>Burn the <em>frankincense</em> next day (during handful)</td><td>Frankincense — not handful's matir</td><td>Unfit</td><td>Fit (per Rav)</td></tr><tr><td>Leave <em>blood</em> without presenting (next day)</td><td>Blood left, not sprinkled</td><td>Unfit per R. Yehuda citing R. Eliezer</td><td>Fit per Rabbis</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Tamid 17 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;"><strong>The Four Permitting Acts</strong><br>Removing handful · Placing in vessel · Conveying to altar · Burning</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;"><strong>Burning with intent for frankincense next day</strong><br>Pumbedita / Rava: piggul ✓<br>Rav Ḥisda / Rav: NOT piggul ✗</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;"><strong>Intent involving unusual items</strong><br>R. Eliezer: unfit (possibly karet)<br>Rabbis: only typical items create piggul</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#000;"><strong>Rav Adda's Resolution of Rabbi Ḥanina:</strong><br>Handful burned alone with wrong intent → NOT piggul (per Rav)<br>Both handful AND frankincense burned with wrong intent → PIGGUL + karet</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Tamid 17a-17b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Tamid 17a-17b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../16/">← Daf 16</a><a href="../18/">Daf 18 →</a></div>
+</body>
+</html>

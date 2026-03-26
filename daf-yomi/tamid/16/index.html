@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamid 16 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Tamid Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Tamid 16</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמיד טז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Rabbi Meir vs. Rabbis — partial permitting factors and piggul<br>
+    🤫 Rav's 'silence' condition — when does the dispute apply?<br>
+    🩸 Yom Kippur blood presentations — 43, 47, or 48?<br>
+    🫙 Rabbi Yoḥanan vs. Reish Lakish — conveying the handful<br>
+    🌿 Sesame-seed intent — can minimal burning create piggul?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ The Core Dispute: Partial Permitting Factors and Piggul</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rabbi Meir</div><div class="speech">If the priest burns the <strong>handful with piggul intent</strong> but the frankincense in silence, the meal offering is <em>piggul</em>. Piggul intent during <strong>any</strong> permitting act — even only part — renders the offering invalid.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">The meal offering is <strong>not piggul</strong> unless he had piggul intent during <em>both</em> the burning of the handful and the burning of the frankincense. The <strong>entire</strong> permitting factor requires piggul intent.</div></div></div><div class="callout" style="margin-top:20px"><strong>Exception — All Agree</strong> For a sinner's meal offering and a sota's jealousy offering (which contain no frankincense), even the Rabbis agree: piggul intent during the handful alone renders the offering piggul — the handful is the sole permitting factor.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🗣️ Rav vs. Shmuel: When Exactly Does the Dispute Apply?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The dispute applies <strong>only</strong> when the handful was placed <em>in silence</em> and the frankincense with piggul intent. But if the handful was placed <strong>first with piggul intent</strong> and frankincense in silence — <em>all agree</em> it is piggul, since whoever performs the first rite with intent performs the whole service accordingly.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Shmuel</div><div class="speech">The dispute applies <strong>even when</strong> the handful was placed with piggul intent first and the frankincense in silence afterward. Rabbi Meir says piggul; Rabbis say not. There is <strong>no prior-act exception</strong>. The Yom Kippur baraita supports this view.</div></div></div><div class="callout" style="margin-top:20px"><strong>The Debate Within the Debate</strong> Rava, Rabbi Ḥanina, and Rav Ashi each attempt to reinterpret the Yom Kippur baraita to align with Rav's view — using strategies like 'two priests,' 'alternating intent and silence,' and 'explicit intent for first and third sets only.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🩸 Reconciling the Three Blood-Presentation Counts on Yom Kippur</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>43 presentations</strong> (Baraita A): The standard baseline count — bull and goat blood inside the Holy of Holies, sprinkled on the Curtain, and on the inner altar, across three sets</div><div class="process-arrow">↓</div><div class="process-step"><strong>47 presentations</strong> (Baraita B): A different tally — adds four additional sprinklings by counting certain applications differently; the Gemara says this is <em>not difficult</em> to reconcile with 43</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>48 presentations</strong> (Baraita C): According to <strong>Rabbi Eliezer's opinion</strong>, who adds one more presentation to the 47 count — reconciled as a minority view</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabba's solution</strong> for the piggul problem: Four bulls and four goats were used — the first blood spilled, requiring replacement animals, meaning later presentations were done with technically disqualified but still operative blood</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rava's solution</strong>: Even with one bull/goat, presentations made with disqualified blood still combine with valid presentations for purposes of rendering the offering piggul</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🫙 Conveying the Handful: Two Amoraic Views</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#e74c3c">Reish Lakish</h3><ul><li>Conveying the handful to the altar is only <em>part</em> of the permitting factors</li><li>Analogous to burning only the handful without the frankincense</li><li>Piggul intent during conveying alone <strong>does NOT</strong> render the offering piggul</li><li>Requires intent during burning of <strong>both</strong> handful and frankincense to achieve full piggul</li></ul></div><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#4a90d9">Rabbi Yoḥanan</h3><ul><li>Conveying the handful is treated like <em>removing</em> the handful from the meal offering</li><li>Just as piggul intent during removing alone suffices (it is the sole act at that stage)...</li><li>...conveying the handful with intent — even for only one permitting factor — <strong>creates piggul</strong></li><li>The handful is the primary permitting item; its conveyance carries full piggul significance</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📋 Does Partial Permitting Factor Intent Create Piggul?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Priest performs a permitting act with <strong>piggul intent</strong><br><small>(intends to eat the offering after its permitted time)</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Was the ENTIRE permitting factor performed with intent?</div><div class="flow-box result-bad">✅ e.g., both handful <strong>AND</strong> frankincense burned with piggul intent<br><br>🔴 <strong>All agree: Piggul</strong></div></div><div class="flow-col"><div class="flow-label">Only PART of the permitting factor had intent?</div><div class="flow-box action">e.g., handful with intent, frankincense in silence<br><br>⚖️ <strong>Disputed:</strong><br>Rabbi Meir → Piggul<br>Rabbis → Not Piggul</div></div><div class="flow-col"><div class="flow-label">Offering has only ONE permitting factor?</div><div class="flow-box result-bad">e.g., sinner's or sota's meal offering — no frankincense<br><br>🔴 <strong>All agree: Piggul</strong><br><small>handful = entire permitting factor</small></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🌿 Sesame-Seed Burning and Piggul — Summary of End-of-Daf Cases</h2>
+  
+  <table><tr><th>Case</th><th>Opinion A</th><th>Opinion B</th><th>Key Issue</th></tr><tr><td>Burns sesame-seed of handful/frankincense with intent to eat sesame-seed of remainder next day</td><td>🔴 Piggul — manner of burning matches manner of consumption</td><td>🟢 Not piggul — sesame-seed is not a valid halachic measure</td><td>Is a sesame-seed a meaningful measure for sacrificial law?</td></tr><tr><td>Repeatedly burns sesame-seed amounts, each time with sesame-seed intent</td><td>🔴 Piggul — cumulative acts combine into a full rite</td><td>🟢 Not piggul — each individual act is sub-threshold</td><td>Do sub-olive-bulk acts aggregate for piggul purposes?</td></tr><tr><td>Burns full handful with intent to eat a full olive-bulk next day</td><td>🔴 All agree: Piggul</td><td>—</td><td>Full permitting act + valid measure = clear piggul</td></tr><tr><td>Slaughters one Shavuot lamb with intent re: the two loaves next day</td><td>🔴 Piggul (Aḥerim: slaughter sanctifies loaves)</td><td>🟢 Not piggul (First Tanna: slaughter doesn't fully permit)</td><td>Does slaughter of the lamb sanctify or merely precede sanctification of the loaves?</td></tr><tr><td>Burns one frankincense bowl with intent re: the shewbread next day</td><td>⚖️ Disputed between Rabbi Meir and Rabbis</td><td>—</td><td>Is this 'part of the permitting factors' or the whole?</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Tamid 16 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#2c3e50;color:#fff;padding:10px;border-radius:6px;text-align:center;"><strong>Meal Offering Permitting Factors</strong><br><small>Handful (kometz) + Frankincense (levonah) — both burned on the altar to permit the remainder for consumption</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;text-align:center;"><strong>Rabbi Meir</strong><br>Intent during <em>any</em> single permitting act = piggul<br><small style='color:#ffaaaa'>Minority view</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;text-align:center;"><strong>Rabbis</strong><br>Intent must span the <em>entire</em> permitting factor<br><small style='color:#aaffaa'>Majority view</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#000;padding:10px;border-radius:6px;text-align:center;"><strong>Rav's Condition:</strong> Dispute only when the silent act came <em>first</em> — if the handful was burned with intent <em>before</em> the frankincense in silence, all agree it is piggul</div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;text-align:center;"><strong>Shmuel's Counter:</strong> Dispute applies regardless of order — baraita from Yom Kippur blood presentations (where first set had intent and later sets were silent) supports Shmuel over Rav</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Tamid 16a-16b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Tamid 16a-16b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../15/">← Daf 15</a><a href="../17/">Daf 17 →</a></div>
+</body>
+</html>

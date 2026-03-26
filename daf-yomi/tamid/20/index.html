@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamid 20 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Tamid Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🧂</div>
+  <h1>Tamid 20</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמיד כ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🧂 Salt Covenant — R. Yehuda vs. R. Shimon<br>
+    ⚖️ Rav's Rule — Repeated rites are indispensable<br>
+    📜 Klal-Prat-Klal — Defining what must be salted<br>
+    🔥 Limbs vs. Blood — Why limbs need salt but blood does not<br>
+    🪵 Wood as a Voluntary Korban<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🧂 The Salt Requirement: What Must Be Salted?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R. Yehuda</div><div class="speech">There is a covenant stated regarding salt — offerings must always be salted. The covenant derives from Numbers 18:19.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R. Shimon</div><div class="speech">A textual parallel: 'It is an everlasting covenant of salt' (Num. 18:19) — the gezerah shavah links the two passages and confirms the eternal salt obligation.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav</div><div class="speech">Only sacrificial rites repeated in the Torah are indispensable. Since salt is not repeated, if one omitted it the meal offering remains fit — consistent with our Mishna.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Yosef</div><div class="speech">The term 'brit' (covenant) written about salt is equivalent to a repetition — covenant language alone establishes indispensability!</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question of the Daf</strong> Which items burned on the altar require salting, and is the salt requirement indispensable (me'akev)? The Gemara derives the answer through klal-prat-klal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📜 Klal-Prat-Klal: Deriving What Requires Salting</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Klal (Generalization):</strong> 'You shall sacrifice salt with <em>all</em> your offerings' (Lev. 2:13)</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Prat (Detail):</strong> 'Every meal offering of yours you shall season with salt' — the handful of the meal offering (kometz)</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Klal (Generalization again):</strong> 'You shall sacrifice salt with all your offerings' (Lev. 2:13)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✅ Included in salting</div><div class="flow-box result-good">Items for which <em>other things come as a requirement</em> — just as wood is required to burn the handful</div></div><div class="flow-col"><div class="flow-label">❌ Excluded from salting</div><div class="flow-box result-bad">Items that do <em>not</em> have other things coming as a requirement for them (e.g., blood, remainder eaten by priests)</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Is Salt Indispensable? Rav vs. The Baraita</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav</div><div class="speech">Salt is not repeated in a second verse, so it is not indispensable — the meal offering is valid even without salt. This matches our Mishna.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara (Challenge)</div><div class="speech">But isn't salt mentioned explicitly: 'Every meal offering of yours you shall season with salt'? Isn't that a second verse — making it indispensable?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Yosef</div><div class="speech">Alternatively: the 'brit' (covenant) written about salt functions like a repetition — covenant language implies eternal, indispensable obligation.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara (Resolution)</div><div class="speech">The verse 'every meal offering of yours' is not an independent repetition but the 'prat' (detail) in a klal-prat-klal analysis — it defines scope, not indispensability alone.</div></div></div><div class="callout" style="margin-top:20px"><strong>Also: Non-Priest Cannot Salt</strong> Rav Yosef notes: a non-priest cannot approach the altar to salt the handful — so even discussing whether a non-priest 'salted it' is theoretical, reinforcing why the salt rite's details are carefully analyzed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔥 Limbs of Burnt Offering vs. Blood: Who Gets Salted?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fff3e0"><h3 style="color:#e67e22">🔥 Limbs of Burnt Offering — Salted ✅</h3><ul><li>Requires wood to be burned on the altar ✅ (like a meal offering)</li><li>Subject to me'ilah (misuse of consecrated property) ✅</li><li>Forbidden to eat in a state of ritual impurity ✅</li><li>Entirely consumed on the altar — not eaten ✅</li><li>Shares many characteristics with the meal offering → included</li></ul></div><div class="compare-box" style="border-top-color:#fde8e8"><h3 style="color:#e74c3c">🩸 Blood — Not Salted ❌</h3><ul><li>Does NOT require wood ❌</li><li>NOT subject to me'ilah ❌</li><li>Impurity restrictions differ ❌</li><li>Sprinkled on altar — not burned on it ❌</li><li>Does render offering permitted — but differences outweigh → excluded</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🧂 Full Salting Chart: What Requires Salt?</h2>
+  
+  <table><tr><th>Item</th><th>Burned on Altar?</th><th>Salt Required?</th><th>Basis</th></tr><tr><td>Kometz — handful of meal offering</td><td>✅ Yes</td><td>✅ Yes</td><td>The 'prat' (detail) — primary subject of the verse</td></tr><tr><td>Levona — frankincense with meal offering</td><td>✅ Yes</td><td>✅ Yes</td><td>Comes with meal offering in one vessel; included via klal-prat-klal</td></tr><tr><td>Frankincense brought separately</td><td>✅ Yes</td><td>✅ Yes</td><td>One may accept obligation to bring frankincense; same rule applies</td></tr><tr><td>Limbs of burnt offering</td><td>✅ Yes</td><td>✅ Yes</td><td>'You shall sacrifice salt with all your offerings' (Lev. 2:13)</td></tr><tr><td>Meal offering of priests / Kohen Gadol</td><td>✅ Entirely</td><td>✅ Yes</td><td>No remainder — entirely burned; included in general rule</td></tr><tr><td>Remainder of meal offering (eaten by priests)</td><td>❌ No</td><td>❌ No</td><td>Not burned on altar; 'every meal offering of yours' excludes it</td></tr><tr><td>Blood</td><td>❌ Sprinkled</td><td>❌ No</td><td>Does not share the defining characteristics of the handful</td></tr><tr><td>Wood (as voluntary korban)</td><td>✅ Yes</td><td>❌ No</td><td>Excluded by 'every meal offering of yours' — not itself a mincha</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🪵 Voluntary Wood Offering — A New Korban</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">קָרְבָּן מִנְחָה — the extra 'korban' derives the voluntary wood offering (Lev. 2:1). וְכָל מִנְחָתְךָ בַּמֶּלַח תִּמְלָח — 'every meal offering of yours you shall season with salt' (Lev. 2:13)</div><div class="callout"><strong>Baraita — Derived from Lev. 2:1</strong> <strong>The superfluous word 'korban'</strong> in 'when one brings a korban mincha' (Lev. 2:1) teaches that one may voluntarily donate <em>wood</em> as a sacrificial offering for the altar — the minimum amount is two logs.<br><br><strong>Rava:</strong> This voluntary wood offering requires removal of a handful (like a meal offering) — a handful of wood is removed separately.<br><strong>Rav Pappa:</strong> Disagrees with Rava's requirement.<br><br>Meanwhile, the phrase 'every meal offering of yours' is used to <em>exclude</em> wood from the salting requirement — wood is not a meal offering per se, even if it functions like one.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Tamid 20 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;border:2px solid #c9a84c;padding:10px;border-radius:8px;"><strong>🧂 Brit Melach — Covenant of Salt</strong><br><small>Lev. 2:13 + Num. 18:19 — an everlasting obligation</small></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;border:2px solid #4a90d9;padding:10px;border-radius:8px;"><strong>📜 Klal-Prat-Klal Analysis</strong><br><small>Gen. (all offerings) → Detail (handful) → Gen. (all offerings)</small></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;border:2px solid #9b59b6;padding:10px;border-radius:8px;"><strong>🔑 Defining Criterion</strong><br><small>Must be an item for which other items come as a <em>requirement</em> (like wood for the handful)</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #2ecc71;padding:10px;border-radius:8px;">✅ <strong>SALTED</strong><br><small>Handful • Frankincense • Limbs of burnt offering • Priestly meal offerings</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #e74c3c;padding:10px;border-radius:8px;">❌ <strong>NOT SALTED</strong><br><small>Blood • Remainder of meal offering eaten by priests • Wood</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Tamid 20a-20b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Tamid 20a-20b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../19/">← Daf 19</a><a href="../21/">Daf 21 →</a></div>
+</body>
+</html>

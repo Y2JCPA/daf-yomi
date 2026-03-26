@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamid 32 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Tamid Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Tamid 32</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמיד לב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📖 Open vs. Closed Mezuza — arrangement of the two passages<br>
+    ✍️ Writing Rules — scoring, intention, not like a letter<br>
+    📿 Sanctity Levels — can phylacteries become a mezuza?<br>
+    🚪 Mezuza Placement — doorpost, airspace, not a stick<br>
+    📚 Torah Scroll Honor — Rav Huna vs. Rabbi Yoḥanan<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📜 Open or Closed? The Mezuza Passage Dispute</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Rabbi Shimon ben Elazar</strong><br>Wrote mezuza in the <em>open</em> manner: second passage begins on the following line, leaves space above and below text</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav (via Rav Ḥananel)</div><div class="flow-box result-good">Halakha follows Rabbi Shimon ben Elazar — but only regarding <strong>spacing</strong> above/below text, not the open/closed arrangement of passages</div></div><div class="flow-col"><div class="flow-label">Rav Naḥman bar Yitzḥak</div><div class="flow-box action"><strong>Closed manner</strong> = mitzva ab initio<br><em>Open manner</em> = permitted after the fact<br>Rabbi Shimon ben Elazar's open manner is merely a leniency</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>💬 What Exactly Did Rav Rule? Abaye vs. Rav Yosef</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">You agree that Rav's ruling in favor of Rabbi Shimon ben Elazar concerns only the <strong>spacing</strong> above and below the text — not the open/closed manner. This means Rav holds one must follow <em>established customs</em>, as we see from his ḥalitza ruling!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Yosef</div><div class="speech">Correct. Rav said: if Elijah comes and rules one may not perform ḥalitza with a <em>sandal</em> — we do <strong>not</strong> listen, because we have an established tradition that ḥalitza is performed with a sandal.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Kahana (citing Rav)</div><div class="speech">Another version: if Elijah says no ḥalitza with a <em>shoe</em>, we listen; but if he says no ḥalitza with a <em>sandal</em> either — we do <strong>not</strong> listen. The difference between versions: may one use a plain shoe ab initio?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye (conclusion)</div><div class="speech">Either way, both versions agree: <strong>the established custom of using a sandal cannot be overridden</strong>, even by a prophetic voice. The practice is binding.</div></div></div><div class="callout" style="margin-top:20px"><strong>Underlying Principle</strong> Rav holds that established communal practice (minhag) is halakhically binding and cannot be nullified even by new rulings — a foundational principle derived here.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📿 Phylacteries vs. Mezuza — How They Differ</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#c9a84c">Phylacteries (Tefillin)</h3><ul><li>Written on <strong>parchment</strong> (klaf), hair side facing outward</li><li>Does <strong>NOT</strong> require scoring of lines on parchment</li><li>May be written without copying from a written text</li><li><strong>Higher</strong> sanctity — cannot be reduced to mezuza</li><li>One may NOT convert tefillin passages into a mezuza ab initio</li></ul></div><div class="compare-box" style="border-top-color:#0d2b0d"><h3 style="color:#2ecc71">Mezuza</h3><ul><li>Written on <strong>parchment</strong> (klaf), hair side facing outward</li><li><strong>REQUIRES</strong> scoring of lines before writing</li><li>May be written without copying from a written text</li><li><strong>Lesser</strong> sanctity — worn tefillin may become mezuza</li><li>Closed passage arrangement is mitzva ab initio; open is valid</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⬇️ Can You Reduce Sanctity? Tefillin → Mezuza</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Worn phylacteries</strong> — may the parchment be repurposed as a mezuza?</div><div class="flow-arrow">↓</div><div class="flow-box action">Rule: sanctity may be <strong>reduced</strong> (tefillin → mezuza) but never <strong>increased</strong> (mezuza → tefillin)<br><small>Just as a Torah scroll may become a mezuza in theory, tefillin may become a mezuza</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Problem</div><div class="flow-box result-bad">Tefillin parchment does <strong>not</strong> require scoring; mezuza parchment <strong>does</strong>. Worn tefillin parchment may therefore be unfit for a mezuza!</div></div><div class="flow-col"><div class="flow-label">Resolution (Tanna'im Dispute)</div><div class="flow-box result-good">Rabbi Yirmeya citing Rav: both tefillin and mezuza may be written without copying from a text — showing their laws overlap. The dispute about scoring remains a tanna'itic argument.</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🚪 Five Requirements for a Valid Mezuza</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>1. Parchment:</strong> Written on klaf (parchment), hair-side. Dokhsostos (flesh-side or coarser hide) renders it unfit.</div><div class="process-arrow">↓</div><div class="process-step"><strong>2. Scored lines:</strong> Unlike tefillin, mezuza parchment <em>must</em> have lines scored into it before writing.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>3. Proper intention:</strong> Must be written with scribal intention for each letter — writing it casually like an ordinary letter or missive renders it <strong>unfit</strong>.</div><div class="process-arrow">↓</div><div class="process-step"><strong>4. Affixed to doorpost:</strong> Must be attached directly to the doorpost itself — hanging it on a stick or rod in the entrance is <strong>unfit</strong>.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>5. Within the airspace:</strong> Must be placed inside the airspace of the entrance, not on the outside — fulfilling the verse <em>"upon your doorposts"</em>.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📚 Mezuza & Torah Scroll — Key Rulings at a Glance</h2>
+  
+  <table><tr><th>Authority</th><th>Subject</th><th>Ruling</th><th>Reason</th></tr><tr><td>Rav Huna</td><td>Torah scroll on bed</td><td>Overturned a jug and placed the scroll on it before sitting</td><td>Showed honor; would not sit directly level with a Torah scroll</td></tr><tr><td>R. Yoḥanan (Rabba bar bar Ḥana)</td><td>Torah scroll on bed</td><td>Permitted to sit on the bed — ignore anyone who says otherwise</td><td>Disagrees with Rav Huna's stringency</td></tr><tr><td>Shmuel (Rav Yehuda)</td><td>Writing mezuza</td><td>Written casually like a letter → <strong>unfit</strong></td><td>Must write with precise scribal intention for each word</td></tr><tr><td>Shmuel (Rav Yehuda)</td><td>Mezuza on a stick</td><td><strong>Unfit</strong> — must be affixed to doorpost itself</td><td>"Upon your doorposts" requires direct attachment</td></tr><tr><td>King Munbaz's household</td><td>Mezuza in inns</td><td>Hung mezuzot on sticks — <em>permitted</em> for them</td><td>Travelers in inns are exempt; they did it for honor, not obligation</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Tamid 32 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a1a2e;border:2px solid #c9a84c;"><strong>Passage Arrangement</strong><br><small>Closed manner = mitzva ab initio | Open manner = valid after the fact</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0d2b0d;border:2px solid #2ecc71;"><strong>Writing Requirements</strong><br><small>Score parchment • Write with intention • Not like a casual letter</small></div></div><div class="flow-col"><div class="flow-box" style="background:#0d1a2e;border:2px solid #4a90d9;"><strong>Placement Requirements</strong><br><small>On doorpost itself • Within airspace of entrance • Not on a stick</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#2e1a0d;border:2px solid #e67e22;"><strong>Sanctity Principle</strong><br><small>Tefillin → mezuza ✓ (reduce) | Mezuza → tefillin ✗ (increase forbidden)<br>Established custom (<em>minhag</em>) is binding even against new rulings</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Tamid 32a-32b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Tamid 32a-32b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../31/">← Daf 31</a><a href="../33/">Daf 33 →</a></div>
+</body>
+</html>

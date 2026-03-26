@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamid 28 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Tamid Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🕎</div>
+  <h1>Tamid 28</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמיד כח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🩸 Sprinkling Validity — Rav Yosef vs. Rava<br>
+    🕎 Menorah Components — Each Prevents the Others<br>
+    ⚒️ Construction Materials — Gold, Metal, and Beaten Work<br>
+    📜 Hermeneutics — Generalizations/Details vs. Amplifications/Restrictions<br>
+    🎺 Trumpets — Valid Only for Moses' Generation<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🕎 The Menorah's Indivisible Wholeness</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כֻּלָּן מְעַכְּבִין זֶה אֶת זֶה — All are indispensable to one another</div><div class="callout"><strong>Core Principle</strong> Every component of the Menorah — its seven branches, seven lamps, goblets, knobs, and flowers — is indispensable: the absence of any one invalidates the whole. The Gemara explores the biblical sources for these requirements and a rich dispute over what materials may be used to fashion the Menorah. Similarly, all four Torah passages in tefillin and mezuza are mutually indispensable. The daf also addresses the validity of sprinklings performed not for their own sake, resolved by Rava's key distinction between technical effect and fulfillment of obligation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🩸 Sprinkling Not For Its Own Sake — Two Baraitot in Conflict</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Yosef</div><div class="speech">The baraitot do not contradict each other. The first follows <strong>Rabbi Eliezer</strong>, who juxtaposes the leper's guilt offering with the Nazirite's guilt offering — making sprinkling 'not for its own sake' <em>invalid</em>. The second follows <strong>the Rabbis</strong>, who reject that juxtaposition and deem it <em>valid</em>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Both baraitot follow the Rabbis. When one baraita says 'valid,' it means the blood achieved its <strong>technical effect</strong> — rendering the offering permitted for consumption. But the owner has <em>not</em> fulfilled his personal obligation. Effect and fulfillment are distinct!</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakhic Takeaway</strong> Rava's resolution prevails: a sprinkling performed not for its own sake can simultaneously be 'valid' (technically effective) yet leave the mitzva obligation undischarged — a crucial distinction in Temple law.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚒️ Menorah Construction — What Does the Torah Require?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Fashioning the Menorah — what <strong>material</strong> is permitted?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Pure Gold ✓</div><div class="flow-box result-good">Ideal — fulfills <em>"a Candelabrum of pure gold"</em> (Exodus 25:31) literally</div></div><div class="flow-col"><div class="flow-label">Other Metal ✓</div><div class="flow-box result-good">Also valid — passive <em>"will be made"</em> includes all metals; permitted when gold is unavailable</div></div><div class="flow-col"><div class="flow-label">Fragments of Gold ✗</div><div class="flow-box result-bad">Unfit — must come from a <strong>complete block</strong> (הָאֶשֶׁת); assembling scraps is invalid</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Must it be <strong>beaten work</strong> (מִקְשָׁה)?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Beaten Work ✓</div><div class="flow-box result-good">Preferred — hammered from a single block per the verse</div></div><div class="flow-col"><div class="flow-label">Cast/Molded ✓</div><div class="flow-box result-good">Valid post-facto — <em>"will be made"</em> permits other methods</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📜 Dispute: Can Temple Vessels Be Made from Non-Metal Materials?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Rabbi Yehuda HaNasi</h3><ul><li>Applies <strong>generalizations and details</strong> (כְּלָל וּפְרָט)</li><li>General: 'make a Candelabrum of...' → Detail: 'pure gold'</li><li>Only items <em>similar to the detail</em> — i.e., metals — are valid</li><li><strong>Wood is invalid</strong> for fashioning Temple service vessels</li><li>Supported by a baraita: wooden vessels are unfit</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">Rabbi Yosei son of Rabbi Yehuda</h3><ul><li>Applies <strong>amplifications and restrictions</strong> (רִבּוּי וּמִעוּט)</li><li>Amplification → Restriction → Re-amplification</li><li>Anything similar in kind to the restriction is included</li><li><strong>Wood is also valid</strong> for Temple service vessels</li><li>Cited proof: Hasmonean kings used wooden candelabra in the Temple</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🕎 Menorah Components — Counts, Sources, and Indispensability</h2>
+  
+  <table><tr><th>Component</th><th>Hebrew</th><th>Count</th><th>Biblical Source</th><th>Mutually Indispensable?</th></tr><tr><td>Branches</td><td>קָנִים</td><td>7</td><td>Exodus 25:32</td><td>✓ Yes</td></tr><tr><td>Lamps</td><td>נֵרוֹת</td><td>7</td><td>Exodus 25:37</td><td>✓ Yes</td></tr><tr><td>Goblets</td><td>גְּבִיעִים</td><td>22</td><td>Exodus 25:33–34 (4 on shaft + 3×6 on branches)</td><td>✓ Yes</td></tr><tr><td>Knobs</td><td>כַּפְתּוֹרִים</td><td>11</td><td>Exodus 25:33–36</td><td>✓ Yes</td></tr><tr><td>Flowers</td><td>פְּרָחִים</td><td>9</td><td>Exodus 25:33–36</td><td>✓ Yes</td></tr><tr><td>Tefillin/Mezuza Passages</td><td>פָּרָשִׁיּוֹת</td><td>4</td><td>Exodus 13:1–16; Deut. 6; Deut. 11</td><td>✓ Yes</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📏 Menorah Dimensions — 18 Handbreadths from Base to Top</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Handbreadths 1–3 (base):</strong> The base and its decorative flower — the foundation of the Menorah</div><div class="process-arrow">↓</div><div class="process-step"><strong>Handbreadths 4–5 (bare shaft):</strong> Plain shaft with no decoration or branches</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Handbreadth 6 (first knob):</strong> A knob from which <em>two branches</em> emerge — one left, one right — rising to the full height of the Menorah</div><div class="process-arrow">↓</div><div class="process-step"><strong>Handbreadth 7 (bare):</strong> Plain shaft above the first knob</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Handbreadth 8 (second knob):</strong> Another knob with two more branches emerging toward each side</div><div class="process-arrow">↓</div><div class="process-step"><strong>Handbreadth 9 (bare):</strong> Plain shaft above second knob</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Handbreadth 10 (third knob):</strong> Final knob with the last pair of branches — all six side-branches now accounted for</div><div class="process-arrow">↓</div><div class="process-step"><strong>Handbreadths 11–18 (central shaft continues):</strong> Goblets shaped like <em>Alexandrian cups</em> (long and narrow); knobs like <em>Cherethite apples</em>; flowers like <em>columns of the Temple porch</em></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Tamid 28 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;font-weight:bold"><strong>🕎 The Menorah Must Be Whole</strong><br><small>All 7 branches, 7 lamps, 22 goblets, 11 knobs, 9 flowers — each component indispensable to the others</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff"><strong>Material: Gold or Metal</strong><br><small>Gold preferred; other metals valid; <em>fragments of gold invalid</em>; beaten work preferred but cast also valid</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff"><strong>Dispute: Wood?</strong><br><small>R. Yehuda HaNasi (kelal u'frat): only metals valid<br>R. Yosei b. R. Yehuda (ribui u'mi'ut): wood also valid</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#16213e;color:#fff"><strong>🎺 Trumpets: Exception to the Rule</strong><br><small>Moses' trumpets — valid for his generation only. <em>"Make for you"</em> (Numbers 10:2) = for Moses alone, not future generations</small></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff"><strong>📜 Parallel: Tefillin &amp; Mezuza</strong><br><small>All four Torah passages (Exodus 13:1–10, 13:11–16, Deut. 6:4–9, 11:13–21) are mutually indispensable — missing one invalidates the entire set</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Tamid 28a-28b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Tamid 28a-28b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../27/">← Daf 27</a><a href="../29/">Daf 29 →</a></div>
+</body>
+</html>

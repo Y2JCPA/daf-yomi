@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamid 30 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Tamid Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Tamid 30</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תמיד ל׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Finishing the Torah Scroll — where writing may end<br>
+    ✍️ Last 8 Verses — Moses or Joshua wrote them?<br>
+    📏 Sheet Specifications — columns, margins & spacing<br>
+    ✡️ Omitting God's Name — scribal error procedures<br>
+    ⚖️ Rabbi Shimon Shezuri — tracking his halakhic rulings<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📜 Writing a Torah Scroll: Key Halakhot</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Writing a <strong>Torah Scroll</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Where to Finish?</div><div class="flow-box question">Rav: anywhere in column<br>Rav Ashi: <em>end of column only</em></div></div><div class="flow-col"><div class="flow-label">Last 8 Verses?</div><div class="flow-box action">Read by <strong>one person</strong><br>Moses wrote them with tears (R. Shimon)</div></div><div class="flow-col"><div class="flow-label">Scribal Errors?</div><div class="flow-box result-good">God's name omitted:<br>suspend above the line (R. Yosei)</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>✍️ Who Wrote the Last 8 Verses of the Torah?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yehuda</div><div class="speech">Joshua wrote the last eight verses, since Moses could not have written the account of his own death. It is impossible that Moses wrote 'And Moses died there.'</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Shimon</div><div class="speech">Is it possible the Torah was missing even a single letter? God commanded Moses: 'Put this Torah scroll by the Ark' — it must have been complete. Rather, Moses wrote these verses with tears instead of ink.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Rav's ruling that these verses are read by one reader fits Rabbi Shimon — they remain 'Torah of Moses,' not a separate composition begun by Joshua.</div></div></div><div class="callout" style="margin-top:20px"><strong>📖 Verse</strong> Deuteronomy 34:5 — 'And Moses the servant of the Lord died there'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📏 Physical Requirements for a Torah Scroll Sheet</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Columns per sheet:</strong> minimum 3, maximum 8 — writing 8+ narrow columns resembles a personal letter (missive), which is forbidden</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>9-column sheet:</strong> split into 4+5 — never 3+6, as three columns alone is already the minimum; both resulting sheets must each have at least three columns</div><div class="process-arrow">↓</div><div class="process-step"><strong>Final sheet exception:</strong> the last sheet of the scroll may contain even a single verse, or even a single letter</div><div class="process-arrow">↓</div><div class="process-step"><strong>Lower margin:</strong> 1 tefaḥ (handbreadth) — large enough to prevent a reader's arm from resting on the writing</div><div class="process-arrow">↓</div><div class="process-step"><strong>Upper margin:</strong> ⅔ tefaḥ | <strong>Between columns:</strong> 2 finger-breadths | <strong>Beginning sheet margin:</strong> 3 finger-breadths</div><div class="process-arrow">↓</div><div class="process-step"><strong>Line spacing:</strong> equal to one full line of text | <strong>Between words:</strong> one small letter | <strong>Between letters:</strong> a hairsbreadth</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>✡️ Three Opinions: Scribe Omits God's Name Mid-Text</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbi Yosei</h3><ul><li>Scribe omits God's name, then writes the next word</li><li>Scrape off whatever was written after the omission</li><li>Suspend the scraped words above the line</li><li>Write God's name in the now-empty space below</li><li>The suspended words hover above the correction</li></ul></div><div class="compare-box" style="border-top-color:#2d1a4a"><h3 style="color:#9b59b6">Rabbi Shimon Shezuri</h3><ul><li>May suspend the entire God's name above the line</li><li>May NOT suspend only part of the name (e.g., two of four letters above, two below)</li><li>The divine name must appear whole — never split across positions</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Rabbi Shimon ben Elazar (R. Meir)</h3><ul><li>May NOT suspend the name above the line at all — neither partial nor whole</li><li>Must scrape and rewrite the entire section properly</li><li>No suspension permitted under any circumstances</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ Amoraic Rulings: Final Halakha on Suspended God's Name</h2>
+  
+  <table><tr><th>Amora</th><th>Rules in Name of</th><th>Halakhic Ruling</th></tr><tr><td>Rav Ḥananel → Rav</td><td>Rabbi Yosei</td><td>✅ Halakha: suspend God's name above the line</td></tr><tr><td>Rabba bar bar Ḥana → R. Yitzḥak bar Shmuel</td><td>Rabbi Shimon ben Elazar (R. Meir)</td><td>❌ Halakha: do not suspend — must write new scroll from scratch</td></tr><tr><td>Ravin bar Ḥinnana → Ulla → R. Ḥanina</td><td>Rabbi Shimon Shezuri</td><td>⚖️ Halakha follows R. Shimon Shezuri — but which case? Extensively debated</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📝 Word Doesn't Fit in the Column?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Scribe reaches <strong>end of column</strong> with a word that won't fit</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">5-letter word</div><div class="flow-box result-good">Write <strong>3 letters inside</strong> column, 2 in margin<br><small>❌ NOT 2 inside, 3 outside</small></div></div><div class="flow-col"><div class="flow-label">2-letter word</div><div class="flow-box result-bad">Do <strong>NOT</strong> split it into the gutter space between columns<br><small>The inter-column space is not writing space</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Rule: column integrity must be maintained — margins and gutters are never legitimate writing areas</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Tamid 30 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Finishing the scroll:</strong> Rav permits anywhere in the column | Rav Ashi: must end at the very end of the column</div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>Last 8 verses</strong> read by one person (Rav); Moses wrote them with tears — the scroll was never incomplete (R. Shimon)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style=""><strong>Sheet specs:</strong><br>3–8 columns per sheet<br>Bottom margin: 1 tefaḥ<br>Final sheet: even 1 letter ok</div></div><div class="flow-col"><div class="flow-box" style=""><strong>God's name omitted:</strong><br>R. Yosei: suspend above line<br>R. Meir: rewrite from scratch<br>R. Shimon Shezuri: suspend whole name only</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style=""><strong>Halakha:</strong> R. Ḥanina rules with R. Shimon Shezuri — the precise context of that ruling is extensively debated across multiple mishnayot</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Tamid 30a-30b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Tamid 30a-30b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../29/">← Daf 29</a><a href="../31/">Daf 31 →</a></div>
+</body>
+</html>
