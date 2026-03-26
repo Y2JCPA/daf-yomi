@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bekhorot 60 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Bekhorot 60 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">When one amplificatory expression follows directly after another (ribuy achar ribuy), what is the legal effect according to the Gemara on Menachot 60a?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. It expands the law to include additional cases</div>
+      <div class="option" onclick="select(1,this,1)">B. It restricts the application of the law</div>
+      <div class="option" onclick="select(1,this,2)">C. It creates a new independent obligation</div>
+      <div class="option" onclick="select(1,this,3)">D. It establishes a rabbinic fence around the Torah law</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>The principle established is that ribuy achar ribuy — one amplificatory expression following another — serves only to restrict (mi'ut), limiting the law's scope rather than broadening it. This is applied to the oil and frankincense restrictions.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">According to Rav Pappa's principle, if someone vows to bring a meal offering baked in an oven, which combination is valid?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Five loaves and five wafers</div>
+      <div class="option" onclick="select(2,this,1)">B. Any combination totaling ten items</div>
+      <div class="option" onclick="select(2,this,2)">C. Ten loaves or ten wafers — one type only</div>
+      <div class="option" onclick="select(2,this,3)">D. One loaf as a representative of the whole</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>Rav Pappa rules that a mishna's mention of 'a meal offering' means ten items of a single type. This explicitly excludes Rabbi Shimon's leniency of mixing five loaves and five wafers. The first tanna requires homogeneity: all loaves or all wafers.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Why does Rabbi Shimon rule that the meal offering of the anointed priest does not require bringing near (הגשה)?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Because it is a communal offering brought by the public</div>
+      <div class="option" onclick="select(3,this,1)">B. Because it is made from barley, not wheat</div>
+      <div class="option" onclick="select(3,this,2)">C. Because there is no removal of a handful in its sacrifice</div>
+      <div class="option" onclick="select(3,this,3)">D. Because the verse 'and you shall bring' does not apply to priests</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>Rabbi Shimon's reasoning: wherever waving (tenufah) applies, bringing near (hagashah) also applies. Priestly meal offerings are entirely burned — there is no handful removal and no waving. Since neither condition applies, bringing near is also not required.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">In the baraita's extended logical argument (60b), why does the inference that the sota's meal offering requires bringing near ultimately 'revert to its starting point'?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Because sota's offering is a rabbinic institution, not biblical</div>
+      <div class="option" onclick="select(4,this,1)">B. Because each case used in the inference has a unique feature the other lacks, preventing a valid common-element derivation</div>
+      <div class="option" onclick="select(4,this,2)">C. Because the sota's offering does not require a priest to perform the service</div>
+      <div class="option" onclick="select(4,this,3)">D. Because the sota's offering comes from wheat, not barley</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>The baraita runs through multiple inference attempts — from the voluntary offering, the sinner's offering, the omer, and common elements — but each case has a distinguishing characteristic that invalidates using it as a proof. When no inference survives, a verse is required.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Rabbi Shimon and Rabbi Yehuda both use verses to derive requirements for bringing near. What does Rabbi Yehuda use 'and you shall bring' (Lev. 2:8) to teach, if not the omer's bringing near?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. That the meal offering of a sinner requires bringing near</div>
+      <div class="option" onclick="select(5,this,1)">B. That priests are exempt from bringing near</div>
+      <div class="option" onclick="select(5,this,2)">C. That an individual Israelite (not only the community) may donate and bring the omer offering</div>
+      <div class="option" onclick="select(5,this,3)">D. That ten items are required for every meal offering vow</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>Rabbi Yehuda holds that 'and you shall bring' is needed to teach that an individual Jew may bring the omer — without this verse one might have concluded that only the community brings it (since the community brings the two loaves, a communal wheat meal offering). Therefore this verse is unavailable for deriving the omer's bringing-near requirement.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":2,"4":1,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

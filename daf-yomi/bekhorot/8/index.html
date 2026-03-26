@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bekhorot 8 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Bekhorot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍞</div>
+  <h1>Bekhorot 8</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">בכורות ח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🍞 Griddle-Cake Offering — Sanctified in Halves?<br>
+    🧂 Shewbread & Frankincense — When Is It Burned?<br>
+    🏺 Service Vessels — Sanctifying Flour, Oil & Frankincense<br>
+    ✋ Removing the Handful Inside the Sanctuary<br>
+    🕊️ Peace Offerings Slaughtered in the Sanctuary<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🍞 Central Dispute: High Priest's Griddle-Cake (Chavitin)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yochanan</div><div class="speech">The griddle-cake offering (<em>chavitin</em>) is <strong>not sanctified in halves</strong>. A whole tenth of an ephah must be brought before it is divided into two halves.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Elazar</div><div class="speech">Since the griddle-cake is <strong>sacrificed in halves</strong> — half in the morning, half in the evening — it <strong>can</strong> be sanctified in halves from the outset.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara (Objection)</div><div class="speech">The Mishna (50b) states: the High Priest brings a <em>full</em> tenth and then divides it — implying halves alone are insufficient!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Elazar (Reply)</div><div class="speech">The Mishna prescribes a whole tenth only <em>l'chatchila</em> (ab initio). <em>B'dieved</em> (after the fact), if half a tenth was brought in the morning it is <strong>valid</strong>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Question</strong> Does Rabbi Yochanan's rule — meal offerings are not sanctified in halves — derive from the griddle-cake? Or is the griddle-cake itself an exception because it is designed to be split? And where does Rav fit between them?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🧂 When Is the Frankincense Burned? (Shewbread Scenario)</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Shewbread sits on the Table; frankincense in bowls alongside it on Shabbat</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Bread broke <em>before</em> time to detach arrived</div><div class="flow-box result-bad">Frankincense is <strong>NOT</strong> burned — analogous to a meal offering that became lacking before removal of the handful: designation was never finalized</div></div><div class="flow-col"><div class="flow-label">Bread broke <em>after</em> time to detach arrived</div><div class="flow-box result-good">Frankincense <strong>IS</strong> burned — Rabbi Elazar: arrival of the time for detachment legally equals actual detachment</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Why the difference?</strong> Once detachment-time arrives, the frankincense is fully designated — parallel to the remainder of a meal offering <em>after</em> the handful is already removed and burned.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🏺 Are Meal Offering Components Sanctified Independently?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav</div><div class="speech">A meal offering <strong>is</strong> sanctified by a service vessel even <em>without</em> its oil. Proof: the shewbread has no oil yet is fully sanctified. Oil and frankincense are likewise each sanctified <strong>independently</strong> of the other.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Ḥanina</div><div class="speech"><strong>Neither</strong> oil nor frankincense is sanctified alone. Any meal offering requiring both is sanctified by a service vessel <em>only</em> when flour, oil, and frankincense are placed in the vessel <strong>all together</strong>.</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Shmuel</div><div class="speech">Agrees with Rav. Proof from Zevachim 88a: vessels for <em>liquids</em> sanctify only liquids, not dry goods — yet a blood-bowl can sanctify a dry meal offering, showing flour can be sanctified independently.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Aḥa of Difti</div><div class="speech">Challenges Shmuel: a meal offering mixed with oil is itself a <em>liquid</em>! How does the verse prove dry goods are sanctified separately?<br><small><em>Resolution: relative to blood, a meal offering counts as a dry item.</em></small></div></div></div><div class="callout" style="margin-top:20px"><strong>Implication for Rabbi Ḥanina</strong> The vessel measuring a tenth (עשרון) was anointed to sanctify items; the log-measuring vessel was anointed specifically for the leper's oil offering — the only case where oil is brought alone and sanctified by itself.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📊 Positions on Sanctification in Halves</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#0d1f33"><h3 style="color:#4a90d9">Rabbi Yochanan</h3><ul><li>Griddle-cake: NOT sanctified in halves</li><li>Derives rule to all meal offerings from the griddle-cake</li><li>If half a tenth is set aside, it IS sanctified (standard offerings)</li><li>Griddle-cake is the paradigm — its rule radiates outward</li></ul></div><div class="compare-box" style="border-top-color:#1a0d33"><h3 style="color:#9b59b6">Rabbi Elazar</h3><ul><li>Griddle-cake: IS sanctified in halves (b'dieved)</li><li>Reason: it is sacrificed in halves → can be sanctified in halves</li><li>Derives meal offering from meal offering (e.g., shewbread)</li><li>Does NOT derive from blood — different halachic category</li></ul></div><div class="compare-box" style="border-top-color:#0d1f0d"><h3 style="color:#2ecc71">Rav</h3><ul><li>Standard meal offering: NOT sanctified in halves</li><li>Even if intent was to add more later (stricter than R. Yochanan)</li><li>Position on griddle-cake itself: unresolved — cannot consistently follow either authority</li><li>Does derive halakhot by analogy (proven from shewbread, leper's oil, sinner's offering)</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>✋ Handful Removal — Location and Validity</h2>
+  
+  <table><tr><th>Authority / Source</th><th>Ruling</th><th>Basis</th></tr><tr><td>Rabbi Elazar</td><td>Handful removed <strong>inside the Sanctuary</strong> is valid</td><td>Sanctuary is more sacred than the courtyard — kal va-chomer applies</td></tr><tr><td>Rabbi Yirmeya (objection)</td><td>Verse (Lev. 2:2): 'remove from <em>there</em>' implies a fixed location</td><td>Baraita: 'there' designates the altar area specifically</td></tr><tr><td>Ben Beteira</td><td>Left-hand removal: return flour, remove again with right hand</td><td>The verse teaches even left-hand removal does not permanently disqualify the offering</td></tr><tr><td>Resolution (some say R. Ya'akov)</td><td>Verse permits removal <em>anywhere in the entire courtyard</em></td><td>Without the verse one might think only near the altar, since Lev. 2:8 implies the offering is brought to the altar first</td></tr><tr><td>Rabbi Yochanan</td><td>Peace offerings slaughtered in the <strong>Sanctuary</strong> are valid</td><td>'Entrance of the Tent of Meeting' (Lev. 3:2) includes the Sanctuary itself</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔄 Proving Rav Derives by Analogy — The Logical Chain</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Question:</strong> Does Rav derive halakhot for consecrated items from analogous cases? This determines whether his ruling about halves is borrowed from the griddle-cake.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Proof 1 — Flour without oil:</strong> Rav says a meal offering is sanctified by a vessel even without its oil. This is derived from <em>shewbread</em>, which has no oil yet is fully sanctified.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Proof 2 — Oil alone:</strong> Rav says oil is sanctified independently, derived from the <em>leper's log of oil</em>, which is brought and sanctified without any flour or frankincense.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Proof 3 — Without frankincense:</strong> A meal offering is sanctified without frankincense, derived from the <em>meal offering of a sinner</em> (מנחת חוטא), which contains neither oil nor frankincense.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Conclusion:</strong> Rav clearly does derive by analogy. Therefore his ruling that standard meal offerings are NOT sanctified in halves must reflect his view of the griddle-cake — yet he cannot consistently align with either Rabbi Yochanan or Rabbi Elazar on all points.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Unresolved:</strong> The Gemara leaves Rav's position on the griddle-cake itself as undecided (תיקו). His positions create an internal tension with both authorities.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Bekhorot 8 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#1a1a2e;border:2px solid #9b59b6"><strong>Griddle-Cake Dispute</strong><br><small>R. Yochanan: not sanctified in halves | R. Elazar: can be sanctified in halves</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a1a;border:1px solid #2ecc71"><strong>Shewbread & Frankincense</strong><br>Time of detachment = functional detachment (R. Elazar) → frankincense burned</div></div><div class="flow-col"><div class="flow-box" style="background:#0d1f33;border:1px solid #4a90d9"><strong>Meal Offering Components</strong><br>Rav: each sanctified separately | R. Ḥanina: all components must be present together</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a2a1a;border:2px solid #2ecc71"><strong>Handful Removal Location</strong><br>R. Elazar: inside Sanctuary is valid | Verse permits entire courtyard (not just near altar)</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a2e1a;border:2px solid #c9a84c"><strong>Peace Offerings in the Sanctuary</strong><br>R. Yochanan: valid — 'entrance of Tent of Meeting' extends to Sanctuary interior</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Bekhorot 8a-8b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Bekhorot 8a-8b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../7/">← Daf 7</a><a href="../9/">Daf 9 →</a></div>
+</body>
+</html>

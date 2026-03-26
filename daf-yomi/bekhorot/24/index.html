@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bekhorot 24 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Bekhorot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏺</div>
+  <h1>Bekhorot 24</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">בכורות כד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏺 Vessel Joins Contents — כלי מצרף לטומאה<br>
+    ✋ Two Half-Tenths Not Touching — Handful Removal<br>
+    💧 Rabbi Yirmeya's Dilemmas — Water Connections and Vessel Power<br>
+    🔁 Can Impurity Be Saturated? — Abaye vs. Rava<br>
+    🏡 Three Half-Tenths — Residents of One Cabin<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🏺 The Vessel's Power to Connect</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Two half-tenths</strong> placed in one vessel<br><small>not touching each other</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Ritual Impurity</div><div class="flow-box result-bad">Vessel <strong>joins</strong> them — if one becomes impure, <em>both</em> become impure</div></div><div class="flow-col"><div class="flow-label">Handful Removal</div><div class="flow-box question">Can one remove handful from <em>this half</em> on behalf of <em>that half</em>?</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Baraita: One tenth in <strong>two vessels</strong> → ❌ invalid<br>Two tenths in <strong>one vessel</strong> → ✅ valid handful removal</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Abaye's Caveat:</strong> If vessel has internal ridge, it acts as two vessels — each section is separate</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🗣️ Rav Kahana vs. Sons of Rabbi Ḥiyya: What Does 'Joins' Mean?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Kahana</div><div class="speech">The mishna says the vessel <strong>joins</strong> (מצרף) its contents — not merely <em>connects</em> them. This applies even when the contents are not touching each other!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Sons of R. Ḥiyya</div><div class="speech">If one who immersed that day inserted his finger <em>between</em> the two half-tenths without touching either one — are both half-tenths rendered impure through that airspace?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Kahana</div><div class="speech">The vessel joins only items that <strong>require a vessel for sanctification</strong>. Items that do not require a vessel are not joined by it for this purpose.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Sons of R. Ḥiyya</div><div class="speech">Can one remove a handful from <em>this</em> half-tenth on behalf of <em>that</em> half-tenth, even though they do not touch? We have no explicit ruling — but consider this similar case…</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Joining power (כלי מצרף) applies only to items that require the vessel for their sanctification — this is what makes meal offering half-tenths a special case.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Baraita: One Vessel vs. Two Vessels — Handful Validity</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c22"><h3 style="color:#e74c3c">❌ One Tenth in Two Vessels</h3><ul><li>May NOT remove handful from one vessel on behalf of the other</li><li>The meal offering is <strong>invalid</strong></li><li>Physical separation of vessel = separation of the offering</li><li>Like Abaye's case: vessel with internal ridge = two vessels</li></ul></div><div class="compare-box" style="border-top-color:#2ecc7122"><h3 style="color:#2ecc71">✅ Two Tenths in One Vessel</h3><ul><li>MAY remove handful from one tenth on behalf of the other</li><li>The meal offering is <strong>valid</strong></li><li>Unity of vessel = unity of offering</li><li>Even if clumps are arranged like teeth of a comb (Rava)</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔥 Can Impurity Be Saturated? — Abaye Challenges Rava</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">A piece of meal offering already impure from a <em>tevel yom</em>'s touch — when touched again by another <em>tevel yom</em> — it cannot become <strong>doubly impure</strong>. It is already saturated with that impurity!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">But we learned: A sheet impure with <em>zav treading</em>, made into a curtain, becomes pure from that treading-impurity. This suggests impurity categories can stack or shift — not saturate!</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Rabbi Yosei explains the sheet case: the zav <em>touched</em> it after lying on it — so a <strong>second category</strong> of impurity (contact) applies. That is different — here both are the same lesser impurity.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">Actually — consider the baraita's last clause: the bottom sheet's impurities take effect <em>simultaneously</em>. But in the meal offering case they are <em>sequential</em> — perhaps that distinction, not saturation, is what matters.</div></div></div><div class="callout" style="margin-top:20px"><strong>Gemara's Conclusion</strong> When both impurities are sequential and of the same lesser grade (tevel yom), the question of saturation remains — the Gemara does not definitively resolve whether a second identical impurity takes effect.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏡 Rava's Three Half-Tenths — 'Residents of One Cabin'</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Setup:</strong> One tenth divided into two halves. The <em>first half</em> (א) is lost.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Replacement:</strong> A <em>replacement half</em> (ב) is separated to complete the tenth with the first half.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Complication:</strong> The <em>original lost half</em> (א) is found. Now three half-tenths sit in one vessel: א (first), ב (replacement), א (found).</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rava on impurity:</strong> If ב (replacement) becomes impure → ב and א (first) join and become impure together. The found half does <em>not</em> join. If the found half becomes impure, it becomes impure alone.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Abaye on impurity:</strong> If <em>any</em> of the three becomes impure → <em>all three</em> join and become impure. Reason: <strong>"They are all residents of one cabin"</strong> (בני מלון אחד) — all were at some point associated with the same offering.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Pappa objects to Abaye:</strong> When the handful is removed, one-sixth (<em>danka</em>) of it was not designated to permit the remainder of the half from which it was taken — so how can that half's remainder be eaten?</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Ashi resolves:</strong> The handful's validity depends on the <strong>priest's intention</strong> at the moment of removal — he intends to permit the remainder of the full tenth, which encompasses all valid components.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📊 Rabbi Yirmeya's Dilemmas: When Does the Vessel's Joining Power Extend?</h2>
+  
+  <table><tr><th>Scenario</th><th>Inside Vessel?</th><th>Connecting Factor</th><th>Question</th><th>Implication</th></tr><tr><td>Half-tenth inside vessel, half outside</td><td>One inside, one outside</td><td>Connected by <em>water</em></td><td>Does the outside half join the vessel's contents?</td><td>Does water bridge the vessel's joining power?</td></tr><tr><td>Outside half connected to an impure item</td><td>One inside</td><td>Water connects outside half to impurity</td><td>Is the inside half rendered impure via water→outside→vessel?</td><td>How many steps can impurity travel through water?</td></tr><tr><td>Water connects inside half to outside</td><td>One inside</td><td>Water only (no vessel)</td><td>Does the vessel still join if the connection bypasses the vessel wall?</td><td>Is water a substitute for vessel containment?</td></tr><tr><td>Standard case — both halves inside vessel</td><td>Both inside</td><td>Direct vessel containment</td><td>Vessel joins both — one impure makes both impure</td><td>Baseline: vessel joining is established ✅</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Bekhorot 24 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e22;border-color:#4a90d9;color:#fff"><strong>Two half-tenths in one vessel</strong><br><small>not physically touching</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e22;border-color:#e74c3c"><strong>For Impurity:</strong><br>Vessel joins — one impure = both impure<br><small>(Rav Kahana, Mishna Ḥagiga)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e22;border-color:#2ecc71"><strong>For Handful:</strong><br>Baraita: two tenths in one vessel → valid removal across halves</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#16213e22;border-color:#e67e22;color:#fff"><strong>Abaye's limit:</strong> Vessel with internal ridge = two vessels → each side is independent</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e22;border-color:#9b59b6"><strong>Rava:</strong> Of three half-tenths — only paired halves join (by original relationship)</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e22;border-color:#c9a84c"><strong>Abaye:</strong> All three join — <em>"residents of one cabin"</em><br><small>Resolved by Rav Ashi: priest's intention governs</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Bekhorot 24a-24b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Bekhorot 24a-24b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../23/">← Daf 23</a><a href="../25/">Daf 25 →</a></div>
+</body>
+</html>

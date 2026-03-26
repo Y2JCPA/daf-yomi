@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bekhorot 42 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Bekhorot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🧵</div>
+  <h1>Bekhorot 42</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">בכורות מב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📏 Tzitzit Hole Placement — distance from garment edge<br>
+    🔵 Tekhelet Dyeing — the ḥilazon-based process<br>
+    🙏 Blessing on Tzitzit — garment vs. personal obligation<br>
+    ✡️ Gentile Performing Mitzvot — validity and blessings<br>
+    🪡 Spinning Lishma — threads must be spun for the mitzva<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Rav Ḥisda's Principle: When Does a Jew Bless?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ḥisda</div><div class="speech">For any mitzva that is <em>valid when performed by a gentile</em>, if a Jew performs it he does <strong>not</strong> recite a blessing — since the act is not exclusively his obligation.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara (challenge)</div><div class="speech"><em>Circumcision</em> is valid when done by a gentile, yet a Jew who circumcises <strong>does</strong> recite a blessing! This directly contradicts Rav Ḥisda's rule.</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Resolution</div><div class="speech">Rav himself holds that circumcision by a gentile is <strong>invalid</strong> — derived from 'himmol yimmol': only one who is circumcised may circumcise others. No contradiction.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Final Distinction</div><div class="speech">For mitzvot where performance <em>completes</em> the act (circumcision, tefillin), a Jew blesses even if a gentile could validly do it. For <em>preparatory</em> acts (building a sukka), no blessing at that stage.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> Is the Jew's act the <strong>completion</strong> of the mitzva (<em>גמר מצווה</em>), or merely its <strong>preparation</strong>? That determines whether a blessing is recited.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📐 Where to Insert the Tzitzit String</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Where must the tzitzit hole be located on the garment corner?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Pappa (41b) — Maximum</div><div class="flow-box action">Hole must be <strong>within 3 fingerbreadths</strong> of the edge — so the strings remain 'on the corner' as required</div></div><div class="flow-col"><div class="flow-label">Rabbi Ya'akov citing Rabbi Yoḥanan — Minimum</div><div class="flow-box action">Hole must be <strong>at least one full thumb-joint</strong> from the edge — otherwise the fabric may tear and strings fall off</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Both rules apply together: hole must be <strong>between 1 thumb-joint and 3 fingerbreadths</strong> from the edge</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><small><strong>Story:</strong> Ravina's cloak was torn — his hole fell too close to the edge. Rav Samma asked about the violation; Rav Ashi consoled him: 'Sages of Eretz Yisrael are like two of us.' (<em>חד מינייהו כתרי מינן</em>)</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔵 How to Dye Tekhelet (Sky-Blue Wool) — Rav Shmuel bar Rav Yehuda to Abaye</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1:</strong> Obtain blood of the <em>ḥilazon</em> (חִילָּזוֹן) — a sea creature — and gather various herbs</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 2:</strong> Place the ḥilazon blood and herbs into a pot and bring to a boil together</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 3:</strong> Take a small wad of wool, wrap it in brine, and insert it into the boiling dye mixture as a <em>test</em></div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 4:</strong> Evaluate the test — if the color is correct, dye the actual tzitzit strings <em>לִשְׁמָהּ</em> (for the sake of the mitzva)</div><div class="process-arrow">↓</div><div class="process-step"><strong>⚠️ Critical rule:</strong> Burn the test wad of wool so it cannot be mistaken for valid tekhelet — and the dye used in testing is <strong>unfit</strong> for actual strings (Tanna Kamma; disputed by R' Yoḥanan ben Dahavai)</div><div class="process-arrow">↓</div><div class="process-step"><strong>Purchase rule:</strong> Tekhelet has no reliable visual test — it may therefore only be purchased from a recognized <em>מֻמְחֶה</em> (expert)</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🙏 Must One Recite a Blessing When Attaching Tzitzit?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Adda bar Ahava</div><div class="speech">Tzitzit is a <strong>chovat habegged</strong> — an <em>obligation of the garment</em>. The blessing is recited when <em>wearing</em> the garment: <strong>לְהִתְעַטֵּף בְּצִיצִית</strong></div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Other Opinion</div><div class="speech">Tzitzit is a <strong>chovat hagavra</strong> — a <em>personal obligation</em>. The blessing is recited when <em>attaching</em> the strings at the time of making: <strong>לַעֲשׂוֹת צִיצִית</strong></div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Naḥman</div><div class="speech">I heard Rav Adda reciting 'לַעֲשׂוֹת צִיצִית' while attaching the strings — proof the blessing is at the time of <em>making</em>, not wearing! What is this tzitzi sound I hear?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Adda bar Ahava</div><div class="speech">I was merely chanting it as a <em>niggun</em> (melody) — not as a formal blessing recitation. My position remains: the blessing belongs to the act of wearing.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Stakes</strong> If tzitzit is a garment-obligation, attaching strings to someone else's garment creates no obligation to bless. If it is a personal obligation, the attacher must bless at attachment.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🪡 Rav vs. Shmuel: Which Threads Are Valid for Tzitzit?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2e4a"><h3 style="color:#4a90d9">Rav — Integral Threads Valid</h3><ul><li>✅ Threads protruding from fabric like thorns (<em>kotzim</em>)</li><li>✅ Leftover sewing threads still attached to the garment</li><li>✅ Fringe threads from the garment's woven border (<em>gadil</em>)</li><li>❌ Threads that detached and were re-tied — invalid</li><li><em>Principle: threads must already be part of the garment structure</em></li></ul></div><div class="compare-box" style="border-top-color:#2d1a4a"><h3 style="color:#9b59b6">Shmuel — Spinning Lishma Required</h3><ul><li>❌ All of Rav's cases above — invalid for a different reason</li><li>❌ Wool swatches not spun specifically for this mitzva — also invalid</li><li>✅ Only strings <strong>spun לִשְׁמָהּ</strong> (for the sake of tzitzit) are valid</li><li><em>Analogy to tefillin: just as writing must be לשמה, spinning must be לשמה</em></li><li><small>This dispute parallels a tannaitic dispute about patching tefillin with kosher vs. non-kosher skin</small></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Mitzva Validity by Gentile & Blessing Requirements</h2>
+  
+  <table><tr><th>Mitzva</th><th>Valid by Gentile?</th><th>Jew Recites Blessing?</th><th>Ruling / Source</th></tr><tr><td>Tzitzit attachment</td><td>✅ Valid — Rav (derived from 'Speak to B'nei Yisrael')</td><td>Disputed: at wearing vs. at attaching</td><td>Rav Yehuda citing Rav; Rav Adda bar Ahava</td></tr><tr><td>Sukka construction</td><td>✅ Valid (baraita: booths of gentiles, women, animals — all fit)</td><td>❌ No blessing at construction</td><td>Blessing 'shehecheyanu' said at first dwelling, not building</td></tr><tr><td>Milah (circumcision)</td><td>❌ Invalid — per Rav</td><td>✅ Blessing: 'אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ עַל הַמִּילָה'</td><td>Rav: derived from 'himmol yimmol'; R' Yoḥanan: circumcised may circumcise</td></tr><tr><td>Tefillin writing</td><td>❌ Invalid — heretic, gentile, minor, etc.</td><td>✅ Blessing at arm; blessing at head</td><td>Rav Ḥinnana b. Rava of Pashronya; sent by Rav Ḥiyya b. Rav Huna</td></tr><tr><td>Mezuza writing</td><td>❌ Invalid — same sources as tefillin</td><td>✅ Blessing required</td><td>וּכְתַבְתָּם — 'you' (Israel) must write; excludes non-Jews</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Bekhorot 42 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box start" style="background:#1a2e4a;border:2px solid #4a90d9;color:#e8d5a3;padding:10px;border-radius:6px;text-align:center;"><strong>Tzitzit: Where, What, and How</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2e4a;border:1px solid #4a90d9;color:#cce0ff;padding:8px;border-radius:4px;"><strong>📐 Placement</strong><br>Hole: min 1 thumb-joint, max 3 fingerbreadths from edge</div></div><div class="flow-col"><div class="flow-box" style="background:#2d1a4a;border:1px solid #9b59b6;color:#e0ccff;padding:8px;border-radius:4px;"><strong>🪡 Material</strong><br>Rav: integral threads valid<br>Shmuel: must be spun לשמה</div></div><div class="flow-col"><div class="flow-box" style="background:#003a2a;border:1px solid #2ecc71;color:#ccffe8;padding:8px;border-radius:4px;"><strong>🔵 Tekhelet</strong><br>ḥilazon blood + herbs, boiled; dyed לשמה; buy from expert only</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#2a2a1a;border:2px solid #c9a84c;color:#fff8dc;padding:10px;border-radius:6px;text-align:center;"><strong>🙏 Blessing Question:</strong> Garment-obligation → bless at <em>wearing</em> | Personal obligation → bless at <em>attaching</em></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#1a3a1a;border:2px solid #2ecc71;color:#e8d5a3;padding:10px;border-radius:6px;text-align:center;"><strong>⚖️ Rav Ḥisda's Principle:</strong> When a mitzva act <em>completes</em> the obligation (milah, tefillin), a Jew blesses even if a gentile could do it. When the act is merely <em>preparatory</em> (sukka building), no blessing at that stage.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Bekhorot 42a-42b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Bekhorot 42a-42b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../41/">← Daf 41</a><a href="../43/">Daf 43 →</a></div>
+</body>
+</html>

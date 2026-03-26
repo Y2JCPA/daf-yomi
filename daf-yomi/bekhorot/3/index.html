@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bekhorot 3 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Bekhorot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍞</div>
+  <h1>Bekhorot 3</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">בכורות ג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚔️ The Contradiction — Two Baraitot, Two Rulings of Rabbi Shimon<br>
+    👁️ Rabba: Recognizably False Intent (היכרא)<br>
+    📜 Rava: 'This Is the Law of the Meal Offering' (Lev. 6:7)<br>
+    🏺 Rav Ashi: Intent Regarding the Vessel Type<br>
+    🐑 Stress-Testing All Three Resolutions with Edge Cases<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🍞 Three Amoraim Resolve One Contradiction</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>The Problem:</strong> Two baraitot cite Rabbi Shimon with <em>contradictory</em> rulings — does a meal offering whose handful was removed not for its own sake (<em>shelo lishmah</em>) fulfill the owner's obligation?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabba</div><div class="flow-box action">Valid only when false intent is <strong>recognizable</strong> to observers (היכרא). If hidden, offering is disqualified.</div></div><div class="flow-col"><div class="flow-label">Rava</div><div class="flow-box result-good">Always valid: verse teaches <strong>one unified law</strong> for all meal offerings (Lev. 6:7).</div></div><div class="flow-col"><div class="flow-label">Rav Ashi</div><div class="flow-box result-good">Valid because intent about the <strong>vessel type</strong> alone is legally inconsequential.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>All three agree:</strong> Meal offerings operate under a <em>more lenient</em> lishmah standard than slaughtered offerings — they differ only on the reason why.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚔️ Rabba's Resolution: Recognizability as the Key</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Why does Rabbi Shimon rule that a meal offering removed not for its own sake still fulfills the owner's obligation?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">Because the false intent is <strong>recognizably false</strong> (היכרא). When observers see a pan offering treated as a deep-pan offering, the error is plain — and since recognizably false intent is disregarded, the owner fulfills his obligation.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Challenge: A bird sin offering whose blood was sprinkled below the line for the sake of a burnt offering — the action proves wrong intent! Shouldn't it also effect acceptance?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">No — observers might think the blood had <em>already</em> been sprinkled below properly, and the above-line squeezing was incidental. The false intent is <strong>not clearly recognizable</strong>, so it does not effect acceptance.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But Rabbi Shimon never discussed bird offerings! He said: <em>meal offerings are not similar to slaughtered offerings</em> — meaning only certain slaughtered offerings resemble meal offerings in this rule.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle — Rabba</strong> היכרא (Recognizability): Only when an observer can plainly see that the priest acted with false intent does Rabbi Shimon's leniency apply. Ambiguous or hidden wrongdoing is treated as genuine disqualification.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🧪 Challenging Rabba: Edge Cases That Push the Limits</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Test 1:</strong> Burnt offering slaughtered for the sake of a sin offering — sin offerings must be female; a male animal cannot be one. Recognizable?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Female lamb</div><div class="flow-box action">Tail <em>obscures sex</em> → not clearly recognizable → does <strong>not</strong> effect acceptance under Rabba</div></div><div class="flow-col"><div class="flow-label">Female goat</div><div class="flow-box result-bad">Sex <em>easily visible</em> → clearly recognizable → <strong>should</strong> effect acceptance. But this challenges Rabba!</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Test 2 — Paschal vs. Guilt Offering:</strong> First-year vs. second-year animal. Rabba's answer: the age difference is <em>not readily apparent</em> — an animal in its first year can appear older. Not recognizable.</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Test 3 — Calf/Bull for Paschal or Guilt Offering:</strong> These species <em>cannot</em> be either offering — the difference is obvious. By Rabba's logic this should effect acceptance. Left as a challenge.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📜 Rava vs. Rav Ashi: Two Alternative Readings of Rabbi Shimon</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a4a"><h3 style="color:#4a90d9">Rava's Resolution</h3><ul><li><strong>Verse:</strong> <em>"And this is the law of the meal offering"</em> (Lev. 6:7)</li><li>The single definite article teaches: <strong>one unified law</strong> governs all meal offerings</li><li>Intent for any meal offering = valid intent for any other meal offering</li><li><strong>Contrast:</strong> <em>"And slaughter it for a sin offering"</em> (Lev. 4:33) — 'it' demands the specific offering's own identity</li><li><strong>Implication:</strong> Rabbi Shimon holds a sin offering brought for a different sin offering is <em>valid</em>; the Rabbis disagree</li></ul></div><div class="compare-box" style="border-top-color:#1a3a2a"><h3 style="color:#2ecc71">Rav Ashi's Resolution</h3><ul><li><strong>Principle:</strong> Intent about the <em>vessel type</em> (pan vs. deep-pan) is legally inconsequential</li><li>The priest only had intent about the <em>container</em>, not the offering's legal category</li><li><strong>Rabbi Shimon's logic:</strong> Mode of preparation proves the offering's identity — the offering speaks for itself</li><li><strong>Slaughtered offerings:</strong> One manner of slaughter for all → wrong intent does affect legal identity</li><li><strong>Challenge from Rav Aḥa:</strong> Dry vs. oil-mixed offering — preparation itself differs, yet R. Shimon still validates it!</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📊 Does Wrong Intent Effect Acceptance? Summary by Case</h2>
+  
+  <table><tr><th>Case</th><th>Intent Recognizable?</th><th>Effects Acceptance?</th><th>Authority / Reason</th></tr><tr><td>Pan offering → intent for deep-pan</td><td>Yes — vessel is visible</td><td>✅ Yes</td><td>All three Amoraim agree (for different reasons)</td></tr><tr><td>Bird sin offering → intent for burnt offering</td><td>Ambiguous — prior proper act assumed</td><td>❌ No</td><td>Rabba: false intent not clearly recognizable</td></tr><tr><td>Burnt offering → intent for sin offering (female goat)</td><td>Yes — goat sex is visible</td><td>Disputed ⚠️</td><td>Challenge to Rabba; not fully resolved</td></tr><tr><td>Paschal offering (yr 1) → intent for guilt offering (yr 2)</td><td>No — age not readily apparent</td><td>❌ No</td><td>Rabba: difference not obvious to observers</td></tr><tr><td>Sin offering for forbidden fat → intent for different sin offering</td><td>N/A — verse unifies all sin offerings</td><td>✅ Yes (R. Shimon) / ❌ No (Rabbis)</td><td>Rava derives from Lev. 4:33 that Rabbis require strict identity</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🏺 Rav Ashi's Full Argument and Its Challenges</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>The Ruling:</strong> One removes a handful from a <em>pan</em> meal offering while intending a <em>deep-pan</em> offering → offering is still valid (Rabbi Shimon)</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rav Ashi's Principle:</strong> The priest's intent was only about the <em>vessel type</em>. Vessel-type intent is inconsequential — the offering's own preparation proves what it legally is.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Why Slaughtered Offerings Differ:</strong> All slaughtered offerings share one manner of slaughter AND one manner of blood-sprinkling. The offering cannot prove its own identity → wrong intent matters.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Challenge from Rav Aḥa son of Rava:</strong> Rabbi Shimon also validates removing a handful from a <em>dry</em> meal offering for the sake of an <em>oil-mixed</em> offering. Here the preparation visibly differs — vessel logic cannot explain this!</div><div class="process-arrow">↓</div><div class="process-step"><strong>Second Challenge:</strong> Slaughtering a burnt offering for the sake of a <em>peace offering (shelamim)</em> — can the priest claim his intent was merely for 'peace between himself and God'? Rejected: the offering <em>itself</em> is called shelamim (Lev. 7:33) — the name is objectively attached to the animal, not to a vague intent.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Bekhorot 3 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2a1a4a;border:2px solid #9b59b6;"><strong>Starting Point:</strong> Two baraitot cite Rabbi Shimon with <em>contradictory rulings</em> on meal offerings performed <em>shelo lishmah</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a4a;border:2px solid #4a90d9;"><strong>Rabba</strong><br><small>Recognizably false intent (היכרא) → valid<br>Hidden/ambiguous intent → invalid</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2a;border:2px solid #2ecc71;"><strong>Rava</strong><br><small>Lev. 6:7 unifies all meal offerings<br>Any meal offering intent = valid</small></div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a;border:2px solid #c9a84c;"><strong>Rav Ashi</strong><br><small>Vessel-type intent is inconsequential<br>Preparation proves identity</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3a1a;border:2px solid #2ecc71;"><strong>Shared Conclusion:</strong> Meal offerings → lenient lishmah standard | Slaughtered offerings → strict lishmah standard</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Bekhorot 3a-3b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Bekhorot 3a-3b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../2/">← Daf 2</a><a href="../4/">Daf 4 →</a></div>
+</body>
+</html>

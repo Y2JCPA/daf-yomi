@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bekhorot 40 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Bekhorot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🧵</div>
+  <h1>Bekhorot 40</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">בכורות מ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Beit Shammai vs. Beit Hillel — Linen Cloak & Tzitzit<br>
+    🚫 Rabbinic Decree — Why Wool on Linen Was Forbidden<br>
+    ✂️ Ta'aseh v'Lo Min He'asuy — Must Be Prepared Anew<br>
+    📐 Following the Corner — Cloth Body vs. Leather Corner<br>
+    🔄 Three-Cornered Garment — Tzitzit Before Completion<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🏛️ The Great Dispute: Linen Cloak & Tzitzit</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">A linen cloak is <strong>EXEMPT</strong> from tzitzit. Tekhelet (sky-blue) strings must be wool — attaching wool to linen violates <em>kilayim</em> (mixed fibers), and the positive mitzva does not override it.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">A linen cloak is <strong>OBLIGATED</strong> in tzitzit. The positive mitzva of tzitzit <em>overrides</em> the kilayim prohibition — halakha follows this view.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R. Eliezer b. R. Tzadok</div><div class="speech">Anyone who affixes sky-blue strings to a linen cloak in Jerusalem is considered one who <strong>causes astonishment</strong> — it appears unseemly to observers.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabbi Yehuda HaNasi</div><div class="speech">Even granting Beit Hillel's ruling, the Sages <strong>prohibited</strong> affixing ritual fringes to linen garments — the Gemara investigates the real reason for this decree.</div></div></div><div class="callout" style="margin-top:20px"><strong>The Central Question of Daf 40</strong> Halakha follows Beit Hillel (linen requires tzitzit), yet a rabbinic decree prohibits it. Why? The entire daf unfolds Rava's answer: the fear of ta'aseh v'lo min he'asuy — strings attached after a rip are invalid, and reusing them violates kilayim.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏛️ Beit Shammai vs. Beit Hillel: Linen Cloak Tzitzit</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fdecea"><h3 style="color:#e74c3c">Beit Shammai — Exempt</h3><ul><li>Linen cloak is <strong>exempt</strong> from tzitzit</li><li>Tekhelet = wool; wool on linen = <em>kilayim</em> violation</li><li>Positive mitzva does <strong>not</strong> override this prohibition</li><li>White linen strings alone cannot fulfill the obligation</li></ul></div><div class="compare-box" style="border-top-color:#eaf4fd"><h3 style="color:#4a90d9">Beit Hillel — Obligated</h3><ul><li>Linen cloak is <strong>obligated</strong> in tzitzit</li><li>Positive mitzva of tzitzit <em>overrides</em> the kilayim prohibition</li><li>Reish Lakish: where possible, fulfill <strong>both</strong>; mitzva takes precedence</li><li>Halakha follows Beit Hillel — but a rabbinic decree still intervenes</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🚫 Why the Rabbinic Decree Against Linen Tzitzit?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Halakha:</strong> Beit Hillel rules linen cloaks require tzitzit. Why did the Sages prohibit it?</div><div class="flow-arrow">↓</div><div class="flow-box action">Suggestion: Send 10 people to the marketplace with linen cloaks + wool tzitzit to publicize the heter</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Rejected — a rabbinic decree stands; public display cannot simply override it</div><div class="flow-arrow">↓</div><div class="flow-box action">Suggestion: Let Sages teach publicly during lectures that wool on linen is permitted for tzitzit</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Rejected — a rabbinic decree already stands against it; teaching alone is insufficient</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Rava's Final Answer:</strong> Lest the cloak <em>rip within 3 fingerbreadths</em> of the corner — rendering the tzitzit invalid. One might then reattach the same strings, violating kilayim with no mitzva justification (<em>ta'aseh v'lo min he'asuy</em>).</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>✂️ Ta'aseh v'Lo Min He'asuy</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">תַּעֲשֶׂה וְלֹא מִן הֶעָשׂוּי — דברים כב:יב</div><div class="callout"><strong>Core Principle — Deuteronomy 22:12</strong> <strong>"You shall prepare yourself twisted cords"</strong> — <em>ta'aseh</em>, you shall <strong>make</strong> it; <em>v'lo min he'asuy</em>, and <strong>not from what has already been prepared</strong>.<br><br>When a linen cloak rips within <strong>3 fingerbreadths</strong> of the corner, the corner is severed. Existing tzitzit strings become <em>invalid</em>. If one reattaches those very same strings to the repaired corner, they were "prepared" before that corner existed — violating this rule and constituting kilayim without any mitzva purpose.<br><br><small>Because of this decree, <strong>Rabbi Zeira</strong> personally untied and removed his tzitzit from his linen cloak.</small></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📐 What Determines Tzitzit Obligation? The Corner Rule</h2>
+  
+  <table><tr><th>Case</th><th>Garment Body</th><th>Corner Material</th><th>Obligated?</th><th>Source</th></tr><tr><td>Standard garment</td><td>Wool or linen</td><td>Same as body</td><td>Yes ✅</td><td>Torah law</td></tr><tr><td>Cloth body, leather corner</td><td>Cloth</td><td>Leather</td><td>Yes ✅</td><td>Rav Aḥai — follow the corner</td></tr><tr><td>Leather body, cloth corner</td><td>Leather</td><td>Cloth</td><td>Yes ✅</td><td>Rav Aḥai — follow the corner</td></tr><tr><td>Full leather garment</td><td>Leather</td><td>Leather</td><td>No ❌</td><td>Not a textile 'garment' for tzitzit</td></tr><tr><td>Three-cornered garment (before 4th added)</td><td>Any cloth</td><td>3 corners only</td><td>No ❌</td><td>Rava citing Rav Seḥora/Rav Huna</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔄 Tzitzit on a Three-Cornered Garment: Valid After Completion?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rava (Rav Seḥora/Rav Huna)</div><div class="speech">If tzitzit were affixed to a <strong>3-cornered</strong> garment (exempt), and one then completed the <strong>4th corner</strong> — the tzitzit are <strong>valid</strong>. Completing the corner retroactively obligates the garment and validates the attachment.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Baraita (Pious Early Generations)</div><div class="speech">The early pious men affixed white and sky-blue strings after weaving only <strong>3 fingerbreadths</strong> of the garment — well before it was complete! This suggests early attachment <em>is</em> valid, seemingly contradicting ta'aseh v'lo min he'asuy.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rava (Resolution)</div><div class="speech">When one adds a <strong>second set</strong> of tzitzit to an already-fulfilled garment, one violates 'do not add to the mitzvot' — this very <em>act</em> validates the original strings retroactively, counting as an action of preparation.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Pappa (Challenge)</div><div class="speech">From where do we know Rabbi Zeira meant a case of <em>adding</em> strings? Perhaps he meant a case where one intended to <strong>nullify</strong> the original strings — the question of intent remains unresolved.</div></div></div><div class="callout" style="margin-top:20px"><strong>Rabbi Zeira's Related Ruling</strong> White and sky-blue strings affixed to an <em>exempt</em> garment are not subject to the prohibition of diverse kinds (kilayim) — since no mitzva obligation exists there, the mitzva exception does not apply, yet the strings themselves are not forbidden.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Bekhorot 40 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;border-left:4px solid #4a90d9;padding:10px"><strong>Beit Hillel:</strong> Linen cloak is obligated in tzitzit — positive mitzva overrides kilayim</div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#16213e;border-left:4px solid #c9a84c;padding:10px"><strong>Tension:</strong> Sages issued a rabbinic decree prohibiting wool tzitzit on linen — why?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border-left:4px solid #e74c3c;padding:10px"><strong>Rejected approaches:</strong> Public demonstration, letters to dye producers, public lectures — all insufficient to override the standing decree</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border-left:4px solid #2ecc71;padding:10px"><strong>Rava's Answer:</strong> Fear of rip within 3 fingerbreadths → tzitzit invalid → reattaching same strings = <em>kilayim</em> + ta'aseh v'lo min he'asuy violation</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;border-left:4px solid #9b59b6;padding:10px"><strong>Ta'aseh v'Lo Min He'asuy:</strong> Strings must be attached when the garment is already obligated — "make it, not from what was already made" (Deut. 22:12)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border-left:4px solid #4a90d9;padding:10px"><strong>Corner Rule (Rav Aḥai):</strong> Follow the <em>corner</em> material — cloth corner = obligated, regardless of garment body</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border-left:4px solid #c9a84c;padding:10px"><strong>3-Corner Garment (Rava):</strong> Tzitzit affixed before 4th corner may be valid upon completion — debated by Rav Pappa re: intent</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Bekhorot 40a-40b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Bekhorot 40a-40b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../39/">← Daf 39</a><a href="../41/">Daf 41 →</a></div>
+</body>
+</html>

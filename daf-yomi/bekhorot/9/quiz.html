@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bekhorot 9 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Bekhorot 9 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Reish Lakish, what is the halakhic status of a meal offering whose oil was mixed outside the Temple courtyard?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Disqualified — the service must occur inside the courtyard</div>
+      <div class="option" onclick="select(1,this,1)">B. Valid — after the handful is removed, pouring and mixing are merely a priestly mitzva</div>
+      <div class="option" onclick="select(1,this,2)">C. Valid only if the priest intended to complete the rite inside</div>
+      <div class="option" onclick="select(1,this,3)">D. Disqualified — a service vessel was not properly used</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Reish Lakish holds that from the removal of the handful onward, the Sages derived that the remaining rites are a mitzva of the priesthood — not critical rites that invalidate the offering. Therefore, mixing oil outside the courtyard is valid.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Why does Rabbi Yoḥanan permit the owner to refill a meal offering that became lacking before the handful was removed?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Because the removal of the handful has already established the offering's final status</div>
+      <div class="option" onclick="select(2,this,1)">B. Because the removal of the handful has not yet established the offering, so additions are still permitted</div>
+      <div class="option" onclick="select(2,this,2)">C. Because a meal offering can be refilled at any stage by rabbinic enactment</div>
+      <div class="option" onclick="select(2,this,3)">D. Because the priest has discretionary authority to permit refilling before the service begins</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>Rabbi Yoḥanan reasons that the removal of the handful is the act that 'establishes' the offering. Before that point, the offering has not yet been fully constituted as a sanctified korban, so the owner is free to restore the full measure with flour from home.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">What does Rav Pappa observe about Reish Lakish's silence in the shewbread dispute?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Reish Lakish agreed that the shewbread baraita refuted his position entirely</div>
+      <div class="option" onclick="select(3,this,1)">B. Reish Lakish was absent and not present for that portion of the discussion</div>
+      <div class="option" onclick="select(3,this,2)">C. Reish Lakish did not raise the potential distinction between communal and individual offerings</div>
+      <div class="option" onclick="select(3,this,3)">D. Reish Lakish conceded that Rabbi Yoḥanan's three proofs were all valid</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>Rav Pappa notes that Reish Lakish remained silent rather than argue that communal offerings (like shewbread) are different from individual ones — since ritual impurity can be overridden for communal offerings (tzibur). This distinction could have defended his position.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">From where does Rabbi Zeira derive that removing the handful of a meal offering with the left hand disqualifies it?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. A direct verse in Leviticus 2 specifying that the priest must use his right hand</div>
+      <div class="option" onclick="select(4,this,1)">B. A halakha le-Moshe mi-Sinai (tradition from Sinai) preserved in the Mishnah</div>
+      <div class="option" onclick="select(4,this,2)">C. The passage about the leper's purification oil, where the left hand is explicitly and uniquely required</div>
+      <div class="option" onclick="select(4,this,3)">D. A gezera shava connecting the meal offering to the sin offering of the High Priest</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>Rabbi Zeira derives it from the leper's purification passage (Lev. 14:15–16), which mentions 'left hand' four times. This repetition signals that left-hand use is exclusively required for the leper rite — implying that in all other Temple service, the right hand is mandatory.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Rav Malkiyu cites two verses to disqualify lacking meal offerings. How does the Gemara ultimately explain why both verses are needed?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. One verse addresses lacking before the handful; the other addresses lacking after the handful</div>
+      <div class="option" onclick="select(5,this,1)">B. One verse disqualifies the offering for the owner; the other disqualifies the remainder for the priests</div>
+      <div class="option" onclick="select(5,this,2)">C. Both verses address the same case — the second adds emphasis for a repeated violation</div>
+      <div class="option" onclick="select(5,this,3)">D. One verse applies to voluntary meal offerings; the other to obligatory ones</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>The Gemara concludes that one verse (Lev. 2:2 — 'of its fine flour') teaches that the offering cannot be validly used if lacking, disqualifying it for the owner's purposes. The second verse (Lev. 2:3 — 'that which is left shall be Aaron's') teaches that the priests receive the remainder only if the offering was whole — addressing the priests' right to consume it.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":1,"3":2,"4":2,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

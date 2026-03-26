@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bekhorot 48 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Bekhorot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍞</div>
+  <h1>Bekhorot 48</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">בכורות מח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🍞 Redeeming the Shavuot Loaves — inside or outside the courtyard?<br>
+    ⚖️ Rav Ḥisda's Defense of Rabbi Yehuda HaNasi's View<br>
+    🔄 'Arise and Sin to Gain' — when halacha permits sinning for benefit<br>
+    🐑 Shavuot Sheep Slaughtered Not For Their Own Sake — valid or disqualified?<br>
+    📜 Deriving Obligatory Offerings from Voluntary Ones — Levi's principle<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🍞 Menachot 48 — Loaves, Sheep, and Sacred Dilemmas</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כבשי עצרת — The Shavuot sheep (Leviticus 23:19)</div><div class="callout"><strong>Core Questions</strong> When four loaves accompany two Shavuot sheep, which two become consecrated with inherent sanctity? Can extra loaves be redeemed inside the Temple courtyard? May the court ever instruct a priest to sin for a greater gain? And are Shavuot sheep that were slaughtered not for their own sake valid or disqualified? This daf wrestles with intentionality, consecration, and the limits of permissible sacrifice.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏛️ Where Are the Extra Shavuot Loaves Redeemed?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ḥisda</div><div class="speech">The baraita IS in accordance with Rabbi Yehuda HaNasi — and one redeems the loaves <strong>inside the courtyard</strong>. This does not violate the prohibition of bringing non-sacred items into the Temple.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Ravina</div><div class="speech">But a baraita teaches explicitly: <em>he may redeem them only outside the courtyard!</em> This directly contradicts your claim that R. Yehuda HaNasi permits redemption inside!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Ashi</div><div class="speech">That baraita follows <strong>Rabbi Elazar b. Rabbi Shimon</strong> — not Rabbi Yehuda HaNasi. According to R. Yehuda HaNasi, taking the loaves outside the courtyard would <em>disqualify</em> them — so redemption must happen inside.</div></div></div><div class="callout" style="margin-top:20px"><strong>The Underlying Dispute</strong> Rabbi Yehuda HaNasi: slaughter of the sheep consecrates two loaves with inherent sanctity. Rabbi Elazar b. R. Shimon: slaughter does NOT grant inherent sanctity — all loaves remain in instrumental sanctity only.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔀 Four Loaves Brought With Two Shavuot Sheep — What Happens?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Four loaves</strong> brought with two Shavuot sheep (double the required amount)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Yehuda HaNasi</div><div class="flow-box result-good">Slaughter <strong>consecrates</strong> two loaves with inherent sanctity (קדושת הגוף)</div></div><div class="flow-col"><div class="flow-label">Rabbi Elazar b. R. Shimon</div><div class="flow-box result-bad">Slaughter does <strong>NOT</strong> consecrate — all four remain in instrumental sanctity only</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">The two extra loaves must be <strong>redeemed</strong> — but how and where?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R. Yehuda HaNasi's view</div><div class="flow-box result-good">Redeem <strong>inside</strong> the courtyard — taking them out first would disqualify them as consecrated items</div></div><div class="flow-col"><div class="flow-label">R. Elazar b. R. Shimon's view</div><div class="flow-box result-bad">Redeem <strong>outside</strong> the courtyard — they were never consecrated with inherent sanctity</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚠️ 'Arise and Sin In Order to Gain' — Is This Ever Permitted?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Ḥanina Tirata</div><div class="speech">If four sheep were slaughtered with two loaves, the priest should sprinkle the blood of ALL four <strong>not for their own sake</strong> — this preserves the fit status of the extra two sheep.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech"><strong>Does the court say: 'Arise and sin in order that you may gain'?!</strong> Is it proper to instruct invalid sprinkling so that extra sheep remain fit?</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Ḥanina Tirata</div><div class="speech">Yes — we <em>do</em> say 'arise and sin' when the sin and the gain concern the <strong>same type</strong> of offering. Here: sheep for sheep.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech">Even granting that — you cannot say 'sin on <strong>Shabbat</strong> to gain on a <strong>weekday</strong>!' The sin and gain must exist in the <em>same time domain</em>.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Ḥanina Tirata</div><div class="speech">Agreed: we say 'arise and sin on Shabbat to gain <strong>on that same Shabbat</strong>' — but NOT to gain on a later weekday.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resulting Rule</strong> 'Arise and sin to gain' is permitted only when (1) the sin and gain concern the same type of offering, AND (2) the sin and the gain occur in the same time domain.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🐑 Shavuot Sheep Slaughtered Not For Their Own Sake — Three Views</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a0a0a"><h3 style="color:#e74c3c">Rav Yitzḥak</h3><ul><li>Derives Shavuot sheep from <strong>sin offering</strong> (juxtaposed in Leviticus 23:19)</li><li>Result: Slaughtering not for their own sake → <strong>DISQUALIFIED</strong></li><li>Just as a sin offering slaughtered not for its own sake is disqualified</li></ul></div><div class="compare-box" style="border-top-color:#001a05"><h3 style="color:#2ecc71">Levi / Rav Naḥman</h3><ul><li>Derives Shavuot sheep from <strong>voluntary peace offering</strong></li><li>Result: Slaughtering not for their own sake → <strong>VALID</strong></li><li>Valid as offerings, but do NOT fulfill the owner's obligation to bring them</li><li>Analogy: nazirite's other peace offerings slaughtered improperly are valid but non-obligatory</li></ul></div><div class="compare-box" style="border-top-color:#1a1400"><h3 style="color:#c9a84c">Rav Shimi bar Ashi</h3><ul><li>Offers a <strong>meta-principle</strong> for derivation</li><li>Derive an item prepared in an <em>invalid manner</em> from another item prepared in an invalid manner</li><li>Do NOT derive from items that are normally valid</li><li>This limits the scope of Levi's analogy</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📋 'Arise and Sin to Gain' — A Summary of Cases</h2>
+  
+  <table><tr><th>Case</th><th>The 'Sin'</th><th>The 'Gain'</th><th>Same Type/Time?</th><th>Permitted?</th></tr><tr><td>Four Shavuot sheep — sprinkle all not for own sake</td><td>Invalid sprinkling (not for own sake)</td><td>Extra two sheep remain fit</td><td>Yes — same offering type</td><td>✅ R. Ḥanina Tirata: Yes</td></tr><tr><td>Mixed sin-offering limbs and burnt-offering limbs</td><td>Burning sin-offering flesh on altar</td><td>Saving the burnt-offering limbs</td><td>Same general domain</td><td>❌ Rabbis: No — burn together</td></tr><tr><td>Sin on Shabbat to gain on a weekday</td><td>Sprinkling blood on Shabbat</td><td>Ability to burn portions on weekday</td><td>No — different time</td><td>❌ Rabbi Yoḥanan: Forbidden</td></tr><tr><td>Sin on Shabbat to gain on same Shabbat</td><td>Sprinkling on Shabbat</td><td>Gain also on Shabbat</td><td>Yes — same time domain</td><td>✅ R. Ḥanina Tirata: Permitted</td></tr><tr><td>Teruma wine flowing into impure lower press</td><td>Catching wine in impure vessel</td><td>Saving some teruma from ruin</td><td>N/A — wine already becoming impure</td><td>✅ Not a true 'sin' — already lost</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Bekhorot 48 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#1e1e2e;border:2px solid #c9a84c;padding:10px;border-radius:6px;"><strong>Shavuot Offering: 2 sheep + 2 loaves required</strong><br><small>What if 4 loaves or 4 sheep are brought?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0a1628;border:2px solid #4a90d9;padding:10px;border-radius:6px;"><strong>4 Loaves brought</strong><br>Which 2 are consecrated?<br><em>R. Yehuda HaNasi:</em> slaughter consecrates → redeem extras <strong>inside</strong><br><em>R. Elazar b. R. Shimon:</em> no consecration → redeem <strong>outside</strong></div></div><div class="flow-col"><div class="flow-box" style="background:#1a0e00;border:2px solid #e67e22;padding:10px;border-radius:6px;"><strong>4 Sheep brought</strong><br>Sprinkle all not for own sake?<br><em>'Arise and sin to gain'</em><br>Only if: same type <strong>AND</strong> same time domain</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#001a0a;border:2px solid #2ecc71;padding:10px;border-radius:6px;"><strong>Validity when slaughtered not for own sake</strong><br><em>Rav Yitzḥak:</em> Disqualified (like sin offering, Lev. 23:19)<br><em>Levi/Rav Naḥman:</em> Valid but non-obligatory (like voluntary peace offering)</div><div class="flow-arrow">↓</div><div class="flow-box principle" style="background:#1a1500;border:2px solid #c9a84c;padding:10px;border-radius:6px;"><strong>Rav Shimi bar Ashi's Limiting Principle:</strong><br>Derive halakhot of <em>invalid-manner</em> offerings only from other <em>invalid-manner</em> offerings — not from normally valid ones</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Bekhorot 48a-48b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Bekhorot 48a-48b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../47/">← Daf 47</a><a href="../49/">Daf 49 →</a></div>
+</body>
+</html>

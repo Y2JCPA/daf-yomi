@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bekhorot 23 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Bekhorot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌾</div>
+  <h1>Bekhorot 23</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">בכורות כג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🫗 Oil in Sinner's Handful — R' Yoḥanan vs Reish Lakish<br>
+    🔥 Rava's Dilemma — Contiguous Substances on the Altar<br>
+    ⚖️ Nullification Rules — Rav Ḥisda vs Rabbi Ḥanina<br>
+    🥩 Carcass & Slaughtered Meat — Rabbi Ḥiyya's Teaching<br>
+    📜 Mishna — Intermingled Meal Offerings & Handfuls<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Two Central Disputes of Menachot 23</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yoḥanan</div><div class="speech">Oil added to the sinner's handful renders it <strong>unfit (pasul)</strong>. The verse 'he shall put no oil upon it' applies to the handful stage as well.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech">The handful is <strong>fit</strong>. The verse's prohibition governs preparation of the offering — not what happens to the handful after removal.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ḥisda</div><div class="speech">In nullification, we follow the <strong>larger quantity (nullifying substance)</strong>. If the majority can become like the minority, they are the same type and neither nullifies the other.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Ḥanina</div><div class="speech">We follow the <strong>smaller quantity (nullified substance)</strong>. If the minority can become like the majority, they are the same type and the minority is not nullified.</div></div></div><div class="callout" style="margin-top:20px"><strong>📖 Key Verse</strong> לֹא יָשִׂים עָלֶיהָ שֶׁמֶן — 'He shall put no oil upon it, neither shall he put any frankincense on it' (Leviticus 5:11) — governs the sinner's meal offering</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🫗 Slide 1: Oil Added to the Sinner's Handful</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yoḥanan</div><div class="speech"><strong>Unfit.</strong> The verse absolutely forbids oil on the sinner's offering — adding oil to the handful after removal disqualifies it entirely.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech"><strong>Fit.</strong> The verse teaches only that the offering is not <em>initially invalidated</em> by oil. What befalls the handful afterward is a separate matter.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yoḥanan</div><div class="speech"><strong>Objection from baraita:</strong> A dry meal offering intermingled with an oil-mixed offering — Rabbi Yehuda rules it unfit. Proof that oil contaminates!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech"><strong>Reinterpretation:</strong> That baraita discusses the <em>bull/ram libation</em> offering intermingled with the <em>lamb libation</em> offering — an entirely different case.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yoḥanan</div><div class="speech"><strong>Second objection:</strong> Another baraita explicitly addresses bull/ram vs. lamb libation offerings as a <em>separate</em> halakha — so your reinterpretation is untenable.</div></div></div><div class="callout" style="margin-top:20px"><strong>Unresolved</strong> The Gemara leaves this dispute without final resolution — a <em>teiku</em>-style conclusion</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔥 Slide 2: Rava's Dilemma — Oil Squeezed First</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>The Case:</strong> Priest squeezes oil from handful onto altar wood <em>first</em>, then places the handful on the wood. What is the halakha?</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Core Question:</strong> Are substances contiguous to items on the altar considered legally part of those altar items?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✅ Yes — Contiguous = Part of Item</div><div class="flow-box result-good">Oil on the wood is still 'part of' the handful → handful ascends with its oil intact → <strong>valid offering</strong></div></div><div class="flow-col"><div class="flow-label">❌ No — Contiguous ≠ Part of Item</div><div class="flow-box result-bad">Oil was separated before handful ascended → handful offered without its oil → <strong>possibly invalid</strong></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Related Dispute (R' Yoḥanan vs Reish Lakish):</strong> Does a bone contiguous to meat combine with it to complete an olive-bulk for liability when offered outside the Temple? R' Yoḥanan: Yes. Reish Lakish: No.</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Rav Ashi:</strong> Rava's dilemma stands regardless — the oil/handful scenario may differ from the bone/meat scenario even within each opinion. <em>The dilemma remains unresolved.</em></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚖️ Slide 3: Rav Ḥisda vs Rabbi Ḥanina on Nullification</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#0f2a40"><h3 style="color:#4a90d9">Rav Ḥisda</h3><ul><li>Follow the <strong>nullifying substance</strong> (the majority)</li><li>If the <em>majority</em> can become like the minority → same type → <strong>no nullification</strong></li><li>Carcass meat in slaughtered majority → <strong>nullified</strong> ✓<br><small>(slaughtered cannot become carcass)</small></li><li>Slaughtered meat in carcass majority → <strong>not nullified</strong> ✗<br><small>(carcass can become slaughtered via future slaughter)</small></li><li>Supported by: <em>mishna about intermingled handful and non-removed offering</em></li></ul></div><div class="compare-box" style="border-top-color:#2a0f40"><h3 style="color:#9b59b6">Rabbi Ḥanina</h3><ul><li>Follow the <strong>nullified substance</strong> (the minority)</li><li>If the <em>minority</em> can become like the majority → same type → <strong>no nullification</strong></li><li>Carcass meat in slaughtered majority → <strong>nullified</strong> ✓<br><small>(carcass can potentially be slaughtered = same type)</small></li><li>Slaughtered meat in carcass majority → <strong>not nullified</strong> ✗<br><small>(slaughtered cannot revert to carcass status)</small></li><li>Supported by: <em>mishna about two non-removed offerings intermingled</em></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📊 Slide 4: Mishna — Intermingled Meal Offering Cases</h2>
+  
+  <table><tr><th>Scenario</th><th>What Mixed?</th><th>L'Chatchila (Initially)</th><th>B'Diavad (After Fact)</th></tr><tr><td>Two complete offerings intermingled</td><td>Both handfuls not yet removed</td><td>Remove a handful from each separately, if possible — both fit</td><td>If inseparable, both may be impaired</td></tr><tr><td>Handful + non-removed offering</td><td>Removed handful mixed with offering still awaiting removal</td><td>Should NOT burn the mixture on the altar</td><td>If burned: the offering whose handful was taken satisfies the owner's obligation</td></tr><tr><td>Handful + its own remainder</td><td>Removed handful fell back into same offering's leftover</td><td>Should NOT burn the mixture on the altar</td><td>If burned: the offering's obligation is satisfied</td></tr><tr><td>Handful + another offering's remainder</td><td>Handful mixed with remainder from a different meal offering</td><td>Should NOT burn the mixture on the altar</td><td>If burned: the offering's obligation is satisfied</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📜 Slide 5: Rabbi Zeira's Gezerah Shavah (Verbal Analogy)</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">וְהִקְטִיר הַכֹּהֵן אֶת הַקֹּמֶץ — 'The priest shall burn the handful' (Lev. 2:2)</div><div class="callout"><strong>Torah Edict — Remainders Never Nullify Handfuls</strong> The Torah uses the word <strong>burning (הקטרה)</strong> for both the <em>handful</em> (kometz) and the <em>remainder</em> (shiyarei).
+
+<strong>Analogy:</strong> Just as when two handfuls are intermingled, <em>neither nullifies the other</em> and all agree both are burned on the altar — so too, when <strong>remainders are mixed with handfuls</strong>, the remainder does not nullify the handful, regardless of quantity.
+
+<strong>Practical ruling:</strong> Any mixture of handfuls and remainders is governed by this Torah-level edict — nullification simply does not apply. This resolves both the mishna about intermingled handfuls and the seemingly contradictory rulings about b'diavad validity.
+
+<em>This principle is independent of the Rav Ḥisda / Rabbi Ḥanina debate — it operates on a separate Torah track.</em></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Bekhorot 23 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2e1a;border-color:#2ecc71;color:#e0e0e0"><strong>Sinner's Meal Offering</strong><br><small>Lev. 5:11 — no oil, no frankincense</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2e1a1a;border-color:#e74c3c;color:#e0e0e0"><strong>R' Yoḥanan:</strong><br>Oil added → <em style='color:#e74c3c'>Unfit</em><br><small>Contiguous items join altar-items</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a1a2e;border-color:#4a90d9;color:#e0e0e0"><strong>Reish Lakish:</strong><br>Oil added → <em style='color:#2ecc71'>Fit</em><br><small>Contiguous items do NOT join</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#2e2a1a;border-color:#c9a84c;color:#e0e0e0"><strong>Rava's Dilemma:</strong> Oil squeezed onto wood <em>before</em> handful placed — does the oil count as still accompanying the handful?<br><small>Unresolved (Rav Ashi: different circumstances)</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2a1a2e;border-color:#9b59b6;color:#e0e0e0"><strong>Nullification Framework</strong><br><small>Rabbi Ḥiyya: carcass and slaughtered meat nullify each other mutually</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2030;border-color:#4a90d9;color:#e0e0e0"><strong>Rav Ḥisda:</strong><br>Follow <em>majority</em><br><small>Can majority become minority?</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a30;border-color:#9b59b6;color:#e0e0e0"><strong>Rabbi Ḥanina:</strong><br>Follow <em>minority</em><br><small>Can minority become majority?</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a2e1a;border-color:#2ecc71;color:#e0e0e0"><strong>Rabbi Zeira's Override:</strong> Handfuls and remainders — Torah edict prevents all nullification between them<br><small>Gezerah shavah on הקטרה (burning)</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Bekhorot 23a-23b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Bekhorot 23a-23b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../22/">← Daf 22</a><a href="../24/">Daf 24 →</a></div>
+</body>
+</html>
