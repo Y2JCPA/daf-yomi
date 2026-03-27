@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makkot 13 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Makkot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Makkot 13</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">מכות יג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏠 Rent in Cities of Refuge — Rabbi Yehuda vs. Rabbi Meir<br>
+    📋 New Mishna — Those Liable to Receive Lashes<br>
+    ⚖️ Karet and Lashes — Can Both Apply?<br>
+    🔤 Gezeirah Shavah — Le'einei Verbal Analogy<br>
+    ⚠️ Forewarning Determines the Punishment<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Does Death or Karet Exempt From Lashes?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yishmael</div><div class="speech">Those liable to execution ARE also flogged — 'all the matters of this Torah' covers all prohibitions, and human court lashes vs. heavenly death are not two punishments for one transgression.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rabbi Akiva</div><div class="speech">Those liable to death are NOT flogged — 'according to his wickedness' means one punishment per transgression. But those liable to karet ARE flogged, since repentance removes karet, leaving them without any punishment unless lashes are given.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Yitzchak</div><div class="speech">Like those liable to death, those liable to karet are also NOT flogged — karet violations were singled out from the general prohibition, and being singled out exempts them from lashes entirely.</div></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Bottom Line</strong> If witnesses forewarned the transgressor specifically about the death penalty, all agree he is NOT flogged. The dispute between Rabbi Yishmael and Rabbi Akiva applies only when forewarning was general.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏠 Rent in Cities of Refuge: Rav Kahana vs. Rava</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Kahana</div><div class="speech">The dispute between Rabbi Yehuda (pay rent) and Rabbi Meir (no rent) concerns the 6 designated cities of refuge in the Torah and Joshua.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">The term 'for you' certainly means for all your needs — so the 6 cities of refuge are free of charge. The dispute is only about the 42 Levite cities: Rabbi Yehuda says pay rent; Rabbi Meir says no rent.</div></div></div><div class="callout" style="margin-top:20px"><strong>Exile Returns to Former Role</strong> A baraita derives from 'to the estate of his fathers he shall return' — just as a Hebrew slave freed at Jubilee returns to his former public office, so too an exile returning from a city of refuge resumes his previous position.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📋 New Mishna — אֵלּוּ הֵן הַלּוֹקִין</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אֵלּוּ הֵן הַלּוֹקִין — These are those who are flogged (Mishna, Makkot 3:1)</div><div class="callout"><strong>These Are Those Who Are Flogged</strong> <strong>High Priest</strong> who marries a widow or divorcée — two sets of lashes if she was both (violates two separate prohibitions)<br><br><strong>Ritual impurity violations:</strong> eating sacrificial food while impure; entering the Temple while impure<br><br><strong>Prohibited foods:</strong> forbidden fat (חֵלֶב), blood, <em>notar</em> (leftover sacrifice), <em>pigul</em> (invalid intent), sacrificial food outside proper status<br><br><strong>Seasonal prohibitions:</strong> chametz on Pesach; eating on Yom Kippur; laboring on Yom Kippur<br><br><strong>Tithes:</strong> untithed produce; first-tithe with teruma not separated; unredeemed second-tithe or sacred food<br><br><em>Rabbi Shimon: any amount of untithed produce incurs liability; Sages: an olive-bulk</em></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚖️ Three Opinions: Karet, Death, and Lashes</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbi Yishmael</h3><ul><li>Death penalty → lashes ALSO administered</li><li>Karet → lashes ALSO administered</li><li>Source: 'All the matters of this Torah' — all prohibitions trigger lashes</li><li>Death (heavenly/court) and lashes (court) are distinct — not double punishment</li><li>Exception: if specifically forewarned about death → no lashes</li></ul></div><div class="compare-box" style="border-top-color:#3a1a00"><h3 style="color:#e67e22">Rabbi Akiva</h3><ul><li>Death penalty → lashes NOT administered</li><li>Karet → lashes ARE administered</li><li>Source: 'According to his wickedness' = one punishment per transgression</li><li>Karet exception: repentance removes karet, so lashes ensure some punishment remains</li><li>Basis: prohibition for karet exists as mandate for lashes, not just karet</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3a"><h3 style="color:#9b59b6">Rabbi Yitzchak</h3><ul><li>Death penalty → lashes NOT administered</li><li>Karet → lashes NOT administered</li><li>Source: karet cases were singled out from the general prohibition</li><li>Being singled out for karet exempts entirely from lashes</li><li>Same logic applies to death: death absorbs lashes completely</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔤 Gezeirah Shavah: Le'einei — Verbal Analogy for Karet + Lashes</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Rabbi Abbahu:</strong> Torah explicitly links karet to lashes via verbal analogy (gezeirah shavah)</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Lashes verse (Deut. 25:3):</strong> 'He shall be flogged <em>le'einekha</em>' — before <em>your</em> eyes (lamed prefix)</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Karet verse (Lev. 20:17):</strong> 'They shall be excised <em>le'einei</em>' — before the eyes of their people (lamed prefix)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✓ Valid Analogy</div><div class="flow-box result-good"><strong>le'einei ~ le'einekha:</strong> same lamed prefix — karet is explicitly linked to lashes; this gezeirah shavah stands</div></div><div class="flow-col"><div class="flow-label">✗ Rejected Analogy</div><div class="flow-box result-bad"><strong>me'einei ≠ le'einekha:</strong> mem vs. lamed prefix — the Gemara rejects deriving from dissimilar forms; however, school of Rabbi Yishmael permits analogies from variant prefixes (leprosy precedent)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Rav Shmuel bar Rav Yitzchak (from Rabbi Abbahu):</strong> The real reason karet + lashes coexist — 'according to his wickedness' limits the verse to one whose prohibition is <em>mandating lashes</em>; karet prohibitions independently mandate lashes</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚠️ Rava's Rule: Forewarning Determines the Punishment</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Transgressor about to commit a violation</strong> carrying both the death penalty and lashes</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Witnesses issue forewarning (התראה)</strong> — the nature of this warning is critical</div><div class="process-arrow">↓</div><div class="process-step"><strong>Forewarned specifically about death:</strong> ALL authorities agree — receives <em>death only</em>, NOT lashes. Even Rabbi Yishmael concedes once death is triggered, lashes are set aside.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Forewarned about lashes only (or vaguely):</strong> <em>Rabbi Yishmael</em> — receives lashes; <em>Rabbi Akiva</em> — receives death (not lashes). This is their core dispute.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Principle behind Rabbi Akiva:</strong> 'According to his wickedness' (Deut. 25:2) — the court may impose only one punishment per transgression; the more severe penalty (death) absorbs the lesser (lashes)</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Makkot 13 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#2a2a40;border:2px solid #c9a84c;padding:10px;border-radius:6px;text-align:center;"><strong>Transgressor Violates Torah Prohibition</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a3a;border:2px solid #4a90d9;padding:8px;border-radius:6px;"><strong style='color:#4a90d9'>Liable to Death Penalty</strong><br><small>Forewarned about death → no lashes (unanimous)<br>Not forewarned:<br>R. Yishmael = lashes ✓<br>R. Akiva = no lashes ✗</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a2a;border:2px solid #9b59b6;padding:8px;border-radius:6px;"><strong style='color:#9b59b6'>Liable to Karet</strong><br><small>R. Yishmael & R. Akiva: lashes ✓<br>R. Yitzchak: no lashes ✗<br>Key: repentance removes karet but not lashes</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a1a;border:2px solid #2ecc71;padding:8px;border-radius:6px;"><strong style='color:#2ecc71'>Standard Lav (Negative Prohibition)</strong><br><small>Receives lashes — standard punishment for a negative commandment involving an action</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Makkot 13a-13b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Makkot 13a-13b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../12/">← Daf 12</a><a href="../14/">Daf 14 →</a></div>
+</body>
+</html>

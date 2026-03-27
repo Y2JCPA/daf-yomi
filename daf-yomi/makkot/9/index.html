@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makkot 9 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Makkot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏙️</div>
+  <h1>Makkot 9</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">מכות ט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Ger Toshav & Exile — resident alien liability for unintentional murder<br>
+    👁️ Blind Person — Rabbi Yehuda vs. Rabbi Meir on exile<br>
+    😠 Enemy of Victim — exile or execution?<br>
+    🏙️ Cities of Refuge — roads, signposts, and escort<br>
+    🌍 Gentile Liability — Abimelech and ignorance of the law<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Ger Toshav Who Kills Another Ger Toshav — Exiled or Executed?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ḥisda</div><div class="speech">The contradiction between the mishna and baraita depends on <strong>direction of the blow</strong>: a <em>downward</em> motion → exile; an <em>upward</em> motion → execution.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech"><strong>Objection (a fortiori):</strong> If downward — where a Jew would be exiled — the ger toshav suffices with exile, then for upward he should be exiled <em>a fortiori</em>! Your distinction collapses.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech"><strong>Rather:</strong> The baraita refers to a ger toshav who <em>said it was permitted</em> to kill the victim. If he acted unintentionally without such a claim, he is exiled in accordance with the mishna.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech"><strong>Objection to Rava:</strong> Abimelech said "Will You slay a righteous nation?" and God did not call him wicked — implying an unknowing gentile is <em>not</em> liable!</div></div></div><div class="callout" style="margin-top:20px"><strong>Underlying Dispute</strong> Rav Ḥisda and Rava disagree about a ger toshav who thought he was killing an animal but killed a person: Rav Ḥisda says exiled (like a Jew); Rava says executed (like a gentile who lacked license).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🌍 Ger Toshav Who Kills — Exile vs. Execution</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Ger Toshav kills another Ger Toshav</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Truly Unintentional</div><div class="flow-box result-good">→ <strong>Exiled</strong> to city of refuge (mishna; like a Jew)</div></div><div class="flow-col"><div class="flow-label">Said "It Is Permitted" (Rava)</div><div class="flow-box result-bad">→ <strong>Executed</strong> — must learn what is forbidden; ignorance is no excuse</div></div><div class="flow-col"><div class="flow-label">Intentional</div><div class="flow-box result-bad">→ <strong>Executed</strong> as murderer</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>👁️ Is a Blind Person Exiled for Unintentional Murder?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Yehuda</div><div class="speech"><strong>Not exiled.</strong> "Without seeing" (Num. 35:23) excludes a blind person who <em>never</em> sees. The forest analogy (Deut. 19:5) likewise implies the capacity to see — which the blind person lacks.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbi Meir</div><div class="speech"><strong>Is exiled.</strong> "Without seeing" AND "without knowledge" are two consecutive restrictions — <em>ribui achar ribui</em> (restriction after restriction) — which actually <em>expands</em> the law to include the blind.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Yehuda</div><div class="speech"><strong>Rebuttal:</strong> "Without knowledge" excludes one with <em>intent</em> (who intended to kill an animal but killed a person). It does not expand to include the blind.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Verses</strong> "Without seeing" (Num. 35:23) · "Without knowledge" (Deut. 19:4) · "As one who goes into the forest with his neighbor" (Deut. 19:5) — each side reads these differently to determine whether sight is required for exile.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>😠 The Enemy of the Victim — Three Rabbinic Views</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Mishna (Tanna Kamma)</h3><ul><li>An enemy is <strong>not exiled</strong></li><li>Presumed to have acted with at least partial intent</li><li>Cannot be classified as purely unintentional</li><li>Lacks the benefit of the doubt given to strangers</li></ul></div><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Rabbi Yosei</h3><ul><li>An enemy is <strong>executed</strong></li><li>His status equals one who is <em>forewarned</em></li><li>Even without explicit warning, the enmity itself is prior notice</li><li>Courts treat him as an intentional killer</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">Rabbi Shimon</h3><ul><li><strong>Some</strong> enemies are exiled, <strong>some</strong> are not</li><li>Rope snapped <em>upward</em> → hit friend: exiled</li><li>Rope snapped <em>upward</em> → hit enemy: <strong>not</strong> exiled</li><li>Object displaced <em>downward</em> onto enemy: exiled (per Sages)</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏙️ Cities of Refuge — Infrastructure and Procedure</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Moses designated 3 cities</strong> in Transjordan (east bank of the Jordan)</div><div class="process-arrow">↓</div><div class="process-step"><strong>Joshua designated 3 cities</strong> in the land of Canaan — cities were aligned like two rows of vines in a vineyard</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Roads were paved and straightened</strong> from every city to the cities of refuge: "Prepare for you the road" (Deut. 19:3)</div><div class="process-arrow">↓</div><div class="process-step"><strong>Signposts at every crossroads</strong> read <em>"Miklat! Miklat!"</em> (מִקְלָט — refuge!) to guide the fleeing unintentional killer</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Two Torah scholars escorted</strong> the exile — to speak to the blood redeemer (<em>go'el hadam</em>) and persuade him not to kill the exile on the road</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Yosei bar Yehuda:</strong> Originally both intentional and unintentional killers fled to the city; the court later retrieved the intentional killer for trial and execution</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🌍 Abimelech Story — Gentile Liability Step by Step</h2>
+  
+  <table><tr><th>Verse / Argument</th><th>Source</th><th>Conclusion Drawn</th></tr><tr><td>"You shall die for the woman you have taken" (Gen. 20:3)</td><td>Rava's objection to Rav Ḥisda</td><td>Suggests gentiles face court execution even for unknowing acts</td></tr><tr><td>"I also prevented you from sinning against <em>Me</em>" (Gen. 20:6)</td><td>Gemara response</td><td>Liable to Heaven only — not to a human court</td></tr><tr><td>"Will You slay a righteous nation?" — God did not rebuke him as wicked (Gen. 20:4)</td><td>Abaye's objection to Rava</td><td>Implies an unknowing gentile is not held liable at all</td></tr><tr><td>Sarah is returned because Abraham is a prophet — restore what belongs to a prophet</td><td>Gemara's first answer</td><td>Rejected: return applies whether or not the victim is a prophet</td></tr><tr><td>A gentile must <em>learn</em> what is prohibited — ignorance is inexcusable</td><td>Final conclusion (R. Shmuel bar Naḥmani / R. Yonatan)</td><td>Executed even if he says 'it was permitted' — should have learned</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Makkot 9 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#16213e;color:white;padding:10px;border-radius:8px;text-align:center"><strong>Unintentional killing occurs</strong><br><small>Who qualifies for exile to a city of refuge?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center"><strong>Jew</strong><br>✅ Exiled<br><small>Standard case</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center"><strong>Ger Toshav</strong><br>⚖️ Exiled if truly unintentional<br>❌ Executed if claimed it was permitted</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center"><strong>Blind Person</strong><br>R. Meir: ✅ Exiled<br>R. Yehuda: ❌ Not exiled</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;text-align:center"><strong>Enemy of Victim</strong><br>❌ Not exiled (T.K.)<br>❌ Executed (R. Yosei)<br>⚖️ Depends (R. Shimon)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Makkot 9a-9b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Makkot 9a-9b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../8/">← Daf 8</a><a href="../10/">Daf 10 →</a></div>
+</body>
+</html>
