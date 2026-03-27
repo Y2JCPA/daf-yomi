@@ -219,7 +219,7 @@ curl -s "https://www.sefaria.org/api/v3/texts/Chullin.50b?version=english"
 
 ## Current Status (as of Mar 27, 2026)
 
-### Completed Masechtos — 24 masechtos, ~1,967 dapim
+### Completed Masechtos — 20 masechtos, ~1,370 dapim with actual content
 
 **Seder Zeraim**
 | Masechet | Hebrew | Dapim | Status |
@@ -242,21 +242,21 @@ curl -s "https://www.sefaria.org/api/v3/texts/Chullin.50b?version=english"
 | Moed Katan | מועד קטן | 28 | ✅ Complete (pipeline, Mar 27) |
 | Chagigah | חגיגה | 26 | ✅ Complete (pipeline, Mar 27) |
 
-**Seder Nashim (COMPLETE ✅)**
+**Seder Nashim (IN PROGRESS)**
 | Masechet | Hebrew | Dapim | Status |
 |----------|--------|-------|--------|
-| Yevamot | יבמות | 121 | ✅ Complete (pipeline, Mar 27) |
-| Ketubot | כתובות | 111 | ✅ Complete (pipeline, Mar 27) |
-| Nedarim | נדרים | 90 | ✅ Complete (pipeline, Mar 27) |
-| Nazir | נזיר | 65 | ✅ Complete (pipeline, Mar 27) |
-| Sotah | סוטה | 48 | ✅ Complete (pipeline, Mar 27) |
-| Gittin | גיטין | 89 | ✅ Complete (pipeline, Mar 27) |
-| Kiddushin | קידושין | 81 | ✅ Complete (pipeline, Mar 27) |
+| Yevamot | יבמות | 75/122 | ⚠️ Partial — dapim 2-76 built, 77-122 remaining |
+| Ketubot | כתובות | 111 | ❌ Not built |
+| Nedarim | נדרים | 90 | ❌ Not built |
+| Nazir | נזיר | 65 | ❌ Not built |
+| Sotah | סוטה | 48 | ❌ Not built |
+| Gittin | גיטין | 89 | ❌ Not built |
+| Kiddushin | קידושין | 81 | ❌ Not built |
 
-**Seder Nezikin (IN PROGRESS)**
+**Seder Nezikin**
 | Masechet | Hebrew | Dapim | Status |
 |----------|--------|-------|--------|
-| Bava Kamma | בבא קמא | 118 | ✅ Complete (pipeline, Mar 27) |
+| Bava Kamma | בבא קמא | 118 | ❌ Not built |
 | Bava Metzia | בבא מציעא | 119 | ❌ Not built |
 | Bava Batra | בבא בתרא | 176 | ❌ Not built |
 | Sanhedrin | סנהדרין | 113 | ❌ Not built |
@@ -286,8 +286,18 @@ curl -s "https://www.sefaria.org/api/v3/texts/Chullin.50b?version=english"
 | Niddah | נידה | 73 | ❌ Not built |
 | (Others) | — | — | Mishnah-only, no Gemara |
 
-### Remaining to build: ~764 dapim
-Bava Metzia (119), Bava Batra (176), Sanhedrin (113), Makkot (24), Shevuot (49), Avodah Zarah (76), Horayot (14), Zevachim (120), Niddah (73)
+### Next steps (resume here)
+1. Finish Yevamot (dapim 77-122 = 46 remaining)
+2. Continue Seder Nashim: Ketubot → Nedarim → Nazir → Sotah → Gittin → Kiddushin
+3. Seder Nezikin: BK → BM → BB → Sanhedrin → Makkot → Shevuot → AZ → Horayot
+4. Remaining Kodashim: Zevachim
+5. Seder Taharot: Niddah
+
+### Total remaining: ~1,259 dapim
+Yevamot remainder (46), Ketubot (111), Nedarim (90), Nazir (65), Sotah (48), Gittin (89), Kiddushin (81), Bava Kamma (118), Bava Metzia (119), Bava Batra (176), Sanhedrin (113), Makkot (24), Shevuot (49), Avodah Zarah (76), Horayot (14), Zevachim (120), Niddah (73)
+
+### Known pipeline bug (Mar 27)
+The overnight script (`build-overnight.sh`) committed index pages for masechtos without actually generating daf content. The `build-daf.js` step ran but produced no output because the content JSONs in `/tmp/daf_content/` were empty or missing. Need to verify JSON generation completed before running builder + committing. Add validation step.
 
 ## Lessons Learned
 
