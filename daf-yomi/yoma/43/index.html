@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 43 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Yoma 43</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא מג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐄 Red Heifer Slaughter — must it be performed by a priest?<br>
+    📜 Deriving Eligibility — who qualifies at each stage of Parah Adumah<br>
+    ♂️ Men vs. Women — the sanctification of ashes dispute<br>
+    🔥 Yom Kippur Coal Pan — gold, light, and long-handled<br>
+    ⚖️ Daily vs. Yom Kippur — contrasts in Temple service protocols<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Regular Day vs. Yom Kippur Temple Service</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Every Other Day</h3><ul><li>Coal pan: silver</li><li>Scoops 4 kav → transfers to 3 kav pan</li><li>Coal pan: heavy, short handle</li><li>Incense: peras (½ maneh) AM + peras PM</li><li>Priests ascend ramp on eastern side</li><li>Sanctifies hands/feet from standard laver</li><li>Wood arrangements: 3 (R. Yosei) / 4 (R. Meir)</li></ul></div><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#ffffff">Yom Kippur</h3><ul><li>Coal pan: gold</li><li>Scoops 3 kav directly — no transfer</li><li>Coal pan: light and long-handled (supports with arm)</li><li>Incense: daily amount + extra handful in Holy of Holies</li><li>High Priest ascends ramp in the center</li><li>Sanctifies hands/feet from golden flask (כבוד)</li><li>Wood arrangements: 4 (R. Yosei) / 5 (R. Meir)</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🐄 Must the Red Heifer Be Slaughtered by a Priest?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna (Baraita)</div><div class="speech">All slaughterings are valid if performed by a non-priest — <strong>except that of the red heifer</strong>, which requires a priest.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Yoḥanan</div><div class="speech"><em>'Go outside and teach that baraita outside!'</em> — A common priest may slaughter the red heifer. The verse specifying <strong>Elazar</strong> applied only to the original heifer of Moses' time.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Yoḥanan</div><div class="speech">So convinced was he that he rejected even <strong>his own teacher's</strong> opposing opinion. 'Before him' (Num. 19:3) teaches about the Elazar-adjacent sprinkling, not the slaughter itself.</div></div></div><div class="callout" style="margin-top:20px"><strong>The Core Question</strong> Does 'And Elazar the priest shall take its blood' (Numbers 19:4) imply only a priest may slaughter — or is slaughter open to any qualified person?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>✋ Who May Perform Each Stage of Parah Adumah?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>פרה אדומה — Red Heifer Rite</strong><br><small>Numbers 19: four distinct stages, each with its own eligibility rules derived from Scripture</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">① Slaughter</div><div class="flow-box action"><strong>Priest required</strong><br><small>Elazar in the original; common priest valid for later generations (R. Yoḥanan)</small></div></div><div class="flow-col"><div class="flow-label">② Gather Ashes</div><div class="flow-box result-good"><strong>Non-priest qualified</strong><br><small>'A <em>man</em> who is pure' — 'man' includes non-priests; 'pure' excludes the impure</small></div></div><div class="flow-col"><div class="flow-label">③ Sanctify (mix with water)</div><div class="flow-box question"><strong>Rabbis:</strong> women may<br><strong>R. Yehuda:</strong> men only<br><small>Dispute on Numbers 19:17 pronoun: plural 'they shall take' vs. singular 'he shall put'</small></div></div><div class="flow-col"><div class="flow-label">④ Sprinkle Waters</div><div class="flow-box result-bad"><strong>Men only — all agree</strong><br><small>Not women, tumtum, or androginus. 'A man who is pure shall take hyssop' (Num. 19:18)</small></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📖 Derivations from Numbers 19 — Each Stage's Authority</h2>
+  
+  <table><tr><th>Verse</th><th>Stage</th><th>Derived Rule</th><th>Authority</th></tr><tr><td>Num. 19:3</td><td>Slaughter</td><td>Done in Elazar's presence; 'before him' = within his sight</td><td>Rav</td></tr><tr><td>Num. 19:4</td><td>Blood sprinkling</td><td>Elazar performs; or common priest in later generations</td><td>Shmuel / R. Yoḥanan</td></tr><tr><td>Num. 19:6</td><td>Cedar, hyssop, crimson</td><td>Must be performed by the priest</td><td>Shmuel</td></tr><tr><td>Num. 19:7</td><td>'The priest shall wash his garments'</td><td>He must be in priestly garments and fit for service</td><td>Gemara derivation</td></tr><tr><td>Num. 19:9</td><td>'A man who is pure shall gather'</td><td>'Man' = non-priest qualified; 'pure' = excludes impure</td><td>Baraita</td></tr><tr><td>Num. 19:17</td><td>'They shall take … he shall put'</td><td>Women may sanctify (Rabbis); men only (R. Yehuda)</td><td>Tannaitic dispute</td></tr><tr><td>Num. 19:18</td><td>'A man who is pure shall take hyssop'</td><td>Only men may sprinkle — all agree</td><td>Mishna, Para</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔥 The Yom Kippur Bull Service — Step by Step</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>High Priest slaughters the bull</strong> and receives its blood in a <em>bowl (מזרק)</em></div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Blood given to a stirring priest</strong> standing on the <em>fourth row of tiles</em> in the Sanctuary — stirred continuously to prevent coagulation</div><div class="process-arrow">↓</div><div class="process-step"><strong>High Priest scoops coals</strong> from the outer altar using the special <em>gold coal pan of 3 kav</em> — lighter and long-handled, supported by the arm</div><div class="process-arrow">↓</div><div class="process-step"><strong>High Priest fills his hands with incense</strong> — the daily peras plus an <em>extra handful</em> placed into the gold pan</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Ascends the ramp through the center</strong> (not the side like other priests) and proceeds into the Holy of Holies</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>'No man shall be in the Tent of Meeting'</strong> (Lev. 16:17) — the stirring priest's presence in the Sanctuary is examined against this verse</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🪵 How Many Wood Arrangements on Yom Kippur?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Meir</div><div class="speech">On every other day: <strong>four</strong> arrangements of wood on the altar. On Yom Kippur: <strong>five</strong>.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabbi Yosei</div><div class="speech">On every other day: <strong>three</strong> arrangements. On Yom Kippur: <strong>four</strong>.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Yehuda</div><div class="speech">On every other day: <strong>two</strong> arrangements. On Yom Kippur: <strong>three</strong>. <em>And</em>: no difference in the ramp, and no difference in the laver — the golden flask was not a Yom Kippur distinction.</div></div></div><div class="callout" style="margin-top:20px"><strong>Pattern of R. Yehuda</strong> Rabbi Yehuda consistently minimizes the distinctions of Yom Kippur — disagreeing on the wood arrangements, the ramp ascent, and the golden flask. His minority views appear throughout the mishna.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 43 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;border-radius:8px;padding:8px;"><strong>Parah Adumah — Red Heifer</strong><br><small>Numbers 19: each stage, its own rule</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:6px;padding:6px;"><strong>Slaughter</strong><br>Priest (common priest valid — R. Yoḥanan)</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:6px;padding:6px;"><strong>Gather ashes</strong><br>Non-priest may; must be pure</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:6px;padding:6px;"><strong>Sanctify ashes</strong><br>Disputed: women (Rabbis) or men only (R. Yehuda)</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:6px;padding:6px;"><strong>Sprinkle waters</strong><br>Men only — all agree</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;border-radius:8px;padding:8px;"><strong>Yom Kippur Service</strong><br><small>Gold pan · extra incense · High Priest alone in Holy of Holies · No one in Tent of Meeting</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 43a-43b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 43a-43b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../42/">← Daf 42</a><a href="../44/">Daf 44 →</a></div>
+</body>
+</html>

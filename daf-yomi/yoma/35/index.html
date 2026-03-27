@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 35 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yoma 35</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא לה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Chamber of Parva — named for a Persian sorcerer<br>
+    👘 Vestment Values — morning 18, afternoon 12 maneh<br>
+    🌨️ Hillel in the Snow — poverty no excuse for Torah<br>
+    💎 Elazar ben Ḥarsum — wealth no excuse for Torah<br>
+    ⚖️ Three at Heavenly Judgment — poor, wealthy, wicked<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Three Archetypes Face Heavenly Judgment</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Soul arrives before <strong>Heavenly Court</strong><br><small>"Why did you not engage in Torah?"</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">😔 The Poor</div><div class="flow-box result-bad"><strong>"I was destitute!"</strong><br><small>Were you poorer than <em>Hillel</em>?</small></div></div><div class="flow-col"><div class="flow-label">💰 The Wealthy</div><div class="flow-box result-bad"><strong>"I managed great affairs!"</strong><br><small>Wealthier than <em>Elazar ben Ḥarsum</em>?</small></div></div><div class="flow-col"><div class="flow-label">😈 The Wicked</div><div class="flow-box result-bad"><strong>"I was handsome, tempted!"</strong><br><small>More handsome than <em>Joseph</em>?</small></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>👘 How Much Were the High Priest's Yom Kippur Vestments Worth?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis (Tanna Kamma)</div><div class="speech">Morning linen garments: <strong>18 maneh</strong>. Afternoon linen garments: <strong>12 maneh</strong>. Total: <strong>30 maneh</strong>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Meir</div><div class="speech">Morning linen garments: <strong>16 maneh</strong>. Afternoon linen garments: <strong>12 maneh</strong>. Total: <strong>28 maneh</strong> — not thirty!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Huna b. Rav Ilai</div><div class="speech">All agree: <em>morning garments must be superior to afternoon garments</em>. It is written "he shall leave them there" — the afternoon garments are set aside for a lesser purpose.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">The Ezekiel verse about <em>"other garments"</em> — does 'other' mean superior or inferior? Answer: <strong>inferior</strong>. The afternoon garments are of lesser sanctity than the morning ones.</div></div></div><div class="callout" style="margin-top:20px"><strong>✅ Unanimous Agreement</strong> Both Rabbi Meir and the Rabbis hold that the morning linen vestments — worn during the most sacred inner service — must exceed the afternoon vestments in value.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Three Archetypes — No Excuse Stands</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a252f"><h3 style="color:#c9a84c">😔 The Poor</h3><ul><li>"I was impoverished — no time to study"</li><li>Rebuttal: Poorer than Hillel the Elder?</li><li>Hillel earned only ½ dinar per day</li><li>Gave ¼ dinar just to enter the study hall</li><li>Left ¼ dinar for himself and his family</li><li>Climbed rooftop in Tevet snowfall to listen</li><li>Found frozen under 3 cubits of snow at dawn</li><li>Verdict: ❌ Poverty is no excuse</li></ul></div><div class="compare-box" style="border-top-color:#1a252f"><h3 style="color:#e67e22">💰 The Wealthy</h3><ul><li>"I managed vast estates and affairs"</li><li>Rebuttal: Wealthier than Elazar ben Ḥarsum?</li><li>Owned 1,000 villages and 1,000 ships</li><li>His mother made him a tunic of 20,000 dinars</li><li>Tunic so fine it was transparent — unusable</li><li>Traveled disguised; pressed into his own labor</li><li>Yet devoted himself entirely to Torah study</li><li>Verdict: ❌ Wealth is no excuse</li></ul></div><div class="compare-box" style="border-top-color:#1a252f"><h3 style="color:#e74c3c">😈 The Wicked</h3><ul><li>"I was handsome — evil inclination consumed me"</li><li>Rebuttal: More handsome than Joseph?</li><li>Potiphar's wife pursued Joseph relentlessly</li><li>Threatened prison, blindness, forced subjugation</li><li>Joseph countered each threat with Psalms</li><li>Refused at enormous personal cost</li><li>Preserved his spiritual reward forever</li><li>Verdict: ❌ Temptation is no excuse</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🌨️ Hillel's Legendary Friday in Tevet</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Every day: Hillel earns <strong>½ dinar</strong><br><small>¼ to guard of study hall · ¼ for family sustenance</small></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">One <strong>Shabbat eve in Tevet</strong> (winter):<br>Could find no work — earned <em>nothing</em></div><div class="flow-arrow">↓</div><div class="flow-box action">Guard refuses entry without payment<br>Hillel climbs to the <strong>roof</strong> and lies over the <em>skylight</em><br>to hear Shemaya and Avtalyon teach</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Snow falls through the night</strong><br>Hillel is buried under <em>three cubits</em> of snow</div><div class="flow-arrow">↓</div><div class="flow-box question">At dawn, Shemaya notices darkness in the hall<br>They find Hillel — <strong>barely alive</strong> in the shape of a man</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Sages declare: <em>"This man deserves to have Shabbat desecrated for him"</em><br>They bathe him, anoint him, and warm him by the fire</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏺 Joseph Resists Potiphar's Wife — Blow by Blow</h2>
+  
+  <div class="process-bar"><div class="process-step">She commands: <strong>"Submit to me — lie with me."</strong></div><div class="process-arrow">↓</div><div class="process-step">Joseph: <strong>"No."</strong></div><div class="process-arrow">↓</div><div class="process-step highlight">She threatens: <strong>"I will incarcerate you in prison."</strong><br>Joseph: <em>"God releases prisoners"</em> — Psalms 146:7</div><div class="process-arrow">↓</div><div class="process-step highlight">She threatens: <strong>"I will blind your eyes."</strong><br>Joseph: <em>"God restores sight to the blind"</em> — Psalms 146:8</div><div class="process-arrow">↓</div><div class="process-step highlight">She threatens: <strong>"I will bend you low."</strong><br>Joseph: <em>"God lifts up those who are bowed"</em> — Psalms 146:8</div><div class="process-arrow">↓</div><div class="process-step"><strong>The Gemara's teaching:</strong> Had Joseph submitted, it would have been decreed that he be <em>with her in the World-to-Come</em>.</div><div class="process-arrow">↓</div><div class="process-step highlight">Because he refused — <strong>Joseph preserves his eternal reward</strong>.<br><small>Hillel obligates the poor · Elazar obligates the wealthy · Joseph obligates the wicked</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📜 The High Priest's First Confession</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אָנָּא הַשֵּׁם, חָטָאתִי, עָוִיתִי, פָּשַׁעְתִּי לְפָנֶיךָ — אֲנִי וּבֵיתִי</div><div class="callout"><strong>MISHNA — Vidui over the Bull</strong> The High Priest comes and stands next to his <strong>bull</strong> — positioned between the Entrance Hall and the altar, head to the south, face to the west. The priest stands to the <em>east</em>, facing west, hands placed on the bull's head, and recites the confession:<br><br><strong>"Please, God — I have sinned, I have done wrong, and I have rebelled before You: I and my family. Please, God, grant atonement for the sins, wrongs, and rebellions that I have sinned, done wrong, and rebelled before You — I and my family. As it is written in the Torah of Moses Your servant: ‛For on this day atonement shall be made for you...'"</strong></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 35 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box header" style="background:#16213e;color:#000;padding:10px 14px;border-radius:8px;font-size:1.05em;"><strong>Yoma 35 — Two Interwoven Themes</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:9px;border-radius:7px;"><strong>👘 Temple Vestments</strong><br>Morning linen &gt; Afternoon linen<br><small>18 maneh vs 12 maneh (Rabbis)<br>All agree on the hierarchy</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:9px;border-radius:7px;"><strong>⚖️ Heavenly Judgment</strong><br>3 archetypes · 3 rebuttals<br><small>Hillel · Elazar · Joseph<br>Each forecloses one excuse</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box conclusion" style="background:#16213e;color:#000;padding:10px 14px;border-radius:8px;"><strong>Conclusion:</strong> The same Yom Kippur that demands ultimate accountability from the High Priest (the Vidui) also teaches that <em>every</em> person bears full accountability — no excuse of circumstance can stand before Heaven</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 35a-35b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 35a-35b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../34/">← Daf 34</a><a href="../36/">Daf 36 →</a></div>
+</body>
+</html>

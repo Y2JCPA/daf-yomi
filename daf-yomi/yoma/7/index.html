@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 7 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👑</div>
+  <h1>Yoma 7</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא ז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚔️ Hutrah vs. Dechuya — Is public impurity overridden or merely pushed aside?<br>
+    🧪 Tosefta Challenges — Testing Rav Naḥman's position with meal-offering cases<br>
+    👑 The Tzitz — How the High Priest's frontplate atones for impure offerings<br>
+    📜 Rabbi Yehuda vs. Rabbi Shimon — When does the tzitz effect acceptance?<br>
+    🔍 Abaye's Clarification — The broken frontplate and interpretation of 'tamid'<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Impurity in Public Offerings: Two Fundamental Approaches</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Sheshet</div><div class="speech"><strong>Tumah Hutrah b'Tzibur</strong> — Impurity is fully <em>overridden</em> for public offerings. The Torah grants blanket permission; the prohibition simply does not apply.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Naḥman</div><div class="speech"><strong>Tumah Dechuya b'Tzibur</strong> — Impurity is merely <em>pushed aside</em> when unavoidable. Purity is always preferred; impurity is a reluctant concession.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> If a communal meal-offering becomes impure mid-service, should priests seek a pure replacement? Rav Naḥman: yes (purity preferred). Rav Sheshet: impurity is fully permitted so replacement is unnecessary.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚔️ Hutrah vs. Dechuya: The Full Contrast</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#0d1f33"><h3 style="color:#4a90d9">Rav Sheshet — Hutrah</h3><ul><li>Impurity is <strong>fully permitted</strong> for the public</li><li>No sin occurs — the Torah waived the prohibition entirely</li><li>No preference for purity over impurity in communal service</li><li>The tzitz atones for impurity precisely <em>because</em> a full waiver was granted</li><li>Practical: priests need not announce or replace an impure communal offering</li></ul></div><div class="compare-box" style="border-top-color:#2a1400"><h3 style="color:#e67e22">Rav Naḥman — Dechuya</h3><ul><li>Impurity is <strong>pushed aside</strong> only when no alternative exists</li><li>A technical violation still occurs, but it is tolerated and forgiven</li><li>Purity is always preferred if a pure substitute is available</li><li>The tzitz is needed to atone for the sin that still technically occurred</li><li>Practical: priests <em>should</em> seek a pure replacement when possible</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🧪 The Tosefta Challenges to Rav Naḥman</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Tosefta:</strong> A priest sacrificing the meal-offering accompanying bulls, rams, or sheep — the offering becomes impure in his hand</div><div class="flow-arrow">↓</div><div class="flow-box result-good">The priest announces: <em>'It is impure'</em> — a fresh, pure meal-offering is brought in its place</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Objection:</strong> Aren't these the Sukkot festival bulls — standard communal offerings? This implies purity is preferred even in communal cases, supporting Rav Naḥman!</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Naḥman's Response</div><div class="flow-box result-good">These are not standard communal offerings. The reference is to the <strong>bull brought when the entire community sins with idolatry unwittingly</strong> — an individual-style atonement offering.</div></div><div class="flow-col"><div class="flow-label">Why This Matters</div><div class="flow-box action">Standard communal festival sacrifices (Sukkot musaf) remain governed by hutrah. Only individual-style communal offerings prefer purity. The Tosefta challenge fails.</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👑 The Tzitz (Frontplate): What It Atones For</h2>
+  
+  <table><tr><th>Case</th><th>Nature of Impurity</th><th>Tzitz Atones?</th><th>Authority / Notes</th></tr><tr><td>Impure blood sprinkled on altar — unwittingly</td><td>Priest unaware offering was impure</td><td>✅ Yes</td><td>Offering accepted; core case of tzitz</td></tr><tr><td>Impure blood sprinkled — intentionally</td><td>Deliberate violation</td><td>❌ No</td><td>Offering not accepted; willful sin beyond tzitz's power</td></tr><tr><td>Impure flesh or fat of offering</td><td>Became impure before service</td><td>✅ Yes</td><td>Baraita explicitly lists blood, flesh, fat</td></tr><tr><td>Individual impure offering</td><td>Single person brought while impure</td><td>✅ Yes (Rav Naḥman)</td><td>The tzitz atones for the sin that occurred</td></tr><tr><td>Communal offerings — public impurity</td><td>Tzibur was impure</td><td>⚠️ Disputed</td><td>Rav Sheshet: tzitz unnecessary (hutrah); Rav Naḥman: tzitz needed (dechuya)</td></tr><tr><td>Yom Kippur Avodah (no tzitz worn)</td><td>High Priest in Bigdei Lavan only</td><td>N/A — not needed</td><td>Rabbi Yehuda: impurity is hutrah on Yom Kippur; tzitz irrelevant</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📜 Does the Tzitz Atone When Not Physically on the Forehead?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Yehuda</div><div class="speech">The tzitz effects acceptance <strong>only while physically on his forehead.</strong> If it slips or is removed, it cannot atone. The verse says <em>'upon his forehead'</em> — location is the operative condition.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabbi Shimon</div><div class="speech">The tzitz effects acceptance <strong>even when not on his forehead</strong>, provided the priest is mentally <em>mindful</em> of it. 'Always upon his forehead' means always present in his awareness.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabbi Shimon (proof)</div><div class="speech">On Yom Kippur, the High Priest wears only the white garments — no tzitz during the Avodah — yet his offerings are fully accepted! This proves physical presence is not required.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Yehuda (rebuttal)</div><div class="speech">Yom Kippur is different — impurity is <em>hutrah</em> for the public that day, so the tzitz is simply <strong>unnecessary.</strong> Its absence on Yom Kippur proves nothing about whether presence normally matters.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Verse — Exodus 28:38</strong> "וְהָיָה עַל מֵצַח אַהֲרֹן... תָּמִיד" — 'And it shall be always upon his forehead that they may be accepted before the Lord'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔍 Abaye's Analysis: The Precise Scope of the Dispute</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Setup:</strong> Abaye refines exactly where Rabbi Yehuda and Rabbi Shimon agree — and where they disagree — regarding the tzitz's atoning power.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Case 1 — Tzitz Physically Broke:</strong> The frontplate is cracked or destroyed. <em>Both Rabbi Yehuda and Rabbi Shimon agree:</em> a broken tzitz cannot effect acceptance. No dispute here.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Case 2 — Tzitz Slipped from Forehead (intact):</strong> The frontplate is undamaged but has moved out of position on the forehead. <em>This is their actual dispute.</em></div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Yehuda on 'tamid' (always):</strong> The word teaches that the High Priest must always be <em>aware</em> he is wearing the tzitz — a requirement of mindfulness, not a guarantee of constant atonement regardless of position.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Shimon on 'tamid' (always):</strong> The tzitz <em>always</em> effects acceptance as long as the priest is conscious of it. The word 'always' overrides any positional requirement and extends the tzitz's power.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 7 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a3a;border:2px solid #4a90d9;padding:10px"><strong>Core Question:</strong> How does the Torah treat impurity when it involves the entire community's Temple service?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0d1f33;border-left:4px solid #4a90d9;padding:8px"><strong>Rav Sheshet — Hutrah:</strong><br>Fully overridden. No sin. Tzitz atones because a waiver was granted.</div></div><div class="flow-col"><div class="flow-box" style="background:#2a1400;border-left:4px solid #e67e22;padding:8px"><strong>Rav Naḥman — Dechuya:</strong><br>Pushed aside. Sin still occurred. Purity preferred. Tzitz atones for the violation.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#1f1030;border:2px solid #9b59b6;padding:10px"><strong>Second Dispute:</strong> Must the tzitz be physically on the forehead to effect acceptance?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1f1030;border-left:4px solid #9b59b6;padding:8px"><strong>Rabbi Yehuda:</strong><br>'Upon his forehead' = physical location required. Slipped = no atonement.</div></div><div class="flow-col"><div class="flow-box" style="background:#0d2010;border-left:4px solid #2ecc71;padding:8px"><strong>Rabbi Shimon:</strong><br>'Always' = awareness sufficient. Mindful priest = tzitz atones even if displaced.</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 7a-7b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 7a-7b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../6/">← Daf 6</a><a href="../8/">Daf 8 →</a></div>
+</body>
+</html>

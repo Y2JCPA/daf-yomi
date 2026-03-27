@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 64 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Yoma 64 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Rav, if the Azazel goat dies after the lottery and a second pair is brought, what happens to the surviving goat of the first pair?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. It grazes until it becomes unfit for sacrifice</div>
+      <div class="option" onclick="select(1,this,1)">B. It is sacrificed to God</div>
+      <div class="option" onclick="select(1,this,2)">C. A new lottery is held between it and the second pair</div>
+      <div class="option" onclick="select(1,this,3)">D. It is sent off the cliff in place of the Azazel goat</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Rav holds ein dichuy b'chai — living beings are not permanently rejected. The surviving goat of the first pair retains its eligibility and is sacrificed to God, with the second pair's goat grazing until unfit.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">From which halakhic case does Rav derive that living beings are not permanently rejected?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. An animal that is too young (lacking time)</div>
+      <div class="option" onclick="select(2,this,1)">B. A permanently blemished animal</div>
+      <div class="option" onclick="select(2,this,2)">C. An animal with a temporary blemish</div>
+      <div class="option" onclick="select(2,this,3)">D. A communal sin-offering that became unfit</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>Rav derives from the temporary blemish (mum over): an animal disqualified while blemished regains its eligibility once the blemish heals, proving that living beings are not permanently rejected.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">How does Rabbi Yoḥanan limit the leniency for temporarily blemished animals using Leviticus 22:25?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. The word לָכֶם (for you) restricts it to Israelites</div>
+      <div class="option" onclick="select(3,this,1)">B. The word בָּהֶם (in them) limits the leniency to blemished animals only</div>
+      <div class="option" onclick="select(3,this,2)">C. The verse applies only to Paschal lambs, not Yom Kippur offerings</div>
+      <div class="option" onclick="select(3,this,3)">D. The verse only addresses animals that were never consecrated</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Rabbi Yoḥanan reads בָּהֶם as 'it is they — blemished animals — that are re-accepted when healed.' This explicitly limits the leniency to that category, leaving other disqualified living beings permanently rejected.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">Which ruling of Rabbi Yosei does Rav ultimately use to support giving priority to the first pair's goat?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. The ruling about Shekalim half-shekel coins in containers</div>
+      <div class="option" onclick="select(4,this,1)">B. The ruling about a lost and replaced Paschal lamb</div>
+      <div class="option" onclick="select(4,this,2)">C. The ruling about a blemished goat before the Yom Kippur lottery</div>
+      <div class="option" onclick="select(4,this,3)">D. The ruling about communal sin-offerings that cannot die</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>The Paschal lamb ruling is the correct source: when the lost animal is found and both animals are simultaneously fit, the first-designated one takes priority unless the second is superior. The Shekalim case is rejected as a parallel because the containers were not simultaneously fit.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">According to Rabbi Yehuda in the mishna, if the blood of the goat sacrificed to God spilled before being sprinkled on Yom Kippur, what happens to the scapegoat?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. It is sent off the cliff immediately to complete whatever is possible</div>
+      <div class="option" onclick="select(5,this,1)">B. It is sacrificed on the altar in place of the first goat</div>
+      <div class="option" onclick="select(5,this,2)">C. It is left to die</div>
+      <div class="option" onclick="select(5,this,3)">D. A new pair of goats is purchased and the entire service restarted</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>Rabbi Yehuda holds that disqualified animals — even communal offerings — are permanently rejected. Once the God-goat's blood is invalidated, the scapegoat is left to die rather than being sent. The Rabbis disagree, holding communal sin-offerings are never left to die.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":1,"4":1,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

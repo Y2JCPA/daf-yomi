@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 84 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐕</div>
+  <h1>Yoma 84</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא פד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐕 Mad Dog — Dangers and Remedies<br>
+    💊 Throat and Mouth Medicine on Shabbat<br>
+    🏥 Pikuach Nefesh Overrides Shabbat<br>
+    🔓 Saving Children — No Permission Needed<br>
+    👥 Majority Rule Exception for Life-Saving<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📖 Overview</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">פִּקּוּחַ נֶפֶשׁ דּוֹחֶה שַׁבָּת</div><div class="callout"><strong>⚖️ Core Principle of Daf 84</strong> This daf explores the paramount value of <strong>pikuach nefesh</strong> (saving a life), which overrides Shabbat and Yom Kippur. Spanning medical remedies for dangerous conditions — mad dog bites, throat disease, tzefidna — to dramatic rescue scenarios, the Gemara teaches that one who is vigilant in saving a life is <em>praiseworthy</em> and need not wait for rabbinic permission. Even multiple future Shabbatot may be violated for a single illness requiring ongoing treatment.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🐕 Dangerous Conditions and Their Remedies</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">Mad Dog Bite (כלב שוטה)</h3><ul><li>Kill the dog only with a <strong>thrown object</strong> — avoid direct contact</li><li>Being rubbed causes illness; being bitten causes <em>death</em></li><li><strong>Abaye's remedy:</strong> Write a spell on hyena skin</li><li>Spell: 'I, [name], son of [name], write against you — kanti kanti kloros…'</li><li>Then remove and wear one's own garment inside-out</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#fff">Tzefidna (צְפִידְנָא — Gum Disease)</h3><ul><li><strong>Cause:</strong> Hot wheat bread eaten with fried fish remains</li><li><strong>Sign:</strong> Blood from gums when touching between the teeth</li><li>Rav Aḥa: water with steeped leaven, olive oil, and salt</li><li>Rav Yeimar: leaven itself, olive oil, and salt</li><li>Rav Ashi: <strong>white of a rotten egg</strong> with olive oil and salt</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Throat/Mouth Pain (כְּאֵב גָּרוֹן)</h3><ul><li>Rabbi Matya ben Ḥarash: <strong>place medicine in mouth on Shabbat</strong></li><li>Potentially life-threatening — permitted without delay</li><li>Cleopatra revealed remedy under oath 'not to tell the God of the Jews'</li><li>Loophole: 'I will reveal it to <em>His people</em>'</li><li>Rabbi Yoḥanan demonstrated the remedy on himself before Rav Ḥiyya</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>💬 Is Bloodletting for Serunkhi Permitted on Shabbat?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Ḥiyya bar Abba</div><div class="speech">In whose opinion did you act, Rabbi Yoḥanan? Was it not Rabbi Matya ben Ḥarash, who permits placing medicine in the mouth on Shabbat for throat pain?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rabbi Yoḥanan</div><div class="speech">Indeed — this confirms the ruling. The throat is life-threatening territory, and placing medicine there is permitted on Shabbat even without awaiting a court decision.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Baraita</div><div class="speech">One seized with yerakon is fed donkey meat; one bitten by a mad dog is fed the lobe of its liver; one with mouth pain — medicine is placed there on Shabbat.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Ashi (objection)</div><div class="speech">The Rabbis say 'these have no remedy' — but what do they exclude? Not bloodletting for serunkhi! They exclude only donkey meat and dog liver as valueless remedies. Bloodletting IS permitted.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The Rabbis' phrase <em>'these have no remedy'</em> targets donkey meat and liver lobe as medically useless, while confirming that <strong>bloodletting for serunkhi</strong> is a genuine, Shabbat-permitted treatment — consistent with the baraita of Rabbi Yannai.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🏥 Pikuach Nefesh — When and How to Act on Shabbat</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Life-threatening situation arises on Shabbat or Yom Kippur</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Act immediately</div><div class="flow-box result-good">Do <strong>not</strong> wait for a court's permission — one who is vigilant is <em>praiseworthy</em></div></div><div class="flow-col"><div class="flow-label">Who should act?</div><div class="flow-box action">The <strong>greatest Jewish scholars</strong> — not gentiles or Samaritans — to affirm Torah's value of life</div></div><div class="flow-col"><div class="flow-label">How many Shabbatot?</div><div class="flow-box result-good">Violate <strong>all future Shabbatot</strong> needed for recovery, not only the current one</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Child fell into the sea?</strong> — Cast a net even if it also catches fish (a normally-forbidden labor)</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Door locked on a frightened child?</strong> — Break it open; need not amuse him from outside and wait</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Fire spreading toward people?</strong> — Place a barrier to extinguish it; a new pikuach nefesh principle beyond the previous cases</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>👥 Shmuel's Ruling: Do Not Follow the Majority for Pikuach Nefesh</h2>
+  
+  <table><tr><th>Scenario</th><th>Composition of Group</th><th>Normal Rule</th><th>Pikuach Nefesh Ruling</th></tr><tr><td>Building collapses on unknown person — same courtyard</td><td>9 gentiles, 1 Jew</td><td>Follow majority → do not excavate</td><td>✅ Excavate — fixed location overrides majority</td></tr><tr><td>Person separates from group, collapses in another courtyard</td><td>9 gentiles, 1 Jew</td><td>Follow majority → do not excavate</td><td>⚖️ Shmuel: excavate; Rav Asi: only in same courtyard</td></tr><tr><td>Majority of city are gentiles; child found abandoned</td><td>City majority gentile</td><td>Follow majority → treat as gentile</td><td>✅ Feed child on Shabbat — do not follow majority</td></tr><tr><td>Building collapses, victim unknown</td><td>City majority gentile</td><td>Follow majority → do not excavate</td><td>✅ Excavate — doubt of Jewish life overrides majority</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚕️ Violating Multiple Shabbatot for One Illness</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Doctor assesses:</strong> Patient needs treatment beginning today (Shabbat) for 8 days</div><div class="process-arrow">↓</div><div class="process-step">We violate <em>this</em> Shabbat — uncontroversially permitted as clear pikuach nefesh</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Question:</strong> What about the 7 subsequent Shabbatot the treatment requires?</div><div class="process-arrow">↓</div><div class="process-step">The baraita answers: <strong>violate all of them</strong> — 'they did not say only the current Shabbat but even future Shabbatot'</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Reason:</strong> Interrupting treatment mid-course may be more dangerous than the illness itself</div><div class="process-arrow">↓</div><div class="process-step">Underlying principle: <em>חַלֵּל עָלָיו שַׁבָּת אַחַת כְּדֵי שֶׁיִּשְׁמֹר שַׁבָּתוֹת הַרְבֵּה</em><br><small>Violate one Shabbat so that he may observe many Shabbatot</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 84 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>Life-threatening condition</strong><br><small>Mad dog bite · throat pain · tzefidna · trapped child · collapsed building</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>Apply remedy immediately</strong><br><small>Permitted on Shabbat/Yom Kippur; scholars act, not gentiles</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>Physical rescue</strong><br><small>Break doors, cast nets, extinguish fire — no permission needed; vigilance is praiseworthy</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>Ongoing treatment</strong><br><small>Violate all future Shabbatot required — not just the first</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>Do not follow the majority</strong> when a Jewish life <em>may</em> be at stake<br><small>Shmuel: excavate debris even if the group is mostly gentile</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 84a-84b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 84a-84b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../83/">← Daf 83</a><a href="../85/">Daf 85 →</a></div>
+</body>
+</html>

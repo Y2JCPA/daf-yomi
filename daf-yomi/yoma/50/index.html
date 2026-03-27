@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 50 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐂</div>
+  <h1>Yoma 50</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא נ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🩸 Blood = 'The Bull' — interpreting Lev. 16:3<br>
+    ⚖️ Fixed-Time Offerings — override Shabbat & impurity<br>
+    💀 Lost Yom Kippur Bull — Abaye vs. Rava on its fate<br>
+    🤝 Partners' Sin-Offering — Rava's key distinction<br>
+    🔄 Substitution for the Yom Kippur Bull — Rabbi Elazar's dilemma<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🐂 Yoma 50: Is the High Priest's Bull Individual or Communal?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Is <strong>blood</strong> legally called <strong>'the bull'</strong>?<br><small>Lev. 16:3: "With a bull Aaron shall come into the sacred place"</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Rav Ashi</div><div class="flow-box result-good">Aaron enters with the bull's <em>blood</em> — blood is 'the bull'</div></div><div class="flow-col"><div class="flow-label">No — opposing view</div><div class="flow-box result-bad">Verse means Aaron qualified himself by <em>purchasing</em> the bull from his own funds</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Is the High Priest's Yom Kippur bull <strong>individual</strong> or <strong>communal</strong>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Individual (R. Meir)</div><div class="flow-box action">Does not override Shabbat; raises dilemma about <em>temurah</em> substitution</div></div><div class="flow-col"><div class="flow-label">Partners' offering (Rava)</div><div class="flow-box result-good">Not left to die — Israel are co-owners; distinct from purely communal</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🩸 Does Blood Count as 'The Bull'? (50a)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R. Yitzḥak Nappaḥa</div><div class="speech">Objection! 'Remove the <em>entire</em> bull outside the camp' (Lev. 4:12) — the bull is only removed after slaughter AND burning of fats. The blood was already sprinkled beforehand, proving blood is NOT part of the remaining bull.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R. Ami</div><div class="speech">Correct — that verse proves the bull exists independently of its blood. Blood already served its purpose at sprinkling; calling blood 'the bull' is a stretch.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Ashi</div><div class="speech">I side with those who say blood IS called 'the bull.' Proof: 'With a bull Aaron shall come into the sacred place' (Lev. 16:3). He cannot bring in the live bull — he brings in the <strong>blood</strong>. So blood = bull!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Counter-position</div><div class="speech">That verse means Aaron became <em>qualified</em> to enter the sacred place by acquiring and consecrating a bull from his own personal funds — not by carrying its blood inside.</div></div></div><div class="callout" style="margin-top:20px"><strong>Crux of the Debate</strong> "With a bull Aaron shall come in" (Lev. 16:3) — does 'bull' refer to the living animal, its blood, or the act of purchasing it?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Which Offerings Override Shabbat & Impurity? (50a)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#4a90d9">R. Meir's Position</h3><ul><li>Communal sacrifices → override Shabbat & impurity</li><li>Individual sacrifices → override neither</li><li>Yom Kippur bull = individual → does NOT override</li><li>High Priest's wafer meal-offering = individual → does NOT override</li><li>Challenged by R. Ya'akov with counter-examples</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">R. Ya'akov's Rebuttal</h3><ul><li>Bull for unwitting communal sin — communal yet does NOT override</li><li>Goats for communal idolatry — communal yet do NOT override</li><li>Festival goats — communal yet do NOT override</li><li>∴ 'Communal' cannot be the operative criterion!</li><li>There must be a different distinguishing principle</li></ul></div><div class="compare-box" style="border-top-color:#1a3a1a"><h3 style="color:#2ecc71">Final Accepted Principle</h3><ul><li>✅ Fixed time (זְמַן קָבוּעַ) → overrides Shabbat & impurity</li><li>❌ No fixed time → overrides neither</li><li>Applies equally to individual AND communal offerings</li><li>Yom Kippur offerings: fixed annual time → override</li><li>Bull for unwitting sin: no fixed time → does NOT override</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>💀 The Lost Yom Kippur Bull — Abaye vs. Rava (50a–b)</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Abaye's Challenge:</strong> A baraita teaches — if the Yom Kippur bull was lost, a replacement was set aside, and the <em>first</em> was then found: <strong>all animals of the second set must die.</strong><br><small>This implies the bull is communal — not individual as R. Meir says!</small></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Rava (first answer):</strong> The baraita refers to a bull for an <em>unwitting communal sin</em> — not the High Priest's Yom Kippur bull at all.</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Abaye refutes:</strong> The baraita explicitly states <em>'of Yom Kippur'</em> — it must be the High Priest's bull!</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rava's Revised Answer ✓</div><div class="flow-box result-good"><strong>It is a sin-offering of partners</strong> (קָרְבַּן שֻׁתָּפִין). High Priest atones for all Israel → Israel are co-owners. A <em>partners'</em> sin-offering is never left to die because some partners still live.</div></div><div class="flow-col"><div class="flow-label">Why not 'communal'?</div><div class="flow-box result-bad">A tribe can bring a communal sin-offering for communal error. Partners cannot bring one for a partners' error. The HP's bull is closer to 'partners' than 'communal.'</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔄 Rabbi Elazar's Dilemma: Can One Make a Substitute? (50b)</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">תְּמוּרָה — substitution: if one says 'this unconsecrated animal shall replace my consecrated one,' both become sacred (Lev. 27:10)</div><div class="callout"><strong>Rabbi Elazar Asks</strong> According to <strong>Rabbi Meir</strong> — who holds the Yom Kippur bull is an <em>individual</em> offering — can the High Priest perform <strong>temurah</strong> (substitution) for it?
+
+<strong>Option A:</strong> Follow the <em>consecrator</em> (the High Priest who paid) → it is individual → his substitution takes effect
+
+<strong>Option B:</strong> Follow the <em>beneficiary</em> (all Israel who seek atonement) → it is communal → no substitution
+
+<strong>Resolution (R. Abbahu citing R. Yoḥanan):</strong> We follow the one who <em>seeks atonement</em>. One who consecrates an animal for another's atonement — the beneficiary is the legal owner.
+
+<strong>Deeper dilemma remains:</strong> Do fellow priests achieve atonement through the <em>essence of the offering</em> (like the High Priest) — or only through the High Priest's <em>verbal confession</em>?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📋 Strictures of Initial Sacrifice vs. Substitute — The Baraita (50b)</h2>
+  
+  <table><tr><th>Dimension</th><th>Initial Sacrifice (עיקר)</th><th>Substitute (תְּמוּרָה)</th></tr><tr><td>Overrides Shabbat & impurity?</td><td>✅ Yes — has a fixed time</td><td>❌ No — substitute does not inherit this override</td></tr><tr><td>Sanctity spreads to blemished animal?</td><td>❌ No — only unblemished animals offered</td><td>✅ Yes — temurah sanctity takes effect even on a <strong>permanently blemished</strong> animal</td></tr><tr><td>Can it be offered on the altar?</td><td>✅ Yes, if without blemish</td><td>Only if the original was altar-fit; substitute of a blemished animal must die</td></tr><tr><td>Which offering fits this baraita?</td><td><em>Ram of Aaron</em> (Lev. 16:3) — burnt-offering with fixed Yom Kippur time</td><td>Not the HP's bull — the bull has too many additional overriding factors beyond Shabbat/impurity</td></tr><tr><td>Alternative reading (rejected)</td><td>Could be the Yom Kippur bull itself</td><td>If so, 'substitute' means a <em>replacement</em> animal, not formal temurah — ultimately rejected by Gemara</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 50 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#1a2a3a;border:2px solid #4a90d9"><strong>Does blood = 'the bull'?</strong><br>Rav Ashi: Yes — Lev. 16:3 means entering with the blood</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a1a;border:2px solid #2ecc71"><strong>What overrides Shabbat & impurity?</strong><br>Final principle: <em>fixed-time offerings</em> override; non-fixed do not</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a3a;border:1px solid #9b59b6"><strong>R. Meir:</strong> HP's bull = individual offering<br><small>→ Raises R. Elazar's temurah dilemma</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border:1px solid #2ecc71"><strong>Rava:</strong> HP's bull = partners' offering<br><small>→ Not left to die; Israel are co-owners</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a2a1a;border:2px solid #c9a84c"><strong>R. Elazar's dilemma:</strong> Substitution — follow consecrator (HP) or beneficiary (Israel)?<br><small>R. Yoḥanan: follow the one who seeks atonement → Israel = owner</small></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a1a1a;border:2px solid #e67e22"><strong>Baraita on strictures:</strong> Rav Sheshet — the offering discussed is <em>Aaron's ram</em>, not the bull<br><small>The bull has far more overriding considerations than Shabbat/impurity alone</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 50a-50b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 50a-50b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../49/">← Daf 49</a><a href="../51/">Daf 51 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 4 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">☁️</div>
+  <h1>Yoma 4</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא ד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Source of Sequestering — inauguration of the Mishkan or Sinai?<br>
+    ☁️ Moses in the Cloud — six days of waiting before the call<br>
+    📅 Sinai Timeline Dispute — 6th or 7th of Sivan?<br>
+    🗓️ Tablets Shattered — calculating the exact date<br>
+    🗣️ Torah Etiquette — calling before speaking<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ The Source of the High Priest's 7-Day Sequestering</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech">The High Priest's 7-day sequestering is derived from the <strong>inauguration of the Mishkan</strong> — just as Aaron and his sons were sequestered 7 days before the inaugural service (Lev. 8), so too the High Priest before Yom Kippur.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech">But at the inauguration sprinkling was with <strong>blood</strong>, while Yom Kippur uses <strong>water</strong> — they cannot be compared! Rather, derive it from <strong>Sinai</strong>, where Moses waited in the cloud before receiving the Torah.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech">That is not difficult — Rabbi Ḥiyya taught: <strong>Water replaced blood</strong>. The verse says 'as has been done this day… to make atonement' — linking Yom Kippur directly to the inauguration.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech">A baraita supports my view: <em>'Moses ascended in the cloud, was covered in the cloud, and was sanctified in the cloud — in order to receive the Torah for Israel.'</em> This is the paradigm for the High Priest's preparation.</div></div></div><div class="callout" style="margin-top:20px"><strong>Gemara's Conclusion</strong> A baraita was found supporting each opinion. Ultimately, the Gemara concludes that Rabbi Yoḥanan holds all inauguration details are indispensable — failure to perform any detail invalidates the inauguration itself.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔗 Two Sources for the High Priest's Sequestering</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbi Yoḥanan: From the Inauguration</h3><ul><li>Aaron and his sons sequestered 7 days before Mishkan's inauguration (Lev. 8:33)</li><li>High Priest similarly sequestered 7 days before Yom Kippur</li><li>Rabbi Ḥiyya: water sprinkling on Yom Kippur replaced blood sprinkling</li><li>Verse: 'As has been done this day… to make atonement' links the two events</li><li>Implication: every detail of the inauguration is legally indispensable</li></ul></div><div class="compare-box" style="border-top-color:#2d1a0e"><h3 style="color:#e67e22">Reish Lakish: From Sinai</h3><ul><li>Moses ascended, was covered, and was sanctified in the cloud before receiving Torah</li><li>Baraita: Moses' cloud-sequestering is the model for the High Priest's preparation</li><li>Sinai had 6 days before the call — raises question about deriving 7 days</li><li>Parallel: two Torah scholars (students of Moses) transmit the service — excluding Sadducees</li><li>Supported by a full baraita explicitly linking Sinai to Yom Kippur preparation</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📅 Sinai Timeline: Two Tannaitic Disputes</h2>
+  
+  <table><tr><th>Issue</th><th>Rabbi Yosei HaGelili</th><th>Rabbi Akiva</th></tr><tr><td>Day Torah was given</td><td>6th of Sivan</td><td>7th of Sivan</td></tr><tr><td>Moses called into the cloud</td><td>7th of Sivan — after the revelation</td><td>7th of Sivan — immediately after revelation</td></tr><tr><td>Nature of the 6 days</td><td>Sequestering that occurred after the Torah was given</td><td>Sequestering that occurred before the Ten Commandments</td></tr><tr><td>Total days on mountain</td><td>6 days (post-revelation) + 40 days = 46 days</td><td>Summoned on 7th of Sivan, then 40 days on mountain</td></tr><tr><td>Date tablets shattered</td><td>23rd of Tammuz — contradicts accepted tradition!</td><td>17th of Tammuz — consistent with tradition</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>☁️ Moses at Sinai — Sequence of Events</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Israel arrives at <strong>Mount Sinai</strong>; Moses ascends</div><div class="flow-arrow">↓</div><div class="flow-box action">The <strong>cloud of glory</strong> covers the mountain for <strong>6 days</strong> — Moses waits</div><div class="flow-arrow">↓</div><div class="flow-box result-good">On the <strong>7th day</strong>, God calls Moses into the cloud</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Yosei HaGelili</div><div class="flow-box result-bad">Calling was <em>after</em> the Ten Commandments — Torah given on 6th, Moses called on 7th, then 40 days + 6 extra days = tablets broken on <strong>23rd of Tammuz</strong></div></div><div class="flow-col"><div class="flow-label">Rabbi Akiva</div><div class="flow-box result-good">Calling was the day <em>of</em> the revelation — Torah given on 7th of Sivan; Moses immediately enters and spends 40 days, tablets broken on <strong>17th of Tammuz</strong></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Moses receives Torah for <strong>40 days and 40 nights</strong>, then descends</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>👂 Who Heard God Call Moses? Sinai vs. Tent of Meeting</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Elazar</div><div class="speech">When God said <em>'And He called to Moses'</em> at Sinai, <strong>all of Israel</strong> was standing there and heard. The Divine voice went to the ends of the world — this was a public calling.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Objection from Verse</div><div class="speech">But it is written: <em>'Moses went into the Tent of Meeting… he heard the voice speaking to him from above the Ark cover'</em> — this implies the voice reached <strong>only Moses</strong>, not others in the camp!</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">School of Rabbi Yishmael</div><div class="speech"><strong>Verbal analogy (gezeirah shavah):</strong> 'Moses came <em>into</em> the cloud' parallels 'Israel went <em>into</em> the sea on dry land.' Just as the sea <em>split</em> miraculously for Israel, the cloud <em>split</em> to allow Moses private entry — the voice was contained within.</div></div></div><div class="callout" style="margin-top:20px"><strong>Additional Teaching — Rabbi Matya ben Ḥarash</strong> God's calling served not just to summon Moses, but to <strong>inspire awe</strong> in him — so the Torah would be received with reverence, trembling, and quaking, as befits Divine communication.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🗣️ Torah Etiquette: Calling Before Speaking</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מלמד שלא ידבר אדם לחבירו אלא אם כן קראו תחילה — ויקרא רבה א׳</div><div class="callout"><strong>וַיִּקְרָא אֶל מֹשֶׁה וַיְדַבֵּר ה׳ אֵלָיו</strong> <strong>'And He called unto Moses, and the Lord spoke unto him'</strong> (Leviticus 1:1)<br><br>Why does the verse mention calling <em>before</em> speaking? God could have simply spoken — yet He called first.<br><br>The Torah teaches <strong>derech eretz (proper conduct)</strong>: a person should never address another abruptly without first signaling their intention. Even God modeled this with Moses.<br><br><em>Rabbi Matya ben Ḥarash</em> adds a second dimension: the calling was meant to instill <strong>awe and reverence</strong> in Moses, so the Torah would be transmitted in a spirit of trembling and gravity — not casual conversation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 4 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style=""><strong>High Priest sequestered 7 days</strong><br><small>before Yom Kippur — but what is the Scriptural source?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style=""><strong style='color:#4a90d9'>Rabbi Yoḥanan</strong><br>From the <em>Inauguration</em><br><small>Aaron's 7-day sequestering; water replaced blood (Rabbi Ḥiyya)</small></div></div><div class="flow-col"><div class="flow-box" style=""><strong style='color:#e67e22'>Reish Lakish</strong><br>From <em>Sinai</em><br><small>Moses covered &amp; sanctified in the cloud for 6 days before the call</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style=""><strong>Sinai Timeline Dispute</strong><br><small>Rabbi Yosei HaGelili: 6th of Sivan → tablets broken 23rd of Tammuz (problematic)<br>Rabbi Akiva: 7th of Sivan → tablets broken 17th of Tammuz (tradition)</small></div><div class="flow-arrow">↓</div><div class="flow-box " style=""><strong style='color:#9b59b6'>Torah Etiquette</strong><br><small>God called Moses before speaking → a person must always announce before addressing another</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 4a-4b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 4a-4b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">← Daf 3</a><a href="../5/">Daf 5 →</a></div>
+</body>
+</html>

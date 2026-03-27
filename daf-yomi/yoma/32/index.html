@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 32 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🛁</div>
+  <h1>Yoma 32</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא לב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🛁 Five Immersions — High Priest immerses five times on Yom Kippur<br>
+    👐 Ten Sanctifications — hands and feet sanctified twice per garment change<br>
+    👘 Garment Alternation — golden and white vestments cycle through the day<br>
+    📜 Biblical Derivations — Rabbis debate the scriptural source of these laws<br>
+    🔪 Keratzo — meaning of the slaughter of the daily morning offering<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🛁 Five Immersions, Ten Sanctifications</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">The High Priest performs <strong>5 immersions</strong> and <strong>10 sanctifications</strong> of hands and feet on Yom Kippur</div><div class="process-arrow">↓</div><div class="process-step">Each immersion corresponds to a <strong>change of garments</strong> between golden and white vestments — five transitions total</div><div class="process-arrow">↓</div><div class="process-step"><strong>Two sanctifications</strong> accompany each immersion: one before removing old garments, one after donning new ones</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Ḥisda</strong>: if performed in the Torah's written order, the tradition of 5 + 10 is confirmed by counting</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚡ The Five Services and Their Garments</h2>
+  
+  <table><tr><th>Service #</th><th>What Is Done</th><th>Garments Worn</th><th>Immersion</th></tr><tr><td>1</td><td>Daily morning tamid offering</td><td>Golden 🥇</td><td>Before service begins</td></tr><tr><td>2</td><td>Yom Kippur inner service — bull & goat</td><td>White ⬜</td><td>Between services 1→2</td></tr><tr><td>3</td><td>Ram offerings + additional musaf</td><td>Golden 🥇</td><td>Between services 2→3</td></tr><tr><td>4</td><td>Sending away the goat (Azazel)</td><td>White ⬜</td><td>Between services 3→4</td></tr><tr><td>5</td><td>Daily afternoon tamid offering</td><td>Golden 🥇</td><td>Between services 4→5</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Deriving the Five Immersions — Three Approaches</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yehuda</div><div class="speech">Derived from the verses describing garment removal and donning — each garment change implies a required immersion before the next set.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yehuda HaNasi</div><div class="speech">Derived from: 'He shall bathe his body in water and put them on' (Lev. 16:24) — bathing and donning are paired, implying immersion before each set of garments.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">School of Rabbi Yishmael</div><div class="speech">A fortiori: If a priest entering the Temple for ordinary service requires sanctification without immersion, certainly the High Priest changing into sacred garments on Yom Kippur requires full immersion!</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rav Ḥisda</div><div class="speech">Rabbi Yehuda HaNasi's view is an independent position — distinct from Rabbi Meir (who requires more sanctifications) and the Rabbis (who require fewer).</div></div></div><div class="callout" style="margin-top:20px"><strong>Consensus</strong> All opinions agree on 5 immersions and 10 sanctifications — the debate concerns only the scriptural derivation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👘 Golden Garments vs. White Garments</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#fff">Golden Garments (בִּגְדֵי זָהָב)</h3><ul><li>Worn for communal/public offerings</li><li>Daily morning and afternoon tamid</li><li>Ram guilt-offering and musaf</li><li>Eight garments total</li><li>Used throughout the year as well</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">White Garments (בִּגְדֵי לָבָן)</h3><ul><li>Worn for entering the Holy of Holies</li><li>Bull and goat atonement service</li><li>Sending away the scapegoat (Azazel)</li><li>Four fine linen garments only</li><li>Used exclusively on Yom Kippur</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔄 Why Two Sanctifications Per Immersion?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">The High Priest transitions between two services</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">1st Sanctification</div><div class="flow-box result-good">Sanctifies hands and feet <strong>before removing</strong> current garments — prepares to conclude service</div></div><div class="flow-col"><div class="flow-label">2nd Sanctification</div><div class="flow-box result-good">Sanctifies hands and feet <strong>after donning</strong> new garments — prepares to begin next service</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Source: 'And Aaron shall come…and he shall remove the linen garments…and he shall wash his flesh…and put on his garments' — two distinct sanctification points implied</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כְּרָצוֹ — שְׁחִיטָה בְּרוֹב שְׁנֵי סִימָנִים (קָנֶה וְוֶשֶׁט)</div><div class="callout"><strong>🔪 What Does Keratzo Mean?</strong> The Mishna states the High Priest <em>keratzo</em> the sheep of the daily morning offering. <strong>Ulla</strong>: keratzo means 'killing/slaughtering.' <strong>Rav Naḥman bar Yitzḥak</strong> confirms via Rav Yoḥanan and Reish Lakish: valid slaughter requires cutting the majority of <strong>both organs</strong> — the windpipe and the gullet. The completion of the slaughter is a Temple service and cannot be performed by a non-priest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 32 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;"><strong>5 Garment Transitions</strong><br><small>Golden ↔ White alternation</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff;"><strong>5 Immersions</strong><br><small>One immersion per transition</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;"><strong>Sanctification Before</strong><br><small>Removing old garments</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;"><strong>Sanctification After</strong><br><small>Donning new garments</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;"><strong>10 Sanctifications Total</strong><br><small>2 per immersion × 5 immersions</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 32a-32b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 32a-32b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../31/">← Daf 31</a><a href="../33/">Daf 33 →</a></div>
+</body>
+</html>

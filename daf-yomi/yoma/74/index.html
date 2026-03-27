@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 74 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yoma 74</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא עד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Chatzi Shiur — Half-measure: Torah or Rabbinic prohibition?<br>
+    😰 Yom Kippur Affliction — What counts as self-denial on the fast<br>
+    📜 Hierarchy of Prohibitions — From karet down to non-sacred food<br>
+    🍞 Manna Gezerah Shavah — Desert hunger links to Yom Kippur fasting<br>
+    👁️ Blind People and Eating — Sight contributes to satisfaction<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ The Chatzi Shiur Debate</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yochanan</div><div class="speech">A half-measure is <strong>prohibited by Torah law</strong>. Though one receives no punishment for eating it, the act itself is Torah-forbidden — the verse's language implies even partial eating violates the prohibition.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech">A half-measure is <strong>permitted by Torah law</strong>. Only a full <em>shiur</em> triggers a Torah prohibition. Any cited verse is merely an <em>asmakhta</em> — rabbinic support, not a true Torah source.</div></div></div><div class="callout" style="margin-top:20px"><strong>Why It Matters</strong> If chatzi shiur is Torah-prohibited, swearing not to eat renders even the smallest amount forbidden under oath law. If only rabbinic, that oath logic may not apply — and offerings for violations differ accordingly.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Challenges to Reish Lakish from the Baraita</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yochanan (objection)</div><div class="speech"><strong>Proof from forbidden fat (chelev):</strong><br><small>A baraita derives from a verse that only items punishable by karet are included in that prohibition — implying the verse itself is the source of the law, making a half-measure Torah-forbidden.</small></div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Reish Lakish (response)</div><div class="speech"><strong>The verse is only a support (asmakhta):</strong><br><small>If it were a true Torah source, the verse would have no need to separately mention karet. Its citation as a proof-text merely hangs a rabbinic ruling on a scriptural hook.</small></div></div></div><div class="callout" style="margin-top:20px"><strong>Gemara Endorses Reish Lakish's Reading</strong> It is reasonable to say the baraita cites the verse as support only — for if it were a Torah prohibition, why would the verse need to specify karet as the distinguishing factor?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Hierarchy of Foods Included in Yom Kippur Eating Prohibition</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Question:</strong> Which categories of eating are prohibited on Yom Kippur?<br><small>The baraita builds a descending hierarchy of severity</small></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">✓ Include: <strong>Piggul & Notar</strong><br><small>Sacrificial violations punishable by <em>karet</em></small></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">✓ Include: <strong>Untithed Produce (Tevel)</strong><br><small>Punishable by death at the hands of Heaven</small></div><div class="flow-arrow">↓</div><div class="flow-box action">✓ Include: <strong>Unslaughtered Carcass (Neveilah)</strong><br><small>Violates a negative commandment, but no karet</small></div><div class="flow-arrow">↓</div><div class="flow-box action">✓ Include: <strong>Non-sacred (Chulin) food</strong><br><small>No specific prohibition at all — yet verse still prohibits eating it on Yom Kippur</small></div><div class="flow-arrow">↓</div><div class="flow-box result-good">✗ Exclude: <strong>Teruma</strong><br><small>A <em>kohen</em> has a positive mitzva to eat teruma — one cannot be "afflicted" by refraining from an obligatory act</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🍞 Gezerah Shavah: What Does 'Affliction' Mean?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1e2a3a"><h3 style="color:#c9a84c">Yom Kippur — Source Verse</h3><ul><li>"You shall afflict your souls" (Leviticus 16:29)</li><li>What type of affliction is required?</li><li>The verse alone does not specify fasting</li><li>School of Rabbi Yishmael: derive meaning from parallel usage elsewhere</li><li>Conclusion: affliction on Yom Kippur = withholding food</li></ul></div><div class="compare-box" style="border-top-color:#1a2a1a"><h3 style="color:#2ecc71">Manna in the Desert — Parallel Verse</h3><ul><li>"He afflicted you and caused you to hunger, and fed you with manna" (Deut. 8:3)</li><li>Affliction here is explicitly linked to hunger</li><li>This verse anchors the gezerah shavah</li><li>Just as desert affliction = hunger, so too Yom Kippur</li><li>Challenge rejected: 'affliction' in Gen. 31:50 (Laban) means marital relations, not hunger — not comparable</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>👁️ Manna, Blindness, and the Satisfaction of Eating</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Verse:</strong> "Who feeds you manna in the desert which your <em>fathers did not know</em>" (Deut. 8:3) — in what sense did the fathers not know the manna?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rav Yosef teaches:</strong> From here there is an allusion that <em>blind people eat but are not fully satisfied</em> — because they cannot see their food. Sight contributes to the pleasure and satisfaction of eating.</div><div class="process-arrow">↓</div><div class="process-step">The manna fell in a manner inaccessible to blind people's sight. Their fathers, who included blind individuals, therefore did not fully "know" (experience) the manna's satisfaction.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Abaye's practical ruling:</strong> A blind person should not eat alone but together with a sighted person — so that through their companion's sight, they benefit from greater satisfaction.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Implication for Yom Kippur:</strong> Full satisfaction from eating depends partly on vision. This enriches our understanding of what constitutes genuine physical affliction — and what genuine eating means.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔍 Four Challenges to Reish Lakish — Summary</h2>
+  
+  <table><tr><th>Challenge Against Reish Lakish</th><th>Source</th><th>Reish Lakish's Defense</th></tr><tr><td>Baraita implies half-measure is Torah-forbidden for chelev (forbidden fat)</td><td>Baraita on chelev</td><td>The verse is only an asmakhta (scriptural support) for a rabbinic law, not a true Torah source</td></tr><tr><td>Mishna implies half-measure triggers violation of a sworn oath not to eat</td><td>Mishna + Rabbi Akiva's position</td><td>Mishna follows Rabbi Akiva's unique stringency (a man prohibits himself from any amount); not the general rule</td></tr><tr><td>If chatzi shiur is only rabbinic, an oath-violator should not bring a korban</td><td>Laws of oaths and sin-offerings</td><td>Oath law operates under different logic — a verse about testimony disqualifications does not govern eating</td></tr><tr><td>Dice-player analogy: even rabbinic disqualification has full legal effect (e.g., testimony)</td><td>Laws of testimony; dice-player disqualified by Sages</td><td>Testimony has a special verse (Lev. 5:1): 'if he does not utter it' — eating prohibition lacks an equivalent qualifier</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 74 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2c3e50;border:2px solid #c9a84c;padding:10px;border-radius:8px;text-align:center;"><strong>Core Dispute:</strong> Is eating a <em>chatzi shiur</em> (half-measure) of forbidden food a Torah or rabbinic prohibition?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a5c;border:2px solid #4a90d9;padding:8px;border-radius:6px;text-align:center;"><strong>Rabbi Yochanan</strong><br>Torah-level prohibition<br><small>Verse language implies even partial eating is forbidden</small></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a0a;border:2px solid #e67e22;padding:8px;border-radius:6px;text-align:center;"><strong>Reish Lakish</strong><br>Rabbinic only<br><small>Verse is asmakhta; Torah requires full <em>shiur</em></small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3a2a;border:2px solid #2ecc71;padding:10px;border-radius:8px;text-align:center;"><strong>Yom Kippur Affliction = Fasting</strong><br><small>Gezerah shavah: "affliction" in Yom Kippur context linked to hunger via Deut. 8:3 (manna)</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2c2c3e;border:2px solid #9b59b6;padding:10px;border-radius:8px;text-align:center;"><strong>Hierarchy of Prohibited Foods on Yom Kippur:</strong><br>Karet items → Death by Heaven → Negative mitzva → Non-sacred food<br><em>Excluded: Teruma (positive mitzva to eat it)</em></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 74a-74b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 74a-74b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../73/">← Daf 73</a><a href="../75/">Daf 75 →</a></div>
+</body>
+</html>

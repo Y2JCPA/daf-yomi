@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 29 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌅</div>
+  <h1>Yoma 29</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא כט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔥 Thoughts vs. Transgression — Worse than the act itself<br>
+    🦌 Esther as a Hind — Last scriptural miracle debate<br>
+    🌄 Dawn Incident — Tamid slaughtered before dawn<br>
+    ⚖️ Day vs. Night — Offering consecration principles<br>
+    🍞 Shewbread Contradiction — Rava and Rabbi Zeira's debate<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🔥 Hirhurei Aveira — Thoughts of Sin Are Worse</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">הִרְהוּרֵי עֲבֵירָה קָשִׁים מֵעֲבֵירָה</div><div class="callout"><strong>Opening Principle</strong> The daf opens with a striking moral-philosophical claim: <strong>hirhurei aveira</strong> (thoughts of transgression) are <em>worse</em> than the transgression itself. Three parallel mnemonics drive home the point: the <strong>smell of roasting meat</strong> is more enticing than eating it; the <strong>heat at summer's end</strong> is more oppressive than midsummer; and a <strong>winter fever</strong> burns more powerfully than a summer fever — because a cold oven requires greater heat to warm than a hot one.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔥 Three Analogies: The 'Worse Than' Principle</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">Smell of Roasting Meat</h3><ul><li><strong>Thoughts of sin</strong> worse than sin itself</li><li>Aroma more enticing than actually eating</li><li>Unchecked desire amplifies the pull</li><li>The imagination exceeds reality</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#fff">Heat at Summer's End</h3><ul><li>End-of-summer heat is harsher than midsummer</li><li>Body already depleted by prolonged exposure</li><li>Accumulated wear makes the heat worse</li><li>Later stage of suffering exceeds the peak</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Winter Fever (Cold Oven)</h3><ul><li>Winter fever more powerful than summer fever</li><li>Mnemonic: <em>a cold oven</em> needs greater heat</li><li>A cold body requires more force to raise temperature</li><li>Low baseline amplifies the intensity of the fever</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🦌 Esther as Hind of the Dawn — Miracles and Scripture</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Zeira</div><div class="speech">Why is Esther likened to a <em>hind</em> (אַיֶּלֶת הַשַּׁחַר)? Just as a hind's womb is narrow and she is beloved to her mate anew at each encounter — so Esther found <strong>renewed miraculous favor</strong> before Ahasuerus at every appearance.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara Question</div><div class="speech">But isn't there the miracle of <strong>Hanukkah</strong>, which was performed many years after Purim? The verse implies Esther was the <em>final</em> great miracle — how can that be reconciled?</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">First Answer</div><div class="speech">Additional miracles <em>were</em> performed after Purim — but Purim was the last miracle for which <strong>permission was granted to record in Scripture</strong>. Hanukkah's miracle was never written into Tanakh. Thus Esther marks the end of <em>scriptural</em> miracles.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Second Answer</div><div class="speech">Alternatively: Those who hold permission was <strong>not granted</strong> for Esther's scroll at all explain differently — the analogy to dawn's gradual spreading light describes how her salvation emerged slowly, not that she ends all miracles.</div></div></div><div class="callout" style="margin-top:20px"><strong>Scriptural Source</strong> "For the leader, about the hind of the dawn" (Ps. 22:1) — Rabbi Abbahu: Just as dawn's light spreads and grows gradually, so Esther's salvation unfolded incrementally before Ahasuerus.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🌄 The Dawn Incident: Slaughtering the Tamid Too Early</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Incident:</strong> In the Temple, priests mistook the <em>moon's brightness</em> for dawn and slaughtered the daily offering (<em>tamid</em>) <strong>before dawn</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rest of the Year</div><div class="flow-box result-good">Could have waited for true dawn — yet confusion happened. <strong>Institution:</strong> An appointed priest now announces dawn's arrival from a high point in the Temple.</div></div><div class="flow-col"><div class="flow-label">Yom Kippur</div><div class="flow-box action">The appointed priest ascends to the <strong>roof of the Beit HaParvah</strong>. When he sees dawn, he announces it so the Kohen Gadol may immerse at exactly the right moment for the Avodah.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Ruling (Father of Rabbi Avin):</strong> Any offering slaughtered, pinched, or whose handful was removed <em>before dawn</em> is <strong>disqualified</strong> — not merely premature — and must be <strong>burned</strong></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ Day vs. Night: What Time Consecrates an Offering?</h2>
+  
+  <table><tr><th>Service</th><th>Valid Time</th><th>Consequence if Done at Night</th><th>Authority</th></tr><tr><td>Tamid slaughter</td><td>After dawn (day)</td><td>Disqualified — must be burned</td><td>Mishna + Baraita</td></tr><tr><td>Bird neck-pinching (melikah)</td><td>Daytime</td><td>Disqualified if before dawn</td><td>Father of Rabbi Avin</td></tr><tr><td>Handful (kometz) of meal-offering</td><td>Daytime</td><td>Disqualified — cannot re-take handful</td><td>Father of Rabbi Avin</td></tr><tr><td>Shewbread arrangement</td><td>Shabbat (daytime)</td><td>Sunday arrangement: not yet consecrated — leave until next Shabbat</td><td>Mishna (Rabbi Zeira's source)</td></tr><tr><td>Incense/frankincense vessels</td><td>Shabbat</td><td>Arranged post-Shabbat: timing debate between baraita and mishna</td><td>Rava / Ravina</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🍞 Rava vs. Rabbi Zeira: Resolving the Shewbread Contradiction</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Father of Rabbi Avin</div><div class="speech"><strong>Baraita:</strong> Night service is not merely premature — it <em>disqualifies</em>. Even a handful of meal-offering removed at night cannot be restored. The offering must be burned.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Zeira</div><div class="speech"><strong>Objection from Mishna:</strong> If a priest arranged the shewbread on Sunday (after Shabbat ends), leave it on the table until the following Shabbat. This implies night arrangement is only <em>premature</em> — not disqualifying!</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Rabbi Zeira raises the objection <strong>well</strong>. And the father of Rabbi Avin cites a received baraita — neither position can simply be dismissed. The contradiction <em>must</em> be resolved.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Ravina</div><div class="speech"><strong>Resolution:</strong> Shewbread is only consecrated when <em>Shabbat day</em> arrives. Arranging it on Sunday night precedes consecration entirely — there is no 'night service' in the disqualifying sense. The baraita and mishna address different stages.</div></div></div><div class="callout" style="margin-top:20px"><strong>Temple Purity Protocol (Mishna)</strong> Anyone who <em>covers his legs</em> (defecates) in the Temple must <strong>immerse</strong> afterward. Anyone who urinates must <strong>sanctify hands and feet</strong> from the laver (כִּיּוֹר) — two levels of purification for two degrees of bodily function.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 29 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>🔥 Moral Opening</strong><br><small>Hirhurei aveira worse than aveira — smell of meat, summer's end heat, winter fever (cold oven mnemonic)</small></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>🦌 Esther = Hind of the Dawn</strong><br><small>Miracles renewed hourly before Ahasuerus; Purim = last <em>scriptural</em> miracle — Hanukkah not recorded in Tanakh</small></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>🌄 Dawn Incident in the Temple</strong><br><small>Moonlight mistaken for dawn → tamid slaughtered too early → institution of priest announcing dawn</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:6px;padding:6px"><strong>Baraita</strong><br><small>Night service <em>disqualifies</em> — handful at night: burn the offering</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:6px;padding:6px"><strong>Mishna</strong><br><small>Shewbread arranged Sunday: leave it — implies night = <em>premature</em> only</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;color:#333;border-radius:8px;padding:8px"><strong>✅ Ravina's Resolution</strong><br><small>Shewbread consecrated by Shabbat <em>day</em> — Sunday night arrangement precedes consecration entirely; no contradiction</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 29a-29b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 29a-29b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../28/">← Daf 28</a><a href="../30/">Daf 30 →</a></div>
+</body>
+</html>

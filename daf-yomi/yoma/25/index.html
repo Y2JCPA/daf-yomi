@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 25 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🎰</div>
+  <h1>Yoma 25</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא כה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👘 Sacred Garments at the Lottery — Rav Sheshet vs. Rav Naḥman<br>
+    🏛️ Chamber of Hewn Stone — Half Sacred, Half Non-Sacred<br>
+    📋 Thirteen Services of the Second Lottery<br>
+    🩸 Who Collects the Blood — Slaughterer or Sprinkler?<br>
+    🐂 Order of Bringing Limbs to the Altar<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>👘 Were Sacred Garments Worn During the Lottery?</h2>
+  
+  <div class="debate"><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Naḥman</div><div class="speech">The mishna describes priests removing non-sacred garments and then donning sacred ones — the lottery preceded the wearing of priestly vestments.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Sheshet</div><div class="speech">The mishna describes priests already wearing sacred garments — proven by the baraita: the lottery was held in the Chamber of Hewn Stone while priests were in priestly vestments.</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Gemara</div><div class="speech">Rav Sheshet's reading is supported: the priests dressed from the feet upward (trousers first) to avoid improper exposure — this implies they were actively donning sacred garments, not non-sacred ones.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakhic Conclusion</strong> The lottery was conducted while priests wore sacred garments. They dressed from the ground upward: trousers, tunic, belt, and finally the mitre — maintaining dignity throughout.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏛️ Abaye's Proof: The Chamber of Hewn Stone</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Chamber of Hewn Stone</strong><br>Built like a large basilica (<em>basileki</em>)<br>Lottery held in its <em>eastern</em> section; Elder sits in <em>west</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">❌ If entirely non-sacred</div><div class="flow-box result-bad">The lottery in the east would not fulfill: <em>"In the House of God we walked with the throng"</em> — the lottery must occur within sacred space</div></div><div class="flow-col"><div class="flow-label">❌ If entirely sacred</div><div class="flow-box result-bad">The Elder could not sit in the west — chambers fully in sacred space cannot have openings toward the non-sacred area (Mishnah rule)</div></div><div class="flow-col"><div class="flow-label">✓ Abaye's Conclusion</div><div class="flow-box result-good"><strong>Half in the sacred area, half in the non-sacred area</strong> — two doorways, one to each zone, resolving both constraints</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📋 The Second Lottery — Thirteen Services of the Daily Offering</h2>
+  
+  <table><tr><th>#</th><th>Service</th><th>Detail</th></tr><tr><td>1</td><td>Slaughters the daily offering</td><td>Primary lottery winner</td></tr><tr><td>2</td><td>Sprinkles its blood on the altar</td><td>Also collects the blood</td></tr><tr><td>3</td><td>Removes ashes from the inner altar</td><td>Incense altar in the Sanctuary</td></tr><tr><td>4</td><td>Removes ashes and burnt wicks from the Menorah</td><td>Cleans the lamps</td></tr><tr><td>5</td><td>Carries the head + right leg</td><td>One priest for both</td></tr><tr><td>6</td><td>Carries the two forelegs</td><td></td></tr><tr><td>7</td><td>Carries the tail, lower spine + right kidney</td><td></td></tr><tr><td>8</td><td>Carries the breast and neck</td><td></td></tr><tr><td>9</td><td>Carries the two flanks with left kidney</td><td></td></tr><tr><td>10</td><td>Carries the innards</td><td></td></tr><tr><td>11</td><td>Carries the fine flour meal offering</td><td>Accompanies daily offering</td></tr><tr><td>12</td><td>Carries the griddle-cake offering</td><td>High Priest's daily contribution</td></tr><tr><td>13</td><td>Carries the wine libation</td><td>Completes the service</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🩸 Who Collects the Blood Between Slaughter and Sprinkling?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Initial Logic</div><div class="speech">The slaughterer collects the blood — the mishna assigns slaughter and sprinkling to separate priests, so the slaughterer must receive the blood in a vessel after cutting the animal.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Counter-argument</div><div class="speech">If the slaughterer collects, then when a non-priest slaughters (permitted!), we would need 13 priests at the laver — but Ben Katin made only 12 spigots, one per priest. A contradiction!</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Proof from Ben Katin</div><div class="speech">Ben Katin replaced the laver's original two spouts with exactly 12 spigots — one for each of 12 priests. This proves there are never 13 participants; the sprinkler must be the collector.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Aḥa b. Rava</div><div class="speech">Confirmed by the mishna's explicit sequence: 'The slaughterer slaughtered, the collector collected, the sprinkler sprinkled' — three distinct acts, with the collector being the sprinkler-to-be.</div></div></div><div class="callout" style="margin-top:20px"><strong>Conclusion</strong> The sprinkler collects the blood — proven by Ben Katin's 12 spigots and the mishna's three-stage sequence. There are always exactly 12 priests at the laver.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🐂 Three Views on the Order of Carrying Limbs to the Altar</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2a"><h3 style="color:#2ecc71">Ben Azzai / Rabbi Yehoshua</h3><ul><li>Order follows how the animal walks</li><li>Front limbs carried up first</li><li>Right side precedes left</li><li>Mimics natural locomotion</li><li>The living form guides the offering</li></ul></div><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbi Akiva (= Tanna of Mishna)</h3><ul><li>Order follows how it was cut up</li><li>Head + right leg first</li><li>Two forelegs second</li><li>Tail + hindquarters third</li><li>Follows the anatomy of skinning</li></ul></div><div class="compare-box" style="border-top-color:#3a1a2a"><h3 style="color:#9b59b6">Rabbi Yosei HaGelili</h3><ul><li>Breast and neck go first</li><li>Based on Ezekiel 24:4:</li><li>"Every good piece, thigh and shoulder"</li><li>Finest, meatiest cuts take precedence</li><li>Rava: same principle, different anatomy reading</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🦴 Why the Head and Right Leg Ascend Together</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">ראש וכרע — ראש שיש בו עצמות (יומא כ"ה ב׳)</div><div class="callout"><strong>Rava's Explanation</strong> <strong>The head has much bone</strong> — because the head is largely bone and relatively low in meat, the right leg (fleshier) accompanies it to the altar so the offering is not diminished in honor.<br><br><strong>The head always goes first:</strong> Derived from the verse about the burnt offering — just as the priest performs rites with the right hand, the right side of the animal takes precedence. The head leads because it is the most dignified part of the creature.<br><br><em>All opinions agree: the head is sacrificed first.</em> The debate concerns only the subsequent order of the remaining limbs.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 25 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a3a;border-color:#4a90d9"><strong>🎰 Lottery Held</strong><br>Priests already in <em>sacred garments</em><br>Dressed feet-upward for modesty</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2a1a3a;border-color:#9b59b6"><strong>🏛️ Location: Chamber of Hewn Stone</strong><br>East = sacred (lottery) | West = non-sacred (Elder's seat)<br><em>Half-and-half structure proven by Abaye</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a1a;border-color:#2ecc71"><strong>📋 13 Services Assigned</strong><br>Slaughter, sprinkle, remove ashes,<br>carry 9 sets of limbs and offerings</div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a1a;border-color:#e74c3c"><strong>🩸 Blood Collection</strong><br>The <em>sprinkler</em> collects the blood<br>→ always 12 priests at laver (Ben Katin's proof)</div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a0a;border-color:#e67e22"><strong>🐂 Limb Order</strong><br>Head first (all agree)<br>Then: by anatomy / quality / walking order<br>(3-way debate)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 25a-25b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 25a-25b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../24/">← Daf 24</a><a href="../26/">Daf 26 →</a></div>
+</body>
+</html>

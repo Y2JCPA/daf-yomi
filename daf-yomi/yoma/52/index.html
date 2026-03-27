@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 52 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏛️</div>
+  <h1>Yoma 52</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא נב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🧱 One-Cubit Partition — inside or outside the Holy of Holies?<br>
+    📐 Ravina's Proof — walls excluded from biblical measurements<br>
+    📜 Five Indeterminate Verses — Isi ben Yehuda's classic list<br>
+    🏺 Josiah Buries the Ark — before the Babylonian exile<br>
+    🌿 Incense Procedure — pile on coals or scatter?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🧱 The One-Cubit Partition: Location vs. Sanctity</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A <strong>one-cubit partition</strong> stood between the Sanctuary and the Holy of Holies</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Natan</div><div class="flow-box action">Its status was <strong>never determined</strong> — neither inside nor outside</div></div><div class="flow-col"><div class="flow-label">Ravina objects</div><div class="flow-box question">Why uncertain? Scripture gives precise measurements — 20 + 40 cubits!</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Resolution: Biblical measurements count <strong>interior space only</strong> — the partition wall is not included in either 20 or 40 cubits. Its <em>location</em> is clear; its <em>legal sanctity</em> is what remained unresolved.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🧱 The Partition's Status: A Legal Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Natan</div><div class="speech">The one-cubit partition between Sanctuary and Holy of Holies — the Sages never determined its status. Was it legally part of the Holy of Holies (inside) or part of the Sanctuary (outside)?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Ravina</div><div class="speech">Why should there be any uncertainty? Scripture says the Temple was 60 cubits long: 20 for the Holy of Holies and 40 for the Sanctuary. The partition must fall on one side!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Ravina (resolves)</div><div class="speech">The walls themselves are <em>not counted</em> in these measurements — only the interior space is counted. So the partition fits neither the 20 nor the 40. Its location is clear; the uncertainty concerns its <em>sanctity</em>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Not where the partition stood — but whether it shared the holiness of the Holy of Holies or the Sanctuary. This had practical halakhic consequences for the High Priest's service.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Five Indeterminate Verses — Isi ben Yehuda</h2>
+  
+  <table><tr><th>Term</th><th>Source</th><th>Reading A</th><th>Reading B</th></tr><tr><td><strong>שְׂאֵת</strong> Se'et</td><td>Gen 4:7</td><td>Forgiveness: 'shall it not be <em>lifted up</em>?' — sin pardoned</td><td>Punishment: 'you will <em>lift up</em>' — bearing guilt</td></tr><tr><td><strong>מְשֻׁקָּדִים</strong> Meshukkadim</td><td>Ex 25:34</td><td>Four cups of the menorah made like almond blossoms</td><td>Knops <em>and</em> flowers made like almond blossoms</td></tr><tr><td><strong>מָחָר</strong> Mahar</td><td>Ex 17:9</td><td>Fight Amalek <em>tomorrow</em> — delay one day</td><td>Fight now; Moses separately: <em>tomorrow</em> I will stand on the hilltop</td></tr><tr><td><strong>אָרוּר</strong> Arur</td><td>Gen 49:7</td><td>Cursed be their <em>anger</em> — the sin is condemned</td><td>Cursed be <em>Simeon and Levi</em> themselves</td></tr><tr><td><strong>וְקָם</strong> Vekam</td><td>Deut 31:16</td><td>You will <em>rise up</em> — resurrection of the dead</td><td>This people will <em>rise up</em> and go astray after foreign gods</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🕯️ The High Priest's Entry into the Holy of Holies</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Outer curtain</strong> hooked open on the <em>south</em> side — High Priest enters from the south</div><div class="process-arrow">↓</div><div class="process-step">Walks northward through the space between the two curtains</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Inner curtain</strong> hooked open on the <em>north</em> side — enters Holy of Holies from the north (indirect approach = mark of respect)</div><div class="process-arrow">↓</div><div class="process-step">Places the <strong>coal pan between the two staves</strong> of the Ark (in Second Temple: the place of the Ark)</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Piles the incense atop the coals</strong> — the entire chamber fills with smoke</div><div class="process-arrow">↓</div><div class="process-step">Exits <strong>the same way he entered</strong> — face toward the Holy of Holies, backing out, never turning his back on the Ark</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏺 Josiah Buries the Ark</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">דברי הימים ב לה:ג — "תְּנוּ אֶת אֲרוֹן הַקֹּדֶשׁ בַּבַּיִת"</div><div class="callout"><strong>Historical Tradition</strong> <strong>Josiah, king of Judea</strong>, commanded the Levites to bury the Ark before the Babylonian exile.<br><br>He saw the verse: <em>"The Lord will bring you and your king… to a nation that you have not known"</em> (Deut 28:36) and feared the Ark would be taken captive to Babylon.<br><br>Proof from II Chronicles 35:3 — <em>"Put the sacred Ark in the house that Solomon built"</em> — implies it had been removed for hiding and was to be returned.<br><br><strong>Buried together with the Ark:</strong> the jar of manna, the flask of anointing oil, Aaron's staff with its blossoms, and the chest sent by the Philistines.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🏛️ First Temple vs. Second Temple: The Curtain Problem</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1810"><h3 style="color:#c9a84c">First Temple</h3><ul><li>One curtain over the one-cubit partition</li><li>The actual Ark of the Covenant present</li><li>Coal pan placed between the Ark's two staves</li><li>Ark buried by Josiah before the Babylonian destruction</li></ul></div><div class="compare-box" style="border-top-color:#1a2744"><h3 style="color:#4a90d9">Second Temple</h3><ul><li>Two curtains: outer (south-facing) and inner (north-facing)</li><li>No Ark — only the <em>place</em> of the Ark (Even HaShetiyah)</li><li>'Reaches the Ark' = reaches where Ark once stood</li><li>Mishna describes Second Temple practice, not First</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 52 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style=""><strong>One-cubit partition</strong> between Sanctuary and Holy of Holies</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="color:#2ecc71"><strong>Location:</strong> clear — between the chambers</div></div><div class="flow-col"><div class="flow-box" style="color:#e74c3c"><strong>Sanctity:</strong> legally unresolved</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>Second Temple:</strong> Two curtains replace the partition; Ark buried by Josiah — only its <em>place</em> remains</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style=""><strong>Yom Kippur rite:</strong> South curtain → north curtain → coal pan at Ark's place → incense piled on coals → exit face-forward</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 52a-52b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 52a-52b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../51/">← Daf 51</a><a href="../53/">Daf 53 →</a></div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 56 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🩸</div>
+  <h1>Yoma 56</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא נו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔄 Breira Debate — Does Rabbi Yehuda accept retroactive clarification?<br>
+    ⚖️ Eiruv Stipulations — No double conditions allowed<br>
+    🩸 Blood Bowl Colors — Goat bright, bull dark: no confusion possible<br>
+    📝 One Pedestal or Two — Written labels fail a fasting High Priest<br>
+    🕍 Mixed Prayer Error — Rava corrects blended halakhic opinions<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🔄 Does Rabbi Yehuda Accept Breira?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Meir</div><div class="speech">Breira works! Retroactive clarification is valid — a condition can be resolved after the fact and applied back to the original act.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Yehuda</div><div class="speech">No Breira! A condition must be clear at the moment of the act. Future events cannot retroactively clarify what already happened.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Yoḥanan</div><div class="speech">The east/west eiruv case is different — the Sage had ALREADY arrived by twilight. The condition was resolved in reality; the person merely lacked knowledge of it.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rava</div><div class="speech">The prayer leader described the service mixing Rabbi Yehuda's pedestal count with the Rabbis' framework. One statement contradicts the other — you cannot blend the two positions!</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> Does Rabbi Yehuda accept Breira, and how does this ruling shape the Yom Kippur blood service — specifically, which bowl sits on which pedestal?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Rabbi Yehuda's Rules for Eiruv Conditions</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Permitted:</strong> 'If the Sage comes from the <em>east</em>, my eiruv is to the east; if he comes from the <em>west</em>, my eiruv is to the west' — one Sage, two possible outcomes</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Forbidden:</strong> 'If Sage A comes from here AND Sage B comes from there, I will go wherever I choose' — two conditions stipulated simultaneously</div><div class="process-arrow">↓</div><div class="process-step"><strong>Source (Ayo's baraita):</strong> Rabbi Yehuda explicitly says a person cannot stipulate conditions about two matters at once — this proves he rejects Breira</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Resolution (Rabbi Yoḥanan):</strong> The permitted east/west eiruv is not true Breira — the Sage arrived by twilight; reality was already determined, the person simply lacked knowledge</div><div class="process-arrow">↓</div><div class="process-step"><strong>Principle:</strong> Absence of knowledge ≠ absence of determination. If reality was fixed at the critical halakhic moment, no retroactive clarification is required</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📝 One Pedestal or Two? The Blood Bowl Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">The Rabbis</div><div class="speech">Two pedestals — one for the bull's blood and one for the goat's blood. Each bowl rests on its own dedicated stand throughout the service.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Yehuda</div><div class="speech">Only ONE pedestal. The High Priest transfers the bowls back and forth on a single stand as he alternates between the bull and goat blood.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Why not use two pedestals with written labels identifying each bowl? Because the High Priest is fasting and weakened — the writing will not stay on his mind and he may err!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rava</div><div class="speech">The prayer leader said the High Priest 'placed the spoon on the pedestal' (singular — Rabbi Yehuda) yet described sprinkling as the Rabbis do. He combined incompatible positions!</div></div></div><div class="callout" style="margin-top:20px"><strong>⚠️ Halakhic Conflict</strong> One cannot describe the Yom Kippur service by blending the Rabbinic and Rabbi Yehuda frameworks — the pedestal count and the bowl management are inseparable.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🩸 Sprinkling in the Two Locations</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1220"><h3 style="color:#c9a84c">Holy of Holies (Kodesh HaKodashim)</h3><ul><li>Bull's blood: 1 upward + 7 downward</li><li>Goat's blood: 1 upward + 7 downward</li><li>Sprinkled on the parokhet (curtain) facing the Ark</li><li>Performed inside the innermost chamber</li></ul></div><div class="compare-box" style="border-top-color:#0d1b2a"><h3 style="color:#4a90d9">Sanctuary (Heikhal)</h3><ul><li>Bull's blood: 1 upward + 7 downward</li><li>Goat's blood: 1 upward + 7 downward</li><li>Sprinkled on the curtain opposite the Ark from outside</li><li>Pattern mirrors the innermost sanctum exactly</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">דם זה לבן וצלול, ודם זה אדום ועכור</div><div class="callout"><strong>🔴 Why No Mix-Up Between the Two Bowls?</strong> The Gemara asks: why aren't we concerned the High Priest will confuse the bull's blood bowl with the goat's blood bowl?
+
+<strong>Answer 1 (Rav Yehuda):</strong> The High Priest must collect <em>all</em> of the bull's blood — the bowl will be noticeably fuller/larger, distinguishing it naturally.
+
+<strong>Answer 2 (Visual):</strong> The goat's blood is <em>white and bright</em> compared to the bull's blood, while the bull's blood is <em>red and dark</em> compared to the goat's — the difference is immediately visible to the eye.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🕍 The Prayer Leader's Error — Comparing the Two Positions</h2>
+  
+  <table><tr><th>Element of the Service</th><th>According to the Rabbis</th><th>According to Rabbi Yehuda</th></tr><tr><td>Number of pedestals</td><td>Two — one per bowl</td><td>One — shared by both bowls</td></tr><tr><td>Bowl placement</td><td>Each bowl on its own stand</td><td>Bowls transferred back and forth</td></tr><tr><td>Written identification labels</td><td>Possible in principle</td><td>Irrelevant (only one pedestal)</td></tr><tr><td>After exiting Holy of Holies…</td><td>Sets bowl on its own pedestal</td><td>Switches bowls on the single pedestal</td></tr><tr><td>Prayer leader's blend</td><td>Used Rabbi Yehuda's pedestal count</td><td>…then Rabbinic sprinkling description — contradiction!</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 56 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2c2c54;border:2px solid #c9a84c;color:#f5e6c8;padding:12px;border-radius:8px;text-align:center;"><strong>Does Rabbi Yehuda accept Breira?</strong><br><small>Core dispute running through the entire daf</small></div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3d0000;border:1px solid #e74c3c;color:#f5e6c8;padding:8px;border-radius:6px;"><strong>❌ No Breira</strong><br><small>Proven from Ayo's baraita: cannot stipulate two conditions simultaneously (eiruv case)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#003d1a;border:1px solid #2ecc71;color:#f5e6c8;padding:8px;border-radius:6px;"><strong>✅ Exception Exists</strong><br><small>Rabbi Yoḥanan: if reality was determined at twilight, it is not Breira — only knowledge was lacking</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#1a2a3a;border:2px solid #4a90d9;color:#f5e6c8;padding:10px;border-radius:8px;text-align:center;"><strong>Impact on Blood Service:</strong> Cannot rely on written pedestal labels (High Priest is fasting and weakened) → rely instead on natural color: goat = <em>white/bright</em>, bull = <em>red/dark</em></div><div class="flow-arrow">↓</div><div class="flow-box process" style="background:#2c2c54;border:2px solid #c9a84c;color:#f5e6c8;padding:10px;border-radius:8px;text-align:center;"><strong>Sprinkling Rule (Both Locations):</strong> Holy of Holies <em>and</em> Sanctuary both require <strong>1 upward + 7 downward</strong> from the bull's blood, and <strong>1 upward + 7 downward</strong> from the goat's blood</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 56a-56b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 56a-56b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../55/">← Daf 55</a><a href="../57/">Daf 57 →</a></div>
+</body>
+</html>

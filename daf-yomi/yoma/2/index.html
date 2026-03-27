@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 2 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏛️</div>
+  <h1>Yoma 2</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא ב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏠 Seven-Day Sequestering — High Priest removed to Chamber of Parhedrin before Yom Kippur<br>
+    💍 Rabbi Yehuda — Designating a backup wife lest the HP's wife die before Yom Kippur<br>
+    🔴 Red Heifer Parallel — HP sequestering compared to priest who burns the red heifer<br>
+    📜 Verbal Analogy — Deriving sequestering from <em>tzivah</em> (commanded) in the Inauguration<br>
+    ❌ Festival Rejections — Gemara rejects extending sequestering to Festivals and Shemini Atzeret<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🔗 Deriving the Seven-Day Sequestering</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Mishna:</strong> HP is sequestered 7 days before Yom Kippur in the Chamber of Parhedrin</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Question:</strong> What is the Torah source for the 7-day sequestering?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Verbal Analogy</div><div class="flow-box action"><em>tzivah / tzivah</em> — identical form links Inauguration and Red Heifer</div></div><div class="flow-col"><div class="flow-label">Structural Match</div><div class="flow-box action">7 days before <em>one-day service</em> ← derives from Inauguration, also a one-day service</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">✅ Sequestering applies exclusively to <strong>Yom Kippur</strong> — one priest, one day, uniquely designated</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🕍 The Seven-Day Sequestering Protocol</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>7 days before Yom Kippur</strong> — Sages remove the High Priest from his own home</div><div class="process-arrow">↓</div><div class="process-step">HP is installed in the <strong>Chamber of Parhedrin</strong>, a dedicated Temple room for this period</div><div class="process-arrow">↓</div><div class="process-step">Elders of the court read the Yom Kippur service to him each day to ensure mastery and readiness</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Yehuda adds:</strong> Sages would also designate a <em>second wife</em> for the HP as a contingency</div><div class="process-arrow">↓</div><div class="process-step">Reason: Torah requires atonement for 'him and <strong>his house</strong>' (Lev. 16:6) — <em>his house</em> = his living wife</div><div class="process-arrow">↓</div><div class="process-step">This entire law is compared by the Gemara to the sequestering of the <strong>priest who burns the Red Heifer</strong> (tractate Para)</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Two Cases of Priestly Sequestering</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#c9a84c">High Priest — Yom Kippur</h3><ul><li>Sequestered 7 days in Chamber of Parhedrin</li><li>Elders read the Yom Kippur order of service to him daily</li><li>Purpose: ensure ritual purity, halakhic readiness</li><li>Rabbi Yehuda: also designate a backup wife</li><li>Source: derived by gezera shava from the Inauguration</li></ul></div><div class="compare-box" style="border-top-color:#3a0a0a"><h3 style="color:#e74c3c">Priest — Red Heifer (Para)</h3><ul><li>Sequestered 7 days in the northeast chamber ('bira')</li><li>Intentionally rendered impure by the Sages, then immersed</li><li>Purpose: refute Sadducean requirement of full-sunset purity</li><li>Used dung, stone, and earth vessels (immune to impurity)</li><li>Source: Mishna in tractate Para 3:1</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📖 The Verbal Analogy (Gezera Shava) Debate</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">From where is 7-day sequestering derived? The word <em>tzivah</em> (commanded) appears in the Inauguration: 'The Lord <strong>commanded</strong> to do' — and also in the Red Heifer passage. This verbal analogy links them.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Objection</div><div class="speech">But why derive from the Inauguration? Another verse uses <em>tzivoto</em> — 'On the day He <strong>commanded</strong> [tzivoto] the children of Israel.' That also contains the root tzavah!</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Response</div><div class="speech">Where <strong>identical</strong> forms exist (tzivah/tzivah), we derive from those — not from merely similar forms (tzivah/tzivoto). Identical terms take priority in verbal analogy.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Objection</div><div class="speech">The school of Rabbi Yishmael derived a verbal analogy between <em>veshav/veshav</em> in leprosy of houses even though other occurrences existed. Doesn't that undermine the identical-form rule?</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Response</div><div class="speech">That case had <em>no</em> identical form available elsewhere — so even a similar form was used. Here, identical forms exist, so we <strong>must</strong> use the identical form.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakhic Principle</strong> Gezera shava (verbal analogy) must use the most precise linguistic match available. Identical forms override similar forms.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>❌ Rejecting Extensions of the Sequestering Rule</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Question:</strong> Could the 7-day sequestering apply beyond Yom Kippur?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Atonement offerings on Festivals?</div><div class="flow-box result-bad">No designated priest known in advance — impossible to sequester an unidentified individual</div></div><div class="flow-col"><div class="flow-label">Fixed Festival service (3x/year)?</div><div class="flow-box result-bad">Must derive <em>once-a-year</em> from <em>once-a-year</em>. Festivals recur three times — they fail this test</div></div><div class="flow-col"><div class="flow-label">Shemini Atzeret (one day)?</div><div class="flow-box result-bad">Sukkot itself requires no sequestering — a fortiori the lesser Eighth Day cannot require it</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">✅ Only <strong>Yom Kippur</strong> satisfies all criteria: one priest, one day, once a year, uniquely holy</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📋 Summary: Why Sequestering Is Unique to Yom Kippur</h2>
+  
+  <table><tr><th>Proposed Case</th><th>Surface Similarity</th><th>Gemara's Rejection</th></tr><tr><td>Atonement offerings on Festivals</td><td>Phrase 'to make atonement' applies broadly</td><td>No single designated priest — sequestering requires a known individual</td></tr><tr><td>Festival musaf (fixed time)</td><td>Festivals have fixed, scheduled services</td><td>Festivals occur 3x/year; must derive once-a-year from once-a-year</td></tr><tr><td>Shemini Atzeret</td><td>Also a one-day service following a festival</td><td>Sukkot itself doesn't require sequestering; Atzeret cannot surpass the primary festival</td></tr><tr><td>Red Heifer</td><td>7-day sequestering already required</td><td>This is the analogical source, not a separate derivation — it confirms Yom Kippur</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 2 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a3a;color:#c9a84c;font-weight:bold;"><strong>Mishna:</strong> HP sequestered 7 days in Chamber of Parhedrin</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a0a0a;color:#e74c3c;">Parallel: Red Heifer priest similarly sequestered 7 days (tractate Para)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a1a3a;color:#4a90d9;"><strong>Question:</strong> Torah source for 7-day sequestering?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0a2a1a;color:#2ecc71;"><strong>Gezera Shava:</strong><br><em>tzivah / tzivah</em><br>Inauguration ↔ Red Heifer<br><small>(identical forms preferred)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2a0a3a;color:#9b59b6;"><strong>Structural match:</strong><br>7 days before 1-day service<br>Yom Kippur ↔ Inauguration<br><small>(one-day derives from one-day)</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3a;color:#c9a84c;font-weight:bold;">✅ Sequestering is <strong>exclusive to Yom Kippur</strong> — Festivals and Shemini Atzeret rejected</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 2a-2b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 2a-2b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">Daf 3 →</a></div>
+</body>
+</html>

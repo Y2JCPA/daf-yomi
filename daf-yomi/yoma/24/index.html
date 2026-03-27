@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 24 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Yoma 24</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא כד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👘 Priestly Garments — worn but not tattered remain valid for service<br>
+    🔥 Terumat HaDeshen — is ash removal a bona fide Temple service?<br>
+    ⚖️ Rav vs. Levi — four or five services incur death for non-priests<br>
+    📜 Numbers 18:7 — competing exegeses of priestly liability<br>
+    🎲 Temple Lottery — purpose and garments worn during the draw<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Rav vs. Levi: Non-Priest Liability for Temple Services</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav</div><div class="speech">A non-priest is liable to <strong>death by God's hand</strong> for only <strong>four</strong> services: (1) sprinkling blood on the altar, (2) burning incense, (3) lighting the menorah, (4) pouring the wine libation.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Levi</div><div class="speech">A non-priest is liable for <strong>five</strong> services — Rav's four, plus (5) <em>removal of the ashes (terumat hadeshen)</em>, derived from 'in everything pertaining to the altar.'</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Rav reads: <em>'I give you the priesthood as a service of gift'</em> — death attaches only to the explicitly enumerated priestly gift-services, not to ash removal.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">Levi reads <em>'in everything pertaining to the altar'</em> as encompassing all altar actions — ash removal is performed on the altar and thus carries the death penalty for a non-priest.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Verse (Numbers 18:7)</strong> 'You and your sons shall keep your priesthood in everything pertaining to the altar and to that within the veil; and you shall serve; I give you the priesthood as a service of gift.' — The entire daf pivots on how to parse this verse.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Rav vs. Levi: Which Services Carry the Death Penalty for a Non-Priest?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#0d1f33"><h3 style="color:#4a90d9">Rav — Four Services</h3><ul><li>🩸 Sprinkling sacrificial blood on the altar</li><li>🌿 Burning incense (ketoret)</li><li>🕎 Lighting the menorah (hadlakat hamenorah)</li><li>🍷 Pouring the wine libation (nisuch hayayin)</li><li><small><em>'Service of gift' — only enumerated services carry death</em></small></li></ul></div><div class="compare-box" style="border-top-color:#2a1400"><h3 style="color:#e67e22">Levi — Five Services</h3><ul><li>🩸 Sprinkling sacrificial blood</li><li>🌿 Burning incense</li><li>🕎 Lighting the menorah</li><li>🍷 Pouring the wine libation</li><li>🔥 <strong>Removal of ashes (terumat hadeshen)</strong></li><li><small><em>'In everything pertaining to the altar' — all altar actions included</em></small></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Parsing Numbers 18:7 — Logic of the Dispute</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Numbers 18:7</strong><br><em>'Everything pertaining to the altar… within the veil… you shall serve… a service of gift'</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav's Reading</div><div class="flow-box action">'Service of gift' limits liability to the four explicitly gifted services</div></div><div class="flow-col"><div class="flow-label">Levi's Reading</div><div class="flow-box action">'Everything pertaining to the altar' is a generalization expanding liability to all altar actions</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav's Result</div><div class="flow-box result-good">Ash removal excluded — no death penalty for non-priest</div></div><div class="flow-col"><div class="flow-label">Levi's Result</div><div class="flow-box result-bad">Ash removal included — non-priest liable for death</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Both positions are confirmed by independent baraitot — the dispute is tanna'itic in origin</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔥 Rabbi Avin's Dilemma: Minimum Amount of Ash Removal</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">תְּרוּמַת הַדֶּשֶׁן — terumat hadeshen (removal of the ashes)</div><div class="callout"><strong>Unresolved Question (Teiku)</strong> Rabbi Avin asked: How much ash must be removed to <em>fulfill the mitzva</em> of terumat hadeshen?
+
+<strong>Option 1:</strong> Analogize to <em>teruma of the tithe</em> (Levite's portion to the priest) → <strong>1/100</strong> of the total ash.
+
+<strong>Option 2:</strong> Analogize to <em>great teruma</em> (farmer's portion to the priest) → <strong>1/40 to 1/60</strong> of the ash.
+
+<strong>Option 3:</strong> Analogize to <em>challah</em> (dough offering) → <strong>1/24</strong> of the ash.
+
+The Gemara leaves the dilemma <strong>unresolved</strong> — the minimum quantity remains uncertain.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🎲 The Daily Temple Lottery — Debate Over Garments and Purpose</h2>
+  
+  <table><tr><th>Issue</th><th>Rav Naḥman</th><th>Rav Sheshet</th></tr><tr><td>Garments worn during lottery</td><td>Non-sacred, personal garments</td><td>Sacred priestly garments</td></tr><tr><td>Primary reason</td><td>Strong-armed priests might use force — worse when done in sacred garments</td><td>Priests are in the Temple — sacred garments always required</td></tr><tr><td>Evidence cited</td><td>Mishna: after the lottery, attendants stripped priests' clothes, leaving only trousers</td><td>Temple decorum demands sacred dress at all times in the courtyard</td></tr><tr><td>Purpose of lottery (R. Yoḥanan)</td><td>Create a commotion — priests converge from all over the Temple</td><td>Ensure equal access to services</td></tr><tr><td>Verse cited</td><td>Psalm 55:15 — 'We took sweet counsel in the House of God we walked with the throng'</td><td>—</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>👘 Priestly Garments — Rules and the Ash-Removal Service</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Worn garments remain valid:</strong> The verse includes worn garments for Temple service — they may be used as long as they have not become <em>tattered</em>.</div><div class="process-arrow">↓</div><div class="process-step"><strong>High Priest's linen on Yom Kippur:</strong> After the Yom Kippur service he removes his linen garments in the Tent of Meeting — they are then permanently set aside and never worn again (Leviticus 16:23).</div><div class="process-arrow">↓</div><div class="process-step"><strong>Does ash removal require four garments?</strong> The Gemara explores whether tanna'im dispute whether terumat hadeshen is a full Temple service. Initial suggestion: it is the subject of their dispute.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Resolution:</strong> All tanna'im agree ash removal is a bona fide Temple service requiring all four priestly garments. Their actual dispute concerns a different matter entirely.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Non-priest liability:</strong> Rav — no death penalty for ash removal; Levi — liable, since all altar actions are covered by 'everything pertaining to the altar.' Both positions have baraita support.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 24 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2a1a4a;border:2px solid #9b59b6;padding:10px;border-radius:8px;text-align:center;"><strong>Core Question:</strong> Which Temple services incur <em>death by God's hand</em> for a non-priest who performs them?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0d1f33;border:2px solid #4a90d9;padding:8px;border-radius:6px;text-align:center;"><strong style='color:#4a90d9'>Rav:</strong> 4 services<br><small>Blood · Incense · Menorah · Libation<br><em>'Service of gift' = enumerated list</em></small></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1400;border:2px solid #e67e22;padding:8px;border-radius:6px;text-align:center;"><strong style='color:#e67e22'>Levi:</strong> 5 services<br><small>+ Ash removal (terumat hadeshen)<br><em>'Everything pertaining to altar'</em></small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a2a1a;border:2px solid #2ecc71;padding:10px;border-radius:8px;text-align:center;"><strong>Sub-question:</strong> Is ash removal a <em>complete Temple service</em>? — Gemara also debates which other actions (shewbread arrangement, lamp-tending, wood-placing) constitute complete services</div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#2a2200;border:2px solid #c9a84c;padding:10px;border-radius:8px;text-align:center;"><strong>Resolution:</strong> Both Rav and Levi are confirmed by independent <em>baraitot</em>. The dispute is authentic and tanna'itic. Ash removal's status as a full service (requiring 4 garments) is undisputed — only liability for non-priests differs.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 24a-24b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 24a-24b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../23/">← Daf 23</a><a href="../25/">Daf 25 →</a></div>
+</body>
+</html>

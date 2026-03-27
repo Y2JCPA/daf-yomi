@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 28 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌅</div>
+  <h1>Yoma 28</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא כח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🪵 Arranging the Logs — complete service or mere prelude?<br>
+    🎲 Temple Lottery — which services warrant dedicated lots<br>
+    🌄 Barkai! — the dawn inspection before the daily offering<br>
+    🕍 Mincha Time — derived from Abraham's afternoon prayer<br>
+    📜 Abraham and Torah — fulfillment before Sinai, even rabbinic law<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌅 From Temple Procedure to Patriarchal Torah</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">If arranging the two logs is a <em>complete Temple service</em> worthy of the death penalty for a non-priest, it needs its <strong>own dedicated lottery</strong>!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But burning of limbs and fats is also a complete service — yet it has no separate lottery. So completeness alone cannot be the criterion!</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Resolution</div><div class="speech">Arranging logs is a <em>nighttime</em> service; burning limbs is a <em>daytime</em> service — they belong to entirely different categories.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav</div><div class="speech">Abraham our Patriarch fulfilled the <em>entire Torah</em> before it was given — even rabbinic ordinances — as it says: <strong>"My mitzvot, My statutes, and My Torahs"</strong> (Gen. 26:5).</div></div></div><div class="callout" style="margin-top:20px"><strong>Daf Theme</strong> Two intertwined questions: What makes a Temple service 'complete' enough to demand its own lottery? And how far back does Torah observance truly reach — all the way to Abraham?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🎲 Rava vs. the Gemara — Logs and the Lottery System</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Asi / R' Yoḥanan</div><div class="speech">A non-priest who arranges the <strong>two logs</strong> on the altar is liable to the <em>death penalty</em>. This means it is a full, complete Temple service.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Then it should require a <em>separate, dedicated lottery</em> — not bundled with other tasks. Every complete service deserves its own lot!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">It <em>does</em> appear in a lottery — the baraita confirms it. Rava must mean it should have a lottery entirely by itself, not grouped with other services.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara (counter)</div><div class="speech">But then what of the <em>burning of limbs and fats</em>? That too is a complete service for which a non-priest is liable — yet it has no dedicated lottery!</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Final Answer</div><div class="speech">Logs = <em>nighttime</em> service. Burning limbs = <em>daytime</em> service. These are fundamentally separate realms — the Mishna's mention of slaughter only teaches that nighttime performance is irreparable.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Nighttime and daytime services are separate categories. A nighttime service (logs) cannot be compared to a daytime one (burning limbs) for lottery purposes.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🌄 Dawn Inspection — Temple Morning Protocol</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Appointed priest commands:</strong> 'Go out and observe — is it day? Has the time for slaughter arrived?'</div><div class="process-arrow">↓</div><div class="process-step"><strong>Observer ascends</strong> to a rooftop vantage point and scans the eastern horizon toward Hebron</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>"Barkai!"</strong> — 'There is light!' The official announcement of dawn triggers the day's service</div><div class="process-arrow">↓</div><div class="process-step"><strong>Matya ben Shmuel's formula:</strong> The priest asks, 'Is the entire eastern sky illuminated — even as far as Hebron?'</div><div class="process-arrow">↓</div><div class="process-step"><strong>High Priest is led</strong> to the Hall of Immersion to prepare for Yom Kippur service</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Temple principle:</strong> Anyone who <em>covers his legs</em> (defecates) must immerse before performing any Temple service</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🗣️ Three Tannaitic Formulas for Announcing Dawn</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#4a90d9">Rabbi Yishmael</h3><ul><li>Formula: <strong>"The light flashed"</strong></li><li>Indicates the <em>first flash</em> of dawn light</li><li>Minimal brightness threshold</li><li>Earliest possible announcement of day</li></ul></div><div class="compare-box" style="border-top-color:#2a1a1a"><h3 style="color:#e74c3c">Rabbi Akiva</h3><ul><li>Formula: <strong>"The light has risen"</strong></li><li>Brighter than a mere flash</li><li>Fuller illumination required</li><li>Later threshold — more light visible</li></ul></div><div class="compare-box" style="border-top-color:#1a2a1a"><h3 style="color:#2ecc71">R' Yehuda ben Beteira</h3><ul><li>Formula: <strong>"The people have gone to work"</strong></li><li>Gemara objects: this is <em>very</em> bright!</li><li>Workers leave only in full daylight</li><li>Much later than either preceding opinion</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🕍 Mincha Time — Derived from Abraham's Prayer</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Rav Safra:</strong> The time for Mincha begins when <em>walls begin to blacken from shade</em> — when the descending sun casts shadows on the walls</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Source:</strong> Abraham prayed in the afternoon — <em>"Abraham rose early to the place where he had stood"</em> (Gen. 19:27). 'Standing' alludes to the Amida prayer.</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Yosef Objects</div><div class="flow-box result-bad">Can we derive halakha from Abraham? He lived <strong>before the Torah was given!</strong> His conduct has no legal force.</div></div><div class="flow-col"><div class="flow-label">Rava Responds</div><div class="flow-box result-good">The Tanna <em>already</em> derived halakha from Abraham — citing him as a precedent for <em>reshit</em>. Rav Yosef's principle is already contradicted.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Rava's further difficulty:</strong> A Mishna implies mincha is offered before 6.5 hours on Passover-eve Shabbat — but Rav Safra says walls blacken at 6.5 hours. Perhaps Temple walls were tapered and cast shadows earlier than ordinary walls.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📜 Abraham and Torah Observance — Talmudic Sources</h2>
+  
+  <table><tr><th>Sage</th><th>Statement</th><th>Proof Text</th></tr><tr><td><strong>Rav</strong></td><td>Abraham fulfilled the <em>entire Torah</em> before it was given at Sinai</td><td>"Because Abraham hearkened to My voice, My charge, My mitzvot, My statutes, and My Torahs" (Gen. 26:5)</td></tr><tr><td><strong>Rav / Rav Ashi</strong></td><td>Abraham even kept <em>rabbinic ordinances</em> such as eruv tavshilin</td><td>"My <strong>Torahs</strong>" — plural implies both Written and Oral Torah, including later rabbinic enactments</td></tr><tr><td><strong>Rabbi Elazar</strong></td><td>Eliezer (Abraham's servant) <em>sat in yeshiva</em> and had mastery over Torah</td><td>"The elder of his household, who <em>ruled over all he had</em>" — ruled = mastery over Torah</td></tr><tr><td><strong>Gemara</strong></td><td>There was a <em>yeshiva in Egypt</em> with the Israelites in bondage</td><td>"Go and gather the <strong>Elders</strong> of Israel" (Ex. 3:16) — Sages engaged in Torah study</td></tr><tr><td><strong>Gemara</strong></td><td>Torah study continued unbroken — there was a <em>yeshiva in the desert</em> too</td><td>Derived from context: the chain of Torah transmission never broke, from Abraham through Egypt through the wilderness</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 28 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a3a;border-left:4px solid #4a90d9"><strong>28a — Logs Debate:</strong> Is arranging logs a 'complete' nighttime service requiring its own lottery?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a1a;border:1px solid #e74c3c"><strong>Rava:</strong> Complete service = dedicated lottery</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a1a;border:1px solid #2ecc71"><strong>Resolution:</strong> Night vs. Day services are separate categories entirely</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2a1a3a;border-left:4px solid #9b59b6"><strong>28a — Mishna:</strong> Priests inspect the dawn — <em>"Barkai!"</em> (There is light!) — before slaughtering the Tamid</div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#1a2a2a;border-left:4px solid #2ecc71"><strong>28b — Barkai Dispute:</strong> R' Yishmael (flash), R' Akiva (risen light), R' Yehuda ben Beteira (workers going out) — three views on when day begins</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#2a2a1a;border-left:4px solid #c9a84c"><strong>28b — Aggadah:</strong> Rav Safra derives <em>Mincha time</em> from Abraham → Rav: Abraham kept the whole Torah, even rabbinic law (<em>"My Torahs"</em> — plural)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 28a-28b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 28a-28b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../27/">← Daf 27</a><a href="../29/">Daf 29 →</a></div>
+</body>
+</html>

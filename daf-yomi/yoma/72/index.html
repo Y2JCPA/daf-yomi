@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 72 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Yoma 72</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא עב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🧵 Thread Counts — verbal analogies determine vestment strand numbers<br>
+    ⚖️ Sacred Prohibitions — tearing vestments and removing Ark staves<br>
+    👑 Three Crowns — altar, Ark, and table symbolize distinct powers<br>
+    📦 Inner-Outer Integrity — the Ark as metaphor for scholarly authenticity<br>
+    🚪 Gate Without Courtyard — Torah study demands prior fear of Heaven<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🧵 Deriving Vestment Thread Counts</h2>
+  
+  <div class="flowchart"><div class="flow-box question">How many strands per thread in the priestly <strong>robe</strong>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Derive from Curtain</div><div class="flow-box action"><strong>Verbal analogy:</strong> 'sky-blue' (robe) ↔ 'sky-blue' (curtain)<br>→ <em>6 strands</em></div></div><div class="flow-col"><div class="flow-label">Derive from Pomegranates</div><div class="flow-box result-good"><strong>Same object rule:</strong> robe's hem ↔ robe's pomegranates<br>→ <em>8 strands</em></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Curtain analogy wins — derive from a <em>similar object</em>, not a different part of the same object → <strong>6 strands</strong> for the robe thread</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🧵 Strand Counts Across Sacred Textiles</h2>
+  
+  <table><tr><th>Sacred Textile</th><th>Materials Used</th><th>Strands Each</th><th>Total Per Thread</th><th>Source of Derivation</th></tr><tr><td>Priestly Robe</td><td>Sky-blue only</td><td>6</td><td>6</td><td>Verbal analogy from curtain (sky-blue ↔ sky-blue)</td></tr><tr><td>Tabernacle Curtain</td><td>White, Purple, Scarlet, Sky-blue</td><td>6 per color</td><td>24</td><td>4 colors × 6 strands (baraita)</td></tr><tr><td>Breastplate & Ephod</td><td>4 colors + gold thread</td><td>6 per color + 1 gold each</td><td>28</td><td>24 color strands + 4 gold strands (Ex. 39:3)</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Prohibitions on Sacred Vessels</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Raḥava / Rav Yehuda</div><div class="speech">One who <strong>intentionally tears</strong> any priestly vestment violates a prohibition and is <em>flogged</em> — 'the robe shall not be torn' (Ex. 28:32)</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Elazar</div><div class="speech">One who <strong>detaches the breastplate from the ephod</strong> or <strong>removes the Ark's staves</strong> from their rings also transgresses and is flogged — 'the breastplate shall not be detached from upon the ephod'</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R. Yosei b. R. Ḥanina</div><div class="speech"><strong>Contradiction!</strong> 'The staves shall not be removed' (Ex. 25:15) implies total permanence — yet 'they shall carry the Ark' implies the staves must be used for movement. Which is it?</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Baraita Resolution</div><div class="speech">The staves <em>may shift or be repositioned</em> but must <strong>never be fully extracted</strong> from their rings. 'Shall not be removed' means no complete removal — permanent attachment is required at all times</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Sacred vessels carry permanent-attachment obligations; full removal or destruction of any part violates Torah law and incurs flogging</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👑 Three Crowns of the Temple Vessels</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">Crown of the Altar</h3><ul><li>Symbolizes <strong>Priesthood (Kehunah)</strong></li><li>Aaron merited it — his descendants hold it</li><li>Reserved exclusively for priestly lineage</li><li>Represents Temple service and atonement</li></ul></div><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#fff">Crown of the Table</h3><ul><li>Symbolizes <strong>Royalty (Malkhut)</strong></li><li>David merited it — his dynasty holds it</li><li>Reserved for those of royal Davidic descent</li><li>Represents political authority and kingship</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Crown of the Ark</h3><ul><li>Symbolizes <strong>Torah</strong></li><li><em>Lies available — whoever wishes may take it</em></li><li>Not reserved for any family or tribe</li><li>The <strong>greatest crown</strong>, open to all of Israel</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📦 Inside Must Match Outside</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מִבַּיִת וּמִחוּץ תְּצַפֶּנּוּ — כָּל תַּלְמִיד חָכָם שֶׁאֵין תּוֹכוֹ כְּבָרוֹ אֵינוֹ תַּלְמִיד חָכָם</div><div class="callout"><strong>Rava — Ark as Mirror of the Scholar</strong> <strong>'From within and from without you shall cover it'</strong> (Ex. 25:11) — Rava taught: any Torah scholar whose <em>inside is not like his outside</em> is no scholar at all.
+
+<strong>Abaye</strong> adds: Such a person is not merely deficient — he is called <em>loathsome</em>: 'one loathsome and foul, man who drinks iniquity like water' (Job 15:16).
+
+<strong>R. Shmuel bar Naḥmani (R. Yonatan):</strong> 'Woe to those who study Torah but have no heart for it — they stand at the gate of wisdom yet cannot enter.'
+
+<strong>Rava to his students:</strong> 'I beg of you — do not inherit Gehenna <em>twice</em>. Torah without fear of Heaven brings suffering in this world and forfeits the World-to-Come.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🚪 The Gate Without a Courtyard</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Rabbi Yannai:</strong> 'Pity him who has no courtyard yet senselessly builds a gate for it'</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Fear of Heaven = the courtyard</strong> — the foundational space; without it there is nothing to enter</div><div class="process-arrow">↓</div><div class="process-step"><strong>Torah study = the gate</strong> — meant to lead <em>into</em> the courtyard, not to stand alone</div><div class="process-arrow">↓</div><div class="process-step highlight">Learning Torah <em>without</em> fear of Heaven is a gate with no house — impressive from the outside, empty within</div><div class="process-arrow">↓</div><div class="process-step"><strong>R. Yehoshua ben Levi:</strong> Torah is called <em>sam</em> (שַׂם) — a drug/potion. For one who studies with proper intent it is a <strong>life-potion</strong>; for one who does not, it becomes a <strong>death-potion</strong></div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>R. Ḥanina:</strong> 'Fear of the Lord is pure, it stands forever' (Ps. 19:10) — one who studies Torah in <em>purity</em> (i.e., with sincere fear of Heaven) retains it permanently</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 72 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;text-align:center"><strong>Priestly Vestments</strong><br><small>Thread counts fixed by verbal analogy: robe=6, curtain=24, breastplate=28</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;text-align:center"><strong>Sacred Prohibitions</strong><br><small>Tearing vestments, removing breastplate from ephod, fully extracting Ark staves — all forbidden under Torah law</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;text-align:center"><strong>Three Crowns</strong><br><small>Priesthood &amp; Royalty are inherited; the Crown of Torah is open to every Israelite who seeks it</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;text-align:center"><strong>Inner = Outer</strong><br><small>Ark's double gold → scholar's integrity must be complete (Rava)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;text-align:center"><strong>Gate Without Courtyard</strong><br><small>Torah without fear of Heaven is hollow and even dangerous (Rabbi Yannai, Rava)</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 72a-72b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 72a-72b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../71/">← Daf 71</a><a href="../73/">Daf 73 →</a></div>
+</body>
+</html>

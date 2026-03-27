@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 18 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍞</div>
+  <h1>Yoma 18</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא יח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🍞 Showbread Division — detained watch scenarios<br>
+    👑 High Priest Qualifications — First vs. Second Temple<br>
+    🌿 Purity-Protecting Diet — five emission-causing foods<br>
+    💍 Traveling Sages — temporary marriage practices<br>
+    😴 Yom Kippur Eve Vigil — keeping the HP awake<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🍞 Dividing the Showbread: How Many Loaves Does the HP Take?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">12 showbread loaves divided at the end of Shabbat among priestly watches</div><div class="flow-arrow">↓</div><div class="flow-box question">Baraita: HP sometimes takes <strong>4 loaves</strong>, sometimes <strong>5 loaves</strong> — why?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Standard Week (no detained watch)</div><div class="flow-box result-good">HP takes <strong>5 loaves</strong><br><small>from 10 available (R. Yehuda HaNasi)</small></div></div><div class="flow-col"><div class="flow-label">Detained Watch (festival on Sunday night)</div><div class="flow-box result-bad">HP takes <strong>4 loaves</strong><br><small>from 8 available; detained watch takes 2</small></div></div><div class="flow-col"><div class="flow-label">No Outgoing Watch</div><div class="flow-box question">HP takes <strong>5 loaves</strong><br><small>different calculation applies</small></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔍 Rava's Resolution: The Detained Watch Explains Everything</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Baraita</div><div class="speech">The High Priest takes four loaves in one case and five in another — these clauses follow different tannaitic opinions (Rabbis vs. Rabbi Yehuda HaNasi).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">No — the <em>entire</em> baraita follows Rabbi Yehuda HaNasi. The difference of 4 vs. 5 loaves is not a dispute; it depends on <strong>whether a watch is detained</strong>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">When a festival begins Sunday night, one watch is forced to stay extra. That detained watch takes 2 loaves, reducing what remains for the HP from 10 to 8 — so HP takes 4.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Objection</div><div class="speech">If so, what does the <em>last clause</em> of the baraita add when it says 'Rabbi Yehuda HaNasi says: The HP takes five'? It already said that!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Answer</div><div class="speech">The last clause covers a third case: <strong>no outgoing watch</strong>. There, the HP also takes five — from the ten loaves, but via a different calculation than the standard case.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Term — משמר עצור</strong> 'Detained watch': a priestly family compelled to remain beyond their assigned week because a festival (e.g., Sukkot) began on Sunday night, leaving no time for the changeover.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>👑 High Priest Qualifications: First Temple vs. Second Temple</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#fff">First Temple Era</h3><ul><li>Greater than brethren in <strong>strength</strong></li><li>Greater in <strong>beauty</strong></li><li>Greater in <strong>wisdom</strong></li><li>Greater in <strong>wealth</strong></li><li>✅ Wisdom was a real standard</li><li>Source: 'greater than his brethren' (Lev. 21:10)</li><li>Aḥerim: wealth can be supplemented by other kohanim</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Second Temple Era</h3><ul><li>HP may not know how to <strong>read</strong></li><li>Elders read the service order <em>to him</em></li><li>Asked: 'Did you forget, or never learn?'</li><li>❌ Wisdom no longer guaranteed</li><li>Appointments were often political or financial</li><li>Mishna reflects this diminished standard</li><li>Rav Yosef: the two sources describe different eras</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🌿 Protecting the HP's Purity: Forbidden Foods</h2>
+  
+  <div class="flowchart"><div class="flow-box action">HP must remain <strong>ritually pure</strong> throughout the 7 days before Yom Kippur — a seminal emission would disqualify him</div><div class="flow-arrow">↓</div><div class="flow-box question">R. Yehuda ben Nekosa: On Yom Kippur eve, do not feed him foods that might cause impurity</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Sumakhos in name of R. Meir — Acrostic</div><div class="flow-box result-bad"><strong>א</strong>vodim (garlic)<br><strong>ב</strong>etzim (eggs)<br><strong>י</strong>ein (wine)<br><small>Some add: alef-beit-beit-yod</small></div></div><div class="flow-col"><div class="flow-label">Five Emission-Causing Foods (Sages)</div><div class="flow-box result-bad">Garlic • Cress<br>Purslane • Eggs<br><strong>Arugula (גרגיר)</strong><br><small>= 'orot' of II Kings 4:39 — R. Meir</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Similarly: a man who experienced a suspicious emission may attribute it to these foods rather than zav-status — benefit of the doubt</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>😴 The Yom Kippur Eve Vigil: Step by Step</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Morning of Erev Yom Kippur:</strong> Animals are paraded before the HP to keep his mind engaged and prevent seminal emission (goats are included per Tosefta)</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Elders of the court</strong> read the Yom Kippur service order to the HP and say: 'My Master, High Priest — read it yourself, lest you forgot or never learned'</div><div class="process-arrow">↓</div><div class="process-step">HP is handed over from <strong>court elders → Elders of the Priesthood</strong>, who escort him to the Temple Mount</div><div class="process-arrow">↓</div><div class="process-step">Taken up to the <strong>House of Avtinas</strong> (incense preparation chamber) for the night</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Oath administered:</strong> HP swears he will perform the service exactly as instructed and not deviate toward Sadducean practice</div><div class="process-arrow">↓</div><div class="process-step">Elders weep; HP weeps — mutual emotion over the gravity of the day and the suspicion implied by the oath</div><div class="process-arrow">↓</div><div class="process-step">If he is a <strong>scholar</strong> → he teaches Torah all night to stay awake</div><div class="process-arrow">↓</div><div class="process-step highlight">If <strong>not a scholar</strong> → Torah scholars teach before him; if he reads Scripture he reads, otherwise it is read to him</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>💍 Traveling Sages and Temporary Marriage</h2>
+  
+  <table><tr><th>Sage</th><th>Practice</th><th>Legal Problem Raised</th><th>Talmudic Resolution</th></tr><tr><td>Rav</td><td>Announced in each city: 'Who will be my wife for a day?' — a halakhically valid temporary marriage</td><td>R. Eliezer b. Ya'akov: children of different temporary wives in different cities might later marry each other — unwitting incest</td><td>Rav traveled to distinct cities with no population overlap, eliminating the incest risk</td></tr><tr><td>Rav Naḥman</td><td>Same practice of announcing a temporary spouse upon arrival</td><td>Rava: A woman who accepted a proposal must wait 7 clean days (desire may cause uterine flow) — was this observed?</td><td>They proposed only for permitted seclusion, not consummation; women understood no real marriage would follow</td></tr><tr><td>General Rule</td><td>A man must not marry in one country and then marry another in a different country (Baraita)</td><td>Risk of half-siblings from different regions meeting and marrying unknowingly</td><td>Sages ensured geographic separation; the practice was limited to exceptional Torah scholars with specific need</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 18 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e; border-left:4px solid #c9a84c;"><strong>Showbread Debate Resolved (Rava):</strong> 4 vs. 5 loaves reflects <em>detained watch</em> scenarios, not a tannaitic dispute — entire baraita follows R. Yehuda HaNasi</div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#16213e; border-left:4px solid #4a90d9;"><strong>HP Must Be Superior (Lev. 21:10):</strong> Rav Yosef — wisdom requirement was First Temple standard; Second Temple HP might not even be literate</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; border-left:4px solid #e74c3c;"><strong>Dietary Restrictions:</strong><br>5 foods cause emission:<br>garlic, cress, purslane,<br>eggs, arugula (= orot)<br><small>R. Meir / Sumakhos</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; border-left:4px solid #2ecc71;"><strong>Yom Kippur Eve Vigil:</strong><br>Read service order aloud<br>Oath at House of Avtinas<br>Torah study all night<br>to prevent sleep/impurity</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e; border-left:4px solid #9b59b6;"><strong>Traveling Sages (Rav, Rav Naḥman):</strong> Temporary marriages permitted — Rava's concern about 7 clean days resolved: these were seclusion arrangements, not consummated unions</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 18a-18b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 18a-18b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../17/">← Daf 17</a><a href="../19/">Daf 19 →</a></div>
+</body>
+</html>

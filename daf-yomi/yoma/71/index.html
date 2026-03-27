@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 71 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Yoma 71</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא עא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Verse Order — proving which Leviticus 16 verses are out of sequence<br>
+    🔢 Five Immersions — tradition of ten sanctifications drives exegesis<br>
+    🐐 Azazel Sequence — closing rituals: burning remains and sending the goat<br>
+    👘 Eight Garments — High Priest vs. common priest vestments<br>
+    🧵 Thread Counts — deriving linen strand numbers from Scripture<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📜 Ritual Order Meets Vestment Law</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">יומא עא</div><div class="callout"><strong>Daf 71 Overview</strong> The daf opens by resolving <strong>which verses in Leviticus 16 are written out of order</strong> — Abaye, Rava, and Rabba bar Rav Sheila debate proofs that certain rites (burning remains, re-entering the Sanctuary) occur later than their scriptural position implies. A tradition of <strong>five immersions and ten sanctifications</strong> anchors the debate. After the story of Shemaya and Avtalyon's rebuke of the High Priest, a new Mishna opens: the High Priest wears <strong>eight garments</strong>, the common priest four — launching a precise analysis of how thread-strand counts (6, 8, 12, 28) are derived from the word <em>shesh</em> and comparative exegesis.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📖 Which Verse Is Out of Order? — Three Proofs</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ḥisda</div><div class="speech"><strong>Tradition (קבלה):</strong> The High Priest performs <em>five immersions and ten sanctifications</em>. If the verses were in order, we'd have only three changes of garments — three immersions and six sanctifications. Something must be out of order.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Abaye</div><div class="speech">Proof: The verse says 'he shall <em>exit</em> and make his burnt-offering.' The word 'exit' implies this is the <strong>first</strong> exit from the Sanctuary — so it cannot follow verses already describing earlier exits. It is out of order.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">Different proof: 'Aaron shall come and remove the linen garments <em>which he wore when he went into the Sanctuary</em>' — that extra phrase is superfluous unless the verse is out of order, teaching the linen garments require burial (גניזה).</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rabba bar Rav Sheila</div><div class="speech">Objection to Rava: Perhaps order is maintained! The extra immersion comes from interrupting white-garment service with the goat sent to Azazel — no need to declare the verse out of order at all.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rava (Resolution)</div><div class="speech">The goat to Azazel was <em>definitely</em> sent earlier, before these rites. The verse states: 'the lot fell upon the goat for Azazel — he shall be presented alive before the Lord' — implying it had already been dispatched.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Scripture in Leviticus 16 is generally in order — but tradition of five immersions forces the Sages to identify exactly which verses deviate from that order.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔢 Five Immersions & Ten Sanctifications — Reconstructed Order</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Tradition (קבלה):</strong> High Priest immerses <strong>five times</strong> and sanctifies hands and feet <strong>ten times</strong> on Yom Kippur</div><div class="process-arrow">↓</div><div class="process-step"><strong>Each garment change</strong> = 1 immersion + 2 sanctifications (hands and feet before and after)</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>5 changes:</strong> Golden → White → Golden → White → Golden<br><small>Morning golden vestments → white for Yom Kippur service → golden for afternoon → white for Holy of Holies exit → golden to conclude</small></div><div class="process-arrow">↓</div><div class="process-step"><strong>Without out-of-order verses:</strong> only 3 changes visible in Scripture → only 3 immersions, 6 sanctifications — a deficit of 2 immersions and 4 sanctifications</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>With rearranged verses:</strong> Two additional garment changes recovered → 5 × 1 immersion = <strong>5 immersions</strong>; 5 × 2 sanctifications = <strong>10 sanctifications</strong> ✓</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👘 High Priest vs. Common Priest: Vestments</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a1a"><h3 style="color:#2ecc71">Common Priest — 4 Garments</h3><ul><li>כתונת — Tunic (linen, shesh × 6)</li><li>מכנסיים — Trousers (linen)</li><li>מצנפת — Mitre/Turban (linen, shesh × 6)</li><li>אבנט — Belt (linen)</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#c9a84c">High Priest — 8 Garments</h3><ul><li>כתונת — Tunic (linen, shesh × 6 strands)</li><li>מכנסיים — Trousers (linen)</li><li>מצנפת — Mitre (linen, shesh × 6 strands)</li><li>אבנט — Belt (multi-color, 24 total strands)</li><li>חשן — Breastplate (gold thread, 28 strands)</li><li>אפוד — Ephod (gold thread, 28 strands)</li><li>מעיל — Robe (12 strands, no gold)</li><li>ציץ הזהב — Golden Head-plate</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🧵 Priestly Vestment Thread Counts — Derivations</h2>
+  
+  <table><tr><th>Garment</th><th>Hebrew</th><th>Strands</th><th>Derivation Source</th></tr><tr><td>Tunic / Mitre (linen)</td><td>כתונת / מצנפת</td><td>6 strands</td><td>שש = 'six' in Hebrew (Exodus 39:27) — also confirmed by Ezekiel 44:18 (pishtim = linen)</td></tr><tr><td>Robe pomegranates</td><td>רמוני המעיל</td><td>8 strands</td><td>Derived from the belt (24 strands ÷ 3 colors = 8); NOT from breastplate/ephod (28 strands)</td></tr><tr><td>Belt</td><td>אבנט</td><td>24 strands total</td><td>4 colors × 6 strands each = 24; anchor for deriving pomegranate thread count</td></tr><tr><td>Robe of the Ephod</td><td>מעיל האפוד</td><td>12 strands</td><td>Derived from Exodus 28 — robe compared to items with fewer colors and no gold</td></tr><tr><td>Breastplate / Ephod</td><td>חשן / אפוד</td><td>28 strands</td><td>Gold thread added to 4 colors × 6 strands; 'like the work of the ephod' (Exodus 28:15)</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🕊️ Life, Torah, and the Shemaya & Avtalyon Encounter</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Pumbedita farewell blessing (Rabba):</strong><br>'May the <em>One Who grants life to the living</em> grant you a long, <strong>good</strong>, and established life'</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Psalm 116:9:</strong> 'I shall walk before the Lord in the <em>lands of the living</em>'<br><small>Rav Yehuda: refers to Babylonia, whose air preserves life; or: the markets of Neharde'a</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Years of Life (Proverbs 3:2)</div><div class="flow-box result-good"><strong>Rabbi Elazar:</strong> 'Years of life' = <em>good years</em>, not years of suffering or illness — years that are truly worth living</div></div><div class="flow-col"><div class="flow-label">Shemaya & Avtalyon Incident</div><div class="flow-box result-bad">High Priest, envious of their following, sneers: <em>'Let the descendants of gentiles come in peace.'</em><br>They reply: <strong>'Descendants of gentiles who do the deeds of Aaron — peace. Son of Aaron who does not — no peace.'</strong></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Rabbi Berekhya:</strong> If Torah is ceasing from your children, marry the daughter of a Torah scholar — her children will be raised in Torah's atmosphere. As Job 14:9: 'from the scent of water it will blossom.'</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 71 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a3a5c;color:#c9a84c;font-weight:bold;"><strong>Tradition:</strong> 5 immersions · 10 sanctifications</div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#5c1a1a;color:#e74c3c;"><strong>Problem:</strong> Verses in plain order = only 3 immersions</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2c1a;color:#2ecc71;"><strong>Abaye:</strong> 'He shall exit' = first exit → verse is displaced</div></div><div class="flow-col"><div class="flow-box" style="background:#2c1a3c;color:#9b59b6;"><strong>Rava:</strong> Extra phrase 'which he wore' → geniza law + verse out of order</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3a1a;color:#2ecc71;"><strong>New Mishna:</strong> 8 garments (Cohen Gadol) / 4 (common priest) → shesh = 6 strands · robe = 12 · ephod = 28</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 71a-71b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 71a-71b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../70/">← Daf 70</a><a href="../72/">Daf 72 →</a></div>
+</body>
+</html>

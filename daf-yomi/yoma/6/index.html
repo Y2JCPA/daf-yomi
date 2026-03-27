@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 6 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏠</div>
+  <h1>Yoma 6</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא ו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🎗️ Belt Distinction — High Priest vs. Common Priest<br>
+    👔 Dressing Order — Aaron Before or With His Sons<br>
+    🏠 Separated From Wife — Niddah Concern<br>
+    💧 Immersion Timing — Ba'al Niddah vs. Niddah<br>
+    ⚰️ Tumat Met — Permitted or Overridden in Public Service<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🏠 The High Priest Leaves Home</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">לִשְׁכַּת פַּרְהֶדְרִין</div><div class="callout"><strong>Central Question</strong> After digressing into inauguration garments, the Gemara returns to the mishna: Why is the High Priest moved to the <strong>Chamber of Parhedrin</strong> seven days before Yom Kippur — and why can't his wife join him? The answer involves separating him from potential <strong>niddah</strong> (menstrual) impurity, leading to a deep dispute about retroactive defilement, <em>when</em> a ba'al niddah immerses, and whether <strong>tumat met</strong> (corpse impurity) is fully <em>permitted</em> or merely <em>overridden</em> in public Temple service.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🎗️ Belt of High Priest vs. Common Priest — and Dressing Order</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Questioner</div><div class="speech">The verse <em>'And you will gird them with belts'</em> implies Aaron and his sons were girded <strong>simultaneously</strong> — contradicting the view that Aaron was dressed first!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Respondent</div><div class="speech">That verse teaches something else: the belt of the <strong>High Priest</strong> (כֹּהֵן גָּדוֹל) is <em>not</em> the same as the belt of the <strong>common priest</strong>. The High Priest's belt is of fine blue, purple, and linen — uniquely his.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Questioner</div><div class="speech">If the belts <em>are</em> identical, why does the Torah write both <em>'he girded him'</em> (singular) AND <em>'he girded them'</em> (plural)?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Respondent</div><div class="speech">Learn from the double language: Moses dressed <strong>Aaron first</strong>, then dressed his sons — the sequence was deliberate, not simultaneous.</div></div></div><div class="callout" style="margin-top:20px"><strong>Conclusion</strong> The dual verses prove Moses dressed Aaron before his sons, and the High Priest's belt is distinct from the common priest's belt.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🏠 Why Is the High Priest Removed From His Home?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Mishna:</strong> High Priest moves to <em>Lishkat Parhedrin</em> seven days before Yom Kippur</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Gemara asks:</strong> Why must he leave his wife — why not simply let her join him?</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Baraita (Rabbi Yehuda):</strong> Lest his wife become a <strong>niddah</strong> — then he would be forbidden to remain close to her</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Gemara objects:</strong> Would a High Priest knowingly have relations with a wife of uncertain status? That assumes wickedness!</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Revised concern:</strong> Lest she become a niddah and retroactively defile him — even past relations could be backdated as impure (per Rabbi Akiva's 24-hour rule)</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚖️ Rabbi Akiva vs. The Rabbis — Retroactive Niddah Impurity</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Rabbi Akiva</h3><ul><li>A niddah who finds blood retroactively imparts impurity up to <strong>24 hours back</strong></li><li>The husband who was with her during that window is retroactively impure</li><li>This fully explains the mishna's concern: High Priest may have been defiled before even realizing it</li><li>Stricter position — maximally protective of Yom Kippur purity</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#ffffff">The Rabbis</h3><ul><li>Dispute Rabbi Akiva's retroactive impurity for extended periods</li><li>BUT agree when blood is found <strong>immediately</strong> after inspection (nearly no time lapse)</li><li>Rav Ḥisda: The High Priest's wife would be inspected regularly — so any blood found is effectively immediate</li><li>Even according to the Rabbis, the mishna's concern is valid</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>💧 Immersion Timing for Various Impure Persons</h2>
+  
+  <table><tr><th>Person</th><th>Source of Impurity</th><th>Day or Night?</th><th>Duration</th></tr><tr><td>Niddah (menstruant)</td><td>Menstrual blood</td><td>🌙 Night — after 7th day</td><td>7 days</td></tr><tr><td>Ba'al Niddah (her partner)</td><td>Relations with niddah</td><td>☀️ Day (per Rabbi Zeira's deduction)</td><td>7 days</td></tr><tr><td>Zav / Zava</td><td>Bodily flux</td><td>☀️ Day</td><td>7 clean days</td></tr><tr><td>Metzora / Female Leper</td><td>Tzaraat skin impurity</td><td>☀️ Day</td><td>7 days</td></tr><tr><td>Tumat Met (corpse contact)</td><td>Corpse impurity</td><td>☀️ Day</td><td>7 days</td></tr><tr><td>Ba'al Keri (seminal emission)</td><td>Emission</td><td>☀️ Same day</td><td>1 day</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚰️ Tumat Met in Public Temple Service: Permitted or Overridden?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Naḥman</div><div class="speech">Corpse impurity is <strong>fully permitted</strong> in cases involving the public (טֻמְאָה הֻתְּרָה בְּצִבּוּר). The Torah permits the service — we do not need to seek out pure priests as alternatives.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Sheshet</div><div class="speech">No — corpse impurity is merely <strong>overridden</strong> (דְּחוּיָה), not permitted. When pure priests are available in that day's family unit, <em>they</em> must serve; the impure ones stand aside.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Ravina</div><div class="speech">Either way, we cannot sequester the High Priest from corpse impurity — it pervades public spaces and cannot practically be avoided the way niddah impurity can.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Naḥman</div><div class="speech">Even if 'overridden': when an <em>entire</em> patrilineal family unit is impure, all serve together. Only when pure and impure are <strong>mixed</strong> do the pure priests take priority.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Hebrew Distinction</strong> <strong>הֻתְּרָה</strong> = the prohibition is <em>removed</em> entirely for the public | <strong>דְּחוּיָה</strong> = the prohibition is merely <em>pushed aside</em> when unavoidable — pure priests must still serve if present</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 6 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Belt & Dressing:</strong> High Priest's belt ≠ common priest's; Moses dressed Aaron <em>first</em>, then his sons</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Mishna Returns:</strong> High Priest removed to Lishkat Parhedrin — why separated from wife?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Rabbi Akiva:</strong> Retroactive niddah up to 24 hrs — husband is backdated impure</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Rav Ḥisda:</strong> Even the Rabbis agree — regular inspection makes impurity nearly immediate</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Immersion Debate:</strong> Does <em>ba'al niddah</em> immerse at night (like niddah) or by day (like others)? Rabbi Zeira: by <em>day</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Rav Naḥman:</strong> Tumat met is <em>permitted</em> in public — no need to sequester High Priest from corpse impurity</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Rav Sheshet:</strong> Tumat met is <em>overridden</em> only — pure priests must serve when available</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 6a-6b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 6a-6b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../5/">← Daf 5</a><a href="../7/">Daf 7 →</a></div>
+</body>
+</html>

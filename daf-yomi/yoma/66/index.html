@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 66 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐐</div>
+  <h1>Yoma 66</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא סו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚠️ Mishap Decree — why the Yom Kippur animals can't wait a year<br>
+    🙏 High Priest's Confession — formula and prostration of the crowd<br>
+    📋 Appointed Man — four laws derived from עִתִּי<br>
+    🤫 Rabbi Eliezer's Silence — never teaching what he hadn't received<br>
+    ⚔️ Golden Calf — differentiated punishments by level of culpability<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚠️ Why Can't the Yom Kippur Bull and Goat Be Kept Until Next Year?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Challenge</div><div class="speech">A sin-offering whose year has passed is not killed — it is left to graze! Why should the Yom Kippur animals be different?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">By <em>rabbinic decree</em> — there is a concern that a <strong>mishap</strong> may occur. A dedicated animal must be uprooted quickly.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Challenge</div><div class="speech">What mishap? Other disqualified animals are left over without concern — why are these different?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">Those unfit animals inspire no preoccupation — no one will accidentally sacrifice them. But the Yom Kippur bull and goat <strong>appear perfectly fit</strong>, and one might accidentally sacrifice them on the wrong day!</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The rabbinic decree targets appearance-of-fitness: animals that look fit for their sacred purpose create a real risk of accidental, untimely sacrifice.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📋 Four Laws Derived from 'Appointed' (עִתִּי) — Leviticus 16:21</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>"And he shall send it away with an <em>appointed</em> man into the wilderness"</strong><br><small>Leviticus 16:21 — the word עִתִּי carries multiple legal derivations</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">עִתִּי = Designated</div><div class="flow-box result-good">The escort must be <strong>designated the day before</strong> Yom Kippur — not chosen ad hoc</div></div><div class="flow-col"><div class="flow-label">עִתִּי = At Its Time</div><div class="flow-box result-good">Sent at the <strong>appointed time — even on Shabbat</strong>; the service is not delayed</div></div><div class="flow-col"><div class="flow-label">עִתִּי = Always</div><div class="flow-box result-good">Performed <strong>even in a state of ritual impurity</strong> (טֻמְאָה) — service is not suspended</div></div><div class="flow-col"><div class="flow-label">אִישׁ = Man</div><div class="flow-box result-good">A <strong>non-priest (Israelite)</strong> is fully qualified — this is not a kohen-exclusive service</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🙏 The High Priest's Confession Over the Scapegoat</h2>
+  
+  <div class="process-bar"><div class="process-step">High Priest approaches the <strong>scapegoat</strong> (שָׂעִיר הַמִּשְׁתַּלֵּחַ) and places <em>both his hands</em> firmly upon its head</div><div class="process-arrow">↓</div><div class="process-step highlight">Confesses aloud: <strong>אָנָּא הַשֵּׁם</strong> — <em>"Please, God, Your people the house of Israel have sinned, done wrong, and rebelled before You"</em></div><div class="process-arrow">↓</div><div class="process-step">Utters the <strong>Explicit Name of God</strong> (שֵׁם הַמְפֹרָשׁ) — not a substitute name; this is the climax of the rite</div><div class="process-arrow">↓</div><div class="process-step">Priests and people in the Temple courtyard <strong>kneel and prostrate themselves</strong>, responding: <em>"Blessed is the Name of His glorious kingdom forever and ever"</em></div><div class="process-arrow">↓</div><div class="process-step">High Priest hands the goat to the <strong>pre-designated appointed man</strong> who leads it on the ramp toward the wilderness of Azazel</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚔️ Punishments for Golden Calf Worship — Two Amoraic Views</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">View of Rav</h3><ul><li>🗡️ <strong>Sacrificed or burned incense</strong> to the calf → death by <em>sword</em></li><li>🤗 <strong>Embraced or kissed</strong> the calf → death by <em>plague</em></li><li>👀 <strong>Rejoiced from afar</strong> → death by <em>dropsy</em> (בַּמַּגֵּפָה)</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">View of Levi</h3><ul><li>⚠️ <strong>With witnesses + warning</strong> → death by <em>sword</em></li><li>👁️ <strong>With witnesses, no warning</strong> → death by <em>plague</em></li><li>🕵️ <strong>Without witnesses</strong> → death by <em>dropsy</em></li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#ffffff">Tribe of Levi — Exception</h3><ul><li>✅ Did <strong>not participate</strong> in the Golden Calf at all</li><li>📜 <em>"Who is for God, let him come to me — all the children of Levi gathered to him"</em> (Exodus 32:26)</li><li>🏆 Their loyalty qualified them as God's sacred servants</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">לֹא אָמַר דָּבָר שֶׁלֹּא שָׁמַע מִפִּי רַבּוֹ מֵעוֹלָם</div><div class="callout"><strong>🤫 Rabbi Eliezer's Teaching Principle</strong> Students pressed Rabbi Eliezer with sharp halakhic edge cases: <em>May the escort carry a sick goat on his shoulder on Shabbat? If he pushed the goat and it didn't die, must he descend and kill it? What is the fate of a known wicked person in the World-to-Come?</em><br><br>Each time, Rabbi Eliezer deflected with proverbs or irrelevant questions. The Gemara clarifies: <strong>it was not because he was distancing them</strong> with empty words. Rather — <em>he never in his life uttered a single teaching he had not received directly from his teacher.</em> Faced with unprecedented cases outside his received tradition, he could not rule.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🐐 Key Halakhot of the Scapegoat Escort — Summary</h2>
+  
+  <table><tr><th>Issue</th><th>Halakha</th><th>Derivation / Source</th></tr><tr><td>Who may lead the goat?</td><td>Any Israelite — non-priest is valid</td><td>אִישׁ: 'man' (not 'kohen')</td></tr><tr><td>When must escort be chosen?</td><td>Designated the day before Yom Kippur</td><td>עִתִּי: 'appointed' in advance</td></tr><tr><td>If Yom Kippur falls on Shabbat?</td><td>Escort proceeds — Shabbat does not delay it</td><td>עִתִּי: 'at its time, always'</td></tr><tr><td>If escort is ritually impure?</td><td>Service remains valid in impurity</td><td>עִתִּי: 'always' — even in tumah</td></tr><tr><td>The 'Babylonian' crowd?</td><td>Actually Alexandrians — ramp built to prevent them pulling the goat's hair</td><td>Rabba bar bar Ḥana; Mishna (Arsela incident)</td></tr><tr><td>Ten booths along the path?</td><td>Prominent Jerusalemites escorted and rested at booths up to the first</td><td>Mishna — last section of the daf</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 66 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:white;padding:10px;border-radius:6px"><strong>Bull & Goat of Yom Kippur</strong><br><small>Cannot be kept to the following year</small></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;color:white;padding:10px;border-radius:6px"><strong>Rava:</strong> Rabbinic decree against mishap — they <em>appear</em> fit and might be accidentally sacrificed</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px"><strong>🙏 Confession</strong><br>High Priest confesses using the Explicit Name; crowd prostrates</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px"><strong>📋 Escort Laws</strong><br>Pre-designated Israelite leads goat — valid on Shabbat and in impurity</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px"><strong>⚔️ Golden Calf</strong><br>Punishments graded by action or level of warning; Tribe of Levi exempt</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 66a-66b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 66a-66b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../65/">← Daf 65</a><a href="../67/">Daf 67 →</a></div>
+</body>
+</html>

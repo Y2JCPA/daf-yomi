@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 27 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Yoma 27</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא כז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Verse Derivations — Each passage teaches a distinct law<br>
+    ✂️ Flaying & Cutting — Non-priests are permitted<br>
+    🪵 Wood Arrangement — A contested priestly service<br>
+    🌙 Night Services — Validity vs. priestly restriction<br>
+    🎲 Lottery Criterion — Which services require the morning draw?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🔍 Which Temple Services Require Priests?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Lev. 1:5</strong> — 'Sons of Aaron shall sacrifice the blood'<br><em>From blood collection onward → priests only</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">❓ Flaying & Cutting?</div><div class="flow-box question">Done <em>before</em> blood collection — source needed to permit non-priests</div></div><div class="flow-col"><div class="flow-label">🪵 Wood Arrangement?</div><div class="flow-box question">'Sons of Aaron shall put fire' — needed for itself, or as exclusion of others?</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Lev. 1:9</strong> — 'The priest shall burn all of it' is superfluous<br>→ derives that <em>non-priests may flay and cut</em></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Final ruling:</strong> Flaying/cutting = non-priests permitted · Wood arrangement (two logs) = priests only · Non-priest who arranges logs incurs <em>death penalty</em></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🪵 Is the Wood Verse Needed for Itself or as an Exclusion?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">Since Lev. 1:5 already establishes that blood collection onward is priestly, why does the Torah then write 'sons of Aaron shall put fire on the altar'? That verse should now be superfluous — use it to derive that flaying may be done by non-priests!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">The wood verse is still needed for its own sake. One might think: since placing wood does not itself atone (atonement comes from the blood), perhaps a non-priest may arrange the logs. The verse is required to teach that this too is priestly.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">Then we cannot derive the permissibility of flaying from the wood verse. We need a different source entirely for that ruling.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Therefore we learn from Lev. 1:9 — 'the priest shall burn all of it' — which is superfluous since burning was already taught. This extra verse comes to exclude flaying and cutting from the priestly requirement.</div></div></div><div class="callout" style="margin-top:20px"><strong>Hermeneutic Principle</strong> A verse needed for its own law cannot simultaneously serve as an exclusion for other services. Each derivation must have an independent textual source.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Leviticus 1 — What Each Verse Teaches (Amud A)</h2>
+  
+  <table><tr><th>Verse</th><th>Topic</th><th>Law Derived</th></tr><tr><td>Lev. 1:5 — 'Sons of Aaron shall sacrifice the blood'</td><td>Blood collection</td><td>From here onward all services → priests only</td></tr><tr><td>Lev. 1:7 — 'Sons of Aaron shall put fire on the altar'</td><td>Wood placement</td><td>Priests must arrange logs; required for itself, not for exclusion</td></tr><tr><td>Lev. 1:8 — 'Sons of Aaron shall lay out the pieces'</td><td>Limb arrangement</td><td>Plural verb → two priests required; verse excludes flaying from priestly requirement</td></tr><tr><td>Lev. 1:9 — 'The priest shall burn all of it'</td><td>Burning on altar</td><td>Superfluous → teaches non-priests may flay and cut the animal</td></tr><tr><td>Lev. 1:13 — 'The priest shall bring all of it near'</td><td>Carrying to ramp</td><td>Priests must carry limbs to the altar ramp; excludes other carrying acts</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚖️ Priestly vs. Non-Priestly Temple Services</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a4a"><h3 style="color:#c9a84c">Priests Only — כֹּהֲנִים</h3><ul><li>🩸 Collecting and sprinkling blood (Lev. 1:5)</li><li>🪵 Arranging the two logs on the altar</li><li>🦴 Laying out the animal's limbs on the altar</li><li>🏃 Carrying limbs to the altar ramp (Lev. 1:13)</li><li>🌅 Daily woodpile arrangement — requires morning lottery</li></ul></div><div class="compare-box" style="border-top-color:#1a3a1a"><h3 style="color:#2ecc71">Non-Priests Permitted — זָרִים</h3><ul><li>✂️ Flaying (skinning) the animal</li><li>🗡️ Cutting the animal into pieces</li><li>🌙 Burning limbs and fats (continues overnight)</li><li>📋 Preparatory acts prior to blood collection</li><li>⚠️ Note: slaughter requires a priest (excluded elsewhere)</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🌙 Rabbi Zeira Objects to Rabbi Yoḥanan (Amud B)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">R. Yoḥanan</div><div class="speech">A non-priest who arranges the woodpile on the altar incurs the death penalty by Heaven, and furthermore the woodpile he arranged is invalid.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R. Zeira</div><div class="speech">Strong objection! Name me one service that is valid when performed at night and yet is prohibited for a non-priest. Wood arrangement is valid even at night — so it cannot be a genuine priestly service carrying a death penalty!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">What about burning the limbs and fats? That continues at night and yet is prohibited for non-priests!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R. Zeira</div><div class="speech">Burning of limbs is not a nighttime service — it merely continues into the night. Ash removal is also not truly nocturnal; it merely begins from dawn. My principle stands.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">Then let us revise: Rabbi Yoḥanan meant specifically the arrangement of the two logs (the main woodpile), which is a distinct priestly act — and a non-priest performing it incurs death.</div></div></div><div class="callout" style="margin-top:20px"><strong>Revised Ruling</strong> Rabbi Yoḥanan's death penalty applies specifically to arranging the two logs (מַעֲרָכָה גְּדוֹלָה), not general wood placement. This specific arrangement is a priestly daytime service.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🎲 Rava's Criterion: Which Services Require the Morning Lottery?</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>The Question:</strong> Which Temple services require assignment by the priestly lottery (גּוֹרָל)?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rava's Rule:</strong> A service requires a lottery if it is <em>(1) a daytime service</em> AND <em>(2) a non-priest performing it incurs the death penalty</em></div><div class="process-arrow">↓</div><div class="process-step"><strong>Slaughter:</strong> Daytime ✓ · Priest-only ✓ → <em>Requires lottery</em></div><div class="process-arrow">↓</div><div class="process-step"><strong>Burning limbs & fats:</strong> Nighttime service ✗ → Does NOT require lottery, even though priest-only</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Two-log arrangement:</strong> Daytime ✓ · Priest-only ✓ → <em>Requires lottery</em> — included in the morning draw</div><div class="process-arrow">↓</div><div class="process-step"><strong>Objection (Mar Zutra):</strong> The mishna's lottery list begins with 'slaughter' — implying wood arrangement precedes the lottery altogether!</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Resolution:</strong> The mishna emphasizes slaughter because it is <em>irreparable</em> if done at night. Wood arrangement done at night can be redone; slaughter cannot be undone.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 27 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Lev. 1:5:</strong> Blood collection begins priestly exclusivity</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#2ecc71"><strong>Before blood collection</strong><br>Flaying & cutting<br><em style='color:#2ecc71'>Non-priests permitted</em><br><small>Source: superfluous Lev. 1:9</small></div></div><div class="flow-col"><div class="flow-box" style="border-color:#c9a84c"><strong>From blood onward</strong><br>Collection, burning, carrying<br><em style='color:#c9a84c'>Priests only</em><br><small>Source: Lev. 1:5 explicitly</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style=""><strong>Special Case — Wood Arrangement (מַעֲרָכָה):</strong><br>Priestly service · Non-priest incurs <em>death penalty</em> · Woodpile is invalid</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#4a90d9"><strong>Lottery Required:</strong><br>Daytime + priest-only<br>→ Slaughter, two-log arrangement</div></div><div class="flow-col"><div class="flow-box" style="border-color:#9b59b6"><strong>No Lottery:</strong><br>Nighttime service<br>→ Burning limbs, ash removal</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 27a-27b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 27a-27b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../26/">← Daf 26</a><a href="../28/">Daf 28 →</a></div>
+</body>
+</html>

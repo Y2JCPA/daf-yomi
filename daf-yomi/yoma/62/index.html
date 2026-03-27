@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 62 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐐</div>
+  <h1>Yoma 62</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא סב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐐 First or Last? — Which Azazel goat is sent first<br>
+    ⚖️ Identical Pairs — Requirements for the two goats ab initio<br>
+    🎲 Lottery & Death — If a goat dies before or after lots<br>
+    ☀️ Tamid & The Sun — Daily offerings slaughtered opposite the sun<br>
+    📜 Threefold 'Two' — What Torah's repetition teaches<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🐐 Which Azazel Goat Is Sent First?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Pappi</div><div class="speech">In the name of Rava: <strong>Send the first goat</strong> — the one whose lot for Azazel was drawn first takes priority.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Shimi</div><div class="speech">In the name of Rava: <strong>Send the last goat</strong> — the final one designated for Azazel is the one sent.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Rav Pappi's position aligns with Rabbi Yosei's ruling on the <em>Paschal offering</em>: the first item designated for a mitzva always takes priority over later ones.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Derivation</strong> The 'first takes priority' principle is proven from Rabbi Yosei on the Paschal offering — not from the Temple containers, where a different logic applies.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📜 Mishna: The Two Yom Kippur Goats — Requirements & Procedure</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Ab initio</strong>: Both goats must be identical in <em>appearance (color)</em>, <em>height</em>, and <em>monetary value</em></div><div class="process-arrow">↓</div><div class="process-step">They must be <strong>purchased together</strong> at the same time (not on different days)</div><div class="process-arrow">↓</div><div class="process-step">If not identical, they are still <strong>valid after the fact</strong> — Torah's amplification ('goat, goat') permits it</div><div class="process-arrow">↓</div><div class="process-step highlight">High Priest draws <strong>lots</strong> — one for God (sin-offering), one for Azazel (scapegoat)</div><div class="process-arrow">↓</div><div class="process-step">If one goat dies <strong>before the lottery</strong> → take a replacement for the surviving goat immediately</div><div class="process-arrow">↓</div><div class="process-step highlight">If one goat dies <strong>after the lottery</strong> → bring a new pair, draw lots again with a verbal stipulation</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🎲 What Happens If a Goat Dies?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">One of the two Yom Kippur goats dies or is lost</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Before the Lottery</div><div class="flow-box action">Neither goat yet designated — take a <strong>replacement</strong> for the surviving goat immediately and proceed</div></div><div class="flow-col"><div class="flow-label">After the Lottery</div><div class="flow-box action">Bring a <strong>new pair</strong> of goats; draw lots again with a stipulation naming which replaces which</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Rabbi Yehuda adds:</strong> If the God-goat's blood <em>spills</em> before sprinkling → scapegoat is left to die. If scapegoat <em>dies</em> → God-goat's blood is spilled. Both are nullified together — they are an indivisible pair.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔢 Torah's Amplification Across Three Paired Rituals</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1e2d3d"><h3 style="color:#c9a84c">Yom Kippur Goats</h3><ul><li>שני שני שני — threefold 'two' → identical ab initio</li><li>'Goat, goat' repeated → valid post facto even if not identical</li><li>Resolution: ab initio = identical; post facto = valid anyway</li><li>Leviticus 16:5 — the foundational case</li></ul></div><div class="compare-box" style="border-top-color:#1e2d3d"><h3 style="color:#4a90d9">Leper's Lambs</h3><ul><li>'Two lambs' (Lev. 14:10) — plural minimum is two</li><li>'Lamb, lamb' amplification → valid if not identical</li><li>'This shall be' → covers all leper atonement halakhot</li><li>Parallel derivation to Yom Kippur goats</li></ul></div><div class="compare-box" style="border-top-color:#1e2d3d"><h3 style="color:#2ecc71">Leper's Birds</h3><ul><li>'Two birds' (Lev. 14:4) — plural minimum is two</li><li>'Bird, bird' amplification → valid if not identical</li><li>'This shall be' → covers all leper purification rites</li><li>Consistent derivation pattern across all three cases</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>☀️ Daily Tamid Offerings: Slaughter Opposite the Sun</h2>
+  
+  <table><tr><th>Offering</th><th>Time of Day</th><th>Location in Courtyard</th><th>Direction</th></tr><tr><td>Morning Tamid</td><td>Morning</td><td>Northwest corner of altar, 2nd ring</td><td>Faces east (toward rising sun)</td></tr><tr><td>Afternoon Tamid</td><td>Afternoon</td><td>Southeast corner of altar, 2nd ring</td><td>Faces west (toward setting sun)</td></tr><tr><td>Shabbat Additional</td><td>Shabbat</td><td>Any valid location</td><td>'Two lambs' (Num. 28:9) — identical ab initio required</td></tr><tr><td>Daily offering principle</td><td>Daily</td><td>Opposite the sun's position</td><td>Derived: 'day by day' = slaughter per the day's sun</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Are Goats Slaughtered Without Lots Liable?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Baraita</div><div class="speech">If the High Priest slaughtered <strong>both goats outside</strong> before drawing lots, he is <em>liable</em> for both — for neither was fit as a sin-offering or scapegoat.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But why unfit? An animal 'lacking time' (not yet its day) is disqualified — but lots are drawn <em>that same day</em>. So why do missing lots disqualify?</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rav Ḥisda</div><div class="speech">An offering is only 'lacking time' if its time is on a <strong>different day</strong>. Same-day readiness is not a time-deficiency — but lacking the lottery is like lacking a required <em>act</em>, which does disqualify.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ravina</div><div class="speech">From Rav Ḥisda's ruling we learn: lacking the lottery = lacking an action = <strong>invalid offering</strong>. The lot is not merely procedural — it is constitutive of the animal's sacred status.</div></div></div><div class="callout" style="margin-top:20px"><strong>Legal Principle</strong> The lottery (גורל) is not a mere formality — without it, neither goat has the status of a valid offering. Performing the rite without lots is a transgression carrying liability for both goats.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 62 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1e2d3d;border:2px solid #c9a84c;color:#f0e6d3;"><strong>Purchase two identical goats</strong><br><small>Same color, height, value, bought simultaneously</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a5c;border:2px solid #4a90d9;color:#d0e8f8;"><strong>Goat dies before lots?</strong><br>Replace immediately — neither yet designated</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border:2px solid #2ecc71;color:#d0f0d8;"><strong>Lots drawn successfully</strong><br>One → God (sacrifice inside)<br>One → Azazel (sent to wilderness)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#3a1a1a;border:2px solid #e74c3c;color:#f8d0d0;"><strong>Goat dies after lots?</strong> → New pair + new lottery with stipulation<br><strong>Blood spills / scapegoat dies?</strong> (Rabbi Yehuda) → Both nullified; restart entire rite</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#2c1f4a;border:2px solid #9b59b6;color:#e8d8f8;"><strong>Which Azazel goat goes first?</strong><br>Rav Pappi (Rava): <em>the first</em> — per Rabbi Yosei's Paschal offering principle: the first item designated for a mitzva takes priority</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 62a-62b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 62a-62b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../61/">← Daf 61</a><a href="../63/">Daf 63 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 34 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Yoma 34</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא לד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📋 Order of Daily Service — Abaye's sequence of Temple offerings<br>
+    ⏰ Incense Timing — morning and afternoon placement in the service<br>
+    ⚖️ Musafim vs. Frankincense — which precedes which?<br>
+    💧 Heating Water — Rabbi Yehuda and Abaye on Yom Kippur immersion<br>
+    👘 High Priest's Garments — Pelusium morning linen vs. Indian afternoon linen<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🔥 Abaye's Sequence of the Daily Temple Service</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Burn wood on altar <small>(Leviticus 6:5 — 'morning, morning')</small></div><div class="flow-arrow">↓</div><div class="flow-box action">Daily morning offering <strong>(Tamid)</strong></div><div class="flow-arrow">↓</div><div class="flow-box action">Meal-offering <strong>(Minchah)</strong></div><div class="flow-arrow">↓</div><div class="flow-box action">High Priest's griddle-cake <strong>(Chavitin)</strong><br><small>½ in morning, ½ in afternoon</small></div><div class="flow-arrow">↓</div><div class="flow-box action">Libations <strong>(Nesachim)</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Abaye's view ✅</div><div class="flow-box result-good">Additional offerings (Musafim) → then Frankincense vessels</div></div><div class="flow-col"><div class="flow-label">Alternative view</div><div class="flow-box question">Frankincense vessels → then Additional offerings (Musafim)</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⏰ When Is the Morning Incense Burned?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Mishna</div><div class="speech">Morning incense was burned <strong>between</strong> the receiving/sprinkling of the blood and the burning of the limbs on the altar.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara Challenge</div><div class="speech">But Abaye taught that incense comes <em>after</em> the limbs are already placed on the altar! This seems to contradict the Mishna's sequence.</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Resolution</div><div class="speech">The Mishna follows the Rabbis, not Abaye's view. Moreover, the Mishna is not describing the full sequence — it says only that incense was burned <strong>before the limbs were actually burned</strong>, not before they were placed.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Key Distinction</div><div class="speech"><em>Placing</em> limbs on the altar ramp ≠ <em>burning</em> them. Incense comes after placement but before ignition — both accounts are consistent.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakhic Precision</strong> The Talmud carefully distinguishes between 'taking limbs up to the ramp' and 'burning the limbs' — a distinction that resolves the apparent contradiction between Abaye and the Mishna.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🌇 Afternoon Service Sequence — Incense Placement</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Daily afternoon offering slaughtered <strong>(Tamid shel bein ha-arbayim)</strong></div><div class="flow-arrow">↓</div><div class="flow-box action">Blood received and sprinkled on altar</div><div class="flow-arrow">↓</div><div class="flow-box action">Limbs taken up to the altar ramp</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>🔥 Afternoon Incense burned</strong><br><small>Rabbi Yoḥanan: derived from 'and the other lamb' (Numbers 28:8)</small></div><div class="flow-arrow">↓</div><div class="flow-box action">Libations poured <strong>(Nesachim)</strong></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Afternoon service complete</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👘 High Priest's Linen Garments on Yom Kippur</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fef9e7"><h3 style="color:#c9a84c">☀️ Morning Service</h3><ul><li>Origin: <strong>Pelusium, Egypt</strong></li><li>Value: <strong>12 maneh</strong> (1,200 dinars/zuz)</li><li>Renowned for extraordinary fineness</li><li>Worn for morning Tamid and Yom Kippur Avodah</li><li>Higher value reflects the prominence of the morning service</li></ul></div><div class="compare-box" style="border-top-color:#eaf4fb"><h3 style="color:#4a90d9">🌆 Afternoon Service</h3><ul><li>Origin: <strong>India</strong></li><li>Value: <strong>8 maneh</strong> (800 dinars/zuz)</li><li>Also fine linen, but less costly than morning garments</li><li>Worn for the afternoon Tamid service</li><li>Second immersion occurs between the two garment changes</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>💧 Heating Water for the High Priest's Immersion</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Requirement:</strong> The High Priest must immerse five times and sanctify hands and feet ten times on Yom Kippur — in cold water each time.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Accommodation:</strong> If the High Priest was old or delicate, hot water was prepared and mixed into the cold mikveh to temper its chill.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Yehuda's method:</strong> Iron blocks were heated on <em>erev</em> Yom Kippur (the day before) and then cast into the cold water on Yom Kippur itself.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Problem raised:</strong> Doesn't the iron continue to heat the water on Yom Kippur itself, constituting forbidden labor (<em>melachah</em>)?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Abaye's resolution:</strong> Rabbi Yehuda prohibits unintentional acts only for full <em>Torah-level</em> prohibitions. Heating water via iron is only a <em>rabbinic</em> restriction — so the unintentional continued heating on Yom Kippur is permitted.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Debate: Musafim vs. Frankincense Vessels — Which Comes First?</h2>
+  
+  <table><tr><th>Factor</th><th>Musafim First (Abaye's view)</th><th>Frankincense Vessels First</th></tr><tr><td>Scriptural source</td><td>'Morning, morning' (Lev. 6:5) links wood-burning to the complete Tamid sequence including Musafim</td><td>Verbal analogy from word <em>chukat</em> (statute) links frankincense vessels to meal-offerings</td></tr><tr><td>Category logic</td><td>Musafim are complete offerings with their own priority in the daily rotation</td><td>Frankincense vessels resemble meal-offerings and follow their order</td></tr><tr><td>Abaye's ruling</td><td>✅ Preferred — the doubled 'morning' proves the full Tamid sequence precedes frankincense</td><td>❌ Rejected by Abaye</td></tr><tr><td>Libations placement</td><td>Libations come before Musafim in the sequence, derived from 'offerings and libations'</td><td>Libations still precede frankincense vessels regardless of view</td></tr><tr><td>Outcome</td><td>Musafim → Frankincense vessels (at day's end)</td><td>Frankincense vessels → Musafim</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 34 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;border-color:#c9a84c;"><strong>🔥 Wood Burning</strong><br><small>'Morning, morning' = complete Tamid sequence follows</small></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;border-color:#4a90d9;"><strong>Tamid → Minchah → Chavitin → Nesachim</strong><br><small>Core daily sequence per Abaye</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border-color:#2ecc71;"><strong>Musafim first</strong> ✅<br><small>Abaye's preferred ruling</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border-color:#e67e22;"><strong>Frankincense first</strong><br><small>Alternative via <em>chukat</em> analogy</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;border-color:#9b59b6;"><strong>High Priest's Yom Kippur Preparations</strong><br><small>5 immersions • hot water accommodation • Pelusium/Indian linen garments</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 34a-34b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 34a-34b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../33/">← Daf 33</a><a href="../35/">Daf 35 →</a></div>
+</body>
+</html>

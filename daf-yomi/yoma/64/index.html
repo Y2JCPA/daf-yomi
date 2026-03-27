@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 64 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐐</div>
+  <h1>Yoma 64</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא סד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐐 Two Yom Kippur Goats — lottery and replacement rules<br>
+    ⚖️ Rav vs. Rabbi Yoḥanan — fate of the surviving goat<br>
+    🔄 Ein Dichuy B'Chai — living beings not permanently rejected<br>
+    🏷️ Temporary Blemish — the key derivation source<br>
+    🥇 Rabbi Yosei — first-designated animal takes priority<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ What Happens When One Yom Kippur Goat Dies?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav</div><div class="speech">If the Azazel goat dies, <strong>sacrifice the surviving goat of the first pair</strong> to God. Living beings are not permanently rejected — <em>ein dichuy b'chai</em>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yoḥanan</div><div class="speech">The surviving goat of the first pair <strong>grazes until it becomes unfit</strong>. Living beings ARE permanently rejected once disqualified — <em>yesh dichuy b'chai</em>.</div></div></div><div class="callout" style="margin-top:20px"><strong>The Core Dispute</strong> Once a consecrated living animal is set aside as unfit, does it permanently lose its eligibility — or does it retain sanctity and remain eligible if circumstances change?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔄 The Yom Kippur Goat Replacement Protocol</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Two goats selected; <strong>lottery drawn</strong>: one for God (קרבן), one for Azazel (שעיר המשתלח)</div><div class="flow-arrow">↓</div><div class="flow-box question">❓ Does one goat <strong>die</strong> after the lottery?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box action">A second pair is purchased; <strong>new lots drawn</strong>. Priest utters a stipulation: 'If the God-goat died, let this one be for God instead.'</div></div><div class="flow-col"><div class="flow-label">No</div><div class="flow-box result-good">Proceed normally with the original pair</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">❓ Which goat of the <strong>first pair</strong> survived?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Azazel goat survived</div><div class="flow-box result-good"><strong>Rav:</strong> Sacrifice it to God<br><strong>Rabbi Yoḥanan:</strong> Let it graze until unfit</div></div><div class="flow-col"><div class="flow-label">God's goat survived</div><div class="flow-box result-bad">Second pair's Azazel goat is sent off; first pair's God-goat status disputed</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📖 Deriving from Blemished Animals — The Textual Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav</div><div class="speech">Derived from <strong>temporary blemish (מום עובר)</strong>: an animal disqualified by a blemish may be sacrificed once healed. So too, any living being set aside as unfit retains eligibility when circumstances change.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yoḥanan</div><div class="speech">The verse says <strong>בָּהֶם</strong> — 'in them.' Only <em>blemished</em> animals are re-accepted once healed. Other disqualified living beings remain permanently rejected.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav</div><div class="speech"><strong>בָּהֶם</strong> means: <em>on their own</em> they are not accepted — but <em>mixed with fit animals</em>, temporarily blemished limbs are valid. As Rabbi Eliezer ruled in the case of mixed burnt-offering limbs.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yoḥanan</div><div class="speech">The mixture ruling is derived from the Torah's choice of <strong>בָּהֶם</strong> vs. <em>בם</em> — the fuller spelling includes an extra lesson. The basic <em>bam</em> form would suffice; <em>bahem</em> teaches the mixture leniency separately.</div></div></div><div class="callout" style="margin-top:20px"><strong>Verse in Dispute</strong> "Because their corruption is in them, there is a blemish in them; they shall not be accepted for you" (Leviticus 22:25)</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🏛️ Full Position Comparison: Rav vs. Rabbi Yoḥanan</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rav</h3><ul><li>Living beings are <strong>NOT</strong> permanently rejected (אין דחייה בחי)</li><li>Surviving goat of first pair is <strong>sacrificed to God</strong></li><li>Second goat of second pair grazes until unfit</li><li>Derives from: temporary blemish — animal heals and is then offered</li><li>Follows Rabbi Yosei: <em>first-designated animal takes priority</em></li><li>Aligns with the <strong>Rabbis</strong>, not Rabbi Yehuda</li></ul></div><div class="compare-box" style="border-top-color:#2d1a5c"><h3 style="color:#9b59b6">Rabbi Yoḥanan</h3><ul><li>Living beings <strong>ARE</strong> permanently rejected once disqualified (יש דחייה בחי)</li><li>Surviving goat of first pair <strong>grazes until unfit</strong></li><li>Second pair's goat is sacrificed to God</li><li>Derives: 'בָּהֶם' limits leniency to blemished animals only</li><li>Mishna's language supports him: asks 'which one shall graze?'</li><li>Rabbi Yehuda and Rabbis both agree with him — for different reasons</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🥇 Rabbi Yosei — The First-Designated Animal Takes Priority</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rabbi Yosei's general rule:</strong> When two animals become eligible at the same time, the <em>first</em> one designated for the mitzvah takes priority over the replacement.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rejected source — Shekalim coins (מעות):</strong> Rabbi Yosei ruled that the first-designated coins take priority. But this case differs — the later container was not yet fit when the first was designated. Not a true parallel.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Correct source — Paschal lamb (קרבן פסח):</strong> One separated an animal as his Paschal lamb; it was lost; he separated another. When both are simultaneously available, <em>the first is offered</em> — unless the second is superior.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Key condition:</strong> Both animals must become fit at the <em>same moment</em>. Only then does the first-designated animal take automatic priority by virtue of its earlier designation.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rav's application:</strong> The Azazel goat of the first pair was designated first; when it survives alongside the second pair, it retains its priority and is offered to God.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📊 Rabbi Yehuda vs. the Rabbis — Communal Offerings and Permanent Rejection</h2>
+  
+  <table><tr><th>Scenario</th><th>Rabbi Yehuda</th><th>The Rabbis</th></tr><tr><td>Do communal sin-offerings get left to die?</td><td>Yes — dichuy applies to communal offerings too</td><td>No — communal offerings always find resolution</td></tr><tr><td>God-goat blood spills before sprinkling</td><td>Scapegoat is <strong>left to die</strong></td><td>Proceed — sprinkle new blood if possible</td></tr><tr><td>Scapegoat dies before being sent</td><td>Do <strong>not</strong> sprinkle the blood</td><td>Sprinkle the blood regardless</td></tr><tr><td>Underlying principle</td><td>Communal offerings CAN be permanently rejected</td><td>Communal offerings are NEVER permanently rejected</td></tr><tr><td>Rav's alignment</td><td>Does NOT follow Rabbi Yehuda</td><td>Follows the Rabbis</td></tr><tr><td>Rabbi Yoḥanan's position</td><td>Even per Rabbis: goat is still rejected</td><td>The debate is really about dichuy b'chai, not communal leniency</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 64 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a3a5c;border-color:#4a90d9"><strong>Triggering Event:</strong> One of the two Yom Kippur goats dies after the lottery; a second pair is brought and new lots drawn</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a5c;border-color:#4a90d9"><strong>Rav</strong><br><em>Ein dichuy b'chai</em><br>Sacrifice first pair's survivor to God<br><small>Source: temporary blemish; Rabbi Yosei's priority rule</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2d1a5c;border-color:#9b59b6"><strong>Rabbi Yoḥanan</strong><br><em>Yesh dichuy b'chai</em><br>First pair's survivor grazes until unfit<br><small>Source: בָּהֶם limits leniency; mishna's language</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2a1a00;border-color:#c9a84c"><strong>Textual battleground:</strong> Does <em>בָּהֶם</em> (Lev. 22:25) limit the re-acceptance of blemished animals to <em>that category alone</em>, or does it teach a rule about mixtures, leaving other living beings eligible?</div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#3a1a1a;border-color:#e74c3c"><strong>Communal dimension:</strong> Rabbi Yehuda holds even communal offerings can be permanently rejected; the Rabbis disagree — but Rabbi Yoḥanan argues the goat is rejected under either view</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 64a-64b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 64a-64b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../63/">← Daf 63</a><a href="../65/">Daf 65 →</a></div>
+</body>
+</html>

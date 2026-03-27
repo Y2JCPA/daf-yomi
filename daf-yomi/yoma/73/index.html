@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 73 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔮</div>
+  <h1>Yoma 73</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא עג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚔️ War Priest's Garments — eight or fewer?<br>
+    🔮 Urim VeTummim — consultation protocol<br>
+    ✨ Breastplate Letters — how answers emerge<br>
+    🚫 Yom Kippur Prohibitions — five afflictions begin<br>
+    ⚖️ Half-Measure Debate — Torah vs rabbinic<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚔️ The Priest Anointed for War: Eight Garments?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Dimi</div><div class="speech">The priest anointed for war wears all eight garments of the High Priest — he is like a High Priest in all respects regarding his dress.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Baraita</div><div class="speech">He serves neither in four garments like a common priest, nor in eight garments like a High Priest — implying a middle category.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">Would you make him like a non-priest?! He wears eight garments — the baraita only excludes him from the Yom Kippur eight-garment service.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ravin</div><div class="speech">The eight-garment rule was stated only regarding his consulting the Urim VeTummim, not for regular Temple service.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The war priest shares five explicit Torah rules with the High Priest (mourning restrictions) but does not inherit his father's position — his primary role is consulting the Urim VeTummim on behalf of the king.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>👔 Three Levels of Priestly Status</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#fff">High Priest</h3><ul><li>Eight garments in all service</li><li>Bull brought for unwitting sins</li><li>Does not rend clothing publicly — only from below</li><li>Offers sacrifices as acute mourner</li><li>Ten unique halakhot apply</li><li>Son inherits his position</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Priest Anointed for War</h3><ul><li>Eight garments (Urim VeTummim context)</li><li>Five Torah-explicit mourning rules apply</li><li>Does NOT inherit father's position</li><li>Purpose: consult Urim VeTummim for king</li><li>No Bull for unwitting sins</li><li>Steps down when original HP is restored</li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#fff">Common Priest</h3><ul><li>Four garments only</li><li>Mourns publicly — rends from above</li><li>Cannot offer sacrifices as acute mourner</li><li>No unique mourning restrictions</li><li>Inherits father's priestly position</li><li>No bull for individual unwitting sin</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔮 How to Consult the Urim VeTummim</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Positioning:</strong> The questioner stands facing the High Priest; the High Priest turns his face toward the Divine Presence (Shekhinah)</div><div class="process-arrow">↓</div><div class="process-step"><strong>Low Voice:</strong> The question is asked quietly — audible only to the asker, as implied by <em>"by the judgment of the Urim"</em> (Numbers 27:21)</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>One Question at a Time:</strong> Do not ask two matters simultaneously; wait for an answer before asking again — even if asked simultaneously, only one is answered</div><div class="process-arrow">↓</div><div class="process-step"><strong>The Answer:</strong> The High Priest reads the Divine response and transmits it — e.g., <em>"Thus says God: Go up and succeed"</em></div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Yehuda's View:</strong> He need not say 'Go up' and 'succeed' separately — the entire answer comes at once in one utterance</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Emergency Exception:</strong> If urgency demands, two questions may be asked together and answered together — as David did at Keilah (I Samuel 23)</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>✨ How Do the Breastplate Letters Provide Answers?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Twelve tribal names are engraved on the breastplate's twelve stones</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Yoḥanan</div><div class="flow-box result-good">Letters of the answer <strong>protrude</strong> from the stones and the High Priest reads them</div></div><div class="flow-col"><div class="flow-label">Reish Lakish</div><div class="flow-box result-good">Letters <strong>join together</strong> before the High Priest's eyes to form the answer</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Problem: The letter <em>tzadi</em> (צ) does not appear in any of the twelve tribes' names!</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Rav Shmuel bar Yitzḥak:</strong> The names of Abraham (אברהם), Isaac (יצחק), and Jacob (יעקב) were also engraved — supplying all missing letters</div><div class="flow-arrow">↓</div><div class="flow-box action">Even so: The High Priest must have <strong>Divine Spirit</strong> resting upon him to correctly arrange and read the letters — the letters alone do not suffice</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🚫 New Mishna: Yom Kippur's Five Prohibitions</h2>
+  
+  <table><tr><th>Prohibition</th><th>Hebrew Term</th><th>Minimum for Liability</th><th>Scope</th></tr><tr><td>Eating & Drinking</td><td>אכילה ושתייה</td><td>Date-bulk (כותבת הגסה) of food; cheekful of liquid</td><td>Karet for full measure; rabbinic for half-measure</td></tr><tr><td>Bathing</td><td>רחיצה</td><td>Any pleasurable washing</td><td>Applies to whole body or majority thereof</td></tr><tr><td>Anointing with Oil</td><td>סיכה</td><td>Any pleasurable anointing</td><td>Even non-medical application</td></tr><tr><td>Wearing Shoes</td><td>נעילת הסנדל</td><td>Any leather footwear</td><td>Non-leather permitted in pressing need</td></tr><tr><td>Conjugal Relations</td><td>תשמיש המיטה</td><td>Any act</td><td>Like Shabbat — both parties forbidden</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Is a Half-Measure Forbidden by Torah Law?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech">A half-measure is prohibited by Torah law — the Torah forbids even a minute amount. The Mishna's use of 'prohibited' (אסור) refers to any amount, even sub-threshold.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">A half-measure is only rabbinically prohibited. Torah punishment requires a full measure. The Mishna says 'prohibited' because there is no punishment — not because Torah forbids it.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara Challenge</div><div class="speech">But another Mishna holds one liable for swearing to eat a half-measure of forbidden food! If it's already rabbinically forbidden, an oath cannot take effect — ein shevua chal al issur!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">That Mishna is where one swears NOT to eat a half-measure. Per the Rabbis, since there is no prior Torah prohibition on that amount, the oath creates a new prohibition and liability.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle — אין שבועה חלה על איסור</strong> An oath cannot take effect upon something already forbidden (Torah level). Reish Lakish: since a half-measure is only rabbinically forbidden, an oath adding to it does take effect. Rabbi Yoḥanan: it is Torah-forbidden, so the mishna's language of 'prohibited' signals Torah-level stringency.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 73 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff"><strong>War Priest Garments Debate</strong><br><small>Rav Dimi: eight garments like High Priest</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff"><strong>Abaye:</strong> Eight garments — baraita excludes only Yom Kippur service</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff"><strong>Ravin:</strong> Eight garments only for Urim VeTummim consultation</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff"><strong>Urim VeTummim Procedure</strong><br><small>Low voice · one question at a time · letters protrude/join · requires Divine Spirit · for king, court president, or communal need</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff"><strong>New Mishna — Yom Kippur Prohibitions</strong><br><small>Eating, drinking, bathing, anointing, shoes, conjugal relations</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff"><strong>Rabbi Yoḥanan:</strong><br>Half-measure = Torah prohibition</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff"><strong>Reish Lakish:</strong><br>Half-measure = rabbinic only; oath can still create liability</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 73a-73b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 73a-73b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../72/">← Daf 72</a><a href="../74/">Daf 74 →</a></div>
+</body>
+</html>

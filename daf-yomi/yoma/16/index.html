@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 16 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏛️</div>
+  <h1>Yoma 16</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא טז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Four Chambers of the Women's Courtyard<br>
+    📐 Authorship of Tractate Middot: Which Opinion?<br>
+    🪜 Extra Stair and Platform Heights Debated<br>
+    🔭 Was the Sanctuary Entrance Concealed?<br>
+    ⚖️ Altar Alignment and Temple Width Calculation<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📐 Whose Opinion Does Tractate Middot Follow?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Eliezer ben Ya'akov</div><div class="speech">Between the Israelite courtyard and priests' courtyard there was an additional stair — 1 cubit high — plus a Levite platform of 1.5 cubits. These extra 2.5 cubits fully conceal the Sanctuary entrance from the Women's Courtyard.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">The Rabbis</div><div class="speech">We do not count that extra stair and platform. Without those 2.5 cubits, the threshold of the Sanctuary entrance is exposed half a cubit above the Women's Courtyard floor — visible, not hidden.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Since mishnayot in Middot describe the entrance as concealed, Middot must follow R' Eliezer ben Ya'akov — only his extra 2.5 cubits make concealment geometrically possible!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Adda bar Ahava</div><div class="speech">This is not a definitive proof. The halakhot of this tractate can still be interpreted according to a different opinion — the geometry can be resolved another way.</div></div></div><div class="callout" style="margin-top:20px"><strong>Central Question</strong> Do the architectural mishnayot of Middot reflect R' Eliezer ben Ya'akov or the Rabbis? The answer determines whether the Sanctuary entrance was geometrically concealed from the Women's Courtyard — and by extension, which Tanna authored Middot's rulings.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏛️ The Four Chambers of the Women's Courtyard</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Southeast Chamber</h3><ul><li>Wood Chamber — <em>Lishkat HaEtzim</em></li><li>Priests with physical blemishes sorted wood</li><li>Disqualified wood set aside from altar use</li><li>Also: Shewbread preparation (per some accounts)</li></ul></div><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Northeast Chamber</h3><ul><li>Chamber of the Hasmoneans</li><li>Altar stones desecrated by Greek kings</li><li>Stored until a prophet could rule on them</li><li>Neither used nor discarded — held in limbo</li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#ffffff">Northwest Chamber</h3><ul><li>Chamber of the Lepers — <em>Lishkat HaMetzora'im</em></li><li>Lepers immersed here for purification ritual</li><li>Required before re-entry into the community</li><li>Separate from the general mikveh system</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">Southwest Chamber</h3><ul><li>R' Eliezer ben Ya'akov: <em>I forgot its purpose</em></li><li>Abba Shaul: Wine and oil stored here</li><li>Used for libation offerings of Temple service</li><li>Demonstrates loss of Temple knowledge over time</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🪜 Height Calculations: Women's Courtyard to Sanctuary Entrance</h2>
+  
+  <table><tr><th>Architectural Element</th><th>Height (cubits)</th><th>R' Eliezer ben Ya'akov</th><th>The Rabbis</th></tr><tr><td>Women's Courtyard floor</td><td>Baseline 0</td><td>✓ Same</td><td>✓ Same</td></tr><tr><td>15 stairs to Israelite Courtyard</td><td>+7.5 (½ each)</td><td>✓ Counted</td><td>✓ Counted</td></tr><tr><td>Additional stair (Israelite → Priests')</td><td>+1.0</td><td>✓ Counted</td><td>✗ Excluded</td></tr><tr><td>Levite platform (Priests' Courtyard)</td><td>+1.5</td><td>✓ Counted</td><td>✗ Excluded</td></tr><tr><td>Total extra height from R' Eliezer</td><td>+2.5 cubits</td><td>✓ Applied</td><td>—</td></tr><tr><td>Sanctuary threshold: concealed?</td><td>Key question</td><td>✓ Fully hidden</td><td>✗ Exposed ½ cubit</td></tr><tr><td>Compatible with Tractate Middot?</td><td>Must be concealed</td><td>✓ Yes</td><td>✗ No</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔭 The Logical Proof Regarding Tractate Middot</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Premise from Tractate Middot:</strong> The entrance to the Sanctuary was <em>concealed</em> — not visible from the Women's Courtyard</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Geometric test:</strong> Calculate whether the Sanctuary threshold stands higher or lower than the Women's Courtyard sightline, given the intervening stairs and platforms</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Eliezer ben Ya'akov (+2.5 cubits)</div><div class="flow-box result-good">Threshold rises <strong>above the sightline</strong> → entrance is fully concealed ✓<br><small>Consistent with Middot's description</small></div></div><div class="flow-col"><div class="flow-label">The Rabbis (no extra height)</div><div class="flow-box result-bad">Threshold is <strong>exposed by ½ cubit</strong> → entrance is visible ✗<br><small>Contradicts Middot's description</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Rav Adda bar Ahava:</strong> Still not a definitive proof — halakhot of this tractate may be reconciled differently with the Rabbis' opinion</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ Is the Altar Centered? Disproving Rabbi Yehuda's Authorship of Middot</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tractate Middot</div><div class="speech">The altar stood precisely opposite the Sanctuary entrance: 10 cubits directly facing the entrance, 11 cubits to the north, 11 cubits to the south. This places the altar at the center of the courtyard's width.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Yehuda</div><div class="speech">My calculation of altar dimensions differs. Under my view, the combined ramp-and-altar placement would put most of the altar's mass in the southern portion of the courtyard — not centered.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">If you say Middot follows Rabbi Yehuda — do you find the altar in the middle of the courtyard? No! Most of it stands in the southern part. Therefore Middot cannot follow Rabbi Yehuda.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Narrator</div><div class="speech">The full N-S width calculation: ramp + altar = 62 cubits (32 + 32 minus 2 overlap). The remaining space is distributed north and south. The alignment of 10/11/11 only works under specific dimensional assumptions.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Numbers</strong> Total courtyard width = 135 cubits (S→N). Ramp = 32 cubits; Altar = 32 cubits; 2 cubits overlap at top of ramp → combined = 62 cubits. The '10 cubits opposite entrance / 11 north / 11 south' formula proves the altar is centered only under the standard (non-Yehuda) dimensions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📐 Temple Courtyard: North-South Spatial Layout</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Total Courtyard Width:</strong> 135 cubits measured from southern wall to northern wall</div><div class="process-arrow">↓</div><div class="process-step"><strong>Southern approach space:</strong> Cubits allocated between southern wall and base of the ramp</div><div class="process-arrow">↓</div><div class="process-step"><strong>The Ramp (Kevesh):</strong> 32 cubits long, ascending southward up to the altar surface</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>The Altar:</strong> 32 × 32 cubits — but top 2 cubits of ramp overlap with the altar's southern edge</div><div class="process-arrow">↓</div><div class="process-step"><strong>Combined ramp + altar footprint:</strong> 62 cubits total (32 + 32 − 2 overlap)</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Altar alignment opposite Sanctuary:</strong> 10 cubits of altar face the entrance directly; 11 cubits project north; 11 cubits project south</div><div class="process-arrow">↓</div><div class="process-step"><strong>Conclusion:</strong> The altar is centered relative to the Sanctuary entrance — a fact that only holds under the standard (Mishnaic / R' Eliezer ben Ya'akov) dimensional framework, not Rabbi Yehuda's</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 16 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box start" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>Women's Courtyard</strong><br><small>135 × 135 cubits · 4 functional chambers</small></div><div class="flow-arrow">↓</div><div class="flow-box step" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>15 stairs ascend</strong> to Israelite Courtyard<br><small>+7.5 cubits total elevation</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>R' Eliezer ben Ya'akov</strong><br>+1 stair + 1.5 platform = <em>2.5 extra cubits</em><br>→ Sanctuary entrance <strong>concealed</strong> ✓</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>The Rabbis</strong><br>No extra stair or platform<br>→ Entrance <strong>exposed ½ cubit</strong> ✗</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>Altar centered? 10/11/11 cubits</strong><br><small>Disproves Rabbi Yehuda's authorship of Middot</small></div><div class="flow-arrow">↓</div><div class="flow-box conclusion" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>Rav Adda bar Ahava:</strong> Geometric proofs are suggestive — but not fully conclusive<br><small>The debate over Middot's authorship remains open</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 16a-16b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 16a-16b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../15/">← Daf 15</a><a href="../17/">Daf 17 →</a></div>
+</body>
+</html>

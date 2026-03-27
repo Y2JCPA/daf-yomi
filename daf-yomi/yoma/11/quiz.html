@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 11 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Yoma 11 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">Why did the Gate of Nicanor require a mezuza while all other eastern Temple gates did not?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. It was the most ornate gate and commanded special honor</div>
+      <div class="option" onclick="select(1,this,1)">B. The Chamber of Parhedrin, the High Priest's residence during Yom Kippur week, was located just inside it</div>
+      <div class="option" onclick="select(1,this,2)">C. Nicanor himself was a prominent donor who requested a mezuza</div>
+      <div class="option" onclick="select(1,this,3)">D. It was the only Temple gate with two complete doorposts</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>The Chamber of Parhedrin — where the High Priest resided during his week of preparation before Yom Kippur — was located just inside the Gate of Nicanor. This residential function created a genuine mezuza obligation for that specific gate.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Abaye rejected Rav Safra's explanation for why no mezuza was on Meḥoza's gates. What was Abaye's actual reason?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. The gates were too tall to reach for affixing a mezuza</div>
+      <div class="option" onclick="select(2,this,1)">B. Meḥoza did not have a sufficient Jewish majority to obligate its gates</div>
+      <div class="option" onclick="select(2,this,2)">C. Danger — gentiles in the mixed city would suspect Jews of using mezuzot for sorcery</div>
+      <div class="option" onclick="select(2,this,3)">D. The local rabbis of Meḥoza had formally exempted the city's gates</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>Abaye argued that the real reason was danger: since gentiles also lived in Meḥoza, they might suspect Jews of using the publicly displayed mezuzot for witchcraft. This suspicion could lead to persecution, as illustrated by the near-execution of a mezuza examiner in Tzippori.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">According to Rav Kahana's interpretation, what principle does 'your house' teach about mezuza?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Only houses you personally built are obligated</div>
+      <div class="option" onclick="select(3,this,1)">B. Only houses designated for residence are obligated — excluding storehouses, barns, and woodsheds</div>
+      <div class="option" onclick="select(3,this,2)">C. Only houses with two complete doorposts are obligated</div>
+      <div class="option" onclick="select(3,this,3)">D. Only houses in which both men and women dwell are obligated</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Rav Kahana derives that 'your house' means a place designated for residence, thereby excluding functional work structures like storehouses for hay, cattle barns, woodsheds, and general storerooms, which are not residential in character.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">The Gemara asks why a synagogue needs a mezuza given the phrase 'your house.' What is the answer?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. A synagogue is considered each member's personal house of prayer</div>
+      <div class="option" onclick="select(4,this,1)">B. The reward verse immediately following — 'so that your days be numerous' — implies broad inclusion of all structures where people dwell or gather</div>
+      <div class="option" onclick="select(4,this,2)">C. A separate rabbinic decree explicitly obligated synagogues</div>
+      <div class="option" onclick="select(4,this,3)">D. The word 'houses' is in the plural, which includes communal buildings</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>The Gemara answers that immediately following the mezuza commandment is the reward verse 'so that your days be numerous' — this juxtaposition implies the obligation extends broadly. One could not exclude a synagogue and still expect to receive the promised reward of long life.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Can a synagogue become impure with the leprosy impurity (nega'im) according to the Gemara?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. No — all authorities agree synagogues are definitively exempt</div>
+      <div class="option" onclick="select(5,this,1)">B. Yes — all authorities agree synagogues are definitively obligated</div>
+      <div class="option" onclick="select(5,this,2)">C. It is subject to a tannaitic dispute: Rabbi Meir obligates it, the Rabbis exempt it</div>
+      <div class="option" onclick="select(5,this,3)">D. Only synagogues outside of Israel can become impure with nega'im</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>The Gemara reconciles contradictory baraitot by identifying a tannaitic dispute: Rabbi Meir holds that synagogues can become impure with leprosy-impurity, while the Rabbis disagree. An alternative resolution distinguishes between synagogues that contain a residential dwelling and those that do not.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":1,"4":1,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

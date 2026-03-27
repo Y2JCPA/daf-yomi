@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 22 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏃</div>
+  <h1>Yoma 22</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא כב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏃 The Ash-Removal Race — priests competed until injury forced reform<br>
+    📏 Four Cubits Dilemma — Rav Pappa's unresolved altar measurement question<br>
+    🤲 Counting Israel — extending fingers avoids the census prohibition<br>
+    👑 Saul vs. David — contrasting royal legacies and Divine judgment<br>
+    ⚖️ David's Two Sins — only uncleansed transgressions remain on the ledger<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🏛️ From Race to Lottery: Ash-Removal Reform</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Original practice:</strong> Any priest who wished could remove the ashes — no lottery, no race</div><div class="process-arrow">↓</div><div class="process-step"><strong>Many priests arrived:</strong> Competition led to a footrace up the ramp; first within 4 cubits of the altar top wins</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>The incident:</strong> Two priests tied; one shoved the other off the ramp, breaking his leg</div><div class="process-arrow">↓</div><div class="process-step"><strong>Court reformed the practice:</strong> Lottery instituted — priests extend fingers; appointee counts to a number</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Ashi resolves:</strong> Actually <em>two</em> separate ordinances — first when many priests showed up, second after the race turned dangerous</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Were There One or Two Lottery Ordinances?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The mishna implies the lottery was instituted solely because of the dangerous incident — the broken leg. So there was only one reason for the reform?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Ashi</div><div class="speech">No — two separate ordinances were issued. First, when the Sages saw that many priests were coming, they instituted a lottery. Then, when the race itself became dangerous, they issued a second ordinance.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But the mishna only mentions the injury as the cause. Doesn't that suggest a single ordinance?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Ashi</div><div class="speech">The mishna records the most memorable and dramatic cause. Both ordinances existed; the injury simply overshadowed the earlier, less dramatic reason in the tradition.</div></div></div><div class="callout" style="margin-top:20px"><strong>Takeaway</strong> A mishna may cite the most vivid of multiple legislative reasons without listing them all</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📏 The Four Cubits Question — Rav Pappa's Dilemma</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Rule: First priest to reach within <strong>4 cubits</strong> of the top of the altar wins the right to remove the ashes</div><div class="flow-arrow">↓</div><div class="flow-box question">From where are these 4 cubits measured?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Not from the bottom</div><div class="flow-box result-bad">The base (יְסוֹד) is only 1 cubit — not 4 cubits from the ground</div></div><div class="flow-col"><div class="flow-label">Not from the middle</div><div class="flow-box result-bad">No clear marker midway up the ramp — the law would be undefined</div></div><div class="flow-col"><div class="flow-label">From the top</div><div class="flow-box result-good">Must be the 4 cubits adjacent to the altar itself — but does this include or exclude the base and ledge?</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Rav Pappa's unresolved dilemma:</strong> Are the base cubit (יְסוֹד) and ledge cubit (סוֹבֵב) <em>included</em> in the 4, or <em>excluded</em>? — תֵּיקוּ</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👑 Saul and David — Contrasting Royal Legacies</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#e74c3c">Saul</h3><ul><li>Flawless, unblemished lineage — no ancestry fault</li><li>Like a one-year-old at coronation: pure, unstained by sin</li><li>Forewent his royal honor at Gibeah — inappropriate humility for a king</li><li>Showed unwarranted mercy to Agag of Amalek — contravened Divine command</li><li>Dynasty did NOT continue — perfection left no room for Divine mercy</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#2ecc71">David</h3><ul><li>Mixed ancestry — lineage included Ruth the Moabite</li><li>Two major sins: causing Uriah's death + inciting the census</li><li>Bathsheba sin: punished personally (fasting, mourning) — settled</li><li>Mephibosheth slander: punished — estate restored, not kept</li><li>Dynasty continued — imperfect lineage, sins cleansed through punishment</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🤲 The Census Prohibition — Counting Israel</h2>
+  
+  <table><tr><th>Authority</th><th>Statement</th><th>Source / Basis</th></tr><tr><td>Rabbi Elazar</td><td>Counting Jews directly violates a negative mitzva</td><td>Hosea 2:1 — Israel like the sand of the sea, which cannot be measured</td></tr><tr><td>Rabbi Shmuel bar Naḥmani</td><td>Contradiction: same verse implies they WILL have a specific number!</td><td>Hosea 2:1 — 'the number of Israel will be like the sand…'</td></tr><tr><td>Resolution</td><td>Innumerable when fulfilling God's will; countable when they do not</td><td>Both readings of Hosea 2:1 apply in different circumstances</td></tr><tr><td>Saul's solution (I Sam. 11:8)</td><td>Counted via shards of pottery (בֶּזֶק) or by territory — indirect method</td><td>Avoids direct census; Rav Ashi: bezek = name of a town</td></tr><tr><td>Rav Nehilai / Shmuel</td><td>One appointed as community leader becomes wealthy</td><td>Saul went from bezek-shards (poverty) to silver and gold upon becoming king</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚔️ Saul Strove with God over Amalek</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אַל תִּתְצַדַּק הַרְבֵּה — Do not be overly righteous (Kohelet 7:16)</div><div class="callout"><strong>Rabbi Mani on I Samuel 15:5</strong> <strong>'And Saul strove in the valley'</strong> — Rabbi Mani: Saul argued with God about the command to destroy Amalek<br><br><em>His reasoning:</em> If the people sinned, why kill the animals? If the adults sinned, why kill the children?<br><br>A Divine Voice responded: <strong>"Do not be overly righteous"</strong> (Kohelet 7:16) — even compassionate reasoning cannot override an explicit Divine command<br><br><strong>Rav Huna:</strong> How little does one who has the support of his Lord need to worry — yet Saul, despite his purity, lost his kingdom over this single act of misplaced mercy</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 22 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Ash-removal: open to all</strong><br><small>Night service — few priests expected</small></div><div class="flow-arrow">↓</div><div class="flow-box " style=""><strong>Many priests competed → race up the ramp</strong><br><small>First within 4 cubits wins</small></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style=""><strong>Violent incident: priest shoved, leg broken</strong></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style=""><strong>Lottery instituted</strong><br><small>Extend fingers; appointee counts to a number</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>Rav Ashi: Two ordinances</strong><br><small>Reform came in stages, not one act</small></div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color: #e74c3c"><strong>Saul:</strong> Perfect lineage + mercy toward Amalek → dynasty ends<br><small style='color:#e74c3c'>Perfection without room for mercy = no continuation</small></div></div><div class="flow-col"><div class="flow-box" style="border-color: #2ecc71"><strong>David:</strong> Mixed lineage + sins punished and cleansed → dynasty endures<br><small style='color:#2ecc71'>Imperfection + accountability = eternal covenant</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 22a-22b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 22a-22b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../21/">← Daf 21</a><a href="../23/">Daf 23 →</a></div>
+</body>
+</html>

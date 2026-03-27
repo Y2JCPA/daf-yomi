@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 59 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🩸</div>
+  <h1>Yoma 59</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא נט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🤲 Hand or Foot — debate on encircling the inner altar<br>
+    🏛️ First Temple Testimony — two High Priests disagree on practice<br>
+    🧭 North or South — Chananya vs. Rabbi Yosei on sprinkling location<br>
+    💧 Remainder Blood — western vs. southern base controversy<br>
+    ⚖️ No Me'ila for Blood — Torah exemption from misuse of consecrated property<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🧭 Where to Sprinkle the Seven: North or South?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Chananya</div><div class="speech">The seven sprinklings on the inner altar are made on the <strong>north side</strong> — that is where the corner presentations end, so that is where the blood is placed on top.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yosei</div><div class="speech">The seven sprinklings are made on the <strong>south side</strong> — the sequence of corner applications ends differently, making the south the final placement.</div></div></div><div class="callout" style="margin-top:20px"><strong>Common Ground</strong> Both agree: wherever the corner presentations finish, <em>that</em> is where the seven sprinklings are placed — they dispute only which side that is.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🤲 Encircling the Inner Altar: By Hand or By Foot?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rabbi Akiva</div><div class="speech">The perimeter of the inner altar is <strong>like the perimeter of the outer altar</strong> — just as the outer altar is encircled <em>by foot</em> for sprinkling, so too is the inner altar. The priest physically walks around it.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yosei</div><div class="speech">The inner altar stands <strong>entirely in the north</strong> of the Sanctuary, making foot encircling impossible. The priest stands in place and reaches to each corner — encircling <em>by hand</em>.</div></div></div><div class="callout" style="margin-top:20px"><strong>First Temple Confirmation</strong> Rabbi Yishmael reports: two surviving High Priests from the First Temple gave contradictory testimony — one said 'I encircled by hand,' the other 'I encircled by foot.' The ancient dispute mirrors the Tannaic one.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🩸 Sequence of the Yom Kippur Blood Service</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Inner Altar Sprinkling:</strong> Priest sprinkles blood on the <em>tohoro</em> — the pure gold surface. Coals are first raked aside; sprinkling is performed on the gold, not on ash or embers.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Corner Applications:</strong> Blood applied to the four corners of the inner altar. Whether by walking around (foot) or reaching (hand) is the central dispute of this daf.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Seven Sprinklings:</strong> Seven sprinklings applied at the location where the corner presentations conclude — north side (Chananya) or south side (Rabbi Yosei).</div><div class="process-arrow">↓</div><div class="process-step"><strong>Exit to Outer Altar:</strong> Priest descends the ramp carrying the remaining blood, proceeds to the outer altar in the courtyard.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Pouring the Remainder:</strong> Blood of the inner offering poured at the <strong>western base</strong>; blood of the outer sin-offering poured at the <strong>southern base</strong> — per the Mishna.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Canal to Kidron River:</strong> All mixed remainders flow via the channel beneath the altar to the Kidron River, where the blood is sold to gardeners as fertilizer.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>💧 Where Is the Remainder of Blood Poured?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Tanna Kamma (Mishna)</h3><ul><li>Inner offering (bull/goat) remainder → <strong>Western base</strong> of outer altar</li><li>Outer sin-offering remainder → <strong>Southern base</strong> of outer altar</li><li>Source: 'All its blood he shall pour at the base' (Lev. 4:7) — different verses for each</li></ul></div><div class="compare-box" style="border-top-color:#2d1a5c"><h3 style="color:#9b59b6">Rabbi Yishmael</h3><ul><li>Both inner <em>and</em> outer remainder → <strong>Western base</strong></li><li>Rationale: priest exits Sanctuary heading west; the western base is the natural destination for both</li></ul></div><div class="compare-box" style="border-top-color:#1a3a2d"><h3 style="color:#2ecc71">Rabbi Shimon ben Yoḥai</h3><ul><li>Both inner <em>and</em> outer remainder → <strong>Southern base</strong></li><li>Rationale: Sanctuary entrance is positioned toward the south; priest naturally exits southward and pours at the southern base</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏛️ Two First Temple High Priests: Contradictory Testimony</h2>
+  
+  <table><tr><th>Issue</th><th>Priest A — By Foot</th><th>Priest B — By Hand</th></tr><tr><td>Method used</td><td>Walked around the inner altar perimeter</td><td>Extended arm to each corner from one place</td></tr><tr><td>Reasoning given</td><td>Inner altar perimeter = outer altar; outer is done by foot</td><td>Inner altar is entirely in the north; foot-walking is impossible</td></tr><tr><td>Corresponds to Tanna</td><td><strong>Rabbi Akiva</strong></td><td><strong>Rabbi Yosei</strong></td></tr><tr><td>Reported by</td><td>Rabbi Yishmael (baraita)</td><td>Rabbi Yishmael (baraita)</td></tr><tr><td>Significance</td><td>Confirms foot encircling was practiced historically</td><td>Confirms hand encircling was also practiced — both views have precedent</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Blood and Me'ila: No Misuse Liability</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כִּי הַדָּם הוּא בַּנֶּפֶשׁ יְכַפֵּר — Leviticus 17:11</div><div class="callout"><strong>Key Halakhic Principle</strong> By <strong>Torah law</strong>, sacrificial blood is <em>not subject to me'ila</em> (misuse of consecrated property). The Rabbis added only a <strong>rabbinic-level prohibition</strong>.<br><br><strong>Ulla's derivation (Lev. 17:11):</strong> 'I have given it to you upon the altar' — once designated for atonement, the blood is <em>given to you</em>, not retained by the Most High, so misuse laws do not apply.<br><br><strong>Rabbi Yoḥanan's derivation (Lev. 17:11):</strong> 'The blood makes atonement by reason of the life' — the blood retains the same exempt status <em>before</em> atonement as <em>after</em> atonement; just as it is exempt afterward, it is also exempt beforehand.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 59 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a3a5c;border-color:#4a90d9"><strong>Inner Altar Service</strong><br><small>Sprinkle blood on <em>tohoro</em> (gold surface), coals raked aside</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2d1a1a;border-color:#e74c3c"><strong>By Foot</strong> (Rabbi Akiva)<br><small>Walk around perimeter like outer altar</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2d1a3a;border-color:#9b59b6"><strong>By Hand</strong> (Rabbi Yosei)<br><small>Reach to corners; altar is entirely in north</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a3a2d;border-color:#2ecc71"><strong>Seven Sprinklings</strong><br><small>North (Chananya) or South (Rabbi Yosei) — where corners end</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#3a2d1a;border-color:#c9a84c"><strong>Exit to Outer Altar</strong><br><small>Descend the ramp with remaining blood</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2d3a;border-color:#4a90d9"><strong>Western Base</strong><br><small>Inner offering (Mishna) / both (R. Yishmael)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2d1a3a;border-color:#9b59b6"><strong>Southern Base</strong><br><small>Outer offering (Mishna) / both (R. Shimon b. Yoḥai)</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3a1a;border-color:#2ecc71"><strong>Canal → Kidron River</strong><br><small>Blood sold as fertilizer — no me'ila by Torah law</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 59a-59b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 59a-59b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../58/">← Daf 58</a><a href="../60/">Daf 60 →</a></div>
+</body>
+</html>

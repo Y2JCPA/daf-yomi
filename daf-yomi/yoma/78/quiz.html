@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 78 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Yoma 78 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">Why is crossing water on Yom Kippur less halakhically problematic than on Shabbat?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Water crossings are always permitted on Jewish holidays</div>
+      <div class="option" onclick="select(1,this,1)">B. Shoes are already forbidden on Yom Kippur, so going barefoot raises no new concern</div>
+      <div class="option" onclick="select(1,this,2)">C. One is spiritually purified on Yom Kippur and exempt from physical restrictions</div>
+      <div class="option" onclick="select(1,this,3)">D. The Rabbis never discussed water crossing on Yom Kippur</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Since shoes are prohibited on Yom Kippur, going barefoot is the norm — crossing water barefoot is entirely natural. On Shabbat, the question arises whether to use shoes (permitted if tied tightly) or sandals (which might slip off).</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Why did Ravina refuse to attend the Exilarch's lecture?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. He was ill and could not travel that day</div>
+      <div class="option" onclick="select(2,this,1)">B. He disagreed with the Exilarch's halakhic position</div>
+      <div class="option" onclick="select(2,this,2)">C. There was a pool of water on the path he would not cross wearing sandals</div>
+      <div class="option" onclick="select(2,this,3)">D. He was occupied teaching his own students at the time</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>Ravina explained to Rafram that a pool lay on the road. He personally held that sandals should not be worn when crossing water, making attendance impossible without compromising his practice.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">What was Rabba's method of cooling off on Yom Kippur?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Placing a full silver cup against his body</div>
+      <div class="option" onclick="select(3,this,1)">B. Sitting on damp clay near the study hall</div>
+      <div class="option" onclick="select(3,this,2)">C. Placing a baby (yanuka) next to him, whose body is naturally cool</div>
+      <div class="option" onclick="select(3,this,3)">D. Using a ceramic vessel filled with cold water</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>Rabba used a baby's naturally cool body temperature to cool himself. Rava used an empty silver cup. Full cups and ceramic vessels raised additional concerns about the bathing prohibition.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">According to Rava, why does Rabbi Yosei prohibit using a prosthetic leg on Shabbat?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Because a prosthetic is not a shoe and may not be worn as one</div>
+      <div class="option" onclick="select(4,this,1)">B. Because the rags padding it transform it into a forbidden garment</div>
+      <div class="option" onclick="select(4,this,2)">C. A rabbinic decree lest the wearer remove it and carry it in a public domain</div>
+      <div class="option" onclick="select(4,this,3)">D. Because prosthetics provide shoe-like pleasure and are banned on Yom Kippur</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>Rava resolves the apparent contradiction by ruling that everyone agrees the prosthetic IS a shoe. Rabbi Yosei's Shabbat prohibition is a separate rabbinic decree — lest the amputee remove the prosthetic and inadvertently carry it in a public domain.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Why are young children permitted to wear shoes on Yom Kippur?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Children are fully exempt from all five Yom Kippur prohibitions</div>
+      <div class="option" onclick="select(5,this,1)">B. An adult dressed them; observers assume it was done the day before Yom Kippur</div>
+      <div class="option" onclick="select(5,this,2)">C. Only cork sandals — which are themselves permitted — are used for children</div>
+      <div class="option" onclick="select(5,this,3)">D. The shoe prohibition applies only to those above bar/bat mitzvah age</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>The Gemara reasons that an adult places the shoes on the child, and onlookers will naturally assume this was done before Yom Kippur began. The child's shoes do not create a false appearance that an adult violated the prohibition on the day itself.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":2,"4":2,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

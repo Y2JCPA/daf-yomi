@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 25 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Yoma 25 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Rav Sheshet, at what point in the priests' dressing did the lottery take place?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Before they put on any garments — wearing non-sacred clothes</div>
+      <div class="option" onclick="select(1,this,1)">B. After they had fully donned their sacred priestly garments</div>
+      <div class="option" onclick="select(1,this,2)">C. While actively in the process of putting on sacred garments</div>
+      <div class="option" onclick="select(1,this,3)">D. After the High Priest signaled with a special blessing</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: C — </strong>Rav Sheshet proved from the baraita that the lottery occurred while priests wore sacred garments. The Gemara confirms they were actively dressing — putting on sacred trousers while non-sacred garments were still partially on, dressing from below upward to avoid improper exposure.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">What two facts did Abaye use to prove the Chamber of Hewn Stone was half in sacred space and half in non-sacred space?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Its size and the number of doorways described in the baraita</div>
+      <div class="option" onclick="select(2,this,1)">B. The lottery was in the east (requiring sacred space) and the Elder sat in the west (requiring non-sacred access)</div>
+      <div class="option" onclick="select(2,this,2)">C. The High Priest entered from one side and the other priests from the other</div>
+      <div class="option" onclick="select(2,this,3)">D. Priests wore sacred garments only in the eastern half of the chamber</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>Abaye argued: (1) The lottery was held in the east — this must be in sacred space to fulfill 'In the House of God we walked with the throng.' (2) The Elder sat in the west — chambers fully within sacred space cannot have openings toward non-sacred areas, so the west must be non-sacred.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">How many spigots did Ben Katin install on the large laver, and why is this number significant?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. 13 spigots — one for each of the 13 services in the second lottery</div>
+      <div class="option" onclick="select(3,this,1)">B. 2 spigots — replacing the original design with a more efficient system</div>
+      <div class="option" onclick="select(3,this,2)">C. 12 spigots — proving the sprinkler collects the blood (exactly 12 priests use the laver)</div>
+      <div class="option" onclick="select(3,this,3)">D. 10 spigots — corresponding to the 10 daily priestly services</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>Ben Katin installed 12 spigots, one per priest. If the slaughterer collected the blood, there would sometimes be 13 participants (when a non-priest slaughtered). Since there are only 12 spigots, the sprinkler must be the blood collector — keeping the count at 12.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">According to ben Azzai citing Rabbi Yehoshua, what principle determined the order of carrying the animal's limbs up to the altar ramp?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. The order in which the limbs were cut during skinning</div>
+      <div class="option" onclick="select(4,this,1)">B. The relative meatiness and quality of each cut</div>
+      <div class="option" onclick="select(4,this,2)">C. The way the animal moves when walking alive — front parts first</div>
+      <div class="option" onclick="select(4,this,3)">D. Random assignment by a supplementary lottery</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>Ben Azzai said before Rabbi Akiva in Rabbi Yehoshua's name: the sequence follows how the animal walks when alive. The front limbs, which initiate walking, are carried up to the altar first — the living form of the animal guides the offering sequence.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Why, according to Rava, is the right leg carried up to the altar together with the head?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. They are the two heaviest parts and require two priests to lift</div>
+      <div class="option" onclick="select(5,this,1)">B. The head is bony and low in meat, so the fleshier right leg accompanies it to enhance the offering</div>
+      <div class="option" onclick="select(5,this,2)">C. The right leg is always first because the Torah commands the right side to take precedence</div>
+      <div class="option" onclick="select(5,this,3)">D. Both parts belong to the same priest who won the lottery for the head</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>Rava explained that the head has much bone in it, making it relatively low in meat. To compensate and honor the altar offering, the fleshier right leg accompanies the head. This pairing balances the bony head with a more substantial cut.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":2,"2":1,"3":2,"4":2,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 45 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Yoma 45</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא מה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🥇 Types of Gold — paz, shaḥut, and closed gold explained<br>
+    🪵 Wood Arrangements — Tannaic debate: 2, 3, 4, or 5 on the altar<br>
+    👑 High Priest's Honors — middle ramp, golden flask, special status<br>
+    🕎 Fire for the Candelabrum — must come from the outer altar<br>
+    ⛏️ Yom Kippur Coal Pan — outer altar proven by two key verses<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🪵 Wood Arrangements: Normal Days vs. Yom Kippur</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Rabbi Yehuda</h3><ul><li>Normal days: 2 arrangements</li><li>Yom Kippur: 3 arrangements</li><li>Third mention → thin wood chips only, not a full arrangement</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">Rabbi Yosei</h3><ul><li>Normal days: 3 arrangements</li><li>Yom Kippur: 4 arrangements</li><li>Adds fire-upkeep arrangement</li><li>Plus: Yom Kippur incense arrangement</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#ffffff">Rabbi Meir / Mishna</h3><ul><li>Normal days: 4 arrangements</li><li>Yom Kippur: 5 arrangements</li><li>Adds: limbs & fats arrangement</li><li>Plus: Yom Kippur incense arrangement</li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#ffffff">The Rabbis</h3><ul><li>Agree: 5 arrangements on Yom Kippur</li><li>Leftover limbs/fats returned to large arrangement — no 4th needed</li><li>Differ from Meir on normal days</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">זהב טוב, זהב אופיר, זהב שחוט, זהב סגור, זהב פז</div><div class="callout"><strong>🥇 The Five Types of Gold</strong> <strong>Paz (פז)</strong> — gleams like pearls; named for its lustrous glistening<br><strong>Shaḥut (שחוט)</strong> — highly malleable, spun like thread; contraction of <em>shenitve keḥut</em><br><strong>Closed Gold (סגור)</strong> — so refined it is 'closed off' from impurities<br><strong>Ophir Gold / Good Gold</strong> — superior grades rather than independent categories<br><br><strong>Rav Ashi:</strong> Only 5 true types exist. 'Gold' and 'good gold' are not independent — each of the five types has a <em>regular grade</em> and a <em>superior grade</em>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>👑 High Priest's Special Honors on Yom Kippur</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Ascends the altar ramp in the center</strong> — ordinary priests walk on the eastern side; the High Priest walks in the middle due to his eminence</div><div class="process-arrow">↓</div><div class="process-step"><strong>Sanctifies hands and feet from a golden flask</strong> — not from the communal laver, as befits his elevated status</div><div class="process-arrow">↓</div><div class="process-step"><strong>Extra handful of incense</strong> — a peras in the morning + a peras in the afternoon + an additional handful burned in the Holy of Holies</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Five wood arrangements</strong> — a special extra arrangement on Yom Kippur for the incense burned before the Ark</div><div class="process-arrow">↓</div><div class="process-step"><strong>All turns to the right</strong> — standard rule for all priests, but the High Priest's central position visually honors his unique role</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🪵 How Many Wood Arrangements on the Altar?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yehuda</div><div class="speech">Normally just 2 arrangements. 'Fire on the altar all night' (Lev. 6:2) teaches: one large arrangement, one for incense. The third verse mention teaches only about thin wood chips for kindling — not a separate arrangement.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yosei</div><div class="speech">Normally 3 arrangements. 'Aaron's sons shall put fire on the altar' (Lev. 1:7) teaches that the kindling must happen atop the altar — this requires its own arrangement. So: large, incense, and fire-upkeep.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Meir</div><div class="speech">Normally 4 arrangements. The phrase 'and the fire' is superfluous — it alludes to a fourth arrangement specifically for limbs and fats not fully consumed the previous evening.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">The Rabbis</div><div class="speech">We disagree with Meir: leftover limbs and fats are simply returned to the large arrangement. But we agree there are 5 arrangements on Yom Kippur — the fifth is for the Yom Kippur incense coal pan.</div></div></div><div class="callout" style="margin-top:20px"><strong>Universal Agreement</strong> All opinions agree: an extra wood arrangement is added on Yom Kippur for the incense burned in the Holy of Holies. The debate is only about the count on regular days.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🕎 Proving the Candelabrum Fire Must Come from the Outer Altar</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Where must the fire for lighting the <strong>Menorah (candelabrum)</strong> come from?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Argument A</div><div class="flow-box result-bad"><em>Compare to daily incense</em> → both are inner-sanctuary acts → could use inner altar fire</div></div><div class="flow-col"><div class="flow-label">Argument B</div><div class="flow-box action"><em>Compare to Yom Kippur coal pan</em> → both use outer-sanctuary vessels → must use outer altar fire</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Two equally logical derivations cancel each other — a <strong>verse is required!</strong></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>"A perpetual fire shall be kept burning on the altar, it shall not go out"</strong> (Lev. 6:6) — the 'perpetual fire' I commanded must come from <em>that</em> altar: the outer altar</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⛏️ Proving the Yom Kippur Coal Pan Fire Comes from the Outer Altar</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Where must coals for the <strong>Yom Kippur incense coal pan</strong> come from?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Argument A</div><div class="flow-box action"><em>Compare to candelabrum</em> (just proven) → outer altar fire</div></div><div class="flow-col"><div class="flow-label">Argument B</div><div class="flow-box result-bad"><em>Compare to daily incense</em> → inner altar fire?</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Again: two equally logical derivations — a <strong>verse is required!</strong></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>"He shall take a pan of coals <em>from upon the altar before the Lord</em>"</strong> (Lev. 16:12)<br><small>Both phrases needed: 'from upon the altar' = outer altar; 'before the Lord' rules out the inner altar being implied</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 45 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>5 Types of Gold</strong><br><small>Each has regular + superior grade (Rav Ashi)</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>High Priest's Honors</strong><br><small>Center of ramp · Golden flask · Extra incense</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>Wood Arrangements Debate</strong><br><small>Yehuda: 2 | Yosei: 3 | Meir: 4 → all +1 on Yom Kippur</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>Candelabrum Fire</strong><br><small>Outer altar · Proven by<br>"perpetual fire" (Lev. 6:6)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>YK Coal Pan Fire</strong><br><small>Outer altar · Proven by<br>"from upon the altar before the Lord" (Lev. 16:12)</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 45a-45b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 45a-45b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../44/">← Daf 44</a><a href="../46/">Daf 46 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoma 53 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yoma Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🪔</div>
+  <h1>Yoma 53</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יומא נג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    😤 Sadducees vs. Rabbis — when to light the incense<br>
+    🌿 Smoke-Raiser Spice — maaveh ashan derivation debate<br>
+    🚶 Walking Backward — honoring sacred spaces and teachers<br>
+    🙏 High Priest's Prayer — brief supplication after the service<br>
+    🪨 Foundation Stone — the Ark's exile and what replaced it<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>😤 Sadducees vs. Rabbis: When to Light the Incense</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Sadducees</div><div class="speech">Light the incense <strong>outside</strong> in the Sanctuary, then carry the smoking coal pan into the Holy of Holies. From 'I will appear in a cloud' (Lev. 16:2) — the cloud must already exist upon entry!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Sages</div><div class="speech">Place the incense on the coals only <strong>after</strong> entering the Holy of Holies. 'Before the Lord' (Lev. 16:13) means in God's direct presence — not outside it!</div></div></div><div class="callout" style="margin-top:20px"><strong>⚠️ Stakes</strong> Death penalty is at stake: one who enters the Holy of Holies for no valid purpose — e.g., with deficient incense — incurs liability. The debate over timing is therefore a matter of life and death for the High Priest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🪔 The Incense Offering: Step by Step</h2>
+  
+  <div class="process-bar"><div class="process-step">High Priest fills a coal pan with burning coals from the inner altar</div><div class="process-arrow">↓</div><div class="process-step highlight">He takes a double handful (<em>melo ḥofnav</em>) of incense spices — including the required <strong>smoke-raiser (maaveh ashan)</strong> that causes smoke to rise straight like a staff</div><div class="process-arrow">↓</div><div class="process-step">He enters the Holy of Holies holding the coal pan in his right hand and the incense ladle in his left</div><div class="process-arrow">↓</div><div class="process-step highlight">He places the incense <strong>upon the fire only while standing before the Lord</strong> — the cloud fills the space above the Ark Cover</div><div class="process-arrow">↓</div><div class="process-step">He recites a <strong>brief prayer</strong> (not prolonged, lest the people fear he died inside)</div><div class="process-arrow">↓</div><div class="process-step highlight">He exits <strong>walking backward</strong>, face turned toward the Ark, until he passes through the curtain</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🌿 What Does 'It Shall Cover' Teach? The Smoke-Raiser Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Yosef</div><div class="speech">The verse primarily teaches the obligation to include a <strong>leaf</strong> of the smoke-raiser. A second derivation adds the <strong>root</strong> as a supplement.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">You have it backwards! The <em>root</em> raises smoke better than the leaf — so the primary verse teaches the <strong>root</strong>, and the leaf is the addition.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Sheshet</div><div class="speech">The primary verse teaches inclusion in the Tent of Meeting incense. A separate verse 'and so shall he do' extends this requirement to the <strong>Temple incense</strong>.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rav Ashi</div><div class="speech">One verse establishes the <strong>mitzva itself</strong>; the other teaches that omission renders the incense <strong>invalid</strong> (indispensable requirement, not merely preferred).</div></div></div><div class="callout" style="margin-top:20px"><strong>📌 All Agree</strong> The smoke-raiser must be included to cause the smoke to rise in a straight column (כְּמַקֵּל — like a staff), fulfilling the verse 'it shall cover the Ark Cover.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🚶 Walking Backward: A Protocol of Reverence</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Source:</strong> High Priest exits the Holy of Holies walking backward — derived from King Solomon's posture when leaving Gibeon, and from the verse comparing his departure to his arrival</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Temple Personnel</div><div class="flow-box result-good">Priests, Levites, and Israelites all depart facing inward — backs never turned toward the sacred space</div></div><div class="flow-col"><div class="flow-label">Student & Teacher</div><div class="flow-box result-good">Walk backward until out of sight — as Rabbi Elazar did with Rabbi Yoḥanan; Rava did with Rav Yosef (who was blind)</div></div><div class="flow-col"><div class="flow-label">After Prayer (Amidah)</div><div class="flow-box result-good">Take <strong>3 steps backward</strong>, then say <em>Shalom</em>. If he did not do so — better not to have prayed at all!</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><em>Rav Yosef blessed Rava for honoring him: 'May God's will be that you lift your head over the entire city!'</em> — reward for walking backward as a blind man's student</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🪨 Where Did the Ark Go? Three Opinions</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1e2d40"><h3 style="color:#c9a84c">Exiled to Babylonia</h3><ul><li>Opinion of Rabbi Shimon ben Yoḥai</li><li>Source: II Kings 20:17 — 'nothing [דָּבָר] shall be left'</li><li>דָּבָר = the Ark, which contains the דִּבְרוֹת (Commandments)</li><li>Supported by mishna's language: 'taken into exile' not 'buried'</li><li>Ulla cites Rabbi Matya ben Ḥarash's question to RSbY in Rome</li></ul></div><div class="compare-box" style="border-top-color:#1e2d40"><h3 style="color:#4a90d9">Buried in Its Place</h3><ul><li>Opinion of Rabbi Yehuda ben Lakish</li><li>Source: I Kings 8:8 — 'they are there to this day'</li><li>The Ark was hidden in a chamber beneath the Temple Mount</li><li>King Josiah secreted it away before the Babylonian conquest</li><li>Consistent with Talmudic tradition of the Ark's concealment</li></ul></div><div class="compare-box" style="border-top-color:#1e2d40"><h3 style="color:#2ecc71">Practical Result Either Way</h3><ul><li>The Even HaShetiya (Foundation Stone) remained in the Holy of Holies</li><li>Rose three finger-breadths above the floor</li><li>High Priest rested his coal pan on it on Yom Kippur</li><li>Traditional locus of Creation: the world was founded from this stone</li><li>David and Samuel designated it — from days of the early prophets</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🙏 The High Priest's Brief Prayer</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">יְהִי רָצוֹן מִלְּפָנֶיךָ ה׳ אֱלֹהֵינוּ שֶׁתְּהֵא שָׁנָה זוֹ גְּשׁוּמָה וְחַמָּה</div><div class="callout"><strong>תְּפִלָּה קְצָרָה — The Short Prayer</strong> <strong>May it be Your will, Lord our God and God of our ancestors:</strong><br><br>• That this year be one of <em>rain, dew, and warmth</em><br>• That it not be a year of <em>drought, famine, or heat</em><br>• That the rule of power not depart from the <em>house of Judah</em><br>• That Your nation Israel not depend on <em>one another for sustenance</em><br><br><strong>Why brief?</strong> <small>The people waited outside in fear. A prolonged absence caused them to worry the High Priest had died inside. He therefore did not extend his prayer — lest the people be gripped with terror.</small><br><br><strong>Additional:</strong> <small>Rabbi Ḥanina ben Dosa prayed to stop rain when <em>he</em> was suffering — and to restart it when others were inconvenienced — demonstrating that sincere prayer for communal need is always heard.</small></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yoma 53 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#2c3e50;color:#fff;padding:10px;border-radius:6px;border:2px solid #c9a84c"><strong>Central Dispute:</strong> Sadducees vs. Rabbis — light incense before or after entering?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2c1a1a;border:2px solid #e74c3c;padding:8px;border-radius:6px;color:#fff"><strong style='color:#e74c3c'>Sadducees:</strong> Before entry — 'I will appear in a cloud' (Lev. 16:2)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a1a2c;border:2px solid #4a90d9;padding:8px;border-radius:6px;color:#fff"><strong style='color:#4a90d9'>Rabbis (Halakha):</strong> After entry — 'before the Lord' (Lev. 16:13)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a2c1a;border:2px solid #2ecc71;padding:10px;border-radius:6px;color:#fff"><strong>Required ingredient:</strong> Smoke-raiser (maaveh ashan) — smoke must rise straight as a staff. Four Amoraim debate which verse establishes the obligation and whether leaf or root is primary.</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2c2a1a;border:2px solid #e67e22;padding:10px;border-radius:6px;color:#fff"><strong>Exiting the Holy of Holies:</strong> Walk backward — a model extended to Temple personnel, students, and all who conclude the Amidah (3 steps back + Shalom)</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#2c2c1a;border:2px solid #c9a84c;padding:10px;border-radius:6px;color:#fff"><strong>After the Ark's exile:</strong> The Even HaShetiya (Foundation Stone) marks the sacred center of creation. Debate: was the Ark exiled to Babylonia or buried beneath the Temple?</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yoma 53a-53b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yoma 53a-53b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../52/">← Daf 52</a><a href="../54/">Daf 54 →</a></div>
+</body>
+</html>
