@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taanit 7 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Taanit Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌧️</div>
+  <h1>Taanit 7</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תענית ז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌧️ Rain Greater Than Resurrection — benefits righteous and wicked alike<br>
+    📜 Day of Rain Equals Day the Torah Was Given<br>
+    🔥 Torah Likened to Fire, Water, Wine, and Milk<br>
+    ⚔️ Iron Sharpens Iron — Torah scholars strengthen each other<br>
+    🚫 Five Sins That Cause Rain to Be Withheld<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌧️ The Greatness of Rain — and the Torah It Mirrors</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">יום גשמים גדול מתחיית המתים — שזו לצדיקים וזו לצדיקים ולרשעים</div><div class="callout"><strong>Core Theme</strong> Daf 7 opens with a crescendo of praise: rain surpasses resurrection (Rabbi Abbahu), equals Sinai (Rav Yehuda), and even rivals Creation (Rabbi Ḥama). The daf pivots to rich Torah metaphors — fire, water, wine, milk — each teaching how Torah is transmitted and lost. It closes with five sages identifying specific sins that close the heavens and withhold rain.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🌧️ How Great Is the Day of Rain? Three Comparisons</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Abbahu</div><div class="speech">The day of rain is <strong>greater than the resurrection of the dead</strong>. Resurrection benefits only the righteous — rain benefits <em>both the righteous and the wicked</em>.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Yehuda</div><div class="speech">The day of rain equals <strong>the day the Torah was given at Sinai</strong>: <em>"My doctrine [lekaḥ] shall drop as the rain"</em> (Deut. 32:2) — and <em>lekaḥ</em> always refers to Torah.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Ḥama b. Ḥanina</div><div class="speech">The day of rain equals <strong>the day heaven and earth were created</strong>: <em>"Drop down, heavens, from above; let the skies pour down righteousness"</em> (Isa. 45:8) — evoking the primordial ordering of creation.</div></div></div><div class="callout" style="margin-top:20px"><strong>Escalating Praise</strong> Three different sages each compare rain to a different cosmic event — resurrection, Sinai, and Creation — building a cumulative case for rain's unique theological significance.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔥💧🍷🥛 Torah Is Compared to Four Liquids (and Fire)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">🔥 Fire</h3><ul><li>Fire needs a <strong>pile of wood</strong> — not a lone stick</li><li>→ Torah thrives in <strong>group study</strong>; dims in isolation</li><li><small>Rabba bar bar Ḥana — Jer. 23:29</small></li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">💧 Water</h3><ul><li>Water flows <strong>downward</strong>, not upward</li><li>→ Torah rests only on the <strong>humble</strong></li><li><small>Rabbi Ḥanina bar Idi — Isa. 55:1</small></li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#fff">🍷 Wine</h3><ul><li>Wine improves and is <strong>stored in old vessels</strong></li><li>→ Torah is best <strong>preserved by elders</strong> and seasoned scholars</li><li><small>Rabbi Oshaya — Isa. 55:1</small></li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#fff">🥛 Milk</h3><ul><li>Milk is kept in <strong>humble clay vessels</strong>, not gold</li><li>→ Torah endures with those who make themselves <strong>modest</strong></li><li><small>Rabbi Oshaya — proven by emperor's daughter story</small></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🚫 Sins That Cause Rain to Be Withheld</h2>
+  
+  <table><tr><th>Sin</th><th>Authority</th><th>Proof Text</th></tr><tr><td>Neglect of <em>teruma</em> and tithes</td><td>Rav Ḥisda</td><td><em>"Drought and heat will steal the snow waters"</em> (Job 24:19)</td></tr><tr><td>Slander / evil speech</td><td>Rabbi Shimon ben Pazi</td><td><em>"A backbiting tongue brings an angry countenance"</em> (Prov. 25:23)</td></tr><tr><td>Impudence / brazenness</td><td>Rav Hamnuna (via Rav Salla)</td><td><em>"You had a harlot's forehead, you refused to be ashamed"</em> (Jer. 3:3)</td></tr><tr><td>Dereliction of Torah study</td><td>Rav Ketina</td><td><em>"By slothfulness the rafters sink... the house leaks"</em> (Eccl. 10:18)</td></tr><tr><td>Robbery</td><td>Rabbi Ami</td><td><em>"He covers His hands with the light"</em> — stolen hands cause God to withhold rain (Job 36:32)</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚔️ Iron Sharpens Iron — The Power of Torah Study Partners</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Proverbs 27:17</strong><br><em>"Iron sharpens iron, so a man sharpens the countenance of his friend"</em><br><small>Rabbi Ḥama b. Rabbi Ḥanina</small></div><div class="flow-arrow">↓</div><div class="flow-box action">Two Torah scholars <strong>challenge each other's logic</strong> — each sharpens the other's reasoning</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✅ Study Together</div><div class="flow-box result-good">Both scholars emerge <strong>sharper, wiser</strong> — sparks fly but illuminate</div></div><div class="flow-col"><div class="flow-label">❌ Study Alone</div><div class="flow-box result-bad">Like a lone stick — the <strong>fire never catches</strong>; knowledge remains dim</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📜 Torah for Its Own Sake — Life or Death?</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rabbi Bena'a:</strong> One who learns Torah <em>לשמה (for its own sake)</em> — Torah becomes an <strong>elixir of life</strong>: <em>"It is a tree of life to them who lay hold upon it"</em> (Prov. 3:18)</div><div class="process-arrow">↓</div><div class="process-step">One who learns Torah <em>שלא לשמה (not for its own sake)</em> — Torah becomes a <strong>potion of death</strong>: same verse in Deuteronomy uses <em>ya'arof</em>, evoking a violent storm that destroys</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rava's resolution:</strong> Deut. 32:2 moves from <em>ya'arof</em> (harsh storm) to <em>revivim</em> (gentle showers) — the <em>same Torah</em> can be deadly or life-giving depending entirely on the learner's intent</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Yirmeya to Rabbi Zeira:</strong> Even the tree that may be cut down in war teaches Torah — context determines whether destruction or life is the outcome (<em>"You may eat of them but not cut them down"</em> — Deut. 20:19–20)</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Remedy for withheld rain:</strong> Rabbi Ami teaches — increase prayer, for <em>"He has commanded it due to imploring"</em> (Job 36:32), and <em>imploring</em> means nothing other than prayer</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Taanit 7 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;text-align:center;"><strong>🌧️ Rain is uniquely great</strong><br>Greater than resurrection (Abbahu)<br>= Sinai (Rav Yehuda) = Creation (Ḥama)</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;text-align:center;"><strong>📜 Torah mirrors rain</strong><br><em>lekaḥ</em> drops like rain — nurtures or destroys<br>Intent (<em>לשמה</em>) determines which</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px;text-align:center;"><strong>✅ Torah flourishes when:</strong><br>Studied in groups (fire metaphor)<br>Held with humility (water metaphor)<br>Learned for its own sake</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px;text-align:center;"><strong>❌ Rain withheld when:</strong><br>Tithes neglected • Slander spoken<br>Impudence shown • Torah abandoned<br>Robbery committed</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;text-align:center;"><strong>🙏 Remedy: Prayer</strong><br><em>"He commanded it due to imploring"</em> (Job 36:32)<br>Increased prayer can restore the rains</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Taanit 7a-7b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Taanit 7a-7b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../6/">← Daf 6</a><a href="../8/">Daf 8 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taanit 14 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Taanit Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📯</div>
+  <h1>Taanit 14</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תענית יד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📯 Sounding the Alarm — shofarot vs. Aneinu prayer dispute<br>
+    🤰 Pregnant Women — which fasts they observe (3 baraitot reconciled)<br>
+    🙏 Aneinu Placement — where the individual inserts it in Amida<br>
+    👑 Not Troubling the Community — limit on communal fasts<br>
+    🕌 Prostration & Humility — only the worthy may fall on their face<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📯 Daf 14: Stringencies, Disputes & Humility</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">The mishna's phrase <strong>"How are the last seven fasts more stringent?"</strong> triggers a chain of disputes about what <em>sounding the alarm</em> (מַתְרִיעִין) actually means.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav vs. Rav Yehuda:</strong> Does 'sounding the alarm' mean reciting <em>Aneinu</em> or blowing <em>shofarot</em>? Resolution: both agree on shofarot; they dispute whether Aneinu also constitutes the alarm.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Three contradictory baraitot</strong> about pregnant and nursing women are resolved by Rav Ashi: they fast only on the <em>middle</em> fasts — stricter than first, less severe than last.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Yehuda Nesia</strong> decreed 13 fasts without divine answer. Rabbi Ami rules: <em>"Do not trouble the community excessively"</em> — a foundational halachic principle on rabbinic authority.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Elazar:</strong> Only one certain of being answered — like Joshua or Jehoram — may prostrate himself or don sackcloth before the community. Humility must be genuine.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📯 What Does 'Sounding the Alarm' Mean?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav</div><div class="speech">The mishna's 'sounding the alarm' refers to reciting the <em>Aneinu</em> prayer — the verbal cry to God is the essence of the alarm on fast days.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Yehuda</div><div class="speech">No — 'sounding the alarm' means literally blowing <em>shofarot</em>. The physical blast is the alarm; Aneinu alone does not fulfill it.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Reconsider: on <em>shofarot</em>, <strong>both agree</strong> this constitutes 'sounding the alarm.' The dispute concerns only whether <em>Aneinu</em> also qualifies as such.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Conclusion</div><div class="speech">According to Rav: shofarot <strong>and</strong> Aneinu both constitute the alarm. According to Rav Yehuda: only shofarot qualify — Aneinu alone does not count as 'sounding the alarm.'</div></div></div><div class="callout" style="margin-top:20px"><strong>⚠️ Shabbat Emergency</strong> If a calamity strikes on Shabbat, they cry out — but with <em>voices alone</em>, never shofarot, since shofar-blowing is forbidden on Shabbat (even on Rosh HaShana that falls on Shabbat).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🤰 Pregnant & Nursing Women: Three Baraitot Reconciled</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Baraita 1</h3><ul><li>Fast with community on <strong>first fasts</strong></li><li>Do <strong>not</strong> fast on the last fasts</li><li>Seems to exempt them from the hardest fasts</li></ul></div><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Baraita 2</h3><ul><li>Fast on the <strong>last fasts</strong></li><li>Do <strong>not</strong> fast on the first fasts</li><li>Directly contradicts Baraita 1!</li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#ffffff">Rav Ashi's Resolution</h3><ul><li>Fast only on the <strong>middle fasts</strong></li><li>Middle = stricter than first, lighter than last</li><li>Baraita 1 calls them 'last' relative to the first set</li><li>Baraita 2 calls them 'first' relative to the final set</li><li>All three baraitot are thereby harmonized</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🙏 Where Does the Individual Insert Aneinu?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Question:</strong> An individual fasting — where does he insert the <em>Aneinu</em> (עֲנֵנוּ) prayer in the Amida?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Shmuel bar Sasretai & Rav Ḥiyya bar Ashi</div><div class="flow-box result-good">Insert Aneinu as an <strong>independent blessing</strong> between <em>Go'el Yisrael</em> and <em>Refa'enu</em></div></div><div class="flow-col"><div class="flow-label">Alternative Approach</div><div class="flow-box action">Fold Aneinu <strong>into</strong> the blessing of <em>Shome'a Tefilla</em> (Who Hears Prayer) — no separate blessing added</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>No decisive proof</strong> was produced for either view. The Gemara records the dispute and moves on — the question is revisited later in the tractate.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>👑 Rabbi Elazar: Who May Perform Acts of Public Humility?</h2>
+  
+  <table><tr><th>Act of Humility</th><th>Biblical Prototype</th><th>Source Verse</th><th>Condition Required</th></tr><tr><td>Falling on one's face (נְפִילַת אַפַּיִם)</td><td>Joshua son of Nun</td><td>"Get you up; why do you lie on your face?" (Josh. 7:10)</td><td>Certainty of divine response like Joshua</td></tr><tr><td>Girding in sackcloth (שַׂק)</td><td>Jehoram son of Ahab</td><td>"When the king heard… he rent his garments and put on sackcloth" (II Kgs 6:30)</td><td>Certainty of divine response like Jehoram</td></tr><tr><td>Rending garments (קְרִיעָה)</td><td>Moses & Aaron</td><td>They fell on their faces while Joshua & Caleb rent garments (Num. 14:6)</td><td>Only for those of Moses/Aaron's stature</td></tr><tr><td>Worship by rising — messianic era</td><td>Kings</td><td>"Kings shall see and arise" (Isa. 49:7)</td><td>For kings in the messianic age</td></tr><tr><td>Worship by bowing — messianic era</td><td>Ministers/Princes</td><td>"Princes also shall prostrate themselves" (Isa. 49:7)</td><td>For ministers and nobles in the messianic age</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Not Troubling the Community Excessively</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אֵין מַטְרִיחִין אֶת הַצִּבּוּר יוֹתֵר מִדַּאי</div><div class="callout"><strong>📜 Foundational Halachic Principle</strong> <strong>Rabbi Yehuda Nesia</strong> decreed <strong>13 fast days</strong> during a communal crisis — yet received no divine answer. He considered imposing still more fasts.<br><br><strong>Rabbi Ami</strong> intervened: <em>"They said: One does not trouble the community excessively."</em> This places a practical and moral limit on the number of fasts a leader may decree.<br><br><strong>Rabbi Abba objected:</strong> Rabbi Ami ruled against the majority on his own authority. Rabbi Ḥiyya bar Abba citing Rabbi Yoḥanan held that the full fast-cycle restriction applies only in <em>Eretz Yisrael</em>, not Babylonia.<br><br><strong>Parallel case:</strong> The people of <em>Nineveh</em> asked Rabbi Yehuda HaNasi about praying for rain in <em>Tammuz</em>. <strong>Rav Naḥman:</strong> Pray in the blessing of the years (<em>Birkat HaShanim</em>). <strong>Rav Sheshet:</strong> Pray in <em>Shome'a Tefilla.</em></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Taanit 14 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;font-weight:bold;"><strong>Last 7 Fast Days</strong><br><small>Maximum communal stringency</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:6px;padding:8px;"><strong>📯 The Alarm</strong><br>Shofarot = unanimous<br>Aneinu = disputed<br><small>(Rav vs. Rav Yehuda)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:6px;padding:8px;"><strong>🤰 Who Fasts</strong><br>Pregnant/nursing women<br>fast on <em>middle</em> fasts only<br><small>(Rav Ashi's resolution)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:6px;padding:8px;"><strong>🙏 Aneinu Placement</strong><br>Individual: between<br><em>Go'el</em> & <em>Refa'enu</em><br><small>(or in Shome'a Tefilla)</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>If 13 Fasts Go Unanswered</strong><br><em>"Do not trouble the community excessively"</em><br><small>— Rabbi Ami's limiting principle</small></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>Public Humility Requires Worthiness</strong><br>Prostration • Sackcloth • Rending<br><small>Only for those certain of divine response — Rabbi Elazar</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Taanit 14a-14b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Taanit 14a-14b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../13/">← Daf 13</a><a href="../15/">Daf 15 →</a></div>
+</body>
+</html>

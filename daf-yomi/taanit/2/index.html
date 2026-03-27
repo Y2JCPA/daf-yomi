@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taanit 2 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Taanit Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌧️</div>
+  <h1>Taanit 2</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תענית ב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌬️ Mashiv HaRuach — When to begin mentioning rain in Amida<br>
+    ⚖️ Eliezer vs Yehoshua — Debate on rain during Sukkot<br>
+    🔑 Three Keys — God's direct control over rain, birth, resurrection<br>
+    💧 Mem-Yod-Mem — Torah's hidden allusion to the water libation<br>
+    🙏 Gevurot — Why rain is praised in the second blessing<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ The Great Sukkot Rain Debate</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Eliezer</div><div class="speech">Begin mentioning rain from the <strong>first day of Sukkot</strong>. One may praise God's might at any time — I said to <em>mention</em> it, not to <em>request</em> it!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Yehoshua</div><div class="speech">Rain during Sukkot is a <strong>sign of a curse</strong> — it forces us from our sukkot! Why mention something inauspicious during the festival?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Eliezer</div><div class="speech">Praise of God is never inappropriate. The four species come to <strong>appease for water</strong> — they symbolize the rains of the coming year!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Yehoshua</div><div class="speech">One should only praise God for rain <strong>in its proper season</strong>. Rain in Nisan is cursed (Mishna 12b) — rain is not always a blessing!</div></div></div><div class="callout" style="margin-top:20px"><strong>Halacha</strong> The law follows Rabbi Yehoshua via Rabbi Yehuda: one begins mentioning rain only at Shemini Atzeret, when the rainy season truly begins</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🤔 Where Does the Tanna Stand? The Gemara's Opening Question</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Mishna opens:</strong> "From when does one mention the <em>might</em> of rains?" — implying the obligation to mention rain is already established</div><div class="flow-arrow">↓</div><div class="flow-box action">The Gemara asks: where was this obligation established? Why didn't the tanna teach it in Berakhot at the beginning of Zera'im?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Source 1 — Berakhot</div><div class="flow-box result-good">Mention rain (Mashiv HaRuach) in the <strong>2nd blessing</strong> of Amida — Gevurot, alongside resurrection of the dead</div></div><div class="flow-col"><div class="flow-label">Source 2 — Rosh HaShana</div><div class="flow-box result-good">"On Sukkot, all creatures are judged <strong>for water</strong>" — connects rain to Sukkot season and raises the question of <em>when</em></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Taanit interrupts from Rosh HaShana to answer: <strong>from when</strong> does this obligation begin each year?</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📅 Four Opinions: When Does One Begin Mentioning Rain?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbi Eliezer</h3><ul><li>Day 1 of Sukkot (first day)</li><li>Derived from the mitzva of lulav</li><li>As lulav is taken, one begins mention</li><li>Lulav = appeasement for water</li><li>Praise of God's might is always fitting</li></ul></div><div class="compare-box" style="border-top-color:#2d1a3a"><h3 style="color:#9b59b6">Rabbi Yehuda ben Beteira</h3><ul><li>Day 2 of Sukkot</li><li>First Torah allusion to water libation appears on day 2</li><li>Mem-Yod-Mem (מים) hidden in libation verses</li><li>The plural וּנְסָכֶיהָ hints at a second libation — water</li></ul></div><div class="compare-box" style="border-top-color:#1a3a2d"><h3 style="color:#2ecc71">Rabbi Akiva</h3><ul><li>Day 6 of Sukkot</li><li>Verse: וּנְסָכֶיהָ (Numbers 29:31)</li><li>Extra letter alludes to two libations</li><li>Holds like Rabbi Yehuda ben Beteira re: water libation</li></ul></div><div class="compare-box" style="border-top-color:#3a2a1a"><h3 style="color:#e67e22">Rabbi Yehuda (R' Yehoshua) — Halacha</h3><ul><li>Shemini Atzeret (8th/last day)</li><li>Evening prayer leader: begins mentioning</li><li>Morning prayer leader: begins requesting</li><li>Rain now is a blessing, not a curse</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔑 Three Keys in God's Hand</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">שְׁלֹשָׁה מַפְתְּחוֹת בְּיַד הַקָּדוֹשׁ בָּרוּךְ הוּא שֶׁלֹּא נִמְסְרוּ בְּיַד שָׁלִיחַ</div><div class="callout"><strong>Rabbi Yoḥanan — Aggadah</strong> Three keys were <strong>never transmitted to an intermediary</strong> — they remain directly in the hand of the Holy One, Blessed be He:<br><br>🌧️ <strong>Rain</strong> — "The Lord will open for you His good treasure, the heavens, to give the rain" <em>(Deut. 28:12)</em><br><br>👶 <strong>Childbirth</strong> — "God remembered Rachel… and He opened her womb" <em>(Gen. 30:22)</em><br><br>⚰️ <strong>Resurrection of the Dead</strong> — "You shall know that I am the Lord when I have opened your graves" <em>(Ezek. 37:13)</em><br><br><small>In Eretz Yisrael, a <strong>4th key</strong> is added: Livelihood — "You open Your hand and satisfy every living thing" (Ps. 145:16). Rabbi Yoḥanan excluded it since livelihood is subsumed under rain.</small></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>💧 The Mem-Yod-Mem (מַיִם) Hint — Water Libation Encoded in Torah</h2>
+  
+  <table><tr><th>Day of Sukkot</th><th>Verse (Numbers 29)</th><th>Key Hebrew Word</th><th>Extra Letter</th><th>Meaning</th></tr><tr><td>Day 1</td><td>29:18</td><td>וְנִסְכֵּיהֶם — their libations (plural)</td><td>—</td><td>No special hint</td></tr><tr><td>Day 2</td><td>29:19</td><td>וּנְסָכֶיהָ — and its libations (extra plural)</td><td>מ (Mem)</td><td>First allusion to water libation</td></tr><tr><td>Day 6</td><td>29:31</td><td>וּנְסָכֶיהָ — same plus וּנְסָכֶהָ</td><td>י (Yod)</td><td>Second allusion encoded</td></tr><tr><td>Day 7</td><td>29:33</td><td>כְּמִשְׁפָּטָם — as is their law</td><td>ם (final Mem)</td><td>Third allusion encoded</td></tr><tr><td>Combined</td><td>מ + י + ם</td><td>מַיִם = Water!</td><td>✓ Water</td><td>Torah alludes to water libation on days 2–7</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🙏 Why Is Rain Mentioned in Gevurot (the Second Blessing)?</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Question:</strong> Why is the mention of rain placed specifically in the <em>second</em> blessing of the Amida — Gevurot?</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 1 — Rain = Gevurah (might):</strong> Rabbi Yoḥanan: rain falls with <em>mighty acts</em> of God. Job 37:5 — "God does great things beyond comprehension [לְאֵין חֵקֶר]"</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 2 — Verbal Analogy (Gezerah Shavah):</strong> The word חֵקֶר (comprehension) in Job appears also in Isaiah 40:28 — "His understanding is beyond comprehension [אֵין חֵקֶר]" — said of God's creation of the world. This links rain's might to creation itself.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 3 — Mention in Prayer specifically:</strong> Baraita on Deut. 11:13 — "to serve Him with all your heart" = the Amida prayer. The very next verse: "I will give the rain of your land" — rain belongs in prayer!</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 4 — Alongside resurrection:</strong> Rain is comparable in power to resurrection — it revives the world as resurrection revives the dead. Therefore it belongs in the blessing of resurrection (Gevurot).</div><div class="process-arrow">↓</div><div class="process-step"><strong>Conclusion:</strong> Recite מַשִּׁיב הָרוּחַ וּמוֹרִיד הַגֶּשֶׁם in Gevurot — God's blessing of mighty acts and resurrection of the dead</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Taanit 2 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a3a;border-color:#4a90d9"><strong>Pre-established:</strong> Mention rain in Gevurot (Berakhot) | Rain judged on Sukkot (Rosh HaShana)</div><div class="flow-arrow">↓</div><div class="flow-box question" style=""><strong>Taanit's question:</strong> From when exactly does this mention begin?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#4a90d9"><strong style='color:#4a90d9'>R' Eliezer</strong><br>Day 1 of Sukkot<br><small>from lulav</small></div></div><div class="flow-col"><div class="flow-box" style="border-color:#9b59b6"><strong style='color:#9b59b6'>R' Yehuda b. Beteira</strong><br>Day 2<br><small>מים hint</small></div></div><div class="flow-col"><div class="flow-box" style="border-color:#2ecc71"><strong style='color:#2ecc71'>R' Akiva</strong><br>Day 6<br><small>libation verse</small></div></div><div class="flow-col"><div class="flow-box" style="border-color:#e67e22"><strong style='color:#e67e22'>Halacha</strong><br>Shemini Atzeret<br><small>R' Yehuda/Yehoshua</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3a1a;border-color:#2ecc71">Rain during Sukkot = <strong>curse</strong> (forces one from sukkah) | Rain after Sukkot = <strong>blessing</strong> | God holds the key to rain directly — it is the mightiest of divine acts</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Taanit 2a-2b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Taanit 2a-2b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">Daf 3 →</a></div>
+</body>
+</html>

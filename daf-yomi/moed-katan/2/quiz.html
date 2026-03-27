@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moed Katan 2 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Moed Katan 2 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">What does the term בֵּית הַשְּׁלָחִין (beit hashelahin) denote, and how does the Gemara derive its meaning?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. A field watered by rain; derived from a verse about rainfall in Deuteronomy</div>
+      <div class="option" onclick="select(1,this,1)">B. A field requiring supplemental irrigation; the Gemara derives 'thirst' from a verse in Isaiah about parched land</div>
+      <div class="option" onclick="select(1,this,2)">C. A field planted with multiple species; derived from the laws of diverse kinds</div>
+      <div class="option" onclick="select(1,this,3)">D. A field near a public cistern; derived from a verse about communal water storage</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>The Gemara derives that 'beit hashelahin' connotes thirst from the verse in Isaiah (35:1): 'The wilderness and the parched land [tziyah] shall be glad.' A thirsty field requires irrigation — without it, the crop will be lost.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">According to the baraita cited by Rav Pappa, what does Rabbi Yehuda permit from a newly emerged spring on Chol HaMoed?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Only irrigating beit hashelahin, same as an old spring</div>
+      <div class="option" onclick="select(2,this,1)">B. Constructing entirely new water channels for the public</div>
+      <div class="option" onclick="select(2,this,2)">C. Irrigating even a beit haba'al (a field that ordinarily suffices with rainwater)</div>
+      <div class="option" onclick="select(2,this,3)">D. Watering crops on Yom Tov itself in addition to Chol HaMoed</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>Rabbi Yehuda is more lenient than the anonymous mishna: since a new spring's walls have not yet stabilized and it may collapse and be lost, one may use all its water — even to irrigate a beit haba'al that does not normally need supplemental watering.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Rabba and Rav Yosef disagree about which Shabbat prohibition one who weeds or waters seedlings violates. What is Rav Yosef's reasoning?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. It resembles plowing because both loosen the earth</div>
+      <div class="option" onclick="select(3,this,1)">B. It resembles reaping because both remove unwanted material from the ground</div>
+      <div class="option" onclick="select(3,this,2)">C. It resembles sowing because both promote plant growth</div>
+      <div class="option" onclick="select(3,this,3)">D. It resembles threshing because both separate the useful from the unwanted</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>Rav Yosef reasons that just as sowing promotes the growth of planted crops, so too weeding (removing competition) and watering (nourishing the plant) both achieve the objective of enhancing plant growth. Therefore the relevant prohibition is sowing.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">How does Abaye explain why the mishna permits irrigating beit hashelahin during the Sabbatical Year?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Irrigation is not considered agricultural labor in any rabbinic ruling</div>
+      <div class="option" onclick="select(4,this,1)">B. The field owner will suffer a financial loss, which always overrides all Shemitah restrictions</div>
+      <div class="option" onclick="select(4,this,2)">C. The mishna refers to Shemitah in the present era, when it is only a Rabbinic decree — per Rabbi Yehuda HaNasi</div>
+      <div class="option" onclick="select(4,this,3)">D. The spring emerged on the Festival itself, triggering a separate leniency that overrides Shemitah</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>Abaye explains that the mishna follows Rabbi Yehuda HaNasi, who teaches that in the current era (with Yovel inactive), Shemitah observance is mandated only by Rabbinic decree. Since the restriction is Rabbinic rather than Torah-level, the Sages permitted irrigation to prevent significant crop loss.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Why does the Gemara reject Rav Huna's identification of Rabbi Eliezer ben Ya'akov as the anonymous tanna of the mishna?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Rabbi Eliezer ben Ya'akov lived a generation after the mishna was compiled</div>
+      <div class="option" onclick="select(5,this,1)">B. Rabbi Eliezer ben Ya'akov explicitly permits all irrigation on Chol HaMoed in a separate ruling</div>
+      <div class="option" onclick="select(5,this,2)">C. His ruling addresses only extra profit-seeking labor — we cannot infer he would also restrict labor performed to prevent a considerable loss</div>
+      <div class="option" onclick="select(5,this,3)">D. The Gemara found he contradicts himself regarding beit haba'al in a different tractate</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>Rabbi Eliezer ben Ya'akov's ruling (don't irrigate the whole field via channels) only restricts labor done to gain extra profit beyond what is needed. The Gemara points out that we cannot assume he would equally restrict labor in cases of considerable financial loss — a fundamentally different and more pressing situation.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":2,"4":2,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

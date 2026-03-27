@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taanit 12 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Taanit Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌅</div>
+  <h1>Taanit 12</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תענית יב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌅 Sunset Requirement — Rav Ḥisda's rule for a valid fast<br>
+    🤝 Accepting a Fast — Rav vs Shmuel on timing of kabbalah<br>
+    😴 Dozing Rule — sleep's halakhic effect on eating before a fast<br>
+    👟 Fast Day Prohibitions — shoes, work, and pleasure activities<br>
+    📅 Communal Fast Escalation — the three-stage drought response<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📅 The Three-Stage Communal Fast System (Mishna 12b)</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Stage 1:</strong> 3 individual fasts — partial day, eating permitted before nightfall, lenient restrictions</div><div class="process-arrow">↓</div><div class="process-step"><strong>No rain answered →</strong> court decrees the next stage upon the community</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Stage 2:</strong> 3 communal fasts — eat and drink only while still day (before nightfall); bathing, anointing, shoes, and marital relations forbidden</div><div class="process-arrow">↓</div><div class="process-step"><strong>Still no rain →</strong> court decrees seven more severe fasts (13 total)</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Stage 3:</strong> 7 severe fasts — no eating after nightfall, shofar blown publicly, shops partly closed, Torah read and prayers added</div><div class="process-arrow">↓</div><div class="process-step"><strong>Still no answer →</strong> no further decrees; community adopts mourning customs — less business, building, planting, bathing, and greeting</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🌅 Does the Sun Need to Set for a Valid Fast?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ḥisda</div><div class="speech">Any fast upon which the sun does not set — where one eats in the middle of the day — is <strong>not called a fast at all</strong>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Objection: Priestly Watch</div><div class="speech">The kohanim and Levites of the weekly priestly watch would fast during their service day yet eat in the evening — and their fast counts!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ḥisda (Response)</div><div class="speech">The priestly watch fast is a unique <em>communal</em> institution with special rules — it cannot override the general principle for individual fasts.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Objection: Rabbi Yoḥanan</div><div class="speech">Rabbi Yoḥanan would say: 'I will be in a fast until I come to my house' — a partial-day fast with no sunset! Yet it was considered valid.</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Resolution</div><div class="speech">Rabbi Yoḥanan explicitly accepted a fast of <em>hours only</em>. Rav Ḥisda's rule targets regular fasts where one intends a full day but eats midday — that is no fast.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Rule (Rav Ḥisda)</strong> A standard fast must last until sunset to be called a fast. A partial fast is only valid if one explicitly accepted a fast of limited hours from the outset.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🤝 When Must Kabbalah (Acceptance) Occur?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Rav</h3><ul><li>Accept the fast during <strong>minḥa gedolah</strong> (early afternoon) of the preceding day</li><li>From midday onward — at the minḥa prayer</li><li>Verbal declaration during tefillat minḥa is required</li><li>Missing this window invalidates the fast's halachic status</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">Shmuel</h3><ul><li>Accept during <strong>minḥa ketana</strong> (late afternoon) of the preceding day</li><li>Must be 'while it is still day' — the final afternoon prayer</li><li>Megillat Ta'anit says: <em>'he will be bound'</em> — binds himself at prayer</li><li>Fast not accepted beforehand is <strong>not called a fast</strong></li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#ffffff">What If One Forgot?</h3><ul><li>Accidentally fasted without prior acceptance?</li><li>Rabba bar Sheila: he is like <em>a bell</em> — fasts but earns no mitzvah reward</li><li>Dozed off at minḥa time: Gemara implies he may still accept upon waking</li><li>The <strong>kabbalah</strong> is the formal act that transforms abstaining into a fast</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>😴 Can One Eat the Night Before a Communal Fast?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Night before communal fast — may one still eat and drink?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Has NOT slept at all</div><div class="flow-box result-good">May eat and drink until <strong>dawn</strong><br><small>(Rabbi Yehuda HaNasi)</small></div></div><div class="flow-col"><div class="flow-label">Finished meal, stood up</div><div class="flow-box result-good">May still eat more — completing a meal does not close the door to further eating<br><small>(Rava's baraita)</small></div></div><div class="flow-col"><div class="flow-label">Dozed off (נִים וְלֹא נִים)</div><div class="flow-box result-bad"><strong>Cannot eat further</strong><br>Rav Ashi: asleep but not fully asleep — answers when called, cannot reason, remembers when reminded</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Practical rule: Dozing is the breaking point — once one nods off, eating for that night effectively ends and the fast has begun</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>👟 What Is Permitted and Forbidden on Fast Days?</h2>
+  
+  <table><tr><th>Activity</th><th>Permitted?</th><th>Category</th><th>Source & Reason</th></tr><tr><td>Bathing</td><td>Forbidden</td><td>Pleasure</td><td>Mishna — provides bodily pleasure</td></tr><tr><td>Anointing / smearing</td><td>Forbidden</td><td>Pleasure</td><td>Mishna — provides bodily pleasure</td></tr><tr><td>Marital relations</td><td>Forbidden</td><td>Pleasure</td><td>Mishna — provides pleasure</td></tr><tr><td>Wearing leather shoes</td><td>Forbidden</td><td>Pleasure/comfort</td><td>Mishna — sign of normalcy and comfort</td></tr><tr><td>Work (melacha)</td><td>Permitted</td><td>Suffering</td><td>Gemara 12b — causes suffering, not pleasure</td></tr><tr><td>Shoes on individual fast</td><td>Forbidden</td><td>Precaution</td><td>Rav Kahana: may have accepted a communal fast</td></tr><tr><td>Shoes worn upside-down</td><td>Permitted compromise</td><td>Workaround</td><td>Abaye & Rava did this at the synagogue</td></tr><tr><td>Switching shoes (R-L)</td><td>Permitted compromise</td><td>Workaround</td><td>Mareimar & Mar Zutra wore right shoe on left</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">תַּעֲנִית מוֹעֶלֶת לַחֲלוֹם כָּאֵשׁ לַנְּעֹרֶת</div><div class="callout"><strong>🔥 Fasting for a Bad Dream — and Borrowing a Fast</strong> <strong>Rabba bar Meḥasseya said in the name of Rav Ḥama bar Gurya in the name of Rav:</strong><br>A fast is effective to neutralize a bad dream like <strong>fire is effective for burning chaff</strong>.<br><br><strong>Rav Ḥisda adds:</strong> The fast must be on the <em>same day</em> as the dream — and this applies even on <strong>Shabbat</strong>, when fasting is normally forbidden.<br><br><strong>Borrowing a Fast (Rav):</strong> A person may 'borrow' a fast — if unable to fast on the intended day, he may annul it and repay on another day. Because an individual fast is like a vow, and vows may be rescheduled with proper intent. <em>Shmuel's reaction: 'This is obvious!'</em></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Taanit 12 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Individual Fast Validity</strong><br><small>Three requirements must converge</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:6px;border-radius:4px;"><strong>Sun must set</strong><br><small>Rav Ḥisda: no eating midday</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:6px;border-radius:4px;"><strong>Kabbalah at Minḥa</strong><br><small>Rav / Shmuel: day before</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:6px;border-radius:4px;"><strong>No eating after dozing</strong><br><small>Rav Ashi's definition</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Community Drought Protocol</strong><br>3 lenient → 3 communal → 7 severe fasts → mourning customs</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:6px;border-radius:4px;"><strong>Fast Day: Forbidden</strong><br><small>Bathing, anointing, shoes, relations</small><br><em>(pleasure-based)</em></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:6px;border-radius:4px;"><strong>Fast Day: Permitted</strong><br><small>Work / melacha</small><br><em>(causes suffering)</em></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Taanit 12a-12b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Taanit 12a-12b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../11/">← Daf 11</a><a href="../13/">Daf 13 →</a></div>
+</body>
+</html>

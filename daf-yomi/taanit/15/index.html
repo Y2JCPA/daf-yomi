@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taanit 15 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Taanit Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🕍</div>
+  <h1>Taanit 15</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תענית טו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Fast Day Ritual — Ark removed to the city square with ashes<br>
+    🙏 24 Blessings — 18 regular + 6 special fast additions<br>
+    📯 He Who Answered — Seven historical precedents invoked in prayer<br>
+    ⚖️ Mishmar & Beit Av — Priests' differing fasting obligations<br>
+    🗓️ Calendar Limits — Megillat Ta'anit, Thursdays, and holidays<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📋 Order of the Fast Day Ritual (Final Seven Fasts)</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Remove the Ark</strong> from its locked room to the <em>main city square</em></div><div class="process-arrow">↓</div><div class="process-step">Place <strong>burnt ashes</strong> upon the ark as a symbol of communal mourning</div><div class="process-arrow">↓</div><div class="process-step">Place ashes on the head of the <strong>Nasi</strong>, then the <strong>deputy Nasi</strong></div><div class="process-arrow">↓</div><div class="process-step"><strong>Each person</strong> places ashes upon their own head</div><div class="process-arrow">↓</div><div class="process-step highlight">Elder delivers <strong>words of reproof</strong> — citing Nineveh: God saw their <em>deeds</em>, not their fasting</div><div class="process-arrow">↓</div><div class="process-step">Appoint an experienced, <strong>poor prayer leader</strong> with children and a clean record</div><div class="process-arrow">↓</div><div class="process-step highlight">Recite <strong>24 blessings</strong>: 18 regular Amida + 6 special fast additions</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📅 Escalating Fast Day Obligations</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Community Declares Fast Series</strong><br><small>Drought or severe communal distress</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Fasts 1–3</div><div class="flow-box result-good">Individuals fast<br>No ark removal<br>Shops open<br><small>Minimal public disruption</small></div></div><div class="flow-col"><div class="flow-label">Fasts 4–6</div><div class="flow-box question">Shops close early<br>Shofar sounded<br>Increased restrictions<br><small>Public pressure mounts</small></div></div><div class="flow-col"><div class="flow-label">Fasts 7–13</div><div class="flow-box result-bad"><strong>Ark removed to square</strong><br>Ashes on Nasi's head<br>24 blessings recited<br><small>Full communal mourning</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Gemara clarifies:</strong> Ark removal and ashes belong to the <em>final seven fasts only</em><br><small>(Baraita, Taanit 15b)</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📯 The Seven 'He Who Answered' Responses — Fast Day Amida</h2>
+  
+  <table><tr><th>Blessing</th><th>Historical Figure</th><th>Event Invoked</th><th>Concluding Formula</th></tr><tr><td>1st</td><td>Abraham אברהם</td><td>Mount Moriah — the Akeidah</td><td>גּוֹאֵל יִשְׂרָאֵל — Redeemer of Israel</td></tr><tr><td>2nd</td><td>Our Forefathers</td><td>The Reed Sea — the Exodus</td><td>Who remembers forgotten things</td></tr><tr><td>3rd</td><td>Joshua יהושע</td><td>Gilgal — shofar at Jericho</td><td>Who hears the shofar sound</td></tr><tr><td>4th</td><td>Samuel שמואל</td><td>Mitzpah — Philistine war</td><td>Who hears the cry</td></tr><tr><td>5th</td><td>Elijah אליהו</td><td>Mount Carmel — fire descends</td><td>Who hears prayer</td></tr><tr><td>6th</td><td>Jonah יונה</td><td>Belly of the great fish</td><td>Who answers in a time of trouble</td></tr><tr><td>7th</td><td>David & Solomon</td><td>Jerusalem — Temple dedication</td><td>Who has mercy on the land</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚖️ Priestly Watch (Mishmar) vs. Patrilineal Family (Beit Av) — Fasting Rules</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#c9a84c">Tanna Kamma (Mishna)</h3><ul><li>Fasts 1–3: Mishmar fasts, does NOT complete</li><li>Fasts 1–3: Beit Av does NOT fast at all</li><li>Fasts 4–6: Both fast but do NOT complete</li><li>Fasts 7–13: Both fast AND complete</li><li>Mishmar: may drink wine at night, not day</li><li>Beit Av: may NOT drink wine day or night</li></ul></div><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#4a90d9">Rabbinic Opinion</h3><ul><li>Fasts 1–3: NEITHER group fasts at all</li><li>Fasts 4–6: Mishmar fasts, does NOT complete</li><li>Fasts 4–6: Beit Av does NOT fast at all</li><li>Fasts 7–13: Both fast AND complete</li><li><em>Rationale: Priests must be able</em></li><li><em>to perform Temple service properly</em></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏺 Why Is the Nasi First to Receive Ashes?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Question</div><div class="speech">For matters involving a curse or mourning, we normally begin with the <em>least important</em> person. Why then does the Nasi — the most important — receive ashes placed on his head first?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Placing ashes on <em>another person</em> is an act of honor, not self-mourning. When you perform an act of honor, you begin with the <strong>greatest</strong> — this follows the 'matters of greatness' principle.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Greatness Order</div><div class="speech"><strong>Precedent:</strong> Moses → Aaron → Elazar → Itamar (Lev. 10:6). When honoring, begin with the most distinguished.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Curse Order</div><div class="speech"><strong>Contrast:</strong> When receiving rebuke or punishment, the process reverses — lesser persons are addressed first, greatest last.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The ashes are placed on the Nasi first because being chosen to receive ashes from the community's hands is itself a leadership honor — and honors always begin with the greatest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🗓️ Restrictions on Declaring Fast Days</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אֵין גּוֹזְרִין תַּעֲנִית עַל הַצִּבּוּר בַּתְּחִלָּה בַּחֲמִישִׁי</div><div class="callout"><strong>When May a Fast NOT Be Decreed?</strong> <strong>May not begin a fast series on Thursday</strong> — doing so causes Erev Shabbat price spikes as everyone rushes to buy food for after the fast and for Shabbat.<br><br><strong>May not decree fasts on:</strong><br>• <em>New Moons (Rosh Chodesh)</em><br>• <em>Hanukkah</em><br>• <em>Purim</em><br><br><strong>Megillat Ta'anit — days listed therein:</strong><br>• Days with no eulogizing: also no eulogizing the day <em>before</em>, permitted the day <em>after</em><br>• Days with no fasting: permitted to fast both <em>before</em> and <em>after</em><br><br><small>Rabbi Yosei dissents: even fasting the day before a no-fast day is prohibited</small><br><br><strong>Mid-series conflict:</strong> If a fast day falls on Hanukkah or Purim mid-series, the community <em>does not interrupt</em> the series — they complete and resume.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Taanit 15 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a4a;border:2px solid #c9a84c;padding:10px;border-radius:6px;"><strong>Communal Crisis</strong><br><small>Drought, plague, or distress</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a3a;border:1px solid #4a90d9;padding:8px;border-radius:4px;"><strong>Fasts 1–3</strong><br><small>Private observance</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a3a;border:1px solid #e67e22;padding:8px;border-radius:4px;"><strong>Fasts 4–6</strong><br><small>Public restrictions</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a3a;border:1px solid #e74c3c;padding:8px;border-radius:4px;"><strong>Fasts 7–13</strong><br><small>Full communal ritual</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#2a1a3a;border:2px solid #9b59b6;padding:10px;border-radius:6px;"><strong>Ark to City Square + Ashes</strong><br>Nasi first → community<br><small>Honor protocol: greatest first</small></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3a2a;border:2px solid #2ecc71;padding:10px;border-radius:6px;"><strong>24 Blessings + 'He Who Answered'</strong><br>Abraham → Forefathers → Joshua → Samuel → Elijah → Jonah → David<br><small>History invoked as proof that God hears</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Taanit 15a-15b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Taanit 15a-15b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../14/">← Daf 14</a><a href="../16/">Daf 16 →</a></div>
+</body>
+</html>

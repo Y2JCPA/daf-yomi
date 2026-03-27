@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taanit 25 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Taanit Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌧️</div>
+  <h1>Taanit 25</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תענית כה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏠 Miracles in Ḥanina ben Dosa's Home — poverty sanctified by faith<br>
+    💭 Elazar ben Pedat's Dream — dialogue with God about suffering<br>
+    🙏 Fasting Decrees — leaders tested, humility rewarded<br>
+    🌿 Palm & Cedar — metaphors for the righteous<br>
+    ⏰ Rain Timing Rules — when to complete or stop a fast<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌧️ Daf 25: Faith, Poverty & Rain</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Ḥanina ben Dosa's household</strong><br>Miraculous bread, vinegar-lamp, goats & beams — poverty transformed</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Rabbi Elazar ben Pedat</strong><br>Extreme poverty → faints after bloodletting → dream dialogue with God</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Communal fasts for rain</strong><br>Ḥama bar Ḥanina, Levi, Ḥiyya bar Lulyani, Rabbi Eliezer, Rabbi Akiva</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Humility Works</div><div class="flow-box result-good">Rain falls • Avinu Malkeinu • Ḥiyya redirects clouds</div></div><div class="flow-col"><div class="flow-label">Arrogance Punished</div><div class="flow-box result-bad">Levi rebukes God → becomes lame</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Rain timing laws + Ridya</strong><br>When rain falls determines whether fast is completed</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🪙 The Golden Table Leg</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">R. Ḥanina's Wife</div><div class="speech">Until when will we suffer this poverty? Pray that something be given to us from Heaven!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Heaven</div><div class="speech">A golden table leg descended from Heaven in response to his prayer.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R. Ḥanina ben Dosa</div><div class="speech">She dreamed the righteous eat at complete golden tables in the World-to-Come. Our table will be defective. Pray the leg be taken back!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R. Ḥanina's Wife</div><div class="speech">What can we do? I will pray for the leg to be returned.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Tradition</div><div class="speech">The last miracle was greater than the first — it is harder for Heaven to take back than to give.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> R. Ḥanina preferred a complete table in the World-to-Come over earthly reward, even rejecting a miraculous heavenly gift.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>✨ Three Miracles of R. Ḥanina ben Dosa</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fff8e6"><h3 style="color:#c9a84c">🍞 The Oven Full of Bread</h3><ul><li>Wife heated oven to hide poverty from neighbors</li><li>Evil neighbor came to expose her shame</li><li>Found the oven full of bread and basin full of dough</li><li><em>A miracle was performed for her honor</em></li></ul></div><div class="compare-box" style="border-top-color:#e6f0ff"><h3 style="color:#4a90d9">🕯️ Vinegar Burns Like Oil</h3><ul><li>Daughter confused vinegar for oil on Shabbat eve</li><li>Ḥanina: 'He who commanded oil to burn can command vinegar'</li><li>The vinegar lamp burned <strong>all day until Havdalah</strong></li><li><em>Let the One who commanded oil to burn — command vinegar</em></li></ul></div><div class="compare-box" style="border-top-color:#f0e6ff"><h3 style="color:#9b59b6">🐐 Goats Bring Back Bears</h3><ul><li>Neighbors: 'Your goats damage our fields!'</li><li>Ḥanina: 'If true, let bears eat them; if not, let each return a bear'</li><li>Next morning — each goat led home a bear on its horns</li><li><em>How did he have goats? Lost chicken → eggs → flock → sold for goats</em></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>💭 Rabbi Elazar ben Pedat's Dream Dialogue</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Extreme poverty:</strong> After bloodletting, R. Elazar had only a clove of garlic to eat — he fainted</div><div class="flow-arrow">↓</div><div class="flow-box question">In his dream, <strong>the Holy One sat with him.</strong><br>Elazar asked: 'Until when will I suffer such poverty in this world?'</div><div class="flow-arrow">↓</div><div class="flow-box question">God: <em>'Do you want Me to destroy the world and re-create it — perhaps you will be born in a time of sustenance?'</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Elazar Refuses</div><div class="flow-box result-bad"><strong>'And even then it is only a possibility?'</strong><br>He declined — the years already lived outnumber those remaining</div></div><div class="flow-col"><div class="flow-label">God's Reward</div><div class="flow-box result-good"><strong>13 rivers of pure balsam oil</strong> in the World-to-Come<br>as vast as the Euphrates and Tigris</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Elazar woke <strong>laughing and crying</strong> — laughing at the great reward; crying that such reward was for so brief a life</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⏰ Rain Timing: Complete the Fast or Stop?</h2>
+  
+  <table><tr><th>When Rain Falls</th><th>Opinion</th><th>Rule</th><th>Basis</th></tr><tr><td>Before sunrise</td><td>All agree</td><td>Need not complete fast</td><td>Rain arrived before the fast truly began</td></tr><tr><td>Before noon</td><td>Rabbi Yehuda</td><td>Need not complete fast</td><td>Like a master granting request early — full approval shown</td></tr><tr><td>After noon, before 9th hour</td><td>Rabbi Yehuda</td><td>Need not complete fast</td><td>Still a sign of Divine favor — fast honored</td></tr><tr><td>After the 9th hour</td><td>Rabbi Yosei</td><td>Must complete fast</td><td>Like Ahab — rain came but fast was nearly over; minimum still required</td></tr><tr><td>After sunset</td><td>Shmuel HaKatan</td><td>Sign of community praise — but belated</td><td>Parable: master gave only after the slave requested all day long</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🌊 Ridya: The Angel of Rain</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">רִדְיָא — מַלְאַךְ הַגֶּשֶׁם עוֹמֵד בֵּין תְּהוֹם עֶלְיוֹן לְתַחְתּוֹן</div><div class="callout"><strong>Mystical Vision of Rabba</strong> Rabba said: I saw the angel Ridya — in the form of a <strong>calf with parted lips</strong>, standing between the lower waters of the deep and the upper waters. To the upper waters he says: <em>'Distill your water downward.'</em> To the lower waters: <em>'Rise up.'</em><br><br>Separately, Rabbi Elazar taught: During Sukkot's water libation, the waters of the deep call to one another — <em>'Let your waters flow, I hear the voices of our friends, the wine and water libations!'</em></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Taanit 25 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;border-color:#c9a84c"><strong>Ḥanina ben Dosa's household miracles</strong><br><small>Bread • vinegar-lamp • goats • beams — faith transforms poverty</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;border-color:#4a90d9"><strong>Elazar ben Pedat's dream</strong><br><small>Suffering acknowledged by God → deferred reward in World-to-Come</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;border-color:#888888"><strong>Communal fasts decreed for rain</strong></div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border-color:#2ecc71"><strong>Humble approach:</strong><br>Akiva — <em>Avinu Malkeinu</em><br>Ḥiyya — redirects clouds away from Ammon/Moab<br>Rain falls</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border-color:#e74c3c"><strong>Presumptuous approach:</strong><br>Levi rebukes God<br>Rain falls — but Levi becomes lame as punishment</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;border-color:#9b59b6"><strong>Rain timing laws + Ridya</strong><br><small>When rain arrives determines community's praise — angel Ridya governs the waters between worlds</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Taanit 25a-25b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Taanit 25a-25b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../24/">← Daf 24</a><a href="../26/">Daf 26 →</a></div>
+</body>
+</html>

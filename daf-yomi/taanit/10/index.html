@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taanit 10 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Taanit Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌧️</div>
+  <h1>Taanit 10</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תענית י׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌍 Eretz Yisrael Drinks First — Israel receives rain directly; the world gets residue from the clouds<br>
+    ☁️ Ocean Waters Sweetened — Rabbi Eliezer vs. Rabbi Yehoshua on the cosmic origin of rain<br>
+    📅 When to Request Rain — debate: 3rd vs. 7th of Marḥeshvan; Diaspora waits 60 days<br>
+    🎓 Who Are the 'Individuals'? — Torah scholars fast from 17th Marḥeshvan onward<br>
+    🛤️ Joseph's Four Travel Rules — halachic debate, long strides, sunset entry, and eating less<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌧️ Rain on Daf 10: Cosmology to Calendar</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Cosmic Question:</strong><br>Where does rain originate?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Eliezer</div><div class="flow-box action">Ocean water <strong>sweetened in clouds</strong> → falls as rain</div></div><div class="flow-col"><div class="flow-label">Rabbi Yehoshua</div><div class="flow-box action"><strong>Upper waters</strong> suspended by God's word → descend as rain</div></div><div class="flow-col"><div class="flow-label">R. Yehoshua b. Levi</div><div class="flow-box action">Overflow of the <strong>Garden of Eden</strong> waters the world</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Priority Principle:</strong> Eretz Yisrael drinks first — the rest of the world gets the residue</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Practical Question:</strong><br>When do we insert וְתֵן טַל וּמָטָר?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Tanna Kamma</div><div class="flow-box action">3rd of Marḥeshvan</div></div><div class="flow-col"><div class="flow-label">Rabban Gamliel ✅</div><div class="flow-box result-good">7th of Marḥeshvan — halakha follows him</div></div><div class="flow-col"><div class="flow-label">Diaspora</div><div class="flow-box action">60 days after Tekufat Tishrei (~Dec. 4–5)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>17th Marḥeshvan — still no rain?</strong><br>Torah scholars begin 3 individual fasts (Mon–Thu–Mon)</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>☁️ Cosmic Origin of Rain: Ocean Waters or Upper Heavens?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Eliezer</div><div class="speech">Rain originates from the <strong>ocean</strong>. The verse 'darkness [חֹשֶׁכַת] of waters' (Ps. 18:12) — swapping one letter — yields 'distillation of waters.' Ocean water rises, is <em>sweetened in the clouds</em>, and falls as fresh rain.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yehoshua</div><div class="speech">Rain comes from the <strong>upper waters</strong> suspended in the heavens by God's word: 'Who waters the mountains from His upper chambers' (Ps. 104:13). These chambers' 'fruit' is the rainwater that falls to earth.</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Rav Dimi</div><div class="speech">The entire world drinks from the <strong>overflow of the Garden of Eden</strong>: 'A river went out of Eden to water the garden' (Gen. 2:10). From the runoff of a <em>beit kor</em>, a <em>beit se'ah</em> is irrigated — Eden sustains all.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech"><strong>Reconciliation:</strong> The upper waters opinion aligns with a baraita: upper waters 'have no defined place' — they are suspended by divine word, and their <em>fruit</em> is rainwater. This is consistent with Rabbi Yehoshua.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Textual Move (Amud A §5)</strong> חֹשֶׁכַת מָיִם vs. חַשְׁרַת מָיִם — a kaf for a reish. Combine both verses and you get: ocean water sweetened (נִמְתַּק) in the clouds. A single-letter swap unlocks a cosmological teaching.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📅 When Does One Begin Requesting Rain?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1c2833"><h3 style="color:#c9a84c">Tanna Kamma</h3><ul><li>3rd of Marḥeshvan</li><li>15 days after Shemini Atzeret</li><li>Allows pilgrims time to reach home (not the Euphrates)</li><li>Insert: וְתֵן טַל וּמָטָר in blessing of the years</li></ul></div><div class="compare-box" style="border-top-color:#1a2e3a"><h3 style="color:#4a90d9">Rabban Gamliel ✅ Halakha</h3><ul><li>7th of Marḥeshvan</li><li>Extra 4 days for last pilgrim to reach the Euphrates River</li><li>Rabbi Elazar rules: halakha follows Rabban Gamliel</li><li>Standard practice in Eretz Yisrael today</li></ul></div><div class="compare-box" style="border-top-color:#2c1a3a"><h3 style="color:#9b59b6">Diaspora — Ḥananya</h3><ul><li>60 days after Tekufat Tishrei</li><li>~December 4 or 5</li><li>Babylonia has abundant water; less urgency for rain</li><li>Shmuel's mnemonic: 'when wood is brought into the house of Tavut the bird hunter'</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🎓 Tiers of Fasters: 17th Marḥeshvan Onward</h2>
+  
+  <table><tr><th>Category</th><th>When They Fast</th><th>Standard Applied</th><th>Key Source</th></tr><tr><td>Torah Scholars (יְחִידִים)</td><td>17th of Marḥeshvan</td><td>Highest — fast before any communal decree</td><td>Rav Huna; Mishna 10a</td></tr><tr><td>Torah Students</td><td>May join if genuinely worthy</td><td>Must truly merit the title 'student'</td><td>Baraita — R. Meir & R. Yosei debate</td></tr><tr><td>Community at Large</td><td>Later communal stages</td><td>Standard communal level</td><td>Later mishnayot in Taanit</td></tr><tr><td>One Who Forgot & Ate</td><td>Continues the fast symbolically</td><td>No indulgence; avoid public display of satiation</td><td>Baraita 10b — dignity of the fast</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🛤️ Joseph's Four Pieces of Travel Wisdom (Gen. 45:24)</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>'See that you not fall out by the way'</strong> — <em>Do not engage in new halachic debate</em> while traveling (Rabbi Elazar). Preoccupation with legal analysis can cause you to stumble into danger.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rote review is permitted</strong> — The prohibition applies only to <em>new halachic analysis</em> (חידוש), not to reviewing familiar material (שינון). This reconciles Rabbi Elai bar Berekhya's teaching that scholars who don't discuss Torah are 'worthy of being burned.'</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Do not take long strides</strong> — Large strides diminish a person's eyesight by <em>one five-hundredth</em>. Preserve your sight; enter the city before dark.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Enter the city before sunset</strong> — Leave each place saying 'it is good' and enter each new place saying 'it is good' (Rav Yehuda citing Rav). Preserve your favorable impression of every place.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Eat modestly on the road</strong> — Eat no more per day than you would in <em>a year of famine</em> (R. Ḥiyya). The body on the road cannot digest as it does at home.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🌍 Eretz Yisrael's Cosmic Priority</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אֶרֶץ יִשְׂרָאֵל שׁוֹתָה מֵי גְּשָׁמִים וְכָל הָעוֹלָם כּוּלּוֹ שׁוֹתֶה מִן הַמּוֹתָר</div><div class="callout"><strong>Baraita — The Land Was Created First</strong> Eretz Yisrael was created <strong>before the rest of the world</strong> — 'while as yet He had not made the land, nor the fields' (Prov. 8:26) uses a unique diminutive form. Eretz Yisrael <em>drinks directly</em> from rainwater; the whole world drinks only from the <strong>residue left in the clouds</strong>. The cosmic scale: Egypt (400×400 parasangs) = 1/60 of Cush = 1/60 of the world = 1/60 of Gan Eden = 1/60 of the Deep (תְּהוֹם).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Taanit 10 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style=""><strong>Where does rain come from?</strong></div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="color:#4a90d9"><em>R. Eliezer:</em><br>Ocean sweetened in clouds</div></div><div class="flow-col"><div class="flow-box" style="color:#9b59b6"><em>R. Yehoshua:</em><br>Upper heavenly waters</div></div><div class="flow-col"><div class="flow-box" style="color:#2ecc71"><em>R. Y. b. Levi:</em><br>Eden's overflow</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="color:#c9a84c"><strong>Eretz Yisrael drinks first</strong> — world gets cloud residue</div><div class="flow-arrow">↓</div><div class="flow-box question" style=""><strong>When to insert וְתֵן טַל וּמָטָר?</strong></div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="color:#c9a84c"><strong>Israel:</strong> 7th Marḥeshvan<br><small>(Rabban Gamliel — halakha)</small></div></div><div class="flow-col"><div class="flow-box" style="color:#e67e22"><strong>Diaspora:</strong> 60 days after Tekufat Tishrei<br><small>(~Dec. 4–5)</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style=""><strong>17th Marḥeshvan — no rain?</strong><br>Torah scholars fast 3 times (Mon–Thu–Mon)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Taanit 10a-10b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Taanit 10a-10b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../9/">← Daf 9</a><a href="../11/">Daf 11 →</a></div>
+</body>
+</html>

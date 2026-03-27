@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taanit 22 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Taanit Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏪</div>
+  <h1>Taanit 22</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תענית כב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏪 Hidden Tzaddikim — Elijah reveals righteous people in the marketplace<br>
+    🦁 Dangerous Beast Outbreak — Halachic criteria for declaring an emergency<br>
+    ⚔️ Josiah's Fall — Death in battle and deathbed acceptance<br>
+    🔔 Shabbat Alarms — When crying out is or isn't permitted<br>
+    🌧️ Excessive Rain — When NOT to pray for rain to stop<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🏪 Rabbi Beroka Meets Elijah in Bei Lefet Market</h2>
+  
+  <div class="process-bar"><div class="process-step">Rabbi Beroka regularly visited the market of <strong>Bei Lefet</strong>, where <strong>Elijah the Prophet</strong> would appear to him</div><div class="process-arrow">↓</div><div class="process-step">Rabbi Beroka asked Elijah: <em>"Does anyone here have a share in the World-to-Come?"</em></div><div class="process-arrow">↓</div><div class="process-step highlight">Elijah pointed to a <strong>jailer</strong> — no tzitzit, black shoes, indistinguishable from a gentile — as a hidden tzaddik</div><div class="process-arrow">↓</div><div class="process-step">The jailer explained: <em>I dress to blend in among gentiles to protect Jewish women and intercede for Jews sentenced to death</em></div><div class="process-arrow">↓</div><div class="process-step highlight">Then Elijah pointed to <strong>two jesters</strong> who cheered the sad and made peace between quarreling people</div><div class="process-arrow">↓</div><div class="process-step"><strong>Lesson:</strong> Hidden acts of kindness and protection — not outward piety — are what earn the World-to-Come</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🌟 Three Hidden Tzaddikim of the Marketplace</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#c9a84c">The Jailer</h3><ul><li>Wore no tzitzit threads</li><li>Wore black shoes (gentile style)</li><li>Blended in to move freely among non-Jews</li><li>Protected Jewish women from harm</li><li>Interceded for condemned Jews awaiting execution</li><li>Asked Rabbi Beroka to keep silent about him</li></ul></div><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#4a90d9">The Two Jesters</h3><ul><li>Professional badchanim (comedians)</li><li>Made a point of cheering those who were sad</li><li>Made peace between quarreling people</li><li>No outward sign of religious distinction</li><li>Both immediately identified by Elijah</li><li>Both merited the World-to-Come equally</li></ul></div><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#2ecc71">The Common Thread</h3><ul><li>None wore visible markers of piety</li><li>All performed hidden acts of chesed</li><li>Each protected or uplifted vulnerable people</li><li>Overlooked or dismissed by casual observers</li><li>Known only to God — and revealed by Elijah</li><li>Model of righteousness beyond the letter of the law</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🦁 When Is a Wild Beast Considered an 'Outbreak'?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Wild beast spotted — is this an 'outbreak' requiring an alarm?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Seen in the city by day</div><div class="flow-box result-bad"><strong>Outbreak declared</strong><br>Sound the alarm</div></div><div class="flow-col"><div class="flow-label">Seen in the city at night</div><div class="flow-box result-good"><strong>Not an outbreak</strong><br>Natural nocturnal behavior</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Beast encounters two people in the field</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Beast chases them</div><div class="flow-box result-bad"><strong>Outbreak</strong><br>Aggressive, unnatural behavior</div></div><div class="flow-col"><div class="flow-label">Beast hides from them</div><div class="flow-box result-good"><strong>Not an outbreak</strong><br>Normal fear of humans</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Beast tears two people — how much does it eat?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Tore two, ate only one</div><div class="flow-box result-bad"><strong>Outbreak</strong><br>Killed for sport, not hunger</div></div><div class="flow-col"><div class="flow-label">Tore two and ate both</div><div class="flow-box result-good"><strong>Not an outbreak</strong><br>Natural hunger behavior</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚔️ Josiah's Death — Why Was He Punished?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Shmuel bar Naḥmani</div><div class="speech">Josiah was punished because he went to war against Pharaoh Neco without consulting the prophet Jeremiah first — even though he had a seemingly valid Torah argument.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Pharaoh Neco's Warning</div><div class="speech">"What have I to do with you, king of Judah? God has commanded me to make haste — forbear from meddling with God Who is with me, lest He destroy you" (II Chronicles 35:21).</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Josiah's Reasoning</div><div class="speech">Josiah said: Neco refers to his idol, not to the true God. The Torah commands: 'You shall not follow their gods' — so I need not heed this pagan king's warning.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Jeremiah at the Deathbed</div><div class="speech">Jeremiah saw Josiah's lips moving as he lay dying and feared he was complaining against Divine judgment. He leaned in — and heard Josiah accepting his fate with love and justifying God's decree.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">The Lesson</div><div class="speech">Even a brilliant and righteous king must consult a prophet before going to war. Personal Torah reasoning, however compelling, cannot substitute for prophetic guidance in life-or-death decisions.</div></div></div><div class="callout" style="margin-top:20px"><strong>Josiah's Final Words</strong> "The Lord is righteous, for I have rebelled against His commandment" (Lamentations 1:18) — he accepted Divine judgment even in his last moments</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔔 Sounding the Alarm: What, When, and Where</h2>
+  
+  <table><tr><th>Calamity</th><th>Weekday</th><th>Shabbat</th><th>Key Rule / Rationale</th></tr><tr><td>City surrounded by enemy troops</td><td>✅ Sound alarm</td><td>✅ Sound alarm</td><td>Immediate life danger — pikuach nefesh overrides all</td></tr><tr><td>River flooding / imminent flood</td><td>✅ Sound alarm</td><td>✅ Sound alarm</td><td>Applies to Jews and non-Jews alike</td></tr><tr><td>Ship tossing at sea</td><td>✅ Sound alarm</td><td>✅ Sound alarm</td><td>Applies even on behalf of non-Jewish sailors</td></tr><tr><td>Blight, mildew, locusts, caterpillars</td><td>✅ Sound alarm</td><td>❌ Not on Shabbat</td><td>Agricultural harm — property, not immediate life</td></tr><tr><td>Dangerous beast in populated area</td><td>✅ Sound alarm</td><td>❌ Not on Shabbat</td><td>Unless actively attacking people at that moment</td></tr><tr><td>Plague / pestilence (dever)</td><td>✅ Sound alarm</td><td>⚠️ Disputed</td><td>Shimon Timnite: yes; Rabbis: no; Baraita: yes, cry out</td></tr><tr><td>Excessive rain — Eretz Yisrael</td><td>❌ Do not pray to stop</td><td>❌ Do not pray to stop</td><td>Excess of Divine blessing (Malachi 3:10) — do not pray away</td></tr><tr><td>Excessive rain — Babylonia</td><td>✅ Sound alarm</td><td>✅ Sound alarm</td><td>Low-lying land prone to flooding — real danger</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">הביאו את כל המעשר אל בית האוצר... ובחנוני נא בזאת אמר ה׳ צבאות אם לא אפתח לכם את ארובות השמים והריקֹתי לכם ברכה עד בלי די (מלאכי ג:י)</div><div class="callout"><strong>🌧️ The Paradox of Too Much Rain</strong> Rabbi Yoḥanan rules: We do <strong>not</strong> pray for excess rain to stop in <em>Eretz Yisrael</em> — derived from Malachi 3:10: <em>"Test Me now... if I will not open for you the windows of heaven and pour out for you a blessing until there is more than enough."</em> One does not pray that overflowing Divine blessing should cease.<br><br>In <strong>Babylonia</strong>, however, the land is low-lying and flooding is genuinely dangerous — so they <em>do</em> sound the alarm.<br><br><strong>Rabbi Eliezer's measure:</strong> Enough rain that a person standing at the great cliff of <em>Keren Ophel</em> can dip his feet in the water below. How tall is this cliff? Rabba bar bar Ḥana testifies: I saw it personally — an Arab on a camel holding a spear looked from above like a tiny worm.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Taanit 22 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a3a;color:#c9a84c;border:2px solid #c9a84c;padding:12px;border-radius:8px"><strong>Hidden Tzaddikim</strong><br><small>Elijah reveals: a jailer and two jesters earn Olam Ha-Ba through unseen acts of protection and joy</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a2a3a;color:#4a90d9;border:2px solid #4a90d9;padding:12px;border-radius:8px"><strong>Outbreak Criteria</strong><br><small>Time of day, beast behavior, and degree of harm all determine whether an alarm must be sounded</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a2a3a;color:#e74c3c;border:2px solid #e74c3c;padding:12px;border-radius:8px"><strong>Josiah's Fatal Reasoning</strong><br><small>Sound Torah logic without prophetic consultation led to death in battle against Pharaoh Neco</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#12202e;color:#9b59b6;border:2px solid #9b59b6;padding:10px;border-radius:8px"><strong>Shabbat Alarms</strong><br><small>Life danger: always. Property: never on Shabbat. Plague: disputed between Tanna'im.</small></div></div><div class="flow-col"><div class="flow-box" style="background:#12202e;color:#2ecc71;border:2px solid #2ecc71;padding:10px;border-radius:8px"><strong>Rain Paradox</strong><br><small>Israel: blessing — don't stop it. Babylonia: flood danger — sound the alarm.</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Taanit 22a-22b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Taanit 22a-22b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../21/">← Daf 21</a><a href="../23/">Daf 23 →</a></div>
+</body>
+</html>

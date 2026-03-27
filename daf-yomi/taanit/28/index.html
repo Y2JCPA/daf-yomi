@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taanit 28 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Taanit Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🪵</div>
+  <h1>Taanit 28</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תענית כח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🪵 Wood Offerings — nine designated family donation days throughout the year<br>
+    🏛️ Greek Persecution — heroic smuggling of first fruits and wood past guards<br>
+    📿 Ma'amad Watch — when hallel and additional offerings cancel the non-priestly watch<br>
+    🕎 Complete Hallel — eighteen days per year of full recitation, and Rav in Babylonia<br>
+    💔 Seventeenth of Tammuz — five national calamities and their Scriptural sources<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🪵 Taanit 28: Wood, Watches & Calamities</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#5d3a1a"><h3 style="color:#f5deb3">Wood Offering Families</h3><ul><li>15 Av: Zattu ben Yehuda + priests, Levites, unknowns</li><li>20 Av: Pahath Moab = descendants of David (via Ruth)</li><li>20 Elul: Adin ben Yehuda = descendants of David</li><li>1 Tevet: Parosh returns a second time</li><li>Heroism under Greek persecution earned these dates</li></ul></div><div class="compare-box" style="border-top-color:#1a3a5d"><h3 style="color:#aed6f1">Ma'amad Watch Rules</h3><ul><li>Hallel → cancels the morning watch</li><li>Additional offering → cancels the afternoon watch</li><li>Wood offering → also cancels the afternoon watch</li><li>1 Tevet: all three → no watch whatsoever</li><li>Rabbi Yosei: additional offering day always has a watch</li></ul></div><div class="compare-box" style="border-top-color:#5d1a1a"><h3 style="color:#f1948a">17th of Tammuz — Five Tragedies</h3><ul><li>Tablets broken by Moses (counted from 7 Sivan)</li><li>Daily tamid offering nullified — by tradition</li><li>Jerusalem walls breached (Second Temple)</li><li>Apostemos burned a Torah scroll — by tradition</li><li>Manasseh placed an idol in the Sanctuary</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏛️ Heroic Deeds Under Greek Persecution</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>The Greek Decree:</strong> The evil kingdom of Greece forbade bringing wood for the altar and first fruits to Jerusalem; guards [<em>prozovin</em>] were stationed along the roads</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>First Fruits Smuggled:</strong> Sin-fearing individuals placed first fruits in baskets, <em>covered them with dried figs</em>, and carried them with a pestle on their shoulders — guards assumed they were bringing figs and let them pass</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Wood Smuggled (Descendants of Salmai of Netophat):</strong> They hid pieces of wood inside <em>ladders [sulamot]</em> carried on their shoulders — guards assumed they were ordinary travelers; once past, they disassembled the ladders and brought the wood to the Temple</div><div class="process-arrow">↓</div><div class="process-step"><strong>Legacy:</strong> These families were permanently designated on specific annual dates to donate wood for the altar arrangement, honoring their courage</div><div class="process-arrow">↓</div><div class="process-step"><strong>Scriptural reward:</strong> <em>"The memory of the righteous shall be for a blessing"</em> (Proverbs 10:7) — contrasted with Jeroboam ben Nevat who caused Israel to sin and is forever cursed</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📅 Wood Offering Dates and Family Identifications</h2>
+  
+  <table><tr><th>Date</th><th>Family Name</th><th>Talmudic Identification</th><th>Note</th></tr><tr><td>15 Av</td><td>Zattu ben Yehuda</td><td>Includes other priests, Levites, and those who erred about their tribe</td><td>Largest coalition; 'erred' = those uncertain of tribal affiliation</td></tr><tr><td>20 Av</td><td>Pahath Moab ben Yehuda</td><td>= Descendants of David ben Yehuda (called 'Moab' because Ruth was his ancestor)</td><td>Moab = connection to Ruth the Moabite, ancestor of King David</td></tr><tr><td>20 Elul</td><td>Adin ben Yehuda</td><td>= Descendants of David ben Yehuda, called Adin</td><td>Same family as Pahath Moab under a different name</td></tr><tr><td>1 Tevet</td><td>Parosh ben Yehuda</td><td>Returns for a second time — author is Rabbi Yosei (not Meir or Yehuda)</td><td>Two tannaim follow Rabbi Yosei's opinion on who 'Pahath Moab' is</td></tr><tr><td>1 Nisan</td><td>(discussed contextually)</td><td>Hallel + New Moon; no wood offering — watch cancelled on multiple grounds</td><td>Used to clarify the 18-day complete hallel rule</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📿 The Ma'amad Watch Controversy</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Mar Kashisha</div><div class="speech">What is different about hallel — it overrides the morning watch (its own); yet the additional offering does NOT override its own morning watch, only the afternoon watch? Why the asymmetry?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Ashi</div><div class="speech">On the contrary — since the additional offering already overrides the afternoon watch (which is not even its own!), should it not certainly override its own morning watch? The additional offering DOES cancel the morning watch!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Mar Kashisha</div><div class="speech">I meant the reverse: the additional offering cancels the morning watch but NOT the afternoon watch. However, hallel — merely a rabbinic institution — does NOT cancel the morning watch at all.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Ashi</div><div class="speech">Rabbi Yosei supports your view: on any day with an additional offering, there IS a non-priestly watch — meaning the watch persists despite the offering, not that it is cancelled.</div></div></div><div class="callout" style="margin-top:20px"><strong>Final Resolution</strong> Rabbi Yosei: additional offering → watch exists (it does NOT cancel). Wood offering → cancels the afternoon watch. 1 Tevet has hallel + additional offering + wood offering → no watch at all, because each factor independently cancels one service watch.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🕎 Eighteen Days of Complete Hallel</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">שְׁמוֹנָה עָשָׂר יוֹם בַּשָּׁנָה יָחִיד גּוֹמֵר בָּהֶן אֶת הַהַלֵּל</div><div class="callout"><strong>Rabbi Yoḥanan in the name of Rabbi Shimon ben Yehotzadak</strong> <strong>On 18 days per year, the individual completes the full Hallel:</strong><br><br>• <strong>8 days</strong> of Sukkot (including Shemini Atzeret)<br>• <strong>8 days</strong> of Hanukkah<br>• <strong>1 day</strong> — first day of Pesaḥ<br>• <strong>1 day</strong> — Shavuot<br><br><em>In the Diaspora: 18 days + 1 night (first night of Pesaḥ)</em><br><br><strong>Rav in Babylonia:</strong> Saw people reciting hallel on Rosh Ḥodesh (New Moon); thought to stop them since this was not obligatory — then realized it was their fathers' established custom. He let them continue.<br><small>Conclusion: New Moon hallel is a <em>minhag</em> (custom), not an obligation — recited with an abbreviated, interrupted form</small></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>💔 Five Calamities of the Seventeenth of Tammuz</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>17th of Tammuz — Five National Tragedies</strong><br><small>Each requiring a Scriptural or traditional source</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">1. Tablets Broken</div><div class="flow-box result-bad">Moses descended on the 17th (counted: 7 Sivan + 40 days ascent). Saw the Golden Calf, shattered the tablets. <small>Source: Exodus 32:19 + calendar calculation</small></div></div><div class="flow-col"><div class="flow-label">2. Daily Offering Nullified</div><div class="flow-box result-bad">The tamid offering ceased during the siege. <small>Source: established by tradition (מָסוֹרֶת)</small></div></div><div class="flow-col"><div class="flow-label">3. City Walls Breached</div><div class="flow-box result-bad">Jer. 39:2 says 9th Tammuz (First Temple). Mishna's 17th Tammuz = Second Temple (Rava's resolution). <small>Two destructions, two dates</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">4. Torah Scroll Burned</div><div class="flow-box result-bad">Apostemos publicly burned a Torah scroll in the streets. <small>Source: tradition (מָסוֹרֶת)</small></div></div><div class="flow-col"><div class="flow-label">5. Idol in the Sanctuary</div><div class="flow-box result-bad">Manasseh placed an idol in the Sanctuary. Derived from Daniel 12:11: 'from the time the daily offering was nullified and the abomination was placed.' <small>Same day as the nullified tamid</small></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Taanit 28 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#5d3a1a;color:#f5deb3;border:2px solid #c9a84c;"><strong>Greek Persecution</strong><br><small>Decree against wood offerings and first fruits</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;"><strong>Figs disguising first fruits</strong><br><small>Descendants of unnamed families</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;"><strong>Wood hidden in ladders</strong><br><small>Descendants of Salmai of Netophat</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#4a235a;color:#e8daef;border:2px solid #9b59b6;"><strong>Families Designated Permanent Donation Dates</strong><br><small>15 Av, 20 Av, 20 Elul, 1 Tevet — whose identities debated by Rabbis Meir, Yehuda, Yosei</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a3a5d;color:#aed6f1;border:2px solid #4a90d9;"><strong>1 Tevet: No Watch At All</strong><br><small>Hallel + additional offering + wood offering cancel all three watches</small></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#16213e;color:#ffcdd2;border:2px solid #e74c3c;"><strong>17th of Tammuz — National Fast</strong><br><small>Five calamities: tablets • tamid • walls • Torah burned • idol placed</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Taanit 28a-28b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Taanit 28a-28b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../27/">← Daf 27</a><a href="../29/">Daf 29 →</a></div>
+</body>
+</html>

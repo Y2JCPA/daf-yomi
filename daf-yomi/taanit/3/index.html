@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taanit 3 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Taanit Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌧️</div>
+  <h1>Taanit 3</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">תענית ג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💧 Water Libation — which days of Sukkot require it<br>
+    🌬️ Dew & Wind — never withheld, mention is optional<br>
+    🙏 Rain in Amida — mandatory only in its season<br>
+    🧩 Ben Beteira Identity — resolving the contradictions<br>
+    ❄️ Weather Benefits — snow, clouds, wind vs. rain<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>💧 Water Libation: A Three-Way Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yehoshua</div><div class="speech">Water libation is performed all <strong>7 days</strong> of Sukkot. One begins mentioning rain when the <em>lulav</em> is set down — the last day of Sukkot.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yehuda ben Beteira</div><div class="speech">Water libation begins only on the <strong>2nd day</strong>. The Torah hints at water on day 2 via the doubled term <em>hassekh nesekh</em> (Numbers 28:7) — one for wine, one for water.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Natan</div><div class="speech">The term for libation appears <strong>twice</strong> in the verse — one refers to wine, one to water — indicating the water libation is performed on that day of Sukkot.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rav Naḥman bar Yitzḥak</div><div class="speech"><strong>Resolution:</strong> The 'ben Beteira' in the baraita is <em>Rabbi Yehoshua ben Beteira</em>. Rabbi Yehuda sometimes calls him by name, sometimes by surname — eliminating all contradictions!</div></div></div><div class="callout" style="margin-top:20px"><strong>Talmudic Method</strong> An apparent contradiction between two baraitot is resolved by distinguishing the referent — 'ben Beteira' in one source does not equal 'ben Beteira' in another source.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🌧️ When Does One Begin Mentioning Rain in the Amida?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">When does one begin mentioning <em>geshem</em> (rain) in the Amida?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Yehoshua (Mishna)</div><div class="flow-box action">Begin when the <strong>lulav is set down</strong> — Hoshana Rabba, the 7th day of Sukkot</div></div><div class="flow-col"><div class="flow-label">Rabbi Yehuda ben Beteira</div><div class="flow-box action">Begin from the <strong>2nd day</strong> of Sukkot, when water libation starts</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Gemara asks: Who authored the mishna that water libation is 'all 7 days'? Both options seem self-contradictory!</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Rav Naḥman bar Yitzḥak: 'ben Beteira' in baraita = <strong>Rabbi Yehoshua ben Beteira</strong> — a different sage. All contradictions resolved!</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🌬️ Dew & Wind vs. Rain — Amida Prayer Rules</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#eaf4fb"><h3 style="color:#4a90d9">Dew & Wind</h3><ul><li><strong>Never withheld</strong> by God as punishment</li><li>Dew: Elijah's oath against dew — yet dew continued during the drought</li><li>Wind: 'I spread you as the four winds of heaven' (Zechariah 2:10) — always present</li><li>Mention in Amida is <strong>optional</strong> in all seasons</li><li>Summer: mentioned wind → no need to repeat the blessing</li><li>Rainy season: omitted wind → no need to return and repeat</li></ul></div><div class="compare-box" style="border-top-color:#eaf7f0"><h3 style="color:#2ecc71">Rain</h3><ul><li><strong>Can be withheld</strong> as divine punishment (Deut. 11:17)</li><li>Mandatory mention in the <strong>rainy season</strong> (second blessing of Amida)</li><li>Summer: mentioned rain → must <strong>return and repeat</strong> the blessing</li><li>Rainy season: omitted rain → must <strong>return and repeat</strong> the blessing</li><li>Source: 'And He will close up the heavens' — rain specifically can be stopped</li><li>Atypical wind (destructive) can also be withheld — baraita distinction</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🧩 Gemara's Back-and-Forth: Identifying the Mishna's Author</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">The mishna (Sukka 42b) says water libation is all <strong>7 days</strong>. If by Rabbi Yehoshua — contradiction! He says start at the <em>end</em> of Sukkot. If by Rabbi Yehuda ben Beteira — contradiction! He says start on day 2, giving only 6 days!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">First Answer</div><div class="speech">The mishna follows <strong>Rabbi Yehuda ben Beteira</strong>, who agrees with Rabbi Yehuda (Sukka 48b): on day 1, only one flask was poured — so 'all 7 days' means 6 days of proper libation.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Gemara Retracts</div><div class="speech">Actually, the mishna follows <strong>Rabbi Yehoshua</strong>, based on a principle from Rabbi Ami citing Rabbi Yoḥanan: the law of ten saplings teaches 'all seven days' by analogy.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Naḥman bar Yitzḥak</div><div class="speech">The 'ben Beteira' whom Rabbi Yehuda quotes in the baraita is <strong>Rabbi Yehoshua ben Beteira</strong> — not Rabbi Yehuda ben Beteira. Rabbi Yehuda uses both the full name and surname interchangeably.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Rabbi Yehoshua ben Beteira holds: the prayer leader on Shemini Atzeret (concluding Festival day) mentions rain in Musaf but not Shacharit — a compromise position.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>❄️ Relative Benefits of Weather Phenomena (Rav Yehuda & Rava)</h2>
+  
+  <table><tr><th>Phenomenon</th><th>Benefit Compared To</th><th>Authority</th><th>Verse / Reasoning</th></tr><tr><td>Wind after rain</td><td>Rain itself</td><td>Rav Yehuda</td><td>Gently distributed moisture across the earth</td></tr><tr><td>Clouds after rain</td><td>Rain itself</td><td>Rav Yehuda</td><td>Moisture is retained and redistributed gradually</td></tr><tr><td>Sunlight after rain</td><td><strong>Two rainfalls</strong></td><td>Rav Yehuda</td><td>Accelerates plant growth dramatically</td></tr><tr><td>Snow on mountains</td><td><strong>Five rainfalls</strong> on plains</td><td>Rava</td><td>Job 37:6 — slow-release water; feeds springs and rivers</td></tr><tr><td>Strong/mighty rain</td><td>Benefits trees</td><td>Rava</td><td>Deep root penetration; 'showers of His mighty rain'</td></tr><tr><td>Light/gentle rain</td><td>Benefits fruit</td><td>Rava</td><td>Delicate crops need soft moisture without bruising</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🙏 Rabbi Ḥanina's Four Rules for Wind & Rain in Prayer</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Rule 1 — Summer, mentioned wind:</strong> Do <em>not</em> require him to return and repeat. Wind blows in summer as well — the mention is never wrong.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rule 2 — Summer, mentioned rain:</strong> <em>Require</em> him to return and repeat. Mentioning rain in summer is seasonally inappropriate and constitutes an error.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rule 3 — Rainy season, omitted wind:</strong> Do <em>not</em> require him to return. Wind blows regardless of season — its omission is inconsequential.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rule 4 — Rainy season, omitted rain:</strong> <em>Require</em> him to return and repeat. Rain mention is obligatory in its season; omitting it is a significant liturgical error.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Core Principle:</strong> Only <em>rain</em> is season-sensitive in the Amida. Dew and wind — being perpetually present — are always optional mentions, never required and never wrong.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Taanit 3 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#16213e;border:2px solid #4a90d9;padding:10px;border-radius:8px;text-align:center;"><strong>Dispute:</strong> When does water libation begin on Sukkot, and when do we mention rain in the Amida?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:1px solid #4a90d9;padding:8px;border-radius:6px;"><strong>Water Libation</strong><br>Day 2–7: R. Yehuda ben Beteira<br>All 7 days: R. Yehoshua<br><small>(Mishna: all 7 days)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:1px solid #2ecc71;padding:8px;border-radius:6px;"><strong>Mentioning Rain</strong><br>Begin: end of Sukkot (R. Yehoshua)<br>Begin: day 2 of Sukkot<br><small>(R. Yehuda ben Beteira)</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;border:2px solid #2ecc71;padding:10px;border-radius:8px;text-align:center;"><strong>Resolution (Rav Naḥman bar Yitzḥak):</strong> 'ben Beteira' in the baraita = <em>Rabbi Yehoshua ben Beteira</em> — a different sage from Rabbi Yehuda ben Beteira. All contradictions dissolve.</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:1px solid #c9a84c;padding:8px;border-radius:6px;"><strong>Dew & Wind:</strong><br>Never withheld → optional<br>Elijah's oath | 'four winds'<br><small>Mention = always permitted</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:1px solid #e74c3c;padding:8px;border-radius:6px;"><strong>Rain:</strong><br>Can be withheld → mandatory<br>'He will close up the heavens'<br><small>Omit in season = repeat blessing</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;border:2px solid #9b59b6;padding:10px;border-radius:8px;text-align:center;"><strong>Bonus — Rava & Rav Yehuda:</strong> Snow = 5 rainfalls (mountains) | Sunlight after rain = 2 rainfalls | Wind/clouds after rain = rain itself</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Taanit 3a-3b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Taanit 3a-3b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../2/">← Daf 2</a><a href="../4/">Daf 4 →</a></div>
+</body>
+</html>
