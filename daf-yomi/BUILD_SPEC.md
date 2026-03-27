@@ -219,9 +219,56 @@ curl -s "https://www.sefaria.org/api/v3/texts/Chullin.50b?version=english"
 
 ## Current Status (as of Mar 27, 2026)
 
-### Completed Masechtos
+### Completed Masechtos — 24 masechtos, ~1,967 dapim
+
+**Seder Zeraim**
 | Masechet | Hebrew | Dapim | Status |
 |----------|--------|-------|--------|
+| Berakhot | ברכות | 63 | ✅ Complete (pipeline) |
+
+**Seder Mo'ed (COMPLETE ✅)**
+| Masechet | Hebrew | Dapim | Status |
+|----------|--------|-------|--------|
+| Shabbat | שבת | 156 | ✅ Complete (pipeline) |
+| Eruvin | עירובין | 104 | ✅ Complete (pipeline) |
+| Pesachim | פסחים | 120 | ✅ Complete (pipeline) |
+| Shekalim | שקלים | 21 | ✅ Complete (pipeline) |
+| Yoma | יומא | 87 | ✅ Complete (pipeline) |
+| Sukkah | סוכה | 55 | ✅ Complete (pipeline) |
+| Beitzah | ביצה | 39 | ✅ Complete (pipeline, Mar 27) |
+| Rosh Hashanah | ראש השנה | 34 | ✅ Complete (pipeline, Mar 27) |
+| Taanit | תענית | 30 | ✅ Complete (pipeline, Mar 27) |
+| Megillah | מגילה | 31 | ✅ Complete (pipeline, Mar 27) |
+| Moed Katan | מועד קטן | 28 | ✅ Complete (pipeline, Mar 27) |
+| Chagigah | חגיגה | 26 | ✅ Complete (pipeline, Mar 27) |
+
+**Seder Nashim (COMPLETE ✅)**
+| Masechet | Hebrew | Dapim | Status |
+|----------|--------|-------|--------|
+| Yevamot | יבמות | 121 | ✅ Complete (pipeline, Mar 27) |
+| Ketubot | כתובות | 111 | ✅ Complete (pipeline, Mar 27) |
+| Nedarim | נדרים | 90 | ✅ Complete (pipeline, Mar 27) |
+| Nazir | נזיר | 65 | ✅ Complete (pipeline, Mar 27) |
+| Sotah | סוטה | 48 | ✅ Complete (pipeline, Mar 27) |
+| Gittin | גיטין | 89 | ✅ Complete (pipeline, Mar 27) |
+| Kiddushin | קידושין | 81 | ✅ Complete (pipeline, Mar 27) |
+
+**Seder Nezikin (IN PROGRESS)**
+| Masechet | Hebrew | Dapim | Status |
+|----------|--------|-------|--------|
+| Bava Kamma | בבא קמא | 118 | ✅ Complete (pipeline, Mar 27) |
+| Bava Metzia | בבא מציעא | 119 | ❌ Not built |
+| Bava Batra | בבא בתרא | 176 | ❌ Not built |
+| Sanhedrin | סנהדרין | 113 | ❌ Not built |
+| Makkot | מכות | 24 | ❌ Not built |
+| Shevuot | שבועות | 49 | ❌ Not built |
+| Avodah Zarah | עבודה זרה | 76 | ❌ Not built |
+| Horayot | הוריות | 14 | ❌ Not built |
+
+**Seder Kodashim (COMPLETE ✅ — Gemara masechtos)**
+| Masechet | Hebrew | Dapim | Status |
+|----------|--------|-------|--------|
+| Zevachim | זבחים | 120 | ❌ Not built |
 | Menachot | מנחות | 109 | ✅ Complete (hand-built) |
 | Chullin | חולין | 142 | ✅ Complete (2-49 hand-built, 50-142 pipeline) |
 | Bekhorot | בכורות | 60 | ✅ Complete (pipeline, Mar 26 overnight) |
@@ -230,19 +277,17 @@ curl -s "https://www.sefaria.org/api/v3/texts/Chullin.50b?version=english"
 | Keritot | כריתות | 27 | ✅ Complete (pipeline, Mar 26 overnight) |
 | Me'ilah | מעילה | 21 | ✅ Complete (pipeline, Mar 26 overnight) |
 | Tamid | תמיד | 32 | ✅ Complete (pipeline, Mar 26 overnight) |
+| Middot | — | — | Mishnah-only, no Gemara |
+| Kinnim | — | — | Mishnah-only, no Gemara |
 
-**Total: ~457 dapim across 8 masechtos**
+**Seder Taharot**
+| Masechet | Hebrew | Dapim | Status |
+|----------|--------|-------|--------|
+| Niddah | נידה | 73 | ❌ Not built |
+| (Others) | — | — | Mishnah-only, no Gemara |
 
-### Remaining (Seder Kodashim)
-| Masechet | Dapim | Notes |
-|----------|-------|-------|
-| Middot | 5 chapters (no dapim) | Mishnah-only, no Gemara |
-| Kinnim | 3 chapters (no dapim) | Mishnah-only, no Gemara |
-
-### Future Sedarim
-Can extend to any seder: Nashim, Nezikin, Mo'ed, Zeraim, Taharot.
-Same pipeline works — just add masechet to `MASECHET_NAMES` in build-daf.js,
-`SEFARIA_MAP` in generate script, and `MASECHTOS` array in overnight script.
+### Remaining to build: ~764 dapim
+Bava Metzia (119), Bava Batra (176), Sanhedrin (113), Makkot (24), Shevuot (49), Avodah Zarah (76), Horayot (14), Zevachim (120), Niddah (73)
 
 ## Lessons Learned
 
