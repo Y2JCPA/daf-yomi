@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eruvin 12 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Eruvin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📐</div>
+  <h1>Eruvin 12</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">עירובין יב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📏 Alleyway Width — when no marker is needed at all<br>
+    🧱 Breached Courtyards — upright board requirements<br>
+    🌊 Water Leniency — Sages ease rules near water<br>
+    🔲 Lechi vs. Korah — true partition or mere marker?<br>
+    ⬜ Square Alleyway — treated like a courtyard<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📐 Alleyway Width & Shabbat Requirements</h2>
+  
+  <div class="flowchart"><div class="flow-box question">What is the <strong>width</strong> of the alleyway?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">< 4 handbreadths</div><div class="flow-box result-good">No marker needed — Beit Shammai & Beit Hillel both agree it is negligible space</div></div><div class="flow-col"><div class="flow-label">4 handbreadths – 4 cubits</div><div class="flow-box action">Standard alleyway: side post <em>or</em> cross beam suffices</div></div><div class="flow-col"><div class="flow-label">Length = Width (square)</div><div class="flow-box result-bad">Treated like a <strong>courtyard</strong> — requires upright board of ≥ 4 handbreadths</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏛️ Rabban Shimon ben Gamliel & the Narrow Alleyway</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabban Shimon ben Gamliel</div><div class="speech">Beit Shammai and Beit Hillel did <em>not</em> disagree about an alleyway less than 4 cubits wide — both agree it requires <strong>nothing at all</strong> to permit carrying.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Ashi</div><div class="speech">This means: it doesn't need a side post + cross beam (Beit Shammai's requirement), <em>nor</em> two side posts (Rabbi Eliezer's requirement). The narrow width itself exempts it entirely.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Aḥlei</div><div class="speech">More precisely: up to <strong>4 handbreadths</strong> wide — nothing required. From 4 handbreadths to 4 cubits — a single side post or cross beam suffices. This is the true threshold.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Threshold</strong> 4 handbreadths is the minimum for an alleyway to carry any Shabbat relevance at all. Below that, the space is halachically negligible — no partition is required.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔲 Lechi (Side Post) vs. Korah (Cross Beam) — Two Views</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">לֶחִי — Lechi (Side Post)</h3><ul><li><strong>Rav Yehuda & Rabba:</strong> functions as a true <em>partition</em></li><li>Completes the wall — creates private domain</li><li>Throwing from public domain into alleyway with lechi: <strong>liable</strong></li><li>Rabbi Eliezer requires <em>two</em> side posts for a courtyard breach</li><li>Must be ≥ 4 handbreadths wide for a courtyard upright board</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e67e22">קוֹרָה — Korah (Cross Beam)</h3><ul><li><strong>Rav Yehuda & Rabba:</strong> functions only as a <em>conspicuous marker</em></li><li>Does <strong>not</strong> create a full partition — merely signals the boundary</li><li>Throwing into alleyway with korah alone: <strong>exempt</strong></li><li>Rava: a korah-only alleyway is not a fully enclosed domain</li><li>Rabbeinu Ḥananel: this distinction governs liability, not basic permission</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🧱 Breached Courtyard — Upright Board Requirements</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A courtyard wall is <strong>breached</strong> on Shabbat</div><div class="flow-arrow">↓</div><div class="flow-box question">How extensive is the breach?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Small breach (< 4 hb)</div><div class="flow-box action">Even this requires attention — courtyard rules are <em>stricter</em> than alleyway rules</div></div><div class="flow-col"><div class="flow-label">Large breach (most of wall)</div><div class="flow-box result-bad">Two upright boards of 4 hb each — one on <em>each side</em> of breach<br><small>(Rabbi Yoḥanan via Rabbi Asi)</small></div></div><div class="flow-col"><div class="flow-label">Entire wall into larger courtyard</div><div class="flow-box action">Larger courtyard must exceed smaller by ≥ 4 hb<br><small>(Rav Pappa & Rav Huna's resolution)</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Shmuel's ruling:</strong> One upright board on one side can suffice — but only when <em>most of the wall still stands</em></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📊 Alleyway Dimensions & Halachic Requirements</h2>
+  
+  <table><tr><th>Width / Shape</th><th>Halachic Status</th><th>Requirement to Permit Carrying</th><th>Source</th></tr><tr><td>< 4 handbreadths wide</td><td>Too narrow — negligible</td><td>Nothing at all</td><td>Rav Aḥlei / Rav Yeḥiel</td></tr><tr><td>4 handbreadths – 4 cubits</td><td>Standard alleyway</td><td>Side post OR cross beam</td><td>General rule (Mishnah)</td></tr><tr><td>Length = Width (square)</td><td>Treated as a courtyard</td><td>Upright board ≥ 4 handbreadths</td><td>Rav (via Rav Yehuda)</td></tr><tr><td>Length > Width</td><td>True alleyway</td><td>Side post or cross beam suffices</td><td>Rav Naḥman's tradition</td></tr><tr><td>Length < double the width</td><td>Still qualifies as alleyway</td><td>Side post suffices</td><td>Rav corrects Shmuel</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🌊 The Water Leniency — Narrow Inlet of the Sea</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">הקלו חכמים בדבר המים — Eruvin 12b</div><div class="callout"><strong>Rabbinic Leniency for Water Cases</strong> A narrow sea inlet (<em>mechiẓat hayam</em>) that breaches a courtyard wall is governed by <strong>more lenient standards</strong> than an ordinary breach. The inlet itself is a <em>karmelit</em>, so one may not draw water from it on Shabbat — but carrying within the courtyard may remain permitted if remnants of the wall stand on each side.<br><br>Abaye confirms the principle explicitly: <em>"We know that the Sages lessened requirements in cases involving water."</em> Rabbi Tavla's dilemma about suspended partitions over ruins further illustrates this special category. The leniency reflects a deliberate rabbinic policy, not mere accident.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Eruvin 12 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style=""><strong>Alleyway width?</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="color:#2ecc71"><strong>&lt; 4 handbreadths:</strong><br>Nothing required</div></div><div class="flow-col"><div class="flow-box" style="color:#4a90d9"><strong>4 hb – 4 cubits:</strong><br>Lechi <em>or</em> korah</div></div><div class="flow-col"><div class="flow-box" style="color:#e74c3c"><strong>Square (length=width):</strong><br>Upright board ≥ 4 hb</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>Lechi</strong> = true partition → liability for throwing in<br><strong>Korah</strong> = marker only → no liability</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="color:#4a90d9"><strong>Water breach exception:</strong> Sages applied deliberate leniency — remnants of wall may suffice where a standard breach would not</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Eruvin 12a-12b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Eruvin 12a-12b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../11/">← Daf 11</a><a href="../13/">Daf 13 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eruvin 99 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Eruvin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💧</div>
+  <h1>Eruvin 99</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">עירובין צט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💧 Spitting Across Domains — Rav Yosef: liable for sin-offering<br>
+    🫦 Intent Makes Area Significant — mouth equals 4×4 handbreadths<br>
+    🍶 Drinking Across Domains — head and most of body must follow<br>
+    🏗️ Cistern & Embankment — combining to form private domain<br>
+    🌳 Tree Canopy & Phlegm — Reish Lakish's two rulings<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>💧 Transferring Matter Across Shabbat Domain Boundaries</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Person stands in <strong>one domain</strong>, matter or body extends into <strong>another</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Carries object</div><div class="flow-box result-bad">Must not carry beyond <strong>4 cubits</strong> in public domain — beyond that: liable</div></div><div class="flow-col"><div class="flow-label">Urinates / Spits</div><div class="flow-box result-bad">Rav Yosef: <strong>liable</strong> for sin-offering — intent makes mouth a significant 4×4 area</div></div><div class="flow-col"><div class="flow-label">Drinks from other domain</div><div class="flow-box question">Must bring <strong>head + most of body</strong> into drinking domain — otherwise prohibited</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Rava's Dilemma: if body <em>straddles</em> two domains — do we follow origin or exit point? — <strong>תיקו</strong> (unresolved)</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🫦 Is Spitting from Private to Public a Torah Violation?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Yosef</div><div class="speech">One who urinates or spits from a private domain into a public domain on Shabbat is <strong>liable to bring a sin-offering</strong> — this constitutes a complete act of carrying.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara Challenge</div><div class="speech">Liability requires lifting and placing from/onto a space of <strong>4×4 handbreadths</strong>. The mouth is far smaller — how can there be Torah-level liability?</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Resolution</div><div class="speech"><strong>Intent renders an area significant.</strong> One who throws food into a dog's mouth — his intent makes that small target count. Likewise, a person considers his own mouth important, so it is treated as 4×4.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">New dilemma: if one stands in private domain but his <em>member protrudes</em> into public domain and he urinates — do we follow where the urine <strong>originates</strong> or where it <strong>exits</strong>? — Unresolved.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Intent (כַּוָּנָה) can elevate a sub-minimal area to full halakhic significance for Shabbat carrying liability.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🍶 Drinking Across Domains — Head and Body Rule</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Person wants to drink from a <strong>different domain</strong> than where he stands</div><div class="flow-arrow">↓</div><div class="flow-box question">Does he bring his <strong>head and the majority of his body</strong> into the domain of the drink?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✓ Yes — body follows</div><div class="flow-box result-good"><strong>Permitted:</strong> He is legally present in the drinking domain; no cross-domain transfer occurs</div></div><div class="flow-col"><div class="flow-label">✗ No — only extends head or hand</div><div class="flow-box result-bad"><strong>Prohibited:</strong> Body remains in origin domain; he risks absent-mindedly dragging the vessel back</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Rav Yosef:</strong> Even the lenient Rabbis agree here — concern for <em>mishkach shakhach</em> (forgetting and pulling vessel into wrong domain)</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🏛️ Does the Drinking Rule Apply to a Karmelit?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Abaye — Karmelit = Same as Torah Domain</h3><ul><li>Proof from mishna: 'and the same applies in a winepress'</li><li>First clause already covered private domain — winepress must be karmelit</li><li>Therefore: prohibited to drink from karmelit without bringing most of body</li><li>Karmelit governed by identical drinking rules as Torah domains</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Rava (+ Rav Sheshet) — No Proof from Winepress</h3><ul><li>'Same applies in winepress' = topic of <em>tithes (maasrot)</em>, not Shabbat</li><li>One may drink grape juice in winepress without tithing — that is the parallel</li><li>Rabbis: diluted with hot water → must tithe; cold water → need not tithe</li><li>No Shabbat ruling for karmelit can be derived from this mishna</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏗️ Cistern, Embankment, and Window — Rav Huna vs. Rabbi Yoḥanan</h2>
+  
+  <table><tr><th>Case</th><th>Rav Huna's Explanation</th><th>Rabbi Yoḥanan's Explanation</th></tr><tr><td>Cistern adjacent to house wall (<4 tefaḥim gap)</td><td>Not the mishna's case — embankment unnecessary if walls touch</td><td><strong>Mishna teaches:</strong> cistern + embankment <em>combine</em> to complete the 10 tefaḥim height requirement</td></tr><tr><td>Cistern 4 tefaḥim removed from wall (public domain between)</td><td>Embankment of 10 tefaḥim forms <strong>its own private domain</strong>, bridging the gap between house and cistern</td><td>Also valid — and teaches the combination principle as well</td></tr><tr><td>No embankment of 10 tefaḥim on cistern</td><td><strong>Prohibited</strong> — carrying would traverse public domain between two private domains</td><td>Prohibited — same reasoning</td></tr><tr><td>Garbage dump (10 tefaḥim high)</td><td>Same rules as cistern embankment apply</td><td>Concern: heap may be <em>removed</em> — but mishna permits because public heap stays permanently</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🌳 Phlegm Before One's Master & Tree Canopy on Shabbat</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כָּל מְשַׂנְאַי אָהֲבוּ מָוֶת — משלי ח:לו</div><div class="callout"><strong>Reish Lakish — Two Sharp Rulings</strong> <strong>Ruling 1 — Phlegm before one's Torah master:</strong><br>Expelling phlegm in front of one's rav is liable for <em>death at the hand of Heaven</em>, as the verse states: <strong>'All who hate Me love death'</strong> (Proverbs 8:36) — such contempt for Torah is akin to hatred of God.<br><br><em>Isn't this involuntary?</em> No — we speak of one who felt phlegm accumulating and could have swallowed it, but chose to spit. That constitutes intentional disrespect.<br><br><strong>Ruling 2 — Tree canopy on Shabbat:</strong><br>A tree whose branches hang like a tent, tips within 3 tefaḥim of the ground, forms a private domain below. One may carry beneath it. But if the area is greater than <strong>2 beit se'a</strong> — Rav Huna b. Rav Yehoshua: carrying is prohibited, as a roofed area beyond 2 beit se'a loses its domain status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Eruvin 99 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#2c2c3a;border:2px solid #c9a84c;color:#f0e6c8;"><strong>Core Issue:</strong> Does a transfer of matter/self across domain boundaries trigger Shabbat liability?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a5c;border:1px solid #4a90d9;"><strong>Bodily fluids:</strong><br>Liable if intent makes origin area significant — mouth = 4×4 by kavanah (Rav Yosef; resolved via dog's mouth proof)</div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a3a;border:1px solid #9b59b6;"><strong>Drinking/body:</strong><br>Head + majority of body must enter destination domain — else risk of accidentally dragging vessel (Rav Yosef)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border:1px solid #2ecc71;"><strong>Structures:</strong><br>Cistern + embankment combine for 10 tefaḥim (R. Yoḥanan); 4-tefaḥim gap bridged by embankment's own domain (Rav Huna)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#2c2c3a;border:2px solid #e67e22;color:#f0e6c8;"><strong>Karmelit Dispute:</strong> Abaye — same rules as Torah domain (proof from winepress mishna); Rava — winepress = tithes context, not Shabbat; no proof</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3a1a;border:2px solid #2ecc71;color:#f0f0f0;"><strong>Permanence matters for partitions:</strong> Public garbage dump → permitted (won't be removed); private dump → concern it may be removed → Rabbi Yehuda HaNasi suspended ruling on alleyway</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Eruvin 99a-99b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Eruvin 99a-99b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../98/">← Daf 98</a><a href="../100/">Daf 100 →</a></div>
+</body>
+</html>

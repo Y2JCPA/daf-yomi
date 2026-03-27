@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eruvin 40 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Eruvin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌙</div>
+  <h1>Eruvin 40</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">עירובין מ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🦌 Exilarch's Animal — food from outside the Shabbat limit<br>
+    🥬 Rava's Turnips — when merchants flood the Festival market<br>
+    🌙 New Moon on Rosh HaShana — mention it in prayer?<br>
+    📜 Conditional Prayer — Rabbi Dosa vs. the Rabbis<br>
+    ⏰ Shehecheyanu — on Rosh HaShana and Yom Kippur<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌙 Two Days of Doubt</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">יום טוב שני של גלויות</div><div class="callout"><strong>Core Theme</strong> Eruvin 40 orbits the ambiguous status of <strong>Yom Tov Sheni</strong> — the second Festival day observed in the Diaspora due to calendar uncertainty. Are the two days <em>one extended sanctity</em> or <em>two distinct sanctities</em>? This question ripples through debates about forbidden food, Rosh HaShana prayer formulas, conditional blessings, and whether <em>Shehecheyanu</em> requires a cup of wine on Yom Kippur.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🦌 Who Ate at the Exilarch's Table?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Naḥman & Rav Ḥisda</div><div class="speech">We ate the animal brought to the Exilarch on the Festival. <strong>Something carried from outside the Shabbat limit is forbidden only to the person it was brought for</strong> — the Exilarch. Others present may freely eat it.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Sheshet</div><div class="speech">I did not eat it. Anything brought to the Exilarch's house is effectively <strong>brought with all the Sages in mind</strong> — he always invites them on Festivals. Therefore it is forbidden to all of us, not just to him.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Ameimar (resolving)</div><div class="speech">Rav Sheshet's objection concerned a <strong>separate question</strong> — whether the two Festival days are distinct sanctities. The Exilarch invitation argument and the techum debate should not be conflated; Ameimar's version clarifies the positions.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Rule</strong> Food carried from outside the <em>techum</em> (Shabbat limit) for a specific person is forbidden only to that person — others may eat it freely.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🥬 Rava and the Turnips of Meḥoza</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Gentile merchants bring <strong>turnips</strong> from outside the Shabbat limit into Meḥoza on a Festival day</div><div class="flow-arrow">↓</div><div class="flow-box action">Rava examines the turnips — they are <strong>withered</strong>, clearly harvested days earlier, not on the Festival itself</div><div class="flow-arrow">↓</div><div class="flow-box result-good">✅ Rava <strong>permits</strong> purchase<br><small>"Something brought for one Jew is permitted to another — and these came for many Jews at once"</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Later development</div><div class="flow-box action">Merchants begin bringing <strong>large quantities</strong> specifically for Jewish Festival customers — a new pattern emerges</div></div><div class="flow-col"><div class="flow-label">Rava's new ruling</div><div class="flow-box result-bad">❌ Rava <strong>prohibits</strong> purchase — evident that produce is now being deliberately harvested <em>on</em> the Festival for Jews</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📜 Rabbi Dosa vs. The Rabbis on Rosh HaShana Prayer</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">Rabbi Dosa</h3><ul><li>The prayer leader <strong>mentions the New Moon</strong> in the Rosh HaShana Amida on both days</li><li>Adds a <strong>conditional formula</strong>: 'If today is the first day, this prayer stands; if tomorrow is the true day, tomorrow's prayer stands'</li><li>The condition addresses genuine calendar uncertainty about which day is authentic Rosh HaShana</li><li>Also applied his conditional approach to ordinary New Moons throughout the year</li></ul></div><div class="compare-box" style="border-top-color:#2c1a1a"><h3 style="color:#e74c3c">The Rabbis</h3><ul><li>Did <strong>not</strong> accept the use of conditional prayers (<em>tenai</em>) in this context</li><li>A baraita confirms: Rabbis rejected Rabbi Dosa's condition for regular New Moons throughout the year as well</li><li>The Gemara concludes: their dispute is about <strong>the condition itself</strong>, not about whether to mention the New Moon</li><li>Both sides agree New Moon should be mentioned — they differ only on adding a <em>tenai</em></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🎺 Rosh HaShana on Shabbat — Beit Shammai vs. Beit Hillel</h2>
+  
+  <table><tr><th>Question</th><th>Beit Shammai</th><th>Beit Hillel</th></tr><tr><td>Number of Amida blessings</td><td>Ten — nine Rosh HaShana blessings + one Shabbat blessing</td><td>Seven — standard Shabbat count</td></tr><tr><td>New Moon mention</td><td>Included within existing blessing (no separate blessing required)</td><td>Inserted as a passage within the sanctity-of-the-day blessing</td></tr><tr><td>Structure of regular prayers</td><td>Shabbat blessing added to standard Rosh HaShana Amida</td><td>Begin with Shabbat, conclude with Shabbat; New Moon passage in middle</td></tr><tr><td>Additional (Musaf) prayer</td><td>Begins with Shabbat, concludes with Shabbat; New Moon in middle</td><td>Same branching structure as Beit Shammai for Musaf</td></tr><tr><td>Rabban Shimon ben Gamliel</td><td>—</td><td>Where 7 blessings apply: begin with Shabbat, conclude with New Moon/Festival</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⏰ Shehecheyanu on Rosh HaShana and Yom Kippur</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>The Dilemma (raised in Rav Huna's academy):</strong> Must one recite <em>Shehecheyanu</em> — 'Who has given us life, sustained us, and brought us to this time' — on Rosh HaShana and Yom Kippur?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rav Yehuda's ruling:</strong> "I recite Shehecheyanu even over a <em>new gourd</em> — I certainly recite it on Rosh HaShana and Yom Kippur!" (Optional on mundane occasions; obligatory on holy days.)</div><div class="process-arrow">↓</div><div class="process-step"><strong>The Yom Kippur problem:</strong> Normally recited over wine — but one cannot drink wine before Yom Kippur (lest one accept the fast early) nor leave wine tasted-after (must drink immediately upon blessing).</div><div class="process-arrow">↓</div><div class="process-step"><strong>Precedent from Rav:</strong> Rav accepted early Shabbat via Kiddush, proving one can accept the sanctity of a day early. But Yom Kippur's wine prohibition complicates this solution.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>The Conclusion (sent via Rav Yeimar the Elder to Rav Ḥisda):</strong> Shehecheyanu is recited on both Rosh HaShana and Yom Kippur. It does <em>not</em> require a cup of wine — it may be recited even in the open marketplace.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Eruvin 40 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box start" style="background:#1a2a4a;border:2px solid #c9a84c;padding:10px;border-radius:8px;color:#f0e6cc;"><strong>Yom Tov Sheni Uncertainty</strong><br><small>Two Festival days in Diaspora due to calendar doubt — one long sanctity or two distinct ones?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2a;border:2px solid #2ecc71;border-radius:6px;padding:8px;color:#d0f0d0;"><strong>Food Law</strong><br>Techum produce → forbidden only to intended recipient; brought for many = permitted to all. Rava stops buying when merchants exploit the leniency.</div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a3a;border:2px solid #9b59b6;border-radius:6px;padding:8px;color:#e0d0f0;"><strong>Prayer Formula</strong><br>Rabbi Dosa: add <em>tenai</em> (condition) + mention New Moon. Rabbis: reject the condition. Both agree New Moon belongs in Rosh HaShana Amida.</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a;border:2px solid #c9a84c;border-radius:6px;padding:8px;color:#f0e6cc;"><strong>Shehecheyanu</strong><br>Required on Rosh HaShana & Yom Kippur. No wine cup needed. May be recited in the marketplace. Rav Yehuda: obligatory on holy days.</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Eruvin 40a-40b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Eruvin 40a-40b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../39/">← Daf 39</a><a href="../41/">Daf 41 →</a></div>
+</body>
+</html>

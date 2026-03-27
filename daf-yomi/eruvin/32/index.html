@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eruvin 32 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Eruvin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌳</div>
+  <h1>Eruvin 32</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">עירובין לב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🤝 Agency Presumption — Torah vs. Rabbinic Law<br>
+    🌾 Omer Proof — New Crop Permit<br>
+    🍇 Fig Tree — Am Ha'aretz & Ḥaver Tithing<br>
+    🕳️ Eiruv in Tree or Pit — Height Rules<br>
+    📍 Tree in Public Domain — Where Is Shabbat Residence?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🤝 Rav Naḥman vs. Rav Sheshet: Agency Presumption</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Naḥman</div><div class="speech">We rely on the presumption that an agent fulfills his agency <em>only</em> for <strong>rabbinic law</strong> — not for Torah-level prohibitions.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Sheshet</div><div class="speech">We rely on agency presumption for <strong>both</strong> Torah law and rabbinic law — the agent is trusted regardless of severity.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Naḥman</div><div class="speech">Each of your proofs has an alternative explanation — the omer case works because <strong>the court never delays past midday</strong>, not due to agency trust.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Sheshet</div><div class="speech">Proof from the fig tree: a gatherer eats a <em>ḥaver's</em> figs without tithing — we trust the owner's agency even regarding <strong>Torah-level tithes</strong>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> Does שליח עושה שליחותו (an agent fulfills his mission) apply under Torah law, or only under rabbinic law?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🌾 The Omer Proof — Reading the Evidence</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Mishna:</strong> Once the omer is offered, new-crop grain is immediately permitted throughout the land</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Those <strong>far from Jerusalem</strong> may eat from midday onward — the omer must have been offered by then via court agents</div><div class="flow-arrow">↓</div><div class="flow-box question">Does this prove we rely on <strong>agency presumption even for Torah law</strong>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Sheshet</div><div class="flow-box result-good">Yes — proves agency presumption applies to Torah prohibitions (new grain = Torah-level)</div></div><div class="flow-col"><div class="flow-label">Rav Naḥman</div><div class="flow-box result-bad">No — the court is trusted because it <strong>never delays the omer past midday</strong>; that is the specific reason, not the general agency rule</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🍇 Fig Tree Baraita — Who Tithed the Figs?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Baraita (1st case)</div><div class="speech">One who gathers figs from an <em>am ha'aretz's</em> tree must tithe them as <strong>demai</strong> — doubtful produce, possibly untithed.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Baraita (2nd case)</div><div class="speech">One who gathers from a <em>ḥaver's</em> tree may eat freely — the ḥaver certainly already separated tithes from other produce on its behalf.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabbi Yehuda HaNasi</div><div class="speech">My view is stronger: even if ḥaverim tithe from <em>non-adjacent produce</em> (a minor irregularity), we still trust them not to release untithed produce.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Ḥanina Ḥoza'a</div><div class="speech">Legal presumption: a <strong>ḥaver never releases untithed produce from his possession</strong> — so Rav Naḥman can explain the fig-tree case without invoking agency at all.</div></div></div><div class="callout" style="margin-top:20px"><strong>Naḥman's Counter</strong> Each proof Rav Sheshet raises has its own local presumption — no general agency rule for Torah law is needed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👥 Am Ha'aretz vs. Ḥaver — Tithing Obligations</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fdf0e0"><h3 style="color:#e67e22">Am Ha'aretz</h3><ul><li>Suspected of not separating tithes properly</li><li>Figs from his tree → gatherer must tithe as <em>demai</em></li><li>His word on tithing status is unreliable</li><li>Cannot be trusted to act as tithing agent</li></ul></div><div class="compare-box" style="border-top-color:#e8f8f0"><h3 style="color:#2ecc71">Ḥaver</h3><ul><li>Committed to scrupulous halachic observance</li><li>Figs from his tree → may be eaten without tithing</li><li>Presumed never to release untithed produce (Rav Ḥanina Ḥoza'a)</li><li>May tithe retroactively from non-adjacent produce (Rabbi Yehuda HaNasi)</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🌳 Mishna: Eiruv Placement Validity Rules</h2>
+  
+  <table><tr><th>Location</th><th>Height / Depth</th><th>Valid?</th><th>Reason</th></tr><tr><td>Tree</td><td>Above 10 handbreadths</td><td>❌ Invalid</td><td>Above 10t = distinct elevated domain; inaccessible on Shabbat</td></tr><tr><td>Tree</td><td>Below 10 handbreadths</td><td>✅ Valid</td><td>Below 10t = ground-level zone; accessible on Shabbat</td></tr><tr><td>Pit</td><td>Any depth — even 100 cubits</td><td>✅ Valid</td><td>Pit floor is at ground level — height is zero, not elevated</td></tr><tr><td>Leaning tree</td><td>Beyond 4 cubits from trunk</td><td>❌ Invalid</td><td>Rav Yitzḥak: overhang beyond 4 cubits is a distinct zone</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📍 Gemara: Why Does a Tree in the Public Domain Matter?</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Problem posed</strong> by Rabbi Ḥiyya bar Abba, Rabbi Asi, and Rava bar Natan: Where does the mishna's tree stand — private or public domain?</div><div class="process-arrow">↓</div><div class="process-step"><strong>Private domain rejected:</strong> If the tree is in a private domain, height doesn't matter — the whole space is one unified domain.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Public domain assumed:</strong> The tree stands in the public domain. The person placed his eiruv intending to establish Shabbat residence <em>on the ground below</em>, not in the tree.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Above 10 handbreadths = unreachable:</strong> Climbing a tree is rabbinically forbidden on Shabbat → eiruv cannot be retrieved → it fails.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rava's limitation:</strong> This ruling applies only to a tree <em>beyond</em> the city's outskirts (more than 70⅔ cubits away). A tree within city limits is treated as part of the town.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Naḥman's affirmation:</strong> Shmuel in Babylonia reached the same conclusion independently — the Sages of Eretz Yisrael were surprised Babylonian scholars had resolved this.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Eruvin 32 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#16213e;border:2px solid #4a90d9;"><strong>Agency Debate:</strong><br>Rav Naḥman: rabbinic law only<br>Rav Sheshet: Torah law too</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #e67e22;"><strong>Rav Sheshet's proofs</strong><br>Omer • Woman's box • Fig tree ḥaver</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #2ecc71;"><strong>Rav Naḥman's counters</strong><br>Court never delays • Custom • Ḥaver presumption</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;border:2px solid #c9a84c;"><strong>Mishna:</strong> Tree above 10t = invalid • Below 10t = valid • Pit (any depth) = valid</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;border:2px solid #2ecc71;"><strong>Gemara resolves:</strong> Tree is in public domain; residence intended below; height = accessibility on Shabbat. Rava: only applies beyond city outskirts.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Eruvin 32a-32b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Eruvin 32a-32b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../31/">← Daf 31</a><a href="../33/">Daf 33 →</a></div>
+</body>
+</html>

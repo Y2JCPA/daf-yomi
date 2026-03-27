@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eruvin 100 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Eruvin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌳</div>
+  <h1>Eruvin 100</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">עירובין ק׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌳 Tree Roots — Shabbat rules for elevated and bending roots<br>
+    🌲 Climbing Trees — green, dry, and stranded-on-Shabbat cases<br>
+    🌿 Walking on Grass — multiple resolutions to contradicting baraitot<br>
+    💑 Conjugal Relations — force, modesty, and rewarded demand<br>
+    🐾 Animal Wisdom — modesty and ethics taught by nature<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌳 Rabba vs. Rav Sheshet: Roots That Rise and Bend Back Down</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech"><strong>Permitted.</strong> Anything within 3 handbreadths of the ground is considered <em>as the ground itself</em>. These roots, though they rose above, bend back down into that zone — they revert to ground status.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Sheshet</div><div class="speech"><strong>Prohibited.</strong> Since these roots <em>come from above</em> — they originate as part of the tree above ground — they retain the status of the tree regardless of how far they ultimately descend.</div></div></div><div class="callout" style="margin-top:20px"><strong>Point of Agreement</strong> Ascending roots (rising upward): prohibited by all. Roots that come straight down to ground level: permitted by all. The dispute is only about roots that rise AND then bend back down.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🌳 Tree Root Status on Shabbat — Decision Tree</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Tree roots encountered on Shabbat — may one sit on them?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Root height < 3 handbreadths</div><div class="flow-box result-good"><strong>✓ Permitted</strong><br>Considered part of the ground</div></div><div class="flow-col"><div class="flow-label">Root height ≥ 3 handbreadths</div><div class="flow-box result-bad"><strong>✗ Prohibited</strong><br>Has full status of a tree</div></div><div class="flow-col"><div class="flow-label">Root rises then bends back down</div><div class="flow-box action"><strong>⚖ Disputed</strong><br>Rabba: permitted<br>Rav Sheshet: prohibited</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Abaye's palm tree (practical case):</strong> Trunk grew through roof — Rav Yosef permitted first 3 handbreadths above floor inside the house. Rav Aḥa bar Taḥlifa: this follows Rabba only; Rav Sheshet would prohibit even this, since the house is not a complete enclosure.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🌿 Walking on Grass on Shabbat — Contradicting Baraitot</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#2ecc71">Baraita (permits)</div><div class="speech"><strong>Permitted</strong> to walk on grass on Shabbat. No melachah is violated.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Baraita (prohibits)</div><div class="speech"><strong>Prohibited</strong> — <em>"He who hastens with his feet sins"</em> (Proverbs 19:2). Even walking can involve transgression.</div></div></div><div class="callout" style="margin-top:20px"><strong>Four-Part Resolution</strong> <strong>1.</strong> Dry grass (permit) vs. green grass (prohibit) <strong>2.</strong> Winter (permit) vs. summer when seeds present (prohibit) <strong>3.</strong> With shoes (permit) vs. barefoot (prohibit) <strong>4.</strong> Plain sole (permit) vs. spiked sole that catches seeds (prohibit).<br><br><strong>Final ruling:</strong> Since we follow Rabbi Shimon — no liability for an unintentional prohibited act performed during a permitted act — walking on grass is now <em>generally permitted.</em></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🌲 Climbing Trees on Shabbat: Green vs. Dry</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#0f2e1a"><h3 style="color:#2ecc71">Green Tree</h3><ul><li>Prohibited to climb — rabbinic decree</li><li>Concern: may snap a branch (detaching = melacha)</li><li>Cannot climb up Friday and remain on Shabbat</li><li>If climbed unwittingly — may descend (per one baraita)</li><li>Dispute: penalize unwitting offender due to intentional one?</li></ul></div><div class="compare-box" style="border-top-color:#2e1e0a"><h3 style="color:#c9a84c">Dry Tree (sends new shoots)</h3><ul><li>Still prohibited — not truly 'dead'</li><li>Produces new growth when cut; has vitality</li><li>'You call this dry?' — not considered dry at all</li><li>Included in the climbing prohibition</li></ul></div><div class="compare-box" style="border-top-color:#1e1e1e"><h3 style="color:#aaaaaa">Dry Tree (no new shoots ever)</h3><ul><li>Winter: permitted (no fruit to pick or dislodge)</li><li>Summer: concern that old fruit will fall off</li><li>Rav prohibited even stripped/branch-bare tree at Apsetaya</li><li>Gemara: Rav was extra-strict as a fence, not strict law</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>💑 Conjugal Relations — Halakhic and Ethical Principles</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rami bar Ḥama / Rav Asi:</strong> A man may <em>not force</em> his wife — derived from <em>"he who hastens with his feet sins"</em> (Proverbs 19:2).</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Yehoshua ben Levi:</strong> One who forces his wife will have <em>unworthy children</em> — as written: <em>"Without knowledge the soul is not good"</em> (Proverbs 19:2).</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rava:</strong> One who wants all children to be male should have relations and repeat the act — but only when the wife <em>consents and desires</em>.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rav Shmuel bar Naḥmani / Rabbi Yoḥanan:</strong> A woman who <em>demands</em> the conjugal mitzva merits sons of surpassing greatness — even greater than Moses's generation.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Proof from Leah (Genesis 30:16):</strong> <em>"You must come in to me"</em> — her reward was <strong>Issachar</strong>, the tribe of Torah scholars.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Resolution with Eve's curse:</strong> A woman should not voice her desire explicitly (tzniut). Rather, she should make herself pleasing to him — and he will understand. This is the praiseworthy 'demand.'</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🐾 Lessons from Animals — Rabbi Yoḥanan (Job 35:11)</h2>
+  
+  <table><tr><th>Animal</th><th>Lesson Taught</th><th>Behavior</th></tr><tr><td>🐱 Cat</td><td>Modesty / tzniut</td><td>Covers its excrement — teaches dignified private behavior</td></tr><tr><td>🐜 Ant</td><td>Theft is forbidden</td><td>Never takes grain from another ant's store</td></tr><tr><td>🕊️ Dove</td><td>Marital fidelity</td><td>Does not abandon or switch its partner</td></tr><tr><td>🐓 Rooster</td><td>Appease before intimacy; apologize after</td><td>Spreads wings (promises coat); bows head after (apologizes for not paying)</td></tr><tr><td>🐴 Female mule</td><td>Modesty in intimacy</td><td>Crouches to allow mating — a dignified posture</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Eruvin 100 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#0f2e1a;border-color:#2ecc71"><strong>Trees &amp; Shabbat</strong><br>Roots, climbing, remaining — all regulated</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0f2e1a;border-color:#2ecc71"><strong>&lt; 3 handbreadths</strong><br>Permitted (as ground)<br><small>Rabba's rule</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2e0f0f;border-color:#e74c3c"><strong>≥ 3 handbreadths</strong><br>Prohibited<br><small>All agree</small></div></div><div class="flow-col"><div class="flow-box" style="background:#0f0f2e;border-color:#4a90d9"><strong>Rises &amp; bends back</strong><br>Rabba ✓ / Rav Sheshet ✗<br><small>Classic dispute</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#0f2e1a;border-color:#2ecc71"><strong>Grass on Shabbat</strong><br>Follow Rabbi Shimon → generally permitted</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1e0f2e;border-color:#9b59b6"><strong>Conjugal Ethics</strong><br>No force • Modest demand rewarded • Nature models the way</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#2e1e0a;border-color:#c9a84c"><strong>Torah from Creation</strong><br>Even without Torah — cat, ant, dove, rooster teach us how to live</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Eruvin 100a-100b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Eruvin 100a-100b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../99/">← Daf 99</a><a href="../101/">Daf 101 →</a></div>
+</body>
+</html>

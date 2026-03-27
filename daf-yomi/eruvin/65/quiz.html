@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eruvin 65 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Eruvin 65 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Rabbi Ḥanina, at what level of intoxication is a person NOT legally responsible for their actions?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Any level after drinking two cups of wine</div>
+      <div class="option" onclick="select(1,this,1)">B. When they reach the level of intoxication of Lot</div>
+      <div class="option" onclick="select(1,this,2)">C. When they cannot walk in a straight line</div>
+      <div class="option" onclick="select(1,this,3)">D. When a physician certifies them as fully incapacitated</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Rabbi Ḥanina taught that a drunk is legally responsible for all actions unless he reaches 'the level of Lot' — completely unaware of what he is doing, as Lot was with his daughters (Genesis 19). This sets an extremely high bar for exemption.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">What is the dispute between Rabbi Ḥanina and Rabbi Yoḥanan about 'a shield at a time of arrogance'?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Whether one should carry a physical shield in the marketplace</div>
+      <div class="option" onclick="select(2,this,1)">B. Whether the shield metaphor refers to Torah study or prayer</div>
+      <div class="option" onclick="select(2,this,2)">C. Whether one should cover/suppress (afik) or draw out/reveal (mapik) the shield</div>
+      <div class="option" onclick="select(2,this,3)">D. Whether arrogance is ever permitted for Torah scholars</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>Rabbi Ḥanina holds that one who 'covers' himself (afik) — suppressing arrogance — is protected from trouble. Rabbi Yoḥanan holds one must 'draw out' (mapik) the shield — actively deploying it. Both agree the result is that troubles are sealed away.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Rav Naḥman bar Yitzḥak says halakhic study requires clarity 'as on a day when a north wind blows.' What does Abaye add in the same spirit?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. That one should study only at sunrise when the mind is freshest</div>
+      <div class="option" onclick="select(3,this,1)">B. That drinking a small amount of wine sharpens halakhic memory</div>
+      <div class="option" onclick="select(3,this,2)">C. That if his stepmother asked him to bring kutaḥ, he could no longer study normally</div>
+      <div class="option" onclick="select(3,this,3)">D. That the Shema must be recited before any serious study session</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>Abaye illustrated how even minor domestic disruptions — his stepmother asking him to fetch kutaḥ (a pungent condiment) — shattered his concentration. This supports Rav Naḥman's principle that a perfectly clear, undisturbed mind is needed for sharp halakhic analysis.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">In the two-courtyard eruvin case, whose combined opinions does Rav Huna say Rav's ruling reflects?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Rabbi Yehuda and Rabbi Shimon</div>
+      <div class="option" onclick="select(4,this,1)">B. Rabbi Meir and Rabbi Eliezer ben Yaakov</div>
+      <div class="option" onclick="select(4,this,2)">C. Rabbi Eliezer ben Yaakov (for the gentile) and Rabbi Akiva (for the Jew)</div>
+      <div class="option" onclick="select(4,this,3)">D. Beit Shammai and Beit Hillel</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>Rav Huna resolves the debate by showing Rav follows Rabbi Eliezer ben Yaakov regarding the gentile's disqualifying presence (he must actually reside there) and Rabbi Akiva regarding the inner Jew's foot — which renders carrying in the outer courtyard prohibited even though he is permitted in his own domain.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Rabbi Ḥiyya teaches that one who stays clear-minded after drinking wine has 'the mindset of 70 Elders.' What is his numerical allusion?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. The Sanhedrin had exactly 70 members who were known wine drinkers</div>
+      <div class="option" onclick="select(5,this,1)">B. Wine must be aged 70 days before it has full halakhic status</div>
+      <div class="option" onclick="select(5,this,2)">C. The word יין (wine) has a gematria value of 70 (yod+yod+nun = 10+10+50)</div>
+      <div class="option" onclick="select(5,this,3)">D. There were 70 grape clusters in the Temple's golden vine decoration</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>Rabbi Ḥiyya's allusion is linguistic: the Hebrew word יין (wine) equals 70 in gematria (yod=10, yod=10, nun=50). One who can drink wine and remain mentally sharp has, in a sense, absorbed the full 70 — the measure of Elder-wisdom.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":2,"4":2,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>
