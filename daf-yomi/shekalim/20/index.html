@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shekalim 20 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Shekalim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🪙</div>
+  <h1>Shekalim 20</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">שקלים כ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔍 Found Money in Jerusalem — determining sacred status<br>
+    🐄 Near the Animal Dealers — presumed Maaser Sheni<br>
+    ⛩️ Temple Mount Money — presumed chullin (non-sacred)<br>
+    📅 Festival Timing — shifts presumptions about found coins<br>
+    💰 Surplus Shekel Funds — used for Temple golden vessels<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🪙 Where Was the Money Found?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Money found somewhere in Jerusalem</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Before Animal Dealers</div><div class="flow-box result-good">Presumed <strong>Maaser Sheni</strong><br><small>People buy animals with tithe money</small></div></div><div class="flow-col"><div class="flow-label">On the Temple Mount</div><div class="flow-box action">Presumed <strong>Chullin</strong><br><small>Majority are ordinary visitors</small></div></div><div class="flow-col"><div class="flow-label">During Festival Season</div><div class="flow-box result-good">Presumed <strong>Maaser Sheni</strong><br><small>Pilgrims flood Jerusalem with tithes</small></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏛️ Mishnah: Found Money in Jerusalem</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מָצָא מָעוֹת בִּירוּשָׁלַיִם לִפְנֵי סוֹחֲרֵי בְהֵמָה — הֲרֵי אֵלּוּ מַעֲשֵׂר שֵׁנִי</div><div class="callout"><strong>Core Rule</strong> One who finds money <strong>before the animal dealers</strong> in Jerusalem presumes it is <strong>Maaser Sheni</strong> (second tithe) and must treat it accordingly — redeeming it onto another coin before spending. The animal market was specifically where pilgrims spent their Maaser Sheni to purchase offerings and festival meals.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Temple Mount Found Money — Chullin or Sacred?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yochanan</div><div class="speech">Money found on the Temple Mount is presumed <strong>chullin</strong> — pilgrims bring ordinary coins for personal expenses and incidental purchases when visiting. We follow the <em>majority</em> of passersby.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">But donations are made throughout the Temple precinct! Should we not presume that coins found there are lost <em>shekalim</em> or dedicated Temple funds? The very sanctity of the place argues otherwise.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yochanan</div><div class="speech">The Temple Mount functions as a public thoroughfare — the overwhelming majority who traverse it carry personal money. We follow <em>acharei rabbim</em>: presumption is chullin. Donations are made at specific collection points, not scattered throughout.</div></div></div><div class="callout" style="margin-top:20px"><strong>Ruling</strong> Halakha follows Rabbi Yochanan: the Temple Mount is treated like a general public area for purposes of found money. The paradox is that the most sacred location yields the least sacred presumption — because <em>rov</em> (majority) overrides geography.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📅 Festival Timing Changes Everything</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#fff">Close to a Pilgrimage Festival</h3><ul><li>Found money in Jerusalem → presumed <strong>Maaser Sheni</strong></li><li>Massive influx of pilgrims carrying tithe funds</li><li>Majority shifts: most coins are now second-tithe money</li><li>Applies to all three festivals: Pesach, Shavuot, Sukkot</li><li>Finder must redeem it onto a coin before use</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Outside Festival Season</h3><ul><li>Found money in Jerusalem → presumed <strong>chullin</strong></li><li>Fewer pilgrims; ordinary residents predominate</li><li>Most coins in circulation are non-sacred</li><li>Finder may keep and use as ordinary property</li><li>No redemption required</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🗺️ Location-Based Presumptions for Found Money</h2>
+  
+  <table><tr><th>Location Found</th><th>Presumption</th><th>Reason</th><th>Practical Law</th></tr><tr><td>Before animal dealers</td><td>Maaser Sheni</td><td>Animals purchased with tithe funds</td><td>Must redeem; cannot spend directly</td></tr><tr><td>On Temple Mount</td><td>Chullin</td><td>Majority traffic is personal spending</td><td>May keep as ordinary funds</td></tr><tr><td>Jerusalem near festival</td><td>Maaser Sheni</td><td>Pilgrims bring tithes en masse</td><td>Must redeem onto a coin</td></tr><tr><td>Jerusalem outside festival</td><td>Chullin</td><td>Ordinary residents are majority</td><td>Ordinary property</td></tr><tr><td>Near shulchan / collection tables</td><td>Shekalim / Temple funds</td><td>Proximity to donation area</td><td>Belongs to Temple treasury</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>💰 Surplus Shekel Funds — From Coin to Golden Vessel</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Collection:</strong> All Jewish men contribute a half-shekel annually; funds accumulate in the Temple treasury chamber.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Three Withdrawals:</strong> The treasurer makes <em>terumah</em> (withdrawal) before each of the three pilgrimage festivals to fund communal offerings for the whole year.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Communal Sacrifices Purchased:</strong> The withdrawn funds pay for the <em>tamid</em> (daily offering), Musaf sacrifices, and other obligatory communal korbanot.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Surplus Identified:</strong> After all communal offerings are funded, any remaining balance constitutes surplus (<em>motar</em>) belonging to the community.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Temple Beautification:</strong> Surplus is used to purchase golden vessels — menorah fittings, altar overlays, and sacred implements — so every Jew shares in the Temple's splendor.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Shekalim 20 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:10px;border-radius:8px"><strong>💰 Money Found in Jerusalem</strong><br><small>Is it Maaser Sheni or chullin?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>🐄 Animal Dealers</strong><br>→ <em>Maaser Sheni</em><br><small>Must be redeemed</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>⛩️ Temple Mount</strong><br>→ <em>Chullin</em><br><small>Follow the majority</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>📅 Festival Season</strong><br>→ <em>Maaser Sheni</em><br><small>Pilgrims presumed</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;padding:10px;border-radius:8px"><strong>✨ Surplus Shekels</strong><br><small>Beyond communal offerings → <strong>golden Temple vessels</strong> — every Israelite's contribution beautifies the House of God</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Shekalim 20a-20b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Shekalim 20a-20b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../19/">← Daf 19</a><a href="../21/">Daf 21 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shekalim 11 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Shekalim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏛️</div>
+  <h1>Shekalim 11</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">שקלים יא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🗃️ Thirteen Shofar Chests — Temple collection boxes<br>
+    💰 Motar — surplus funds from offerings<br>
+    🔍 Found coins in Jerusalem — their status<br>
+    🕊️ Surplus from bird offerings — who benefits<br>
+    ⚖️ Individual vs. communal surplus — key distinctions<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Individual Surplus vs. Communal Surplus</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Individual Motar (מותר יחיד)</h3><ul><li>Leftover from a private vow or donation</li><li>Belongs to the individual donor's estate</li><li>Heirs may claim unused surplus</li><li>Example: surplus from a private bird offering</li><li>Must be used for its designated purpose</li></ul></div><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#ffffff">Communal Motar (מותר ציבור)</h3><ul><li>Leftover from communal Temple collections</li><li>Reverts to the Temple treasury (הקדש)</li><li>Used for communal Temple needs</li><li>Example: surplus from the half-shekel fund</li><li>No individual can claim ownership</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">שלשה עשר שופרות היו במקדש</div><div class="callout"><strong>📜 The Thirteen Shofar Chests</strong> The Mishnah teaches that there were <strong>thirteen shofar-shaped collection chests</strong> (שופרות) in the Temple. Each was designated for a specific type of donation — new shekalim, old shekalim, bird offerings, wood, frankincense, gold for the kapporet, and various voluntary offerings. The shofar shape (wide at top, narrow at bottom) prevented people from reaching in to take money back.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🗣️ Surplus from Bird Offerings — Who Benefits?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">Surplus funds from a <em>private</em> bird offering (motar kinnim) go to the <strong>Temple treasury</strong> — they were consecrated for that purpose, and all leftovers belong to hekdesh.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">No — surplus from a private obligation returns to the <strong>donor's estate</strong>. The individual dedicated only what was needed; the excess retains its private character and does not become Temple property.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">But the person <em>consecrated</em> this money for the offering! Once dedicated, all connected funds are hekdesh — even the surplus cannot simply revert.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The Yerushalmi distinguishes: if the donor said 'these coins <em>are for</em> my offering,' surplus goes to hekdesh. If the donor said 'I will <em>bring</em> an offering from these,' only what is used is consecrated, and surplus is unconsecrated.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔍 Found Coins in Jerusalem — Determining Status</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Coins found in Jerusalem — what is their status?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Found near the Temple Mount</div><div class="flow-box result-good">Presumed to be <strong>maaser sheni</strong> (second tithe money) — must be redeemed and spent in Jerusalem on food</div></div><div class="flow-col"><div class="flow-label">Found in markets of Jerusalem</div><div class="flow-box action">Presumed to be <strong>ordinary (chullin)</strong> money — most money in markets is unconsecrated</div></div><div class="flow-col"><div class="flow-label">Found in the Temple courtyard</div><div class="flow-box result-bad">If found during Passover — assume <strong>maaser sheni</strong>; rest of year — assume Temple funds (hekdesh)</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🗃️ The Thirteen Shofar Chests and Their Purposes</h2>
+  
+  <table><tr><th>Chest Number</th><th>Designated Purpose</th><th>Type of Donation</th></tr><tr><td>1–2</td><td>New and Old Shekalim (שקלים חדשים וישנים)</td><td>Obligatory annual half-shekel</td></tr><tr><td>3</td><td>Bird offering surpluses (מותר קינים)</td><td>Overflow from bird donations</td></tr><tr><td>4</td><td>Young bird burnt offerings (קיני עולה)</td><td>Voluntary bird offerings</td></tr><tr><td>5</td><td>Wood for the altar (עצים)</td><td>Voluntary fuel donation</td></tr><tr><td>6</td><td>Frankincense (לבונה)</td><td>Incense ingredient donations</td></tr><tr><td>7</td><td>Gold for the kapporet cover (זהב)</td><td>Designated gold for Holy of Holies</td></tr><tr><td>8–13</td><td>Six voluntary offering types</td><td>Free-will communal donations</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>💰 What Happens to Temple Surplus Funds (Motar)?</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1 — Identify the source:</strong> Was the money donated for a specific obligatory purpose, or as a voluntary gift?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 2 — Determine designation:</strong> Did the donor consecrate the <em>object</em> (e.g., 'this animal') or the <em>obligation</em> (e.g., 'I must bring an offering')?</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 3 — Apply the rule:</strong> Obligatory surplus (motar chovat) goes to communal Temple needs — nedavah (voluntary) offerings.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 4 — Nedavah surplus:</strong> Surplus from voluntary offerings is used for communal burnt offerings (olot tzibur) on the altar.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 5 — Final accounting:</strong> Any residual surplus at year's end contributes to Temple infrastructure: water channels, city walls, and towers of Jerusalem.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Shekalim 11 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:white;border-radius:8px;padding:8px;"><strong>Donation Made</strong><br><small>Private vow or communal shekel</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;border-radius:8px;padding:8px;"><strong>Communal Donation</strong><br><small>Half-shekel, communal chest</small><br>→ Surplus becomes Temple nedavah</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;border-radius:8px;padding:8px;"><strong>Private Obligation</strong><br><small>Personal vow, bird offering</small><br>→ Depends on exact language of consecration</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:white;border-radius:8px;padding:8px;"><strong>Motar Rule Applied</strong><br><small>Surplus funds directed to communal burnt offerings or Temple infrastructure</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Shekalim 11a-11b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Shekalim 11a-11b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../10/">← Daf 10</a><a href="../12/">Daf 12 →</a></div>
+</body>
+</html>
