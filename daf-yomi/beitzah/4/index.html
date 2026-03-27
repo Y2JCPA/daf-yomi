@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beitzah 4 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Beitzah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🥚</div>
+  <h1>Beitzah 4</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ביצה ד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Untithed Figs — nullification dispute: R. Eliezer vs. R. Yehoshua on vessel mouths<br>
+    🥚 Festival Egg — Aḥerim: it and its mother may be eaten (guzma explained)<br>
+    📅 Consecutive Days — Rav vs. Rabbi Yoḥanan: egg laid on one, status on the other<br>
+    🌍 Two Diaspora Festival Days — Rav vs. Rav Asi: one sanctity or two?<br>
+    🗓️ Rosh HaShana Special Rule — Rav and Shmuel agree: egg on one day prohibited on the other<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🥚 The Consecutive Holy Days Problem</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Shabbat and Yom Tov fall on <strong>consecutive days</strong></div><div class="flow-arrow">↓</div><div class="flow-box action">A chicken lays an egg on <strong>one of the days</strong> — may it be eaten on the <em>other</em>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav</div><div class="flow-box result-bad">Egg is <strong>prohibited</strong> on the other day — each day is a <em>separate sanctity</em>; no cross-day preparation</div></div><div class="flow-col"><div class="flow-label">Rabbi Yoḥanan</div><div class="flow-box result-good">Egg is <strong>permitted</strong> on the other day — the two days form <em>one extended sanctity</em></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Untithed Figs: Can Vessel Mouths Combine for Nullification?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R. Eliezer</div><div class="speech">The upper circles of untithed figs are treated as <em>separate pieces</em>. One hundred permitted mouths <strong>do nullify</strong> one prohibited mouth — they combine into a single mass.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R. Yehoshua</div><div class="speech">Even <strong>100 mouths of different barrels</strong> cannot nullify one prohibited litra. Each vessel mouth is a distinct unit — they do <em>not</em> combine for nullification purposes.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R. Yehuda</div><div class="speech">Transmits a variant of R. Eliezer: If 100 permitted mouths are present <strong>in addition to</strong> the prohibited one, it is nullified. If not — it is <em>not</em> nullified.</div></div></div><div class="callout" style="margin-top:20px"><strong>Gemara Resolution</strong> If the prohibited litra was pressed into one vessel but it is unknown <em>which</em> one, all agree it is nullified — Rav Pappa clarifies this means the side of a single vessel is uncertain, not which vessel among many.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🗣️ Aḥerim's Ruling and the Concept of Guzma</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">גּוּזְמָא הוּא — It is an exaggeration (Beitzah 4a)</div><div class="callout"><strong>Aḥerim in the name of Rabbi Eliezer</strong> An egg laid on a <strong>Festival</strong> — <em>it and its mother may be eaten.</em><br><br>The Gemara asks: in what case? <strong>Abaye</strong> explains: a chicken bought without specifying egg-use or eating — since it could be slaughtered, it is "prepared" as food, and its egg is also permitted.<br><br><strong>Rav Mari objects:</strong> the phrase is a <em>guzma</em> (גּוּזְמָא) — a <strong>rabbinic exaggeration for emphasis</strong>. It does not literally mean the mother is eaten simultaneously. Proof: another baraita says "a chick and its shell may be eaten" — but a shell is inedible! Thus the expression overstates to stress permissibility.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📅 Egg on Consecutive Shabbat and Yom Tov: Rav vs. Rabbi Yoḥanan</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a3a"><h3 style="color:#c9a84c">Rav — Prohibited</h3><ul><li>Egg laid on <em>this</em> holy day is <strong>forbidden</strong> on the adjacent one</li><li>Follows R. Eliezer: consecutive days are <strong>two distinct sanctities</strong></li><li>Ruled in accord with <em>four elders</em> who agreed with R. Eliezer</li><li>Holds that <strong>Rabba's preparation</strong> (muchan me'elav) is prohibited — an egg "prepared itself" on Day 1 cannot be used on Day 2</li><li>Rav Adda bar Ahava's host confirmed: Rav's view means the egg is prohibited</li></ul></div><div class="compare-box" style="border-top-color:#1a3a1a"><h3 style="color:#2ecc71">Rabbi Yoḥanan — Permitted</h3><ul><li>Egg laid on <em>this</em> holy day is <strong>permitted</strong> on the adjacent one</li><li>Holds the two consecutive days form <strong>one extended sanctity</strong></li><li>Rejects Rabba's preparation as a binding prohibition</li><li>Supported by a <em>baraita</em>: an egg laid on Shabbat may be eaten on a Festival</li><li>Same baraita also states: one may not move such an egg to cover a vessel</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🌍 Why Two Diaspora Festival Days? Rav vs. Rav Asi</h2>
+  
+  <div class="flowchart"><div class="flow-box question">We observe <strong>two days of Yom Tov</strong> in the Diaspora — but <em>why?</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav — Uncertainty</div><div class="flow-box action">Originally, messengers couldn't reach all communities in time → two days arose from <strong>calendar doubt</strong>. If certainty were restored, one day would suffice.</div></div><div class="flow-col"><div class="flow-label">Rav Asi — Fixed Decree</div><div class="flow-box action">The Sages made the second day a <strong>permanent ordinance</strong> — one sanctity — regardless of whether the calendar is now known.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Abaye supports Rav:</strong> Samaritans disrupted fire-signal system → Sages switched to messengers → second day born from genuine doubt. Had interference ceased, one day would have been restored.</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Sent from Eretz Yisrael:</strong> <em>"Preserve your ancestral custom"</em> — even though the calendar is now fixed by calculation, the two-day practice continues as an irrevocable tradition.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🗓️ Egg Rulings Across All Consecutive Holy Day Scenarios</h2>
+  
+  <table><tr><th>Scenario</th><th>Rav</th><th>Opposing View</th><th>Outcome</th></tr><tr><td>Shabbat + Yom Tov (consecutive)</td><td>Prohibited — two sanctities</td><td>R. Yoḥanan: Permitted — one sanctity</td><td>Rav's view accepted; egg prohibited</td></tr><tr><td>Two Diaspora Yom Tov days</td><td>Permitted — arose from doubt (two sanctities)</td><td>Rav Asi: Prohibited — one permanent sanctity</td><td>Custom maintained: observe both strictly</td></tr><tr><td>Two days of Rosh HaShana</td><td>Prohibited — special unified status</td><td>Shmuel agrees with Rav</td><td>Both agree: egg on one day prohibited on other</td></tr><tr><td>Egg laid by tereifa chicken</td><td>Cannot be nullified — even in 1000</td><td>Unanimous ruling</td><td>Never nullified; permanent prohibition</td></tr><tr><td>Egg from Festival chicken (unspecified purpose)</td><td>Permitted (Aḥerim/R. Eliezer via Abaye)</td><td>Depends on whether use was specified</td><td>Permitted if chicken could have been slaughtered</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Beitzah 4 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Starting point:</strong> An egg laid on a holy day is <em>muktzeh</em> — not prepared before the day; it "came into the world" on the holy day itself</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#c9a84c"><strong>Two Sanctities</strong><br><small>Rav, R. Eliezer, four elders</small><br>Each day stands alone → egg on Day 1 is <strong>prohibited</strong> on Day 2</div></div><div class="flow-col"><div class="flow-box" style="border-color:#2ecc71"><strong>One Sanctity</strong><br><small>Rabbi Yoḥanan</small><br>Days form a continuum → egg on Day 1 is <strong>permitted</strong> on Day 2</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style=""><strong>Rosh HaShana exception:</strong> Uniquely, <em>both</em> Rav and Shmuel rule that an egg laid on either of the two days of Rosh HaShana is <strong>prohibited</strong> on the other — the two days have a special combined stringency</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style=""><strong>Diaspora resolution:</strong> Rav Asi performed <em>havdala</em> between the days (implying two sanctities) but was uncertain whether the decree was permanent or doubt-driven. The ruling from Eretz Yisrael: <em>"preserve your ancestral custom"</em> — maintain both days regardless</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Beitzah 4a-4b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Beitzah 4a-4b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">← Daf 3</a><a href="../5/">Daf 5 →</a></div>
+</body>
+</html>

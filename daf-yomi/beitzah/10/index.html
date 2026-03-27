@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beitzah 10 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Beitzah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🕊️</div>
+  <h1>Beitzah 10</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ביצה י׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Embedded Shovel Debate — Beit Shammai vs. Beit Hillel on Festival preparation<br>
+    🕊️ First vs. Second Brood — Rav Ḥanan bar Ami's key distinction<br>
+    🔄 Breirah (Retroactive Designation) — Can verbal intent designate Festival items?<br>
+    🔢 Changed Fledglings Mishna — colors and numbers shift overnight<br>
+    💰 Tithe Money Analogy — Rabbi Yehuda HaNasi vs. the Rabbis on missing items<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🕊️ Taking Fledgling Doves on a Festival</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">One may not take fledgling doves on a Festival unless he <strong>physically shook</strong> (הניד) the ones he wished to take while still day (erev Yom Tov), thereby preparing them.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">No physical act is needed. It is sufficient if one <strong>stood and said verbally</strong>: 'I will take <em>this one</em> and <em>that one</em>' — verbal designation (מיגו דאמר) suffices.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> Doves are muktze (set aside, not prepared). Both sides agree preparation is required — they dispute whether a <strong>physical act</strong> or a <strong>verbal declaration</strong> accomplishes it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🐣 First Brood vs. Second Brood — Rav Ḥanan bar Ami</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#fff">First Brood (בכור גדול)</h3><ul><li>First pair of fledglings hatched in the year</li><li>Typically left in nest — <em>not yet designated for use</em></li><li>Owner has not yet committed to taking them</li><li><strong>Dispute applies here</strong>: Beit Shammai requires shaking; Beit Hillel requires verbal declaration</li><li>Concern: owner might change his mind (Beit Shammai) or not (Beit Hillel)</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Second Brood (בכור קטן)</h3><ul><li>Fledglings born in the second cycle</li><li>Owner has <em>already resolved</em> to use these birds</li><li>No concern he will reconsider</li><li><strong>Both Beit Shammai and Beit Hillel agree</strong>: verbal designation suffices</li><li>No shaking or elaborate preparation required</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔢 Designated Fledglings Mishna — What If Things Change?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Erev Yom Tov:</strong> Owner designates specific fledglings for slaughter on the Festival</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Designated black → found white (or vice versa)</div><div class="flow-box result-bad"><strong>Prohibited</strong> — clearly different birds; original designation does not apply</div></div><div class="flow-col"><div class="flow-label">Designated 2 → found 3</div><div class="flow-box result-bad"><strong>Prohibited</strong> — either the extras are undesignated strangers, or these are all new birds; either way, problem</div></div><div class="flow-col"><div class="flow-label">Designated 3 → found 2</div><div class="flow-box result-good"><strong>Permitted</strong> — these are the same ones; one simply hopped away. The remaining two retain their designation</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Found before the nest (not inside):</strong> Prohibited — may be outsiders. Found inside with only the designated number: Permitted — assumed to be the same</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔄 Does Beit Hillel Accept Breirah (Retroactive Designation)?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Objection</div><div class="speech">If Beit Hillel accept <strong>breirah</strong> (retroactive clarification of intent), why must one specify 'this one and that one'? Let him simply say: 'I will take from <em>this dovecote</em> tomorrow' — and whichever he takes will be retroactively designated!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava's Answer</div><div class="speech">Even Beit Hillel do <strong>not</strong> rely on breirah here. The reason specification is required is a rabbinic concern: he might pick a fat bird, find it thin, and then move a non-designated (muktze) object — thus the specific verbal designation prevents confusion.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Proof from Corpse Case</div><div class="speech">A mishna: if there are multiple doorways and one decides which door to remove the corpse through, Beit Hillel purify all other doorways retroactively — suggesting they <em>do</em> accept breirah!</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabba's Rebuttal</div><div class="speech">Beit Hillel there only purify the entrances <strong>from that point forward</strong> (מכאן ולהבא) — not retroactively. No proof for breirah.</div></div></div><div class="callout" style="margin-top:20px"><strong>Bottom Line</strong> The daf leaves unresolved whether Beit Hillel truly accept <strong>ברירה</strong>. Rava's approach avoids the question by grounding Beit Hillel's requirement in a practical rabbinic concern about muktze.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>💰 Tithe Money Analogy — 3 → 2 Fledglings vs. Missing Coins</h2>
+  
+  <table><tr><th>Scenario</th><th>Rabbi Yehuda HaNasi</th><th>The Rabbis</th><th>Gemara's Resolution</th></tr><tr><td>Placed 100 dinars tithe; found 200</td><td>100 is tithe, 100 is extra (stranger's coins)</td><td>All 200 may be tithe — perhaps he forgot he put in more</td><td>—</td></tr><tr><td>Placed 200 dinars tithe; found 100</td><td>100 remains tithe; 100 was removed</td><td>All 200 are tithe — perhaps he forgot he removed some (all are still tithe!)</td><td>Mishna (3→2 fledglings = permitted) follows Rabbi Yehuda HaNasi</td></tr><tr><td>Designated 3 fledglings; found 2</td><td>The 2 are the same ones; 1 hopped away — <em>permitted</em></td><td>Could argue: perhaps these 2 are strangers — prohibited?</td><td>Rabbi Yoḥanan: fledglings are <strong>different</strong> — they typically hop. Even Rabbis agree the 2 found are the originals</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔁 Rabbi Yoḥanan's Reversal — Resolving Beit Shammai Contradictions</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Problem:</strong> Beit Shammai appear lenient about Festival rejoicing (שמחת יום טוב) in the slaughtering case (allowing a hide before treaders), yet stringent in the store-shutters case — a contradiction within Beit Shammai!</div><div class="process-arrow">↓</div><div class="process-step"><strong>Initial Attempt:</strong> Distinguish based on whether a shovel was <em>embedded before the Festival</em> (מוכן): Beit Shammai lenient only when already prepared. But the Gemara rejects each attempt: 'From where do you know this?'</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Yoḥanan's Bold Resolution:</strong> <em>הפוכי מטרתא</em> — the attribution of opinions is <strong>reversed</strong>. The lenient opinion in the slaughtering case is actually Beit Hillel, and the stringent opinion is Beit Shammai.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Alternative Answer (without reversing):</strong> Beit Hillel state their lenient ruling only in the specific context discussed, but would agree with Beit Shammai's stringency in other contexts. The rulings are not contradictory — they address different scenarios.</div><div class="process-arrow">↓</div><div class="process-step"><strong>General Pattern:</strong> When Beit Shammai and Beit Hillel appear to trade positions, the Gemara first seeks a contextual distinction. Only when that fails does it resort to Rabbi Yoḥanan's reversal of attributions.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Beitzah 10 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff"><strong>Doves are muktze</strong> — cannot be used on a Festival without prior preparation</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff"><strong>Beit Shammai:</strong> Must physically <em>shake</em> birds before Yom Tov</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff"><strong>Beit Hillel:</strong> Verbal declaration ('this one and that one') suffices</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff"><strong>Rav Ḥanan bar Ami:</strong> Dispute is only for the <em>first brood</em>; second brood is permitted by all with mere verbal intent</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff"><strong>Designated fledglings changed color or multiplied:</strong> Prohibited — new, undesignated birds</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff"><strong>Designated 3, found 2:</strong> Permitted — same birds; one hopped away (<em>fledglings typically hop</em>)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#16213e;color:#fff"><strong>Underlying Question:</strong> Does Beit Hillel accept <strong>ברירה</strong> (retroactive designation)? The Gemara leaves this unresolved — Rava grounds Beit Hillel's requirement in a practical muktze concern instead.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Beitzah 10a-10b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Beitzah 10a-10b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../9/">← Daf 9</a><a href="../11/">Daf 11 →</a></div>
+</body>
+</html>

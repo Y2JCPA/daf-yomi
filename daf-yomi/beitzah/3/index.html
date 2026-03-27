@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beitzah 3 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Beitzah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🥚</div>
+  <h1>Beitzah 3</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ביצה ג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🥚 Three Reasons — Why is an egg laid on Yom Tov forbidden?<br>
+    ⚖️ Decree on a Decree — Can rabbis stack rabbinic prohibitions?<br>
+    💧 Liquid from Fruit — Rabbi Yehuda's seemingly contradictory rulings<br>
+    🔄 Ravina's Resolution — Resolving without reversing opinions<br>
+    🔢 Nullification — Can a Yom Tov egg be batel in a mixture?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🥚 Three Amoraim: Why Is the Yom Tov Egg Forbidden?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">The egg is <strong>muktzeh</strong> — it lacked preparation before Yom Tov. The hen was designated for laying eggs, not as food, so the egg was never 'set aside' for eating. <em>Possible Torah-level concern.</em></div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Yosef</div><div class="speech">The egg is forbidden as a <strong>rabbinic decree</strong> due to fruit plucked on Yom Tov — just as that newly-separated produce is forbidden, so too an egg laid that day. Both are 'newly created' on Yom Tov.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Yitzchak</div><div class="speech">The egg is a decree due to <strong>liquid that seeped from fruit</strong> on Yom Tov — since that liquid is rabbinically forbidden, an egg laid that day shares the same prohibited status. <em>Rabbi Yochanan agrees.</em></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> The Mishnah rules an egg laid on Yom Tov is forbidden. But WHY? Three Amoraim give three distinct reasons — each carrying different halachic consequences for doubtful cases and mixtures.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ The Decree-on-a-Decree Problem</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Rav Yosef / Rabbi Yitzchak:</strong> Egg is forbidden as a <em>decree</em> due to liquid from fruit, which is itself forbidden on Yom Tov</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Abaye's Challenge:</strong> But liquid from fruit is itself only forbidden as a <em>decree</em> — lest one purposely squeeze fruit and perform the labor of threshing</div><div class="flow-arrow">↓</div><div class="flow-box question">Do we issue a decree to prevent violation of <em>another</em> decree? <strong>(גזירה לגזירה)</strong> — Generally prohibited!</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabba's view</div><div class="flow-box result-good">Exactly why Rabba rejects both opinions — he requires a direct Torah-level concern, not a chain of rabbinic decrees</div></div><div class="flow-col"><div class="flow-label">Rav Yosef's reply</div><div class="flow-box result-good">The egg has an <em>additional</em> resemblance to plucked fruit — both are newly-created on Yom Tov. This extra factor justifies the decree independently</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📊 Three Opinions Compared</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#0d2035"><h3 style="color:#4a90d9">Rabba</h3><ul><li>Reason: <strong>Muktzeh</strong> — lack of preparation</li><li>Level: Possible <em>Torah</em> concern</li><li>Doubt case: Strict — safek d'orayta l'chumra</li><li>Baraita result: Uncertain egg remains forbidden</li><li>Key factor: Hen designated for eggs, not food</li></ul></div><div class="compare-box" style="border-top-color:#2a1a00"><h3 style="color:#e67e22">Rav Yosef</h3><ul><li>Reason: Decree due to <strong>plucked fruit</strong></li><li>Level: <em>Rabbinic</em> decree</li><li>Doubt case: Lenient — safek d'rabbanan l'kula</li><li>Baraita result: Uncertain egg is permitted</li><li>Key factor: Egg resembles newly-separated produce</li></ul></div><div class="compare-box" style="border-top-color:#1a0a2a"><h3 style="color:#9b59b6">Rabbi Yitzchak</h3><ul><li>Reason: Decree due to <strong>liquid from fruit</strong></li><li>Level: <em>Rabbinic</em> decree</li><li>Doubt case: Lenient — safek d'rabbanan l'kula</li><li>Baraita result: Uncertain egg is permitted</li><li>Key factor: Rabbi Yochanan explicitly adopts this view</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>💧 Rabbi Yehuda's Apparent Contradiction</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#2ecc71">Rabbi Yehuda (Statement 1 — Shabbat 143b)</div><div class="speech"><strong>Liquid from fruit</strong> that seeped on its own is <em>permitted</em> — it retains the status of food, not liquid, since it came from produce intended for eating. Food that comes from food = food.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Yehuda (Statement 2 — Two-day Yom Tov)</div><div class="speech">An <strong>egg laid on the first Festival day</strong> is <em>forbidden</em> even on the second day — implying eggs are treated more strictly than liquid that seeped, creating an apparent contradiction.</div></div></div><div class="callout" style="margin-top:20px"><strong>Rabbi Yochanan's Resolution</strong> <strong>Reverse the attributions!</strong> The lenient ruling on liquid belongs to the <em>other</em> opinion; the strict ruling on eggs belongs to Rabbi Yehuda. Since both rulings are flipped, they must share the same underlying reason — proving the egg ban is a decree linked to liquid from fruit.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔄 Ravina Resolves Without Reversing</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Rabbi Yochanan's solution:</strong> Reverse the attributions entirely to harmonize the egg and liquid rulings</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Ravina objects:</strong> No reversal needed! Rabbi Yehuda can consistently hold both positions</div><div class="process-arrow">↓</div><div class="process-step"><strong>Ravina's reading:</strong> Rabbi Yehuda personally <em>permits</em> the egg — but argues: 'According to <em>your</em> logic (forbidding liquid), you must also forbid the first-day egg.' It is a rhetorical argument, not his own ruling.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Ravina son of Rav Ulla adds:</strong> Rabbi Yehuda forbids the egg for an entirely different reason — the hen was not designated as food. This is independent of the liquid-from-fruit logic.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Result:</strong> Multiple valid resolutions exist. Rabbi Yochanan's reversal of attributions is not the only path to coherence.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔢 Can a Yom Tov Egg Be Nullified (Batel) in a Mixture?</h2>
+  
+  <table><tr><th>Issue</th><th>Reish Lakish</th><th>Rabbi Yochanan</th><th>Supporting Tanna</th></tr><tr><td>Is an egg 'significant' (חשוב)?</td><td>Yes — typically sold by unit</td><td>No — also sold in bulk, not exclusively by unit</td><td>—</td></tr><tr><td>Can it be nullified by majority?</td><td>No — significant items cannot become batel</td><td>Yes — egg is nullified by majority</td><td>—</td></tr><tr><td>If mixed with 1,000 eggs?</td><td>All 1,000 are forbidden</td><td>All 1,000 are permitted (majority)</td><td>—</td></tr><tr><td>Supporting tanna</td><td>R. Meir (orla/kilayim mishna): counted items never batel</td><td>Tanna of litra of dried figs: even counted rabbinic items are batel</td><td>—</td></tr><tr><td>Logic of tanna of figs</td><td>—</td><td>Any item that is merely 'often counted' (not exclusively) does not achieve significant status</td><td>Supports leniency</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Beitzah 3 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2a2a3a;border:2px solid #c9a84c;padding:10px;border-radius:6px;text-align:center;"><strong>Mishnah:</strong> An egg laid on Yom Tov is forbidden to eat</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0d2035;border:2px solid #4a90d9;padding:8px;border-radius:6px;text-align:center;"><strong>Rabba:</strong><br>Muktzeh — Torah concern<br><small>Doubt → strict</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a0a2a;border:2px solid #9b59b6;padding:8px;border-radius:6px;text-align:center;"><strong>Rav Yosef / R. Yitzchak:</strong><br>Rabbinic decree<br><small>Doubt → lenient</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#0a2a0a;border:2px solid #2ecc71;padding:10px;border-radius:6px;text-align:center;"><strong>Rabbi Yochanan</strong> proves from Rabbi Yehuda's contradiction: the prohibition is a decree linked to <em>liquid from fruit</em> — agreeing with Rabbi Yitzchak</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a00;border:2px solid #e67e22;padding:10px;border-radius:6px;text-align:center;"><strong>Ravina:</strong> No reversal needed — Rabbi Yehuda's statements can be reconciled as written</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a2a3a;border:2px solid #c9a84c;padding:10px;border-radius:6px;text-align:center;"><strong>Final debate:</strong> Can egg be batel in a mixture?<br><em>Reish Lakish:</em> No (significant item) | <em>Rabbi Yochanan:</em> Yes (not exclusively counted)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Beitzah 3a-3b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Beitzah 3a-3b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../2/">← Daf 2</a><a href="../4/">Daf 4 →</a></div>
+</body>
+</html>

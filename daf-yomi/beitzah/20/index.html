@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beitzah 20 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Beitzah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🙌</div>
+  <h1>Beitzah 20</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ביצה כ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🙌 Semicha Debate — Beit Shammai vs. Beit Hillel on laying hands on Festival offerings<br>
+    🐑 Hillel's Maneuver — bringing Kedar sheep to settle the semicha dispute<br>
+    🔥 Olat Re'iyah — may appearance burnt-offerings be sacrificed on Yom Tov?<br>
+    📜 Fixed vs. Unfixed Offerings — which may be brought on a Festival and why<br>
+    ⚖️ Rava vs. Rabba bar Rav Huna — consequences of improper Festival sacrifice<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🙌 The Great Semicha Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">One may <strong>not</strong> place hands (semicha) on a sacrifice on Yom Tov — this constitutes prohibited labor, even in the Temple courtyard.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">One <strong>may</strong> place hands on a sacrifice on Yom Tov — semicha is integral to the sacrificial service and is therefore permitted.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Hillel the Elder</div><div class="speech">I declared my animal <em>ownerless</em> (hefker) before Yom Tov — then brought it as a burnt-offering with semicha unchallenged, since it had no formal 'owner.'</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">When Hillel did this, we gained the upper hand and sought to establish halakha in accordance with our view once and for all.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">A disciple brought all the finest sheep of Kedar to the Temple courtyard — the people placed hands freely, and <strong>Beit Hillel prevailed</strong>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Historical Significance</strong> The semicha dispute was among the most persistent disagreements between the two schools — ultimately resolved in favor of Beit Hillel. Semicha on Yom Tov is permitted.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🐑 Hillel's Cunning Stratagem — Step by Step</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>The Problem:</strong> Hillel the Elder wished to perform semicha on his burnt-offering on Yom Tov — but Beit Shammai strictly forbade this as a prohibited labor.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Hillel's Move:</strong> He designated his animal as <em>hefker</em> (ownerless) before the Festival, so technically there was no 'owner' performing semicha — only an anonymous worshipper.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Beit Shammai's Reaction:</strong> When they learned of Hillel's workaround, they gained the upper hand and attempted to legislate the halakha in their favor.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>The Counter-Move:</strong> A Beit Hillel disciple brought all the finest sheep of Kedar (<em>כבשי קידר</em>) to the Temple courtyard and invited anyone to come place hands freely.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Result:</strong> Beit Hillel regained the upper hand — and halakha was decided in their favor: semicha is permitted on Yom Tov.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Abaye's Moral:</strong> A Torah scholar whose colleague says something insulting should not respond with <em>more</em> than was said — escalation only worsens the conflict, as this episode illustrates.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔥 May Olat Re'iyah Be Sacrificed on Yom Tov?</h2>
+  
+  <div class="debate"><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">Just as slaughter for a <em>common person</em> is permitted on Yom Tov, slaughter for the <em>Most High</em> should also be permitted — a fortiori!</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">But vow-offerings and gift-offerings may not be slaughtered on Yom Tov — why should appearance-offerings be any different?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">Vow-offerings have <strong>no fixed time</strong> — but the olat re'iyah has a fixed time: the Festival itself. Fixed-time offerings <em>may</em> be sacrificed on Yom Tov.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">The verse says: 'Only that which every soul must eat, that alone may be done <em>for you</em>' (Exodus 12:16) — offerings are <em>for God</em>, not for you, and are excluded.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Abba Shaul / Beit Hillel</div><div class="speech">Just as <em>your</em> stove is closed on Shabbat yet your Master's stove (the altar) is open — so too on Yom Tov, God's service continues unimpeded.</div></div></div><div class="callout" style="margin-top:20px"><strong>Abba Shaul's Variant</strong> Abba Shaul presents a stronger Beit Hillel position: even vow-offerings and gift-offerings MAY be brought on Yom Tov — and the two formulations reflect a deeper dispute about the nature of the prohibition.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📋 Categories of Offerings on Yom Tov</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2a"><h3 style="color:#2ecc71">Permitted — All Agree</h3><ul><li>Shalmei re'iyah (appearance peace-offerings)</li><li>Shalmei simcha (Festival joy peace-offerings)</li><li>Two Shavuot loaves and their accompanying lambs</li><li>Daily communal tamid burnt-offerings</li></ul></div><div class="compare-box" style="border-top-color:#3a2a1a"><h3 style="color:#e67e22">Disputed Between Schools</h3><ul><li>Olat re'iyah (appearance burnt-offerings) — Beit Hillel permits; Beit Shammai forbids</li><li>Semicha on any offering — Beit Hillel permits; Beit Shammai forbids</li><li>Nedarim/nedavot on Yom Tov — forbidden per Beit Shammai; permitted per Abba Shaul's Beit Hillel</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Forbidden — All Agree</h3><ul><li>Nedarim (vow-offerings) — no fixed time, no Festival connection</li><li>Nedavot (gift-offerings) — no fixed time, purely voluntary</li><li>Private offerings unrelated to the Festival's unique obligations</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ Rava vs. Rabba bar Rav Huna — Vow-Offerings Slaughtered on Yom Tov</h2>
+  
+  <table><tr><th>Issue</th><th>Rava</th><th>Rabba bar Rav Huna</th></tr><tr><td>Nature of the prohibition</td><td>Rabbinic decree only — Torah permits these offerings</td><td>Torah-level prohibition — fundamentally forbidden on Yom Tov</td></tr><tr><td>Validity of slaughter after the fact</td><td>Valid — sacrifice retains its sacred character</td><td>Valid — but on thinner grounds</td></tr><tr><td>Blood sprinkling (zerika) required?</td><td>Yes — blood must be sprinkled on the altar</td><td>Yes — blood must be sprinkled on the altar</td></tr><tr><td>If meat became impure before sprinkling</td><td>Blood IS still sprinkled — offering remains valid</td><td>Blood is NOT sprinkled — impurity retroactively invalidates the act</td></tr><tr><td>Practical result of dispute</td><td>The offering stands in most cases</td><td>The offering collapses once an interrupting event occurs</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📜 Which Offerings May Be Sacrificed on Yom Tov?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Question:</strong> Is this offering permitted to be sacrificed on Yom Tov?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Has a fixed time (zman kavua)</div><div class="flow-box result-good">Tied to this specific Festival — e.g., olat re'iyah, shalmei re'iyah</div></div><div class="flow-col"><div class="flow-label">Has no fixed time</div><div class="flow-box result-bad">Vow-offerings and gift-offerings — could be brought any day, so no Festival necessity</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Beit Hillel's Rule:</strong> Fixed-time offerings <em>may</em> be sacrificed on Yom Tov — the Festival is their designated and proper time</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Proof from Shavuot Loaves:</strong> The two loaves are obligatory on Shavuot with no rabbinic fence needed — proving Torah-level permission for fixed-time offerings on Yom Tov</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Beitzah 20 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2a2a3a;border:2px solid #9b59b6"><strong>Core Dispute:</strong><br>Beit Shammai vs. Beit Hillel — semicha on Yom Tov, and which offerings may be sacrificed</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1a1a;border:2px solid #e74c3c"><strong>Beit Shammai:</strong><br>Semicha = prohibited labor; olat re'iyah forbidden; verse limits Yom Tov acts to food-for-humans only</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a3a;border:2px solid #4a90d9"><strong>Beit Hillel:</strong><br>Semicha permitted; fixed-time offerings may be brought; God's service takes precedence</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3a1a;border:2px solid #2ecc71"><strong>Resolution:</strong> Halakha follows Beit Hillel — semicha is permitted; fixed-time offerings may be sacrificed on Yom Tov</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2a2a1a;border:2px solid #c9a84c"><strong>Further Dispute — Rava vs. Rabba bar Rav Huna:</strong><br>If vow-offerings were improperly slaughtered on Yom Tov — is the prohibition rabbinic or Torah-level? This determines whether blood is sprinkled when meat becomes impure.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Beitzah 20a-20b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Beitzah 20a-20b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../19/">← Daf 19</a><a href="../21/">Daf 21 →</a></div>
+</body>
+</html>
