@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 22 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chagigah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🫙</div>
+  <h1>Chagigah 22</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חגיגה כב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🫙 Vessels Within Vessels — immersion validity disputed by Rava and Rabbi Ila<br>
+    ⚖️ Eleven Stringencies — how sacrificial food exceeds teruma in purity demands<br>
+    🤝 Am Ha'aretz & Ḥaver — who is trusted for ritual immersion and purity?<br>
+    🏛️ Beit Shammai vs Beit Hillel — earthenware vessels of the am ha'aretz<br>
+    😤 Eivah — social harmony shapes halakha for sacrificial food acceptance<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Two Great Disputes of Daf 22</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech"><strong>Physical concern:</strong> The prohibition on immersing vessels inside a narrow-mouthed vessel is because water cannot adequately reach the inner vessels. A basket (גַּרְגּוּטְנִי) is therefore <em>permitted</em> — water flows freely through its weave.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Ila</div><div class="speech"><strong>Appearance concern:</strong> Even a basket is prohibited — it <em>looks</em> like improper immersion to observers. The Sages decreed against any immersion of vessels inside other vessels, regardless of water flow.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">A sealed earthenware vessel of an am ha'aretz shields food, drink, and earthenware inside — but <strong>NOT</strong> metal or glass vessels that ḥaverim might later borrow and be misled about their purity.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Beit Hillel</div><div class="speech">The sealed earthenware vessel shields <strong>everything</strong> inside — both earthenware and metal vessels are pure. You cannot distinguish between them.</div></div></div><div class="callout" style="margin-top:20px"><strong>🙇 Rabbi Yehoshua's Remarkable Response</strong> After hearing Beit Shammai's reasoning from a student, Rabbi Yehoshua prostrated himself on the graves of Beit Shammai's students: 'I humble myself before you, bones of Beit Shammai! If your hidden reasoning is so compelling — how much more your revealed teachings!'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Rava vs Rabbi Ila: Why Prohibit Vessels Inside Vessels?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech"><strong>Root concern = water flow.</strong> Needles immersed inside a narrow-mouthed vessel cannot be reached by water — the immersion is physically invalid. A basket poses no such problem since water penetrates its open weave. Therefore a basket filled with vessels and immersed is <em>pure for all purposes, even sacrificial food</em>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Ila</div><div class="speech"><strong>Root concern = appearance (מַרְאִית הָעַיִן).</strong> The Sages prohibited any immersion of one vessel inside another lest observers imitate without taking proper precautions. A basket is <em>also prohibited</em> — the visual problem is the same regardless of whether water physically flows through.</div></div></div><div class="callout" style="margin-top:20px"><strong>📌 The Practical Difference</strong> A <strong>basket or wicker bin (גַּרְגּוּטְנִי)</strong> filled with small vessels and immersed: <strong style='color:#4a90d9'>Rava → PURE</strong> (water flows freely through weave) vs. <strong style='color:#9b59b6'>Rabbi Ila → PROHIBITED</strong> (appearance problem unchanged). This dispute is also a tannaitic dispute in a baraita.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🫙 Immersing Vessels Inside Another Vessel — Decision Tree</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Immersing small vessels <em>inside</em> a larger vessel — valid?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Outer vessel has WIDE opening</div><div class="flow-box result-good">Water flows freely — <strong>valid and pure</strong> for all purposes including sacrificial food</div></div><div class="flow-col"><div class="flow-label">Outer vessel NARROW-mouthed</div><div class="flow-box result-bad">Water cannot reach inner vessels — <strong>prohibited</strong> for sacrificial food; impure</div></div><div class="flow-col"><div class="flow-label">Basket / Wicker Bin (גַּרְגּוּטְנִי)</div><div class="flow-box action"><strong>Rava:</strong> Pure — water penetrates weave<br><strong>Rabbi Ila:</strong> Still prohibited — bad appearance</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Special rule (Mishna, Mikvaot 6:2):</strong> If the outer vessel <em>itself requires immersion</em>, all vessels inside it become pure automatically — the outer vessel's own immersion covers its contents</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Rava's additional ruling:</strong> A ritual bath divided into two sections by a basket — each section must contain a full <strong>40 se'a</strong> for sacrificial food, even if the 40 se'a exists in the combined pool</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🤝 Am Ha'aretz Trustworthiness: By Category</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1e0a0a"><h3 style="color:#e74c3c">❌ NOT Trusted</h3><ul><li>Immersion of <strong>vessels</strong> — assumed not done properly</li><li>That produce <strong>susceptibility to impurity</strong> was removed</li><li>Purity standards for <strong>sacrificial food</strong></li><li>Ḥaver must re-immerse vessels borrowed from am ha'aretz</li></ul></div><div class="compare-box" style="border-top-color:#0a1e0d"><h3 style="color:#2ecc71">✅ Trusted</h3><ul><li>Immersion of his own <strong>body</strong> (Abaye's resolution)</li><li>That produce has <strong>not</strong> been made susceptible to impurity</li><li>Purity for everyday <strong>ḥullin</strong> purposes</li><li>Testimony accepted today — <strong>Rav Pappa</strong> rules per Rabbi Yosei</li></ul></div><div class="compare-box" style="border-top-color:#1a1400"><h3 style="color:#c9a84c">⚠️ Nuanced</h3><ul><li><strong>Teruma:</strong> Not accepted from am ha'aretz → vessel purity less consequential</li><li><strong>Sacrificial food:</strong> Accepted → rejection causes <em>אֵיבָה</em> (antagonism)</li><li>Am ha'aretz resents sacrificial rejection MORE than teruma rejection</li><li>Sages shaped law to avoid enmity — a social-halakhic balance</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏛️ Rabbi Yehoshua & the Shammai Student: Five Dramatic Moments</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>The Dispute:</strong> Beit Shammai rules that a sealed earthenware vessel of an am ha'aretz shields food, drink, and earthenware inside — but <em>not</em> metal or glass vessels that ḥaverim might borrow.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Yehoshua's Challenge:</strong> 'I am ashamed of your words, Beit Shammai! How can a corpse below render only <em>some</em> items in the vessel above impure? Either the vessel shields everything or nothing!'</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>The Student Steps Forward:</strong> A Shammaite student approaches Rabbi Yehoshua and offers to explain their reasoning. Rabbi Yehoshua says: 'Speak.'</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Beit Shammai's Logic Revealed:</strong> An impure vessel does <em>not</em> shield its contents. Food and earthenware stay pure only because ḥaverim will never touch them. But metal vessels might be borrowed — a ḥaver could use them thinking they are pure, when in fact they absorbed impurity through the unsealed earthenware vessel.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Yehoshua's Prostration:</strong> He immediately went and prostrated on the graves of Beit Shammai's students: 'Bones of Beit Shammai — I humble myself before you! If your <em>hidden</em> reasoning is so compelling, how much more your revealed teachings must have been!'</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📜 Eleven Stringencies of Sacrificial Food (קֹדֶשׁ) vs Teruma</h2>
+  
+  <table><tr><th>Category</th><th>Stringency / Halakha</th><th>Teruma</th><th>Sacrificial Food</th></tr><tr><td>Vessel Purity</td><td>Back of vessel defiled by impure liquid — entire vessel must be re-immersed</td><td>Back/inside distinction applies</td><td>More stringent: entire vessel affected</td></tr><tr><td>Vessel Purity</td><td>Place for gripping (בֵּית הַצְּבִיתָה) — indentation where vessel is held</td><td>Not considered a distinct area</td><td>Treated as separate area requiring attention</td></tr><tr><td>Vessel Purity</td><td>Immersing one vessel inside another with narrow opening</td><td>Lenient (am ha'aretz rejected anyway)</td><td>Strictly prohibited</td></tr><tr><td>Ritual Bath</td><td>Forty se'a when bath is divided by basket/bin</td><td>Combined 40 se'a sufficient</td><td>Each section requires full 40 se'a</td></tr><tr><td>Carrying</td><td>Carrying object trodden by a zav while holding food</td><td>Prohibited only for certain cases</td><td>Absolutely prohibited — cannot carry simultaneously</td></tr><tr><td>Social Policy</td><td>Accepting food from am ha'aretz</td><td>Not accepted — less strict needed</td><td>Accepted — therefore 11 stringencies apply</td></tr><tr><td>Additional ×5</td><td>Five further stringencies observed by ḥaverim for kodesh</td><td>N/A</td><td>Ḥaverim only — stricter personal practice</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chagigah 22 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#1a1a2e;border:2px solid #c9a84c;padding:12px;border-radius:8px;text-align:center;"><strong>Central Question:</strong> How pure must vessels and food be — and who can we trust?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0a1e0d;border:1px solid #2ecc71;padding:10px;border-radius:6px;"><strong style='color:#2ecc71'>Teruma</strong><br>Moderate standards<br>Not accepted from am ha'aretz → vessel purity less critical<br><em>Lenient immersion rules</em></div></div><div class="flow-col"><div class="flow-box" style="background:#1e0a0a;border:1px solid #e74c3c;padding:10px;border-radius:6px;"><strong style='color:#e74c3c'>Sacrificial Food (קֹדֶשׁ)</strong><br>Strictest standards — 11 stringencies<br>Accepted from am ha'aretz → must avoid <strong>אֵיבָה</strong><br><em>Strict but socially aware</em></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#1a1400;border:2px solid #c9a84c;padding:12px;border-radius:8px;"><strong>Rava's Rulings:</strong> Basket immersed with vessels inside → <em style='color:#2ecc71'>pure for kodesh</em> (water flows freely). Mikveh divided by basket → each side needs full <em style='color:#c9a84c'>40 se'a</em> for sacrificial food.</div><div class="flow-arrow">↓</div><div class="flow-box principle" style="background:#1a0d2e;border:2px solid #9b59b6;padding:12px;border-radius:8px;"><strong>Rabbi Yosei / Rav Pappa Principle:</strong> We accept testimony from amei ha'aretz today and accept their sacrificial food — rejecting it would cause <em style='color:#e74c3c'>אֵיבָה</em> (enmity). Halakha bends toward communal peace.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chagigah 22a-22b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chagigah 22a-22b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../21/">← Daf 21</a><a href="../23/">Daf 23 →</a></div>
+</body>
+</html>

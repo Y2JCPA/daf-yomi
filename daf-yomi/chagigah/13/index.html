@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 13 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chagigah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Chagigah 13</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חגיגה יג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌌 The Seven Firmaments — cosmic distances and divine realms<br>
+    🔒 Esoteric Secrets — five traits required to receive hidden Torah<br>
+    ⚡ Hashmal Defined — the speaking fire-animals of Ezekiel's vision<br>
+    👁️ Ezekiel vs. Isaiah — villager and city-dweller before the king<br>
+    🪶 Wings of the Angels — resolving the contradiction of four vs. six<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌌 The Architecture of Esoteric Knowledge</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Seven Firmaments</strong><br><small>Each 500 years' distance apart — outer: darkness (Ps. 18), inner: light (Ps. 97)</small></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Divine Creatures (Chayot)</strong><br><small>Feet span all firmaments; their perspiration forms the River of Fire (Nehar Dinur)</small></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Hashmal surrounds the Throne</strong><br><small>Speaking animals of fire — חַיּוֹת אֵשׁ מְמַלְּלוֹת</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Permitted</div><div class="flow-box result-good"><em>Outlines only</em><br>to a single worthy sage</div></div><div class="flow-col"><div class="flow-label">Forbidden</div><div class="flow-box result-bad"><em>Full exposition</em><br>of Merkavah details — fire consumed the youth</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔑 Five Traits to Receive Esoteric Torah (Rabbi Ami, Isaiah 3:3)</h2>
+  
+  <table><tr><th>Trait</th><th>Hebrew</th><th>Significance</th></tr><tr><td>Captain of fifty</td><td>שַׂר חֲמִשִּׁים</td><td>Commands authority; a leader of gravitas</td></tr><tr><td>Man of favor</td><td>נְשׂוּא פָנִים</td><td>Respected bearing; charisma and moral stature</td></tr><tr><td>Counselor</td><td>יוֹעֵץ</td><td>Wisdom to advise; sound and measured judgment</td></tr><tr><td>Cunning charmer</td><td>חֲכַם חֲרָשִׁים</td><td>Mastery of subtle knowledge; craft of the wise</td></tr><tr><td>Skillful enchanter</td><td>נְבוֹן לָחַשׁ</td><td>Deep understanding of hidden and mysterious things</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>💬 Teaching the Merkavah — A Missed Opportunity</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R. Yochanan</div><div class="speech">Come, and I will teach you the Design of the Divine Chariot.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R. Elazar</div><div class="speech">I have not yet aged sufficiently. One must be deeply settled in mind before approaching these studies.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Narrator</div><div class="speech">When Rabbi Elazar finally grew old, Rabbi Yochanan had already died — and the opportunity was lost.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Yosef</div><div class="speech">I know the Merkavah well. But the Elders of Pumbedita urged me to teach them — and I replied: If a simple elder is as two, I am not yet qualified to judge.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R. Abbahu</div><div class="speech">Proverbs says 'kevasim' — read it as kevashim: things that are concealed [כְּבָשִׁים], they are for your clothing alone. Do not expose them to all.</div></div></div><div class="callout" style="margin-top:20px"><strong>Lesson</strong> Even great sages deferred studying Merkavah — and some lost the chance entirely. Esoteric wisdom demands not only intellect but spiritual maturity and the right moment.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👁️ Ezekiel and Isaiah: Same Vision, Different Response (Rava)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1e2d40"><h3 style="color:#c9a84c">Ezekiel — The Villager</h3><ul><li>Saw the Divine Chariot in exile, far from Jerusalem</li><li>Like a villager who sees the king for the first time</li><li>Astonished by every detail of royal grandeur</li><li>Described Chayot, Ofanim, Hashmal, fire, and wings at length</li><li>Chapters 1 and 10 of Ezekiel are elaborate accounts</li></ul></div><div class="compare-box" style="border-top-color:#1e2d40"><h3 style="color:#4a90d9">Isaiah — The City-Dweller</h3><ul><li>Saw the same Chariot vision (Isaiah 6)</li><li>Like a city-dweller accustomed to seeing the king</li><li>Did not feel the need to elaborate on familiar grandeur</li><li>Simply wrote: 'I saw the Lord seated on a high throne' (Isa. 6:1)</li><li>Brevity reflects familiarity, not a lesser vision</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">חַיּוֹת אֵשׁ מְמַלְּלוֹת</div><div class="callout"><strong>חַשְׁמַל — What Is Electrum?</strong> <strong>Rav Yehuda:</strong> It refers to <em>speaking animals of fire</em>. The word is an acrostic:<br><strong>ח</strong>ayyot — <strong>ש</strong>h (esh, fire) — <strong>מ</strong>emal<strong>ל</strong>elot<br><br>A baraita elaborates: <em>At times they are silent; at times they speak.</em> When divine speech emerges from the mouth of the Holy One, they are silent. When divine speech is not emerging, they speak.<br><br><strong>Warning:</strong> A youth who expounded the Hashmal was consumed by fire that came out of it. The Sages sought to suppress Ezekiel entirely — until Ḥananya ben Ḥizkiya reconciled its contradictions with the Torah.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🪶 Resolving the Wings Contradiction: Six Wings (Isaiah) vs. Four Wings (Ezekiel)</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Isaiah 6:2</strong> — <em>Six wings</em> per creature<br><small>Two for face, two for feet, two for flying</small></div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Ezekiel 1:6</strong> — <em>Four wings</em> per creature<br><small>Two wings are missing — when and why?</small></div><div class="flow-arrow">↓</div><div class="flow-box action">Between Isaiah and Ezekiel, two wings were <strong>diminished</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Ḥananel (citing Rav)</div><div class="flow-box result-good">Lost the <strong>singing wings</strong>.<br><small>Proof: Isaiah writes 'with two it flew' immediately before 'one called to another' — once singing ceased (Temple destroyed), those wings were taken.</small></div></div><div class="flow-col"><div class="flow-label">The Rabbis</div><div class="flow-box result-bad">Lost the <strong>feet-covering wings</strong>.<br><small>Proof: Ezekiel describes 'straight feet' — visible only because the covering wings were already gone.</small></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chagigah 13 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2535;border:2px solid #c9a84c;color:#f0e6cc;"><strong>The Cosmos</strong><br><small>Seven firmaments, each 500 years high — divine creatures span them all</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a2535;border:2px solid #e74c3c;color:#f0e6cc;"><strong>The Throne & Hashmal</strong><br><small>Speaking fire-animals surround God; their perspiration creates the River of Fire (Nehar Dinur) flowing to Gehenna</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a2535;border:2px solid #4a90d9;color:#f0e6cc;"><strong>The Visions of the Prophets</strong><br><small>Both Ezekiel and Isaiah saw the same Chariot — one described it fully, one briefly</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0f2a1a;border:2px solid #2ecc71;color:#d0f0e0;padding:10px;"><strong>For the Worthy</strong><br>Outlines transmitted to a single qualified sage possessing all five traits</div></div><div class="flow-col"><div class="flow-box" style="background:#2a0f0f;border:2px solid #e74c3c;color:#f0d0d0;padding:10px;"><strong>For All Others</strong><br>Full exposition forbidden — a youth who probed the Hashmal was consumed by fire</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chagigah 13a-13b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chagigah 13a-13b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../12/">← Daf 12</a><a href="../14/">Daf 14 →</a></div>
+</body>
+</html>

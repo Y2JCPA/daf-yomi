@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 3 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chagigah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👂</div>
+  <h1>Chagigah 3</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חגיגה ג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👂 Exempt from Re'iyah — deaf-mute, imbecile, and minor all exempt from Temple appearance<br>
+    👣 Lame in One Leg — 'regalim' teaches partial disability can exempt<br>
+    📖 Why Children Attend Hakhel — to give reward to those who bring them<br>
+    🗣️ Torah from One Shepherd — all opinions, one divine source<br>
+    🤪 The Shoteh Defined — three signs required to classify a halachic imbecile<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>👂 Chain of Exemptions from Temple Appearance</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Mitzva of <strong>Re'iyah</strong><br><small>Appearing at the Temple on pilgrimage festivals</small></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Source:</strong> Gezera shava — 'appearance' at re'iyah linked to 'appearance' at <em>hakhel</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Fully Exempt</div><div class="flow-box result-bad"><strong>Deaf-mute</strong><br>Cannot hear or articulate</div></div><div class="flow-col"><div class="flow-label">Fully Exempt</div><div class="flow-box result-bad"><strong>Imbecile (Shoteh)</strong><br>No halachic capacity</div></div><div class="flow-col"><div class="flow-label">Fully Exempt</div><div class="flow-box result-bad"><strong>Minor (Katan)</strong><br>Not yet obligated</div></div><div class="flow-col"><div class="flow-label">Partially Exempt</div><div class="flow-box action"><strong>Deaf/Lame in one</strong><br>R. Tanḥum: exempt</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📋 Who Is Exempt from Temple Appearance (Re'iyah)?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">Fully Exempt</h3><ul><li>🧏 Deaf-mute (cheresh): cannot hear or speak</li><li>🤪 Imbecile (shoteh): lacks mental capacity</li><li>👶 Minor (katan): not yet obligated in mitzvot</li><li>All three are also exempt from re'iyah and hakhel</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Textual Source</h3><ul><li>Gezera shava: 'appearance' at re'iyah = 'appearance' at hakhel</li><li>'That they may hear and learn' — excludes those who cannot</li><li>'In their ears' — must hear with both ears to be obligated</li><li>Exemption at hakhel implies exemption at re'iyah</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#fff">Partially Exempt (R. Tanḥum)</h3><ul><li>🦻 Deaf in one ear: exempt from re'iyah</li><li>🦿 Lame in one leg: exempt from re'iyah</li><li>'In their ears' → both ears required</li><li>'Regalim' → both legs required</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🗣️ Why Is a Mute Exempt from Hakhel?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Mar Zutra</div><div class="speech">Read the verse as 'that they may TEACH [yelamdu]' — a mute cannot teach others, so he cannot be obligated in the assembly.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Ashi</div><div class="speech">No — the verse definitely means 'learn [yilmedu].' A mute cannot articulate his learning properly, and is therefore exempt.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara Challenge</div><div class="speech">But two mute men in R. Yehuda HaNasi's neighborhood — after being miraculously healed — were found proficient in Mishna, Sifra, Sifrei, and all of Talmud! Mutes clearly CAN learn!</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Gemara Resolution</div><div class="speech">Mar Zutra's reading ('teach') is superior — even if a mute absorbs Torah, he cannot transmit it to others. The assembly obligation requires the capacity to perpetuate Torah, not merely receive it.</div></div></div><div class="callout" style="margin-top:20px"><strong>Historical Note</strong> The miracle of R. Yehuda HaNasi's mute nephews demonstrates that muteness does not prevent comprehension — forcing the Gemara to locate the exemption in the inability to teach, not the inability to learn.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👧 Why Do Children Attend Hakhel?</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">הַקְהֵל אֶת הָעָם הָאֲנָשִׁים וְהַנָּשִׁים וְהַטַּף</div><div class="callout"><strong>Rabbi Elazar ben Azarya's Teaching</strong> <strong>Deuteronomy 31:12</strong> — 'Assemble the people, the men and the women and the little ones.'<br><br>If men come to <strong>learn</strong> and women come to <strong>listen</strong> — why bring infants who understand nothing?<br><br><strong>To give reward to those who bring them!</strong><br><br><small>Parents who exert effort to bring young children to the assembly receive divine merit. The children's very presence generates spiritual benefit — even without their comprehension.</small><br><br>Rabbi Yehoshua was visibly pleased when his students reported this insight — he had asked them what novel teaching he had missed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🗣️ Torah as Goads and Nails — From One Shepherd</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>"The words of the wise are as goads"</strong> (Ecclesiastes 12:11) — Torah prods and motivates, as a goad directs an ox to plow straight</div><div class="process-arrow">↓</div><div class="process-step"><strong>"As nails well fastened"</strong> — Torah rulings are firmly planted; they do not waver or fall away</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Challenge:</strong> A nail diminishes over time — does Torah shrink? No! 'Well fastened' means planted <em>upward</em> — Torah grows and expands, it does not diminish</div><div class="process-arrow">↓</div><div class="process-step"><strong>"Given from one shepherd"</strong> — All opinions, even contradictory ones (ritually pure / impure; permitted / forbidden), were given by One God, transmitted by Moses</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Practical lesson:</strong> Make your ear like a funnel — acquire a receptive heart to hear <em>both</em> those who rule impure <em>and</em> those who rule pure, without dismissing either</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🤪 Three Signs of a Shoteh (Halachic Imbecile)</h2>
+  
+  <table><tr><th>Sign</th><th>Behavior</th><th>Why One Sign Alone Is Insufficient</th><th>Rational Explanation</th></tr><tr><td>1st</td><td>Goes out alone at night</td><td>Could be normal behavior in certain contexts</td><td>Perhaps he needs solitude or guards his property</td></tr><tr><td>2nd</td><td>Sleeps in a cemetery</td><td>Could be an intentional ritual act</td><td>Perhaps he wishes to induce an impure spirit (for divination)</td></tr><tr><td>3rd</td><td>Tears his garment</td><td>Could be a known cultural practice</td><td>Perhaps he follows Kutim customs of garment-rending</td></tr><tr><td>Rav Huna's Rule</td><td>All three together, done in a deranged manner</td><td>Each alone has a rational explanation — only all three together, irrationally performed, classify one as a shoteh</td><td>One who does even all three rationally is NOT a shoteh</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chagigah 3 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style=""><strong>Re'iyah (Temple Appearance)</strong><br><small>Who must ascend on the three pilgrimage festivals?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>Fully Exempt</strong><br>Deaf-mute · Imbecile · Minor</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>Partly Exempt</strong><br>Deaf in one ear<br>Lame in one leg</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:8px"><strong>Obligated</strong><br>Healthy adult males</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>Hakhel (Assembly)</strong><br>Men learn · Women listen · Children → reward for parents<br><em>R. Elazar ben Azarya</em></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style=""><strong>Torah from One Shepherd</strong><br>All rulings — impure/pure, forbidden/permitted — one divine source<br><em>Make your ear like a funnel</em></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chagigah 3a-3b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chagigah 3a-3b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../2/">← Daf 2</a><a href="../4/">Daf 4 →</a></div>
+</body>
+</html>

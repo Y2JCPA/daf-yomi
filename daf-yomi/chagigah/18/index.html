@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 18 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chagigah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💧</div>
+  <h1>Chagigah 18</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חגיגה יח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌾 Festival of Harvest — Reish Lakish's linguistic proof for Shavuot redress<br>
+    ⚒️ Chol HaMoed Labor — biblical prohibition and its textual sources<br>
+    📅 Seven Days of Redress — makeup offerings after Shavuot<br>
+    🙌 Purity Hierarchy — hand washing and immersion by food type<br>
+    🎯 Intention in Purification — kavanah required for valid hand washing<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>💧 Purity Requirements by Food Type</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a1a"><h3 style="color:#2ecc71">Non-Sacred (חולין)</h3><ul><li>Pour ¼ log over hands</li><li>Lowest stringency</li><li>Rabbinic requirement</li></ul></div><div class="compare-box" style="border-top-color:#1a1e2a"><h3 style="color:#4a90d9">Tithes (מעשר)</h3><ul><li>Pour ¼ log over hands</li><li>Disputed: R. Meir vs. Rabbis</li><li>Rabbis: no washing needed</li></ul></div><div class="compare-box" style="border-top-color:#2a2a1a"><h3 style="color:#c9a84c">Teruma (תרומה)</h3><ul><li>Full hand immersion</li><li>Priestly portion</li><li>Higher sanctity level</li></ul></div><div class="compare-box" style="border-top-color:#2a1a1a"><h3 style="color:#e74c3c">Sacrificial Food (קדשים)</h3><ul><li>Full body immersion in mikveh</li><li>Even Yosef ben Yo'ezer's cloth = impure</li><li>Strictest — highest holiness</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🌾 Shavuot Timing: Reish Lakish vs. Rabbi Yochanan</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech">From <strong>'Festival of Harvest'</strong> (Exodus 23:16) — on which Festival do you harvest? It <em>must</em> be Shavuot. Therefore Shavuot has 7 days of redress (תשלומין) — you can make up missed offerings throughout that week.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbi Yochanan</div><div class="speech">By your method, consider <strong>'Festival of Gathering'</strong> (Exodus 23:16) — on which Festival is there gathering? That must be Sukkot! When exactly? Your linguistic proof yields impossible conclusions for Sukkot, so the method itself is flawed.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech">I do not dispute Rabbi Yochanan's refutation. We can infer, however, that <em>both of us agree</em> that Chol HaMoed labor is biblically prohibited — that much is beyond question.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Inference</strong> Since Reish Lakish does not dispute Rabbi Yochanan, both Amora'im hold that labor on intermediate Festival days (חול המועד) carries a <strong>biblical</strong> prohibition.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚒️ Tracing the Source: Chol HaMoed Labor Prohibition</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Question:</strong> What is the biblical source prohibiting labor on Chol HaMoed (intermediate days)?</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Baraita:</strong> 'You shall observe the Festival of Passover <em>seven days</em>' (Exodus 23:15) — the full seven days carry sanctity restricting labor</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">⚠️ Objection</div><div class="flow-box result-bad">The six weekdays are bracketed by Shabbat sanctity — yet labor on them is <em>permitted</em>!</div></div><div class="flow-col"><div class="flow-label">✅ Rebuttal</div><div class="flow-box result-good">Those days carry <em>no intrinsic sanctity</em>; the Festival seven days bear <em>inherent holiness</em> — a qualitative difference.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Second Baraita (Deut. 16:8):</strong> 'On the seventh day there shall be a solemn assembly' — the seventh day <em>alone</em> is precluded from all labor; the other six are not fully precluded.</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Conclusion:</strong> Chol HaMoed labor is biblically restricted, but only the Yom Tov days themselves prohibit <em>all</em> forms of labor.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🙌 Hand Washing Rules — Contradiction Resolved</h2>
+  
+  <table><tr><th>Food Type</th><th>Hebrew Term</th><th>Mishna Here</th><th>Mishna Bikkurim 2:1</th><th>Resolution</th></tr><tr><td>Non-Sacred Food</td><td>חולין</td><td>Wash hands (¼ log)</td><td>—</td><td>No contradiction; Bikkurim silent on this</td></tr><tr><td>Tithes</td><td>מעשר</td><td>Wash hands required</td><td>No washing required</td><td>Bikkurim follows R. Meir; our mishna follows Rabbis</td></tr><tr><td>Teruma</td><td>תרומה</td><td>Immerse hands</td><td>Washing required</td><td>Bikkurim: touching only; our mishna: eating</td></tr><tr><td>Sacrificial Food</td><td>קדשים</td><td>Full body immersion</td><td>Rabbinic immersion renders it impure</td><td>Ascending sanctity demands ascending purity</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏛️ Yosef ben Yo'ezer — Holiness Within Holiness</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">בגדי אוכלי תרומה מדרס לקדשים — The garments of those who eat teruma are considered midras-impurity for those who eat kodashim (Mishna, Chagigah 18b).</div><div class="callout"><strong>Case Study: The Pious Priest's Paradox</strong> <strong>Yosef ben Yo'ezer</strong> was deemed the most pious priest of his generation, painstakingly eating <em>teruma</em> in full ritual purity. Yet in the eyes of those who ate <strong>sacrificial food (קדשים)</strong>, his very garment bore the impurity of <em>midras</em> — the tread-impurity of a zav — a primary level of ritual impurity. <br><br>This is the logic of graduated sanctity: each ascending level of holiness treats the level below it as a <em>source</em> of contamination. Perfect purity at one level is still impure at the next.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🎯 Intention (כוונה) in Ritual Hand Washing</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rule 1:</strong> One who washes hands <em>with intention</em> (כוונה) to purify — hands are <strong>pure</strong>.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rule 2:</strong> One who washes hands <em>without intention</em> — hands remain <strong>impure</strong>, despite the physical act.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Parallel case:</strong> One who immerses hands in 40 se'a of water — with intention: pure; without intention: impure. Same principle applies.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Implication:</strong> Physical performance alone is insufficient. Conscious direction of the act toward its purificatory purpose is required for halakhic validity.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Broader principle:</strong> Kavanah (כוונה) threads through rabbinic purification — ritual acts without mental engagement do not achieve their halakhic effect.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chagigah 18 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a3a;border:2px solid #c9a84c;"><strong>Seven Days of Redress</strong><br><small>Shavuot: תשלומין — R. Elazar citing R. Oshaya</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a2a3a;border:2px solid #4a90d9;"><strong>Chol HaMoed Labor</strong><br><small>Biblically prohibited — Exodus 23:15; Deut. 16:8</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1e2a1e;border:2px solid #2ecc71;"><strong>Amud A</strong><br>Festival law · linguistic proofs · Sadducee refutation<br><em>R. Yochanan & Reish Lakish agree</em></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1e1e;border:2px solid #e74c3c;"><strong>Amud B</strong><br>Purity hierarchy: חולין → מעשר → תרומה → קדשים<br><em>Mishna + Gemara contradiction resolved</em></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a1a2e;border:2px solid #9b59b6;"><strong>Unifying Theme:</strong> Sanctity is graduated — ascending holiness demands ascending precision, from Festival observance to ritual purity to conscious intention.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chagigah 18a-18b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chagigah 18a-18b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../17/">← Daf 17</a><a href="../19/">Daf 19 →</a></div>
+</body>
+</html>

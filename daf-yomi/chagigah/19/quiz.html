@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 19 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Chagigah 19 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Rav Naḥman, does immersion for non-sacred food (chulin) require specific intention (kavvanah)?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Yes — intention is always required for any valid immersion</div>
+      <div class="option" onclick="select(1,this,1)">B. No — non-sacred food requires no intention; immersion is valid regardless</div>
+      <div class="option" onclick="select(1,this,2)">C. Only if the person is a kohen eating priestly portions</div>
+      <div class="option" onclick="select(1,this,3)">D. Only when immersing in a constructed mikveh, not in natural water</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Rav Naḥman argues against Rabba that chulin requires no kavvanah. He reinterprets the mishna: 'as if he did not immerse' refers only to tithes, not non-sacred food. The proof from Makhshirin confirms this — fruit becomes susceptible to impurity even through unintentional contact with water.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Why is immersing in the arc (bow) of a wave invalid according to the baraita?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Seawater contains salt, which disqualifies it from use in a mikveh</div>
+      <div class="option" onclick="select(2,this,1)">B. The wave volume may fall below the required 40 se'a minimum</div>
+      <div class="option" onclick="select(2,this,2)">C. One cannot immerse 'in air' — airborne water is not a valid settled body of water</div>
+      <div class="option" onclick="select(2,this,3)">D. The arc of a wave is moving, and a valid mikveh must be stationary</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>The baraita explicitly states: one may immerse in the edges of waves but not in their arcs, because one may not immerse 'in air.' The arching water is still airborne and thus does not constitute a valid settled body of water.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">According to Rabbi Elazar, what may a person do after ascending from an unintentional immersion?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Nothing — he must immerse again with proper intention before eating any sacred food</div>
+      <div class="option" onclick="select(3,this,1)">B. Eat only non-sacred food until he immerses again with intention</div>
+      <div class="option" onclick="select(3,this,2)">C. Assume a presumptive status of purity (chezkat taharah) for any purpose he wishes</div>
+      <div class="option" onclick="select(3,this,3)">D. Consult a rabbi who can retroactively designate the immersion's purpose</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>Rabbi Elazar rules that once a person has ascended from immersion — even without any prior intention — he may assume chezkat taharah for whatever purpose he wishes, including eating tithes or terumah, without needing to immerse again.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">What does Rabbi Yehuda hold about a person who is ascending from the mikveh with one foot still in the water?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. His immersion is invalid — both feet must fully exit before it counts</div>
+      <div class="option" onclick="select(4,this,1)">B. He is still considered to be in the midst of immersing and may upgrade his intention to a higher level of purity</div>
+      <div class="option" onclick="select(4,this,2)">C. He may not change his intention at all once any part of him has left the water</div>
+      <div class="option" onclick="select(4,this,3)">D. He must call out his intended purpose aloud before lifting the second foot</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>Rabbi Yehuda holds that one foot in the water means the immersion is still 'in progress.' Therefore the person may still change or upgrade his intention — for example, from intending for a minor matter to intending for a major matter.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">What does Rav Mari derive about non-sacred produce (chulin) that was prepared according to the purity standards of sacrificial food (kodesh)?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. It is treated as ordinary chulin with no additional stringency</div>
+      <div class="option" onclick="select(5,this,1)">B. It may only be eaten by kohanim</div>
+      <div class="option" onclick="select(5,this,2)">C. It is treated as sacrificial food itself — the highest purity standard applies</div>
+      <div class="option" onclick="select(5,this,3)">D. It is treated as terumah, one level below sacrificial food</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>Rav Mari derives from the mishna that chulin she-na'asu al taharas kodesh — non-sacred food prepared with the stringencies required for sacrificial food — is regarded as kodesh itself for purity purposes. This is the highest level discussed in the mishna.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":2,"4":1,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

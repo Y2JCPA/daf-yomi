@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 19 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chagigah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💧</div>
+  <h1>Chagigah 19</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חגיגה יט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💭 Kavvanah for Immersion — is intent required for non-sacred food?<br>
+    🌊 Waves and Valid Immersion — edges vs. arcs<br>
+    ⚖️ Rabba vs. Rav Naḥman — chezkat taharah debate<br>
+    🦶 Foot Still in Water — Rabbi Yehuda's ruling on mid-ascent intent<br>
+    📊 Five Levels of Ritual Purity — non-sacred through sacrificial food<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Does Immersion for Non-Sacred Food Require Intent?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">One who immersed for non-sacred food is still prohibited from eating tithes — this implies intention IS required even for non-sacred food, otherwise why would the mishna specify his intent?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Naḥman</div><div class="speech">The mishna means: even though he achieves purity for non-sacred food, he remains prohibited from tithes. Intention is NOT required for non-sacred food at all.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">The mishna also says: one who immersed without intending to assume purity status is as if he has not immersed — this proves intention IS required!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Naḥman</div><div class="speech">That clause means only as if he has not immersed for tithes. For non-sacred food, which needs no intention, he is fully purified regardless.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Non-sacred food (chulin) does NOT require intention for immersion. Proof from Makhshirin: fruit wetted by water unintentionally still becomes susceptible to impurity, showing chulin-level acts need no kavvanah.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🌊 When Does a Wave Count as Valid Immersion?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A wave from the sea breaks — can one immerse in it or use it for purification?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Edge of the Wave</div><div class="flow-box result-good"><strong>Valid immersion ✓</strong><br>Water already detached and settled — counts as a valid body of water for purification</div></div><div class="flow-col"><div class="flow-label">Arc (Bow) of the Wave</div><div class="flow-box result-bad"><strong>Invalid immersion ✗</strong><br>One may not immerse <em>in air</em> — the arching water is still airborne, not a settled body</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Why state that a detached wave is valid?</strong><br>Rabbinic decree: to prevent people from thinking they may immerse in 40 se'a of flowing rainwater — which is invalid</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🦶 Rabbi Yehuda vs. Rabbis: Foot Still in the Water</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Baraita</div><div class="speech">One ascending from immersion with one foot still in the water, who had intended only for a minor matter — he may now intend for a major matter as well.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rabbi Yehuda</div><div class="speech">As long as a foot remains in the water, the immersion is still in progress — he may upgrade his intention to assume purity for higher purposes.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Naḥman bar Avuh (v.1)</div><div class="speech">The dispute between Rabbis and Rabbi Yehuda applies only to rabbinic-level purity standards. For Torah-level impurity, even Rabbi Yehuda requires full immersion without the foot-extension rule.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Naḥman bar Avuh (v.2)</div><div class="speech">Other version: the dispute applies to standard immersion from impurity. For higher rabbinic purity standards, all agree the immersion is complete upon ascending — no foot allowance.</div></div></div><div class="callout" style="margin-top:20px"><strong>Tanna Identified</strong> Rabbi Pedat: the rule that foot-in-water = still immersing is the opinion of Rabbi Yehuda, sourced from Mikvaot.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>✨ Rabbi Elazar: Intention After Ascending</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">טָבַל וְלֹא הִכְוִּין — עָלָה, יַחְזֹר לְכָל דָּבָר שֶׁיִּרְצֶה</div><div class="callout"><strong>Rabbi Elazar's Ruling</strong> If one <strong>immersed without any particular intention</strong> and then ascended from the mikveh, he may thereafter <em>assume a presumptive status of ritual purity (chezkat taharah)</em> for <strong>any purpose he desires</strong> — even tithes or terumah — without immersing again.<br><br><small>This applies once he has fully left the water. While still ascending (foot in water), he may direct his intent mid-process per Rabbi Yehuda.</small></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📊 Five Ascending Levels of Ritual Purity</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#0d1f2d"><h3 style="color:#4a90d9">Chulin (Non-Sacred)</h3><ul><li>Lowest standard of purity</li><li>No intention required for immersion</li><li>Am ha'aretz garments render chulin impure</li><li>Proof from Makhshirin: unintentional contact with water counts</li></ul></div><div class="compare-box" style="border-top-color:#0d2d1a"><h3 style="color:#2ecc71">Maaser (Tithes)</h3><ul><li>Requires intention for immersion</li><li>Garments of chulin-eaters render maaser impure</li><li>One level above chulin</li><li>Core of Rabba–Rav Naḥman dispute</li></ul></div><div class="compare-box" style="border-top-color:#2d1f0d"><h3 style="color:#e67e22">Terumah (Priestly Portion)</h3><ul><li>Higher standard than maaser</li><li>Garments of maaser-eaters render terumah impure</li><li>Priests must maintain this purity</li><li>Stricter handling requirements</li></ul></div><div class="compare-box" style="border-top-color:#2d0d1a"><h3 style="color:#e74c3c">Kodesh (Sacrificial Food)</h3><ul><li>Near-highest standard</li><li>Chulin prepared at this level = treated as kodesh (Rav Mari)</li><li>Garments of terumah-eaters render kodesh impure</li><li>Immersion of hands required</li></ul></div><div class="compare-box" style="border-top-color:#1a0d2d"><h3 style="color:#9b59b6">Mei Chatat (Purification Water)</h3><ul><li>Absolute highest standard</li><li>Red heifer purification water</li><li>Garments of kodesh-eaters render it impure</li><li>Most stringent purity requirements of all</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🏊 Ulla's Question: Three Pools in a Streambed</h2>
+  
+  <table><tr><th>Pool</th><th>Volume</th><th>Valid for Immersion?</th><th>Principle Applied</th></tr><tr><td>Upper pool</td><td>20 se'a (insufficient alone)</td><td>Yes — per R. Yoḥanan citing Tosefta</td><td>Connected to middle pool which connects to lower (40 se'a): 'lowering the partition'</td></tr><tr><td>Middle pool</td><td>Connects upper to lower</td><td>Yes</td><td>Draws from lower pool's 40 se'a via physical connection</td></tr><tr><td>Lower pool</td><td>40 se'a (sufficient)</td><td>Yes — all agree</td><td>Fully valid mikveh by itself; no principles needed</td></tr><tr><td>Small vessels on immersing person's head</td><td>—</td><td>Yes — per R. Yoḥanan</td><td>R. Yehuda accepts 'raising the partition': water on person counts as reaching vessels</td></tr><tr><td>Arc of wave (airborne water)</td><td>Any amount</td><td>No — all agree</td><td>Cannot immerse 'in air'; water must be settled or connected to valid body</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chagigah 19 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#0d1f2d;border:2px solid #4a90d9;padding:10px;border-radius:8px;text-align:center;"><strong>Question: Does immersion require <em>kavvanah</em> (intention)?</strong></div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0d2d1a;border:1px solid #2ecc71;padding:8px;border-radius:6px;text-align:center;"><strong style='color:#4a90d9'>Chulin (non-sacred)</strong><br><small>No intention needed — immersion valid regardless of purpose</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2d0d0d;border:1px solid #e74c3c;padding:8px;border-radius:6px;text-align:center;"><strong style='color:#e74c3c'>Maaser / Terumah / Kodesh</strong><br><small>Intention required — must immerse with specific purpose in mind</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a0d2d;border:1px solid #9b59b6;padding:10px;border-radius:8px;text-align:center;"><strong>Still ascending? Foot in water?</strong><br><small>Rabbi Yehuda: still immersing — may upgrade intent to higher purity level</small></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a1a0d;border:2px solid #c9a84c;padding:10px;border-radius:8px;text-align:center;"><strong style='color:#c9a84c'>Five Levels of Purity</strong><br><small>Chulin → Maaser → Terumah → Kodesh → Mei Chatat<br>Each level's practitioners make the next level's food/objects impure by contact</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chagigah 19a-19b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chagigah 19a-19b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../18/">← Daf 18</a><a href="../20/">Daf 20 →</a></div>
+</body>
+</html>

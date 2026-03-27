@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 4 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chagigah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👁️</div>
+  <h1>Chagigah 4</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חגיגה ד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Exemptions from Re'iyah — who must appear at the Temple<br>
+    ⚖️ Verbal Analogy — linking appearance to Hakhel Assembly<br>
+    🧬 Tumtum & Hermaphrodite — doubt vs. dual nature<br>
+    😢 Sages Weeping — emotional reactions to Torah verses<br>
+    👼 Angel of Death — the story of Miriam the hair-raiser<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🏛️ Who Must Appear at the Temple?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>"All your males shall appear" (Exodus 23:17)</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Obligated ✅</div><div class="flow-box result-good">Adult Jewish males — whole, sighted, able to walk, ritually pure</div></div><div class="flow-col"><div class="flow-label">Exempt ❌</div><div class="flow-box result-bad">Women · Slaves · Tumtum · Hermaphrodite · Lame · Blind · Sick · Old · Impure · Uncircumcised</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Each exclusion requires a <strong>Scriptural source</strong> or <strong>halakhic reasoning</strong> — the Gemara probes every one</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📋 Six Categories Exempt from Re'iyah</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2535"><h3 style="color:#c9a84c">Women & Slaves</h3><ul><li>Women: derived from 'your <em>males</em>' (Ex. 23:17)</li><li>Slaves: equated with women in time-bound mitzvot</li><li>Half-slave/half-free: Ravina adds — verse needed for this case</li></ul></div><div class="compare-box" style="border-top-color:#1a2535"><h3 style="color:#9b59b6">Tumtum & Hermaphrodite</h3><ul><li>Hermaphrodite: has masculine aspect — might have been obligated</li><li>Tumtum: doubtful sex status — Abaye: testicles visible but penis covered</li><li>Both excluded by 'your males' — neither is fully male</li></ul></div><div class="compare-box" style="border-top-color:#1a2535"><h3 style="color:#4a90d9">Lame, Blind & Infirm</h3><ul><li>Lame: 'regalim' (occasions) alludes to raglayim (feet) — must be able to walk</li><li>Blind in one eye: exempt per R. Yochanan ben Dehavai</li><li>Sick · Old · Shoeless (cannot enter Temple barefoot)</li></ul></div><div class="compare-box" style="border-top-color:#1a2535"><h3 style="color:#e74c3c">Ritually Compromised</h3><ul><li>Impure: 'and there you shall come' — excludes those who cannot enter</li><li>Uncircumcised: per Rabbi Akiva's amplification</li><li>Mekametz (scrimper of dog feces): cannot enter Temple precincts</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Does Each Exemption Really Need a Verse?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Why does a verse exempt women? Re'iyah is a positive time-bound mitzva — women are already exempt from those!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Answer</div><div class="speech">Without the verse, we might derive via gezera shava: 'appearance' at re'iyah equals 'appearance' at Hakhel — and women ARE obligated at Hakhel!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Granted the hermaphrodite (androginos) needs a verse — it has an aspect of masculinity. But why does a tumtum need one? A doubtful case should simply be exempt by default!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">The verse addresses a specific tumtum: one whose testicles are visible externally but whose penis is covered. That person might seem obligated — the verse excludes him.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">'All your males' — the mishna says minors are exempt, yet the baraita says they are included. Contradiction!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">No contradiction. The baraita includes a minor who can hold his father's hand and walk to Jerusalem. The mishna exempts one too young to make the journey.</div></div></div><div class="callout" style="margin-top:20px"><strong>Aḥerim (Sages)</strong> 'All your males' actually comes to teach that a mekametz — one who gathers dog feces for tanners — is exempt, because he cannot enter the Temple courtyard due to the foul odor on his hands</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👁️ R. Yochanan ben Dehavai: The One-Eyed Man</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Exodus 23:17:</strong> <em>"All your males shall appear [<strong>yera'e</strong>] before the Lord God"</em></div><div class="flow-arrow">↓</div><div class="flow-box action">The verb <strong>yera'e</strong> (shall appear) is identical in spelling to <strong>yireh</strong> (shall see) — the verse implies a double meaning</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Verbal analogy:</strong> Just as God 'sees' the one who comes, so too the one who comes must be able to fully 'see' God's presence</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Fully sighted</div><div class="flow-box result-good">Obligated — he sees and is seen</div></div><div class="flow-col"><div class="flow-label">Blind in one eye</div><div class="flow-box result-bad"><strong>Exempt</strong> — his sight is incomplete; he cannot 'see' as God sees him</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>😢 Sages Who Wept Over Torah Verses</h2>
+  
+  <table><tr><th>Sage</th><th>Verse</th><th>Why He Wept</th></tr><tr><td>Rav Huna</td><td>Ex. 23:17 — yireh/yera'e</td><td>A master expects his slave to come see him — will God eventually distance Himself from Israel who no longer appears before Him?</td></tr><tr><td>Rav Huna</td><td>Deut. 27:7 — peace-offerings at God's table</td><td>A master invites his slave to eat at his table — might the Master ultimately send Israel away?</td></tr><tr><td>Rabbi Elazar</td><td>Gen. 45:3 — Joseph's brothers silenced</td><td>If a human's rebuke leaves men speechless with shame, how much more so before Divine rebuke at the final judgment?</td></tr><tr><td>Rabbi Ami</td><td>Lam. 3:29 — mouth in the dust</td><td>A sinner endures all this suffering and punishment — and only 'perhaps' there is hope? Only perhaps?</td></tr><tr><td>Rav Yosef</td><td>Prov. 13:23 — swept away without justice</td><td>Can a person truly die before their time, for no reason at all? — Answered by the Angel of Death story</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>👼 The Angel of Death and the Wrong Miriam</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מִרְיָם מְגַדְּלַת שְׂעָרוֹת נָשִׁים — Miriam, raiser of women's hair</div><div class="callout"><strong>Aggadah — Rav Beivai bar Abaye</strong> Rav Yosef asked: Can one die before one's appointed time? The Gemara answers: <strong>Yes.</strong><br><br>Rav Beivai bar Abaye had frequent encounters with the Angel of Death. Once, the Angel sent his agent to bring <em>Miriam the raiser of women's hair</em>. The agent accidentally seized a different woman named Miriam. When told of his error, the Angel replied: <strong>"Since you have already brought her, let her be counted among the number of deceased."</strong><br><br>This teaches that some are swept away before their time — not through sin, but through the accidents of heavenly administration.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chagigah 4 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1e2d3d;color:#c9a84c;border:1px solid #c9a84c;"><strong>Mishna:</strong> Tumtum · hermaphrodite · women · slaves · lame · blind · sick · old are exempt from re'iyah</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2535;color:#4a90d9;"><strong>'Your males'</strong><br>excludes women, hermaphrodite</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2535;color:#9b59b6;"><strong>Gezera Shava / Halakhic logic</strong><br>slaves, impure, uncircumcised</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2535;color:#e67e22;"><strong>'Regalim' = feet</strong><br>lame, shoeless, one-eyed (yireh/yera'e)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3a2a;color:#2ecc71;border:1px solid #2ecc71;"><strong>Aggadah:</strong> Sages weep over verses — God as master awaiting His slave, the terror of judgment, and the mystery of why some die before their time</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chagigah 4a-4b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chagigah 4a-4b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">← Daf 3</a><a href="../5/">Daf 5 →</a></div>
+</body>
+</html>

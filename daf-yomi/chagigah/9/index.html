@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 9 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chagigah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔄</div>
+  <h1>Chagigah 9</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חגיגה ט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🎉 Chagigah Makeup Window — valid through all Sukkot and Shemini Atzeret<br>
+    ⚖️ Crooked Cannot Be Straight — three rabbinic interpretations of Ecclesiastes 1:15<br>
+    🔗 Gezerah Shavah on Atzeret — verbal analogy linking Sukkot to Shemini Atzeret<br>
+    📚 Bar Hei Hei & Hillel — one missed review means 'does not serve God'<br>
+    ⏰ Nazirite Impurity on Night of Day 8 — Rabbi Yoḥanan vs. Ḥizkiya<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🎉 The Chagigah Makeup Window</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Day 1 of Sukkot</strong><br>Primary obligation to bring Chagigah</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Brought offering</div><div class="flow-box result-good">Obligation fulfilled ✓</div></div><div class="flow-col"><div class="flow-label">Did not bring</div><div class="flow-box question">Makeup window opens</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Days 2–7 of Sukkot</strong><br><em>All are valid makeup days</em></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Shemini Atzeret (Day 8)</strong><br>Also valid — derived via gezerah shavah on <em>atzeret</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Still never brought</div><div class="flow-box result-bad">Obligation lapses — no restitution required</div></div><div class="flow-col"><div class="flow-label">Brought during window</div><div class="flow-box result-good">Obligation fulfilled ✓</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⏰ Nazirite Impurity: Does Night of Day 8 Trigger New Offerings?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Ḥizkiya</div><div class="speech">If a nazirite became impure on <strong>Day 8 itself</strong> (daytime), he brings a second set of offerings. But if impurity occurred <em>the previous night</em>, he does <strong>not</strong> bring additional offerings — the night belongs to Day 7, whose purification is not yet complete.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yoḥanan</div><div class="speech">Even impurity on <strong>the night beginning Day 8</strong> triggers a second set of offerings. The calendar date has arrived — his purification period is complete. Night is <em>not</em> considered 'part of a date whose time has not yet arrived.'</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Pappa</div><div class="speech">Rabbi Yoḥanan's reasoning: although offerings <em>cannot be brought at night</em>, the date itself has legally arrived. His seven-day count is done, so new impurity at night creates a fresh obligation.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabbi Yirmeya</div><div class="speech">Ritual impurity is categorically different — it always has <strong>redress through purification</strong>, just as the second Pesaḥ provides redress for those impure at the first. Therefore impurity does not nullify one's Festival obligation.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> Does nighttime 'belong' to the incoming day (Rabbi Yoḥanan) or is it a transitional period still attached to the prior day (Ḥizkiya)? The answer determines when new obligations begin.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Three Interpretations of 'Crooked Cannot Be Made Straight' (Eccl. 1:15)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a1a"><h3 style="color:#c9a84c">The Mishna's View</h3><ul><li>One who <strong>missed the Festival peace-offering</strong></li><li>The pilgrimage Festival passed entirely</li><li>Cannot retroactively fulfill the time-bound mitzvah</li><li>The 'wanting' = offerings that can no longer be counted</li><li><small>Ecclesiastes 1:15 applied to lapsed obligation</small></li></ul></div><div class="compare-box" style="border-top-color:#2a1a1a"><h3 style="color:#e74c3c">Rabbi Shimon ben Menasya</h3><ul><li>One who had <strong>forbidden intercourse</strong></li><li>Fathered a <em>mamzer</em> (illegitimate child)</li><li>Cannot undo the child's prohibited status</li><li>The sin cannot be rectified — the mamzer exists</li><li><small>The 'crooked' = union + irreversible consequence</small></li></ul></div><div class="compare-box" style="border-top-color:#1a1a2a"><h3 style="color:#9b59b6">Rabbi Shimon ben Yoḥai</h3><ul><li>A <strong>Torah scholar who abandons study</strong></li><li>Was first 'straight,' then became 'crooked'</li><li>Most severe: squandering what one already possessed</li><li>The 'wanting' = Torah he can never reclaim</li><li><small>Requires prior righteousness — not wicked from the start</small></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📚 Bar Hei Hei & Hillel: The 100th Review</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">וְשַׁבְתֶּם וּרְאִיתֶם בֵּין צַדִּיק לְרָשָׁע בֵּין עֹבֵד אֱלֹהִים לַאֲשֶׁר לֹא עֲבָדוֹ</div><div class="callout"><strong>מַלְאָכִי ג:יח — Malachi 3:18</strong> Bar Hei Hei asked Hillel: The verse distinguishes 'the righteous' from 'he who serves God' and 'the wicked' from 'he who does not serve Him' — aren't these the same people? Why the repetition?
+
+Hillel answered: <strong>'He who serves God'</strong> = one who reviews his Torah learning 100 times. <strong>'He who does not serve Him'</strong> = one who reviewed only 99 times.
+
+Bar Hei Hei objected: Because of one single extra review, the verse calls him 'one who does not serve God'?!
+
+Hillel replied: <em>Yes.</em> Learn from the market of donkey drivers — a driver hired for 10 parasangs charges one rate; add just one more parasang and the price doubles. The final increment transforms the category entirely.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔥 The Furnace of Affliction — Elijah to Bar Hei Hei (Isaiah 48:10)</h2>
+  
+  <table><tr><th>Phrase</th><th>Question Raised</th><th>Teaching</th></tr><tr><td><strong>כּוּר הָעֹנִי<br><small>'Furnace of affliction'</small></strong></td><td>Why is poverty called a 'furnace'? What does this image convey beyond mere hardship?</td><td>A furnace transforms raw ore into refined metal. Affliction — especially poverty — refines and purifies the person who endures it with faith, burning away dross and revealing inner worth.</td></tr><tr><td><strong>'Refined you, but not as silver'</strong></td><td>Why specifically <em>not</em> as silver? Isn't silver refining the ideal purification metaphor?</td><td>Silver refiners watch carefully and remove metal at the precise moment. God did <em>not</em> refine Israel this way — He left them in the furnace of Babylonian exile far longer, because their purification required greater depth.</td></tr><tr><td><strong>Context: Elijah to Bar Hei Hei</strong></td><td>What is the consolation embedded in this verse for one who suffers?</td><td>Suffering is not random punishment — it is <em>intentional refining</em>. God chose Israel for this furnace because refined gold is more valuable than raw ore. Affliction is a mark of divine investment, not abandonment.</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔗 Building the Gezerah Shavah: Sukkot → Shemini Atzeret</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1 — The Halakhic Problem:</strong> Shemini Atzeret appears to be a <em>separate</em> festival. Can one bring a missed Sukkot Chagigah on what seems to be a different Yom Tov?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 2 — The Linking Word:</strong> The term <em>atzeret</em> (עֲצֶרֶת, assembly) appears in both the Sukkot passage and the Shemini Atzeret passage — providing a potential verbal analogy.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 3 — The Term Must Be Free:</strong> For a valid gezerah shavah, the shared term must be superfluous in both locations. The prohibition on labor is already stated explicitly elsewhere, making <em>atzeret</em> unnecessary — and therefore 'free.'</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 4 — Analogy Applied:</strong> Just as the Chagigah can be made up on any day of Sukkot, Shemini Atzeret is linked via <em>atzeret</em> and becomes the final valid makeup day.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 5 — The Hard Limit:</strong> Once Shemini Atzeret ends, the window closes permanently. A missed Chagigah now falls under 'crooked cannot be made straight' — obligation lapses, no restitution owed.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chagigah 9 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#2c2c1a;border:2px solid #c9a84c;"><strong>Chagigah Obligation</strong><br><small>Arises on Day 1 of Sukkot for every Jewish male</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border:2px solid #2ecc71;"><strong>Brought on Day 1</strong><br><small>✓ Fully fulfilled</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a3a;border:2px solid #9b59b6;"><strong>Did Not Bring</strong><br><small>Makeup window opens — Days 2–8</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3a;border:2px solid #4a90d9;"><strong>Gezerah Shavah extends window to Shemini Atzeret</strong><br><small>Shared term <em>atzeret</em> links the two festivals</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border:2px solid #2ecc71;"><strong>Brought within window</strong><br><small>✓ Obligation fulfilled</small></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a;border:2px solid #e74c3c;"><strong>Festival ended — never brought</strong><br><small>Obligation lapses. No restitution required.</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1e1e1e;border:2px solid #c9a84c;font-style:italic;"><strong>עָוּת לֹא יוּכַל לִתְקֹן — 'Crooked cannot be made straight'</strong><br><small>Three views: lapsed Chagigah | mamzer fathered | Torah scholar who left study</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chagigah 9a-9b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chagigah 9a-9b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../8/">← Daf 8</a><a href="../10/">Daf 10 →</a></div>
+</body>
+</html>

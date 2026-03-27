@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 5 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chagigah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">😢</div>
+  <h1>Chagigah 5</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חגיגה ה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Angel of Death — taking souls before their time<br>
+    😢 Rabbi Yochanan weeps over God's exacting judgment<br>
+    🙈 Hester Panim — God hides His face yet still weeps<br>
+    💧 God cries in secret at the place called Mistarim<br>
+    📚 Honoring Torah scholars — Rav Idi's three-month journey<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>😢 Daf 5: Divine Justice, Hidden Tears & Torah Devotion</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>God judges every hidden thing</strong><br><small>Ecclesiastes 12:14 — even minor, unnoticed acts</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Lenient = Stringent</div><div class="flow-box result-bad">Sorcerers & adulterers listed alongside those who oppress the hireling — all weighed equally</div></div><div class="flow-col"><div class="flow-label">Good Deeds Judged Too</div><div class="flow-box result-bad">Killing a louse before a friend · charity to a woman in private · improper meat on Shabbat</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Hester Panim:</strong> God hides His face from Israel<br>Yet still speaks in dreams — and still weeps in secret</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>God weeps daily</strong> for those who neglect Torah, those who strain beyond their capacity, and leaders who oppress their communities</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Rav Beivai bar Abaye vs. The Angel of Death</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Beivai bar Abaye</div><div class="speech">Do you have the right to take someone before her time? She was just sweeping the oven and burned her foot — is that a reason to end her life?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Angel of Death</div><div class="speech">Is it not written: 'There are those swept away without justice' (Proverbs 13:23)? Her luck ran out — the fire gave me the opening, and I took her.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Beivai bar Abaye</div><div class="speech">Then what do you do with her extra years — the years she was supposed to live but didn't?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Angel of Death</div><div class="speech">I shepherd the souls and do not release them until the years of the generation are complete. Then I pass the soul to the angel <em>Duma</em>. The extra years are given to a scholar who overlooks an insult — he receives them as reward.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Premature death can result from circumstance ('luck') intersecting with divine accounting. Unused life-years are redistributed — here to a Torah scholar who practices forbearance. Divine justice operates across the whole web of lives.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔍 What Is 'Every Hidden Thing' God Judges? (Ecclesiastes 12:14)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Rav</h3><ul><li>One who kills a louse in front of a friend</li><li>The friend is disgusted by it</li><li>God judges him for causing unintentional shame</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">Rabbi Zeira</h3><ul><li>One who counts money from his own palm into another's palm</li><li>Even routine financial transfers done improperly</li><li>The manner of an act matters as much as the act itself</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#ffffff">School of Rabbi Sheila</h3><ul><li>One who gives charity to a woman in private</li><li>She becomes suspected of prostitution</li><li>A good deed done improperly causes reputational harm</li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#ffffff">Rava</h3><ul><li>Sending certain meat to one's wife on Shabbat eve</li><li>Unless she is an expert in the relevant laws</li><li>Even domestic acts carry hidden halakhic dimensions</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>💧 God Weeps in a Secret Place Called Mistarim</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מִסְתָּרִים תִּבְכֶּה נַפְשִׁי מִפְּנֵי גֵוָה (ירמיהו י״ג:י״ז)</div><div class="callout"><strong>Rav Shmuel bar Inya in the name of Rav</strong> The Holy One, Blessed be He, has a place where He cries — and its name is <strong>Mistarim</strong> (hidden places). Source: <em>'My soul shall weep in secret [bemistarim] for your pride'</em> (Jeremiah 13:17).<br><br><strong>But is there crying before God?</strong> Rav Pappa objects: 'Honor and majesty are before Him; strength and gladness are in His place' (I Chronicles 16:27)!<br><br><strong>Resolution:</strong> There is no sadness in the <em>outer</em> chambers — those are filled with glory. But in the <em>inner</em> chambers, where no created being can enter, God weeps privately — for things too painful to express openly.<br><br><strong>Three tears in Jeremiah 13:17:</strong> One for the First Temple · One for the Second Temple · One for Israel carried into exile</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📋 Three Types of People God Cries for Every Day</h2>
+  
+  <table><tr><th>Person</th><th>Situation</th><th>Why This Warrants Divine Tears</th></tr><tr><td>The Scholar Who Could Study but Doesn't</td><td>Has the ability, the time, and the access to Torah — yet turns away</td><td>Willful neglect of the highest human calling; a squandered gift</td></tr><tr><td>The Scholar Who Cannot Study but Forces Himself Anyway</td><td>Lacks the capacity (health, mind, resources) yet overstrains himself</td><td>A different kind of tragedy — zeal without ability; suffering without fruit</td></tr><tr><td>The Communal Leader Who Oppresses His People</td><td>Holds sacred public trust yet acts with arrogance against the community</td><td>Misuse of authority meant to serve — turns protector into oppressor</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📚 Seeking God 'Daily' — Rav Idi's Journey & the Blind Scholar's Blessing</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rav Idi's Journey:</strong> He would travel <em>three months on the road</em> to reach Rabbi Yochanan's study hall — and spend only <strong>one day there</strong> before immediately traveling back to arrive home for Sukkot.</div><div class="process-arrow">↓</div><div class="process-step">The other Rabbis mocked him as 'one who causes harm to the Rabbis' — the journey seemed to exhaust resources without proportional benefit to the study hall.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Yochanan's defense:</strong> From Isaiah 58:2 — <em>'They seek Me daily'</em> — even coming once a year constitutes 'daily' seeking. The sincerity and cost of the journey is what counts.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>The Blind Scholar's Blessing:</strong> Rabbi Yehuda HaNasi and Rabbi Ḥiyya traveled to greet a blind Torah scholar. He blessed them: <em>'You greeted one who sees and is not seen — may you be worthy to greet the One Who sees and is not seen.'</em></div><div class="process-arrow">↓</div><div class="process-step">The blessing was traced back to Rabbi Ya'akov of the village of Ḥitiyya, who greeted his teacher every day. His teacher replied with an <em>a fortiori</em>: if greeting a wise man who will die is so great, how much more so greeting the One Who lives forever.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chagigah 5 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>Angel of Death</strong><br>Takes some souls early via circumstance<br><small>Extra years redistributed to the worthy</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>God judges all hidden things</strong><br>Minor shame · improper charity<br>Even well-intentioned acts done wrong</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>Lenient = Stringent sins</strong><br>Hireling's wages listed with sorcery<br>All violations weigh equally before God</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>Hester Panim — God Hides His Face</strong><br>Yet speaks through dreams · Yet weeps in Mistarim<br><em>Absence is not abandonment</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>God weeps daily for 3 types</strong><br>Can study but won't · Can't but strains<br>Leader who oppresses his people</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;border-radius:8px;padding:10px;"><strong>Our response: seek God always</strong><br>Greet Torah scholars · Travel far to learn<br>Even once = 'daily' in sincerity</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chagigah 5a-5b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chagigah 5a-5b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../4/">← Daf 4</a><a href="../6/">Daf 6 →</a></div>
+</body>
+</html>

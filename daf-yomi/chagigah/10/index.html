@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 10 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chagigah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏔️</div>
+  <h1>Chagigah 10</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חגיגה י׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📚 Abandoning Torah Study — Rav, Shmuel, Rabbi Yoḥanan debate what counts<br>
+    🏔️ Mountains Suspended by a Hair — Laws with minimal textual support<br>
+    📜 Dissolution of Vows — Competing scriptural sources and Shmuel's decisive proof<br>
+    ✂️ Shabbat Labor — Unintended and destructive acts exempt from liability<br>
+    🏛️ Misuse of Consecrated Property — Surprising liability through an agent<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🏔️ Four Categories of Torah Law by Scriptural Support</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">🌬️ Flies in the Air</h3><ul><li>Dissolution of vows (הפרת נדרים)</li><li>No explicit verse in Torah</li><li>Vast rabbinic detail despite no clear source</li><li>Sages debate even which verse to use</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#fff">🏔️ Mountains on a Hair</h3><ul><li>Shabbat prohibitions</li><li>Festival peace-offerings</li><li>Misuse of consecrated property</li><li>Brief Torah text; enormous detail</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">📖 Fully Written in Torah</h3><ul><li>Civil law (דינין)</li><li>Temple service (עבודה)</li><li>Family purity (טהרות)</li><li>Forbidden relations (עריות)</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#fff">⚖️ The Core Principle</h3><ul><li>Thin scriptural basis ≠ weak obligation</li><li>Oral Torah carries full legal weight</li><li>Rabbinic detail expands every category</li><li>The gap IS the Oral Torah</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📚 What Counts as Abandoning Torah Study?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">One who abandons the study of <em>halacha</em> entirely — leaves the house of study. The verse (Zechariah 8:10) says: <em>"No peace to him that went out or came in due to the adversary."</em></div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">One who leaves <em>Talmud</em> (with its reasoning) to learn only <em>Mishna</em> (bare rulings without explanation). Talmud trains the mind; Mishna alone does not.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Yoḥanan</div><div class="speech">Even one who leaves <em>Mishna</em> to study only <em>Aggadah</em> (narrative/homily) has abandoned the essential discipline of Torah study.</div></div></div><div class="callout" style="margin-top:20px"><strong>Implied Hierarchy</strong> Talmud > Mishna > Aggadah — each sage defines abandonment at a different level of the ladder</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Competing Sources for Dissolution of Vows (הפרת נדרים)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Eliezer</div><div class="speech"><em>"When a man shall clearly utter a vow"</em> (Lev. 27:2) — the word 'clearly' implies a Sage can clarify and thereby dissolve. <strong>Refuted:</strong> perhaps 'clearly' has another meaning per Rabbi Tarfon.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbi Yehoshua</div><div class="speech"><em>"In My wrath I swore"</em> (Ps. 95:11) — God retracted an oath made in anger, modeling dissolution. <strong>Refuted:</strong> perhaps the verse means God did <em>not</em> retract it.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Yitzḥak</div><div class="speech"><em>"Whoever is of a willing heart, let him bring"</em> (Ex. 35:5) — only if willing must one fulfill. <strong>Refuted:</strong> Rav Giddel offers an alternate reading of this verse.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Shmuel</div><div class="speech"><strong>Best source:</strong> <em>"He shall not nullify his word"</em> (Num. 30:3) — <strong>he</strong> cannot, but a Sage can. <strong>No refutation exists.</strong> 'One spicy pepper &gt; a basketful of squash!' (Rava)</div></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Verdict</strong> Shmuel's proof from Numbers 30:3 is the only irrefutable source — a single decisive verse outweighs multiple weaker ones</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>✂️ Is This Shabbat Labor a Torah Violation?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Labor performed on Shabbat</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Was it intended?</div><div class="flow-box action">Planned, deliberate act with desired outcome</div></div><div class="flow-col"><div class="flow-label">Was it unintended?</div><div class="flow-box question">Performed without intent, or result was unintended (<em>davar she-eino mitkavven</em>)</div></div><div class="flow-col"><div class="flow-label">Was it destructive?</div><div class="flow-box question">The act destroyed rather than built or created</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">❌ Liable</div><div class="flow-box result-bad">Torah prohibition violated — this is the 'mountain' of Shabbat law that dwarfs its thin textual base</div></div><div class="flow-col"><div class="flow-label">✓ Exempt (Rabbi Shimon)</div><div class="flow-box result-good">Not liable even if result occurred — unintended labor is not biblically prohibited</div></div><div class="flow-col"><div class="flow-label">✓ Exempt</div><div class="flow-box result-good">Destructive acts do not constitute creative labor — Torah prohibits only <em>melekhet maḥshevet</em> (planned creative work)</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏛️ Misuse of Consecrated Property — Who Bears Liability?</h2>
+  
+  <table><tr><th>Scenario</th><th>What Happened</th><th>Who Is Liable</th><th>Why Surprising</th></tr><tr><td>Owner sends agent to use consecrated item</td><td>Agent performs the act; owner did not touch it</td><td>Owner is liable</td><td>Agent acts for owner — counterintuitive that the non-actor bears the sin</td></tr><tr><td>Owner remembers it's consecrated; agent forgets</td><td>Owner had intent to stop; agent acts without knowing</td><td>Agent is liable</td><td>Owner's renewed awareness does not shield the agent who acts in ignorance</td></tr><tr><td>Person picks up a consecrated stone or beam</td><td>Holds it but does nothing further</td><td>Not liable</td><td>Mere handling is not 'misuse' — benefit must actually occur</td></tr><tr><td>Person gives consecrated object to another</td><td>Object leaves his hands; recipient benefits</td><td>Giver is liable</td><td>Transfer of benefit counts as misuse even without personal gain</td></tr><tr><td>Verbal analogy: 'sin' (Lev. 5:6) = 'sin' (Num. 18:9)</td><td>Gezerah shavah links consecrated-property sin to priestly sin</td><td>Owner liable via textual derivation</td><td>Law rests on a verbal analogy — hence 'mountains suspended by a hair'</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🕯️ Reconstructing the Source for Festival Peace-Offerings</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Problem:</strong> The Mishna says Festival peace-offerings are 'mountains on a hair' — but <em>ḥagigah</em> offerings are mentioned in the Torah. Why weak support?</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Pappa's clarification:</strong> The specific ruling is that a Festival peace-offering brought <em>on Shabbat</em> overrides Shabbat restrictions — this particular rule has no clear verse.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Verbal Analogy (גזירה שוה):</strong> 'Wilderness' in Exodus 5:1 (Festival context) is linked to 'wilderness' in Numbers 9:3 (Passover offering) — teaching that Festival sacrifices override Shabbat, just as Passover does.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Abaye's challenge:</strong> But the Festival verse says <em>yaḥogu</em> (celebrate) — perhaps it means merely celebrate, with no required offering at all?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Why still 'a hair'?</strong> The Gemara concludes: one does not normally derive Torah law from a verse in the Prophets (<em>Nevi'im</em>), and the verbal analogy itself derives from oral tradition — both very thin supports.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chagigah 10 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;text-align:center;"><strong>Mishna's Framework</strong><br><small>Four categories ranked by scriptural strength</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;text-align:center;"><strong>🌬️ Flies in Air</strong><br><em>Dissolution of Vows</em><br><small>No explicit verse — Sages seek sources; only Shmuel's proof survives refutation</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;text-align:center;"><strong>🏔️ Mountains on Hair</strong><br><em>Shabbat · Festivals · Consecrated Property</em><br><small>Written briefly; details vastly expanded by Oral Torah and verbal analogies</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#222;padding:8px;border-radius:6px;text-align:center;"><strong>📖 Solid Ground</strong><br><em>Civil Law · Temple Service · Purity</em><br><small>Extensive explicit Torah passages form the foundation</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;text-align:center;"><strong>Core Insight:</strong> The weight of practice is independent of textual length. <em>Torah she-be'al peh</em> carries full legal authority — a single spicy verse beats a basket of weak ones.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chagigah 10a-10b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chagigah 10a-10b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../9/">← Daf 9</a><a href="../11/">Daf 11 →</a></div>
+</body>
+</html>

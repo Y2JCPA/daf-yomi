@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 27 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chagigah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Chagigah 27</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חגיגה כז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🪵 Wood Altar — The shewbread table called an altar<br>
+    🔄 Table as Altar — Eating with purity atones like sacrifice<br>
+    🏺 Temple Vessels — Which require immersion and which don't<br>
+    ⚖️ Altar Purity — Rabbi Eliezer vs. the Rabbis<br>
+    🛡️ Fire of Gehenna — Torah scholars and sinners both protected<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Why Are the Altars Exempt from Impurity?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Eliezer</div><div class="speech">The altars are pure because they are <strong>like the ground</strong> — just as the ground cannot become impure, so too large fixed structures attached to the ground are not susceptible to impurity.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">The Rabbis</div><div class="speech">The altars are pure because they are <strong>coated</strong> — the gold or bronze coating changes their legal status, rendering them not susceptible to impurity.</div></div></div><div class="callout" style="margin-top:20px"><strong>Gemara's Resolution</strong> The Rabbis may actually <em>agree</em> with Rabbi Eliezer. They are not offering an alternative reason — they are challenging him: <strong>Don't rely on the coating</strong>, which is nullified and subordinate. Instead, rely on the ground-analogy, which is the correct basis.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🪵 The Table Called 'The Altar of Wood'</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">הַמִּזְבֵּחַ עֵץ שָׁלֹשׁ אַמּוֹת גָּבֹהַּ — 'The altar of wood, three cubits high' (Yechezkel 41:22)</div><div class="callout"><strong>Biblical Source — Ezekiel 41:22</strong> The verse describes the <strong>shewbread table</strong> yet calls it <em>'the altar of wood, three cubits high.'</em> The Merciful One called the table an altar — teaching two things:<br><br>1. The table has an altar-like sacred status.<br>2. By calling it <strong>wood</strong>, the Torah teaches that a wooden vessel in a <em>fixed place</em> is not susceptible to impurity — like the ground itself.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔄 One Verse — Two Names, One Lesson</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech">The verse (Ezek. 41:22) <strong>begins</strong> with the word <em>altar</em> and <strong>ends</strong> with the word <em>table.</em> This teaches: when a person eats at their table with proper purity and intent, their table atones for them like the altar.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">I agree — while the Temple stood, the <strong>altar</strong> atoned for Israel. Now that the Temple is destroyed, a person's <strong>table</strong> atones. Hosting guests and eating in sanctity replaces the sacrificial service.</div></div></div><div class="callout" style="margin-top:20px"><strong>Post-Temple Teaching</strong> Both Amoraim derive the same lesson: the dining table is the altar of the post-Temple era. Eating with mindfulness and purity is a form of divine service and atonement — <strong>שׁוּלְחָן מְכַפֵּר</strong>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🏺 Temple Vessels and the Law of Immersion</h2>
+  
+  <table><tr><th>Vessel / Category</th><th>Requires Immersion?</th><th>Legal Reasoning</th></tr><tr><td>All standard Temple service vessels</td><td>✅ Yes</td><td>Susceptible to impurity; must be purified</td></tr><tr><td>Second and third substitute vessels</td><td>✅ Yes (even if never used)</td><td>Designated status alone creates obligation</td></tr><tr><td>Golden Altar (Inner)</td><td>❌ No</td><td>Like the ground (R. Eliezer) / coated (Rabbis)</td></tr><tr><td>Bronze Altar (Outer)</td><td>❌ No</td><td>Like the ground (R. Eliezer) / coated (Rabbis)</td></tr><tr><td>Wooden vessel in fixed position</td><td>❌ No</td><td>Fixed to ground → no hollow → not a 'vessel'</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔥 The Fire That Cannot Harm — A Fortiori Arguments</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Starting Point:</strong> The golden altar has only a dinar-thin gold coating — yet fire <em>never</em> damaged it</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Reish Lakish — Sinners of Israel</div><div class="flow-box result-good">If a thin coating protects the altar from fire → Israel, who are <strong>full of mitzvot like a pomegranate</strong>, certainly cannot be consumed by Gehenna's fire</div></div><div class="flow-col"><div class="flow-label">R. Abbahu / R. Elazar — Torah Scholars</div><div class="flow-box result-good">A <strong>salamander</strong> is born from fire → anointing with its blood protects from fire. Torah scholars are <em>immersed</em> in the fire of Torah → certainly Gehenna cannot harm them</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Conclusion:</strong> אֵשׁ שֶׁל גֵּיהִנֹּם — The fire of Gehenna has no dominion over Torah scholars <em>or</em> over the sinners of Israel</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🛡️ Two Protections from the Fire of Gehenna</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Torah Scholars</h3><ul><li><strong>Source:</strong> Rabbi Abbahu citing Rabbi Elazar</li><li><strong>Analogy:</strong> The <em>salamander</em> (salamandra) — a creature born from fire</li><li>One who anoints with salamander blood is protected from fire</li><li>Torah scholars are 'immersed' in the fire of Torah study</li><li><em>Kal va-chomer:</em> Certainly Gehenna's fire has no power over them</li><li><strong>Protection is inherent</strong> — from the Torah itself</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#ffffff">Sinners of Israel</h3><ul><li><strong>Source:</strong> Reish Lakish</li><li><strong>Analogy:</strong> The <em>golden altar</em> — thin dinar-thick coating</li><li>Fire burned for years but never damaged the altar's coating</li><li>Even Jewish sinners are 'coated' — full of mitzvot like a pomegranate</li><li><em>Kal va-chomer:</em> Certainly Gehenna cannot destroy them</li><li><strong>Protection is external</strong> — from accumulated merits</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chagigah 27 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:white;padding:8px;border-radius:6px;"><strong>Temple Vessels:</strong> All require immersion — <em>except</em> the altars</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;"><strong>Rabbi Eliezer:</strong><br>Altars = like the ground<br>→ not susceptible to impurity</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;padding:8px;border-radius:6px;"><strong>The Rabbis:</strong><br>Altars = coated<br>→ not susceptible<br><small>(Gemara: they may agree with Eliezer)</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:white;padding:8px;border-radius:6px;"><strong>Aggadic Leap:</strong> Altar's coating resists fire → <em>a fortiori</em> Torah scholars (via salamander) and Israel's sinners (via mitzvot) are protected from Gehenna</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:white;padding:8px;border-radius:6px;"><strong>Final Teaching:</strong> In the post-Temple era, the <strong>table atones like the altar</strong> — eat with purity, host guests, and it is as if you offered a sacrifice</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chagigah 27a-27b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chagigah 27a-27b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../26/">← Daf 26</a></div>
+</body>
+</html>

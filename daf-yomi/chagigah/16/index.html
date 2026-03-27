@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chagigah 16 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Chagigah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌈</div>
+  <h1>Chagigah 16</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">חגיגה טז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Rabbi Akiva's Protective Verse — what guarded him from Aḥer's mystical error<br>
+    👹 Demons' Dual Nature — three angelic and three human traits<br>
+    👤 Humanity's Dual Nature — three angelic and three animal traits<br>
+    🌈 Dishonoring the Creator — rainbow, private sin, and divine testimony<br>
+    ⚖️ The Zugot & Semicha Debate — placing hands on Festival offerings<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📖 Overview</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">חֲגִיגָה ט״ז</div><div class="callout"><strong>🌟 Daf Overview</strong> Chagigah 16 bridges <strong>mystical danger</strong> and <strong>practical law</strong>. The daf opens by identifying the verses that protected Rabbi Akiva when he entered the Pardes — anchoring the crucial distinction between God and His angelic host. It then explores the intermediate natures of <em>demons</em> and <em>humans</em>, each blending traits of angels with lower beings. The second half pivots to accountability: what dishonors the Creator (the rainbow, sinning privately), the sobering story of Yehuda ben Tabbai's fatal judicial error, and the ancient <em>semicha</em> (hand-placement) controversy that divided the <strong>Zugot</strong> for generations.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📜 What Verse Protected Rabbi Akiva in the Pardes?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabba bar bar Ḥana
+(citing R. Yoḥanan)</div><div class="speech">"And He came <em>from</em> the holy myriads" (Deut. 33:2) — God came <em>from among</em> the angelic host, showing He is categorically distinct from and above them</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Abbahu</div><div class="speech">"Preeminent <em>above</em> a myriad" (Song of Songs 5:10) — He is <em>exemplary among</em> His myriad hosts, not one of them; singular above all</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech">"The Lord of Hosts is His name" (Isaiah 48:2) — He is the <em>Master</em> of His host; the angels are His servants, not divine beings alongside Him</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rav Ḥiyya bar Abba
+(citing R. Yoḥanan)</div><div class="speech">"The Lord was <em>not</em> in the wind… not in the earthquake… not in the fire" (I Kings 19:11–12) — the angels <em>are</em> those forces; God transcends all of them entirely</div></div></div><div class="callout" style="margin-top:20px"><strong>💡 Why This Matters</strong> Aḥer (Elisha ben Avuyah) saw the angel Metatron seated in heaven and mistook him for a second divine power, becoming a heretic. Each of Rabbi Akiva's verses reinforced the same truth: <strong>there is an absolute boundary between God and even the greatest angels</strong>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>👹 The Dual Nature of Demons (שֵׁדִים)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#0d1f3c"><h3 style="color:#4a90d9">🕊️ Like Ministering Angels</h3><ul><li>They have <strong>wings</strong></li><li>They <strong>fly</strong> from one end of the world to the other</li><li>They <strong>know the future</strong> — hearing from behind the Divine curtain, like angels</li></ul></div><div class="compare-box" style="border-top-color:#2a1212"><h3 style="color:#e74c3c">👤 Like Humans</h3><ul><li>They <strong>eat and drink</strong></li><li>They <strong>multiply</strong> (procreate)</li><li>They <strong>die</strong></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚖️ The Five Zugot — Semicha Positions (Laying Hands on Festival Offerings)</h2>
+  
+  <table><tr><th>Pair #</th><th>Nasi (President)</th><th>Deputy (Av Beit Din)</th><th>Nasi on Semicha</th></tr><tr><td>1st</td><td>Yose ben Yo'ezer</td><td>Yosef ben Yoḥanan</td><td>❌ Do not place hands</td></tr><tr><td>2nd</td><td>Yehoshua ben Peraḥya</td><td>Nittai HaArbeli</td><td>❌ Do not place hands</td></tr><tr><td>3rd</td><td>Yehuda ben Tabbai</td><td>Shimon ben Shataḥ</td><td>❌ Do not place hands</td></tr><tr><td>4th</td><td>Shemaya</td><td>Avtalyon</td><td>✅ Place hands</td></tr><tr><td>5th</td><td>Hillel</td><td>Shammai (Menaḥem departed*)</td><td>✅ Place hands</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🌈 Dishonoring the Creator — Who, How, and Who Testifies</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>"Whoever has no concern for the honor of his Maker deserves to have never come to the world"</strong><br><small>(Mishna, Chagigah)</small></div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Abba</div><div class="flow-box result-bad">🌈 <strong>Looking at a rainbow</strong><br><small>The rainbow embodies divine glory (Ezek. 1:28); staring at it diminishes awe of God</small></div></div><div class="flow-col"><div class="flow-label">Rabbi Yitzḥak
+(via Rav Yosef)</div><div class="flow-box result-bad">🕵️ <strong>Sinning in private</strong><br><small>As if one pushed away the feet of the Shekhinah — God fills all space; there is no truly private place</small></div></div><div class="flow-col"><div class="flow-label">Rabbi Zerika</div><div class="flow-box result-bad">🙈 <strong>Witnessing sin</strong> without averting one's eyes<br><small>Failing to distance oneself from transgression when able</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>The private sinner thinks: Who will testify against me?</strong></div><div class="flow-branch"><div class="flow-col"><div class="flow-label">The Stones & Beams</div><div class="flow-box action">"The <em>stone</em> shall cry out from the wall, and the <em>beam</em> from the timber shall answer" (Hab. 2:11)</div></div><div class="flow-col"><div class="flow-label">His Own Soul</div><div class="flow-box action">"Guard the doors of your mouth from <em>she who lies in your bosom</em>" (Micah 7:5) — the soul within bears witness</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Yehuda ben Tabbai: A Sage's Grave Error and Lifelong Penance</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>The Boast:</strong> Yehuda ben Tabbai declared he had executed a conspiring witness (עֵד זוֹמֵם) — to demonstrate, against the Sadducees, that such witnesses are executed even before the falsely condemned man is put to death</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Shimon ben Shataḥ's Rebuke:</strong> <em>"You shed innocent blood!"</em> — the halakha requires that <strong>both</strong> conspiring witnesses be found liable together; executing only one is judicial murder</div><div class="process-arrow">↓</div><div class="process-step"><strong>Immediate Acceptance:</strong> Yehuda resolved never to rule on any matter of law without first hearing Shimon ben Shataḥ's opinion — he could no longer trust his own independent judgment</div><div class="process-arrow">↓</div><div class="process-step"><strong>Lifelong Penance:</strong> All his days, Yehuda prostrated himself on the grave of the executed man and wept aloud. People heard his voice weeping and thought it was the executed man's spirit</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Unresolved Question (Rav Aḥa to Rav Ashi):</strong> Perhaps the voice <em>was</em> Yehuda's own weeping — because either ben Tabbai never succeeded in appeasing the man's spirit, or that spirit was still actively prosecuting him in the heavenly court</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Chagigah 16 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#0d1f3c;border-color:#4a90d9"><strong>Rabbi Akiva's Verse</strong><br><small>God is utterly distinct from His angelic host → protects against the error of Aḥer</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a0d3c;border-color:#9b59b6"><strong>Intermediate Beings</strong><br><small>Demons &amp; humans blend angelic + earthly traits — neither purely spiritual nor purely physical</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1212;border-color:#e74c3c"><strong>🌈 Dishonorable Acts</strong><br><small>Rainbow-gazing &amp; private sin both diminish God's honor — the Shekhinah is everywhere</small></div></div><div class="flow-col"><div class="flow-box" style="background:#0d2a1a;border-color:#2ecc71"><strong>⚖️ Judicial Humility</strong><br><small>Yehuda ben Tabbai: even a Nasi must defer — overconfidence causes irreversible harm</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a0a;border-color:#e67e22"><strong>🙌 Semicha Debate</strong><br><small>A rabbinic decree (shevut) must never be taken lightly — it divided sages for generations</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Chagigah 16a-16b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Chagigah 16a-16b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../15/">← Daf 15</a><a href="../17/">Daf 17 →</a></div>
+</body>
+</html>
