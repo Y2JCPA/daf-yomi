@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shabbat 42 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Shabbat 42 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">Rav Shmuel bar Bisna asks whether a woman who discharges semen is like one who experienced an 'emission' or like one who 'contacted' an impure substance. What do both Abaye and Rava conclude?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. She is like one who contacted an impure substance — the semen was external to her</div>
+      <div class="option" onclick="select(1,this,1)">B. She is like one who experienced an emission — she is legally likened to the man</div>
+      <div class="option" onclick="select(1,this,2)">C. The question is unresolved and left as a teku</div>
+      <div class="option" onclick="select(1,this,3)">D. She is pure entirely, since the semen originated from the man</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Both Abaye and Rava agree: the woman who discharges semen has the status of one who experienced an emission (בַּעַל קֶרִי), not merely one who contacted impurity. She is likened to the man who engaged in intercourse with her, per Rabbi Shimon's ruling.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">What is the precise practical halakhic difference between Abaye and Rava's dispute about the vagina's legal status?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Whether a woman must count seven clean days after intercourse</div>
+      <div class="option" onclick="select(2,this,1)">B. Whether one woman inserting an olive-bulk of animal carcass into another's vagina renders her impure</div>
+      <div class="option" onclick="select(2,this,2)">C. Whether semen can ever be a source of impurity</div>
+      <div class="option" onclick="select(2,this,3)">D. Whether a woman after childbirth must immerse in a mikveh</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>The Gemara specifies the case: one woman inserts an olive-bulk of animal carcass into another's vagina. Abaye (encapsulated) says she is pure; Rava (beit hastrim) says she is impure.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Rava proves the vagina is 'beit hastrim' from a baraita. What does that baraita say that constitutes his proof?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. It states that a woman must immerse after contact with any impure substance</div>
+      <div class="option" onclick="select(3,this,1)">B. It calls the impurity of semen while still inside the body a 'novelty' because it is in a concealed part of the body</div>
+      <div class="option" onclick="select(3,this,2)">C. It rules that Rabbi Shimon's leniency does not apply to semen inside the body</div>
+      <div class="option" onclick="select(3,this,3)">D. It compares the vagina to the sealed interior of a clay vessel</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Rava cites the baraita that derives from the Torah verse that semen inside the woman's body is a halakhic novelty precisely because it is in a 'concealed part of the body' (beit hastrim). This implies the vagina is beit hastrim — not encapsulated.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">In the Shabbat circumcision incident, the man reports hearing the baby's voice at nightfall on Erev Shabbat, but the birth was not complete until Shabbat. Why does Rava still permit circumcision on Shabbat?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Because the voice was not conclusive proof the baby was alive before Shabbat</div>
+      <div class="option" onclick="select(4,this,1)">B. Because once a ruling is given it cannot be retracted</div>
+      <div class="option" onclick="select(4,this,2)">C. Because the baby's head must have emerged before Shabbat, legally commencing the birth at that point</div>
+      <div class="option" onclick="select(4,this,3)">D. Because any doubt about the birth date is resolved leniently for circumcision</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>Rava reasons that a baby cannot make a sound unless its head has already emerged from the birth canal. Since the voice was heard before Shabbat, the head — and thus the legal birth — must have begun before Shabbat. The circumcision count therefore started before Shabbat, making day 8 fall on Shabbat, which permits circumcision.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">According to Rava, why is a person with a creeping animal (שרץ) carcass in body folds pure, but a person with animal carcass (נבלה) flesh in body folds impure?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. A creeping animal is smaller and therefore below the minimum impurity threshold in body folds</div>
+      <div class="option" onclick="select(5,this,1)">B. A שרץ imparts impurity through contact (blocked by concealment), while נבלה imparts impurity through carrying (not blocked by concealment)</div>
+      <div class="option" onclick="select(5,this,2)">C. Body folds protect against all impurity from creeping animals but not from mammals</div>
+      <div class="option" onclick="select(5,this,3)">D. The Sages enacted a special leniency for creeping animals found in body folds</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>Rava distinguishes by the mechanism of impurity transmission: a שרץ imparts impurity through contact (מגע), and concealed body parts are not susceptible to contact-based impurity — hence pure. A נבלה imparts impurity through carrying (נשיאה), which applies even to concealed parts of the body — hence impure.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":1,"3":1,"4":2,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>
