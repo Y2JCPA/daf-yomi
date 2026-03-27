@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Megillah 4 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Megillah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Megillah 4</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">מגילה ד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏙️ Cities Walled Since Joshua — Lod, Ono, and Gei HaCharashim<br>
+    👩 Women Obligated — Partners in the Purim Miracle<br>
+    🌙 Night and Day — Megilla Read Twice (the Lishnota Dispute)<br>
+    📅 When the 14th Falls on Friday — Three Tannaitic Opinions<br>
+    🚫 Why No Megilla on Shabbat — Rabba vs. Rav Yosef<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📅 When Is the Megilla Read? — Daf 4 at a Glance</h2>
+  
+  <div class="flowchart"><div class="flow-box question">When does the 14th of Adar fall?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Weekday</div><div class="flow-box result-good">Each settlement reads on its designated day: villages on day of assembly, towns on 14th, walled cities on 15th</div></div><div class="flow-col"><div class="flow-label">Friday (Erev Shabbat)</div><div class="flow-box action"><strong>Three-way dispute!</strong><br>Tanna Kamma vs. R. Yehuda HaNasi vs. R. Yosei disagree which group advances to Thursday</div></div><div class="flow-col"><div class="flow-label">Shabbat</div><div class="flow-box result-good">All agree: Megilla not read on Shabbat — reading deferred to day of assembly (Thursday)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Why not on Shabbat? <strong>Rabba:</strong> fear of carrying in public domain &nbsp;|&nbsp; <strong>Rav Yosef:</strong> poor await gifts on reading day</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏙️ Cities Walled Since Joshua — But Didn't Elpaal Build Them?</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">בנויות מימות יהושע בן נון (מגילה ד.)</div><div class="callout"><strong>Historical Puzzle Resolved</strong> <strong>The Rule:</strong> Lod, Ono, and Gei HaCharashim read the Megilla on the 15th of Adar, as cities walled since Joshua's time.<br><br><strong>The Problem:</strong> I Chronicles 8:12 says <em>Elpaal</em> built Ono and Lod — implying they were founded centuries later!<br><br><strong>Rabbi Elazar's Resolution:</strong> These cities <em>were</em> walled from Joshua's time. They were <strong>destroyed</strong> during the War of the Concubine of Gibeah, when all of Benjamin's cities were razed. Elpaal then <em>rebuilt</em> them — hence the verse credits him with 'building.'<br><br><em>The verse about King Asa (II Chr. 14:6) — 'Let us build these cities' — also supports this: 'these cities' implies they had existed before.</em></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🌙 Reading the Megilla at Night and by Day — The Lishnota Dispute</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rabbi Yehoshua ben Levi:</strong> A person is obligated to read the Megilla at night and then <em>lishnota</em> during the day — as it is written: 'I call by day… and at night' (Psalms 22:3).</div><div class="process-arrow">↓</div><div class="process-step"><strong>Student Misunderstanding:</strong> Some heard 'lishnota' and thought it meant: read at night, then <em>study the relevant tractate of Mishna</em> by day (lishna = Mishna).</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Yirmeya's Correction:</strong> No — 'lishnota' means to <em>repeat</em> (liShNoT) the Megilla reading. One reads the full Megilla both at night and again during the day.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Corroboration — Rabbi Ḥelbo citing Ulla Bira'a:</strong> Confirmed independently: read at night and repeat during the day, as it is written, 'So that my glory may sing praise to You and not be silent' (Psalms 30:13) — both night and day.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Also from Rabbi Yehoshua ben Levi:</strong> Women are obligated in Megilla reading — 'they too were significant partners in that miracle' (the salvation came through Esther).</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🚫 Why Is the Megilla Not Read on Shabbat?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">Everyone is equally obligated in Megilla reading. If Purim were on Shabbat, someone who cannot read might pick up the Megilla and <strong>carry it four cubits in a public domain</strong> to bring it to an expert — a Torah-level Shabbat violation. This same concern explains why the shofar is not blown when Rosh HaShana falls on Shabbat, and why the lulav is not taken on Shabbat-Sukkot.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Yosef</div><div class="speech">The reason is entirely different: <em>the eyes of the poor are raised to the Megilla reading.</em> The poor come to the reading because that is when <strong>matanot l'evyonim</strong> (gifts to the poor) are distributed. If the reading were on Shabbat, gifts could not be given then — the poor would gather in vain. Therefore the reading must occur on a weekday when gifts can be distributed.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Consequence</strong> Both agree on the ruling — no Megilla on Shabbat — but their different rationales could affect edge cases. Rav Yosef's reason implies the Megilla reading and gift-giving are linked: collecting and distributing gifts must happen on the same day the Megilla is read.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ When the 14th Falls on Friday — Who Reads When?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#4a90d9">Tanna Kamma</h3><ul><li>Villages → advance to Thursday (day of assembly)</li><li>Large towns → read on Friday, the 14th</li><li>Walled cities → read on Friday, the 14th</li><li>Logic: 'in every year' — large towns are never deferred from the 14th</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3a"><h3 style="color:#9b59b6">Rabbi Yehuda HaNasi</h3><ul><li>Villages → advance to Thursday</li><li>Large towns → advance to Thursday</li><li>Walled cities → read on Friday, the 14th</li><li>Logic: large towns are not deferred — but they read on Thursday, their advance day, not Friday</li></ul></div><div class="compare-box" style="border-top-color:#1a3a2a"><h3 style="color:#2ecc71">Rabbi Yosei</h3><ul><li>Villages → advance to Thursday</li><li>Large towns → read on Friday, the 14th</li><li>Walled cities → advance to Thursday</li><li>Logic: walled cities must never precede large towns — and 15th is Shabbat, so they go to Thursday</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📋 Megilla Reading Schedule — All Scenarios</h2>
+  
+  <table><tr><th>Settlement Type</th><th>Normal Year</th><th>14th on Friday</th><th>14th on Shabbat</th></tr><tr><td>🏘️ Villages</td><td>Day of assembly (Mon or Thu) or the 14th</td><td>Advance to Thursday</td><td>Advance to Thursday</td></tr><tr><td>🏙️ Large Towns (unwalled)</td><td>14th of Adar</td><td>Friday 14th (Tanna Kamma & R. Yosei)<br>OR Thursday (R. Yehuda HaNasi)</td><td>Advance to Thursday</td></tr><tr><td>🏰 Walled Cities (since Joshua)</td><td>15th of Adar (Shushan Purim)</td><td>Friday 14th or 15th (dispute)<br>OR Thursday (R. Yosei)</td><td>Advance to Thursday</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Megillah 4 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Three settlement tiers:</strong> Villages (day of assembly) → Large Towns (14th) → Walled Cities (15th)</div><div class="flow-arrow">↓</div><div class="flow-box question" style="">When 14th falls on <strong>Friday</strong> — Shabbat looms over the 15th</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-left: 3px solid #4a90d9"><strong>Tanna Kamma</strong><br>Large towns + walled cities both read Friday</div></div><div class="flow-col"><div class="flow-box" style="border-left: 3px solid #9b59b6"><strong>R. Yehuda HaNasi</strong><br>Walled cities read Friday; large towns advance to Thursday</div></div><div class="flow-col"><div class="flow-box" style="border-left: 3px solid #2ecc71"><strong>R. Yosei</strong><br>Large towns read Friday; walled cities advance to Thursday</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style=""><strong>Unanimous:</strong> No Megilla on Shabbat<br><small>Rabba: carrying violation risk &nbsp;|&nbsp; Rav Yosef: gifts to poor cannot be given on Shabbat</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Megillah 4a-4b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Megillah 4a-4b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">← Daf 3</a><a href="../5/">Daf 5 →</a></div>
+</body>
+</html>

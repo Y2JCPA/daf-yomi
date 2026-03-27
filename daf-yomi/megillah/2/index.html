@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Megillah 2 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Megillah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Megillah 2</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">מגילה ב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📅 Reading Schedule — 11th–15th of Adar<br>
+    🏘️ Villages, Towns & Walled Cities<br>
+    📖 Two Biblical Derivations for Extended Dates<br>
+    ⚖️ Joshua vs. Ahasuerus — Which Walls Count?<br>
+    🏛️ Shushan's Special Honorary Status<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📜 Who Reads When — The Megilla Schedule</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rule 1:</strong> Walled cities (מוּקָּפוֹת חוֹמָה) always read on the <strong>15th of Adar</strong></div><div class="process-arrow">↓</div><div class="process-step"><strong>Rule 2:</strong> Unwalled towns (עֲיָרוֹת) read on the <strong>14th of Adar</strong></div><div class="process-arrow">↓</div><div class="process-step"><strong>Rule 3:</strong> Villages (כְּפָרִים) may advance their reading to the nearest Monday or Thursday (market/court day)</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Shabbat exception:</strong> When the 14th falls on Shabbat, both villages <em>and</em> large towns advance to Thursday the 12th</div><div class="process-arrow">↓</div><div class="process-step"><strong>Authority:</strong> All these dates enacted by the Great Assembly (אַנְשֵׁי כְּנֶסֶת הַגְּדוֹלָה); alluded to in Esther 9:31</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📅 The Full Reading Schedule by Day of Week</h2>
+  
+  <table><tr><th>14th Adar Falls On</th><th>Villages (כְּפָרִים)</th><th>Large Towns (עֲיָרוֹת)</th><th>Walled Cities (מוּקָּפוֹת)</th></tr><tr><td>Monday</td><td>14th (Mon)</td><td>14th (Mon)</td><td>15th (Tue)</td></tr><tr><td>Tuesday</td><td>Advance to Mon — <strong>11th</strong></td><td>14th (Tue)</td><td>15th (Wed)</td></tr><tr><td>Wednesday</td><td>Advance to Mon — <strong>12th</strong></td><td>14th (Wed)</td><td>15th (Thu)</td></tr><tr><td>Thursday</td><td>14th (Thu)</td><td>14th (Thu)</td><td>15th (Fri)</td></tr><tr><td>Friday (Erev Shabbat)</td><td>Advance to Thu — <strong>13th</strong></td><td>14th (Fri)</td><td>15th (Shabbat →)</td></tr><tr><td>Shabbat</td><td>Advance to Thu — <strong>12th</strong></td><td>Advance to Thu — <strong>12th</strong></td><td>15th (Sun)</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📖 Two Derivations for Reading on 11th–13th</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Shemen bar Abba (R. Yoḥanan)</div><div class="speech">From <em>"in their times"</em> — <strong>בְּעִתֵּיהֶם</strong> (Esther 9:31). The compound plural implies multiple times were enacted, not only the standard 14th and 15th.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara objection</div><div class="speech">That plural is needed to show that walled and unwalled cities celebrate at <em>different</em> times — not to add extra days!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Shemen bar Abba</div><div class="speech">If so, the verse would say <em>"in its time."</em> The double plural עִתֵּיהֶם adds exactly two extra days — the 11th and 13th.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R. Shmuel bar Naḥmani</div><div class="speech">From <em>"as the days"</em> — <strong>כִּימֵי</strong> (Esther 9:22). The plural כִּימֵי (literally 'like the days of') implies more than two days.</div></div></div><div class="callout" style="margin-top:20px"><strong>How the 11th is derived</strong> Rav Shmuel bar Yitzḥak: The 13th is a fast day (Ta'anit Esther) when Torah-reading assemblies gather. The preceding weekdays of assembly (11th, 12th) are thus included in the reading window.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🏙️ Unwalled Towns vs. Walled Cities vs. Shushan</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a1a"><h3 style="color:#2ecc71">Unwalled Towns (פְּרָזִים)</h3><ul><li>Read Megilla on the <strong>14th of Adar</strong></li><li>Source: <em>"Therefore the Jews of the villages… make the fourteenth a day of gladness"</em> (Esther 9:19)</li><li>Majority of Jewish communities fall in this category</li><li>May advance to Mon/Thu when 14th conflicts with Shabbat</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2a"><h3 style="color:#c9a84c">Walled Cities (מוּקָּפוֹת חוֹמָה)</h3><ul><li>Read Megilla on the <strong>15th of Adar</strong></li><li>Must be walled since <strong>days of Joshua bin Nun</strong> (Mishna tanna)</li><li>Nearby towns within <em>one mil</em> share the city's date</li><li>Source: gezerah shavah between two uses of <strong>פְּרָזִי</strong></li></ul></div><div class="compare-box" style="border-top-color:#2a1a0a"><h3 style="color:#e67e22">Shushan — Special Case</h3><ul><li>Reads on the 15th despite not being walled since Joshua</li><li>Reason (Rava): <strong>the miracle occurred there</strong> on the 15th</li><li><em>"Every province and every city"</em> (Esther 9:28) — doubled phrasing honors Shushan distinctly</li><li>No other city receives this honor by miracle-proximity alone</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔍 Deriving the Full 11th–15th Range</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Problem:</strong> The Megilla text mentions only the 14th and 15th — where is the source for reading on the 11th–13th?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Path A</div><div class="flow-box action"><em>"In their times"</em><br><strong>עִתֵּיהֶם</strong> (Esther 9:31)<br>→ Rav Shemen bar Abba</div></div><div class="flow-col"><div class="flow-label">Path B</div><div class="flow-box action"><em>"As the days"</em><br><strong>כִּימֵי</strong> (Esther 9:22)<br>→ R. Shmuel bar Naḥmani</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Both paths establish <strong>13th and 15th</strong> as added days. How do we reach the <strong>11th</strong>?</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Rav Shmuel bar Yitzḥak:</strong> The 13th is a fast day with Torah-reading assemblies. Assembly days preceding it (11th, 12th) are included as preparation days.</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Upper bound — </strong><em>"It shall not pass"</em> (Esther 9:27): Purim cannot be delayed past the 15th. Range is fixed: <strong>11th–15th only.</strong></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Joshua vs. Ahasuerus — The Wall Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna of our Mishna</div><div class="speech">A city must be walled since <strong>Joshua bin Nun's</strong> time to read on the 15th. Derived via <em>gezerah shavah</em>: <strong>פְּרָזִי</strong> in Deuteronomy 3:5 ↔ <strong>פְּרָזִי</strong> in Esther 9:19.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yehoshua ben Korḥa</div><div class="speech">Walled since <strong>Ahasuerus's</strong> time suffices — we compare to Shushan, the paradigm walled city, which was walled in Ahasuerus's era, not Joshua's.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara: Why not Ahasuerus? (Mishna tanna)</div><div class="speech">To <strong>honor the Land of Israel</strong>, which lay desolate in Ahasuerus's time. Using Joshua's era recognizes Israel's ancient walled cities.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rava</div><div class="speech"><strong>Shushan is entirely different</strong> — it reads on the 15th because the miracle occurred there, not because of any wall criterion. The wall rule applies to all <em>other</em> cities.</div></div></div><div class="callout" style="margin-top:20px"><strong>Ruling</strong> Halacha follows the Mishna's tanna: walled since Joshua's time. Shushan reads on the 15th as a unique miracle-honor. The gezerah shavah (פְּרָזִי / פְּרָזִי) is the operative derivation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Megillah 2 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Mishna Ruling:</strong> Megilla may be read on 11th–15th Adar</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#2ecc71"><strong>Villages</strong><br>Advance to Mon or Thu</div></div><div class="flow-col"><div class="flow-box" style="border-color:#4a90d9"><strong>Large Towns</strong><br>Read on the 14th</div></div><div class="flow-col"><div class="flow-box" style="border-color:#c9a84c"><strong>Walled Cities</strong><br>Read on the 15th</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>Gemara Derivations:</strong> <em>"In their times"</em> (9:31) + <em>"as the days"</em> (9:22) → extended window of 11th–15th</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#c9a84c"><strong>Walled since Joshua</strong><br>→ Read 15th (halacha)</div></div><div class="flow-col"><div class="flow-box" style="border-color:#e67e22"><strong>Shushan exception</strong><br>→ 15th by miracle honor</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="">Upper bound: <em>"It shall not pass"</em> (9:27) — no reading after the 15th</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Megillah 2a-2b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Megillah 2a-2b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">Daf 3 →</a></div>
+</body>
+</html>
