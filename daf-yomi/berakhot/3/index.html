@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berakhot 3 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Berakhot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔍</div>
+  <h1>Berakhot 3</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ברכות ג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Sota Analogy — deriving ritual bath rules from the suspected adulteress<br>
+    🏛️ Public vs. Private Domain — impurity status differs by location<br>
+    🩸 Shammai's Principle — women impure only from time of discovery<br>
+    👫 P'ru U'rvu — retroactive impurity risks dereliction of procreation<br>
+    🧺 Basket Cases — retroactive impurity of produce near creeping animals<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Why Is a Woman Not Retroactively Impure?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">Derive ritual bath uncertainty from sota: just as doubt about sota = definite impurity, so too ritual bath doubt = retroactively impure</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R. Shimon</div><div class="speech">Also derives from sota — but the public/private domain distinction applies: public domain doubt = pure, private domain = definitely impure</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Alternative for R. Shimon: derive end-of-impurity rules from beginning-of-impurity rules — same public/private logic applies throughout</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rava</div><div class="speech">Shammai's true reason: retroactive impurity would cause dereliction of p'ru u'rvu — a scrupulous husband would never engage in intercourse</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Dispute</strong> Multiple reasons are offered for Shammai's ruling that a woman is only impure from the moment she discovers her flow. The Gemara explores which reason is primary and what practical differences exist between them.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔄 Sota Analogy: Rabbis vs. Rabbi Shimon</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbis</h3><ul><li>Ritual bath ~ sota: doubt treated as definite impurity</li><li>Both public AND private domain: doubt = retroactively impure</li><li>Cannot distinguish domains — sota rule is unique to her seclusion</li><li>Objection: if impure anywhere, why not pure in public domain? → Sota's impurity stems from seclusion, not location</li></ul></div><div class="compare-box" style="border-top-color:#2d1a4a"><h3 style="color:#9b59b6">Rabbi Shimon</h3><ul><li>Ritual bath ~ sota: public domain doubt = pure</li><li>Private domain doubt = definitely impure (like sota who secluded herself)</li><li>Alternatively: derives from 'beginning of impurity' — same public/private logic</li><li>Objection answered: sota in private has a 'basis' (husband's warning + seclusion) which ordinary cases lack</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🏛️ Public vs. Private Domain — Impurity Uncertainty</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Uncertain contact with impurity occurred</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Public Domain — רשות הרבים</div><div class="flow-box result-good"><strong>Tahor — Pure</strong><br><small>Sota precedent: doubt in public = leniency</small></div></div><div class="flow-col"><div class="flow-label">Private Domain — רשות היחיד</div><div class="flow-box result-bad"><strong>Tamei — Impure</strong><br><small>Sota precedent: seclusion in private = presumed impurity</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Same principle applies to: ritual bath location, menstrual timing, produce near creeping animals — according to Rabbi Shimon's reading</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📋 Four Reasons for Shammai's Ruling — עונתה די לה</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Reason 1 — Sota Analogy (Public Domain):</strong> Just as a sota's doubt in a public domain renders her pure, a woman's menstrual uncertainty is also resolved leniently — she is pure retroactively</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Reason 2 — Bodily Sensation (Abaye's version):</strong> A woman senses her menstrual flow within herself. If she felt it only now, she had no prior flow. Even a sleeping woman would wake from discomfort.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Reason 3 — Blood Would Have Flowed Out (Rava's version):</strong> If blood had existed earlier it would have already emerged. Even a contraceptive cloth does not hermetically seal the womb — prior blood escapes naturally.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Reason 4 — P'ru U'rvu / פרו ורבו (Rava's primary reason):</strong> Declaring women retroactively impure would cause widespread dereliction of the mitzva to be fruitful and multiply. A scrupulous husband would never risk intercourse.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Practical Divergence:</strong> The three reasons yield different outcomes for: sleeping women, mentally incompetent women, women using contraceptive cloths, and blood stains found after the fact.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>👥 Shammai and Hillel — Can Retroactive Impurity Be a Safeguard?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Hillel</div><div class="speech">Don't you concede that pure items in a basket containing a creeping animal are retroactively impure? So too a woman who menstruates should be deemed impure retroactively!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Shammai</div><div class="speech">The basket is different — a creeping animal can lurk unnoticed. But prior menstrual blood would have already flowed out. Your comparison fails.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Hillel</div><div class="speech">Granted your reasoning has merit — but shouldn't we impose retroactive impurity as a rabbinic safeguard (גזירה) anyway?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Shammai</div><div class="speech">Such a safeguard must not be enacted! If it were, the heart of a scrupulous husband might turn away from intercourse entirely — causing him to fail the mitzva of p'ru u'rvu.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle — פרו ורבו</strong> The obligation to be fruitful and multiply carries such weight that even well-intentioned rabbinic safeguards may not be enacted if they would practically prevent couples from fulfilling it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🧺 Basket/Produce Cases — Retroactive Impurity Rules</h2>
+  
+  <table><tr><th>Case</th><th>Condition</th><th>Ruling</th><th>Key Reasoning</th></tr><tr><td>Basket with base</td><td>Creeping animal found; items were in corner</td><td>Retroactively impure</td><td>Inward rim may have held animal inside unnoticed throughout</td></tr><tr><td>Basket without base / no rim</td><td>Creeping animal found among produce</td><td>Disputed — R. Yoḥanan: impure</td><td>Whether a curved rim retains the animal is debated</td></tr><tr><td>Ten successive pails of water</td><td>Creeping animal found in later pail</td><td>Only that pail is impure (Ḥizkiyya)</td><td>Water pours freely; no rim retains the animal across pails</td></tr><tr><td>Examined basket</td><td>Items examined; creeping animal found later</td><td>Pure retroactively</td><td>Examination establishes presumption of purity at time of check</td></tr><tr><td>Covered basket</td><td>Basket was covered when creeping animal found</td><td>Retroactively impure</td><td>Covering means the animal could have been sealed inside all along</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Berakhot 3 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#1a2a3a;border:2px solid #4a90d9;color:#e0e0e0"><strong>Question:</strong> When does a woman's niddah impurity begin — now or retroactively?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a0a;border:2px solid #e67e22;color:#e0e0e0"><strong>Shammai:</strong> From time of discovery only<br><small><em>עונתה די לה</em></small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a0a2a;border:2px solid #9b59b6;color:#e0e0e0"><strong>Hillel:</strong> Retroactive to last examination<br><small><em>מפקידה לפקידה</em></small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a2a1a;border:2px solid #2ecc71;color:#e0e0e0"><strong>Shammai's Converging Reasons:</strong> (1) Sota analogy — public domain = pure; (2) Woman senses her flow (Abaye); (3) Prior blood would have emerged (Rava); (4) P'ru u'rvu concern (Rava's primary reason)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a3a;border:2px solid #4a90d9;color:#e0e0e0"><strong>Sleeping woman:</strong> Still covered by Shammai — discomfort causes waking<br><small>Sensation reason survives</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a1a;border:2px solid #e74c3c;color:#e0e0e0"><strong>Mentally incompetent woman:</strong> <em>Excluded</em> from Shammai's ruling — cannot reliably sense or report her flow<br><small>'All women' excludes R. Eliezer's opinion, not this case</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Berakhot 3a-3b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Berakhot 3a-3b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../2/">← Daf 2</a><a href="../4/">Daf 4 →</a></div>
+</body>
+</html>

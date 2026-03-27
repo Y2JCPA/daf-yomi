@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berakhot 5 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Berakhot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🩸</div>
+  <h1>Berakhot 5</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ברכות ה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🩸 Retroactive Impurity — when does blood render past items impure?<br>
+    📅 Fixed Cycle — 'her time is sufficient' limits retroactivity<br>
+    🧵 Examination Cloths — validity of bedikah during intercourse<br>
+    🤲 Uncertain Impurity — Rabbi Yohanan: human-caused doubt is impure<br>
+    🛏️ Bed & Chair — Ze'eiri debates the level of retroactive impurity<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🩸 Does Blood Cause Retroactive Impurity?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Woman discovers menstrual blood</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Has a fixed cycle (בעלת וסת)</div><div class="flow-box result-good"><strong>דייה שעתה</strong><br>Impure only FROM NOW<br><small>Past items remain pure</small></div></div><div class="flow-col"><div class="flow-label">No fixed cycle (אין לה וסת)</div><div class="flow-box result-bad"><strong>מטמאה למפרע</strong><br>Retroactive 24 hours<br><small>Past items rendered impure</small></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📜 Mishna or Baraita — Which Reflects the Majority View?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Questioner</div><div class="speech">The Gemara reads the mishna as following Rabbi Dosa (lenient: fixed time = no retroactivity) and the baraita as everyone's view. Why not flip it — mishna = everyone, baraita = Rabbi Dosa?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Since the text can be read as a leniency AND as a stringency, we prefer assigning the lenient reading to the anonymous mishna. The anonymous mishna follows the majority — and here the majority is lenient.</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Principle</div><div class="speech">When two valid interpretations exist, prefer the one that produces a leniency for the mishna. This guides which opinion we attribute to the <em>stam</em> (anonymous) mishna.</div></div></div><div class="callout" style="margin-top:20px"><strong>Hermeneutic Rule</strong> An anonymous mishna (סתם משנה) is attributed to the majority opinion. When the majority position is also the lenient one, the interpretive preference for leniency reinforces the attribution.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📅 Women With vs. Without a Fixed Cycle</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2a"><h3 style="color:#2ecc71">Fixed Cycle (בעלת וסת)</h3><ul><li>דייה שעתה — 'her time is sufficient'</li><li>Blood renders items impure only from moment of discovery</li><li>No retroactive 24-hour period of impurity</li><li>Bed and items touched before discovery remain pure</li><li>Rabbi Dosa's lenient position — accepted as halakha</li><li>Blood stains likewise impure only from point of discovery (R. Hanina b. Antigonus)</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">No Fixed Cycle (אין לה וסת)</h3><ul><li>מטמאה למפרע — retroactive impurity</li><li>Items touched up to 24 hours prior are impure</li><li>Includes: pregnant, nursing, elderly, and minor women</li><li>Blood stains carry same retroactive ruling as sighting</li><li>Stricter standard — uncertainty traced back in time</li><li>Examination cloths can reduce the retroactive window</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🧵 Examination Cloths (עדים) During Intercourse</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Mishna states:</strong> A woman who uses examination cloths during intercourse — this act counts like a valid examination (בדיקה) and reduces retroactive impurity</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Shmuel disagrees:</strong> This does NOT count as a valid examination — she is too excited (מהומה) and hurried for intercourse to perform a proper check</div><div class="process-arrow">↓</div><div class="process-step"><strong>Objection raised:</strong> Even if excited, the cloth still contacts the area and would detect blood — why does excitement invalidate the examination?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Answer:</strong> Because she is excited, she does not insert the cloth <em>deeply enough</em> — a proper bedikah requires thorough insertion, which she skips</div><div class="process-arrow">↓</div><div class="process-step"><strong>Why 'cloths' (plural)?</strong> One cloth used before intercourse, one used after — both are obligatory. The post-coital cloth ensures blood is not hidden beneath semen</div><div class="process-arrow">↓</div><div class="process-step"><strong>Result:</strong> Two valid examinations reduce retroactive impurity — not from 24 hours, but only from examination to examination (a shorter window)</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🤲 Rabbi Yohanan: Uncertain Impurity by Human Hand</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">ספק טומאה הבאה בידי אדם — טמא</div><div class="callout"><strong>Rabbi Yohanan (רבי יוחנן)</strong> In a case of uncertain ritual impurity that comes about through human involvement — the owner of the vessel must consult a Sage. It is treated as <strong>impure</strong>, because a person is aware of their own actions and cannot claim pure ignorance. This differs from doubt arising without any human involvement, which remains pure.
+
+<em>Rabban Shimon ben Gamliel</em> adds a practical solution: have the person repeat the action (e.g., wrapping in a cloak) to observe whether contact with impure items actually occurs — if uncertain, he can clarify through repetition.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🛏️ Ze'eiri vs. Baraita: What Level of Impurity Does the Retroactive Period Convey?</h2>
+  
+  <table><tr><th>Position</th><th>Effect on Bed/Chair During Retroactive 24hr</th><th>Level Assigned</th><th>Key Argument</th></tr><tr><td>Ze'eiri</td><td>Bed and chair ARE rendered impure</td><td>ראשון לטומאה — first-degree impurity</td><td>The retroactive period is treated like actual impurity; objects she lay/sat on receive first-degree status</td></tr><tr><td>Baraita (Avimi from Bei Ḥozai)</td><td>Bed and chair rendered impure</td><td>שני לטומאה — second-degree (lighter)</td><td>Retroactive impurity is weaker than real-time impurity; does not fully transfer first-degree status</td></tr><tr><td>Rava's a fortiori (קל וחומר)</td><td>Bed must be at least first-degree</td><td>First-degree confirmed</td><td>If a sealed earthenware vessel is still rendered impure despite its protection, surely a bed she lay on during 24 hours is first-degree</td></tr><tr><td>Final Resolution</td><td>Baraita reread carefully</td><td>First-degree YES; 'father of impurity' (אב) NO</td><td>Both Ze'eiri and the baraita agree on first-degree; the baraita only denies that the bed becomes an אב הטומאה, the highest tier</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Berakhot 5 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2a2a3a;border:2px solid #c9a84c;color:#f0e6cc;"><strong>Woman sees blood</strong><br><small>Does she have a fixed cycle (וסת)?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border:2px solid #2ecc71;color:#ccf0d8;"><strong>Yes — Fixed Cycle</strong><br><em>דייה שעתה</em><br>Impure from NOW only<br><small>Prior items = pure</small></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a;border:2px solid #e74c3c;color:#f0cccc;"><strong>No — No Fixed Cycle</strong><br><em>מטמאה למפרע</em><br>Retroactive 24 hours<br><small>Prior items = impure</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a2a3a;border:2px solid #4a90d9;color:#cce0f0;"><strong>Examination Cloths (עדים)</strong> reduce the window<br><small>From 24 hrs → exam-to-exam interval only</small></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#3a2a1a;border:2px solid #e67e22;color:#f0dcc0;"><strong>Uncertain Impurity — Rabbi Yohanan</strong><br>Human-caused doubt → <em>treat as impure</em><br>Public domain doubt → <em>treat as pure</em></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Berakhot 5a-5b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Berakhot 5a-5b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../4/">← Daf 4</a><a href="../6/">Daf 6 →</a></div>
+</body>
+</html>

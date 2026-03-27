@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berakhot 32 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Berakhot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👶</div>
+  <h1>Berakhot 32</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ברכות לב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Minors & Levirate Marriage — Rabbi Meir vs. the Rabbis<br>
+    🔢 Minority Concern — Common vs. Uncommon Minorities<br>
+    👶 Age Thresholds — When Purity Laws Begin<br>
+    📜 Halacha L'Moshe MiSinai — Laws Transmitted from Sinai<br>
+    🛏️ Samaritan Bedding Impurity — Upper & Lower Mattresses<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Core Dispute: Minors, Minority Concern & Purity Thresholds</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Meir</div><div class="speech">Minors may NOT perform ḥalitza or enter levirate marriage — we are concerned even for a <em>minority</em> that they may be sexually underdeveloped (saris / ailonit), rendering the act retroactively invalid.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">We follow the <em>majority</em>: most minor boys and girls will develop normally. Yibum is therefore permitted; only ḥalitza requires an adult, since the verse says <em>'man.'</em></div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Rabbi Meir's concern also applies to girls who menstruate early — and this is a <em>common</em> minority, confirmed by incidents in Ein Bul and Rabbi Yehuda HaNasi's household.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rava</div><div class="speech">Age thresholds for sexual maturity (3-yr girl / 9-yr boy) are <strong>Halacha L'Moshe MiSinai</strong>. Inclusion of newborns in niddah and zav laws is <strong>derived from verses</strong>. There is no contradiction.</div></div></div><div class="callout" style="margin-top:20px"><strong>Bottom Line</strong> Samaritan girls are treated as menstruating from the cradle (Rabbi Meir's view); Jewish girls need not be treated this way, because the verse 'and if a woman' implies awareness and intent — which infants lack.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Ḥalitza & Yibum for Minors — The Core Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Baraita</div><div class="speech">A minor boy and a minor girl may not perform <strong>ḥalitza</strong>, nor may they enter into <strong>levirate marriage (yibum)</strong>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">We agree regarding ḥalitza — the Torah writes <em>'man'</em> (Deut. 25:7), requiring adults, and we derive the woman from the man. But why forbid yibum? Follow the majority who develop normally!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Meir</div><div class="speech">A minor boy might become a <strong>סָרִיס (saris)</strong>; a minor girl might be an <strong>אַיְלוֹנִית (ailonit)</strong>. If yibum was performed and this emerges later, it was retroactively a grave violation.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">But Rabbi Meir is only proven to be concerned for a <em>common</em> minority. Is saris/ailonit common enough? And is early menstruation in girls common enough to justify treating Samaritan girls as menstruating from the cradle?</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The Gemara establishes: early-menstruating girls ARE a common minority (incidents at Ein Bul and Rabbi Yehuda HaNasi's household confirm it). Rabbi Meir's concern is therefore justified for Samaritan girls.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>👶 Age Thresholds for Ritual Impurity — Verses vs. Sinai</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>At what age do purity laws first apply?</strong><br><small>The Gemara resolves apparent contradictions between baraitot</small></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Rava's Principle:</strong> Some ages are <em>Halacha L'Moshe MiSinai</em>; others are <em>derived from biblical verses</em>. Each source covers a different threshold.</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">👧 Girls — Niddah</div><div class="flow-box result-good"><strong>1 day old</strong><br>From verse: <em>'And if a woman'</em> (Lev. 15:19) — the extra <em>'and'</em> (vav) includes even a newborn<br><small>Source: Scripture</small></div></div><div class="flow-col"><div class="flow-label">👧 Girls — Ziva</div><div class="flow-box result-good"><strong>10 days old</strong><br>From verse: <em>'Many days not in her niddah'</em> — a minimum age is required<br><small>Source: Scripture</small></div></div><div class="flow-col"><div class="flow-label">👦 Boys — Zav</div><div class="flow-box result-good"><strong>1 day old</strong><br>From verse: <em>'When any man has an issue'</em> — includes even a newborn<br><small>Source: Scripture</small></div></div><div class="flow-col"><div class="flow-label">👦 Boys — Seminal Emission</div><div class="flow-box action"><strong>9 years + 1 day</strong><br>Intercourse is legally significant<br><small>Source: Halacha L'Moshe MiSinai</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Why both thresholds?</strong> Each teaches something the other cannot — one-day-old boys/girls could not be derived solely from the other gender's laws due to unique stringencies in each.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔢 Common Minority vs. Uncommon Minority — Rabbi Meir's Concern</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a1a"><h3 style="color:#2ecc71">Common Minority (מיעוט המצוי)</h3><ul><li>Rabbi Meir IS concerned for this</li><li>Saris and ailonit — real if rare conditions</li><li>Girls who menstruate before expected age — confirmed by rabbinic incidents</li><li>Incident at Ein Bul: baby girl immersed before mother's menstrual cycle appeared</li><li>Incident at Rabbi Yehuda HaNasi's household: same pattern</li><li>→ Samaritan girls treated as menstruating from cradle</li></ul></div><div class="compare-box" style="border-top-color:#2a1a1a"><h3 style="color:#e74c3c">Uncommon Minority (מיעוט שאינו מצוי)</h3><ul><li>Gemara challenges: is Rabbi Meir concerned even for this?</li><li>If not, then early menstruation must be 'common' to justify his ruling</li><li>The Gemara establishes: it IS common, based on historical incidents</li><li>Therefore no contradiction: Rabbi Meir acts consistently</li><li>His concern for early menstruation is not an exceptional leniency</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2a"><h3 style="color:#4a90d9">The Rabbis' Counter-Position</h3><ul><li>Follow the majority (רוב) — most minors develop normally</li><li>No need to restrict yibum on account of saris/ailonit minority</li><li>Jewish girls: verse teaches us not to worry about early menstruation</li><li>'And if a woman' implies awareness — not applicable to infants' incidental discharge</li><li>Samaritan stringency not required for Jews</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📜 Summary: Who Is Included in Which Laws, and Why</h2>
+  
+  <table><tr><th>Person</th><th>Age Threshold</th><th>Law Applied</th><th>Source of Derivation</th></tr><tr><td>Girl</td><td>1 day old</td><td>Niddah (menstrual impurity)</td><td>Verse — 'And if a woman' (Lev. 15:19), vav includes newborns</td></tr><tr><td>Girl</td><td>10 days old</td><td>Ziva (prolonged discharge impurity)</td><td>Verse — 'many days not in her niddah' (Lev. 15:25)</td></tr><tr><td>Girl</td><td>3 years + 1 day</td><td>Intercourse legally significant</td><td>Halacha L'Moshe MiSinai — not derived from verse</td></tr><tr><td>Boy</td><td>1 day old</td><td>Zav (discharge impurity)</td><td>Verse — 'When any man has an issue' (Lev. 15:2)</td></tr><tr><td>Boy</td><td>9 years + 1 day</td><td>Seminal emission legally significant</td><td>Halacha L'Moshe MiSinai — not derived from verse</td></tr><tr><td>Boy (or man)</td><td>Any age</td><td>Red semen NOT impure</td><td>Verse excludes males from impurity due to red-colored semen</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🛏️ Samaritan Men & Bedding — Upper vs. Lower Mattresses</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כָּל אֲשֶׁר יִגַּע בְּכָל אֲשֶׁר יִהְיֶה תַחְתָּיו יִטְמָא — וַיִּקְרָא טו:י</div><div class="callout"><strong>Mishna Explained</strong> <strong>The mishna states:</strong> Samaritan men impart ritual impurity to the <em>lower bedding like the upper bedding</em> of a zav.<br><br><strong>What does this mean?</strong><br>The <em>lowest</em> mattress <strong>beneath</strong> a Samaritan man who had intercourse with a menstruating woman assumes <strong>first-degree ritual impurity</strong> — equivalent to bedding placed <em>above</em> a zav (not second-degree).<br><br><strong>Why first-degree?</strong><br>Samaritan men are presumed to be zavim. Bedding above a zav carries first-degree impurity, rendering <strong>food and drink</strong> impure — but NOT people or vessels.<br><br><strong>Source (Lev. 15:10):</strong> <em>'And whoever touches anything that was under him shall be impure'</em> — this teaches that the item beneath a zav is impure, but only conveys impurity to food and drink, not to humans.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Berakhot 32 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#2c3e50;border:2px solid #c9a84c;padding:10px;border-radius:8px;text-align:center;"><strong>Opening Question:</strong> May minors perform ḥalitza or enter yibum?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#4a235a;border:1px solid #9b59b6;padding:8px;border-radius:6px;"><strong>Rabbi Meir:</strong> Forbids yibum — fears saris/ailonit minority</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a5c;border:1px solid #4a90d9;padding:8px;border-radius:6px;"><strong>Rabbis:</strong> Permit yibum — follow the majority; ḥalitza requires adult</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2a10;border:2px solid #e67e22;padding:10px;border-radius:8px;text-align:center;"><strong>New Challenge:</strong> Is Rabbi Meir's concern limited to <em>common</em> minorities only? Is early menstruation common enough?</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2a;border:2px solid #2ecc71;padding:10px;border-radius:8px;text-align:center;"><strong>Yes — it's common:</strong> Incidents at Ein Bul and Rabbi Yehuda HaNasi's household confirm early menstruation occurs. → Samaritan girls treated as menstruating from cradle.</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2c3e50;border:1px solid #2ecc71;padding:8px;border-radius:6px;"><strong>Girls — niddah from 1 day old</strong><br>Derived from verse (Lev. 15:19)</div></div><div class="flow-col"><div class="flow-box" style="background:#2c3e50;border:1px solid #c9a84c;padding:8px;border-radius:6px;"><strong>Girls — 3 yr intercourse / Boys — 9 yr emission</strong><br>Halacha L'Moshe MiSinai</div></div><div class="flow-col"><div class="flow-box" style="background:#2c3e50;border:1px solid #4a90d9;padding:8px;border-radius:6px;"><strong>Boys — zav from 1 day old</strong><br>Derived from verse (Lev. 15:2)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a;border:2px solid #9b59b6;padding:10px;border-radius:8px;text-align:center;"><strong>Rava's Resolution:</strong> No contradiction — each threshold has its own source. Verses cover newborns; Sinai covers age of sexual maturity. Both are needed because neither gender's law can be derived from the other.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Berakhot 32a-32b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Berakhot 32a-32b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../31/">← Daf 31</a><a href="../33/">Daf 33 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berakhot 12 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Berakhot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔍</div>
+  <h1>Berakhot 12</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ברכות יב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🗣️ Pre-Intercourse Bedikah — is examination required?<br>
+    ⏱️ Post-Intercourse Timing — the minimum halakhic period<br>
+    📅 Fixed vs. No Fixed Veset — two different obligations<br>
+    🏠 Returning Travelers — presumptive purity of wives<br>
+    📜 No Fixed Cycle — severe legal consequences and remedy<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🔍 When Must a Woman Examine Herself?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>A woman and her husband wish to have intercourse</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Veset Kavua — Fixed Cycle</div><div class="flow-box result-good">Examination required only when she handles <em>tahoros</em> (ritually pure items). Otherwise, husband's return itself may serve as implicit examination.</div></div><div class="flow-col"><div class="flow-label">Ein Lah Veset — No Fixed Cycle</div><div class="flow-box result-bad">Forbidden to have intercourse without prior examination. She loses marital rights if she does not comply.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Post-intercourse timing:</strong> The halakhic minimum period (שיעור) = time for an <em>external wipe</em> only — a full internal examination cannot be completed within this window (Rav Huna from baraita)</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Rav Yehuda:</strong> She should NOT examine herself before intercourse — examining may generate prohibition rather than prevent it</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🗣️ Slide 1: Must She Examine Before Intercourse?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Zeira</div><div class="speech">What is the halakha? Should a woman examine herself before engaging in intercourse with her husband?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Yehuda</div><div class="speech">She should not examine herself before intercourse.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Zeira</div><div class="speech">But why not let her examine herself and ensure purity? Would that not be more careful?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Yehuda</div><div class="speech">Examination may cause her to find blood and create an unnecessary prohibition — we do not require her to generate potential liability through her own examination.</div></div></div><div class="callout" style="margin-top:20px"><strong>📌 Principle</strong> Pre-intercourse bedikah is not required — proactive examination may create prohibition rather than prevent transgression.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⏱️ Slide 2: Can She Examine Immediately After Intercourse?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Abba</div><div class="speech">What is the halakha? Should she examine immediately after intercourse — within the minimum period for niddah onset — to render her husband liable for a provisional guilt offering (asham taluy)?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">Can you find a case where a full examination is physically possible within the minimum period for onset of menstruation?</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Baraita</div><div class="speech">What is the minimum time for niddah onset? The time needed for her to remove her undergarment and extend her hand to examine herself.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">That baraita speaks only of an external wipe — not a full internal examination. A full examination takes longer than this minimum period.</div></div></div><div class="callout" style="margin-top:20px"><strong>🔑 Key Distinction</strong> The halakhic minimum period (שיעור וסת) = time for an external wipe only. A full internal bedikah cannot be completed within that window.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📅 Slide 3: Fixed Cycle vs. No Fixed Cycle</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#0f2a1a"><h3 style="color:#2ecc71">יש לה וסת — Fixed Cycle</h3><ul><li>Husband may rely on her presumed purity (chezkat tahara)</li><li>Examination required only if she handles tahoros (pure items)</li><li>Wives of donkey drivers and laborers: remain in presumptive purity when husband returns from travel</li><li>Husband's return and request for intercourse itself serves as an implicit 'examination' (Shmuel)</li><li>If sleeping: need not be awakened — would demean her (Rava to Rav Pappa)</li></ul></div><div class="compare-box" style="border-top-color:#2a0f0f"><h3 style="color:#e74c3c">אין לה וסת — No Fixed Cycle</h3><ul><li>Forbidden to engage in intercourse without prior examination</li><li>No right to collect marriage contract (ketubah) if divorced or widowed</li><li>Not entitled to provisions or sustenance from husband's estate</li><li>Does not receive worn clothing back</li><li>Husband must divorce her and may never remarry her</li><li>Rabbi Ḥanina ben Antigonus: TWO examination cloths — one before, one after intercourse</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏠 Slide 4: The Returning Traveler and Presumptive Purity</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Donkey drivers, laborers, and those returning from mourning or wedding feasts</strong> arrive home after travels</div><div class="process-arrow">↓</div><div class="process-step highlight">Their wives remain in a <strong>presumptive status of purity</strong> (חזקת טהרה)</div><div class="process-arrow">↓</div><div class="process-step">When husband requests intercourse upon return, this serves as an implicit examination — 'there is no greater examination than this'</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Shmuel's ruling (per Rabbi Abba bar Yirmeya):</strong> A woman with a fixed cycle who is <em>awake</em> need not perform a formal bedikah; the husband's request suffices</div><div class="process-arrow">↓</div><div class="process-step">If she is <strong>sleeping</strong> — she is not required to be awakened for examination before intercourse, as this would cause her shame and degradation</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Kahana</strong> asked the women of the household directly, confirming the halakhic concern for a wife's dignity and self-respect</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📜 Slide 5: Legal Consequences for a Woman Without a Fixed Veset</h2>
+  
+  <table><tr><th>Legal Consequence</th><th>Talmudic Reason</th></tr><tr><td>Forbidden to engage in intercourse</td><td>She may emit blood and cause her husband to transgress unwittingly</td></tr><tr><td>Cannot collect marriage contract (ketubah)</td><td>She has not fulfilled her marital obligations — intercourse is forbidden to her</td></tr><tr><td>Not entitled to provisions from husband's estate</td><td>Marital benefits are linked to mutual obligations she cannot fulfill</td></tr><tr><td>Does not receive worn clothing back</td><td>She cannot claim benefits of a marital relationship she could not fully maintain</td></tr><tr><td>Husband must divorce her; may never remarry her</td><td>Unless her condition subsequently changed — then the divorce can potentially be reversed (Gemara's clarification)</td></tr><tr><td>'Woe to her husband!' — Abba Ḥanan</td><td>Remedy per Shmuel: halakha follows Rabbi Ḥanina ben Antigonus — two examination cloths permit intercourse</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Berakhot 12 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#1a2a3a;border:2px solid #4a90d9;padding:12px;border-radius:8px;text-align:center;"><strong>Does she have a fixed menstrual cycle (וסת קבוע)?</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0f2a1a;border:2px solid #2ecc71;padding:12px;border-radius:8px;"><strong style='color:#2ecc71'>YES — Veset Kavua</strong><br><small>No examination required before intercourse unless she handles tahoros.<br>Husband's return = implicit examination.<br>She may not be awakened from sleep.</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2a0f0f;border:2px solid #e74c3c;padding:12px;border-radius:8px;"><strong style='color:#e74c3c'>NO — No Fixed Cycle</strong><br><small>Forbidden from intercourse without bedikah.<br>Loses ketubah, provisions, and worn clothing.<br>Husband must divorce and cannot remarry her.</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a0a2a;border:2px solid #9b59b6;padding:12px;border-radius:8px;"><strong>Remedy (Shmuel — halakha follows Rabbi Ḥanina ben Antigonus):</strong><br>Two examination cloths — <em>one before intercourse</em>, <em>one after</em> — permit a woman without a fixed cycle to have intercourse. The cloths may serve either for her benefit or detriment.</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2a2a0a;border:2px solid #c9a84c;padding:12px;border-radius:8px;"><strong>Post-intercourse examination:</strong> The halakhic minimum period (שיעור) = time for an <em>external wipe only</em>. A full internal examination takes longer — so a post-coital bedikah cannot make the husband retroactively liable.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Berakhot 12a-12b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Berakhot 12a-12b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../11/">← Daf 11</a><a href="../13/">Daf 13 →</a></div>
+</body>
+</html>

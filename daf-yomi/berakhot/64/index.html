@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berakhot 64 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Berakhot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📅</div>
+  <h1>Berakhot 64</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">ברכות סד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📅 Veset b'Dilug — Does a skipping pattern establish a fixed cycle?<br>
+    🔁 Three-Times Rule — Establishing and displacing a veset<br>
+    🩸 Three Bride Categories — Hymeneal vs. menstrual blood<br>
+    🕯️ Beit Shammai vs Beit Hillel — The four nights of permission<br>
+    💧 Noḥeret — Identifying active wound blood after marriage<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📅 Rav vs Shmuel: Does a Skipping Pattern Create a Veset?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">If a woman bleeds on the <strong>15th, then the 16th</strong> (next month), then the <strong>17th</strong> (month after), she has established a <em>veset b'dilug</em> — a fixed cycle by skipping. She must anticipate the <strong>18th</strong> the following month.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">A skipping pattern creates <strong>no veset at all</strong>. Only a consistent, repeating interval — the same calendar day each month or the same gap between flows — constitutes a fixed cycle.</div></div></div><div class="callout" style="margin-top:20px"><strong>⚖️ Core Question</strong> Does halacha recognize a progressing (dilug) pattern as a veset, or must a veset reflect strict repetition of the identical day or interval?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📅 Rav vs Shmuel — The Skipping Veset Debate</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">15th → 16th → 17th establishes a <strong>veset b'dilug</strong>. The pattern itself is recognizable and obligates the woman to examine herself on the <em>18th</em> of the following month.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">No veset arises from a skipping pattern. Shmuel objects from a baraita: a woman with an <em>existing</em> fixed veset who deviates on consecutive days — <strong>all intermediate days are prohibited</strong>, because her original veset persists until fully displaced.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech"><strong>Both Rav and Shmuel agree</strong> that three occurrences are required (like Rabban Shimon ben Gamliel). The sole dispute: whether a <em>progressing</em> pattern across those three occurrences qualifies as a veset.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">The Gemara defends Shmuel's baraita: the case involves a woman who <em>already had</em> a veset on the 20th — so the baraita addresses displacement, not dilug. The dispute between Rav and Shmuel remains intact.</div></div></div><div class="callout" style="margin-top:20px"><strong>📜 Practical Ruling</strong> Rambam and most poskim follow Shmuel: a veset b'dilug alone does not create a prohibited day. The debate is nonetheless preserved l'halacha.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔁 Establishing and Displacing a Veset — Rav Pappa's Clarification</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Woman bleeds on the <strong>same day</strong> three months in a row<br><small>e.g., the 20th each month</small></div><div class="flow-arrow">↓</div><div class="flow-box result-good">✅ <strong>Veset kavua established</strong><br>Prohibited on the 20th each subsequent month</div><div class="flow-arrow">↓</div><div class="flow-box question">Does she bleed on the 20th the following month?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box result-good">Veset <strong>reinforced</strong> — remains fully prohibited</div></div><div class="flow-col"><div class="flow-label">Absent once or twice</div><div class="flow-box result-bad">⚠️ Veset <strong>not yet displaced</strong> — still prohibited on that day</div></div><div class="flow-col"><div class="flow-label">Absent three times</div><div class="flow-box result-good">✅ Veset <strong>displaced</strong> — the day is now permitted<br><small>(Rav Pappa: same threshold in both directions)</small></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🩸 Three Categories of Brides — Hymeneal Blood Rules</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fdf3e3"><h3 style="color:#e67e22">Pre-Pubescent Girl</h3><ul><li>Has <strong>not yet</strong> reached the age of menstruation</li><li>All blood after marriage attributed to the hymen wound</li><li>Applies <em>even if she previously saw menstrual blood</em> (Rav Naḥman bar Yitzḥak)</li><li>Attribution continues until wound ceases to be <strong>noḥeret</strong></li><li>Most lenient category — broad wound-blood attribution</li></ul></div><div class="compare-box" style="border-top-color:#eaf4fb"><h3 style="color:#4a90d9">Pubescent Girl (Never Menstruated)</h3><ul><li>Has reached puberty but <strong>never yet menstruated</strong></li><li>Beit Hillel: blood attributed to hymen for <strong>four nights</strong> (until end of Shabbat)</li><li>She does <em>not lose her nights</em> — each of four nights permits intercourse (Rav)</li><li>Shmuel: she <em>does</em> lose a night once intercourse occurs</li><li>Dispute: Rav (nights not lost) vs Shmuel (night consumed)</li></ul></div><div class="compare-box" style="border-top-color:#fef9e7"><h3 style="color:#c9a84c">Woman Who Already Menstruated</h3><ul><li>Saw menstrual blood <strong>before marriage</strong> while in father's house</li><li>Only the very first act of intercourse is permitted (mitzva act)</li><li>Immediately thereafter she is treated as <strong>niddah</strong></li><li>No four-night leniency — prior cycle is established</li><li>Strictest category — even Beit Hillel grants only one act</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🕯️ Beit Shammai vs Beit Hillel — Summary of the Four Nights</h2>
+  
+  <table><tr><th>Case</th><th>Beit Shammai</th><th>Beit Hillel</th><th>Key Principle</th></tr><tr><td>Pre-pubescent (no menses yet)</td><td>Four nights after first intercourse</td><td>All blood = wound blood until noḥeret ceases</td><td>Beit Hillel is more lenient — no time limit, wound-based</td></tr><tr><td>Pubescent, never menstruated</td><td>First night only</td><td>Four nights (until end of Shabbat)</td><td>Beit Hillel grants four nights; dispute on whether nights are 'lost'</td></tr><tr><td>Previously menstruated before marriage</td><td>Mitzva act only</td><td>Mitzva act only</td><td>Both schools agree — prior menses means immediate niddah status</td></tr><tr><td>No blood found first time; blood on second act</td><td>—</td><td>Rabbi Ḥanina: <strong>impure</strong> (would have come at first); Rabbi Asi: <strong>pure</strong> (still from wound)</td><td>Amoraic dispute within Beit Hillel's framework</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>💧 Noḥeret — Determining When Wound Blood Attribution Ends</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rav's rule:</strong> Blood is attributed to the hymeneal wound <em>all the time she is noḥeret</em> — meaning the wound is still actively dripping.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Shmuel bar Rav Yitzḥak clarifies:</strong> Noḥeret means she <strong>sees blood when standing</strong> but <strong>does not see blood when sitting</strong>. The postural difference proves blood is dripping from an active wound — not from a uterine (menstrual) source.</div><div class="process-arrow">↓</div><div class="process-step"><strong>While noḥeret persists:</strong> All blood — regardless of timing or volume — is treated as hymeneal wound blood, not niddah. Intercourse remains permitted within the allotted period.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Once noḥeret ceases:</strong> The wound is considered healed. Any further blood, even in a pre-pubescent girl, is treated as menstrual (niddah) blood and full niddah restrictions apply.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Naḥman bar Yitzḥak extends the rule:</strong> Even a girl who has <em>previously menstruated</em> benefits from noḥeret attribution after marriage — prior menstruation does not eliminate the wound-blood leniency while the wound is still active.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Berakhot 64 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;border:2px solid #e67e22"><strong>Veset b'Dilug Dispute</strong><br><small>Rav: skipping 15→16→17 establishes veset<br>Shmuel: only strict repetition qualifies</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;border:2px solid #4a90d9"><strong>Three-Times Threshold (Rav Pappa)</strong><br><small>3 occurrences to establish · 3 absences to displace<br>Same rule in both directions</small></div><div class="flow-arrow">↓</div><div class="flow-box question" style="">Which category of bride?</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border-color:#e67e22"><strong>Pre-pubescent</strong><br>All blood = wound blood until <em>noḥeret</em> ceases</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border-color:#4a90d9"><strong>Pubescent, never menstruated</strong><br>Four nights (Beit Hillel)<br>Rav: nights not lost · Shmuel: nights lost</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border-color:#c9a84c"><strong>Previously menstruated</strong><br>Only first mitzva act permitted — then niddah</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Berakhot 64a-64b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Berakhot 64a-64b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../63/">← Daf 63</a></div>
+</body>
+</html>
