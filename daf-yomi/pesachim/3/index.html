@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesachim 3 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Pesachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🕯️</div>
+  <h1>Pesachim 3</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">פסחים ג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌙 Or = Night — proving the mishna's poetic term means evening<br>
+    🗣️ Lashon Nekiya — the Torah's model of dignified, euphemistic speech<br>
+    📜 School of Shmuel — the baraita that clinches or = evening<br>
+    🐑 Rabbi Yehuda ben Beteira — outwitting the gentile at the Paschal lamb<br>
+    ✨ Nine Extra Letters — the lengths Torah goes to avoid crude language<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌙 How Is 'Or' Proven to Mean Night?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Mishna uses <strong>אור לארבעה עשר</strong><br><small>Search on <em>or</em> of the 14th — but what does <em>or</em> mean?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Proof 1</div><div class="flow-box action">Yom Kippur: recite 7 blessings on <em>or</em> of Yom Kippur — clearly the <strong>evening service</strong></div></div><div class="flow-col"><div class="flow-label">Proof 2</div><div class="flow-box action">Peace offering: burn on <em>or</em> of third day — verse says burn <em>by day</em>, so <em>or</em> = preceding <strong>night</strong></div></div><div class="flow-col"><div class="flow-label">Proof 3</div><div class="flow-box result-good">School of Shmuel: explicitly replaces <em>or</em> with <strong>"the evening of the 14th"</strong></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Or = Evening / Night</strong><br><small>But then: why not just say 'night'? → Answer: Euphemism (לשון נקייה)</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔍 Chain of Proofs: Or = Evening</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Dispute: does <strong>אור</strong> mean<br><em>morning</em> or <em>evening</em>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yom Kippur Liturgy</div><div class="flow-box action">Seven blessings recited on <em>or</em> of Yom Kippur — the evening Amida is first → <em>or</em> = evening</div></div><div class="flow-col"><div class="flow-label">Peace Offering Law</div><div class="flow-box action">Burn leftovers on <em>or</em> of day 3. But burning must be done <em>by day</em> — so <em>or</em> = the night before day 3</div></div><div class="flow-col"><div class="flow-label">School of Shmuel</div><div class="flow-box result-good"><strong>Decisive proof:</strong> their baraita says <em>"the evening [erev] of the 14th"</em> — directly substituting <em>or</em> with evening</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Conclusion: Or = Night/Evening</strong><br><small>All three proofs converge — the mishna's search is on the night before Passover</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🤔 Why Not Simply Say 'Night'?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">We've established that <em>or</em> means night. But why does the mishna use the unusual word <em>or</em> (light) instead of the common word <em>laylah</em> (night)?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Answer</div><div class="speech">The tanna employed <strong>lashon nekiya</strong> — dignified, euphemistic speech. The word <em>or</em> (light) is more refined than <em>laylah</em>, which can evoke improper nocturnal activity.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Pappa</div><div class="speech">Proof that the Torah values euphemism: instead of writing <strong>tameh</strong> (impure), the Torah wrote <em>asher lo yihye tahor</em> — 'who is not ritually pure' — adding <strong>nine letters</strong> to avoid the crude term!</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">School of R. Yishmael</div><div class="speech"><strong>A person should always speak euphemistically</strong> — just as the Torah itself models by choosing dignified language whenever possible, even at the cost of brevity.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> The mishna's word or teaches lashon nekiya (לשון נקייה) — refined, dignified speech is a Torah value, not mere politeness</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🗣️ Lashon Nekiya: Torah's Own Euphemisms</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1a1a"><h3 style="color:#e74c3c">Direct / Crude Term</h3><ul><li>לילה (laylah) — night</li><li>טמא (tameh) — ritually impure</li><li>רוכבת (rokhevet) — she rides [a saddle]</li><li>יושבת (yoshevet) — she sits [on a seat]</li><li>מקרה לילה — nocturnal emission (direct)</li></ul></div><div class="compare-box" style="border-top-color:#1a2a1a"><h3 style="color:#2ecc71">Refined / Dignified Expression</h3><ul><li>אור (or) — light — used in the mishna!</li><li>אשר לא יהיה טהור — 'who is not pure' (+9 letters!)</li><li>המרכב (ha-merkav) — the saddle/thing-ridden</li><li>המושב (ha-moshav) — the seat/place-sat-upon</li><li>אשר לא יהיה טהור מקרה — indirect circumlocution</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🐑 Rabbi Yehuda ben Beteira's Clever Trap</h2>
+  
+  <div class="process-bar"><div class="process-step">A <strong>gentile would travel to Jerusalem</strong> each Passover, claim to be Jewish, and illegally eat from the sacred Paschal lamb</div><div class="process-arrow">↓</div><div class="process-step">He would return home and <strong>boast openly</strong> about eating the Paschal lamb — a sacrifice forbidden entirely to non-Jews</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Yehuda ben Beteira</strong> (in Netzivim/Nisibis, far from Jerusalem) heard of this and devised a subtle plan</div><div class="process-arrow">↓</div><div class="process-step">He told the gentile: <em>"Next time, make sure to request the <strong>fat tail (alya)</strong> — that is truly the choicest portion!"</em></div><div class="process-arrow">↓</div><div class="process-step">The gentile arrived in Jerusalem and <strong>demanded the fat tail</strong> — which is forbidden cheilev (sacrificial fat), never distributed to anyone</div><div class="process-arrow">↓</div><div class="process-step highlight">The suspicious priests <strong>investigated his lineage</strong>, discovered he was a gentile, and expelled him — permanently ending his infiltrations</div><div class="process-arrow">↓</div><div class="process-step highlight">The Sages sent Rabbi Yehuda ben Beteira a message: <strong>"Peace upon you! Even from Netzivim you guard the sanctity of Jerusalem!"</strong></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>✨ Incidents of Refined Language on This Daf</h2>
+  
+  <table><tr><th>Person / Source</th><th>Context</th><th>Expression Avoided</th><th>Refined Language Used</th></tr><tr><td>Mishna's Tanna</td><td>Time of chametz search</td><td>לילה — night</td><td>אור — light/or</td></tr><tr><td>Torah / Rav Pappa</td><td>Ritual impurity at night</td><td>טמא — impure (3 letters)</td><td>אשר לא יהיה טהור — 'not pure' (9+ letters!)</td></tr><tr><td>School of R. Yishmael / Torah</td><td>Zav's saddle (Lev. 15:9)</td><td>רוכב — one who rides</td><td>מרכב — the thing ridden</td></tr><tr><td>Student before Rav</td><td>Weary from learning</td><td>Crude animal comparison</td><td>Refined analogy — Rav praised the proper student</td></tr><tr><td>Student before Hillel / R. Yehuda HaNasi</td><td>Unclear legal topic</td><td>Unrefined phrasing</td><td>Dignified expression — master praised the refined speaker</td></tr><tr><td>Three Priests in Temple</td><td>Tiny share of showbread</td><td>Derogatory complaint</td><td>One priest disqualified for arrogance (shaḥatz), not lineage</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Pesachim 3 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Mishna writes אור לי"ד</strong><br><small>Unusual word <em>or</em> instead of the expected <em>laylah</em></small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="color:#4a90d9"><strong>What does <em>or</em> mean?</strong><br>→ Three proofs: Yom Kippur, peace offering, School of Shmuel<br><em>or</em> = evening/night</div></div><div class="flow-col"><div class="flow-box" style="color:#c9a84c"><strong>Why use <em>or</em> at all?</strong><br>→ Lashon nekiya (לשון נקייה)<br>Dignified speech is a Torah value</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>Torah models euphemism:</strong> +9 letters to avoid טמא • changes verb forms • uses indirect expressions</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="color:#2ecc71"><strong>Principle (School of R. Yishmael):</strong><br><em>A person should always speak euphemistically</em><br><small>Illustrated by Rav, Hillel, Temple priests, Rabbi Yehuda ben Beteira</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Pesachim 3a-3b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Pesachim 3a-3b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../2/">← Daf 2</a><a href="../4/">Daf 4 →</a></div>
+</body>
+</html>

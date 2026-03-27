@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesachim 2 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Pesachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🕯️</div>
+  <h1>Pesachim 2</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">פסחים ב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🕯️ Bedikat Chametz — search for leaven on 14 Nisan eve by candlelight<br>
+    💡 Meaning of אוֹר — does the word mean 'light' or 'evening'?<br>
+    📜 Biblical Proofs — five verses analyzed to define אוֹר<br>
+    ⚖️ Labor on Erev Pesach — R. Eliezer ben Ya'akov vs. R. Yehuda<br>
+    🌙 Rabbinic Euphemism — calling night 'or' like sagi nahor<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>💡 The Central Dispute: What Does אוֹר Mean?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Huna</div><div class="speech"><strong>אוֹר = light.</strong> The Mishna says to search by candlelight — fitting because the search begins at the <em>start of night</em> when one lights candles to see</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Yehuda</div><div class="speech"><strong>אוֹר = evening/night.</strong> The Rabbis use a euphemism — they call darkness 'light,' just as they call a blind person <em>sagi nahor</em> (one full of light)</div></div></div><div class="callout" style="margin-top:20px"><strong>Why It Matters</strong> The entire opening of Pesachim turns on one word: <em>"Or of the 14th, one searches for chametz by candlelight."</em> Whether אוֹר means the preceding night or the morning of the 14th affects when the search — and the entire Pesach preparation — begins.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📜 The Mishna: Bedikat Chametz</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>When:</strong> On <em>or</em> (אוֹר) of the 14th of Nisan — the eve before Passover</div><div class="process-arrow">↓</div><div class="process-step"><strong>How:</strong> Search by <em>candlelight</em> (נר) — a candle reaches crevices better than a torch or bonfire</div><div class="process-arrow">↓</div><div class="process-step"><strong>Where:</strong> Every location in the home where chametz is ordinarily brought</div><div class="process-arrow">↓</div><div class="process-step"><strong>Exemption:</strong> Places where chametz is <em>never</em> taken do not require searching — we don't burden the public unnecessarily</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbinic basis:</strong> The candle requirement signals the Rabbis' concern for thorough, careful inspection before Pesach</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>💡 Rav Huna vs. Rav Yehuda: The Meaning of אוֹר</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Huna</div><div class="speech"><strong>אוֹר = light.</strong> The Mishna is describing nightfall — the moment the 14th begins, when candles are lit and one searches by their light</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Objection: If אוֹר means 'light' (i.e., daytime), why is a <em>candle</em> needed? One does not light candles to search in broad daylight!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Yehuda</div><div class="speech"><strong>אוֹר = evening.</strong> The Rabbis use a euphemism for darkness — just as the blind are called <em>sagi nahor</em> (abundant in light), the night is called אוֹר</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Support: The candle is needed precisely <em>because</em> it is night. This clinches that the search takes place at nightfall — consistent with Rav Yehuda's interpretation</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Inference</strong> The Mishna's stipulation of candlelight (נר) is the decisive clue: one searches by candle <strong>because it is dark</strong> — אוֹר means <em>evening/night</em>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📖 Biblical Verses: Testing the Meaning of אוֹר</h2>
+  
+  <table><tr><th>Verse</th><th>Source</th><th>Apparent Proof</th><th>Gemara's Rejection</th></tr><tr><td>"As soon as the <em>or</em> of the morning, the men were sent away"</td><td>Genesis 44:3</td><td>אוֹר = dawn/day</td><td>This describes breaking light at dawn — the verse uses 'morning' as a modifier; doesn't define אוֹר alone</td></tr><tr><td>"As the <em>or</em> of the morning when the sun rises"</td><td>II Samuel 23:4</td><td>אוֹר = daylight</td><td>Poetic image — the verse is praise poetry, not a definition; the phrase describes brilliant sunlight metaphorically</td></tr><tr><td>"God called the <em>or</em> Day"</td><td>Genesis 1:5</td><td>אוֹר = daytime</td><td>God summoned the light to <em>perform the mitzva of the day</em> — describes function/command, not a lexical definition</td></tr><tr><td>"Praise Him, all the stars of <em>or</em>"</td><td>Psalms 148:3</td><td>Stars appear at night → אוֹר = night</td><td>Rejected differently: teaches that starlight counts as 'light' — practical difference for a Shabbat lamp</td></tr><tr><td>"A murderer rises with the <em>or</em> to kill"</td><td>Job 24:14</td><td>Contrasted with 'night' → אוֹר = day</td><td>The murderer uses <em>pre-dawn darkness</em> as cover — אוֹר here means the first glimmer before sunrise, not full day</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ R. Eliezer ben Ya'akov vs. R. Yehuda: Labor on Erev Pesach</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">R. Eliezer b. Ya'akov</div><div class="speech">Labor is forbidden on Erev Pesach from <strong>אוֹר</strong> of the 14th — meaning from <em>nightfall</em> at the start of the 14th</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R. Yehuda</div><div class="speech">Labor is forbidden only from <strong>sunrise</strong> on the 14th. Therefore אוֹר as used by R. Eliezer ben Ya'akov must mean <em>evening/night</em> — confirming our view!</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R. Eliezer b. Ya'akov</div><div class="speech">Precedent exists for a night distinct from its following day: the night of Passover itself has unique laws separate from Passover day. Such distinctions are established.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R. Yehuda</div><div class="speech">The 14th itself proves my point! During part of it eating chametz is permitted, during part it is forbidden. Even a <em>single day</em> can be internally divided.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R. Eliezer b. Ya'akov</div><div class="speech">That division is only <em>rabbinic</em> — the Torah forbids chametz only from midday. The Rabbis can legislate a preventive fence; such decrees exist for Torah-level laws.</div></div></div><div class="callout" style="margin-top:20px"><strong>Gemara's Conclusion</strong> From R. Yehuda's position (labor forbidden from <em>sunrise</em>), the Gemara infers that R. Eliezer ben Ya'akov uses <strong>אוֹר to mean evening</strong> — the entire debate presupposes this reading.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🌙 Resolving the Or Debate: Step by Step</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Mishna: search for chametz on <strong>אוֹר of the 14th</strong> — by <em>candlelight</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Huna</div><div class="flow-box action">אוֹר = <strong>light</strong><br><small>Candle lights the start of night</small></div></div><div class="flow-col"><div class="flow-label">Rav Yehuda</div><div class="flow-box action">אוֹר = <strong>evening</strong><br><small>Euphemism like <em>sagi nahor</em></small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Five biblical verses tested — Genesis, Samuel, Psalms, Job — all <strong>reinterpreted or rejected</strong></div><div class="flow-arrow">↓</div><div class="flow-box action">R. Eliezer ben Ya'akov / R. Yehuda debate on labor prohibition confirms reading of אוֹר</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Conclusion:</strong> אוֹר = <em>evening/night</em> in Mishnaic usage — bedikat chametz begins at <strong>nightfall preceding the 14th of Nisan</strong></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Pesachim 2 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box step" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Mishna:</strong> Search for chametz on <em>or</em> of 14 Nisan by candlelight</div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Dispute:</strong> Does אוֹר mean <em>light</em> (Rav Huna) or <em>evening</em> (Rav Yehuda)?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:6px;border-radius:4px;"><strong>Candle test:</strong> One searches by candle <em>because it is dark</em> → supports evening</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:6px;border-radius:4px;"><strong>Verse test:</strong> 5 biblical proofs all reinterpreted — neither side proven from Torah</div></div></div><div class="flow-arrow">↓</div><div class="flow-box step" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>R. Eliezer / R. Yehuda:</strong> Labor debate — R. Yehuda says sunrise, implying R. Eliezer uses אוֹר for <em>night</em></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;font-weight:bold;"><strong>Resolution:</strong> אוֹר = <em>evening</em> — bedikat chametz begins at <strong>nightfall of 13/14 Nisan</strong></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Pesachim 2a-2b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Pesachim 2a-2b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">Daf 3 →</a></div>
+</body>
+</html>

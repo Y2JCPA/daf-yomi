@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesachim 60 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Pesachim 60 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">What is the central unresolved question the Gemara debates in the opening of Daf 60?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Whether a non-priest may slaughter the Paschal lamb in an emergency</div>
+      <div class="option" onclick="select(1,this,1)">B. Whether the mishna's conflicting intentions occur in one rite or across two separate rites</div>
+      <div class="option" onclick="select(1,this,2)">C. Whether Rabbi Meir or the Sages hold the majority ruling on Paschal intent</div>
+      <div class="option" onclick="select(1,this,3)">D. Whether sprinkling intent is more legally significant than slaughter intent</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>The Gemara repeatedly attempts to prove from the mishna whether the disputed case of conflicting intentions occurs within a single sacrificial rite or across two different rites. Every proof is refuted, leaving the question unresolved.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">According to Rava, what is the ruling for a Paschal lamb slaughtered off-season with intent both for its own purpose and for a different purpose?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Valid as a shelamim since it was slaughtered partly for its own purpose</div>
+      <div class="option" onclick="select(2,this,1)">B. Valid as a Paschal lamb since the proper-time rules do not apply off-season</div>
+      <div class="option" onclick="select(2,this,2)">C. Disqualified — improper-purpose intent nullifies the valid intent</div>
+      <div class="option" onclick="select(2,this,3)">D. Depends on which intent was stated first at the time of slaughter</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>Rava rules the offering is disqualified. The intent to slaughter it as a different offering type (e.g., shelamim) comes and nullifies the presumed valid Paschal intent — the improper intent prevails.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Why did Rabbi Yirmeya reject Rav Dimi's analogy between off-season slaughter and proper-time slaughter?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Because off-season a Paschal lamb has no sanctity whatsoever</div>
+      <div class="option" onclick="select(3,this,1)">B. Because the disqualification at the proper time applies universally to all offerings, making it a special category that cannot simply be extended to off-season</div>
+      <div class="option" onclick="select(3,this,2)">C. Because Rav Dimi was reasoning from a Babylonian tradition that did not apply in Eretz Yisrael</div>
+      <div class="option" onclick="select(3,this,3)">D. Because the mishna explicitly exempts off-season slaughter from intent-based disqualification</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Rabbi Yirmeya argued that improper intent disqualifies at the proper time because that rule applies equally to all offerings — it is a universal, categorical rule. Off-season slaughter is a different legal context and the analogy cannot be assumed.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">How does Rava distinguish shinui kodesh (change of sanctity) from shinui ba'alim (change of owner) when arguing they are not analogous?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Shinui kodesh is a rabbinic rule while shinui ba'alim is biblical in origin</div>
+      <div class="option" onclick="select(4,this,1)">B. Shinui kodesh is an intrinsic flaw in the offering's very sanctity; shinui ba'alim is external since ownership is fluid — people may withdraw and re-register at any time</div>
+      <div class="option" onclick="select(4,this,2)">C. Both are equally disqualifying in all legal contexts</div>
+      <div class="option" onclick="select(4,this,3)">D. Shinui ba'alim only applies to communal offerings, not individual ones like the Pesach</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>Rava holds that a change of sanctity is a flaw within the sacrifice itself. Ownership, by contrast, is inherently unstable for the Paschal lamb — the mishna explicitly teaches that people can withdraw from or register for a Pesach at any time — so the owner-change analogy does not hold.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">If one slaughters a Paschal lamb on Erev Pesach for its own purpose but then carries and sprinkles the blood with intent for a different purpose, what is the ruling?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Disqualified — wrong intent at any of the four rites invalidates the offering entirely</div>
+      <div class="option" onclick="select(5,this,1)">B. Valid — intent at slaughter is the defining act; later rites with wrong intent do not disqualify</div>
+      <div class="option" onclick="select(5,this,2)">C. Disqualified only if the wrong intent occurred at sprinkling, not at carrying</div>
+      <div class="option" onclick="select(5,this,3)">D. Valid for the owner and the priest bears personal liability for the wrong intent</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>The Gemara establishes that correct intent at slaughter is the most critical factor. If slaughter was performed with correct intent, subsequent rites with wrong intent do not disqualify the offering itself, though the owner may not have fully discharged their personal obligation.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":1,"4":1,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>
