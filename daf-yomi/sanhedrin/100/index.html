@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanhedrin 100 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sanhedrin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Sanhedrin 100</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סנהדרין ק׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🚫 Who Is an Epikoros — contempt for Sages defined<br>
+    🌊 Future River from the Holy of Holies<br>
+    📖 Ben Sira — external books permitted?<br>
+    🌟 310 Worlds — reward for the righteous<br>
+    😔 'All the Days of the Poor Are Terrible' — four readings<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📜 Sanhedrin 100: Contempt, External Books & Eternal Reward</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Who loses Olam HaBa?</strong><br>The Epikoros — one who disrespects Torah Sages</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Pappa</div><div class="flow-box result-bad">Says 'those Sages' with contempt</div></div><div class="flow-col"><div class="flow-label">Rav Naḥman</div><div class="flow-box result-bad">Calls teacher by name without 'Rabbi'</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Also problematic:</strong> Reading external books — the Ben Sira debate</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>But the righteous earn:</strong> 310 worlds • God's own handful • Eternal brightness</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🚫 Defining the Epikoros</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Pappa</div><div class="speech">An epikoros is one who speaks of Sages dismissively — saying 'those Sages' with contemptuous overtones, as if they deserve no respect. I myself once slipped and said it — I felt as though arrows had pierced me.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Naḥman</div><div class="speech">An epikoros is one who calls his teacher by name without the title 'Rabbi.' As Rabbi Yoḥanan taught: Gehazi was punished precisely for this — he said 'My master sent me' (II Kings 5:22), calling Elisha by name alone.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Levi bar Shmuel</div><div class="speech">[A practical illustration:] When we reached the Scroll of Esther while mending mantles, we said it needs no mantle — it is not as significant. Rav Yehuda rebuked us: even this sounds like the speech of epikorsim!</div></div></div><div class="callout" style="margin-top:20px"><strong>Gehazi's Sin</strong> He said 'My master sent me' — calling Elisha by name, not Rabbi. Disrespect in speech, even once, can forfeit one's portion in Olam HaBa.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🌊 The Future River from the Holy of Holies</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">וְעָלֵהוּ לִתְרוּפָה (יחזקאל מז:יב)</div><div class="callout"><strong>Eschatological Vision — Ezekiel 47</strong> <strong>Rabbi Yirmeya taught before Rabbi Zeira:</strong> The Holy One will cause a river to emerge from the Holy of Holies, and alongside it will grow all sorts of delicacies.<br><br><strong>"Its leaf for medicine [לִתְרוּפָה]"</strong> — three opinions:<br>• <em>One sage:</em> abbreviation for <em>riv u'feh</em> (רִיב וּפֶה) — to unlock the mouths of <strong>mutes</strong><br>• <em>Bar Kappara:</em> to unlock the mouths of <strong>barren women</strong><br>• <em>Rabbi Yoḥanan:</em> literally <strong>medicine for the sick</strong><br><br><strong>The gates of Jerusalem</strong> will be 20 cubits high — but this refers only to <em>windows</em>; the actual gates will be far higher, as implied by <em>komemiyyut</em> (upright stature = 200 cubits × 2).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📖 Ben Sira: What May We Teach?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1515"><h3 style="color:#e74c3c">❌ Forbidden / Problematic</h3><ul><li>Reading Ben Sira as sacred scripture (loses Olam HaBa)</li><li>A sparse-bearded man is clever; thick-bearded is a fool</li><li>Do not introduce anxiety to your heart (already in Proverbs)</li><li>Prevent multitudes from your house (already taught by Rabbi)</li><li>Folk sayings about bread and thirst — crass and beneath Torah dignity</li></ul></div><div class="compare-box" style="border-top-color:#152c15"><h3 style="color:#2ecc71">✅ Permitted — Even in Public</h3><ul><li>A good wife is a gift given to a God-fearing man (Ben Sira 26:3)</li><li>A bad wife is like leprosy — remedy: divorce her with a get</li><li>Avert your eyes from a graceful woman lest you be trapped</li><li>The poor suffer both day and night — nights of cold and worry</li><li>Many have been corrupted by the beauty of a beautiful woman</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🌟 Reward in the World-to-Come</h2>
+  
+  <table><tr><th>Sage</th><th>Teaching</th><th>Scriptural Basis</th></tr><tr><td>Rav Dimi</td><td>God gives each righteous person His own 'handful' — immeasurable, personal reward</td><td>Psalms 68:20 — 'Who day by day bears our burden'</td></tr><tr><td>Rava bar Mari</td><td>Each righteous person receives <strong>310 worlds</strong></td><td>Proverbs 8:21 — יֵשׁ (yesh = 310 by gematria)</td></tr><tr><td>R. Yehuda b. Simon</td><td>One who 'blackens his face' toiling in Torah — God shines his brightness in Olam HaBa</td><td>Song of Songs 5:11 — 'His locks are curly black as a raven'</td></tr><tr><td>R. Tanḥum b. Ḥanilai</td><td>One who starves himself for Torah in this world — God satisfies him in the next</td><td>Psalms 36:7 — 'Your judgments are like the great deep'</td></tr><tr><td>Rabbi Meir</td><td>Measure for measure: as one gives a handful to the poor, God returns His handful — but divine reward exceeds human giving</td><td>Isaiah 27:8 — 'In full measure when You send her away'</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>😔 Four Readings of 'All the Days of the Poor Are Terrible' (Proverbs 15:15)</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Rabbi Zeira (citing Rav):</strong> 'The poor' = masters of <em>Talmud</em> who struggle painfully with unresolved questions. 'The good-hearted feast' = masters of <em>Mishnah</em>, for whom tradition is clear and settled.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rava / Rav Mesharshiyya:</strong> <em>Opposite!</em> Masters of Mishnah are like stone-quarriers — hard labor, sorrowful results. Masters of Talmud are like wood-choppers — their analytical work warms them with insight and satisfaction.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Ḥanina:</strong> 'The poor' = one who has a <em>bad wife</em>. 'The good-hearted feast' = one blessed with a <em>good wife</em>. Home life colors every single day.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Yannai:</strong> 'The poor' = one who is physically delicate or temperamentally anxious — their constitution makes every day feel terrible.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Ben Sira adds:</strong> Not only are the poor's <em>days</em> terrible — their <em>nights</em> are too. The lowest roof in the city: freezing in rain, scorching in heat, with worry filling the dark hours.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sanhedrin 100 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style=""><strong>The Epikoros</strong><br><small>Contempt for Sages in speech or address</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#e74c3c"><strong>Rav Pappa:</strong><br>'Those Sages' — dismissive tone</div></div><div class="flow-col"><div class="flow-box" style="border-color:#e74c3c"><strong>Rav Naḥman:</strong><br>Calling teacher by name only</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>External Books</strong><br><small>Heretical works forbidden; Ben Sira — superior passages permitted, problematic ones not</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="border-color:#4a90d9"><strong>Future Healing:</strong><br>River from Holy of Holies<br>cures mutes, barren, sick</div></div><div class="flow-col"><div class="flow-box" style="border-color:#c9a84c"><strong>Future Reward:</strong><br>310 worlds per tzaddik<br>God's own handful given</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style=""><strong>Torah toil in this world → Eternal brightness and satisfaction in Olam HaBa</strong></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sanhedrin 100a-100b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sanhedrin 100a-100b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../99/">← Daf 99</a><a href="../101/">Daf 101 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanhedrin 50 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sanhedrin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Sanhedrin 50</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סנהדרין נ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Ranking Four Deaths — which capital punishment is harshest<br>
+    🔥 Priest's Daughter — betrothed vs. married and burning<br>
+    🏙️ Subverter vs. Subverted — idolatrous city proves stoning > sword<br>
+    🔗 Gezerah Shavah — the 'her father' verbal analogy<br>
+    📜 Rabbis vs. Rabbi Shimon — disputed scope of burning<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Who Receives Burning? The Central Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">Only the <strong>married</strong> daughter of a priest who commits adultery is executed by burning. A betrothed daughter of a priest is executed by <strong>stoning</strong>, like any other betrothed adulteress.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rabbi Shimon</div><div class="speech">Both the <strong>betrothed</strong> and the <strong>married</strong> daughter of a priest who commits adultery are executed by burning. The Torah singles her out to render her punishment <em>more severe</em> in both states.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">The <em>gezerah shavah</em> of 'her father' compares the priest's daughter to a betrothed adulteress — but only the <strong>married</strong> case is singled out from strangulation → burning.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rabbi Shimon</div><div class="speech">The singling-out applies to <em>both</em> statuses. Just as the married daughter is elevated from strangulation to burning, so too the betrothed is elevated from stoning to burning.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> If someone is convicted of two capital crimes, they receive the more severe punishment. Rabbis: betrothed priest's daughter convicted of adultery + a stoning-crime → stoned. Rabbi Shimon: burned. The scope of burning changes the outcome.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔥 Four Death Penalties: Agreed Order, Disputed Scope</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbis — Who Gets Burning</h3><ul><li>🔥 <strong>Burning</strong> (most severe)</li><li>🪨 <strong>Stoning</strong></li><li>🪢 <strong>Strangulation</strong></li><li>⚔️ <strong>Decapitation</strong> (least severe)</li><li><small>Burning: <em>married</em> priest's daughter only</small></li><li><small>Betrothed priest's daughter → stoning</small></li></ul></div><div class="compare-box" style="border-top-color:#3a1a0a"><h3 style="color:#e67e22">Rabbi Shimon — Who Gets Burning</h3><ul><li>🔥 <strong>Burning</strong> (most severe)</li><li>🪨 <strong>Stoning</strong></li><li>🪢 <strong>Strangulation</strong></li><li>⚔️ <strong>Decapitation</strong> (least severe)</li><li><small>Burning: <em>betrothed AND married</em> priest's daughter</small></li><li><small>Same order — broader scope for burning</small></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🏙️ Is Decapitation More Severe Than Stoning?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Objection</div><div class="speech">Decapitation should be <em>more severe</em> than stoning — it is given to the people of an <strong>idolatrous city</strong> (<em>ir hanidachat</em>), who undermine the entire foundation of Judaism, and their property is also destroyed!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Response</div><div class="speech">Consider: whose sin is greater — the <strong>subverter</strong> (<em>meisit</em>) who incited the city, or the <strong>subverted</strong> (<em>nidachim</em>) who were led astray? The subverter gets <em>stoning</em>. Since the instigator always receives the harsher punishment, stoning must be more severe than decapitation!</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Conclusion</div><div class="speech">The ringleader receives stoning while the masses receive only decapitation. This asymmetry <strong>proves</strong> stoning is the harsher punishment. The severity of the subverter's punishment establishes the hierarchy.</div></div></div><div class="callout" style="margin-top:20px"><strong>Recurring Principle</strong> The meisit (subverter) argument appears multiple times on this daf: whenever decapitation is proposed as more severe than stoning, the Gemara redirects to the instigator who receives stoning — always the harsher penalty.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔗 The Gezerah Shavah: 'Her Father' (אָבִיהָ)</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Leviticus 21:9</strong><br>"She profanes <em>her father</em>" — stated regarding the priest's daughter who commits adultery → punishment: <strong>burning</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Verbal Analogy Links To</div><div class="flow-box question"><strong>Deuteronomy 22:21</strong><br>"Her father's house" — stated regarding a <em>betrothed</em> woman who commits adultery → punishment: <strong>stoning</strong></div></div><div class="flow-col"><div class="flow-label">What We Learn</div><div class="flow-box result-good">The priest's daughter is categorically linked to the <em>betrothed adulteress</em> — but the Torah singles her out, meaning she receives a <strong>more severe</strong> punishment</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Rabbis:</strong> Only the <em>married</em> priest's daughter is singled out → burning replaces strangulation (the married woman's default punishment)</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Rabbi Shimon:</strong> Both statuses singled out → betrothed elevated from stoning to burning; married elevated from strangulation to burning</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📋 Capital Punishments by Category</h2>
+  
+  <table><tr><th>Category</th><th>Default</th><th>Rabbis</th><th>Rabbi Shimon</th></tr><tr><td>Betrothed non-priest's daughter (adultery)</td><td>🪨 Stoning</td><td>🪨 Stoning</td><td>🪨 Stoning</td></tr><tr><td>Betrothed priest's daughter (adultery)</td><td>🪨 Stoning</td><td>🪨 Stoning</td><td>🔥 Burning</td></tr><tr><td>Married non-priest's daughter (adultery)</td><td>🪢 Strangulation</td><td>🪢 Strangulation</td><td>🪢 Strangulation</td></tr><tr><td>Married priest's daughter (adultery)</td><td>🪢 Strangulation</td><td>🔥 Burning</td><td>🔥 Burning</td></tr><tr><td>Blasphemer / Idolater</td><td>—</td><td>🪨 Stoning</td><td>🪨 Stoning</td></tr><tr><td>One who wounds parents</td><td>—</td><td>🪢 Strangulation</td><td>🪢 Strangulation</td></tr><tr><td>People of idolatrous city</td><td>—</td><td>⚔️ Decapitation</td><td>⚔️ Decapitation</td></tr><tr><td>Subverter of idolatrous city (meisit)</td><td>—</td><td>🪨 Stoning</td><td>🪨 Stoning</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📜 How the Gemara Establishes Severity Rankings</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Step 1 — Propose:</strong> Claim Penalty A is more severe than Penalty B, because A is assigned to transgression X, which seems categorically more serious (e.g., blasphemy, idolatry).</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 2 — Object:</strong> Counter-argue that Penalty B is actually more severe, because B is assigned to transgression Y, which also seems very serious (e.g., destroys property, wounds parents, undermines all of Judaism).</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 3 — Subverter Principle:</strong> Compare punishment of the instigator (<em>meisit</em>) to those he led astray. The instigator always receives the <strong>harsher</strong> penalty — this resolves the stoning vs. decapitation debate conclusively.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 4 — Singling-Out Principle:</strong> When the Torah singles out a category for a different punishment, it <strong>always elevates</strong> (makes more severe), never demotes. This drives the burning debates throughout the daf.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Result:</strong> Burning > Stoning > Strangulation > Decapitation — both Rabbis and Rabbi Shimon agree on the hierarchy; they dispute only <em>who</em> falls into the burning category.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sanhedrin 50 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#1e2a3a;border:2px solid #4a90d9;padding:10px;border-radius:6px;text-align:center;"><strong>Core Question:</strong> What is the correct order of severity of the four capital punishments, and who falls into each category?</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a3a2a;border:2px solid #2ecc71;padding:10px;border-radius:6px;text-align:center;"><strong>Proof Method — Subverter Argument:</strong><br>The meisit (instigator) always receives the harsher punishment. Subverter of idolatrous city → stoning; subverted city → decapitation. <strong>∴ Stoning > Decapitation</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a4a;border:2px solid #4a90d9;padding:8px;border-radius:6px;text-align:center;"><strong>Rabbis</strong><br>Singling-out applies only to <em>married</em> priest's daughter<br>Betrothed → Stoning<br>Married → Burning</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a;border:2px solid #e67e22;padding:8px;border-radius:6px;text-align:center;"><strong>Rabbi Shimon</strong><br>Singling-out applies to <em>both</em> betrothed and married<br>Betrothed → Burning (elevated from stoning)<br>Married → Burning (elevated from strangulation)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#2a1a3a;border:2px solid #9b59b6;padding:10px;border-radius:6px;text-align:center;"><strong>Gezerah Shavah אָבִיהָ:</strong> Lev. 21:9 links priest's daughter to betrothed adulteress (Deut. 22:21) — but Torah's singling-out always elevates punishment, never demotes it</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sanhedrin 50a-50b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sanhedrin 50a-50b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../49/">← Daf 49</a><a href="../51/">Daf 51 →</a></div>
+</body>
+</html>
