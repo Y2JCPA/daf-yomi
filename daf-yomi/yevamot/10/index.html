@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 10 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🤝</div>
+  <h1>Yevamot 10</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות י׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔍 Rav Ashi's Mishna Reading — father's rape cases re-examined<br>
+    👶 Mamzer Exception — rape of daughter-in-law excluded from mishna<br>
+    ✋ Ḥalitza as Agency — one brother releases all, one wife releases rival<br>
+    ⚖️ Reish Lakish vs. Rabbi Yoḥanan — karet liability after ḥalitza<br>
+    📜 Rabbi Akiva — betrothal with prohibited women is void<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Does Ḥalitza Fully Dissolve All Levirate Bonds?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">The ḥalitza performer is <strong>not</strong> liable for <em>karet</em> with his ḥalutza — his karet was replaced by the lesser 'does not build up' prohibition. But the <strong>other brothers</strong> remain liable for <em>karet</em> with the ḥalutza, and <strong>all brothers</strong> remain liable for <em>karet</em> with her rival wife.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech"><strong>No brother</strong> is liable for <em>karet</em> — not for the ḥalutza and not for the rival wife. Before the ḥalitza, any brother could have performed it; one brother acts as agent for all. Similarly, one wife's ḥalitza releases her rival wife too.</div></div></div><div class="callout" style="margin-top:20px"><strong>The Core Verse</strong> לֹא יִבְנֶה — "Does not build up" (Devarim 25:9): the prohibition against marrying one's ḥalutza. Reish Lakish: this replaces karet only for the performer. Rabbi Yoḥanan: ḥalitza dissolves all bonds entirely.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔍 Can a Father's Rape Victim Appear in the Mishna? (Rav Ashi)</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Father (Ya'akov) rapes a woman → woman bears his son</div><div class="flow-arrow">↓</div><div class="flow-box question">Can this woman ever come before that son for <strong>yibum</strong> (as his mother)?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Father rapes daughter-in-law</div><div class="flow-box result-bad">Son is a <strong>mamzer</strong> — Rav Kahana: mishna only discusses <em>legitimate</em> brothers, so this case is excluded</div></div><div class="flow-col"><div class="flow-label">Brother transgresses and marries her</div><div class="flow-box result-good">She becomes a valid wife → brother dies → she comes before the son as his <em>mother</em> for yibum (Ravina to Rav Ashi)</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚖️ Karet Liability After Ḥalitza — Full Chart</h2>
+  
+  <table><tr><th>Person</th><th>With the Ḥalutza</th><th>With Her Rival Wife</th></tr><tr><td>Performer of ḥalitza</td><td>❌ No karet — replaced by 'does not build up' (Reish Lakish) / ❌ No karet (Rabbi Yoḥanan)</td><td>⚠️ Liable for karet (Reish Lakish) / ❌ No karet (Rabbi Yoḥanan)</td></tr><tr><td>Other brothers (no ḥalitza)</td><td>⚠️ Liable for karet — she remains forbidden brother's wife (Reish Lakish) / ❌ No karet (Rabbi Yoḥanan)</td><td>⚠️ Liable for karet (Reish Lakish) / ❌ No karet (Rabbi Yoḥanan)</td></tr><tr><td>If brother betroths ḥalutza</td><td>Betrothal takes effect → other brothers need ḥalitza (Reish Lakish)</td><td>Betrothal is void → no effect at all (Rabbi Yoḥanan / Rabbi Akiva)</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🧠 Why Rabbi Yoḥanan Rejects Partial Release</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">The <em>performer</em> of ḥalitza personally dissolved his own karet bond — so for him, only 'does not build up' remains. The <em>other brothers</em> never performed ḥalitza, so the ḥalutza retains her status as a forbidden brother's wife relative to them — full karet applies.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech">Is there anything like this in all of halakha? Before the ḥalitza, <em>any</em> brother could perform it. They all stood in the same position! How can one act create different legal statuses for different brothers? The performer acts as <em>agent</em> for all — his ḥalitza releases everyone equally.</div></div></div><div class="callout" style="margin-top:20px"><strong>Rabbi Yoḥanan's Parallel</strong> Just as the ḥalitza performer acts as agent for his brothers, the ḥalutza performs ḥalitza as agent for her rival wife — releasing the rival wife from the levirate bond entirely.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📜 The Baraita Challenge and Resolution (Reish Lakish ↔ Rabbi Yoḥanan)</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>The Case:</strong> A brother performs ḥalitza with his yevama, then goes back and <em>betroths</em> her</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Baraita — First Clause:</strong> If a brother arose and betrothed her after the ḥalitza, she requires ḥalitza from all the remaining brothers before remarrying — implying the betrothal <em>took effect</em></div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Yoḥanan's Challenge to Reish Lakish:</strong> If karet applies, why does she need ḥalitza? Karet means the betrothal never took effect at all — yet the baraita says it did!</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Baraita — Second Clause:</strong> 'If a brother arose and betrothed her, she has no claims on him' — implying betrothal did <em>not</em> take effect</div><div class="process-arrow">↓</div><div class="process-step"><strong>Resolution (Rav Sheshet):</strong> The two clauses reflect two opinions. The <em>latter clause</em> follows <strong>Rabbi Akiva</strong>: betrothal with a woman forbidden by a mere prohibition (not karet) is <em>void</em></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🤝 Two Theories of Ḥalitza's Legal Effect</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2a1515"><h3 style="color:#e74c3c">Reish Lakish — Personal Act, Partial Release</h3><ul><li>Ḥalitza is a personal act by the performing brother</li><li>It replaces <em>his</em> karet with 'does not build up'</li><li>Other brothers retain their karet prohibition with ḥalutza</li><li>Rival wife: all brothers remain liable for karet (she wasn't released)</li><li>Betrothal with ḥalutza by a brother takes legal effect</li></ul></div><div class="compare-box" style="border-top-color:#151e2a"><h3 style="color:#4a90d9">Rabbi Yoḥanan — Communal Agency, Full Release</h3><ul><li>All brothers stood equally before the yevama — any could have acted</li><li>One brother's ḥalitza = agency discharge for <em>all</em> brothers</li><li>Similarly: one wife's ḥalitza releases her rival wife</li><li>After ḥalitza: no karet for any brother re: ḥalutza or rival wife</li><li>Betrothal with ḥalutza is void (per Rabbi Akiva's principle)</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 10 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a3a2a"><strong>Husband dies childless</strong> → wife becomes <em>yevama</em>, brothers obligated</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2a2a1a"><strong>One brother performs ḥalitza</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1515;border-color:#e74c3c"><strong style='color:#e74c3c'>Reish Lakish</strong><br>Performer: no karet, but 'does not build up'<br>Other brothers: karet with ḥalutza<br>All brothers: karet with rival wife</div></div><div class="flow-col"><div class="flow-box" style="background:#15152a;border-color:#4a90d9"><strong style='color:#4a90d9'>Rabbi Yoḥanan</strong><br>All brothers: no karet with ḥalutza<br>All brothers: no karet with rival wife<br>One ḥalitza = full communal release</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a1a2a"><strong>Rav Sheshet adds:</strong> If a brother betroths the ḥalutza — per <strong>Rabbi Akiva</strong>, betrothal with a woman forbidden by prohibition (not karet) is <em>void ab initio</em></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 10a-10b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 10a-10b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../9/">← Daf 9</a><a href="../11/">Daf 11 →</a></div>
+</body>
+</html>

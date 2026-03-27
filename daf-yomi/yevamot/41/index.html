@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 41 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⏳</div>
+  <h1>Yevamot 41</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות מא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Sister of Ḥalutza vs. Sister of Divorcée — Rabbinic vs. Torah prohibition<br>
+    🔄 Betrothed Sister of Yevama — Does her death restore permission?<br>
+    ⏳ Three-Month Waiting Period — Ḥalitza and levirate marriage rules<br>
+    👶 Pregnancy Concern — Why ḥalitza must be delayed<br>
+    💰 Sustenance Payments for the Waiting Yevama<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Two Cases of Forbidden Yevama</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">Sister of Ḥalutza</h3><ul><li>Rabbinic prohibition only</li><li>Performs ḥalitza to dissolve bond</li><li>May NOT consummate levirate marriage</li><li>Decree prevents public confusion</li><li>Source: Reish Lakish's interpretation of mishna</li></ul></div><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">Sister of Divorcée</h3><ul><li>Torah-level prohibition</li><li>Also performs ḥalitza only</li><li>May NOT consummate levirate marriage</li><li>Possibly entirely exempt from levirate bond</li><li>Reish Lakish: Rabbi Yehuda HaNasi teaches Torah source</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔄 If the Betrothed Wife Dies, Does the Yevama Become Permitted Again?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">If a yavam betroths his yevama's sister, the yevama becomes forbidden as his wife's sister. But if the betrothed wife dies — the yevama reverts to being fully permitted for levirate marriage! She was permitted, then forbidden, now permitted again.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Hamnuna</div><div class="speech">Challenge! In the baraita: three brothers, two married to sisters, one bachelor. The bachelor does levirate marriage with one sister. Later, the second wife dies — yet the Sages say she may NOT do levirate marriage with the bachelor. Why not, by your logic?</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rava (after he left)</div><div class="speech">The baraita must follow Rabbi Elazar, who holds: once a yevama fell before an ineligible yavam, she is permanently exempt from levirate marriage — even if the obstacle is later removed.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava (to himself)</div><div class="speech">But perhaps Rabbi Elazar only said this where she was forbidden from the very start — not in Rav's case, where she was initially permitted, then forbidden, then became permitted again. Are these truly comparable?</div></div></div><div class="callout" style="margin-top:20px"><strong>Final Resolution</strong> A second baraita confirms Rabbi Elazar applies even to the case where the yavam betrothed his yevama's sister. Thus the challenging baraita follows Rabbi Elazar — not the Rabbis — and Rav's ruling stands as the Rabbis' position.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🏛️ Three Brothers / Two Sisters — Rav Hamnuna's Baraita</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Setup:</strong> Brother A married to Sister 1 · Brother B married to Sister 2 · Brother C is bachelor</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Brother A dies childless</strong> → Sister 1 awaits levirate from Brother C (bachelor)</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Brother C consummates levirate marriage</strong> with Sister 1 — now married to her</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Brother B dies childless</strong> → Sister 2 now requires levirate from Brother C. But C is married to her sister!</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Elazar</div><div class="flow-box result-bad">Sister 2 is <strong>permanently exempt</strong> — she fell before an ineligible yavam (C was her sister's husband). Exemption is permanent.</div></div><div class="flow-col"><div class="flow-label">Rabbis / Rav's View</div><div class="flow-box result-good">Rav's ruling of reversion applies only where yevama was <em>initially</em> permitted. Sister 2 was <strong>never</strong> initially permitted — different case entirely.</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👶 Why Delay Ḥalitza? — The Gemara's Progressive Analysis</h2>
+  
+  <table><tr><th>Proposed Reason</th><th>Applies To</th><th>Gemara's Verdict</th></tr><tr><td>Pregnancy — viable offspring renders ḥalitza meaningless</td><td>All previously married women</td><td>✓ Primary concern; explains the delay</td></tr><tr><td>Avoid public announcement complications (declaring her not-a-wife)</td><td>Widow (permitted to kohen)</td><td>✗ Fails for divorcée — already banned from kohanim</td></tr><tr><td>Preserve sustenance payments from deceased husband's estate</td><td>Married women (not betrothed)</td><td>✗ Fails for betrothed divorcée with no sustenance rights</td></tr><tr><td>Rabbi Yosei: ḥalitza requires genuine possibility of levirate marriage</td><td>All yevamot</td><td>✓ Final answer — ḥalitza is only valid where levirate was possible</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⏳ Three-Month Waiting Period — Opinions and Rules</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Base Rule (Mishna):</strong> A yevama may not perform ḥalitza <em>or</em> consummate levirate marriage until <strong>3 months</strong> pass from her husband's death — concern for pregnancy and viability of offspring</div><div class="process-arrow">↓</div><div class="process-step"><strong>General Rule:</strong> All women — widows, divorcées, ḥalutzot — must wait 3 months before betrothal or remarriage to distinguish between a pregnancy from the first husband and the second</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Yehuda:</strong> Previously <em>married</em> women must wait 3 months; previously <em>betrothed</em> women (no intercourse) may marry immediately — except those listed as forbidden relatives</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rabbi Yosei:</strong> All women may be <em>betrothed</em> within 3 months — but a widow must wait even for betrothal due to the mourning period she observes for her deceased husband</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Key Principle (Rabbi Yosei from baraita):</strong> Verse states 'if the man does not <em>wish to take</em> his yevama' — ḥalitza is only valid when levirate marriage was genuinely possible at that moment</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>💰 Sustenance Payments During the Three Months</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">יְבָמָה נִזּוֹנֶת מִנִּכְסֵי בַּעְלָהּ הַמֵּת</div><div class="callout"><strong>Halakha: Sustenance for the Waiting Yevama</strong> <strong>General rule:</strong> A yevama receives sustenance <em>(mezonot)</em> from her deceased husband's estate during the 3-month waiting period, as she remains legally bound to the yavam.<br><br><strong>If the yavam flees:</strong> When brought to court and obligated to perform ḥalitza or levirate marriage, then flees — she continues to receive sustenance from his estate.<br><br><strong>Minor yavam:</strong> If her yavam is a minor, she receives <em>no</em> sustenance payments. Since a minor cannot consummate levirate marriage, there is no actionable levirate bond — she cannot claim against his estate. <strong>The halakha follows: no sustenance.</strong></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 41 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:10px;border-radius:6px"><strong>Husband dies childless</strong> → wife becomes yevama, bound to surviving brother</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e;color:#fff;padding:10px;border-radius:6px"><strong>3-Month Waiting Period</strong><br><small>Sustenance from estate · No ḥalitza or levirate · Pregnancy concern</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Sister of Ḥalutza</strong><br><em>Rabbinic prohibition</em><br>→ Ḥalitza only; no levirate</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Sister of Divorcée</strong><br><em>Torah prohibition</em><br>→ Ḥalitza only; possibly fully exempt</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Standard Yevama</strong><br>After 3 months:<br>→ Ḥalitza <em>or</em> levirate permitted</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 41a-41b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 41a-41b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../40/">← Daf 40</a><a href="../42/">Daf 42 →</a></div>
+</body>
+</html>

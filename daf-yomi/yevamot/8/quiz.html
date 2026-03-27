@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 8 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Yevamot 8 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Rava, why does a forbidden relative (e.g., a wife's sister) not require a special verse to be exempt from yibum?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. The Torah explicitly lists all forbidden relatives in Deuteronomy's yibum passage</div>
+      <div class="option" onclick="select(1,this,1)">B. A positive mitzva cannot override a prohibition that entails karet (excision)</div>
+      <div class="option" onclick="select(1,this,2)">C. A rabbinic decree exempts all forbidden relatives from yibum and chalitza</div>
+      <div class="option" onclick="select(1,this,3)">D. The yavam may waive his yibum obligation through a unilateral declaration</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Rava's core principle: since marrying a forbidden relative involves karet, the positive commandment of yibum simply cannot override it. This follows from a general legal principle, making a specific verse unnecessary.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">For whose exemption is the phrase 'with her' (עמה) primarily required according to the Gemara's conclusion?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. The forbidden relative herself</div>
+      <div class="option" onclick="select(2,this,1)">B. A woman the yavam previously divorced</div>
+      <div class="option" onclick="select(2,this,2)">C. The rival wife (tzara) of the forbidden relative</div>
+      <div class="option" onclick="select(2,this,3)">D. A convert who entered the yibum situation after conversion</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>The phrase 'with her' is needed for the rival wife (tzara). The forbidden relative herself is excluded by the karet principle. But the co-wife, whose own marriage was entirely permitted, requires a specific textual source for her exempt status.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">What did Rav Huna bar Tahlifa say to resolve the difficulty raised by Rami bar Hama's challenge?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. The two rulings apply to different categories of forbidden relatives</div>
+      <div class="option" onclick="select(3,this,1)">B. Two separate teachings are embedded in one verse — each governing a distinct scenario</div>
+      <div class="option" onclick="select(3,this,2)">C. One ruling is biblical in origin and the other is only rabbinic</div>
+      <div class="option" onclick="select(3,this,3)">D. The two rulings apply only when both brothers resided in the same city</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Rav Huna bar Tahlifa resolved the tension by pointing out that two separate issues are written in the same verse. One phrase addresses the case where yibum is applicable; the other addresses where it is not — each independent of the other.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">What halakha does Rabbi Yosei bar Hanina derive from the phrase 'and have intercourse with her' in the levirate verse?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. The yavam must perform yibum within thirty days of the brother's death</div>
+      <div class="option" onclick="select(4,this,1)">B. Yibum requires two witnesses to be legally valid</div>
+      <div class="option" onclick="select(4,this,2)">C. A woman acquired through yibum is a full wife and may be divorced with a get</div>
+      <div class="option" onclick="select(4,this,3)">D. A yavam who refuses must perform chalitza before the court</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>Rabbi Yosei bar Hanina derives that yibum creates complete marital acquisition — she is fully his wife, meaning she is divorced with a get and is not subject to future yibum obligations. The phrase 'with her' signals a full, ongoing marital relationship.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Why does the timing of the brothers' marriages matter for determining whether yibum applies to a rival wife?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Later marriages are treated as more stringent under rabbinic law</div>
+      <div class="option" onclick="select(5,this,1)">B. The prohibition established first determines which obligation is primary</div>
+      <div class="option" onclick="select(5,this,2)">C. Timing only matters when both brothers died without children simultaneously</div>
+      <div class="option" onclick="select(5,this,3)">D. The age difference between the wives determines which prohibition takes precedence</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>The first-established prohibition governs. If the deceased married first, his wife's 'brother's wife' status preceded the 'wife's sister' prohibition — creating the classic yibum scenario with a rival wife. If the living brother married first, his wife's sister prohibition predates any yibum obligation, blocking it entirely.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":1,"4":2,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

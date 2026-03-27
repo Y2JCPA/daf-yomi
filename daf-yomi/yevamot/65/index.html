@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 65 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👶</div>
+  <h1>Yevamot 65</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות סה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👶 Pru U'Rvu — men commanded, women exempt (Tanna Kamma)<br>
+    💔 Infertility Protocol — ten-year rule and miscarriage patterns<br>
+    🕊️ Truth for Peace — permitted to depart from truth for shalom<br>
+    ⚖️ Amoraic Debate — women's standing to demand divorce for childlessness<br>
+    🌿 Yehudit's Secret — Rabbi Ḥiyya's wife ends childbearing discreetly<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Are Women Commanded in Pru U'Rvu?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna Kamma</div><div class="speech">Only a man is commanded in the mitzva to be fruitful and multiply — <strong>not a woman</strong>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R. Yoḥanan ben Beroka</div><div class="speech">Both are commanded! The verse says 'God blessed <em>them</em> and said to <em>them</em>: Be fruitful and multiply' (Gen. 1:28) — male and female alike.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech"><em>Vekhivshuha</em> ('conquer it') is written without a <em>vav</em> in the Torah — read as masculine singular, excluding women from this obligation.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabbi Yoḥanan</div><div class="speech">The halakha is <strong>not</strong> in accordance with Rabbi Yoḥanan ben Beroka — confirmed by Rabbi Abbahu citing Rabbi Yoḥanan directly.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Ruling</strong> Though women are exempt from pru u'rvu as a mitzva, they may still demand a divorce if their husband cannot father children — based on personal desire for children, not mitzva obligation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>👨👩 Men vs. Women: The Procreation Obligation</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Man — Obligated</h3><ul><li>Commanded by Torah: <em>פְּרוּ וּרְבוּ</em></li><li>Must divorce wife after 10 childless years</li><li>Cannot waive obligation</li><li>Source: 'fill the land <strong>and conquer it</strong>' — masculine singular</li><li>Bound even if wife refuses to claim divorce</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Woman — Exempt</h3><ul><li>Not commanded in pru u'rvu (Tanna Kamma — halakha)</li><li>Cannot demand divorce as <em>mitzva</em> fulfillment</li><li>May demand divorce for personal desire for children</li><li>Rabbi Yoḥanan ben Beroka disagrees — overruled</li><li>Story of Yehudit: acted on her own after learning the law</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>💔 Infertility, Miscarriage & Divorce Protocol</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Woman married twice — no children with either husband</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">May not marry a third husband <strong>unless</strong> he already has children</div><div class="flow-arrow">↓</div><div class="flow-box question">If she marries a third husband and has no children for ten years...</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Husband claims miscarriage once</div><div class="flow-box action">Disputed — may not interrupt ten-year count</div></div><div class="flow-col"><div class="flow-label">Miscarried twice</div><div class="flow-box action">Husband's claim acknowledged; further ruling debated</div></div><div class="flow-col"><div class="flow-label">Miscarried three times</div><div class="flow-box result-bad">Established pattern (<em>ḥazakah</em>) — must divorce; she collects <em>ketubah</em></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">After ten childless years: husband <strong>must divorce</strong> and pay <em>ketubah</em></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔥 Amoraic Dispute: Who Said What?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Version A</div><div class="speech">Rabbi Yoḥanan said: Halakha is <strong>NOT</strong> like Rabbi Yoḥanan ben Beroka. Rabbi Yehoshua ben Levi said: Halakha <strong>IS</strong> like him.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rabbi Abbahu</div><div class="speech">I sat before Rabbi Yoḥanan and heard him say: The halakha is in accordance with Rabbi Yoḥanan ben Beroka — women are commanded.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Pappa</div><div class="speech">If Rabbi Abbahu said this, it explains why Rabbi Ami and Rabbi Asi turned their faces away — they had ruled against women's claim and felt rebuked.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">R. Aḥa bar Ḥanina</div><div class="speech">An incident came before Rabbi Yoḥanan in Caesarea — he compelled the husband to divorce his wife seeking children. But perhaps she had a personal reason, not a mitzva claim.</div></div></div><div class="callout" style="margin-top:20px"><strong>Conclusion</strong> The Gemara leaves the ruling ambiguous — but practice follows that women are not mitzva-bound, while their personal claims for divorce remain valid.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🕊️ Departing from Truth for Peace — Three Sources</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">גָּדוֹל הַשָּׁלוֹם שֶׁאֲפִילּוּ הַקָּדוֹשׁ בָּרוּךְ הוּא שִׁנָּה בּוֹ מִפְּנֵי הַשָּׁלוֹם</div><div class="callout"><strong>Rabbi Elazar son of Rabbi Shimon</strong> <strong>Three teachings on silence, truth, and peace:</strong><br><br><strong>1.</strong> Just as it is a mitzva to say what <em>will</em> be heeded, so is it a mitzva to remain silent about what will <em>not</em> be heeded.<br><br><strong>2.</strong> It is <em>permitted</em> to depart from truth for peace — Joseph's brothers said 'Your father commanded: forgive your brothers' (Gen. 50:16) even though Jacob never said this.<br><br><strong>3.</strong> <em>Rabbi Natan:</em> It is a <strong>mitzva</strong> to depart from truth for peace — God told Samuel to say he came to sacrifice, not to anoint David (I Sam. 16:2).<br><br><strong>School of Rabbi Yishmael:</strong> Even God altered truth for peace — Sarah said 'my lord is old' but God told Abraham she said '<em>I</em> am old' (Gen. 18:12–13).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🌿 Yehudit's Secret — Rabbi Ḥiyya's Wife</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Background:</strong> Rabbi Ḥiyya's wife Yehudit suffered terribly in childbirth. Their twins Yehuda and Ḥizkiyya were born two months apart — she endured prolonged agony.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>The Disguise:</strong> Yehudit disguised herself before Rabbi Ḥiyya and asked: Is a woman commanded in pru u'rvu? He answered: <em>No.</em></div><div class="process-arrow">↓</div><div class="process-step"><strong>Her Action:</strong> Armed with his ruling, she drank a sterilizing potion (<em>sam akara</em>) to prevent further pregnancies — without informing her husband.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Discovery:</strong> Rabbi Ḥiyya eventually learned what she had done. He said: 'If only you had given me one more belly full' — wishing for more children.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Legal Implication:</strong> Her actions demonstrate that a woman exempt from pru u'rvu has standing to make her own reproductive choices — the law she obtained shaped her decision.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 65 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a3a5c;border-color:#4a90d9"><strong>Mishna Ruling:</strong> Man is commanded in pru u'rvu — <em>not</em> a woman (Tanna Kamma)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1a3a;border-color:#9b59b6"><strong>R. Yoḥanan ben Beroka:</strong> Women also commanded — 'God said to <em>them</em>' (Gen. 1:28)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border-color:#2ecc71"><strong>Halakha:</strong> Follows Tanna Kamma — women exempt from pru u'rvu as mitzva</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3a1a;border-color:#2ecc71"><strong>Practical Rule:</strong> Women may demand divorce to have children for <em>personal</em> reasons — not as mitzva fulfillment (Rav Naḥman; Rabbi Ami)</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#3a2a0a;border-color:#c9a84c"><strong>Peace Principle:</strong> Permitted — even a mitzva — to depart from truth for <em>shalom</em><br><small>Proof: Joseph's brothers, Samuel's mission, God's alteration of Sarah's words</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 65a-65b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 65a-65b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../64/">← Daf 64</a><a href="../66/">Daf 66 →</a></div>
+</body>
+</html>

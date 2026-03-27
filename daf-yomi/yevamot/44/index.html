@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 44 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👨‍👩‍👧</div>
+  <h1>Yevamot 44</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות מד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👨‍👩‍👧 Yavam and Multiple Yevamot — may he marry all of them?<br>
+    🔄 Ḥalitza Order — fit vs. unfit women for the priesthood<br>
+    📜 Offspring of Divorcée Remarriage — flawed lineage debate<br>
+    ⚖️ Rabbi Akiva vs. Rabbis — mamzer status of forbidden unions<br>
+    🧬 Slave/Gentile with Jewish Woman — offspring follows the mother<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Mamzer Status: Rabbi Akiva vs. The Rabbis</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rabbi Akiva</div><div class="speech">One who remarries his <strong>divorcée</strong>, marries his <strong>ḥalutza</strong>, or a <strong>relative of his ḥalutza</strong> — betrothal is <em>not effective</em> and the offspring is a <strong>mamzer</strong> in all these cases.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">The Rabbis</div><div class="speech">Betrothal <em>is</em> effective and the offspring is <strong>not a mamzer</strong> in those cases. We agree only that marrying a relative of one's <em>divorcée</em> — a karet prohibition — produces a mamzer.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Yosef / R. Shimon bar Rabbi</div><div class="speech"><strong>All agree</strong> (including Shimon HaTimni): offspring of a karet-level forbidden relation are <em>disqualified from the priesthood</em> — derived by kal va-ḥomer from a widow married to a Kohen Gadol.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">The kal va-ḥomer can be refuted: a widow causes her <em>own</em> priestly disqualification whereas a woman in a karet union does not. The a fortiori inference remains <strong>difficult</strong> (קשיא).</div></div></div><div class="callout" style="margin-top:20px"><strong>Bottom Line</strong> The final ruling on offspring disqualification from the priesthood rests on independent sources. The kal va-ḥomer from the widow's case is structurally challenged but the halakhic conclusion — disqualification for karet-level unions — is accepted.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>👨‍👩‍👧 Can a Yavam Marry All His Yevamot?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Eldest surviving brother</strong> wishes to perform yibum with <em>all</em> of the deceased brothers' widows</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">❌ Mishna's Surface Reading</div><div class="flow-box result-bad">All four brothers died — but then <strong>who performs yibum</strong>? The Gemara rejects a literal reading that all brothers perished.</div></div><div class="flow-col"><div class="flow-label">✅ Corrected Reading</div><div class="flow-box result-good">One brother survives. He has the <strong>legal right</strong> to marry all yevamot; the verse does not limit levirate marriage to a single wife.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Practical condition:</strong> He may marry all of them only if he is <em>able to provide for all four women</em>. If not, the court offers <strong>עצה טובה</strong> (appropriate advice) to dissuade unsuitable matches — e.g., an old man taking a young woman.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔄 Ḥalitza: Fit vs. Unfit for the Priesthood</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">יחלוץ לפסולה — שלא לפסול את הכשרה לכהונה</div><div class="callout"><strong>Halakhic Principle</strong> If two yevamot are available — one <strong>fit</strong> (כשרה) for the priesthood and one <strong>unfit</strong> (פסולה) — the yavam should perform ḥalitza with the <em>unfit</em> woman.
+
+<strong>Reason:</strong> Ḥalitza disqualifies a woman from marrying a kohen. Performing it with the fit woman would <em>needlessly strip her of priestly eligibility</em>. The unfit woman has no such privilege to lose.
+
+<strong>Rav Yosef</strong> confirmed this ruling applies even in contexts where the mishna seems to discuss ḥalitza as obligatory.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📜 Offspring of Remarrying a Divorcée and Ḥalutza</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rabbi Akiva</div><div class="speech">One who remarries his <strong>divorcée</strong>, marries his <strong>ḥalutza</strong>, or a <strong>relative of his ḥalutza</strong> — betrothal is ineffective (אין קידושין תופסין) and offspring is a <strong>mamzer</strong>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">The Rabbis</div><div class="speech">Offspring is <strong>not a mamzer</strong> in any of those cases. Only one who marries a relative of his <em>divorcée</em> — liable to karet — produces a mamzer. The others are lesser prohibitions.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">Did Rabbi Akiva truly hold that a <em>rabbinic</em> prohibition (relative of ḥalutza) yields a mamzer? Rabbi Yehuda HaNasi may have reassigned that view to <strong>Rabbi Shimon HaTimni</strong> in the mishna.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara (conclusion)</div><div class="speech">The mishna need <em>not</em> be emended. Rabbi Akiva's position is coherent: he holds that rabbinic decrees can carry <strong>Torah-level consequences</strong> when the Sages intend full stringency.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Verse</strong> "<em>היא</em> תועבה" — <strong>She</strong> is an abomination (Deut. 24:4). The emphasis on 'she' teaches that <em>only she</em> bears that status — her children are not rendered mamzerim by this verse alone.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ Categories of Forbidden Unions & Offspring Status</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Karet Prohibition</h3><ul><li>Example: marrying relative of one's divorcée</li><li>Rabbis: offspring IS a mamzer</li><li>Rabbi Akiva: also a mamzer</li><li>Shimon HaTimni: agrees offspring disqualified from priesthood</li><li>Kal va-ḥomer from widow married to Kohen Gadol</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#ffffff">Lav Prohibition</h3><ul><li>Example: remarrying one's divorcée after she remarried</li><li>Rabbis: offspring NOT a mamzer</li><li>Rabbi Akiva: offspring IS a mamzer (unique stringency)</li><li>Shimon HaTimni: agrees offspring has flawed lineage (פסולה לכהונה)</li><li>Verse: 'she is an abomination' — only she, not her children</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Rabbinic Prohibition</h3><ul><li>Example: marrying relative of one's ḥalutza</li><li>Rabbis: offspring NOT a mamzer</li><li>Rabbi Akiva: debated — Gemara questions if he truly held mamzer here</li><li>Reish Lakish: Rabbi Yehuda HaNasi may have reassigned this view</li><li>Betrothal: Rabbi Akiva says ineffective; Rabbis say effective</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">Slave/Gentile with Jewish Woman</h3><ul><li>Rabbi Yoḥanan: all agree offspring follows the mother</li><li>'All agree' includes even Shimon HaTimni</li><li>Child is Jewish — not categorized as a mamzer</li><li>Severity of the prohibition supports the ruling</li><li>Offspring has full Jewish status via the mother</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🧬 A Fortiori Inference: From Widow to Karet-Union Offspring</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Base case (ḥomer):</strong> A <em>widow</em> married to a <strong>Kohen Gadol</strong> — the prohibition applies only to the Kohen Gadol, not to ordinary kohanim. Yet her offspring are <strong>ḥalalim</strong> — disqualified from the priesthood.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Proposed inference (kal):</strong> A woman in a <em>karet-level</em> forbidden relation — where the prohibition applies to <strong>all men equally</strong> — should <em>a fortiori</em> produce offspring disqualified from the priesthood.</div><div class="process-arrow">↓</div><div class="process-step"><strong>First objection:</strong> The widow's union itself disqualifies <em>her personally</em> from future priestly marriage — a unique feature not shared by women in karet unions. The inference may be structurally flawed.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Resolution (Rav Yosef / R. Shimon bar Rabbi):</strong> The inference holds for karet-level relations; the severity of the prohibition more than compensates for the structural difference in how the woman herself is affected.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Final conclusion:</strong> The objection regarding the widow's <em>self-disqualification</em> remains <strong>קשיא</strong> — difficult, unresolved. The halakhic ruling on offspring disqualification is affirmed through independent textual sources.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 44 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;text-align:center"><strong>One Surviving Brother + Multiple Yevamot</strong><br><small>May marry all — only if able to provide for each</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;text-align:center"><strong>Ḥalitza Path</strong><br><small>Perform with <em>unfit</em> woman — protects fit woman's priestly status</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;text-align:center"><strong>Offspring Status</strong><br><small>Karet → disqualified from priesthood; Lav → disputed; Rabbinic → not mamzer</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;text-align:center"><strong>Slave/Gentile + Jewish Woman</strong><br><small>All agree (incl. Shimon HaTimni): offspring follows the mother — child is Jewish</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 44a-44b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 44a-44b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../43/">← Daf 43</a><a href="../45/">Daf 45 →</a></div>
+</body>
+</html>

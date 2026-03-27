@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 57 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏛️</div>
+  <h1>Yevamot 57</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות נז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💍 Betrothed Women & Teruma — priests with crushed testicles<br>
+    ⚖️ Abaye vs. Rava — two rationales for teruma rights<br>
+    🤔 R' Yochanan's Dilemma — daughters of converts and priesthood<br>
+    📜 Congregation of the Lord — R' Yehuda vs. R' Yosei vs. R' Eliezer b. Ya'akov<br>
+    🚪 Wedding Canopy — disqualification and the three-year threshold<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Abaye vs. Rava: Why Can She Eat Teruma?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">A woman betrothed to a priest with crushed testicles may eat teruma because <strong>his priestly status entitles his wife</strong> even before consummation — derived from the laws of <em>acquisition of marriage</em>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rava</div><div class="speech">She may eat teruma because <strong>his priestly status entitles his Canaanite slaves</strong> — and that power to enable others extends to his betrothed wife — derived from the laws of <em>acquisition of property</em>.</div></div></div><div class="callout" style="margin-top:20px"><strong>The Practical Difference</strong> If he was validly married and his testicles were then crushed: Abaye's reason fails (she had already been eating teruma), but Rava's reason still holds — his slave-entitlement power persists.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Why Each Sage Rejects the Other's Reasoning</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech"><strong>Rejects Rava:</strong> We derive marriage-acquisition laws from marriage-acquisition laws — not from property acquisition. Slave entitlement cannot extend to a wife.<br><small>A betrothed woman had not previously partaken of teruma, so Rava's 'continuation' logic doesn't apply either.</small></div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rava</div><div class="speech"><strong>Rejects Abaye:</strong> It is <em>different</em> for the wife who was already eating teruma before her husband's testicles were crushed — she may simply continue.<br><small>Abaye's logic based on prior entitlement-of-wife would not help a woman who had never yet begun eating teruma.</small></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Both agree she may eat — they disagree on the <em>legal mechanism</em>, which affects edge cases like a woman whose valid marriage preceded the husband's injury.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🤔 R' Yochanan's Dilemma: Daughter of Converts Married to Impaired Priest</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A <strong>priest with crushed testicles</strong> marries the <strong>daughter of converts</strong> whose mother was Jewish from birth — per R' Eliezer b. Ya'akov's rule</div><div class="flow-arrow">↓</div><div class="flow-box action">She is permitted to marry a priest — but <em>on what basis?</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">If: fitness was ADDED to her</div><div class="flow-box result-bad">She gained priestly marriage rights but <strong>remains in 'congregation of converts'</strong> → a priest with crushed testicles is forbidden from this congregation → she may <strong>NOT eat teruma</strong></div></div><div class="flow-col"><div class="flow-label">If: she LEFT the congregation of converts</div><div class="flow-box result-good">She is now considered <strong>fully Jewish</strong> → the 'crushed testicles' prohibition does not apply → she <strong>MAY eat teruma</strong></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">R' Yochanan left this as an <strong>unresolved dilemma</strong> before R' Oshaya</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📜 Three Tannaitic Views: Who Is the 'Congregation of the Lord'?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#c9a84c">Rabbi Yehuda</h3><ul><li>Converts ARE called 'congregation of the Lord'</li><li>A man with crushed testicles may NOT enter this congregation</li><li>Whether or not he retains priestly sanctity, she may NOT eat teruma</li><li>R' Yochanan's dilemma makes NO SENSE under this view — outcome is always forbidden</li></ul></div><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbi Yosei</h3><ul><li>Converts are NOT called 'congregation of the Lord'</li><li>A man with crushed testicles CAN marry a convert's daughter</li><li>Whether or not he retains priestly sanctity, she MAY eat teruma</li><li>R' Yochanan's dilemma makes NO SENSE under this view — outcome is always permitted</li></ul></div><div class="compare-box" style="border-top-color:#3a0a4a"><h3 style="color:#9b59b6">R' Eliezer ben Ya'akov</h3><ul><li>A convert's daughter may marry a priest only if her mother was Jewish</li><li>This creates a meaningful intermediate category</li><li>Did marrying a Jew make her fully part of the congregation, or only add fitness?</li><li>R' Yochanan's dilemma is based on THIS view — the answer is genuinely unclear</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🚪 The Wedding Canopy (Chuppah) and Disqualification from Teruma</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rav's Rule:</strong> If a priest's daughter who is <em>unfit to marry a priest</em> enters the wedding canopy with a priest, she is <strong>disqualified from eating teruma</strong> — even without any act of intercourse.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Shmuel's Concession from Rav:</strong> Even Rav agrees that for a <em>girl under three years and one day old</em>, entering the canopy does NOT disqualify her — because at that age, intercourse has no legal significance, so the canopy has none either.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rava's Proof:</strong> A baraita states: 'A girl three years and one day old can be betrothed via intercourse... if one who renders women unfit had intercourse with her, he has disqualified her from teruma.'</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rava's Inference:</strong> Only a girl of <em>three years and one day</em> is disqualified via intercourse — and therefore also via the wedding canopy. Below that age: neither intercourse nor canopy disqualifies.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rami bar Chama:</strong> This dispute about the legal significance of chuppah may correspond to the very mishna dispute between <strong>Rabbi Meir</strong> and <strong>Rabbi Eliezer</strong>.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Acha bar Chinnana's Contribution</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">פְּצוּעַ דַּכָּא וּכְרוּת שׁוֹפְכָה לֹא יָבֹא בִּקְהַל ה׳ (דברים כג:ב)</div><div class="callout"><strong>📜 The Baraita from the South — Resolution Attempt</strong> When <strong>R' Acha bar Chinnana</strong> came from the south, he brought a baraita: The verse that restricts a man with crushed testicles from 'entering the congregation' implies that <em>his wife may eat teruma</em> when the marriage is otherwise valid — the very act of restricting his congregation-entry presupposes she has teruma rights.<br><br>The Gemara notes: this baraita was stated according to <strong>R' Eliezer ben Ya'akov's</strong> view and helps resolve one horn of R' Yochanan's dilemma — pointing toward the conclusion that she <em>may</em> eat teruma.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 57 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2c3e50;color:#ecf0f1;padding:10px;border-radius:8px;text-align:center;"><strong>Core Question (Amud A):</strong> Can a woman betrothed to a <em>priest with crushed testicles</em> eat teruma?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a5c;color:#ecf0f1;padding:8px;border-radius:6px;"><strong>Abaye:</strong> Yes — his priestly status entitles his <em>wife</em> (derives from marriage-acquisition laws)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a00;color:#ecf0f1;padding:8px;border-radius:6px;"><strong>Rava:</strong> Yes — his priestly status entitles his <em>slaves</em>, which extends to his wife (derives from property-acquisition laws)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#2c3e50;color:#c9a84c;padding:10px;border-radius:8px;text-align:center;"><strong>R' Yochanan's Dilemma:</strong> What if she is a convert's daughter? Is she in the 'congregation of the Lord' that such a priest is barred from entering?</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#1a2a1a;color:#ecf0f1;padding:10px;border-radius:8px;text-align:center;"><strong>Tannaitic Framework:</strong> R' Yehuda (converts = congregation → forbidden) | R' Yosei (converts ≠ congregation → permitted) | R' Eliezer b. Ya'akov (intermediate — dilemma genuine)</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a1a3a;color:#ecf0f1;padding:10px;border-radius:8px;text-align:center;"><strong>Amud B — New Question:</strong> Does entering the <em>wedding canopy</em> with an unfit man disqualify a priest's daughter from teruma? Rav: Yes. Shmuel/Rava: Not if the girl is under three years and one day old.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 57a-57b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 57a-57b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../56/">← Daf 56</a><a href="../58/">Daf 58 →</a></div>
+</body>
+</html>

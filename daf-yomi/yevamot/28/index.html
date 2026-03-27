@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 28 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 28</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות כח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🤔 Unanswered Challenges — Gemara rejects every explanation for Rabbi Yoḥanan<br>
+    👩‍👩‍👧 Mother-in-Law Timing — Rav Pappa resolves the forbidden-relative sequence<br>
+    📜 Before Consulting Court — Beit Shammai & Beit Hillel on hasty marriages<br>
+    🔢 Six Brothers Scenario — Rav Safra's complex coexistence case<br>
+    👨‍👩‍👧 Three Brothers Mishna — Rabbi Shimon exempts both sisters entirely<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📖 Overview</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">יבמות כ״ח — וְלֹא תִקַּח אִשָּׁה אֶל אֲחֹתָהּ</div><div class="callout"><strong>📖 Daf Overview</strong> The Gemara relentlessly challenges Rabbi Yoḥanan's claim that he cannot identify who authored the 'sisters' ruling — proposing five explanations in succession, each rejected. Rav Pappa then resolves the mother-in-law case through careful sequencing. Three Amoraim (Rav Yehuda, Abaye, Rav Safra) debate how broadly the sister principle applies, culminating in Rav Safra's intricate six-brother scenario. The daf closes with a new mishna on three brothers where two married sisters, and Rabbi Shimon's sweeping exemption derived from Leviticus 18:18.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🤔 Five Challenges to Rabbi Yoḥanan — All Rejected</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Challenger</div><div class="speech">Let Rabbi Yoḥanan say the ruling is a <em>rabbinic decree</em> lest the second brother die — then it would be forbidden to negate levirate marriage!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Rejected: that reason only justifies ḥalitza <em>retroactively</em>. But the mishna implies ḥalitza is the <strong>first course of action</strong> — ab initio.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Challenger</div><div class="speech">Let him say the mishna follows <strong>Rabbi Elazar</strong>: once she stood before him as forbidden, she is always forbidden — even later!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Rejected: Rabbi Yoḥanan does not rule in accordance with Rabbi Elazar on this matter.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Challenger</div><div class="speech">Let him say the brothers died <strong>simultaneously</strong> — both women fell before the yevamin at the same moment!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Rejected: the mishna's latter clause — 'if they married, they must divorce' — becomes inexplicable. Why would the marriages need undoing in this scenario?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rabbi Yoḥanan</div><div class="speech"><strong>Conclusion:</strong> 'I do not know who taught: Sisters' — I cannot properly resolve the ruling of this mishna.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Insight</strong> The Gemara's inability to resolve the mishna is itself the point — Rabbi Yoḥanan's admission of uncertainty becomes a talmudic teaching.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>👩‍👩‍👧 Rav Pappa: How Both Sisters Become Forbidden</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Two brothers</strong> each married a sister<br><small>Sister A = not the mother-in-law | Sister B = the mother-in-law</small></div><div class="flow-arrow">↓</div><div class="flow-box action">Both brothers die → both sisters fall before the surviving yevamin for levirate marriage</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✅ Sister A (non-mother-in-law) falls FIRST</div><div class="flow-box result-good">Permitted to both yevamin<br>→ Either may consummate levirate marriage with her</div></div><div class="flow-col"><div class="flow-label">❌ Sister B (mother-in-law) falls SECOND</div><div class="flow-box result-bad">Forbidden to both yevamin as mother-in-law<br>→ Now her rival wife (Sister A) is also forbidden</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Both women are <strong>exempt from levirate marriage</strong> — ḥalitza only<br><small>The mother-in-law's forbidden status retroactively closes the door on her sister</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📚 Three Amoraim: How Broadly Does the Sister Principle Apply?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#4a90d9">Rav Yehuda</h3><ul><li>Applies from <strong>mother-in-law and onward</strong> in the list only</li><li>Excludes the first 6 cases: his daughter, wife's daughter, and their descendants</li><li>Reason: two sisters who are also daughters of both yevamin cannot occur in those 6 cases via marriage</li><li><em>Cases of rape excluded entirely</em></li></ul></div><div class="compare-box" style="border-top-color:#1a3a1a"><h3 style="color:#2ecc71">Abaye</h3><ul><li>Applies even to <strong>daughter born from a raped woman</strong></li><li>The scenario is findable even in cases of rape</li><li>Principle: if the statement can encompass rape cases, it should — prefer the broader rule</li><li><em>More expansive than Rav Yehuda</em></li></ul></div><div class="compare-box" style="border-top-color:#2a1a3a"><h3 style="color:#9b59b6">Rav Safra</h3><ul><li>Applies even to <strong>wife of a brother with whom he did not coexist</strong></li><li>Findable via the six-brothers scenario (Reuven, Shimon, Levi, Yehuda, Yissakhar…)</li><li>Requires the opinion of Rabbi Shimon</li><li><em>Most expansive application of all three</em></li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔢 Rav Safra's Six-Brother Scenario Step by Step</h2>
+  
+  <table><tr><th>Brother</th><th>Wife</th><th>Key Event</th><th>Halakhic Status</th></tr><tr><td>Reuven</td><td>Sister A</td><td>Dies; Yissakhar born posthumously</td><td>Yissakhar never coexisted with Reuven</td></tr><tr><td>Shimon</td><td>Sister B</td><td>Still alive initially</td><td>Married to Sister B (Reuven's wife's sister)</td></tr><tr><td>Levi</td><td>Unrelated Woman C</td><td>Consummated levirate with Sister A (Reuven's widow)</td><td>Now bound to Sister A</td></tr><tr><td>Yehuda</td><td>Unrelated Woman D</td><td>Consummated levirate with Sister B (Shimon's widow)</td><td>Now bound to Sister B</td></tr><tr><td>Gad & Asher</td><td>Sisters E & F</td><td>Levi & Yehuda die; Gad & Asher consummate levirate with Women C & D</td><td>Rival-wife chain activated</td></tr><tr><td>Yissakhar</td><td>—</td><td>Sister A is forbidden (didn't coexist with Reuven) yet permitted to another brother</td><td>Exemplifies 'wife of brother with whom he did not coexist'</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>👨‍👩‍👧 New Mishna: Three Brothers, Two Married Sisters</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Setup:</strong> Three brothers — two married two sisters (or a woman and her daughter), the third married an unrelated woman</div><div class="process-arrow">↓</div><div class="process-step"><strong>Both husbands die:</strong> The two sisters fall before the third brother for levirate marriage</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Default ruling:</strong> Both sisters are forbidden to the third brother — each is a rival wife's sister. Both perform <em>ḥalitza</em> and may not enter levirate marriage</div><div class="process-arrow">↓</div><div class="process-step"><strong>Exception — forbidden relative:</strong> If one sister is forbidden due to a <em>prohibited relative</em> (e.g., she is his own relative), the third brother is forbidden to <em>her</em> but <strong>permitted to marry her sister</strong> via levirate</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabbi Shimon disagrees:</strong> Derives from <em>"You shall not take a woman to her sister"</em> (Lev. 18:18) — even where one sister is only rabbinically forbidden, he treats her as a full rival wife, exempting <strong>both sisters</strong> from ḥalitza and levirate entirely</div><div class="process-arrow">↓</div><div class="process-step"><strong>Practical ruling (Sages):</strong> The permitted sister performs ḥalitza or enters levirate marriage; Rabbi Shimon: she is fully exempt</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 28 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a3a;border:2px solid #4a90d9;padding:8px;"><strong>Mishna:</strong> Sisters fall for levirate → ḥalitza only, no levirate marriage</div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#2a1a1a;border:2px solid #e74c3c;padding:8px;"><strong>Gemara challenges Rabbi Yoḥanan</strong><br>Five explanations proposed — all rejected<br><small>Rabbi Yoḥanan: 'I do not know who taught this'</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a1a3a;border:1px solid #9b59b6;padding:6px;"><strong>Rav Pappa</strong><br>Mother-in-law falls second → both sisters forbidden</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border:1px solid #2ecc71;padding:6px;"><strong>Rav Yehuda / Abaye / Rav Safra</strong><br>Dispute scope of sister principle across the 15 cases</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#2a2a1a;border:2px solid #c9a84c;padding:8px;"><strong>New Mishna — Three Brothers:</strong> Two married sisters; Rabbi Shimon exempts both from all obligation via Lev. 18:18</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 28a-28b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 28a-28b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../27/">← Daf 27</a><a href="../29/">Daf 29 →</a></div>
+</body>
+</html>

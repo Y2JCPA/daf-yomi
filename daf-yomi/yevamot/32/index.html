@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 32 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 32</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות לב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👭 Sisters Mishna — two brothers, two sisters; death dissolves the bond<br>
+    📜 Rava's Get Rulings — bill of divorce nullifies levirate betrothal<br>
+    🚫 Issur Chal Al Issur — can a second prohibition take hold?<br>
+    📈 Issur Mosif — Rabbi Yosei's expanded-prohibition exception<br>
+    🏛️ Temple Cases — non-priest, blemished priest, and bird offering<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Does a Second Prohibition Take Hold Where One Already Exists?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna Kamma</div><div class="speech">A prohibition does <strong>not</strong> take effect where another prohibition already exists (<em>ein issur chal al issur</em>). The first prohibition fully occupies the forbidden space — there is nothing for the second to attach to.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yosei</div><div class="speech">An <strong>expanded prohibition</strong> (<em>issur mosif</em>) <em>does</em> take effect — if the second prohibition adds new subjects or new contexts, it compounds the original and creates double liability.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ashi</div><div class="speech">The wife's-sister prohibition is <strong>suspended</strong> during the levirate bond. Once the brother's-wife prohibition is removed — e.g., by actual levirate marriage — the wife's-sister prohibition descends and takes full effect.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">Rabbi Yosei's double liability is conceptual: he <em>sentences</em> the man as though he transgressed both prohibitions, since his act traversed each in sequence — not because two prohibitions literally coexist simultaneously.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question (32a–32b)</strong> A man consummates levirate marriage with a woman who is simultaneously his brother's wife AND his wife's sister. How many prohibitions did he violate — and does the answer depend on who married whom first?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📖 The Mishna — Two Brothers, Two Sisters</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">שְׁנֵי אַחִין נְשׂוּאִין שְׁתֵּי אֲחָיוֹת — וּמֵת אַחַד מֵהֶן</div><div class="callout"><strong>Mishna 32a</strong> Two brothers were married to two sisters. The first brother died — his widow is <strong>exempt from levirate marriage</strong> because she is the <em>sister of the surviving brother's wife</em>. Then the surviving brother's own wife died. Now the widow becomes <strong>fully permitted</strong> to him for levirate marriage: the 'sister of his wife' prohibition has lapsed because his wife is gone. The Gemara notes this is obvious — yet the mishna teaches it to clarify that even after this complex sequence, the levirate obligation is genuine.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔀 Order of Marriage Determines Liability</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2f4a"><h3 style="color:#4a90d9">Living Brother Married First</h3><ul><li>Living brother marries Sister A — she is his wife</li><li>Deceased brother later marries Sister B</li><li><strong>Wife's-sister prohibition applies first</strong> to Sister B (from living brother's perspective)</li><li>Brother's-wife prohibition then also applies to Sister B upon his death</li><li>The brother's-wife prohibition <em>adds</em> the levirate context — it is an <strong>issur mosif</strong></li><li>Rabbi Yosei: liable on <strong>both counts</strong></li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Deceased Brother Married First</h3><ul><li>Deceased brother marries Sister A first</li><li>Living brother later marries Sister B</li><li><strong>Brother's-wife prohibition applies first</strong> to Sister A</li><li>Wife's-sister prohibition also applies to Sister A after the living brother marries</li><li>Gemara struggles: what exactly did the wife's-sister prohibition <em>add</em> here?</li><li>Rava resolves: Rabbi Yosei still assigns double liability conceptually</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📜 Rava's Two Rulings on Bills of Divorce</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Setup:</strong> Two brothers remain alive; one performs <em>levirate betrothal</em> (yibbum kiddushin) with his deceased brother's widow</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Version 1 (Rival Wife):</strong> The betrothing brother subsequently gives a <em>get</em> to the widow, dissolving the betrothal, and then <em>he</em> dies — the widow's rival wife is now <strong>permitted</strong> to the third brother</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Version 2 (The Woman Herself):</strong> The second surviving brother gives a <em>get</em> to the first deceased brother's widow — even <em>she herself</em> is now permitted to the third brother</div><div class="process-arrow">↓</div><div class="process-step"><strong>Principle:</strong> A bill of divorce dissolves the levirate bond entirely, removing the prohibition that would otherwise contaminate the rival wife's status</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Ashi's gloss:</strong> The wife's-sister prohibition was merely 'suspended' — once the levirate bond ends, it descends and takes effect, confirming the prohibition structure is layered, not extinguished</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🏛️ Rabbi Ḥiyya's Temple-Service Debates (32b)</h2>
+  
+  <table><tr><th>Case</th><th>Actor</th><th>Circumstances</th><th>Rabbi Ḥiyya's Ruling</th><th>Logic</th></tr><tr><td>Non-priest served in Temple</td><td>Zar (non-priest)</td><td>During Shabbat</td><td>Liable on TWO counts</td><td>Temple work overrides Shabbat for priests — but the non-priest prohibition is unaffected; two independent violations</td></tr><tr><td>Blemished priest served</td><td>Ba'al Mum</td><td>During public ritual impurity (tum'ah)</td><td>Liable on TWO counts</td><td>Public tum'ah is overridden for communal need — but the blemish prohibition is never overridden; both apply</td></tr><tr><td>Non-priest ate bird sin-offering</td><td>Zar</td><td>Offering killed by melikah (pinching)</td><td>Liable on TWO counts</td><td>Priests may eat it; for non-priests it is like an unslaughtered carcass AND forbidden sacrificial food — two prohibitions</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📈 Issur Mosif — When Does a Second Prohibition Take Hold?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A second prohibition (<em>issur sheni</em>) attempts to apply to a person or item already under an existing prohibition</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Same scope — nothing added</div><div class="flow-box result-bad"><strong>Second prohibition does NOT take hold</strong><br><em>Ein issur chal al issur</em><br>No additional liability</div></div><div class="flow-col"><div class="flow-label">Expanded scope — issur mosif</div><div class="flow-box result-good"><strong>Second prohibition DOES take hold</strong><br>Rabbi Yosei: new subjects or contexts were added; double liability applies</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Rava's refinement:</strong> Even Rabbi Yosei's 'double liability' may be conceptual — he sentences the man as if both were transgressed, acknowledging the sequential logic of overlapping prohibitions</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 32 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a3a;border:1px solid #4a90d9"><strong>Two brothers each marry a sister</strong><br>One brother dies → levirate bond created</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2a;border:1px solid #2ecc71"><strong>Living brother married first:</strong><br>Wife's-sister prohibition is primary; brother's-wife is the <em>issur mosif</em> → Rabbi Yosei: liable on both</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a;border:1px solid #e74c3c"><strong>Deceased brother married first:</strong><br>Brother's-wife is primary; Gemara debates whether wife's-sister truly adds anything → Rava resolves with conceptual double liability</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#2a1a3a;border:1px solid #9b59b6"><strong>Rav Ashi:</strong> Wife's-sister prohibition is 'suspended' during the levirate bond — when the bond is removed, it descends and takes effect, confirming the layered structure of overlapping prohibitions</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 32a-32b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 32a-32b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../31/">← Daf 31</a><a href="../33/">Daf 33 →</a></div>
+</body>
+</html>

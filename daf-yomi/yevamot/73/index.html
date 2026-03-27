@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 73 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌾</div>
+  <h1>Yevamot 73</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות עג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ✂️ Uncircumcised Man & Second Tithe — May he eat maaser sheni?<br>
+    📋 Teruma, Bikkurim & Maaser Sheni — Comparing halakhic categories<br>
+    😢 Acute Mourner (Onen) — Rabbi Shimon permits first fruits<br>
+    🔥 Burning Impure Produce — Forbidden for tithe, permitted for teruma<br>
+    ⚠️ Flogging for Eating Impure Tithe — Biblical derivation and scope<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🌾 Three Agricultural Gifts & Their Disputed Laws</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Opening Question:</strong> Can an uncircumcised man eat <em>maaser sheni</em> (second tithe)? The dilemma is raised before Rav Sheshet.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Sheshet's Proof:</strong> Cites mishna (Ḥalla 1:9) — uncircumcised men are not listed among those forbidden from maaser sheni, implying they are permitted.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rejection:</strong> The tanna taught only <em>some</em> differences between categories; the mishna's silence on uncircumcised men proves nothing.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Further Debate:</strong> Burning impure maaser sheni and bikkurim for benefit is forbidden — but not so for teruma. What is the biblical source?</div><div class="process-arrow">↓</div><div class="process-step"><strong>Flogging:</strong> One who eats impure maaser sheni or bikkurim is flogged. The Gemara seeks and debates the scriptural derivation.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📋 Three Agricultural Categories — Key Differences</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Teruma</h3><ul><li>Priestly gift — property of the priest</li><li>Acute mourner (onen) MAY eat</li><li>No eradication before Passover required</li><li>MAY burn when impure — benefit permitted</li><li>NOT flogged for eating impure teruma</li><li>Nullified in mixture of 101 parts</li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#ffffff">Bikkurim (First Fruits)</h3><ul><li>Priestly gift — property of the priest</li><li>Onen: DISPUTE — Rabbis forbid; R. Shimon permits</li><li>Eradication: DISPUTE — Rabbis require; R. Shimon exempts</li><li>May NOT burn when impure — benefit forbidden</li><li>FLOGGED for eating while produce is impure</li><li>Torah calls them both 'teruma' AND 'minḥa'</li></ul></div><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#ffffff">Maaser Sheni (Second Tithe)</h3><ul><li>Owner's property — eaten in Jerusalem</li><li>Acute mourner (onen) may NOT eat</li><li>Eradication required before Passover (4th & 7th years)</li><li>May NOT burn when impure — benefit forbidden</li><li>FLOGGED for eating while produce is impure</li><li>Nullified in mixture of 101 parts</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>✂️ Can an Uncircumcised Man Eat Maaser Sheni?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Questioners</div><div class="speech">The Paschal lamb forbids an uncircumcised man from eating it. Is maaser sheni derived from the Paschal lamb (and thus also forbidden)? Or is the lenient case of maaser sheni independent?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Sheshet</div><div class="speech">You have already learned the answer in the mishna! Ḥalla 1:9 lists what applies to teruma and bikkurim but NOT to maaser sheni — and an uncircumcised man's prohibition is not mentioned. Therefore he MAY eat maaser sheni.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Rejected! The tanna taught only SOME differences and omitted others. He also omitted the fact that eating impure maaser sheni incurs flogging. An argument from silence cannot stand.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Ashi</div><div class="speech">Even from the FIRST clause of the mishna no proof can be adduced. The question of the uncircumcised man and maaser sheni remains unresolved.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakhic Principle</strong> An argument from a tanna's silence (omission) fails when the same tanna demonstrably omits other known halakhot in the same passage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>😢 Acute Mourner & Bikkurim — Rabbi Shimon vs. the Rabbis</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">An acute mourner (onen) is forbidden from eating both maaser sheni AND bikkurim (first fruits). Both require joy and intentional eating in holiness; a mourner on the day of bereavement is precluded from this.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabbi Shimon</div><div class="speech">An onen is PERMITTED to eat bikkurim! The Torah calls bikkurim 'teruma' — so the laws of eating follow teruma. Just as an onen may eat teruma, so too may he eat bikkurim.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">The Torah ALSO calls bikkurim a 'minḥa' (Exodus 23:19). A mourner who eats a minḥa violates a prohibition. Therefore the 'teruma' analogy cannot apply to permit an onen to eat bikkurim.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabbi Shimon</div><div class="speech">The 'minḥa' derivation governs the BRINGING of bikkurim to the Temple, not the eating. The 'teruma' designation governs the eating — and therefore the onen may eat.</div></div></div><div class="callout" style="margin-top:20px"><strong>Also Disputed</strong> R. Shimon likewise exempts bikkurim from eradication (bi'ur) before Passover in the 4th and 7th years of the Sabbatical cycle. The Rabbis require eradication for both maaser sheni and bikkurim.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔥 Burning Impure Produce for Benefit — Permitted or Forbidden?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Sacred agricultural produce became ritually impure</strong> and cannot be eaten. May you burn it and <em>benefit from the heat or fire</em>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Teruma</div><div class="flow-box result-good"><strong>YES — Permitted</strong><br>The verse 'of it' (Deuteronomy context) excludes teruma from the prohibition. Impure teruma may be burned and the fire's heat may be enjoyed.</div></div><div class="flow-col"><div class="flow-label">Maaser Sheni & Bikkurim</div><div class="flow-box result-bad"><strong>NO — Forbidden</strong><br>Burning impure second tithe or first fruits for benefit is prohibited. These sacred categories are <em>more</em> protected than teruma in this regard.</div></div><div class="flow-col"><div class="flow-label">Consecrated Items (Kodashim)</div><div class="flow-box result-bad"><strong>NO — Forbidden</strong><br>Also prohibited. Kodashim carry the <em>most</em> stringencies of all (mem, ḥet, peh, zayin), so they are certainly included in the prohibition against burning for benefit.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Gemara's Logic:</strong> 'Of it you may not eat' implies 'of it you may not burn for benefit.' Teruma is excluded by the verse; consecrated items are included because their accumulated stringencies are greater than those of teruma.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚠️ Flogging for Eating Impure Produce — Who, When, and Why</h2>
+  
+  <table><tr><th>Category</th><th>Person Pure / Produce Impure</th><th>Person Impure / Produce Pure</th><th>Biblical Source</th></tr><tr><td>Teruma</td><td>NOT flogged (rabbinically forbidden but no lashes)</td><td>Forbidden; no flogging from Torah</td><td>No explicit verse for this scenario</td></tr><tr><td>Maaser Sheni</td><td>FLOGGED</td><td>Not flogged from this prohibition</td><td>Deut. 12:17 — 'You may not eat within your gates the tithe of your grain'</td></tr><tr><td>Bikkurim (First Fruits)</td><td>FLOGGED</td><td>Not flogged from this prohibition</td><td>Derived from maaser sheni (both listed together); treated identically</td></tr><tr><td>Paschal Lamb</td><td>Uncircumcised: flogged; pure person: permitted</td><td>Impure person: flogged (separate prohibition)</td><td>Explicit verses in Numbers 9 and Exodus 12</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 73 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Core Question:</strong> How do the three sacred agricultural categories — <em>teruma</em>, <em>bikkurim</em>, and <em>maaser sheni</em> — differ in their eating prohibitions?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; border-radius:6px; padding:8px;"><strong>Onen (Acute Mourner):</strong><br>Teruma ✓ may eat<br>Maaser sheni ✗ forbidden<br>Bikkurim — <em>R. Shimon: ✓; Rabbis: ✗</em></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; border-radius:6px; padding:8px;"><strong>Burning When Impure:</strong><br>Teruma ✓ benefit permitted<br>Maaser sheni ✗ forbidden<br>Bikkurim ✗ forbidden</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; border-radius:6px; padding:8px;"><strong>Eating Impure Produce:</strong><br>Teruma — not flogged<br>Maaser sheni — <strong>flogged</strong><br>Bikkurim — <strong>flogged</strong></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style=""><strong>Unresolved:</strong> Whether an uncircumcised man may eat <em>maaser sheni</em> — Rav Sheshet's argument from the mishna's silence was rejected; the question remains open (<em>teku</em>).</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 73a-73b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 73a-73b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../72/">← Daf 72</a><a href="../74/">Daf 74 →</a></div>
+</body>
+</html>

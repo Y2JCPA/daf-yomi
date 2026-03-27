@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 7 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 7</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות ז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚔️ Capital Punishment & Shabbat — the a fortiori debate<br>
+    📜 Positive Mitzva vs. Prohibition with Karet — the core question<br>
+    🦯 Leper's Guilt-Offering — yatza lidon b'davar hachadash<br>
+    🔗 Yibum & Forbidden Relations — the limiting word עמה<br>
+    ✨ Ulla's Principle — הותרה הותרה, Since Permitted, Permitted<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Can a Positive Mitzva Override a Prohibition?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Established rule:</strong> A positive mitzva (<em>עשה</em>) can override a regular prohibition (<em>לאו</em>)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Regular Prohibition</div><div class="flow-box result-good">✅ Positive mitzva <strong>overrides</strong><br><small>e.g., tzitzit thread overrides shatnez</small></div></div><div class="flow-col"><div class="flow-label">Prohibition + Karet (כרת)</div><div class="flow-box question">❓ Does positive mitzva override?<br><small>e.g., yibum vs. forbidden relations</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>Conclusion:</strong> No — a positive mitzva does <em>not</em> override a prohibition that carries <strong>karet</strong>. The word <strong>עמה</strong> limits yibum.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏛️ Does Executing a Convict Override Shabbat?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna (initial)</div><div class="speech">Temple service overrides Shabbat; murder overrides Temple service — therefore by kal va-chomer, execution must override Shabbat!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Tanna (retracts)</div><div class="speech">But wait — we said positive mitzvot override regular prohibitions. What about a prohibition derived from a positive commandment (לאו הבא מכלל עשה)?</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Shimi bar Ashi</div><div class="speech">The tanna was never claiming execution overrides Shabbat via the mitzva principle. He was only exploring a potential kal va-chomer that he then rejected.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Gemara (conclusion)</div><div class="speech">'Every one who profanes it shall surely be put to death' (Ex. 31:14) applies to all other labors — Shabbat is not overridden by the execution mitzva.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Term</strong> לאו הבא מכלל עשה — a prohibition derived implicitly from a positive commandment; treated as a lesser prohibition</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📊 Two Levels of Prohibition — Can a Positive Mitzva Override?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#fff">Regular Prohibition (לאו)</h3><ul><li>✅ Positive mitzva CAN override</li><li>No karet penalty attached</li><li>Example: tzitzit threads override shatnez prohibition</li><li>Lower level of severity</li></ul></div><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">Prohibition Carrying Karet (כרת)</h3><ul><li>❌ Positive mitzva CANNOT override</li><li>Extirpation (כרת) attached to violation</li><li>Example: forbidden relations in yibum context</li><li>Word עמה limits the mitzva of levirate marriage</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🦯 Leper's Guilt-Offering: The Novel-Matter Principle</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>General rule:</strong> All guilt-offerings require blood and sacrificial parts placed on the altar</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Exception singled out:</strong> Leper's guilt-offering — blood placed on <em>right thumb, right big toe, and right ear</em> (entirely new ruling)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Without restoration verse</div><div class="flow-box result-bad">❌ One might think altar placement is no longer required for leper's offering</div></div><div class="flow-col"><div class="flow-label">With restoration verse (Lev. 7:7)</div><div class="flow-box result-good">✅ 'As the sin-offering, so the guilt-offering' — altar placement still required</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Principle:</strong> When singled out for an entirely novel ruling (<em>יצא לדון בדבר החדש</em>), the case is removed from its generalization unless a verse explicitly restores it</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📜 Three Hermeneutical Principles on Daf 7</h2>
+  
+  <table><tr><th>Principle</th><th>Hebrew Name</th><th>Mechanism</th><th>Legal Effect</th><th>Example on This Daf</th></tr><tr><td>Singled out to teach about general category</td><td>יצא ללמד על הכלל</td><td>Item leaves general → its ruling applies back to entire class</td><td>New stringency applies to all items in category</td><td>Peace-offering: karet for eating while impure → extends to all offerings</td></tr><tr><td>Singled out for entirely new matter</td><td>יצא לדון בדבר החדש</td><td>Item leaves general → governed by novel rules only</td><td>Item loses connection to original generalization</td><td>Leper's guilt-offering: blood on thumb/toe replaces normal guilt-offering rules</td></tr><tr><td>Restoration to generalization</td><td>חזרה לכללו</td><td>Verse explicitly returns singled-out item back to general</td><td>Original rules of category restored</td><td>'As sin-offering, so guilt-offering' restores altar placement for leper's offering</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>✨ Ulla's Principle: הותרה הותרה</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">הואיל והותרה לצרעתו — הותרה (Since it was permitted for his leprosy — it is [fully] permitted)</div><div class="callout"><strong>Since It Was Permitted — It Is Fully Permitted</strong> A leper on his eighth day (day of purification) who also experienced a seminal emission may still enter the Temple to bring his offerings. Why? Because the Torah already permitted this leper to enter the Temple despite his leprous impurity. <strong>Since the door of permission was opened for one impurity, the additional impurity of the seminal emission does not close it.</strong> One established permission covers the additional complication — הואיל והותרה, הותרה.
+
+Rabbi Yoḥanan connects this to 'the new courtyard' (II Chron. 20:5) — he taught that Jehoshaphat innovated something new, indicating that novel rulings can be derived from such contextual clues.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 7 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Question:</strong> Does yibum (levirate marriage) override the prohibition on forbidden relations?</div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>Word עמה limits yibum:</strong> Levirate marriage does not apply where relations carry a karet prohibition</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="color:#2ecc71;font-weight:bold"><strong>Regular לאו:</strong><br>Positive mitzva overrides ✅</div></div><div class="flow-col"><div class="flow-box" style="color:#e74c3c;font-weight:bold"><strong>כרת prohibition:</strong><br>Positive mitzva does NOT override ❌</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style=""><strong>Hermeneutical support:</strong> Brother's wife was singled out from forbidden relations as an entirely <em>new matter</em> (יצא לדון בדבר החדש) — cannot use it to permit other forbidden relations</div><div class="flow-arrow">↓</div><div class="flow-box action" style="color:#9b59b6;font-weight:bold"><strong>Ulla's corollary — הותרה הותרה:</strong> Once a permission is established (leper entering Temple), additional impurities do not revoke it</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 7a-7b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 7a-7b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../6/">← Daf 6</a><a href="../8/">Daf 8 →</a></div>
+</body>
+</html>

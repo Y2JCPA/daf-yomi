@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 61 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚱️</div>
+  <h1>Yevamot 61</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות סא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚰️ Gentile Corpse Tumah — ohel impurity excluded, contact tumah remains<br>
+    💍 Pre-Appointment Betrothal — Yehoshua ben Gamla & Marta bat Baitos<br>
+    🚫 High Priest & Yibum — chalitza only, no levirate marriage<br>
+    👶 Aylonit & Minor — priestly marriage restrictions debated<br>
+    🌱 Peru U'Revu — Beit Shammai vs Beit Hillel on fulfillment<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Priestly Restrictions & Impurity Laws</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Do <strong>gentile corpses</strong> convey tumah through ohel (tent)?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Excluded from ohel</div><div class="flow-box result-good">Not called <em>adam</em> — Numbers 19:14 applies only to Jews</div></div><div class="flow-col"><div class="flow-label">Objection</div><div class="flow-box result-bad"><em>Nefesh adam</em> (Numbers 31:40) refers to gentile captives — they are called adam!</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Ravina's resolution:</strong> Excluded from ohel tumah but included in tumah by contact/carrying</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Priestly marriage laws:</strong> aylonit, minor, widow — restrictions and exceptions</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Peru u'revu:</strong> Beit Shammai = 2 males | Beit Hillel = 1 male + 1 female</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚰️ Do Gentile Graves Convey Ohel Tumah?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R. Shimon</div><div class="speech">Gentile graves do NOT convey tumah through a tent. Ezekiel 34:31 says 'you My sheep…are men [adam]' — only Jews are called <em>adam</em>, so Numbers 19:14 ('when a man [adam] dies in a tent') excludes gentiles.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Objector</div><div class="speech">Numbers 31:40 says 'nefesh adam' about Midianite captives — gentiles ARE called adam! And Numbers 31:19 says 'whoever has killed anyone, purify yourselves' — implying gentile corpses do convey tumah!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R. Shimon</div><div class="speech">The Jonah verse (4:11) mentioning 120,000 'adam' in Nineveh also poses a problem. These verses require explanation.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ravina</div><div class="speech">The real distinction is simpler: 'When a man [adam] dies in a <strong>tent</strong>' (Numbers 19:14) excludes gentiles from OHEL tumah specifically — but they still convey tumah by direct contact or carrying. No contradiction!</div></div></div><div class="callout" style="margin-top:20px"><strong>✅ Resolution</strong> Gentile corpses convey tumah by contact and carrying, but NOT through ohel (tent-based) transmission — Ravina</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>💍 High Priest's Pre-Appointment Betrothal</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rule:</strong> If a priest betroths a widow, then is appointed High Priest — he may complete the marriage</div><div class="process-arrow">↓</div><div class="process-step">Source: <em>'Shall he take for a wife'</em> (Leviticus 21:14) — inclusive phrasing covers widows whose kiddushin preceded appointment</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Case of Yehoshua ben Gamla:</strong> Betrothed Marta bat Baitos (a widow), then the king appointed him High Priest — the marriage was permitted</div><div class="process-arrow">↓</div><div class="process-step">⚠️ <strong>Rav Yosef:</strong> 'I see a conspiracy here' — Marta reportedly paid a <em>tarkav</em> of gold dinars to secure his appointment; he was appointed but not truly worthy</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Legal principle:</strong> Once betrothal (kiddushin) is validly established, a subsequent elevation in status does not void the permitted marriage</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🚫 High Priest Whose Brother Died Childless</h2>
+  
+  <div class="flowchart"><div class="flow-box question">High Priest's brother dies leaving no children — <strong>yibum obligation arises</strong></div><div class="flow-arrow">↓</div><div class="flow-box action">By <strong>Torah law</strong>: yibum would be <em>technically permitted</em> — the prohibition on widows has not yet attached</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">The Problem</div><div class="flow-box result-bad">After the <strong>first</strong> act of intercourse, she becomes his widow — and a High Priest <em>cannot</em> marry a widow!</div></div><div class="flow-col"><div class="flow-label">The Logic</div><div class="flow-box result-good">Rabbis prohibited the <strong>first</strong> act because it inevitably leads to the prohibited second act</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Final ruling:</strong> He performs <em>chalitza</em> only — yibum is forbidden by rabbinic decree</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🌱 Peru U'Revu: How Many Children Fulfill the Mitzva?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Beit Shammai</h3><ul><li>Fulfilled with <strong>two males</strong></li><li>Source: Moses — had two sons, Gershom and Eliezer, both male</li><li>The male line continues the family name and inheritance</li><li>No female child required for fulfillment</li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#ffffff">Beit Hillel</h3><ul><li>Fulfilled with <strong>one male and one female</strong></li><li>Source: 'Male and female He created them' (Genesis 5:2)</li><li>Mirrors the original creation of humanity</li><li>Both genders required to mirror God's act of creation</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>👶 Priestly Marriage Restrictions: Special Cases</h2>
+  
+  <table><tr><th>Case</th><th>Common Priest</th><th>High Priest</th><th>Authority / Reason</th></tr><tr><td>Aylonit (sexually underdeveloped)</td><td>Forbidden if already has wife & children</td><td>Forbidden</td><td>Cannot fulfill peru u'revu; R. Yehuda: always forbidden as zona</td></tr><tr><td>Minor girl</td><td>Forbidden (R. Eliezer)</td><td>Forbidden (R. Eliezer)</td><td>Fear she is aylonit; or may be seduced due to naïveté</td></tr><tr><td>Widow — betrothed BEFORE appointment</td><td>Permitted</td><td>Permitted</td><td>Lev. 21:14 inclusive; kiddushin predates elevated status</td></tr><tr><td>Widow — after appointment</td><td>Permitted</td><td>Forbidden</td><td>High Priest must marry only a virgin (Lev. 21:13)</td></tr><tr><td>Zona (certain converts, licentious intercourse)</td><td>Forbidden</td><td>Forbidden</td><td>Lev. 21:7 — explicit Torah prohibition for all priests</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 61 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Gentile corpse:</strong> Not called <em>adam</em> for ohel tumah purposes (Numbers 19:14)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Ohel tumah:</strong> ❌ Does NOT apply to gentile corpses</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Contact/carrying tumah:</strong> ✅ Still applies — Ravina's resolution</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>High Priest + prior betrothal to widow:</strong> Marriage permitted — kiddushin precedes appointment (Yehoshua ben Gamla)</div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>High Priest + brother's childless widow:</strong> Chalitza only — rabbinic decree prevents yibum (first act leads to prohibited widow status)</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Peru u'revu:</strong> Beit Shammai = 2 males (from Moses) | Beit Hillel = 1 male + 1 female (from Genesis 5:2) — <em>halakha follows Beit Hillel</em></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 61a-61b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 61a-61b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../60/">← Daf 60</a><a href="../62/">Daf 62 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 25 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📨</div>
+  <h1>Yevamot 25</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות כה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🗣️ Persistent Rumor — lasts one and a half days in a city<br>
+    📨 Get Agent — cannot marry the divorcée he enabled<br>
+    ⚔️ 'I Killed Him' — Rabbi Yehuda's testimony distinction<br>
+    🔓 Sage Releasing a Vow — cannot marry the freed woman<br>
+    ⚖️ Judge at Ḥalitza — may marry if part of a court<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📨 Three Prohibited Marriages</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Who Enabled Her New Status?</strong><br><small>Yevamot 25 — The Suspicion Principle</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Get Agent</div><div class="flow-box result-bad">Brings get from overseas → cannot marry the <em>divorcée</em></div></div><div class="flow-col"><div class="flow-label">Death Witness</div><div class="flow-box result-bad">Testifies husband died → cannot marry the <em>widow</em></div></div><div class="flow-col"><div class="flow-label">Vow Sage</div><div class="flow-box result-bad">Caused divorce via vow → cannot marry the <em>freed woman</em></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Unifying Reason:</strong> Each acted in an enabling role — suspicion arises that they acted with <em>ulterior motive</em> to marry the woman themselves</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">שְׁמוּעָה בָּעִיר — יוֹם וּמֶחֱצָה (אַבַּיֵי בְּשֵׁם אִמּוֹ)</div><div class="callout"><strong>🗣️ How Long Is a Persistent Rumor?</strong> Abaye said in the name of his mother: A rumor in the city lasts <strong>one and a half days (yom u'meḥatzah)</strong>. The Gemara qualifies: This applies only if the rumor did not cease spreading during that period. If it ceased and then resumed, it is considered a <em>new</em> rumor — not the original persistent one.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚔️ The Get Agent — Why Can He Not Marry?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Questioner</div><div class="speech">The mishna says the agent who brings a get from overseas may not marry the divorcée. Why is overseas significant? What about an agent who delivers locally?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Specifically overseas — because the court relies entirely on his declaration 'written and signed in my presence' to validate the get. He personally enabled this divorce. Suspicion arises that he orchestrated it to marry her himself.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Questioner</div><div class="speech">But similarly, when a witness testifies that the husband died, we also rely on him alone. Why then can he marry the widow? He too 'enabled' her freedom!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Not comparable. There, the woman herself is exacting in investigating her husband's death — she would not remarry on flimsy testimony. Here, the written get is tangible proof of the agent's involvement. The document itself is suspicious.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakhic Result</strong> The overseas get agent cannot marry the divorcée; an ordinary local witness may marry the widow.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚔️ Rabbi Yehuda vs. Rabbis: Forms of Death Testimony</h2>
+  
+  <table><tr><th>Statement by Witness</th><th>Rabbis' Ruling</th><th>Rabbi Yehuda's Ruling</th><th>Reason for Distinction</th></tr><tr><td>'I killed him'</td><td>✅ Accepted</td><td>❌ Rejected</td><td>Rabbi Yehuda: witness declares himself a rasha (wicked person) — self-disqualified</td></tr><tr><td>'We killed him'</td><td>✅ Accepted</td><td>✅ Accepted</td><td>Others involved can corroborate; he is one of many participants</td></tr><tr><td>Incident in Cappadocia</td><td>—</td><td>Proof for ruling</td><td>Bandit said 'we killed' — Sages acted on it; validates Rabbi Yehuda's distinction</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔓 Sage Who Ruled on a Vow: Two Outcomes</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1810"><h3 style="color:#e74c3c">Rendered Her FORBIDDEN</h3><ul><li>Sage refused to annul the vow</li><li>Her vow made her forbidden to her husband</li><li>Husband was forced to divorce her</li><li>❌ Sage MAY NOT marry her</li><li>Suspicion: he refused annulment in order to marry her himself</li></ul></div><div class="compare-box" style="border-top-color:#0d2818"><h3 style="color:#2ecc71">Rendered Her PERMITTED</h3><ul><li>Sage successfully annulled the vow</li><li>She was permitted to remain with her husband</li><li>She was later divorced or widowed for unrelated reasons</li><li>✅ Sage MAY marry her</li><li>No suspicion — he acted to preserve her marriage, not dissolve it</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Judge at Ḥalitza or Refusal — May He Later Marry?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Judge participated in ḥalitza or mi'un (refusal) proceeding</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">One of three judges on court</div><div class="flow-box result-good">✅ <strong>May marry her</strong><br>Functioned as part of a panel — no individual suspicion of ulterior motive</div></div><div class="flow-col"><div class="flow-label">Sole expert judge (dayyан yachid)</div><div class="flow-box action">⚠️ <strong>Analyzed separately</strong><br>Rav Ḥisda: a single expert may dissolve vows — same expertise permits him to conduct ḥalitza alone, but suspicion is heightened</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Contrast with witnesses:</strong> Witnesses who merely <em>signed</em> a get or bill of divorce may marry the woman — signing is not the same as personally enabling the separation</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 25 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2a2a3e;border:2px solid #c9a84c;border-radius:8px;padding:12px;text-align:center;"><strong>Did this person enable her new freedom?</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#0d2818;border:2px solid #2ecc71;border-radius:8px;padding:10px;"><strong>✅ May Marry</strong><br>• Annulled vow (preserved marriage)<br>• Acted as 1 of 3 judges<br>• Only signed the document<br>• Local get delivery (no validation role)</div></div><div class="flow-col"><div class="flow-box" style="background:#2c1810;border:2px solid #e74c3c;border-radius:8px;padding:10px;"><strong>❌ Cannot Marry</strong><br>• Brought get from overseas<br>• Testified husband died<br>• Refused to annul vow → divorce resulted</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a2a3e;border:2px solid #9b59b6;border-radius:8px;padding:12px;text-align:center;"><strong>Core Principle:</strong> <em>Ḥashad</em> (suspicion) disqualifies marriage when the person's action <strong>directly caused</strong> the woman's new availability — even if the act itself was entirely permissible</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 25a-25b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 25a-25b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../24/">← Daf 24</a><a href="../26/">Daf 26 →</a></div>
+</body>
+</html>

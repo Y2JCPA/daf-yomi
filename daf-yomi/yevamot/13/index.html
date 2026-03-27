@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 13 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 13</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות יג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Beit Shammai vs. Beit Hillel — rival wives of forbidden relatives<br>
+    🚫 Six severe forbidden relatives — never permitted to the family<br>
+    📜 Linguistic debate over 'haḥutza' — Deuteronomy 25:5<br>
+    🔗 Ein issur chal al issur — Rava's principle on overlapping prohibitions<br>
+    🤝 Lo Titgodedu — the prohibition against splitting into factions<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ May Rival Wives of Forbidden Relatives Enter Levirate Marriage?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">Rival wives ARE permitted. 'The wife of the dead man shall not be married outside' (Deut. 25:5) — 'outside' implies: she who goes outside is forbidden. The rival wife, who does not go outside, is therefore permitted for levirate marriage.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">Rival wives are FORBIDDEN. The word 'outside' teaches only that betrothal (kiddushin) is invalid with a yevama — not that rival wives are permitted. The rival wife stands in place of the forbidden relative and is equally forbidden.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">We derive betrothal-invalidity from 'to one not of his kin' — so 'outside' must teach something else: that rival wives ARE permitted. Also: ein issur chal al issur — the erva prohibition precedes the levirate bond, so she was never truly a yevama.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">We also derive betrothal-invalidity from 'to one not of his kin.' Then 'outside' teaches a further ruling: the rival wife of a rival wife is also exempt from levirate marriage. The chain of exemption extends.</div></div></div><div class="callout" style="margin-top:20px"><strong>Peace Amid Dispute</strong> Despite this fundamental disagreement, Beit Shammai did not refrain from marrying women of Beit Hillel, nor did Beit Hillel refrain from Beit Shammai — a model of machloket l'shem shamayim.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Beit Shammai vs. Beit Hillel: Rival Wives in Detail</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fadbd8"><h3 style="color:#c0392b">Beit Shammai — Rival Wives Permitted</h3><ul><li>Rival wife of forbidden relative MAY perform yibbum</li><li>Source: 'haḥutza' — she who does not go outside may enter</li><li>Also: ein issur chal al issur — levirate bond never applied to her</li><li>If she performed ḥalitza → DISQUALIFIED from priesthood (ḥalitza was fully valid)</li><li>If she entered levirate marriage → FIT for priesthood (marriage was valid)</li></ul></div><div class="compare-box" style="border-top-color:#d6eaf8"><h3 style="color:#2471a3">Beit Hillel — Rival Wives Forbidden</h3><ul><li>Rival wife of forbidden relative is EXEMPT — no yibbum, no ḥalitza required</li><li>Source: rival wife stands in place of the erva — same prohibition applies</li><li>If she performed ḥalitza → FIT for priesthood (ḥalitza was not fully valid)</li><li>If she entered levirate marriage → DISQUALIFIED from priesthood</li><li>Chain extends: rival wife of rival wife is also exempt</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🚫 Six Severe Forbidden Relatives (Mishna 13b)</h2>
+  
+  <table><tr><th>Forbidden Relative</th><th>Hebrew</th><th>Nature of Severity</th></tr><tr><td>His mother</td><td>אִמּוֹ</td><td>Forbidden to him and to all brothers — permanent, unconditional prohibition</td></tr><tr><td>His father's wife (stepmother)</td><td>אֵשֶׁת אָבִיו</td><td>Forbidden even after the father's death — no levirate ever applies</td></tr><tr><td>His father's sister (paternal aunt)</td><td>אֲחוֹת אָבִיו</td><td>Blood relation through father — forbidden to entire family</td></tr><tr><td>His paternal half-sister</td><td>אֲחוֹתוֹ מֵאָבִיו</td><td>More severe than maternal half-sister — paternal line carries greater prohibition</td></tr><tr><td>Wife of his father's brother</td><td>אֵשֶׁת אֲחִי אָבִיו</td><td>Uncle's wife — no levirate obligation applies; may only marry others</td></tr><tr><td>Wife of his paternal half-brother</td><td>אֵשֶׁת אָחִיו מֵאָבִיו</td><td>Never enters levirate with surviving brothers — permanently forbidden to family</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔗 Rava's Principle: Ein Issur Chal al Issur</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Two brothers:</strong> Brother A married to Sister 1 — levirate bond exists between Sister 2 and Brother B <em>(wife's sister prohibition also applies to Brother B)</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Brother A married Sister 1 FIRST, then Brother B married Sister 2</div><div class="flow-box action">When Brother A dies: Sister 2 was bound to Brother B as yevama BEFORE erva applied. The prohibition of wife's sister seeks to take effect — but can it?</div></div><div class="flow-col"><div class="flow-label">Brother B married Sister 2 FIRST, then Brother A married Sister 1</div><div class="flow-box action">When Brother A dies: erva (wife's sister) prohibition existed from the start. The levirate bond of 'brother's wife' never came to apply — she was always erva.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Rava's ruling:</strong> Since the prohibition of <em>brother's wife</em> never took effect on her (blocked by erva), she has NO levirate obligation — and therefore her rival wife needs no exemption either. <small>Ein issur chal al issur min haTorah.</small></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🤝 Lo Titgodedu — Do Beit Shammai and Beit Hillel Violate It?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">How could Beit Shammai and Beit Hillel maintain different practices simultaneously? 'Lo titgodedu' (Deut. 14:1) — do not become numerous factions (agudot agudot). The Jewish people must present unified halakhic practice!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech">The prohibition applies to a single court in a single city. Two different courts in two different cities may issue different rulings — that is legitimate halakhic diversity, not forbidden factionalism.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">But Beit Shammai and Beit Hillel were in the SAME city! Members of the same community followed different opinions on rival wives, Megilla reading dates, and other matters. Is that not splitting into factions?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbi Yoḥanan</div><div class="speech">Different dates for Megilla reading: villagers read on the 11th-13th, townspeople on the 14th, walled cities on the 15th. This is not factionalism — it is legitimate variation rooted in the original Purim enactment, not contradictory rulings.</div></div></div><div class="callout" style="margin-top:20px"><strong>לֹא תִתְגֹּדְדוּ — Deuteronomy 14:1</strong> Literally 'do not cut yourselves' (mourning rite). Reinterpreted: do not become separate agudot (factions) — different groups following contradictory halakhot in the same locale, creating the appearance of two Torot.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📋 When Does a Rival Wife Become Permitted? (Mishna 13a)</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Initial status:</strong> Brother dies leaving a forbidden relative (e.g., wife's sister) and her rival wife. The rival wife is <em>forbidden</em> — she may not perform yibbum nor is ḥalitza required.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Event A — Forbidden relative dies:</strong> She is no longer anyone's wife. The rival wife's status changes — she is now an ordinary yevama, obligated in ḥalitza or yibbum.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Event B — Forbidden relative performs mi'un (refusal):</strong> A minor who was married by her mother/brother can refuse. This retroactively nullifies the marriage — as if she were never married. Rival wife becomes permitted.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Event C — Forbidden relative is divorced:</strong> From the moment of divorce she is no longer his wife. The rival wife transitions from forbidden to obligated for levirate marriage.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Gemara's challenge:</strong> The mishna seems contradicted by another mishna (30a) involving three brothers. The resolution: one mishna holds that the levirate bond is established at time of marriage; the other holds it is established at time of death.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rava's harmonization:</strong> Both mishnayot reflect the same opinion, using the literary style of 'this goes without saying, and it is unnecessary to say that' — presenting the obvious case first, then the non-obvious.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 13 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e; border:2px solid #4a90d9"><strong>Brother dies</strong> — leaves yevama(ot)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; border:2px solid #e74c3c"><strong>Wife = Forbidden Relative</strong><br><small>(erva — e.g., wife's sister)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; border:2px solid #2ecc71"><strong>Wife = Permitted Woman</strong><br><small>(ordinary yevama)</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; border:2px solid #c9a84c"><strong>Beit Hillel:</strong> Rival wife EXEMPT — no yibbum, no ḥalitza<br><strong>Beit Shammai:</strong> Rival wife PERMITTED for yibbum</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; border:2px solid #2ecc71"><strong>Both schools:</strong> Yevama must perform ḥalitza or yibbum</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e; border:2px solid #9b59b6"><strong>Lo Titgodedu:</strong> Different rulings by different courts in different cities = permitted. Same city, contradictory factions = forbidden. Beit Shammai and Beit Hillel — peaceful coexistence as a model.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 13a-13b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 13a-13b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../12/">← Daf 12</a><a href="../14/">Daf 14 →</a></div>
+</body>
+</html>

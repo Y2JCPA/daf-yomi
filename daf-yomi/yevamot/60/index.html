@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 60 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 60</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות ס׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💍 High Priest Marriage Prohibitions — virgin, grown woman, raped or seduced<br>
+    👶 Ḥalal Status — does a positive-mitzva violation produce a ḥalal child?<br>
+    ⚱️ Priestly Impurity for Sister — betrothed, divorced, grown woman debates<br>
+    🔄 Convert Under Three Years Old — Rabbi Shimon ben Yoḥai's ruling<br>
+    ✨ The Frontplate Miracle — supernatural verification of virginity<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Two Defining Disputes of Daf 60</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Eliezer ben Ya'akov</div><div class="speech">The child of a High Priest's marriage to a raped or seduced woman is a <strong>ḥalal</strong> — the phrase 'a virgin of his own people shall he take' means all violations of his marriage law produce ḥalal status, including positive-commandment violations</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">The Sages</div><div class="speech">The word <em>אֵלֶּה</em> ('these shall he not take') ends the category — only <strong>negative-commandment</strong> violations (widow, divorcée, ḥalala, zona) produce ḥalal status; a positive-commandment violation does <em>not</em></div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Meir & Rabbi Yehuda</div><div class="speech">A priest <strong>must</strong> become impure for his betrothed sister even if divorced — 'his virgin sister' includes any woman once called his virgin sister; grown women and accidentally-torn-hymen women are also included</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Rabbi Yosei & Rabbi Shimon</div><div class="speech">A priest <strong>may not</strong> become impure for his betrothed sister once divorced — Rabbi Shimon's rule: <em>if she is fit for a High Priest, yes; if not fit, no</em>. 'His virgin sister' excludes raped, seduced, and accidentally-torn-hymen women</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Tension</strong> Does 'virgin' in priestly law mean biologically intact, or legally fit? The answer governs both marriage prohibitions and impurity obligations across the entire daf.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>💍 High Priest Marriage: Permitted or Forbidden?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A woman seeks to marry the <strong>Kohen Gadol</strong> — what is her status?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Young virgin (hymen intact)</div><div class="flow-box result-good"><strong>Permitted</strong> — the ideal wife for a High Priest (Lev. 21:13–14)</div></div><div class="flow-col"><div class="flow-label">Grown woman (בּוֹגֶרֶת)</div><div class="flow-box result-good"><strong>Permitted</strong> — 'she will eventually be a grown woman <em>under him</em>' while already married</div></div><div class="flow-col"><div class="flow-label">Hymen torn accidentally (not by a man)</div><div class="flow-box result-good"><strong>Permitted</strong> — 'who has had no man' excludes only intercourse with a man, not accidents</div></div><div class="flow-col"><div class="flow-label">Raped or seduced by another man</div><div class="flow-box result-bad"><strong>Forbidden</strong> — positive-commandment prohibition; marriage valid but must divorce (Lev. 21:14)</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>👶 Rav Ashi's Reframing: What Produces a Ḥalal?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ashi</div><div class="speech">The true dispute is not about Rabbi Elazar's view — it is whether a <strong>positive-commandment</strong> violation (e.g., High Priest marrying a raped woman) produces ḥalal offspring at all</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Eliezer ben Ya'akov</div><div class="speech">'These shall he not take' — the word <em>אֵלֶּה</em> ends the negative-commandment list, but the verse continues: 'a virgin of his own people shall he <em>take</em>' — this positive command means violating it also produces a ḥalal</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">The Sages</div><div class="speech">The word <em>אֵלֶּה</em> concludes the matter entirely. Ḥalal status arises only from the listed categories: widow, divorcée, ḥalala, zona. A raped/seduced woman — forbidden only by a positive mitzva — does <strong>not</strong> produce a ḥalal</div></div><div class="debate-line right"><div class="speaker" style="background:#7f8c8d">Gemara Note</div><div class="speech">Rabbi Eliezer ben Ya'akov's teachings are described as <em>קַב וְנָקִי</em> — 'a kav but clean': few in number but all accepted as authoritative halakha — yet here the Sages disagree with him</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Verse — Leviticus 21:14</strong> אַלְמָנָה וּגְרוּשָׁה וַחֲלָלָה זֹנָה אֶת-אֵלֶּה לֹא יִקָּח — 'A widow, divorcée, ḥalala, zona — <em>these</em> shall he not take; but a virgin of his own people shall he take'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚱️ Must a Priest Become Impure for His Sister?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#ffffff">Rabbi Meir & Rabbi Yehuda</h3><ul><li>Must become impure for betrothed sister ✓</li><li>Must become impure even if she was later divorced ✓</li><li>'His virgin sister' = includes grown woman (partial virgin still counts)</li><li>'Who has had no man' only excludes accidental tearing</li><li>A grown woman's status is derived from the word 'virgin' itself</li><li>Derivation: 'to him' includes woman whose hymen was torn accidentally</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Rabbi Yosei & Rabbi Shimon</h3><ul><li>May NOT become impure for betrothed-then-divorced sister ✗</li><li>'His virgin sister' excludes raped, seduced, accidentally torn ✗</li><li>'Who has had no man' excludes even betrothal alone (R. Yosei)</li><li>Rabbi Shimon: 'to him' includes grown woman (one inclusion only)</li><li>Rabbi Shimon's rule: fit for High Priest → impurity; not fit → no impurity</li><li>A divorced woman is never fit for a High Priest, so no obligation</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔄 Rabbi Shimon ben Yoḥai: The Convert Under Three</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כָּל אִשָּׁה יֹדַעַת אִישׁ לְמִשְׁכַּב זָכָר הֲרֹגוּ — כָּל הָרְאוּיָה לְבִיאַת אִישׁ (במדבר לא:יז)</div><div class="callout"><strong>A Foundational Ruling for Priestly Marriage</strong> Rabbi Shimon ben Yoḥai derives from Numbers 31:17–18 that a <strong>female convert who converted before age three years and one day</strong> may marry a priest.<br><br><strong>The Verse:</strong> 'Kill every woman who has known man by lying with him; but every young woman that has not known man — keep alive for yourselves.' The phrase <em>יֹדַעַת אִישׁ</em> means <em>fit for intercourse</em>, not actual experience. A girl under three years is not halachically capable of such fitness — so she is never disqualified.<br><br><strong>The Frontplate Miracle (Numbers 31):</strong> When daughters of Midian passed before the <em>tzitz</em> (the golden frontplate), girls who were fit shone brightly while those who were disqualified turned pale-faced. This miraculous verification was used in practice.<br><br><strong>Halakha:</strong> Rabbi Ya'akov bar Idi said in the name of Rabbi Yehoshua ben Levi: <em>the halakha follows Rabbi Shimon ben Yoḥai</em> — a convert under three may marry a priest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>✨ Impurity for Sister — Complete Summary Chart</h2>
+  
+  <table><tr><th>Sister's Status</th><th>R. Meir & Yehuda</th><th>R. Yosei</th><th>R. Shimon</th></tr><tr><td>Betrothed virgin (never divorced)</td><td>Must ✓</td><td>Must ✓</td><td>Must ✓</td></tr><tr><td>Betrothed, then divorced</td><td>Must ✓</td><td>May NOT ✗</td><td>May NOT ✗</td></tr><tr><td>Raped or seduced</td><td>Must ✓</td><td>May NOT ✗</td><td>May NOT ✗</td></tr><tr><td>Hymen torn accidentally (non-human cause)</td><td>Must ✓</td><td>May NOT ✗</td><td>May NOT ✗</td></tr><tr><td>Grown woman (בּוֹגֶרֶת — past bloom)</td><td>Must ✓</td><td>Must ✓</td><td>Must ✓</td></tr><tr><td>Convert who converted under 3 years old</td><td>—</td><td>—</td><td>Fit for priest; impurity applies ✓</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 60 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:white;font-weight:bold"><strong>High Priest's marriage law</strong> — forbidden to marry widow, divorcée, ḥalala, zona, raped/seduced woman (Lev. 21:14)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white"><strong>R. Eliezer ben Ya'akov:</strong> child of raped/seduced woman is a ḥalal — positive mitzva violation counts</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white"><strong>The Sages:</strong> child is NOT a ḥalal — only negative-commandment violations produce ḥalal status</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:white"><strong>Priestly impurity for sister</strong> — R. Meir/Yehuda: must for all sisters; R. Yosei/Shimon: only if she is fit for a High Priest</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#1a1a1a;font-weight:bold"><strong>R. Shimon ben Yoḥai:</strong> convert under three years = full virgin; halakha follows this ruling — she may marry a priest</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 60a-60b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 60a-60b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../59/">← Daf 59</a><a href="../61/">Daf 61 →</a></div>
+</body>
+</html>

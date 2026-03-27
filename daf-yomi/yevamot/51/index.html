@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 51 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⛓️</div>
+  <h1>Yevamot 51</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות נא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Get After Get — Rabban Gamliel's ruling on sequential bills of divorce<br>
+    💍 Maamar After Maamar — effectiveness of sequential levirate betrothal<br>
+    ⚖️ Zikah Debate — is the levirate bond substantial?<br>
+    🔗 Abaye's Resolution — why the third act sometimes takes effect<br>
+    👥 Five Authorities — who holds maamar fully acquires the yevama<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Rabban Gamliel vs. the Rabbis: Sequential Acts in Yibbum</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabban Gamliel</div><div class="speech">A <em>get</em> is not effective after a <em>get</em>, and a <em>maamar</em> is not effective after a <em>maamar</em>. Each act applies only once to a given <em>yevama</em> — not once per brother.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">The Rabbis</div><div class="speech">A <em>get</em> after a <em>get</em> IS effective! Every brother holds independent levirate rights over each <em>yevama</em>, so each brother's act takes full legal effect.</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Abaye</div><div class="speech">Rabban Gamliel is NOT uncertain — he knows a <em>get</em> precludes and a <em>maamar</em> acquires. The dispute is structural: acts apply once per <em>yevama</em> (Rabban Gamliel) vs. once per brother (Rabbis).</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rabbi Yoḥanan</div><div class="speech">Rabban Gamliel, Beit Shammai, Rabbi Shimon, ben Azzai, and Rabbi Neḥemya all agree: <em>maamar</em> (מאמר) acquires the <em>yevama</em> as a full-fledged acquisition, like regular betrothal.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> When one yavam performs sequential acts (get or maamar) with multiple yevamot — or multiple yevamin with one yevama — which acts are legally effective, and what obligations remain?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📋 Get After Get — Two Yevamot, One Yavam</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Two <em>yevamot</em></strong> fall before <strong>one <em>yavam</em></strong> (שתי יבמות לפני יבם אחד)</div><div class="flow-arrow">↓</div><div class="flow-box action">He gives a <em>get</em> (גט) to <strong>Yevama A</strong></div><div class="flow-arrow">↓</div><div class="flow-box action">He gives a <em>get</em> to <strong>Yevama B</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabban Gamliel</div><div class="flow-box result-good"><em>Ḥalitza</em> with <strong>first</strong> only; forbidden to her relatives; <strong>permitted</strong> to marry relatives of Yevama B (second <em>get</em> = no effect)</div></div><div class="flow-col"><div class="flow-label">The Rabbis</div><div class="flow-box result-bad">Forbidden to relatives of <strong>both</strong>; must perform <em>ḥalitza</em> with one of them (each <em>get</em> fully effective)</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔗 Abaye's Resolution: Why Does the Third Act Work?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">The Problem</div><div class="speech">If Rabban Gamliel is <em>uncertain</em> about both <em>get</em> and <em>maamar</em>, why does he concede that a <em>get</em> IS effective after a <em>maamar</em>? The uncertainty should block all third acts!</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Abaye's Answer</div><div class="speech">Rabban Gamliel holds with <em>certainty</em>: (1) a <em>get</em> definitively precludes levirate marriage, (2) a <em>maamar</em> definitively acquires. The restriction is Sages' enactment — each act applies once per <em>yevama</em>, not once per brother.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">The Rabbis</div><div class="speech">The Sages enacted that <strong>each brother</strong> has independent acquisition and nullification rights over <em>each</em> yevama. Therefore every brother's <em>get</em> and every brother's <em>maamar</em> take full effect.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Abaye (continued)</div><div class="speech">Intercourse after a disqualifying act (invalid <em>biah</em>) creates a <strong>stronger</strong> obligation for <em>ḥalitza</em> than a mere <em>maamar</em> — this too is consistent with Rabban Gamliel's position.</div></div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Principle</strong> The debate is not epistemic (uncertainty) but structural: how many times may levirate acts apply — once per yevama, or once per yavam-brother?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👥 Rabbi Yoḥanan: Five Authorities — Maamar Is a Full Acquisition</h2>
+  
+  <table><tr><th>Authority</th><th>Source Text</th><th>The Key Case</th><th>Implication</th></tr><tr><td>Rabban Gamliel</td><td>Baraita (Daf 51a)</td><td>Get is effective after maamar — proves maamar acquired; otherwise get would be superfluous</td><td>Maamar = full קידושין</td></tr><tr><td>Beit Shammai</td><td>Mishna (three brothers)</td><td>Two brothers married two sisters; one single — Beit Shammai permits yibbum with the survivor</td><td>Maamar binds like betrothal</td></tr><tr><td>Rabbi Shimon</td><td>Mishna (96b)</td><td>Boy aged 9+1 day had relations with yevama; second brother does same — second's act takes effect</td><td>Maamar acquires fully</td></tr><tr><td>Ben Azzai</td><td>Baraita</td><td>Maamar effective after maamar for two yevamin / one yevama; NOT for one yavam / two yevamot</td><td>Asymmetric acquisition rule</td></tr><tr><td>Rabbi Neḥemya</td><td>Baraita</td><td>Holds maamar acquires fully — consistent with all others in Rabbi Yoḥanan's list</td><td>Maamar = full acquisition</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ Is Zikah (זיקה) — the Levirate Bond — Substantial?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Zikah IS Substantial (יש זיקה)</h3><ul><li>The levirate bond creates a real halakhic link requiring formal dissolution</li><li>Shmuel's ruling: ḥalitza is biblically required to sever the bond</li><li>Rabba bar Rav Huna's statement aligns with this view</li><li>Implies: two yevamot both need ḥalitza — bond is substantial for each</li><li>The Rabbis appear to hold this view (inferred from requiring ḥalitza with both)</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Zikah Is NOT Substantial (אין זיקה)</h3><ul><li>The levirate bond is a weak, non-binding connection</li><li>Rabban Gamliel's ruling implies zikah is not substantial</li><li>ḥalitza is still required — as a rabbinic safeguard, not biblical law</li><li>Rabba bar Rav Huna clarifies: BOTH Rabban Gamliel AND Rabbis hold zikah is not substantial</li><li>His own prior statement was merely presenting the minority opinion</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>💍 Maamar After Maamar: Step-by-Step Ruling</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Setup:</strong> Two <em>yevamot</em> fall before one <em>yavam</em> — both have levirate obligations to him</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 1:</strong> Yavam performs <em>maamar</em> (מאמר — levirate betrothal) with Yevama A, giving her money or document of betrothal</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 2:</strong> Yavam then performs <em>maamar</em> with Yevama B</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rabban Gamliel rules:</strong> Second <em>maamar</em> has NO effect — give a <em>get</em> to Yevama A (acquired by first maamar), perform <em>ḥalitza</em> with her; forbidden to her relatives; <strong>permitted</strong> to marry relatives of Yevama B</div><div class="process-arrow">↓</div><div class="process-step"><strong>The Rabbis rule:</strong> Both <em>maamarim</em> are effective — give a <em>get</em> to <em>both</em>; must perform <em>ḥalitza</em> with one of them; forbidden to relatives of <strong>both</strong></div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Key principle:</strong> Subsequent invalid intercourse (ביאה פסולה) creates a stronger <em>ḥalitza</em> obligation than <em>maamar</em> alone — this remains consistent across opinions</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 51 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2a2a4a;border:2px solid #4a90d9;"><strong>Situation:</strong> Multiple <em>yevamot</em> or <em>yevamin</em> — sequential <em>get</em> or <em>maamar</em> performed</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1a5a;border:2px solid #9b59b6;"><strong>Rabban Gamliel</strong><br>Each act applies <em>once per yevama</em><br>Second act on same yevama = no effect<br><small>→ ḥalitza with first only</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a5a;border:2px solid #4a90d9;"><strong>The Rabbis</strong><br>Each brother has independent rights<br>Each act fully effective per brother<br><small>→ ḥalitza required for both</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#1a4a2a;border:2px solid #2ecc71;"><strong>Abaye clarifies:</strong> Rabban Gamliel is not in doubt — <em>get</em> definitely precludes, <em>maamar</em> definitely acquires. The dispute is structural, not epistemic.</div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#4a3a1a;border:2px solid #c9a84c;"><strong>Rabbi Yoḥanan:</strong> Five authorities (Rabban Gamliel, Beit Shammai, Rabbi Shimon, ben Azzai, Rabbi Neḥemya) all hold <em>maamar</em> acquires the <em>yevama</em> as a full <strong>קידושין</strong></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 51a-51b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 51a-51b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../50/">← Daf 50</a><a href="../52/">Daf 52 →</a></div>
+</body>
+</html>

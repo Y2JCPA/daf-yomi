@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 21 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔒</div>
+  <h1>Yevamot 21</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות כא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Torah Hints for Sheniyot — five sages, five derivations<br>
+    ⚖️ Measures vs. Relations — which transgression is harsher?<br>
+    🌳 Orchard Parable — guard from outside for full protection<br>
+    📋 Secondary Forbidden List — the baraita's enumeration<br>
+    🔚 Four Women with a Conclusion — Rav's limiting tradition<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📜 Five Derivations for Secondary Forbidden Relationships</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1e2d40"><h3 style="color:#c9a84c">Rava</h3><ul><li>'ha'el' (these) in Lev. 18:27</li><li>Linked to 'eilei' = mighty/harsh</li><li>Torah hints at sheniyot severity</li></ul></div><div class="compare-box" style="border-top-color:#1e2d40"><h3 style="color:#4a90d9">Rav Yehuda</h3><ul><li>Ecclesiastes 12:9</li><li>Solomon 'weighed and sought out'</li><li>He built protective fences</li></ul></div><div class="compare-box" style="border-top-color:#1e2d40"><h3 style="color:#9b59b6">Rabbi Oshaya</h3><ul><li>Proverbs 4:15</li><li>'Avoid it, pass not by it'</li><li>Distance from all forbidden acts</li></ul></div><div class="compare-box" style="border-top-color:#1e2d40"><h3 style="color:#e67e22">Rav Kahana</h3><ul><li>Lev. 18:30: 'ushmartem'</li><li>'Protect My charge'</li><li>Add a safeguard to My safeguard</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Which Is More Severe — Dishonest Measures or Forbidden Relations?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Levi</div><div class="speech">The punishment for dishonest measures is MORE severe than for forbidden relations — because one who commits forbidden relations CAN repent, but one who uses false weights cannot find all his anonymous victims to return their money!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But Rava used 'ha'el' in the forbidden-relations section to signal special harshness — implying sheniyot. Does Rabbi Levi contradict this by saying measures are harsher?</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Resolution</div><div class="speech">No contradiction. 'eleh' also appears in the forbidden-relations section itself (Lev. 18:29). The word 'ha'el' in 18:27 adds something extra — it hints at the rabbinic sheniyot beyond the Torah prohibitions.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Levi</div><div class="speech">Agreed — both can be true. Measures are harder to repent for (victims untraceable), while 'ha'el' still marks the forbidden-relations section as the locus for sheniyot.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Distinction</strong> Forbidden relations: victim is known → restitution/repentance possible. Dishonest measures: victims anonymous → full repentance structurally blocked → therefore uniquely severe.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🌳 Rav Ashi's Orchard Parable — Why Distance Matters</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">סוּר מֵעָלֶיהָ וַעֲבֹר — 'Avoid it, pass not by it' (Proverbs 4:15)</div><div class="callout"><strong>The Orchard Guard</strong> A man guarding an orchard:<br><br><strong>From the OUTSIDE</strong> → all of it is protected, since no one can enter without passing him<br><strong>From the INSIDE</strong> → only the plot directly in front of him is protected<br><br>So too with sheniyot: by keeping distance from acts <em>near</em> the prohibition (secondary relationships), one protects against ever reaching the primary Torah violation itself.<br><br>This is why Rabbi Oshaya's verse (<em>Proverbs 4:15</em>) — 'Avoid it, pass not by it' — is the ideal source: it commands preemptive distancing.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📋 Secondary Forbidden Relationships — From the Baraita</h2>
+  
+  <table><tr><th>Relationship (sheniyah)</th><th>Connection to Self</th><th>Level</th></tr><tr><td>Mother's mother</td><td>Maternal grandmother</td><td>Rabbinic</td></tr><tr><td>Father's mother</td><td>Paternal grandmother</td><td>Rabbinic</td></tr><tr><td>Father's father's wife</td><td>Paternal step-grandmother</td><td>Rabbinic</td></tr><tr><td>Mother's father's wife</td><td>Maternal step-grandmother</td><td>Rabbinic</td></tr><tr><td>Wife of father's maternal half-brother</td><td>Uncle's wife (half-uncle)</td><td>Rabbinic</td></tr><tr><td>Stepson's wife</td><td>Wife of one's wife's son</td><td>Rabbinic</td></tr><tr><td>Stepson's daughter</td><td>Daughter of one's wife's son</td><td>⚠️ Torah law! Not merely rabbinic</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔚 Rav's Tradition: Four Women Who Have a Conclusion</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>What is 'a conclusion' (yesh lahen sof)?</strong> The prohibition applies to that specific woman but does <em>not</em> extend further up the generational chain or to parallel cases — the decree has a defined limit.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>His daughter-in-law</strong> is forbidden by Torah (Lev. 18:15) — so Rav must mean his <em>son's</em> daughter-in-law. Rav Ḥisda explains: she was decreed rabbinic to prevent confusion with one's own daughter-in-law (the Torah prohibition). The decree stops there — not son's son's daughter-in-law.</div><div class="process-arrow">↓</div><div class="process-step"><strong>His father's father's wife</strong> — extends one generation beyond the Torah prohibition (father's wife), but has a conclusion: does not extend to great-grandfather's wife.</div><div class="process-arrow">↓</div><div class="process-step"><strong>His mother's father's wife</strong> — parallel to above on the maternal side; also has a conclusion.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Ze'eiri adds a fourth:</strong> Wife of father's maternal half-brother. <em>Why does Rav omit it?</em> It might be confused with the wife of a father's <em>paternal</em> half-brother, which is a Torah prohibition — dangerous to mention without distinction.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Ze'eiri's counter:</strong> He is not concerned about confusion because one frequently visits one's father's father's home (where the paternal uncle lives) but rarely visits one's mother's household (where the maternal uncle lives) — so the two cases feel distinct in practice.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔍 Is the Wife of One's Mother's Maternal Half-Brother Forbidden?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Wife of father's <strong>paternal</strong> half-brother = forbidden by <strong>Torah</strong> (Lev. 18:16 — uncle's wife)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Sages decreed: wife of father's <strong>maternal</strong> half-brother = <strong>rabbinic sheniyah</strong></div><div class="flow-arrow">↓</div><div class="flow-box question">Question: Does the same logic extend to wife of mother's <strong>maternal</strong> half-brother?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Safra objects</div><div class="flow-box result-bad">She herself (mother's <em>paternal</em> half-brother's wife) is already only rabbinic. Shall we now decree upon a decree?</div></div><div class="flow-col"><div class="flow-label">Rava responds</div><div class="flow-box result-good">Not a decree upon a decree — the full pattern on the father's side (Torah + rabbinic) should be mirrored on the mother's side. The structure itself requires it.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Conclusion:</strong> Rav Yehuda bar Sheila's principle from Eretz Yisrael — 'For every woman forbidden by Torah, the Sages forbade her parallel on the other side' — confirms she IS forbidden as a sheniyah</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 21 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#2c3e50;border:2px solid #c9a84c"><strong>Torah Forbidden Relationships</strong><br><small>Explicitly prohibited — Leviticus 18</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2c3e50;border:2px solid #4a90d9"><strong>Rabbinic Sheniyot</strong><br><small>One degree removed; protective fence around Torah law</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2535;border:1px solid #c9a84c"><strong>Rava:</strong> 'ha'el' hints at harshness</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2535;border:1px solid #9b59b6"><strong>Rabbi Oshaya:</strong> 'Avoid it, pass not by it'</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2535;border:1px solid #e67e22"><strong>Rav Kahana:</strong> 'Protect My charge' = add protection</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a3520;border:2px solid #2ecc71"><strong>Abaye's Challenge Resolved:</strong> All verses are <em>asmakhta</em> — they support, not source, the rabbinic rule<br><small>Sheniyot remain rabbinic; no verse elevates them to Torah law</small></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2c2040;border:2px solid #9b59b6"><strong>Four Women with a Conclusion</strong> (Rav)<br><small>The sheniyot have defined limits — the decree does not extend indefinitely up the generational chain</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 21a-21b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 21a-21b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../20/">← Daf 20</a><a href="../22/">Daf 22 →</a></div>
+</body>
+</html>

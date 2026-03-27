@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 40 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 40</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות מ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Ḥalitza & Inheritance — who takes the estate<br>
+    👴 Rabbi Yehuda vs. Sages — father's priority claim<br>
+    🤝 Yavam as Firstborn — the inheritance analogy<br>
+    🚫 Forbidden Relatives After Ḥalitza — rabbinic decree<br>
+    🔍 Secondary Prohibitions — do shniyot apply to ḥalutza?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Ḥalitza: Inheritance & Forbidden Relationships</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Brother dies</strong> leaving a widow (yevama)</div><div class="flow-arrow">↓</div><div class="flow-box question">Which levirate act does the yavam perform?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yibbum (levirate marriage)</div><div class="flow-box result-good"><strong>Yavam inherits</strong> full estate<br><small>"He shall succeed in the name of his dead brother"</small></div></div><div class="flow-col"><div class="flow-label">Ḥalitza (release ceremony)</div><div class="flow-box action"><strong>Equal share</strong> among all brothers<br><small>No special inheritance rights</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">⚠️ <strong>Rabbi Yehuda (rejected):</strong> If father is still alive, <em>father inherits</em> regardless of yibbum or ḥalitza</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏛️ Does the Father's Presence Override Yibbum Inheritance?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Sages</div><div class="speech">One who performs <strong>yibbum</strong> inherits his deceased brother's entire estate. The Torah commands: <em>"He shall succeed in the name of his dead brother"</em> — the yavam steps fully into his brother's place, regardless of whether the father lives.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Yehuda</div><div class="speech">Whether he performs <strong>yibbum or ḥalitza</strong>, if the father is still alive — <em>the father inherits.</em> The yavam is like a firstborn son: a firstborn takes his double portion only <em>after</em> the father's death, not while the father lives.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Ulla / R. Yitzḥak Nappaḥa</div><div class="speech">The verse reads <em>"in the name of his dead brother"</em> — he succeeds his <em>brother</em>, not his father. This teaches: when the father is alive, normal inheritance rules apply and the father comes first.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Sages (rebuttal)</div><div class="speech">The mitzva of levirate marriage is <em>never</em> made dependent on inheritance. The yavam must always perform yibbum — and <em>then</em> the inheritance is resolved. The mitzva cannot be withheld because the father is present.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakhic Ruling</strong> Rabbi Yannai dismissed Rabbi Ḥanina Kara's citation of Rabbi Yehuda: 'Leave the study hall and recite your verses outside!' The halakha follows the Sages — yibbum grants full inheritance regardless of the father's status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Inheritance After a Brother's Death — Decision Tree</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Married brother dies</strong> without children — who inherits?</div><div class="flow-arrow">↓</div><div class="flow-box question">Is the <strong>father</strong> still alive?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — per Rabbi Yehuda (rejected)</div><div class="flow-box result-bad"><strong>Father inherits</strong> the estate<br><small>Yibbum/ḥalitza does not override father's claim</small></div></div><div class="flow-col"><div class="flow-label">No — per all opinions</div><div class="flow-box action">Levirate obligation determines inheritance</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">What does the surviving <strong>yavam</strong> do?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yibbum performed</div><div class="flow-box result-good">✅ <strong>Yavam inherits</strong> entire estate<br><small>He "succeeds in the name of his brother"</small></div></div><div class="flow-col"><div class="flow-label">Ḥalitza performed</div><div class="flow-box action">📊 <strong>Equal shares</strong> among all brothers<br><small>Ḥalitza grants no special rights</small></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🚫 Forbidden Relationships After Ḥalitza (Amud B Mishna)</h2>
+  
+  <table><tr><th>Relative</th><th>Direction</th><th>Examples from Mishna</th><th>Authority</th></tr><tr><td>Mother & grandmother</td><td>He → forbidden to her relatives</td><td>Ḥalutza's mother, mother's mother, father's mother</td><td>Rabbinic decree</td></tr><tr><td>Daughter & granddaughter</td><td>He → forbidden to her relatives</td><td>Ḥalutza's daughter, daughter's daughter, son's daughter</td><td>Rabbinic decree</td></tr><tr><td>Sister (while ḥalutza lives)</td><td>He → forbidden to her relatives</td><td>Ḥalutza's sister during her lifetime</td><td>Rabbinic decree</td></tr><tr><td>His father & grandfather</td><td>She → forbidden to his relatives</td><td>Ḥalutza ✗ yavam's father, father's father</td><td>Rabbinic decree</td></tr><tr><td>His son & grandson</td><td>She → forbidden to his relatives</td><td>Ḥalutza ✗ yavam's son, son's son</td><td>Rabbinic decree</td></tr><tr><td>His brother & brother's son</td><td>She → forbidden to his relatives</td><td>Ḥalutza ✗ yavam's brother, brother's son</td><td>Rabbinic decree</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔍 Do Secondary Rabbinic Prohibitions (Shniyot) Apply to Ḥalutza?</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>The Dilemma:</strong> Sages decreed <em>shniyot</em> (secondary forbidden relationships) to guard Torah-level prohibitions. But ḥalitza is only a <em>rabbinic</em> quasi-marriage — do shniyot extend beyond a rabbinically-created status?</div><div class="process-arrow">↓</div><div class="process-step"><strong>Position A:</strong> Shniyot apply <em>only</em> when the underlying relationship is Torah-forbidden. A ḥalutza's status is entirely rabbinic — so shniyot should <em>not</em> apply to her relatives.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Position B:</strong> Once the Sages enacted the decree treating ḥalitza like divorce, all associated prohibitions fully follow — <em>including</em> secondary forbidden relatives (shniyot).</div><div class="process-arrow">↓</div><div class="process-step"><strong>Proof attempts:</strong> The Gemara examines each relative in the mishna and baraita (grandfather, grandson, mother's father, daughter's son). Each time: is the prohibition due to the ḥalitza-decree, or due to the original marriage with the <em>deceased</em>?</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Result:</strong> Every case is explained as deriving from the original marriage — the Gemara cannot find a clean proof that shniyot independently stem from ḥalitza status. The question remains technically unresolved (<em>teiku</em>-adjacent).</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚔️ Rival Wife (Tzara) of Ḥalutza — Permitted or Forbidden?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e8f5e9"><h3 style="color:#2ecc71">✅ Relative of Rival Wife — PERMITTED</h3><ul><li>The <strong>rival wife</strong> was never the yavam's own ḥalutza</li><li>She has <em>no direct connection</em> to his ḥalitza ceremony</li><li>Her relatives are therefore <strong>not restricted</strong></li><li><strong>Rav Yosef:</strong> Infers from mishna — rival wife is treated as an outsider</li><li>The mishna explicitly states: <em>"permitted to a relative of her rival wife"</em></li></ul></div><div class="compare-box" style="border-top-color:#fce4ec"><h3 style="color:#e74c3c">❌ Rival Wife of Ḥalutza's Relative — FORBIDDEN</h3><ul><li>The ḥalutza's relative is <strong>forbidden</strong> to the yavam</li><li>The rival wife of that relative <em>shares her status</em></li><li><strong>Rav Tovi bar Rav Kisna</strong> ruled this forbidden before Rava</li><li>The rival wife is drawn into the prohibition through the relative</li><li>Mishna contrast: rival wife ≠ stranger when her co-wife is already forbidden</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 40 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style=""><strong>Brother dies</strong> leaving widow</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #2ecc71;padding:8px;border-radius:6px;"><strong>Yibbum</strong><br>→ Yavam inherits full estate<br>→ Torah-level forbidden relatives apply</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #e67e22;padding:8px;border-radius:6px;"><strong>Ḥalitza</strong><br>→ Equal shares among brothers<br>→ Rabbinic forbidden relatives apply</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="">⚠️ <strong>Rabbi Yehuda (rejected):</strong> Father alive → father inherits, overriding yavam in either case<br><small>Analogy to firstborn; dismissed by Rabbi Yannai</small></div><div class="flow-arrow">↓</div><div class="flow-box question" style="">❓ <strong>Open Question:</strong> Do <em>shniyot</em> (secondary rabbinic prohibitions) extend to relatives of ḥalutza independently of her original marriage?<br><small>Gemara examines every case but cannot conclusively prove it</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 40a-40b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 40a-40b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../39/">← Daf 39</a><a href="../41/">Daf 41 →</a></div>
+</body>
+</html>

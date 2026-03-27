@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 23 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👥</div>
+  <h1>Yevamot 23</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות כג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Defining 'Sister' — paternal lineage from forbidden unions<br>
+    👨‍👩‍👧 Gentile & Slave Unions — no halakhic paternity established<br>
+    🔗 Intermarriage Source — beloved vs. hated wife in Deut. 21:15<br>
+    ❓ Betrothing an Unknown Sister — two bills of divorce required<br>
+    ⚖️ Chalitza Under Uncertainty — limits on levirate marriage<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>📜 Who Counts as a Halakhic Sister?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Father has relations with a woman — is the daughter a forbidden 'sister'?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Jewish wife (even a mamzeret)</div><div class="flow-box result-bad">Kiddushin <strong>takes effect</strong> → paternal bond established → daughter is a <strong>halakhic sister</strong></div></div><div class="flow-col"><div class="flow-label">Canaanite maidservant or gentile woman</div><div class="flow-box result-good">Kiddushin <strong>cannot take effect</strong> → no paternal bond → daughter is <strong>NOT a halakhic sister</strong></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Key test: could kiddushin (betrothal) have taken effect with the mother?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes → child follows father</div><div class="flow-box result-bad">Sibling relationship exists → forbidden</div></div><div class="flow-col"><div class="flow-label">No → child follows mother</div><div class="flow-box result-good">No sibling relationship → permitted</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🧑‍⚖️ Rabbi Yosei b. Rabbi Yehuda vs. The Rabbis — One Verse or Two?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">R. Yosei b. R. Yehuda</div><div class="speech">Both exclusions — the Canaanite maidservant's child and the gentile woman's child — can be derived from a single verse. No need to expend two separate verses.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">Two separate verses are necessary — one for the maidservant and one for the gentile woman. Each case has a unique reason you might have included it.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">If only the gentile woman were excluded, one might think the maidservant's child IS a sibling — since she has some mitzvah obligations (Shabbat, mezuzah as part of the household).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Conversely, if only the maidservant were excluded, one might think the gentile woman's child IS a sibling — since she has no connection to mitzvot whatsoever, perhaps a special verse is needed to include her.</div></div></div><div class="callout" style="margin-top:20px"><strong>Conclusion</strong> Both cases require explicit exclusion — each presents a unique argument for why one might have thought the child is a halakhic sibling. Two verses, two teachings.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>👩‍👧 Status of Children Based on Mother's Identity</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fef3cd"><h3 style="color:#c9a84c">Jewish Wife (even forbidden — mamzeret)</h3><ul><li>Kiddushin takes legal effect</li><li>Child follows father's lineage</li><li>Daughter is a halakhic sister</li><li>Forbidden to half-brother in marriage</li><li>Verse: 'daughter of your father's wife' includes her</li></ul></div><div class="compare-box" style="border-top-color:#fde8e8"><h3 style="color:#e74c3c">Canaanite Maidservant</h3><ul><li>Kiddushin cannot take effect</li><li>Child follows mother's enslaved status</li><li>Daughter is NOT a halakhic sister</li><li>Permitted to marry half-brother</li><li>Has some mitzvah connection — needs explicit exclusion</li></ul></div><div class="compare-box" style="border-top-color:#e8f4fd"><h3 style="color:#4a90d9">Gentile Woman</h3><ul><li>Kiddushin cannot take effect</li><li>Child follows mother's gentile identity</li><li>Daughter is NOT a halakhic sister</li><li>Permitted to marry half-brother</li><li>No mitzvah connection — also needs explicit exclusion</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>💡 Ravina's Deduction — The Son of Your Daughter</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כִּי יָסִיר אֶת בִּנְךָ מֵאַחֲרַי — "For he will turn away your son from following Me" (Devarim 7:4)</div><div class="callout"><strong>Key Ruling</strong> <strong>R. Yochanan citing R. Shimon ben Yochai:</strong> Deuteronomy 7:4 states <em>"For he will turn away your son from following Me."</em> The verse uses <em>your son</em> — implying the child of your daughter with a gentile man is still called <em>your son</em> (your grandson), and is fully Jewish.<br><br><strong>Ravina deduces:</strong> The son of a Jewish woman by a gentile father is considered Jewish — following the mother.<br><br><strong>Challenge raised:</strong> Does Ravina then hold that if a gentile or slave had relations with a Jewish woman, the child is fully Jewish? The Gemara explores whether this is consistent with other rulings.<br><br><strong>Note on scope:</strong> R. Shimon's verse is from the seven Canaanite nations, but the Gemara teaches it applies universally — because the <em>reason</em> given in the verse (turning one's heart away from God) applies to all gentile marriages.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>❓ Mishna: Unknown Betrothal of Two Sisters — Required Actions</h2>
+  
+  <table><tr><th>Case</th><th>Bills of Divorce</th><th>Chalitza Required</th><th>Yibbum Permitted?</th></tr><tr><td>One man betrothed unknown sister; 1 brother survives</td><td>Man gives 2 gets (before death)</td><td>Brother does chalitza with 1 sister</td><td>No — other sister may be sister-of-levirate-bond</td></tr><tr><td>One man betrothed unknown sister; 2 brothers survive</td><td>Man gives 2 gets</td><td>One brother does chalitza with 1</td><td>Other brother may do yibbum with the other sister</td></tr><tr><td>Two unrelated men each betrothed unknown sister; 1 brother each</td><td>Each man gives 2 gets</td><td>Each single brother does chalitza with both sisters</td><td>Neither may do yibbum</td></tr><tr><td>Two men: one has 1 brother, other has 2 brothers</td><td>Each man gives 2 gets</td><td>Single brother: chalitza with both; 1 of 2 brothers: chalitza with one</td><td>Remaining brother of the two may do yibbum</td></tr><tr><td>Two men each with 2 brothers; first pair did chalitza with both</td><td>Gets given before death</td><td>Both brothers of man A do chalitza</td><td>One of man B's brothers does chalitza; other may do yibbum</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚖️ Gemara: Does the Mishna Prove That Impossible Betrothal Is Valid?</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Initial inference:</strong> The mishna requires giving <em>two bills of divorce</em> to both sisters — implying both betrothals are valid, even though the man cannot consummate with either (one is certainly the sister of his wife).</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Proposed proof:</strong> This proves that a betrothal destined for non-consummation (<em>ein bo kiddushin</em> in theory) is nevertheless a valid betrothal — in line with Rava's ruling in Kiddushin.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Gemara rejects the proof:</strong> The mishna deals with a case where both sisters were initially identifiable and recognizable. The betrothal was fully valid at the moment it was made — he just later forgot which sister he betrothed.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Follow-up question:</strong> If so, why does the mishna state the obvious — that he must give two gets? The Gemara answers: it is stated to teach the last clause of the mishna, where a new ruling about brothers and chalitza is introduced.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Bottom line:</strong> The mishna does not resolve the Abaye-Rava dispute about impossible betrothal. The case here was a valid, consummatable betrothal from the start — uncertainty arose later.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 23 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#16213e;border:2px solid #9b59b6;padding:8px;border-radius:6px;"><strong>Amud A:</strong> Can kiddushin take effect with the mother?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #c9a84c;padding:8px;border-radius:6px;"><strong>Yes</strong> (Jewish woman, even forbidden)<br>→ Child is a halakhic sibling; daughter forbidden as sister</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #4a90d9;padding:8px;border-radius:6px;"><strong>No</strong> (gentile / Canaanite maidservant)<br>→ Child follows mother; daughter NOT a sibling</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;border:2px solid #2ecc71;padding:8px;border-radius:6px;"><strong>Ravina:</strong> Son of Jewish woman + gentile man = fully Jewish (Deut. 7:4: <em>"your son"</em>)</div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;border:2px solid #e67e22;padding:8px;border-radius:6px;"><strong>Amud B Mishna:</strong> Man betrothed one unknown sister → must give two bills of divorce to both</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #e74c3c;padding:8px;border-radius:6px;"><strong>1 surviving brother:</strong><br>Chalitza with one only; may not do yibbum with either</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;border:2px solid #4a90d9;padding:8px;border-radius:6px;"><strong>2 surviving brothers:</strong><br>One chalitza + one permitted yibbum with the other</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;border:2px solid #2ecc71;padding:8px;border-radius:6px;"><strong>Gemara resolves:</strong> Mishna doesn't prove impossible-betrothal is valid — betrothal was valid at the time; identity forgotten only afterward</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 23a-23b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 23a-23b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../22/">← Daf 22</a><a href="../24/">Daf 24 →</a></div>
+</body>
+</html>

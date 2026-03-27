@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 74 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍇</div>
+  <h1>Yevamot 74</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות עד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🧔 Uncircumcised Man & Second Tithe — Prohibition Debated<br>
+    🔗 Gezerah Shavah — 'Mimenu' Verbal Analogy<br>
+    ⛔ Ritual Impurity and Sacred Foods — Graduated Rules<br>
+    🌅 Sunset & Atonement — Purity Hierarchy for Teruma<br>
+    👶 Woman After Childbirth — Teruma vs. Sacrificial Food<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🔍 Central Question: May an Uncircumcised Man Eat Second Tithe?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Baraita</div><div class="speech">An uncircumcised man is prohibited from eating <strong>two different tithes</strong> — implying second tithe is one of them!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara (Deflection)</div><div class="speech">The two tithes are <strong>first tithe</strong> (to Levites) and <strong>second tithe</strong> — but this follows Rabbi Meir, who alone forbids first tithe to non-priests. No general proof.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Another Baraita</div><div class="speech">An acute mourner may <em>not</em> eat second tithe but <em>may</em> eat teruma — proof that uncircumcised men likewise cannot eat second tithe?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara (Rejects)</div><div class="speech">No proof! This baraita follows <strong>Rabbi Akiva's school</strong>, which uniquely equates uncircumcised men with the ritually impure — a minority position not accepted as halakha.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution (Rabbi Yitzchak)</strong> The prohibition is established via gezerah shavah: the word 'mimenu' (of it) appears three times in both the Paschal lamb and second tithe contexts, linking their laws.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔗 Rabbi Yitzchak's Gezerah Shavah — Tracing 'Mimenu'</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Question:</strong> From where is it derived that an uncircumcised man cannot eat <em>second tithe</em>? (No explicit verse!)</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Paschal Lamb:</strong> 'Mimenu' written <strong>three times</strong> — 'do not eat <em>of it</em> raw… do not leave <em>of it</em>… do not break a bone <em>of it</em>'</div><div class="flow-arrow">↓</div><div class="flow-box action"><strong>Second Tithe:</strong> 'Mimenu' written <strong>three times</strong> — 'I did not eat <em>of it</em> in mourning… impure… <em>of it</em> for the dead' (Deut. 26:14)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Paschal Lamb 'Mimenu'</div><div class="flow-box result-good">One = prohibition on leaving leftovers; one = not breaking bones; <strong>third is free</strong> → uncircumcised cannot eat</div></div><div class="flow-col"><div class="flow-label">Second Tithe 'Mimenu'</div><div class="flow-box result-good">One = mourner prohibited; one = impure prohibited; <strong>third</strong> (via gezerah shavah) → <strong>uncircumcised cannot eat</strong></div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>💬 Is the Gezerah Shavah Valid? The One-Sided Problem</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara (Difficulty)</div><div class="speech">The analogy works only from <strong>one side</strong>! The Paschal lamb 'mimenu' is superfluous, but each 'mimenu' in second tithe serves its own halakhic purpose — mourner, impurity, the dead.</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">Gemara (Resolves)</div><div class="speech">Rav Naḥman citing <strong>Rabba bar Avuh</strong> teaches: 'These are the statutes of the land' (Lev. 18:3) — impure teruma must be burned. This frees one 'mimenu' in second tithe for the analogy.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Mar Zutra (Objects)</div><div class="speech"><strong>But perhaps 'nor did I give of it for the dead'</strong> means it is forbidden to buy a coffin or shrouds with tithe money — not an analogy!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Reish Lakish / R. Samya</div><div class="speech">'For the dead' = burial use is forbidden, but <strong>anointing a living person</strong> with impure tithe is permitted — so that 'mimenu' remains available for the gezerah shavah.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> A gezerah shavah is strongest when both sides have a superfluous word (מופנה משני צדדין). Here, Rabba bar Avuh's teaching frees the necessary second-tithe verse.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🌅 Three Verses of Purity — Rava citing Rav Ḥisda (Lev. 22)</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Verse 1 (Lev. 22:6):</strong> 'He shall not eat of holy things unless he has bathed his flesh in water' — immersion alone, with no mention of sunset</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Verse 2 (Lev. 22:7):</strong> 'When the sun sets he shall be pure, and then he shall eat of the holy things' — adds the requirement of <strong>waiting for sunset</strong></div><div class="process-arrow">↓</div><div class="process-step"><strong>Verse 3 reading:</strong> 'Then he shall be pure' (וְטָהֵר) implies even one who <em>lacks an atonement offering</em> may eat after sunset — permitting teruma but not sacrificial food</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rava's Three-Level Map:</strong> Verse 1 = <strong>second tithe</strong> (immersion only); Verse 2 = <strong>teruma</strong> (immersion + sunset); Verse 3 context = <strong>sacrificial food</strong> (full atonement required)</div><div class="process-arrow">↓</div><div class="process-step"><strong>Why does teruma get the stricter rule?</strong> Teruma already carries the stringency of <em>death penalty</em> for eating while impure — so it logically receives more stringencies, not second tithe</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>⚖️ Stringencies Compared: Which Food Is Strictest?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a3a"><h3 style="color:#9b59b6">מַעֲשֵׂר שֵׁנִי Second Tithe</h3><ul><li>Immersion alone suffices (no sunset required)</li><li>Acronym ה-ד-ס-ט-ב: must be brought to Jerusalem, declared, redeemed if impure, paid in valid coin, eaten within walls</li><li>Uncircumcised man prohibited (per R. Yitzchak)</li><li>Mourner prohibited from eating</li><li>No death penalty — less severe than teruma</li></ul></div><div class="compare-box" style="border-top-color:#1a3a1a"><h3 style="color:#2ecc71">תְּרוּמָה Teruma</h3><ul><li>Requires immersion <strong>plus</strong> sunset (tevul yom may not eat)</li><li>Death penalty (by Heaven) for eating while impure</li><li>Forbidden to non-priests and ḥalala</li><li>Lacks atonement = may eat after sunset (unlike sacrificial food)</li><li>Impure teruma must be burned, not eaten</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">קָדָשִׁים Sacrificial Food</h3><ul><li>Requires immersion + sunset + <strong>atonement offering</strong></li><li>Most stringencies overall (מ-ח-פ-ז mnemonic)</li><li>Stricter than both second tithe and teruma</li><li>Zav/metzora may not eat even after sunset until atonement</li><li>Woman after childbirth: days must be complete before eating</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📋 Who May Eat What? Purity Status Chart</h2>
+  
+  <table><tr><th>Person / Status</th><th>Second Tithe</th><th>Teruma</th><th>Sacrificial Food</th></tr><tr><td>Immersed — awaiting sunset (טְבוּל יוֹם)</td><td>✅ Permitted</td><td>❌ Forbidden</td><td>❌ Forbidden</td></tr><tr><td>After sunset — lacking atonement offering</td><td>✅ Permitted</td><td>✅ Permitted</td><td>❌ Forbidden</td></tr><tr><td>Fully purified (sunset + atonement)</td><td>✅ Permitted</td><td>✅ Permitted</td><td>✅ Permitted</td></tr><tr><td>Acute mourner (אוֹנֵן)</td><td>❌ Forbidden</td><td>✅ Permitted</td><td>❌ Forbidden</td></tr><tr><td>Uncircumcised man (עָרֵל)</td><td>❌ Forbidden (R. Yitzchak)</td><td>N/A (non-priest)</td><td>❌ Forbidden</td></tr><tr><td>Woman post-childbirth (days not complete)</td><td>—</td><td>❌ Forbidden (Abaye)</td><td>❌ Forbidden</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 74 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#1a2a4a;border:2px solid #4a90d9;color:#e8e6d9;padding:10px;border-radius:8px;text-align:center;"><strong>Central Question:</strong> May an uncircumcised man eat second tithe?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a1a;border:1px solid #e74c3c;color:#e8e6d9;padding:8px;border-radius:6px;text-align:center;"><strong>Baraitot</strong><br><small>Attempts at proof — each deflected (Rabbi Akiva minority, Rabbi Meir minority)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a1a;border:1px solid #2ecc71;color:#e8e6d9;padding:8px;border-radius:6px;text-align:center;"><strong>Rabbi Yitzchak</strong><br><small>Gezerah shavah from 'mimenu' — Paschal lamb ↔ second tithe</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#2a1a3a;border:2px solid #9b59b6;color:#e8e6d9;padding:10px;border-radius:8px;text-align:center;"><strong>Parallel Discussion:</strong> Three verses (Lev. 22) establish a graduated purity hierarchy for sacred foods</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a1a3a;border:1px solid #9b59b6;color:#e8e6d9;padding:8px;border-radius:6px;text-align:center;"><strong>Second Tithe</strong><br>Immersion only<br><small>(least stringent)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border:1px solid #2ecc71;color:#e8e6d9;padding:8px;border-radius:6px;text-align:center;"><strong>Teruma</strong><br>Immersion + Sunset<br><small>(death penalty → stricter)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a;border:1px solid #e74c3c;color:#e8e6d9;padding:8px;border-radius:6px;text-align:center;"><strong>Sacrificial Food</strong><br>Sunset + Atonement<br><small>(most stringent)</small></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 74a-74b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 74a-74b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../73/">← Daf 73</a><a href="../75/">Daf 75 →</a></div>
+</body>
+</html>

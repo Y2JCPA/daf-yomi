@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 30 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Yevamot 30 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Rav Yehuda in the name of Rav, what is the critical moment for determining a yevama's levirate obligation?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. When the court formally rules on her status after her husband's death</div>
+      <div class="option" onclick="select(1,this,1)">B. When the yavam performs ḥalitza or yibbum</div>
+      <div class="option" onclick="select(1,this,2)">C. At the moment she first 'happens before' the surviving brothers for levirate marriage</div>
+      <div class="option" onclick="select(1,this,3)">D. When she chooses to pursue yibbum or ḥalitza</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: C — </strong>Rav Yehuda teaches: any yevama to whom 'her brother-in-law will have intercourse with her' cannot be applied at the time she first happens before the brothers — she is forever exempt. The moment the levirate obligation crystallizes (the brother's death) is determinative, not later developments.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">What is the core dispute between Rav Ashi and Rav Naḥman about the levirate bond (zikah)?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Rav Ashi says ḥalitza is preferred; Rav Naḥman says yibbum is preferred</div>
+      <div class="option" onclick="select(2,this,1)">B. Rav Ashi says the zikah IS substantial (like a full acquisition); Rav Naḥman says it is NOT substantial</div>
+      <div class="option" onclick="select(2,this,2)">C. Rav Ashi limits the bond to full brothers; Rav Naḥman extends it to half-brothers</div>
+      <div class="option" onclick="select(2,this,3)">D. Rav Ashi requires biblical ḥalitza; Rav Naḥman accepts rabbinic ḥalitza</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>Rav Ashi holds the zikah is substantial — nearly equivalent to full acquisition, with real legal effect on rival wife status. Rav Naḥman holds it is weak, so a rival wife of a forbidden relative is fully exempt even from ḥalitza. Rabbi Yirmeya resolves their dispute by noting the mishnayot they cite reflect different tannaitic opinions.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Why does Rabba say the mishna (30b) omits the case of 'uncertain whether the get landed closer to her or him'?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Because it is a hypothetical scenario that never occurs in practice</div>
+      <div class="option" onclick="select(3,this,1)">B. Because in that case no ḥalitza is required — the rival wife retains her chazakah of being permitted</div>
+      <div class="option" onclick="select(3,this,2)">C. Because that case is already covered by the rule of a get written without witnesses</div>
+      <div class="option" onclick="select(3,this,3)">D. Because the tannaim disagreed so strongly that no consensus could be formulated</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Rabba explains: when the get's proximity is uncertain, the rival wife has a chazakah (presumptive status) of being permitted — she was permitted before the uncertain get was ever thrown. The mishna omits this case because ḥalitza is not required; she remains in her presumptive permitted state.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">How does Abaye challenge Rabba's chazakah argument in the case of uncertain get?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. He argues chazakah is broken the moment any get is thrown, even if proximity is uncertain</div>
+      <div class="option" onclick="select(4,this,1)">B. He points out that the same chazakah logic should exempt the rival wife from ḥalitza in uncertain kiddushin too — but the mishna requires ḥalitza there, proving chazakah does not suffice</div>
+      <div class="option" onclick="select(4,this,2)">C. He cites a baraita that directly contradicts Rabba's ruling on uncertain proximity</div>
+      <div class="option" onclick="select(4,this,3)">D. He argues that once a get is thrown at all, we assume it was received validly</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>Abaye challenges: by Rabba's logic, the rival wife also has a chazakah of being permitted before any betrothal occurred — so uncertain kiddushin should also exempt her from ḥalitza. But the mishna explicitly requires ḥalitza for uncertain kiddushin. This inconsistency undermines Rabba's chazakah argument.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">What does Rabbi Yirmeya mean when he says the mishnayot in this chapter are 'disjointed' (מקוטעות)?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. The mishnayot were edited by different scribes and contain textual corruptions</div>
+      <div class="option" onclick="select(5,this,1)">B. They were taught by different tannaim who hold fundamentally different halakhic positions, so rulings cannot be derived by comparing them</div>
+      <div class="option" onclick="select(5,this,2)">C. Each mishna is self-contained and may not serve as the basis for a kal va-chomer argument</div>
+      <div class="option" onclick="select(5,this,3)">D. The mishnayot contradict each other irreconcilably and neither ruling is accepted as law</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>Rabbi Yirmeya resolves the apparent contradiction between this mishna and an earlier one (13a) by saying they were taught by different tannaim with different fundamental positions — e.g., on whether death or the moment of 'happening before' determines the yevama's status. Since they reflect different authorities, one cannot derive halakha by cross-referencing them.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":2,"2":1,"3":1,"4":1,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

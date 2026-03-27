@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 48 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Yevamot 48 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Rabbi Eliezer, what must the Yefat Toar (captive woman) do with her nails?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Let them grow long</div>
+      <div class="option" onclick="select(1,this,1)">B. Cut them short</div>
+      <div class="option" onclick="select(1,this,2)">C. Paint them as a sign of mourning</div>
+      <div class="option" onclick="select(1,this,3)">D. Leave them completely unchanged</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Rabbi Eliezer derives from the parallel with shaving the head: just as she removes hair from her head, so too she removes (cuts) her nails. Both acts diminish her beauty.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">How many days does Rabbi Shimon ben Elazar require the captive woman to mourn?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. 30 days</div>
+      <div class="option" onclick="select(2,this,1)">B. 60 days</div>
+      <div class="option" onclick="select(2,this,2)">C. 90 days</div>
+      <div class="option" onclick="select(2,this,3)">D. 120 days</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>R. Shimon ben Elazar reads 'a month' (30) + 'days' (30 more) + 'after that' (another 30) = 90 days total. Ravina objects that this reasoning would produce an infinite regress.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">What does Rabbi Akiva say about maintaining an uncircumcised slave?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Permitted for up to twelve months</div>
+      <div class="option" onclick="select(3,this,1)">B. Permitted only if the slave was purchased conditionally</div>
+      <div class="option" onclick="select(3,this,2)">C. Forbidden, even for a single moment</div>
+      <div class="option" onclick="select(3,this,3)">D. Permitted indefinitely if the slave is a ger toshav</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>Rabbi Akiva holds one may not maintain an uncircumcised slave even momentarily. Rabbi Yishmael disagrees, holding such a slave may be kept while the master waits for compliance.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">According to Ravin citing Rabbi Ilai, which uncircumcised slave may be maintained indefinitely?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. One who is elderly or infirm</div>
+      <div class="option" onclick="select(4,this,1)">B. One purchased on condition he would not be circumcised</div>
+      <div class="option" onclick="select(4,this,2)">C. One who previously accepted the Noahide laws</div>
+      <div class="option" onclick="select(4,this,3)">D. One whose master cannot afford the procedure</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>Rabbi Ilai rules that a slave purchased from the outset on explicit condition of non-circumcision may be kept — the condition was established at purchase and the master incurred no subsequent obligation.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">According to Rabbi Ḥananya son of Rabban Gamliel, why do converts suffer hardships?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. They delayed their conversion too long</div>
+      <div class="option" onclick="select(5,this,1)">B. They do not yet know all the mitzvot</div>
+      <div class="option" onclick="select(5,this,2)">C. They failed to observe the seven Noahide mitzvot as gentiles</div>
+      <div class="option" onclick="select(5,this,3)">D. They are tested to strengthen their new faith</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>Rabbi Ḥananya teaches that converts are punished for having violated the Noahide mitzvot before converting. 'Others say' offer a different reason: they waited too long to convert.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":2,"4":1,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

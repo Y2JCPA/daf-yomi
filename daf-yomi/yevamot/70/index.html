@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 70 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍷</div>
+  <h1>Yevamot 70</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות ע׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👤 Rumored Intercourse — offspring follows the priest<br>
+    ⚠️ Mamzer's Dual Role — disqualifies and enables teruma<br>
+    ✂️ Uncircumcised Priest — excluded from teruma<br>
+    📜 Gezera Shava — Paschal lamb verbal analogy<br>
+    😔 Acute Mourner — why the analogy does not apply<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>👤 Offspring Status: Rava vs. Abaye</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">My proof: the mishna lets a child of a priest and Israelite woman enable teruma — even in an equally prohibited union. This shows we attribute the child to the rumored priest, even when other men are also rumored.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">The mishna involves only a rumor about the priest — no competing rumors! Rav's rule stands: if she is rumored with others, the offspring is a mamzer regardless of the priest rumor.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">Even if she is rumored with others, so long as she is also rumored with him — we cast the child after the priest. The mishna supports this reading.</div></div></div><div class="callout" style="margin-top:20px"><strong>Central Dispute</strong> When a woman is rumored with a priest AND with non-priests, does the child follow the priest (Rava) or is the child a mamzer (Rav / Abaye)?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🤔 Rava's Proof from the Mishna — Contested</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">A priest committed intercourse with an Israelite woman — both acts equally prohibited. Yet her child enables her to eat teruma. This proves we follow the priest-rumor even amid other rumors.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">No — the mishna speaks of a case where only the priest is rumored. That's precisely why the child enables teruma. Your inference collapses if the mishna lacks competing rumors.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">Why else state 'extramarital'? The very term implies competing possibilities — and still the child follows the priest. My reading is correct.</div></div></div><div class="callout" style="margin-top:20px"><strong>Stakes</strong> The outcome determines whether a child born in ambiguous circumstances is a mamzer (carrying severe restrictions on marriage) or a legitimate son of the priest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>⚠️ The Mamzer's Dual Halakhic Role</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Mamzer Disqualifies from Teruma</h3><ul><li>A priest's daughter who has an unfit child</li><li>Even an unfit (mamzer) child counts halakhically</li><li>Derived: 'ein la' — examine her (Lev. 22:13)</li><li>Her child's disqualified status blocks her return</li><li>Child of child also disqualifies — same principle</li></ul></div><div class="compare-box" style="border-top-color:#2ecc71"><h3 style="color:#ffffff">Mamzer Enables Teruma</h3><ul><li>A priest's daughter whose child is from a priest</li><li>Even if the child is a mamzer — priestly lineage counts</li><li>Derived: 'ayyein ala' — inspect her child carefully</li><li>Unfit child can still carry teruma-enabling status</li><li>The verse's ambiguity reveals both outcomes</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📜 Gezera Shava: Deriving the Uncircumcised Priest's Exclusion</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Question:</strong> Where is it derived that an <em>uncircumcised priest</em> (ערל) may not eat teruma?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Elazar</div><div class="flow-box action">Gezera shava: <em>'sojourner and hired servant'</em> (Exodus 12:45 ↔ teruma law) — links the same exclusion to both</div></div><div class="flow-col"><div class="flow-label">Rabbi Akiva</div><div class="flow-box action">Doubled word <em>'ish ish'</em> (Lev. 22:4) includes uncircumcised among those barred from holy things</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Gemara's refinement:</strong> Only the Paschal lamb phrase is superfluous — not the teruma phrase — so the analogy is valid from one available side</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Conclusion:</strong> Uncircumcised priest is excluded from teruma — bodily condition parallels Paschal lamb exclusion</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>✂️ Categories Disqualified from Teruma (Mishna & Gemara)</h2>
+  
+  <table><tr><th>Category</th><th>Hebrew</th><th>Reason</th><th>Duration</th></tr><tr><td>Uncircumcised priest</td><td>ערל (Arel)</td><td>Lacks bodily covenant initiation</td><td>Until circumcision</td></tr><tr><td>Ritually impure priest</td><td>טמא (Tamei)</td><td>Impurity precludes eating holy things</td><td>Until immersion + sunset</td></tr><tr><td>Crushed testicles</td><td>פצוע דכא</td><td>Physical genital wound — permanent disqualification</td><td>Permanent</td></tr><tr><td>Severed penis</td><td>כרות שפכה</td><td>Sexual member removed — permanent disqualification</td><td>Permanent</td></tr><tr><td>Acute mourner</td><td>אונן (Onen)</td><td>State before burial — NOT excluded by verbal analogy</td><td>Until burial only</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>😔 Can the Verbal Analogy Exclude an Acute Mourner?</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Challenge raised:</strong> If the gezera shava bars the uncircumcised from teruma, why not also bar an <em>acute mourner (onen)</em>? Acute mourning has many stringencies.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Argument for including mourner:</strong> Acute mourning applies any time a close relative dies, unlike circumcision which is resolved by a single act. It is arguably stricter.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Counter-argument:</strong> Lack of circumcision is a <em>personal bodily deficiency</em> — like leprosy and zav, listed in Lev. 22:4. Acute mourning is a temporary external circumstance.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rava's ruling:</strong> Leviticus 22:10 — 'No <em>stranger (zar)</em> shall eat holy things' — only <em>foreignness</em> as a status disqualifies, not a passing emotional/ritual state.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Resolution:</strong> The verbal analogy extends only to bodily personal conditions (uncircumcision). Acute mourning is excluded — the mourner may eat teruma once burial is complete.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 70 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Woman rumored with priest + other men</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Rava:</strong> Attribute child to priest → legitimate, enables teruma</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Rav / Abaye:</strong> Multiple rumors → child is a mamzer</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Mishna categories:</strong> Uncircumcised, impure, petzua dakka, kerut shofkha — each has distinct teruma status</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Gezera shava</strong> (Rabbi Elazar) from Paschal lamb derives uncircumcised priest's exclusion from teruma</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;padding:8px;border-radius:6px;"><strong>Acute mourner NOT excluded</strong> — only foreignness/bodily status triggers the analogy (Rava, citing Lev. 22:10)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 70a-70b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 70a-70b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../69/">← Daf 69</a><a href="../71/">Daf 71 →</a></div>
+</body>
+</html>

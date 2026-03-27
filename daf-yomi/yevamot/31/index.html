@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 31 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 31</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות לא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Doubt & Stringency — ḥalitza that creates a leniency problem<br>
+    🏠 Fallen House Case — rival wife's uncertain exemption<br>
+    📜 Uncertain Documents — get and betrothal with doubtful validity<br>
+    📅 Dating Deeds — why betrothal documents need no date<br>
+    👬 Three Brothers — double yibum bond exempts by Torah law<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Rabba vs. Abaye: Must Doubtful Betrothal Require Ḥalitza?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">When betrothal is uncertain, we do NOT require ḥalitza. Everyone will see it as a mere stringency and will not be confused — they'll know the betrothal was not definitively valid.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">But if you say she must perform ḥalitza, people will infer she may also perform yibum — a stringency that generates a leniency! This is why the fallen house case is difficult for your view.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">The fallen house differs: there, the co-wife's presumptive status is already forbidden (the deceased was a forbidden relative), so requiring ḥalitza there creates no risk of permitting yibum.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">Rabba's distinction is rejected. The mishna is written in the style of <em>'His fellow speaks of him'</em> — cases grouped together share the same ruling. All betrothal uncertainties also apply to divorce, but divorce has additional unique cases.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Tension</strong> חומרא דאתי לידי קולא — a stringency that produces a leniency is to be avoided. Requiring ḥalitza in a doubtful case might signal that yibum is also permitted from that same doubt.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🏠 The Fallen House Case — Abaye's Challenge to Rabba</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Mishna (67b)</div><div class="speech">A house fell on a man and on his <em>brother's daughter</em> (his own wife). We do not know who died first. The rival wife requires ḥalitza but may not perform yibum.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">This is a case of pure doubt — yet ḥalitza IS required! This contradicts Rabba: if we fear that requiring ḥalitza will lead people to permit yibum, why require it here?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">Here the rival wife is <em>already presumed forbidden</em> — the deceased co-wife was a forbidden relative, so yibum was never an option. Requiring ḥalitza here cannot open the door to permitting yibum.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">Rabba's distinction is ultimately rejected. The mishna's structure follows <strong>'His fellow speaks of him'</strong> (Job 36:33) — related cases are grouped together, not because they have fundamentally different logic.</div></div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Conclusion</strong> The mishna is not structured by differing legal reasoning — Rabba's attempt to distinguish the cases fails, and the ruling is uniform across doubt scenarios.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>📜 Uncertain Get — Halakhic Consequences</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Get thrown between husband and wife</strong><br>Uncertain whether it landed closer to <em>her</em> (valid) or to <em>him</em> (invalid)</div><div class="flow-arrow">↓</div><div class="flow-box action">Gemara: This doubt does NOT arise from the facts themselves — only from conflicting sets of witnesses (one set says closer to her, one says closer to him)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✅ Witnesses: Closer to Her</div><div class="flow-box result-good">Fully divorced — document entered her legal domain</div></div><div class="flow-col"><div class="flow-label">❓ Witnesses Conflict</div><div class="flow-box action"><strong>מגורשת ואינה מגורשת</strong><br>Divorced AND not divorced</div></div><div class="flow-col"><div class="flow-label">❌ Witnesses: Closer to Him</div><div class="flow-box result-bad">Not divorced — document never left his domain</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Two practical consequences of <strong>'divorced and not divorced'</strong> status:</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">If husband is a Kohen</div><div class="flow-box result-bad">Wife is forbidden to him — we apply the stringency that she may be divorced</div></div><div class="flow-col"><div class="flow-label">If she remarries</div><div class="flow-box result-bad">Child may be a <em>safek mamzer</em> — she may still be a married woman</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>📅 Betrothal Deed vs. Bill of Divorce — Date Requirements</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#fff">📜 Bill of Divorce (Get)</h3><ul><li>Date MUST be written in the document</li><li>Reason 1: Prevents husband retroactively claiming wife's produce earnings</li><li>Reason 2: Prevents cover-up if he committed adultery with his daughter's husband's wife</li><li>Woman cannot erase the date — it protects her rights</li><li>Date is integral: without it the get may be invalid</li><li>Rava: divorce has unique uncertainty scenarios betrothal lacks</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#fff">💍 Betrothal Document (Shtar Kiddushin)</h3><ul><li>Date is NOT required by rabbinic enactment</li><li>Betrothal can be done by money, deed, or intercourse — no deed needed</li><li>If some betroth by money (no deed), a date rule for deeds is inconsistent</li><li>Unlike a get, a betrothal deed cannot be used to claim retroactive produce rights</li><li>Signed witnesses can testify from memory if the date is forgotten</li><li>Contrast: slave acquisition always uses a deed → date IS required there</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>👬 Three Brothers Mishna — How the Exemption Works</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Setup:</strong> Brothers A, B, and C are each married to an unrelated woman (W-A, W-B, W-C respectively)</div><div class="process-arrow">↓</div><div class="process-step"><strong>Step 1:</strong> Brother A dies childless → W-A falls before brothers B and C for yibum</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Step 2:</strong> Brother B performs <em>levirate betrothal (eirusin)</em> with W-A but dies before consummating the marriage</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>The Double Bond:</strong> W-A now falls before C <em>twice simultaneously</em> — once as A's widow and once as B's mekudeshet. She is the <strong>rival wife of herself</strong>!</div><div class="process-arrow">↓</div><div class="process-step"><strong>W-A's Status:</strong> Because her double bond creates a co-wife relationship with herself, she is exempt from yibum and ḥalitza by Torah law</div><div class="process-arrow">↓</div><div class="process-step"><strong>W-B's Status:</strong> As the rival wife (צרה) of W-A — who is herself exempt — W-B is also exempt. The rival wife of a forbidden/exempt woman is herself exempt.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Torah Source (Deut. 25:5):</strong> 'If <em>brothers</em> dwell together' — when two simultaneous yibum bonds exist, the Torah's levirate framework does not apply. Yet the Sages require ḥalitza by rabbinic decree.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🧑‍⚖️ Key Disputes & Rulings — Daf 31 at a Glance</h2>
+  
+  <table><tr><th>Amora</th><th>Position</th><th>Basis</th><th>Final Ruling</th></tr><tr><td>Rabba</td><td>No ḥalitza required for uncertain betrothal</td><td>Requiring ḥalitza implies yibum is also valid — a dangerous leniency</td><td>Rejected by Abaye and Rava</td></tr><tr><td>Abaye</td><td>Fallen house case shows ḥalitza IS required in doubts</td><td>Mishna follows 'His fellow speaks of him' — cases grouped uniformly</td><td>Accepted as refutation of Rabba</td></tr><tr><td>Rava</td><td>All betrothal doubts exist for divorce; divorce has additional unique cases</td><td>Betrothal by money has no document; divorce always uses a get</td><td>Accepted — final halakha</td></tr><tr><td>Rav Aḥa b. Rav Yosef</td><td>Why no date in betrothal deed if slaves require one?</td><td>Slave acquisition always uses a deed — unlike betrothal</td><td>Answered: betrothal by money makes rule unenforceable</td></tr><tr><td>Gemara (stam)</td><td>Cannot institute date in betrothal deed practically</td><td>Witnesses may forget; leaving deed with woman risks erasure</td><td>Accepted — practical reason upheld</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 31 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#16213e;color:white;border-radius:8px;padding:10px;text-align:center;"><strong>Uncertain Betrothal or Get</strong><br><small>Conflicting witnesses — who died first? Did the document reach her?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;border-radius:8px;padding:8px;text-align:center;"><strong>Stringency → Leniency?</strong><br><small>Requiring ḥalitza might imply yibum is also permitted → AVOID</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:white;border-radius:8px;padding:8px;text-align:center;"><strong>Stringency Safe?</strong><br><small>Forbidden relative bars yibum regardless → ḥalitza may be required</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action" style="background:#16213e;color:white;border-radius:8px;padding:10px;text-align:center;"><strong>Rava's Rule:</strong> All betrothal uncertainties apply to divorce; divorce has additional unique uncertainty cases not found in betrothal</div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:white;border-radius:8px;padding:10px;text-align:center;"><strong>Three Brothers Mishna:</strong> Double yibum bond = exempt by Torah law<br><small>Deut. 25:5 — 'If brothers dwell together' excludes simultaneous double bonds</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 31a-31b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 31a-31b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../30/">← Daf 30</a><a href="../32/">Daf 32 →</a></div>
+</body>
+</html>

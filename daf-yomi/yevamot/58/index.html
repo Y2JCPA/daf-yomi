@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 58 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏛️</div>
+  <h1>Yevamot 58</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות נח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🕍 Chuppah & Teruma — Does canopy entry disqualify like betrothal?<br>
+    💧 Sota & Betrothed Women — Conditions for drinking bitter waters<br>
+    💍 Levirate Betrothal — Yibbum kiddushin's effect on teruma rights<br>
+    ⚖️ Rabbi Yohanan vs. Reish Lakish — Yevama's teruma when yavam has priestly brother<br>
+    🔑 Invalid Intercourse — What defines 'reserved for' invalid intercourse<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🏛️ The Chuppah Question: Does Canopy Entry Disqualify from Teruma?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rabbi Meir</div><div class="speech">Betrothal to a priest disqualifies an unfit woman from teruma — and entering the wedding canopy should likewise disqualify her.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara's Challenge</div><div class="speech">We cannot assume Rabbi Meir extends betrothal rulings to chuppah — perhaps chuppah, being close to intercourse, operates under different rules entirely.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Sheshet</div><div class="speech">There IS legal significance to chuppah with an unfit woman — it disqualifies her from teruma, as proven from the mishna about a betrothed sota.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rava</div><div class="speech">Do not rely on that baraita — Rabbi Aḥa bar Ḥanina brought an alternate version from the South that undermines Rav Sheshet's proof entirely.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> Is chuppah (wedding canopy entry) equivalent to betrothal for disqualifying an unfit woman from teruma, or does its proximity to intercourse give it a categorically different halakhic status?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⚖️ Rabbi Yohanan vs. Reish Lakish: Yevama After Levirate Betrothal</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbi Yohanan</div><div class="speech">If a yavam performed levirate betrothal and has a priestly brother, she MAY partake of teruma. Even Rabbi Meir only restricts when she awaits Torah-level invalid intercourse — here the pending yibbum is only rabbinically problematic.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">She may NOT partake of teruma. Even Rabbi Elazar and Rabbi Shimon only permit in betrothal cases where the priest himself can entitle her. Here the priestly brother cannot entitle her, so she may not eat.</div></div></div><div class="callout" style="margin-top:20px"><strong>Root of the Dispute</strong> Rabbi Yohanan focuses on the <em>nature</em> of the intercourse she awaits (Torah-level invalid vs. rabbinic). Reish Lakish focuses on whether <em>the priest himself</em> has the capacity to entitle her to teruma.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>💧 Can a Betrothed Woman Be Made to Drink Sota Waters?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Husband is jealous and warns her <strong>while she is betrothed</strong> — does the sota mechanism apply?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">He brings her to drink while still merely betrothed</div><div class="flow-box result-bad">❌ Cannot work — verse says <em>'some man has lain with you'</em>; husband must have standing for valid intercourse through completed marriage</div></div><div class="flow-col"><div class="flow-label">She entered chuppah (no intercourse yet) when husband brings her</div><div class="flow-box result-good">✓ Rav Sheshet's scenario — chuppah grants her teruma rights; husband is priest; she can now drink</div></div><div class="flow-col"><div class="flow-label">Betrothed man had licentious intercourse in father's house (not for acquisition)</div><div class="flow-box result-good">✓ Rami bar Ḥama's solution — licentious biah ≠ marital acquisition, so she remains 'betrothed' for sota purposes</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔑 Betrothal vs. Chuppah vs. Intercourse: Teruma Effects</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#4a90d9">Betrothal (Kiddushin)</h3><ul><li>Creates formal legal acquisition (kinyan)</li><li>Rabbi Meir: disqualifies unfit woman from teruma</li><li>Rabbi Elazar & Shimon: does NOT disqualify</li><li>Not proximate to intercourse</li><li>Divorce returns her to father's house — verse applies</li></ul></div><div class="compare-box" style="border-top-color:#2a1a2a"><h3 style="color:#9b59b6">Chuppah (Canopy Entry)</h3><ul><li>Proximate to intercourse — different category?</li><li>Rav Sheshet: disqualifies like betrothal</li><li>Gemara: cannot assume same ruling as betrothal</li><li>Baraita dispute: some require actual intercourse</li><li>Independent legal significance debated</li></ul></div><div class="compare-box" style="border-top-color:#1a2a1a"><h3 style="color:#2ecc71">Intercourse (Biah)</h3><ul><li>Fully activates or deactivates teruma rights</li><li>Valid biah with priest: entitles to teruma</li><li>Torah-level invalid biah: permanently disqualifies</li><li>Licentious biah: may not constitute acquisition</li><li>Yibbum: acquires wife even without intent (Rav)</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📊 Cases of Unfit Women & Priests: Who May Eat Teruma?</h2>
+  
+  <table><tr><th>Case</th><th>Rabbi Meir</th><th>Rabbi Elazar / Rabbi Shimon</th><th>Rabbi Yohanan / Reish Lakish</th></tr><tr><td>Betrothed to priest (unfit woman)</td><td>❌ Disqualified</td><td>✅ May eat</td><td>—</td></tr><tr><td>Entered chuppah with priest (unfit)</td><td>❌ Disqualified (per Rav Sheshet)</td><td>✅ May eat</td><td>—</td></tr><tr><td>Completed intercourse with priest</td><td>❌ Disqualified</td><td>❌ Disqualified</td><td>All agree: disqualified</td></tr><tr><td>Levirate betrothal; yavam has priestly brother</td><td>Unclear — base rule: ❌</td><td>Unclear — base rule: ✅</td><td>R. Yohanan: ✅ / Reish Lakish: ❌</td></tr><tr><td>Widowed or divorced from invalid priestly marriage</td><td>❌ Permanently disqualified</td><td>❌ Permanently disqualified</td><td>All agree: disqualified</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔍 Rav Sheshet's Proof from the Mishna — and Its Unraveling</h2>
+  
+  <div class="process-bar"><div class="process-step highlight"><strong>Rav Sheshet's Claim (via Rav Amram):</strong> There is legal significance to a priest entering the wedding canopy with a woman unfit to marry him — it disqualifies her from teruma. 'He illuminated our eyes from the mishna.'</div><div class="process-arrow">↓</div><div class="process-step"><strong>The Mishna's Implied Case:</strong> A betrothed sota is brought to drink the bitter waters — this requires that she be in a state with full teruma access, implying she entered chuppah (without intercourse), which gave her teruma rights that chuppah with an unfit woman would conversely revoke.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rava's Challenge:</strong> Do not rely on this baraita as accurate! Rabbi Aḥa bar Ḥanina brought an alternate version from the South reading the verse: <em>'And some man has lain with you'</em> — implying a different case structure.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rami bar Ḥama's Alternative:</strong> The betrothed sota case works when her betrothed had licentious intercourse with her in her father's house — not for acquisition, so she remains 'betrothed' and the sota mechanism applies without needing chuppah.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Rav Naḥman bar Yitzḥak's Resolution:</strong> The question never truly arises — the sota oath is formulated expansively by extension (<em>ribbui</em>), covering future infractions as well, dissolving the apparent contradiction without relying on chuppah's independent status.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 58 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#1e2a3a;border:2px solid #4a90d9;padding:10px;border-radius:8px;text-align:center;"><strong>Woman Unfit to Marry a Priest</strong><br><small>e.g., divorcée, zona, ḥalalah</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1e1e;border:1px solid #e74c3c;padding:8px;border-radius:6px;text-align:center;"><strong>Betrothal only</strong><br>Rabbi Meir: ❌ no teruma<br>R. Elazar/Shimon: ✅ teruma<br><small>Dispute unresolved</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1e1e2a;border:1px solid #9b59b6;padding:8px;border-radius:6px;text-align:center;"><strong>Entered Chuppah</strong><br>Rav Sheshet: ❌ disqualified<br>Gemara: disputed —<br><small>cannot assume same as betrothal</small></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1e1a;border:1px solid #e67e22;padding:8px;border-radius:6px;text-align:center;"><strong>Intercourse completed</strong><br>All opinions: ❌ disqualified<br><small>permanently from teruma</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result" style="background:#1e2a1e;border:2px solid #2ecc71;padding:10px;border-radius:8px;text-align:center;"><strong>Special Case: Levirate Betrothal with Priestly Brother</strong><br>Rabbi Yohanan: ✅ may eat — pending intercourse only rabbinically problematic<br>Reish Lakish: ❌ may not eat — priest cannot personally entitle her</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 58a-58b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 58a-58b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../57/">← Daf 57</a><a href="../59/">Daf 59 →</a></div>
+</body>
+</html>

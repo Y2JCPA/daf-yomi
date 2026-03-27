@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 5 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 5</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות ה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚔️ Aseh Docheh Lo Ta'aseh — proving a positive mitzva overrides a prohibition<br>
+    🪒 Leper's Shaving — failed attempts to source the override principle<br>
+    🧵 Sha'atnez & Tzitzit — wool-linen mixture and ritual fringes as the true source<br>
+    ✂️ Override of Karet — can an aseh override a karet prohibition?<br>
+    🏠 'With Her' & Parental Honor — limits of the override principle<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Does a Positive Mitzva Override a Prohibition?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">We need to prove: an <strong>aseh</strong> (positive mitzva) overrides a <strong>lo ta'aseh</strong> (prohibition). Where is this derived in the Torah?</div></div><div class="debate-line right"><div class="speaker" style="background:#2ecc71">First Answer</div><div class="speech">From the leper's shaving! The leper must shave 'his head' on Day 7 — overriding the prohibition of rounding the corners of one's head.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Objection</div><div class="speech">Rounding corners (pe'ah) doesn't apply to women — it's not a universal prohibition. A non-universal case may be uniquely weak and can't teach a general rule.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Try Again</div><div class="speech">Then derive it from 'his beard' — the leper's shaving overrides the prohibition against shaving the beard corners.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rejected Again</div><div class="speech">Beard prohibition also doesn't apply to women! And 'his beard' is needed to teach a novelty about priests — it's not superfluous.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara (Amud B)</div><div class="speech">Actually, derive it from <em>tzitzit</em>: the Torah juxtaposes the sha'atnez prohibition with 'make twisted fringes' — permitting wool-linen in ritual fringes.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> עֲשֵׂה דּוֹחֶה לֹא תַּעֲשֶׂה — A positive commandment overrides a negative prohibition</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🪒 Attempts to Derive Aseh Docheh from Leper's Shaving</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Leper must shave on Day 7</strong> (Lev. 14:9) — an unambiguous positive mitzva that forces shaving</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Attempt 1: 'His Head'</div><div class="flow-box result-good">Overrides prohibition of rounding corners (pe'at ha-rosh)</div></div><div class="flow-col"><div class="flow-label">❌ Rejected</div><div class="flow-box result-bad">Pe'ah doesn't apply to women — prohibition is <em>not universal</em>; may be inherently weaker</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Attempt 2: 'His Beard'</div><div class="flow-box result-good">Overrides prohibition of shaving the beard corners</div></div><div class="flow-col"><div class="flow-label">❌ Rejected</div><div class="flow-box result-bad">Beard prohibition also excludes women; 'his beard' is also needed to teach that priests' shaving requirement applies even to beard area</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Attempt 3:</strong> Leper overrides <em>both</em> the nazirite positive mitzva (grow hair) <em>and</em> nazirite prohibition (don't cut hair)</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><strong>❌ Rejected:</strong> A nazirite can dissolve his vow through a Sage — the nazirite prohibition is not absolute; we cannot derive from a dissolvable case</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🧵 The Sha'atnez–Tzitzit Derivation (Amud B)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yishmael's School</div><div class="speech">All Torah garments are wool or linen — so 'twisted fringes' must be wool-linen tzitzit, which overrides sha'atnez. QED: aseh overrides lo ta'aseh.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbis</div><div class="speech">We don't accept that all garments are wool/linen. How do we derive the principle?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">From the verse itself: 'Do not wear sha'atnez… make yourself twisted fringes' — the juxtaposition permits wool-linen tzitzit.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Objection</div><div class="speech">'Twisted fringes' is not superfluous — it teaches the required number of threads for tzitzit, as it is taught: 'twisted' = entwined, totaling four doubled-over threads.</div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Response</div><div class="speech">Then let the verse just say 'sha'atnez.' Why add 'wool and linen <em>together</em>'? That phrase teaches: stitching two stitches of one kind with one of the other constitutes forbidden sha'atnez.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Further Objection</div><div class="speech">And 'sha'atnez' itself is needed! It is an acronym: <strong>שׁוּעַ</strong> (combed), <strong>טָווּי</strong> (spun), <strong>נוּז</strong> (woven) — defining exactly when sha'atnez applies.</div></div></div><div class="callout" style="margin-top:20px"><strong>Acronym</strong> שַׁעַטְנֵז = שׁוּעַ טָווּי וְנוּז — smooth-combed, spun, and woven</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>✂️ Aseh vs. Regular Prohibition vs. Karet Prohibition</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2a"><h3 style="color:#2ecc71">Regular Lo Ta'aseh</h3><ul><li>✅ <strong>Aseh overrides</strong> — established principle</li><li>Source: Tzitzit overrides sha'atnez</li><li>Source: Leper's shaving overrides beard prohibition</li><li>No karet punishment attached</li><li>General rule applies broadly</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Lo Ta'aseh + Karet</h3><ul><li>❓ Does aseh override karet prohibition?</li><li>Circumcision on Shabbat — <em>pre-Sinai commandment</em></li><li>Paschal lamb on Shabbat — <em>communal sacrifice</em></li><li>Daily offering on Shabbat — <em>communal + pre-Sinai</em></li><li>❌ Every single case has a unique feature</li><li>❌ Combined cases also all fail</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3a"><h3 style="color:#9b59b6">Yibbum & Parental Honor</h3><ul><li>'With her' (עִמָּהּ) — yibbum applies only where permitted</li><li>Does NOT override wife's-sister prohibition</li><li>Co-wife of a forbidden relative is exempt</li><li>Father commands: 'Cook on Shabbat'</li><li>Son must refuse — God's Shabbat (karet) takes precedence</li><li>Lev. 19:3: 'Fear your parents AND keep My Shabbatot'</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🔗 Combining Cases to Derive Override of Karet — and Why Each Fails</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Circumcision alone:</strong> 8th-day brit milah overrides Shabbat (karet). <em>Rejected:</em> commanded to Avraham pre-Sinai — uniquely stringent or lenient; can't generalize.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Paschal lamb alone:</strong> Korban Pesach slaughter overrides Shabbat (karet). <em>Rejected:</em> Communal sacrifice may carry its own override — not applicable to individual mitzvot.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Daily offering alone:</strong> Tamid overrides Shabbat. <em>Rejected:</em> Also communal; also pre-Sinai. Two unique features — can't derive general rule.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Combine Paschal lamb + circumcision:</strong> One communal, one individual — common feature is only 'overrides Shabbat.' But circumcision is pre-Sinai; Pesach is communal. Not a clean derivation.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Combine circumcision + daily offering:</strong> <em>Both</em> were known before Sinai. The pre-Sinai factor is shared — perhaps only pre-Sinai commandments override karet. ❌ Rejected.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Combine Paschal lamb + daily offering:</strong> <em>Both</em> are communal sacrifices. Perhaps only communal mitzvot override karet. ❌ Rejected. <strong>Conclusion:</strong> The principle cannot be established from any combination.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>📊 Full Summary: All Proof Attempts for Aseh Docheh</h2>
+  
+  <table><tr><th>Source Case</th><th>Aseh Overrides</th><th>Prohibition Type</th><th>Verdict & Reason for Rejection</th></tr><tr><td>Leper + 'his head' (pe'ah)</td><td>Shaving the head corners</td><td>Lo ta'aseh (no karet)</td><td>❌ Pe'ah not universal — doesn't apply to women</td></tr><tr><td>Leper + 'his beard'</td><td>Shaving the beard corners</td><td>Lo ta'aseh (no karet)</td><td>❌ Beard prohibition also excludes women; phrase needed for priests</td></tr><tr><td>Leper + nazirite (combined)</td><td>Both nazirite aseh and lo ta'aseh</td><td>Lo ta'aseh (no karet)</td><td>❌ Nazirite vow can be dissolved — prohibition is not absolute</td></tr><tr><td>Tzitzit / Sha'atnez</td><td>Wool-linen fringes</td><td>Lo ta'aseh (no karet)</td><td>✅ ACCEPTED — valid proof for regular prohibitions</td></tr><tr><td>Circumcision on Shabbat</td><td>8th-day brit milah</td><td>Karet (Shabbat)</td><td>❌ Pre-Sinai commandment; uniquely stringent or lenient</td></tr><tr><td>Paschal lamb on Shabbat</td><td>Korban Pesach slaughter</td><td>Karet (Shabbat)</td><td>❌ Communal sacrifice — may have unique override power</td></tr><tr><td>Daily offering on Shabbat</td><td>Tamid slaughter</td><td>Karet (Shabbat)</td><td>❌ Communal + pre-Sinai — two unique features</td></tr><tr><td>Pesach + Circumcision (combined)</td><td>Both individual & communal</td><td>Karet (Shabbat)</td><td>❌ One communal, one pre-Sinai — no clean shared feature</td></tr><tr><td>Circumcision + Tamid (combined)</td><td>Both override Shabbat</td><td>Karet (Shabbat)</td><td>❌ Both pre-Sinai — only proves pre-Sinai cases</td></tr><tr><td>Pesach + Tamid (combined)</td><td>Both override Shabbat</td><td>Karet (Shabbat)</td><td>❌ Both communal — cannot derive for individual mitzvot</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 5 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a3a;border:2px solid #4a90d9"><strong>Question:</strong> Does עֲשֵׂה דּוֹחֶה לֹא תַּעֲשֶׂה?<br><small>Does a positive mitzva override a prohibition?</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2a;border:2px solid #2ecc71"><strong>Regular lo ta'aseh</strong><br>✅ Yes — from tzitzit overriding sha'atnez<br><small>Juxtaposition of Deut. 22:11–12</small></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a;border:2px solid #e74c3c"><strong>Karet lo ta'aseh</strong><br>❌ Cannot be proven<br><small>Circumcision, Pesach, Tamid — all rejected individually and in pairs</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#2a1a3a;border:2px solid #9b59b6"><strong>'With Her' (עִמָּהּ):</strong> Yibbum does NOT override wife's-sister prohibition<br><small>Tzarah of an ervah is exempt from yibbum and chalitzah</small></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#3a2a1a;border:2px solid #e67e22"><strong>Parental Honor vs. Shabbat:</strong> 'Fear your parents AND keep My Shabbatot' — God's command takes precedence over a parent's instruction to violate Shabbat (karet)<br><small>Lev. 19:3 — both you and your father are obligated to God</small></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 5a-5b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 5a-5b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../4/">← Daf 4</a><a href="../6/">Daf 6 →</a></div>
+</body>
+</html>

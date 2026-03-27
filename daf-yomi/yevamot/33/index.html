@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 33 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 33</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות לג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Isur Mosif — More Inclusive Prohibition Debate<br>
+    ⏱️ Simultaneous vs. Sequential Prohibitions<br>
+    🏛️ Temple Service Cases: Non-Priest & Blemished Priest<br>
+    💒 Switched Wives at the Wedding Canopy<br>
+    📅 Three-Month Separation to Determine Paternity<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Rabbi Ḥiyya vs. Bar Kappara: What Did Rabbi Yehuda HaNasi Teach?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Bar Kappara</div><div class="speech">Rabbi Yehuda HaNasi taught me <strong>3 cases</strong> of exemption — non-priest on Shabbat, blemished priest while impure, and non-priest eating a bird killed by pinching. All are cases of simultaneous prohibitions (<em>isur chal al isur</em>).</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Ḥiyya</div><div class="speech">He taught you only <strong>2 cases</strong>. You added the bird case yourself! The first two involve <em>sequential</em> prohibitions — they are cases of <em>isur mosif</em>, not simultaneous ones.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Bar Kappara</div><div class="speech">The bird case can <em>only</em> occur with simultaneous prohibitions, so I inferred the other two must be simultaneous as well — all following Rabbi Shimon's rule that one prohibition cannot take effect atop another.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbi Ḥiyya</div><div class="speech">Bar Kappara erred! Rabbi Yehuda HaNasi taught those two cases under <em>isur mosif</em>. The bird analogy was faulty — it does not belong to the same category at all.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Dispute</strong> Did Rabbi Yehuda HaNasi teach 2 cases (isur mosif / sequential) or 3 cases (isur chal al isur / simultaneous)? Rabbi Ḥiyya and bar Kappara sharply disagree about what was transmitted and how the cases should be categorized.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🔑 Two Types of Overlapping Prohibitions</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Isur Mosif (More Inclusive)</h3><ul><li>A <strong>new prohibition adds scope</strong> to an existing one</li><li>Ex: Non-priest always forbidden on Shabbat; now also forbidden from Temple service every day</li><li>The new prohibition <em>expands</em> the original restriction to more persons or times</li><li><strong>Rabbi Yosei:</strong> such a prohibition <em>can</em> take effect atop an existing one</li><li>Result: person is <strong>liable for both</strong> violations separately</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Isur Chal Al Isur (Simultaneous)</h3><ul><li>Two prohibitions take effect at <strong>exactly the same moment</strong></li><li>Ex: A minor grows two hairs and simultaneously becomes ritually impure</li><li>Both 'blemished' and 'impure' prohibitions begin at once — neither precedes the other</li><li><strong>Rabbi Shimon:</strong> second prohibition <em>cannot</em> take effect atop the first</li><li>Result: liable for <strong>only one</strong> of the two violations</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🏛️ The Three Temple Service Cases Analyzed</h2>
+  
+  <table><tr><th>Case</th><th>First Prohibition</th><th>Second Prohibition</th><th>Sequential or Simultaneous?</th><th>Ruling per Rabbi Shimon</th></tr><tr><td>Non-priest serves on Shabbat</td><td>Shabbat labor (always in effect)</td><td>Non-priest Temple service</td><td>Sequential — Shabbat preceded Temple prohibition</td><td>Exempt (isur mosif — one prohibition)</td></tr><tr><td>Blemished priest serves while impure</td><td>Temple service while blemished</td><td>Ritual impurity during service</td><td>Sequential — blemish prohibition preceded impurity</td><td>Exempt (isur mosif — one prohibition)</td></tr><tr><td>Non-priest eats bird killed by pinching (melikah)</td><td>Non-priest eating consecrated food</td><td>Eating bird slaughtered without proper method</td><td>Simultaneous — both begin at same moment of eating</td><td>Liable for one only (simultaneous — one counts)</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>⚗️ Bar Kappara's Reasoning — and Where It Went Wrong</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Rabbi Yehuda HaNasi teaches bar Kappara <strong>two exemption cases</strong>: non-priest on Shabbat, and blemished priest while impure</div><div class="flow-arrow">↓</div><div class="flow-box action">Bar Kappara also encounters the case of a <strong>non-priest eating a bird killed by pinching</strong> — where both prohibitions clearly arise <em>simultaneously</em></div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Bar Kappara's inference:</strong> Since the bird case involves simultaneous prohibitions, all three cases must involve simultaneous prohibitions (<em>isur chal al isur</em>)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbi Ḥiyya's Rebuttal</div><div class="flow-box result-bad">The first two cases are <strong>sequential</strong> (isur mosif), not simultaneous. Bar Kappara was wrong to analogize from the bird case — the categories are different!</div></div><div class="flow-col"><div class="flow-label">What Really Happened</div><div class="flow-box result-good">Rabbi Yehuda HaNasi taught the first two cases as <strong>isur mosif per Rabbi Shimon</strong>. Bar Kappara added the third himself and miscategorized all three as simultaneous.</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>💒 Mishna (33b): The Switched Wives</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Setup:</strong> Two men betroth two women. At the wedding canopy, they switch — Man A enters with Woman B's chamber, Man B with Woman A's.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Liability:</strong> Both men are liable for <em>bi'at zenut</em> (forbidden sexual relations) and must bring a sin-offering.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Separation:</strong> The women are <strong>separated from their husbands for three months</strong> before reuniting with their proper spouses.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Why three months?</strong> To determine paternity — a child born after return would otherwise be of uncertain lineage (from proper husband or forbidden union).</div><div class="process-arrow">↓</div><div class="process-step"><strong>Gemara's challenge:</strong> Could they really be so wicked to do this intentionally? Rabbi Ḥiyya taught 16 such cases — implying these accidents happen in darkness or confusion.</div><div class="process-arrow">↓</div><div class="process-step"><strong>Proof of accidental nature:</strong> If it were intentional, would they be permitted to return to their wives after three months? The mishna's permission to return implies the act was unintentional.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔥 What Service Did the Non-Priest Perform on Shabbat?</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מַאי עֲבוֹדָה עָבַד? — In what form of Temple service did he serve?</div><div class="callout"><strong>Gemara's Sharp Analysis</strong> <strong>Problem:</strong> If the non-priest burned sacrificial portions (haktarah), this follows Rabbi Yosei — but Rabbi Yosei holds kindling on Shabbat is singled out to impose only a <em>negative commandment</em>, not the death penalty. That changes the whole case!
+
+<strong>Rav Aḥa bar Yaakov:</strong> The case involves <strong>slaughtering the High Priest's bull on Yom Kippur</strong> — disqualified if performed by a non-priest, making it a genuine Temple service violation on Shabbat.
+
+<strong>Rav Ashi objects strongly:</strong> The earlier rejection was groundless! The tanna is not counting <em>how many sin-offerings</em> are brought — he is counting <em>which prohibitions were violated</em>. Burning is perfectly valid as the case.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 33 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2a2a4a;border-left:4px solid #4a90d9;padding:10px;"><strong>Core Question:</strong> When two prohibitions apply to one act, is the person liable for both or only one?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border:2px solid #2ecc71;padding:8px;"><strong>Isur Mosif</strong> (sequential)<br>New prohibition expands scope<br><em>Rabbi Yosei:</em> takes effect — liable<br><em>Rabbi Shimon:</em> exempt from second</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a;border:2px solid #e74c3c;padding:8px;"><strong>Simultaneous</strong><br>Two prohibitions at same moment<br><em>Rabbi Yosei:</em> takes effect — liable<br><em>Rabbi Shimon:</em> second cannot take effect</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a;border-left:4px solid #9b59b6;padding:10px;"><strong>Rabbi Ḥiyya vs. Bar Kappara:</strong> Which category do the 3 Temple cases belong to? Ḥiyya says 2 cases = isur mosif; bar Kappara says all 3 = simultaneous based on the bird-melikah analogy</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a2a1a;border-left:4px solid #c9a84c;padding:10px;"><strong>Baraita challenge + Temple service question:</strong> What act did the non-priest perform? Burning vs. Yom Kippur slaughter — Rav Ashi resolves: the question of <em>which prohibition</em> not <em>how many sin-offerings</em></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3a;border-left:4px solid #4a90d9;padding:10px;"><strong>Mishna:</strong> Switched wives → liable for forbidden relations → 3-month separation → reunited after paternity clarified (Gemara: this was accidental, not intentional)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 33a-33b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 33a-33b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../32/">← Daf 32</a><a href="../34/">Daf 34 →</a></div>
+</body>
+</html>

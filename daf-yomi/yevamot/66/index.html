@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 66 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 66</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות סו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Forbidden Wives & Teruma — slaves of a forbidden wife cannot partake<br>
+    🔗 Kinyan She-Kana Kinyan — acquisition enabling acquisition<br>
+    🗣️ Three Amoraic Explanations — Ravina, Rava, and Rav Ashi debate the decree<br>
+    💰 Melog vs. Tzon Barzel — two types of marital property<br>
+    🪦 Rav Yehuda vs. Rabbi Ami — who owns guaranteed property at dissolution<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Who May Partake of Teruma?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Priest marries a <strong>forbidden wife</strong> — a prohibited union (Torah violation)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Her Melog Slaves</div><div class="flow-box result-bad">Do NOT eat teruma — she herself cannot eat</div></div><div class="flow-col"><div class="flow-label">Her Tzon Barzel Slaves</div><div class="flow-box result-bad">Do NOT eat teruma — decree applies equally</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Core Principle: Only one who <em>partakes of teruma</em> can enable others to partake<br><small>(Ravina's formulation — disputed by Rava and Rav Ashi)</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Permitted Wife (Israelite + Priest)</div><div class="flow-box result-good">Her slaves <strong>DO</strong> eat teruma — she partakes, enabling them</div></div><div class="flow-col"><div class="flow-label">Uncircumcised / Impure Priest</div><div class="flow-box result-bad">Does not partake yet CAN enable his slaves — apparent exception to the rule</div></div></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>📦 Melog vs. Tzon Barzel — Two Types of Marital Property</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Melog (Usufruct) Slaves</h3><ul><li>If slaves die → her loss</li><li>If value increases → her gain</li><li>Husband enjoys their labor only</li><li>Considered 'her property' throughout</li><li>Do NOT eat teruma if wife is a forbidden wife</li><li>Partake if wife is a permitted Israelite</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">Tzon Barzel (Guaranteed) Slaves</h3><ul><li>Husband bears full financial responsibility</li><li>Returned at fixed appraised value</li><li>Husband is treated as 'owner' during marriage</li><li>Rav Yehuda: she gets actual items back</li><li>Rabbi Ami: he returns monetary value only</li><li>Rav Naḥman (final ruling): halakha follows Rav Yehuda</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🗣️ Why Can't the Forbidden Wife's Slaves Eat Teruma?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara Q</div><div class="speech">Let her slaves eat teruma! They are 'his acquisition who acquired an acquisition' — the verse (Lev. 22:11) explicitly includes them!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Ravina</div><div class="speech">The principle is: whoever <em>partakes</em> of teruma enables others; whoever does <em>not</em> partake, cannot enable others. Since the forbidden wife cannot eat teruma herself, her slaves cannot eat either.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rava</div><div class="speech">By Torah law they CAN eat teruma — they are indeed included in 'his acquisition who acquired an acquisition.' The Sages <strong>decreed a penalty</strong> prohibiting it as punishment upon the priest who transgressed.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Ashi</div><div class="speech">It is a rabbinic decree — lest she enable the slaves to eat teruma <strong>even after the priest's death</strong>. To prevent this, the Sages treated her throughout as a non-partaker.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Insight</strong> All three agree on the practical ruling — her slaves do not eat. The debate is whether this is Torah-level (Ravina) or a rabbinic decree (Rava, Rav Ashi), and if a decree, what motivated it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🔍 Rav Ashi's Refined Decree — The Widowed Priestess Case</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Objection to Rav Ashi:</strong> If the decree is 'lest she feed them teruma after her husband's death,' then <em>any</em> Israelite woman married to a priest should also be restricted from enabling her slaves to eat teruma!</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Rav Ashi's Refinement:</strong> The decree targets specifically a <em>widowed daughter of a priest (בת כהן)</em> who then married the <strong>High Priest</strong>.</div><div class="process-arrow">↓</div><div class="process-step">After the High Priest dies, she might reason: 'I am a daughter of a priest — I myself may eat teruma in my father's house — therefore my slaves may also partake.' This logic is flawed but dangerously plausible.</div><div class="process-arrow">↓</div><div class="process-step">An ordinary <em>Israelite</em> woman has no such reasoning — after her husband's death she clearly loses all priestly privilege for herself and her slaves with no ambiguity.</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Remaining Question:</strong> What if an Israelite woman (not a priest's daughter) married the High Priest? The Gemara accepts the gap — the Sages decreed broadly to cover the priestess case and the Israelite case follows automatically.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>💰 Guaranteed Property at Dissolution — Rav Yehuda vs. Rabbi Ami</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Yehuda</div><div class="speech">The halakha favors <strong>her</strong> — she may reclaim the actual items upon divorce or death. They are assets of her paternal family, and their family prestige suffers if the items are not returned in kind.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbi Ami</div><div class="speech">The halakha favors <strong>him</strong> — he may retain the actual items and return only their monetary value. Since he bore full financial responsibility throughout, the items effectively became his.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Baraita (supports Rav Yehuda)</div><div class="speech">He may not <em>sell</em> guaranteed property — it belongs to her. Nor may she sell it — for he bears responsibility for its loss. Both sides protect the item itself.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Naḥman (via Rava)</div><div class="speech"><strong>Final ruling:</strong> Halakha follows Rav Yehuda — the wife reclaims the <em>actual items</em>. Though a baraita supports Rabbi Ami, it does not override the established ruling.</div></div></div><div class="callout" style="margin-top:20px"><strong>Legal Principle</strong> Tzon barzel property: the husband bears financial risk but the wife retains ultimate ownership — she gets the items themselves returned upon dissolution of the marriage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>undefined</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">קנייה ליה מיתה — הקדש וחמץ ושחרור מפקיעין מידי שעבוד</div><div class="callout"><strong>Case Study — The Buried Robe</strong> A woman brought a fine wool robe (<em>itztela de-meileta</em>) into her marriage as guaranteed (tzon barzel) property. Her husband died and the orphans (heirs) <strong>buried him in the robe</strong>. She then came to collect her guaranteed property back.
+
+<strong>Rava ruled:</strong> The dead has acquired it (<em>קנייה ליה מיתה</em>). Deriving benefit from items consecrated for the dead is prohibited — she cannot take it back.
+
+<strong>Apparent contradiction:</strong> But Rav Naḥman ruled (per Rava himself!) that halakha follows Rav Yehuda — she gets the actual items!
+
+<strong>Resolution:</strong> Even Rav Yehuda agrees when the item has been consecrated for burial. Consecration, prohibition of chametz on Pesach, and hekdesh (Temple dedication) all <em>take effect immediately</em> upon designation — overriding prior ownership claims.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 66 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Mishna:</strong> Forbidden wife (widow → High Priest; divorcée → common priest) — her slaves do NOT eat teruma</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Ravina:</strong> Torah rule — she cannot eat → she cannot enable others</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Rava:</strong> Rabbinic decree — penalty on the violating priest</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Rav Ashi:</strong> Decree targets widowed priestess who might err after priest's death</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Amud B:</strong> Tzon barzel property at dissolution — Rav Yehuda vs. Rabbi Ami</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Rav Yehuda (halakha):</strong> She reclaims the actual items — family prestige</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:8px;border-radius:6px"><strong>Rabbi Ami:</strong> He returns monetary value — he bore the risk</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad" style="background:#34495e;color:#fff;padding:8px;border-radius:6px"><strong>Exception (Rava):</strong> If item was buried with husband — <em>consecration for the dead</em> overrides ownership; she cannot reclaim it</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 66a-66b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 66a-66b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../65/">← Daf 65</a><a href="../67/">Daf 67 →</a></div>
+</body>
+</html>

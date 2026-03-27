@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 46 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Yevamot 46 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Rava, which three things abrogate any prior lien or ownership claim?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. A bill of sale, a court ruling, and payment of the original price</div>
+      <div class="option" onclick="select(1,this,1)">B. Consecration to the Temple, the prohibition of leavened bread taking effect, and emancipation of a slave</div>
+      <div class="option" onclick="select(1,this,2)">C. Immersion, circumcision, and a declaration before three judges</div>
+      <div class="option" onclick="select(1,this,3)">D. Death of the owner, completion of the purchase, and a written deed</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Rava states that consecration to the Temple, the prohibition of leavened bread taking effect on a leavened food, and emancipation of a slave all abrogate any prior lien — this is relevant to the question of what the gentile owner could transfer when selling a slave.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">In the Beloreya incident, why did her slaves acquire themselves and go free?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. She verbally declared them free before immersing herself</div>
+      <div class="option" onclick="select(2,this,1)">B. They paid her double their market value</div>
+      <div class="option" onclick="select(2,this,2)">C. They immersed in the mikveh before she completed her own conversion immersion</div>
+      <div class="option" onclick="select(2,this,3)">D. A court of three ruled that they were already freeborn</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>Beloreya's slaves preempted her and immersed before her own conversion was complete. Rava rules that whether they immersed without any specified intention or with explicit intent to convert, the prior immersion freed them — she could not transfer ownership of people she no longer owned as a Jew.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">What does Rabbi Yoḥanan rule regarding conversion, and why must he state it explicitly?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Immersion alone suffices; stated explicitly because people forgot this</div>
+      <div class="option" onclick="select(3,this,1)">B. A man is never a convert until both circumcised and immersed; stated explicitly because Rabbi Yosei is only one Sage and one might otherwise follow the majority</div>
+      <div class="option" onclick="select(3,this,2)">C. A court of ten is required; stated explicitly to override local custom</div>
+      <div class="option" onclick="select(3,this,3)">D. Circumcision alone suffices for men; stated explicitly to distinguish from women</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Rabbi Yoḥanan rules like Rabbi Yosei that both circumcision and immersion are required. He must state this explicitly because Rabbi Yosei is an individual Sage — without the explicit ruling, one might follow the majority opinion (Rabbi Yehuda) that either act alone suffices.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">How many judges must be present for a conversion, and what is the Torah source?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Two, from 'a matter shall be established by two witnesses'</div>
+      <div class="option" onclick="select(4,this,1)">B. Ten, because conversion is a public act requiring a minyan</div>
+      <div class="option" onclick="select(4,this,2)">C. Three, from the word 'judgment' in 'one judgment shall be for you and the convert'</div>
+      <div class="option" onclick="select(4,this,3)">D. One, since conversion is a private agreement between the convert and God</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>Rabbi Yoḥanan derives from Numbers 15:16 — 'one judgment (mishpat) shall be both for you and for the convert' — that conversion requires a court of three, because 'judgment' implies a beit din.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Why did Rabbi Yoḥanan rule that the children of the converts in Gavla are mamzerim?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Because their mothers had not immersed either, making both parents gentiles</div>
+      <div class="option" onclick="select(5,this,1)">B. Because the conversions were performed under duress rather than voluntarily</div>
+      <div class="option" onclick="select(5,this,2)">C. Because circumcision without immersion leaves a man legally a gentile, and relations between a gentile man and a Jewish woman produce a mamzer</div>
+      <div class="option" onclick="select(5,this,3)">D. Because the local court in Gavla lacked the required three qualified judges</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>Rabbi Yoḥanan holds (following Rabbi Yosei) that circumcision without immersion does not complete conversion — the man remains a gentile. Relations between a gentile and a Jewish woman are forbidden, and the resulting children are mamzerim. This follows from Rabbi Yoḥanan's principle that one is not a convert until both acts are complete.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":1,"4":2,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

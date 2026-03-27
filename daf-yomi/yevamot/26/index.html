@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 26 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔗</div>
+  <h1>Yevamot 26</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות כו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Agents of Permission — may judges/witnesses marry those they freed?<br>
+    🔗 Zikah Debate — is the levirate bond substantial?<br>
+    👭 Four Brothers, Two Sisters — mandatory ḥalitza only<br>
+    🧩 Three Sisters, Two Brothers — complex ḥalitza chains<br>
+    ⚔️ Rav vs. Shmuel — how many ḥalitzot are required?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>🔗 The Levirate Bond (Zikah) — Substantial or Not?</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">זיקה — ככנוסה דמיא? Is the levirate bond like actual marriage?</div><div class="callout"><strong>Central Question of the Daf</strong> Yevamot 26 opens with rulings about those who enabled women to remarry (judges, agents, witnesses) and whether they may subsequently marry those women. The daf then pivots to the defining debate of this chapter: does the <strong>zikah</strong> (levirate bond) create a quasi-marital tie? The answer drives rulings about sisters who are co-yevamot, culminating in a dispute between Rav and Shmuel over complex ḥalitza chains.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>👨‍⚖️ Mishna: Those Who Permitted Women to Remarry</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Who are the 'agents'?</strong> A judge who ruled a husband dead; an agent who delivered a <em>get</em>; a witness who testified the husband died — all enabling a woman to remarry</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Prohibition:</strong> While their own wives were alive, they may NOT marry the women they freed — there is suspicion that bias motivated their ruling</div><div class="process-arrow">↓</div><div class="process-step"><strong>Permission:</strong> If their wives subsequently <em>died</em>, they may marry those women — the suspicion is retrospectively allayed</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Divorce question:</strong> Baraita says even divorce allows it. The Gemara distinguishes: permitted only if the quarrel with his first wife arose <em>after</em> — not before — the ruling</div><div class="process-arrow">↓</div><div class="process-step"><strong>Sons and brothers:</strong> Women forbidden from marrying the man who freed them due to suspicion are nevertheless permitted to his <em>sons</em> or <em>brothers</em> — the suspicion does not extend that far</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🔗 Is Zikah (the Levirate Bond) Substantial?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">View A (Zikah substantial)</div><div class="speech">The levirate bond IS substantial — it creates a quasi-marital tie. Therefore when two sisters are co-yevamot, marrying one is like marrying your wife's sister. That is why ḥalitza is required and yibbum forbidden.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">View B (Zikah not substantial)</div><div class="speech">The levirate bond is NOT substantial. The reason sisters cannot do yibbum is a rabbinic decree: people would say he married his wife's sister. The mishna can be explained without any quasi-marital bond.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara challenge</div><div class="speech">If the reason is only a rabbinic concern about appearances, why did the mishna specify FOUR brothers? Even THREE brothers (two die, leaving one) would generate the same social concern!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Response</div><div class="speech">The mishna uses the style of <em>lo zu af zu</em> — 'not only this but also that.' It teaches the more obvious 3-brother case implicitly, while explicitly stating the less obvious 4-brother case. No contradiction.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Term</strong> זיקה (Zikah) — the levirate bond that arises when a brother dies childless, creating an obligation between his widow and surviving brothers</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👭 The Four Brothers / Two Sisters Scenario</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><strong>Setup:</strong> 4 brothers — Brothers A &amp; B are each married to one of two sisters</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Brothers A &amp; B die childless → both sisters fall for levirate marriage before Brothers C &amp; D</div><div class="flow-arrow">↓</div><div class="flow-box question"><strong>Problem:</strong> Can C or D perform yibbum with either sister?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">If Zikah IS substantial</div><div class="flow-box result-bad">C has a bond with BOTH sisters. Marrying one = marrying his wife's sister. <strong>Forbidden.</strong></div></div><div class="flow-col"><div class="flow-label">If Zikah is NOT substantial</div><div class="flow-box result-bad">Still forbidden by rabbinic decree — appearances of marrying wife's sister. <strong>Forbidden.</strong></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Ruling in both opinions:</strong> Both sisters must receive <em>ḥalitza</em> only — yibbum is prohibited</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>🧩 Three Sisters / Two Brothers — Sequential ḥalitza (Rav bar Rav Huna citing Rav)</h2>
+  
+  <table><tr><th>Sister</th><th>Bond with Reuven</th><th>Bond with Shimon</th><th>Required Actions</th></tr><tr><td>Sister A (first to appear)</td><td>Reuven performs valid ḥalitza ✓</td><td>No remaining bond</td><td>ḥalitza from Reuven only — freed</td></tr><tr><td>Sister B (second to appear)</td><td>No remaining bond</td><td>Shimon performs valid ḥalitza ✓</td><td>ḥalitza from Shimon only — freed</td></tr><tr><td>Sister C (third / 'middle')</td><td>Bond remains until ḥalitza</td><td>Bond remains until ḥalitza</td><td><strong>Must receive ḥalitza from BOTH</strong> brothers</td></tr><tr><td>If all three appeared simultaneously</td><td>Both brothers obligated to all 3</td><td>Both brothers obligated to all 3</td><td><strong>6 ḥalitzot total</strong> — each brother with each sister</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>⚔️ Rav vs. Shmuel on the Three-Sisters Case</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2a4a"><h3 style="color:#4a90d9">Rav</h3><ul><li>Levirate bond is NOT substantial</li><li>Yet: the 'middle' sister requires ḥalitza from BOTH brothers</li><li>Reasoning: each ḥalitza performed while the other sister's bond existed was potentially invalid</li><li>To be certain of a valid release, she must do ḥalitza with each brother</li><li>More stringent — requires up to 6 ḥalitzot when all three appear simultaneously</li></ul></div><div class="compare-box" style="border-top-color:#1a3a1a"><h3 style="color:#2ecc71">Shmuel</h3><ul><li>Requires a full levirate marriage (not just ḥalitza) to exempt a co-wife</li><li>For the three-sisters case: ONE brother performing ḥalitza with each sister is sufficient</li><li>Does not require each sister to receive ḥalitza from both brothers</li><li>More lenient — a single valid ḥalitza per sister fully severs the bond</li><li>Left unresolved at end of daf — tension between the two positions</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 26 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box action" style="background:#1a2a4a;border-color:#4a90d9"><strong>Agents of Permission</strong><br><small>Judge / agent / witness frees woman to remarry</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1a1a;border-color:#e74c3c"><strong>His wife was alive at ruling</strong><br>→ Cannot marry her<br><small>(suspicion of bias)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a1a;border-color:#2ecc71"><strong>His wife died / divorced after</strong><br>→ May marry her<br><small>(suspicion resolved)</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#2a1a4a;border-color:#9b59b6"><strong>Zikah Debate:</strong> Is the levirate bond substantial?<br><small>Drives all multi-sibling rulings below</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a2a1a;border-color:#e67e22"><strong>4 brothers / 2 sisters</strong><br>→ ḥalitza only<br><small>yibbum forbidden in all opinions</small></div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a;border-color:#e67e22"><strong>3 sisters / 2 brothers</strong><br>→ Complex ḥalitza chains<br><small>sequential or simultaneous</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#1a2a3a;border-color:#4a90d9"><strong>Rav:</strong> Middle sister needs ḥalitza from both brothers<br><strong>Shmuel:</strong> One ḥalitza per sister is sufficient</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 26a-26b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 26a-26b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../25/">← Daf 25</a><a href="../27/">Daf 27 →</a></div>
+</body>
+</html>

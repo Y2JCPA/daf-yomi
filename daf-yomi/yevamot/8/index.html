@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 8 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 8</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות ח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⏱️ Order of Marriages — which prohibition takes precedence<br>
+    ⛔ Rava's Principle — positive mitzvot cannot override karet<br>
+    📜 'With Her' עמה — layers of textual derivation<br>
+    👯 Rival Wives — exempt or obligated in yibum?<br>
+    🔄 Two Verses, Two Issues — Rav Huna bar Tahlifa's reading<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>⚖️ Does a Forbidden Relative Need a Verse to Be Exempt from Yibum?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">A positive mitzva <em>does not</em> override a prohibition entailing <strong>karet</strong>. Therefore, no verse is needed to exempt a forbidden relative from yibum — it follows from first principles!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Baraita</div><div class="speech">But the baraita states: <em>'I have derived nothing other than these sisters...'</em> — implying the verse IS necessary for forbidden relatives, not merely for rival wives!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rava (Response)</div><div class="speech">The verse is required only for the <strong>rival wife (tzara)</strong> of the forbidden relative. The forbidden relative herself needs no verse — the karet principle suffices.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Rav Ashi confirms: the mishna teaches <em>'fifteen women exempt their rival wives'</em> — not 'are exempt and exempt others,' showing the exemption of a forbidden relative is self-evident, not derived.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Resolution</strong> The baraita's verse-based derivation targets rival wives (tzarot), not the forbidden relatives themselves. A karet prohibition needs no extra verse — it automatically overrides a positive mitzva like yibum.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>⏱️ Does the Order of Marriages Determine Yibum Status?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><strong>Deceased brother</strong> died childless — two sisters involved<br><small>Living brother is married to one; deceased was married to the other</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Deceased married first</div><div class="flow-box result-good"><strong>Brother's wife</strong> prohibition established first. Later, living brother married her sister → <em>wife's sister</em> prohibition. Yibum obligation pre-exists the competing prohibition.</div></div><div class="flow-col"><div class="flow-label">Living brother married first</div><div class="flow-box result-bad"><strong>Wife's sister</strong> prohibition established first. Later, deceased married her sister → she became a rival wife of a <em>pre-existing</em> forbidden relative. No yibum obligation ever formed.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Conclusion:</strong> The prohibition established <em>first</em> is primary. Only when the brother's wife obligation precedes the wife's sister prohibition does the classic rival-wife exemption scenario arise.</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🗣️ Rami bar Hama Challenges Rava's Kal V'Chomer</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech"><strong>'With her' (עמה)</strong> teaches: where levirate marriage is applicable, the rival wife is <em>prohibited</em>; where it is not applicable, she is <em>permitted</em>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rami bar Hama</div><div class="speech">Why not reverse your kal v'chomer? A forbidden relative is <em>more stringent</em> than a rival wife — perhaps she should be <strong>permitted</strong> where yibum doesn't apply, just as the rival wife is permitted there?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rami bar Hama</div><div class="speech">Moreover, the rival wife herself disproves the kal v'chomer: she is prohibited where yibum applies and permitted where it doesn't. The forbidden relative could be <strong>prohibited in both places!</strong></div></div><div class="debate-line"><div class="speaker" style="background:#2ecc71">Rav Huna bar Tahlifa</div><div class="speech"><strong>Two separate issues</strong> are embedded in a single verse — one phrase covers the place where yibum applies, the other covers where it does not. No single kal v'chomer is needed.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Verse (Lev. 18:18)</strong> "And you shall not take a woman to her sister... in her lifetime" — Rav Huna bar Tahlifa reads this as two independent teachings, each governing a different scenario</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>👯 Forbidden Relative vs. Rival Wife — Two Legal Tracks</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a252f"><h3 style="color:#e74c3c">Forbidden Relative עצמה</h3><ul><li>Prohibited by a <strong>karet</strong> transgression</li><li>Positive mitzva of yibum <em>cannot</em> override karet</li><li><strong>No special verse needed</strong> — derived from the general principle</li><li>Exempt from both yibum <em>and</em> chalitza</li><li>Example: wife's sister, mother-in-law, daughter</li><li>Rav Ashi: mishna's phrasing confirms this — 'exempt their rival wives,' not 'are themselves exempt'</li></ul></div><div class="compare-box" style="border-top-color:#1a252f"><h3 style="color:#4a90d9">Rival Wife צרה</h3><ul><li>Co-wife of the forbidden relative</li><li>Her own marriage was <em>entirely permitted</em></li><li><strong>Needs a special derivation</strong> for her exempt status</li><li>Derived from <strong>'with her' (עמה)</strong> — exempt only where yibum obligation exists for the co-wife</li><li>Where yibum does not apply, rival wife may be <strong>permitted</strong></li><li>Rav Aḥa son of Beivai Mar: even her prohibition involves karet — perhaps she too needs no verse</li></ul></div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📜 What Does Each Sage Derive from the Levirate Verse?</h2>
+  
+  <table><tr><th>Sage</th><th>Phrase / Source</th><th>Halakha Derived</th></tr><tr><td>Rava</td><td>"With her" (עמה)</td><td>Rival wife prohibited where yibum applies; permitted where it does not apply</td></tr><tr><td>Rav Huna bar Tahlifa</td><td>Two phrases in one verse</td><td>Two independent rulings — one for place of mitzva, one for where no mitzva exists</td></tr><tr><td>Rabbi Yehuda HaNasi</td><td>"Have intercourse with her" (יבמה)</td><td>Levirate marriage grants full wife status — she may be divorced with a get</td></tr><tr><td>Rabbi Yosei bar Hanina</td><td>"And have intercourse with her"</td><td>Marriage is fully effected from the moment of yibum; entitled to a proper divorce</td></tr><tr><td>Rabbi Shimon</td><td>"To be a rival wife" (לצרור)</td><td>Exemption extends even to sisters who both fell to yibum simultaneously</td></tr><tr><td>Gemara</td><td>"In her lifetime" (בחייה)</td><td>Wife's sister forbidden while first wife lives; also: even if first wife is divorced</td></tr></table>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🔄 Rabbi Yehuda HaNasi's Alternative Reading of the Verse</h2>
+  
+  <div class="process-bar"><div class="process-step"><strong>Background:</strong> The Gemara cites Rabbi Yehuda HaNasi's proof for why forbidden relatives and rival wives are prohibited from yibum — via a different verse entirely</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>The verse (Deut. 25:5):</strong> <em>'Her brother-in-law will have intercourse with her'</em> — Rabbi Yehuda HaNasi reads <strong>'יבמה'</strong> not as a command but as indicating full marital acquisition</div><div class="process-arrow">↓</div><div class="process-step"><strong>Derivation 1:</strong> Yibum creates a complete marriage — she becomes his wife in every legal sense (divorce requires a get; she inherits from him)</div><div class="process-arrow">↓</div><div class="process-step"><strong>Derivation 2:</strong> 'To be a rival wife' (לצרור) — teaches the exemption of rival wives, consistent with Rabbi Shimon's view that even simultaneous sisters are exempt</div><div class="process-arrow">↓</div><div class="process-step highlight"><strong>Challenge:</strong> What does Rabbi Yehuda HaNasi do with the phrase 'with her' (עמה)? The Gemara answers: he needs it for the court's obligation to provide atonement — a separate halakha entirely</div></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 8 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box question" style="background:#2c3e50;color:#fff;padding:10px;border-radius:6px;text-align:center;"><strong>Forbidden relative falls into a yibum situation</strong><br><small>e.g., wife's sister, after deceased brother's death</small></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;text-align:center;"><strong>The Forbidden Relative Herself</strong><br><small>Prohibited by karet → positive mitzva of yibum cannot override → exempt with no verse required (Rava's principle)</small></div></div><div class="flow-col"><div class="flow-box" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;text-align:center;"><strong>Her Rival Wife (Tzara)</strong><br><small>Needs derivation from <strong>'with her' (עמה)</strong> — exempt only where the yibum mitzva would otherwise apply to the co-wife</small></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good" style="background:#16213e;color:#fff;padding:10px;border-radius:6px;text-align:center;"><strong>Both are exempt</strong> from yibum — the forbidden relative by the karet principle; her rival wife by textual derivation from the levirate verse</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 8a-8b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 8a-8b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../7/">← Daf 7</a><a href="../9/">Daf 9 →</a></div>
+</body>
+</html>
