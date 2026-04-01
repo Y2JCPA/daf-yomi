@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 67 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🤝</div>
+  <h1>Nedarim 67</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים סז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🤝 Joint Nullification — Father and husband must both nullify a betrothed woman's vows<br>
+    📜 Biblical Derivation — Scriptural source for joint nullification from Numbers 30<br>
+    ⚖️ Ratification & Dissolution — Effect of one party ratifying then seeking dissolution<br>
+    💍 Betrothed vs. Married — Distinguishing which verses apply to each status<br>
+    🔍 A Fortiori Reasoning — Why the betrothed cannot nullify vows alone<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 67: Partnership in Nullification</h2>
+  
+  <div class="callout"><strong>CORE PRINCIPLE</strong> A <b>betrothed young woman's</b> (נערה מאורסה) vows can only be nullified through the <b>joint action</b> of both her father and her betrothed husband — neither can act alone. The Gemara derives this from <b>Numbers 30:7–9</b> and systematically rejects alternatives.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>When Is a Vow Nullified?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Betrothed young woman makes a vow (נדר)</div><div class="flow-arrow">↓</div><div class="flow-box question">Does the <b>father</b> nullify?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box question">Does the <b>husband</b> also nullify?</div></div><div class="flow-col"><div class="flow-label">No</div><div class="flow-box result-bad">❌ Vow stands — even if husband nullified</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box result-good">✅ Vow is nullified (הפרה)</div></div><div class="flow-col"><div class="flow-label">No</div><div class="flow-box result-bad">❌ Vow stands</div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY RULE</strong> Both father AND husband must nullify — one without the other accomplishes nothing.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Does the Mishna Repeat Itself?</h2>
+  
+  <div class="debate"><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The mishna says: <i>If the father nullified but the husband did not, or vice versa, the vow stands.</i> Isn't this just restating the first clause — 'her father and husband nullify her vows'?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Answer</div><div class="speech">The repetition is necessary — the first clause could mean <b>either</b> her father <b>or</b> her husband can nullify. The second clause clarifies: <b>both</b> must act together.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">And why add 'needless to say if one <b>ratified</b> (קיים) the vow'? If mere inaction prevents nullification, ratification is obvious!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Answer</div><div class="speech">It addresses a case where one ratified, then sought <b>dissolution</b> (שאלה) of the ratification from a sage. You might think the vow is now gone — so the mishna teaches: <b>both must still actively nullify</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>CHIDDUSH</strong> Even if ratification is dissolved by a halakhic authority, the vow is not automatically nullified — active joint nullification is still required.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Biblical Verses: Betrothed vs. Married</h2>
+  
+  <table><tr><th>Verse (Numbers 30)</th><th>Applies To</th><th>What It Teaches</th></tr><tr><td>"If she <b>be to</b> a husband" (30:7–9)</td><td>Betrothed woman (מאורסה)</td><td>Father and husband jointly nullify her vows</td></tr><tr><td>"If she vowed <b>in her husband's house</b>" (30:11)</td><td>Married woman (נשואה)</td><td>Husband alone nullifies her vows</td></tr><tr><td>"In her father's house <b>in her youth</b>" (30:4–6)</td><td>Unbetrothed daughter</td><td>Father alone nullifies her vows</td></tr></table><div class="callout" style="margin-top:20px"><strong>DERIVATION</strong> Rabba: Since 30:11 covers married women, the earlier verses (30:7–9) must refer to a betrothed woman — hence the joint nullification rule.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Father Alone vs. Husband Alone vs. Together</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Father Alone</h3><ul><li>Can nullify unbetrothed daughter's vows</li><li>Cannot nullify betrothed daughter's vows alone</li><li>His ratification blocks husband from nullifying</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Betrothed Husband</h3><ul><li>Cannot nullify alone — needs father's partnership</li><li>Cannot nullify vows predating the betrothal</li><li>Weaker authority than a fully married husband</li></ul></div><div class="compare-box" style="border-top-color:#2e1a2e"><h3 style="color:#9b59b6">Both Together</h3><ul><li>Joint nullification required for betrothed woman</li><li>Either one's ratification blocks the other</li><li>Dissolution of ratification does not equal nullification</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> The betrothed occupies a middle status — still in her father's domain but now connected to a husband, requiring dual consent.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Can the Betrothed Nullify Alone?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Perhaps the <b>betrothed</b> can nullify alone, and the father is mentioned only to teach that his <b>ratification</b> blocks nullification?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">If so, why does the Torah write 'If she vowed <b>in her husband's house</b>' (30:11)? A married husband's power could be derived <b>a fortiori</b> (קל וחומר) — if a betrothed nullifies alone even with a father present, surely a husband can when the father has no authority!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Perhaps 30:11 teaches that a husband cannot nullify <b>pre-betrothal vows</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">That would imply a <b>betrothed</b> CAN nullify pre-betrothal vows — but a fully married man has <b>greater</b> authority! This is unreasonable.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Conclusion</div><div class="speech"><b>Therefore:</b> The betrothed cannot nullify alone — his power exists only through <b>partnership with the father</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>QAL VA'CHOMER</strong> The kal va'chomer (a fortiori) argument proves the betrothed cannot act independently — otherwise the married husband's verse would be superfluous.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 67 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px;">📖 Mishna: Father <b>and</b> husband nullify a betrothed woman's vows</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3e; border-left:3px solid #c9a84c; padding:8px;">❓ Gemara clarifies: 'and' means <b>both together</b>, not either/or</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a1a; border-left:3px solid #e74c3c; padding:8px;">⚠️ Even dissolution of ratification ≠ nullification — active joint hafarah still required</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:1px solid #4caf50; padding:8px;">📜 Numbers 30:7–9 → <b>Betrothed</b>: joint nullification</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; border:1px solid #4a90d9; padding:8px;">📜 Numbers 30:11 → <b>Married</b>: husband alone nullifies</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:8px;">✅ Betrothed cannot act alone — his power exists only in <b>partnership with the father</b></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 67a-67b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 67a-67b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../66/">← Daf 66</a><a href="../68/">Daf 68 →</a></div>
+</body>
+</html>

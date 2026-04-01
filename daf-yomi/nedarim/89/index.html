@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 89 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Nedarim 89</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים פט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Vow Timing — When a vow is taken vs. when it takes effect determines who can nullify it<br>
+    ⚔️ Yishmael vs. Akiva — Debate on whether nullification depends on the time of the vow or its fulfillment<br>
+    👩 Nine Orphan Cases — Categories of young women whose vows cannot be nullified<br>
+    🔗 Conditional Vows — A wife's vow linking benefit from relatives to her marital duties<br>
+    🪜 The Struggling Student — A man vows not to marry until he masters halakha<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Vow Nullification: Jurisdiction & Timing</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A married woman <b>takes a vow</b> while under her husband's jurisdiction</div><div class="flow-arrow">↓</div><div class="flow-box question">Does the vow's <b>effect</b> depend on her marital status?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No — time-based vow</div><div class="flow-box result-good">Nullification follows the <b>time the vow was taken</b> (all agree)</div></div><div class="flow-col"><div class="flow-label">Yes — marriage-dependent</div><div class="flow-box result-bad"><b>R' Yishmael</b>: follows time of <em>fulfillment</em><br/><b>R' Akiva</b>: follows time of <em>pronouncement</em></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> The key question is whether nullification power is determined by the moment the vow is spoken or the moment it takes effect.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Mishna: Husband's Power to Nullify</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Wife vows: <b>"I am a nazirite after 30 days"</b> while married</div><div class="flow-arrow">↓</div><div class="flow-box action">Husband <b>nullifies</b> the vow</div><div class="flow-arrow">↓</div><div class="flow-box question">She is <b>widowed or divorced</b> within 30 days</div><div class="flow-arrow">↓</div><div class="flow-box result-good">The vow remains <b>nullified</b> — his nullification stands</div></div><div class="callout" style="margin-top:20px"><strong>Reverse Case</strong> If she vowed and was divorced the same day, even if he remarries her that day, he <b>cannot</b> nullify — she entered her own jurisdiction (reshut atzmah).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Yishmael vs. R' Akiva: Widow's Pre-Marriage Vow</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Baraita</div><div class="speech">A widow/divorcée says: <em>"I am a nazirite for when I marry"</em> — then she marries. Can the husband nullify?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yishmael</div><div class="speech"><b>He CAN nullify.</b> The vow takes effect during marriage, so the husband has jurisdiction over its fulfillment.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech"><b>He CANNOT nullify.</b> The vow was pronounced when she was independent — that's what counts.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Baraita</div><div class="speech">A married woman says: <em>"I am a nazirite for when I divorce"</em> — then she divorces. Can the husband nullify?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yishmael</div><div class="speech"><b>He CANNOT nullify.</b> The vow takes effect when she is divorced — beyond his jurisdiction.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech"><b>He CAN nullify.</b> She pronounced the vow while married — he had jurisdiction at that moment.</div></div></div><div class="callout" style="margin-top:20px"><strong>Mnemonic — י״ל ל״י</strong> <b>Yod-Lamed, Lamed-Yod</b>: Yafer, Lo Yafer; Lo Yafer, Yafer — tracking R' Yishmael's positions across the two cases.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>What Determines Nullification Power?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">R' Yishmael — Time of Fulfillment</h3><ul><li>Derives from: <b>"Every vow of a widow…shall be upheld"</b> (Num. 30:10)</li><li>The practical application (kiyyum) of the vow must be during widowhood/divorce</li><li>Nullification depends on her status <b>when the vow takes effect</b></li><li>Abaye: Yishmael agrees on time-based vows — only disagrees on marriage-dependent vows</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">R' Akiva — Time of Pronouncement</h3><ul><li>Derives from: <b>"With which she has bound her soul"</b> (Num. 30:10)</li><li>The binding (issur) of the vow — the act of vowing — determines jurisdiction</li><li>Nullification depends on her status <b>when the vow was spoken</b></li><li>Rav Ḥisda: Our mishna follows R' Akiva's opinion</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Reconciliation</strong> Even R' Yishmael agrees the mishna is correct: a vow dependent on <b>days</b> (not marriage) follows the time of pronouncement, since the vow has no inherent connection to marital status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Nine Women Whose Vows Stand (Mishna)</h2>
+  
+  <table><tr><th>#</th><th>Status When Vowing</th><th>Status Now</th><th>Why Vow Stands</th></tr><tr><td>1</td><td>Grown woman (bogeret)</td><td>Orphan</td><td>No father's jurisdiction</td></tr><tr><td>2</td><td>Young woman → became bogeret</td><td>Orphan</td><td>Aged out of father's authority</td></tr><tr><td>3</td><td>Young woman (na'arah)</td><td>Orphan</td><td>Father deceased</td></tr><tr><td>4</td><td>Grown woman</td><td>Father died since</td><td>No one to nullify</td></tr><tr><td>5</td><td>Young woman → became bogeret</td><td>Father died since</td><td>No one to nullify</td></tr><tr><td>6</td><td>Young woman (na'arah)</td><td>Father died since</td><td>Father gone, still young</td></tr><tr><td>7</td><td>Young woman, then father died</td><td>Later became bogeret</td><td>Was already independent</td></tr><tr><td>8</td><td>Grown woman</td><td>Father alive</td><td>Bogeret — beyond his authority</td></tr><tr><td>9</td><td>Young woman → became bogeret</td><td>Father alive</td><td>Aged out of jurisdiction</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rabbis' Shortcut</strong> Rav Yehuda said in Rav's name: This detailed list is <b>R' Yehuda's</b> view. The Rabbis simply say <b>three categories</b>: a bogeret, an orphan, and an "orphan in her father's lifetime" (divorced/widowed while father lives).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Conditional Vows: R' Natan vs. the Rabbis</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Mishna</div><div class="speech">A wife says: <em>"Benefit from your father is konam for me if I prepare food for you."</em> The husband <b>can nullify</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Natan</div><div class="speech">He <b>cannot</b> nullify. The condition hasn't been fulfilled yet — she must cook for him (her obligation), and then she's forbidden from her father-in-law.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">He <b>can</b> nullify even conditional vows. The vow afflicts her — she'd lose access to her relatives.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Natan</div><div class="speech">Same logic for: <em>"Intercourse with me is forbidden to all Jews if I have relations with you."</em> She must fulfill her marital duty — the consequence falls on others.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">He can nullify this too — it is a vow of self-affliction (<b>innui nefesh</b>).</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Dispute</strong> R' Natan holds a husband cannot nullify a vow whose prohibition hasn't yet taken effect. The Rabbis hold he can, since the potential affliction is already bound to her.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 89 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:18px; border-radius:12px; text-align:center;"><b>Woman takes a vow</b><br/>Under whose jurisdiction is she?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:14px; border-radius:10px; text-align:center;"><b>Under husband</b><br/>He can nullify — if she remains under his authority</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#fff; padding:14px; border-radius:10px; text-align:center;"><b>Independent</b><br/>Vow stands — no one can nullify (bogeret, orphan, divorced)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; color:#fff; padding:18px; border-radius:12px; text-align:center;"><b>Dispute on contingent vows:</b><br/>R' Yishmael — jurisdiction at <em>fulfillment</em><br/>R' Akiva — jurisdiction at <em>pronouncement</em></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:18px; border-radius:12px; text-align:center;"><b>Nine categories</b> of women whose vows cannot be nullified<br/>(Rabbis simplify to <b>three</b>: bogeret, orphan, "orphan in father's lifetime")</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 89a-89b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 89a-89b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../88/">← Daf 88</a><a href="../90/">Daf 90 →</a></div>
+</body>
+</html>

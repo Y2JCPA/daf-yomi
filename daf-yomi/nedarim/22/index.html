@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 22 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📖</div>
+  <h1>Nedarim 22</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים כב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📖 Dissolving Vows — Which methods of broaching dissolution are acceptable<br>
+    ⚖️ Abaye vs. Rava — Dispute over broaching with R' Natan's teaching<br>
+    🔥 The Dangers of Anger — Multiple teachings on anger's consequences<br>
+    🙊 Vowing is Wicked — Even fulfilling a vow, the vower is called wicked<br>
+    ✡️ Vows Invoking God's Name — Stricter rules for solemn vows<br>
+    🎓 Rav Seḥora's Clever Self-Dissolution — Finding an opening through embarrassment<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 22: Methods of Dissolving Vows & The Sin of Anger</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>A person takes a vow</b> and seeks dissolution</div><div class="flow-arrow">↓</div><div class="flow-box action">A Sage must find a valid <b>opening (petaḥ)</b> to dissolve it</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">❌ Invalid Methods</div><div class="flow-box result-bad">Heavenly record book • Sword metaphor • 'Vowing = forbidden altar' • 'Vower is wicked'</div></div><div class="flow-col"><div class="flow-label">✅ Valid Method</div><div class="flow-box result-good">Broaching based on <b>regret</b> (Rava/Rav Naḥman)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> The Gemara systematically rejects multiple dramatic methods of dissolving vows, concluding that simple regret is the proper basis.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>R' Yannai's Method: The Heavenly Record Book</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yannai the Elder</div><div class="speech">Had you known that when you vow, they open your <b>pinekas</b> (record book) in heaven and examine your actions — would you have vowed?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">His Grandson</div><div class="speech">No! I would not have vowed.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Abba</div><div class="speech">The source: <i>'And after vows to make inquiry'</i> (Proverbs 20:25) — after one vows, his actions are reviewed in heaven.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">We do <b>not</b> broach dissolution this way — a person might be <b>embarrassed</b> to admit he has no regret and will lie.</div></div></div><div class="callout" style="margin-top:20px"><strong>⚠️ Rejected</strong> Although R' Yannai used this method successfully, it is not an acceptable model because it pressures the vower into false regret.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rejected Methods of Broaching Dissolution</h2>
+  
+  <table><tr><th>Method</th><th>Source</th><th>Why Rejected</th></tr><tr><td>Heavenly record book examined</td><td>R' Yannai / Proverbs 20:25</td><td>Embarrassment causes false regret</td></tr><tr><td>'One who vows deserves a sword'</td><td>R' Gamliel / Proverbs 12:18</td><td>Too coercive — pressures agreement</td></tr><tr><td>Vowing = building a forbidden altar</td><td>R' Natan (baraita)</td><td>Disputed; halakha: not permitted</td></tr><tr><td>Fulfilling vow = sacrificing on forbidden altar</td><td>R' Natan (latter clause)</td><td>Disputed; halakha: not permitted</td></tr><tr><td>'One who vows is called wicked'</td><td>Shmuel / Deut. 23:23</td><td>Not an acceptable opening</td></tr></table><div class="callout" style="margin-top:20px"><strong>Halakha</strong> We do not broach dissolution using <b>any</b> of these methods — neither the first clause nor the latter clause of R' Natan's teaching (nor the other approaches).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Abaye vs. Rava: Can We Use R' Natan's Teaching?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Natan</div><div class="speech">One who <b>vows</b> is as if he built a personal altar. One who <b>fulfills</b> the vow is as if he sacrificed on it.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Kahana's Version</div><div class="speech"><b>First clause</b> (vowing = altar): Abaye permits broaching; Rava forbids. <b>Latter clause</b> (fulfilling = sacrifice): Abaye permits; Rava forbids.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Tavyumei's Version</div><div class="speech"><b>Latter clause:</b> All agree we do NOT broach. <b>First clause:</b> Abaye permits; Rava forbids.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara Conclusion</div><div class="speech">Halakha: We do <b>not</b> broach dissolution with <b>either</b> clause.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Dispute</strong> Both versions of the dispute agree Rava is stricter. The halakha follows Rava — no dramatic statements about the severity of vows may be used to dissolve them.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>The Consequences of Anger</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🔥 R' Shmuel bar Naḥmani: One who gets angry — all kinds of <b>Gehenna</b> rule over him (Ecclesiastes 11:10)</div><div class="process-arrow">↓</div><div class="process-step">🤕 Additionally, <b>hemorrhoids</b> afflict the angry person (Deuteronomy 28:65)</div><div class="process-arrow">↓</div><div class="process-step highlight">😤 Rabba bar Rav Huna: The angry person treats even the <b>Divine Presence</b> as unimportant (Psalms 10:4)</div><div class="process-arrow">↓</div><div class="process-step">📚 R' Yirmiya of Difti: Anger causes one to <b>forget his learning</b> and increase foolishness (Ecclesiastes 7:9)</div><div class="process-arrow">↓</div><div class="process-step highlight">⚖️ Rav Naḥman bar Yitzḥak: The angry person's <b>sins outnumber</b> his merits (Proverbs 29:22)</div><div class="process-arrow">↓</div><div class="process-step">📖 Rav Adda: Had Israel not sinned, only <b>Torah + Joshua</b> would have been given — the rest of Tanakh came from angering God</div></div><div class="callout" style="margin-top:20px"><strong>Connection</strong> This section on anger connects to the theme of vows — both anger and vowing are expressions of losing control that lead to spiritual harm.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Vows Invoking God's Name</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1810"><h3 style="color:#e74c3c">R' Asi's Strict View</h3><ul><li>A vow invoking 'the God of Israel' cannot be dissolved</li><li>Exception: vow made in clear error (e.g. 'she stole my purse' — and she didn't)</li><li>Told a woman: Had you said 'by mohi' (substitute name), I would dissolve it — but 'by the God of Israel' I cannot</li></ul></div><div class="compare-box" style="border-top-color:#102810"><h3 style="color:#4caf50">Rava / Rav Naḥman's Ruling</h3><ul><li>Halakha: It IS permitted to broach dissolution based on regret</li><li>One DOES attend to dissolving vows invoking God's name</li><li>This overrides R' Asi's stricter position</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Halakha</strong> Rava said in the name of Rav Naḥman: We <b>may</b> broach dissolution based on regret, and we <b>do</b> dissolve vows even when God's name is invoked.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 22 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Person Takes a Vow</b><br>Seeks dissolution from a Sage</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #c9a84c; padding: 10px;"><b>Sage Seeks an Opening (Petaḥ)</b><br>Must find valid grounds for dissolution</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1616; border: 1px solid #e74c3c; padding: 10px;">❌ <b>Cannot use:</b><br>• Heavenly record book<br>• 'Deserves a sword'<br>• Forbidden altar analogy<br>• 'Vower is wicked'</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border: 1px solid #4caf50; padding: 10px;">✅ <b>Can use:</b><br>• Simple <b>regret</b><br>• Even for vows invoking God's name<br>• Unforeseen consequences</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; border-left: 3px solid #9b59b6; padding: 10px;"><b>Broader Lesson:</b> Anger & vowing both stem from loss of control — anger brings Gehenna, forgotten learning, and shows disregard for the Divine Presence</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 22a-22b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 22a-22b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../21/">← Daf 21</a><a href="../23/">Daf 23 →</a></div>
+</body>
+</html>

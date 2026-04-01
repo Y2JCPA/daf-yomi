@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 43 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🤝</div>
+  <h1>Nedarim 43</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים מג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔄 Reciprocity Decree — Why borrowing FROM the prohibited person is also forbidden<br>
+    🐄 Konam on Plowing — Intent determines scope of the vow<br>
+    🏪 Indirect Benefit — Workarounds through shopkeepers and laborers<br>
+    📦 Hefker (Ownerless) — Can declaring food ownerless bypass a vow?<br>
+    ⚖️ R' Yosei vs Rabbanan — Nature of hefker and the Beit Choron decree<br>
+    📜 Retracting Hefker — The three-day window<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 43: Navigating Prohibited Benefit</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> When benefit is forbidden between two people, what transactions are prohibited and what workarounds exist?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Direct Dealings</div><div class="flow-box result-bad">Lending, borrowing, buying, selling — <b>all prohibited</b> (some by decree)</div></div><div class="flow-col"><div class="flow-label">Indirect Methods</div><div class="flow-box result-good">Via shopkeeper, laborers, third party, or <b>hefker</b> declaration</div></div><div class="flow-col"><div class="flow-label">Hefker Dispute</div><div class="flow-box action"><b>Rabbanan:</b> Permitted<br><b>R' Yosei:</b> Prohibited — artifice like Beit Choron</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> The Gemara explores the boundaries between genuine workarounds and prohibited artifice when navigating vows of forbidden benefit.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Is Borrowing FROM Him Also Prohibited?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara's Question</div><div class="speech">Granted, the <b>muddar</b> (one from whom benefit is forbidden) can't <b>lend</b> — that benefits the other. But why can't he <b>borrow</b>? How does the borrower benefit the lender?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara's Question</div><div class="speech">And even if borrowing money benefits the lender (preserving coin value), and buying helps the seller — why can't he <b>borrow an item</b>? He returns the same item!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yosei b'R' Chanina</div><div class="speech">The Mishna refers to where <b>both vowed</b> against each other (<b>שניהם נדרו</b>). So naturally neither can lend or borrow.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">Even with a <b>one-sided vow</b>, the Sages decreed against borrowing from him — lest he come to <b>lend to him</b> in return. <b>Reciprocity is common.</b></div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Abaye: All the Mishna's prohibitions on the muddar (borrowing money, items, purchasing) are <b>rabbinic decrees</b> — a fence lest he come to benefit the prohibited party.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Konam on Plowing: Intent Determines Scope</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Person asks to <b>borrow a cow</b>. Owner refuses: <em>"It's not available."</em><br>Borrower vows: <b>"Plowing my field with this cow is <em>konam</em> forever!"</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Does this person <b>typically plow his own field himself</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Plows Himself</div><div class="flow-box result-bad">Prohibited for <b>him</b> to plow with that cow.<br>✅ <b>Others may</b> plow his field with it.</div></div><div class="flow-col"><div class="flow-label">No — Others Plow for Him</div><div class="flow-box result-bad">Prohibited for <b>him AND everyone else</b> to plow his field with that cow.<br>His intent was to forbid <b>all benefit</b> of plowing with this cow.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> The scope of the vow follows the person's <b>typical manner</b> (<b>דרכו</b>) — it reveals whether he meant to prohibit only himself or all benefit from that action.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Workaround: The Shopkeeper & Laborer Method</h2>
+  
+  <div class="process-bar"><div class="process-step">🚫 The muddar (one for whom benefit is forbidden) has no food / needs his house built / field harvested</div><div class="process-arrow">↓</div><div class="process-step highlight">🗣️ The madir (one from whom benefit is forbidden) goes to the shopkeeper or laborers</div><div class="process-arrow">↓</div><div class="process-step">💬 He says: "So-and-so vowed that benefit from me is forbidden — I don't know what to do"</div><div class="process-arrow">↓</div><div class="process-step highlight">🍞 The shopkeeper gives food / laborers do the work for the muddar</div><div class="process-arrow">↓</div><div class="process-step">💰 The shopkeeper/laborers then collect payment from the madir who spoke to them</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ This is permitted — the benefit comes from the third party, not directly from the madir</div></div><div class="callout" style="margin-top:20px"><strong>Note</strong> The madir never directly instructs or hires the shopkeeper — he merely states his predicament. The shopkeeper acts on his own understanding.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Traveling Together: Two Methods of Providing Food</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Method 1: Third Party</h3><ul><li>Another person is present on the road</li><li>Madir gives food to the third party <b>as a gift</b></li><li>Third party may then give it to the muddar</li><li>✅ Permitted — food no longer belongs to the madir</li><li>Accepted by <b>all opinions</b></li></ul></div><div class="compare-box" style="border-top-color:#2c1a3a"><h3 style="color:#9b59b6">Method 2: Hefker (Ownerless)</h3><ul><li>No third party available</li><li>Madir places food on a rock or fence</li><li>Declares: <b>"These are hefker for anyone"</b></li><li>Muddar takes the food</li><li>⚠️ <b>R' Yosei prohibits</b> this method</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Dispute</strong> The Rabbanan permit the hefker method. R' Yosei considers it a form of artifice — but what is his precise reasoning?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Why Does R' Yosei Prohibit the Hefker Method?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">R' Yosei holds <b>hefker is like a gift</b> (<b>הפקר כמתנה</b>) — ownership doesn't leave the original owner until someone <b>acquires</b> it. So the muddar benefits from the madir's property!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Abba</div><div class="speech"><b>Objection!</b> R' Yosei himself distinguishes: if <b>hefker preceded the vow</b> — it's permitted! If hefker = gift, it shouldn't matter which came first — the item is still in the owner's possession either way.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Abba</div><div class="speech">He answers his own objection: When hefker predates the vow, the <b>intent of the vower</b> excludes already-ownerless items. The distinction relates to <b>vow interpretation</b>, not hefker mechanics.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech"><b>Another objection</b> from the <em>shechiv mera</em> case: property gifted partially leaves the giver's possession even before the recipient acquires it — contradicting R' Yochanan's principle!</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech"><b>Rather,</b> R' Yosei's reason is a <b>rabbinic decree</b> due to the <b>incident at Beit Choron</b> (<b>מעשה דבית חורון</b>) — where someone used artifice with a gift to circumvent a vow, and the Sages invalidated it.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Rava: R' Yosei doesn't hold hefker = gift conceptually. Rather, declaring food hefker for a specific person is <b>transparent artifice</b>, prohibited by decree after the Beit Choron incident.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 43 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Benefit Forbidden by Vow</b><br>One or both parties vowed</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a1620; border-left: 3px solid #e74c3c; padding: 8px;"><b>Direct Transactions Prohibited</b><br>Lending, borrowing, buying, selling — even borrowing items (decree lest reciprocity)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 8px;"><b>Permitted Workarounds</b><br>Shopkeeper method, laborer method, third-party gift</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 8px;"><b>Rabbanan:</b> Hefker method ✅ permitted — food is truly ownerless</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1620; border-left: 3px solid #e74c3c; padding: 8px;"><b>R' Yosei:</b> Hefker method ❌ prohibited — artifice like Beit Choron (Rava's explanation)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 43a-43b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 43a-43b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../42/">← Daf 42</a><a href="../44/">Daf 44 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 23 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔓</div>
+  <h1>Nedarim 23</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים כג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔓 Dissolving Vows — Creative openings when standard approaches fail<br>
+    🆕 Nolad (New Situation) — Debate over unforeseen circumstances as grounds for dissolution<br>
+    💍 Abaye's Daughter — Vow dissolution when a spouse defies conditions<br>
+    📅 Preemptive Annulment — Declaring future vows void on Rosh HaShana<br>
+    🤔 Remembering the Stipulation — Abaye vs. Rava on awareness at vow time<br>
+    🤫 Public Teaching — Should annulment methods be taught openly?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 23: Dissolving Vows & Preemptive Annulment</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Problem:</b> A person has made a vow that needs dissolution</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">After the Fact</div><div class="flow-box action">Sages search for an <b>opening</b> (<i>petaḥ</i>) — a fact the vower didn't consider</div></div><div class="flow-col"><div class="flow-label">Preemptive</div><div class="flow-box action">On <b>Rosh HaShana</b>, declare: 'All my future vows are void'</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Key Condition:</b> The opening must not be <i>nolad</i> (a truly new, unforeseeable situation)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Vow is <b>dissolved</b> — but methods should not be publicized lest people treat vows lightly</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> The Gemara balances the need to release people from burdensome vows with the concern that vows retain their seriousness.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Sages Struggle to Dissolve a Vow</h2>
+  
+  <div class="process-bar"><div class="process-step">🧑‍⚖️ A man comes before the Sages to dissolve his vow</div><div class="process-arrow">↓</div><div class="process-step">❓ They ask: 'Did you vow knowing this fact?' — He says: 'Yes'</div><div class="process-arrow">↓</div><div class="process-step">☀️➡️🌥️ They move from sun to shade and shade to sun, unable to find an opening</div><div class="process-arrow">↓</div><div class="process-step highlight">💡 Botnit asks: 'Would you have vowed knowing the Sages would be so troubled?'</div><div class="process-arrow">↓</div><div class="process-step highlight">🚫 He says 'No' — and they dissolve it based on his regret over troubling the Sages</div></div><div class="callout" style="margin-top:20px"><strong>Insight</strong> The physical detail of moving sun-to-shade became itself the basis for dissolution — the vower's concern for the Sages' discomfort served as a valid opening.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Launderer Incident: Is This Nolad?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Narrative</div><div class="speech">R' Yishmael b. R' Yosei came to dissolve a vow. Every opening the Sages proposed, he answered '<b>Yes, I knew that.</b>'</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Narrative</div><div class="speech">A <b>launderer</b>, frustrated by the delay, <b>struck R' Yishmael</b> with his tool.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yishmael</div><div class="speech">Had I known the launderer would hit me, <b>I would not have vowed!</b> — Vow dissolved.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rav Aḥa of Difti</div><div class="speech">This is <b>nolad</b> — a new, unforeseeable situation! We learned one may <b>not</b> use nolad to dissolve vows.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Ravina</div><div class="speech">It is <b>not nolad</b>. It is common to find <i>appikurei</i> (heretics) who trouble the Sages. Being attacked was <b>foreseeable in general</b>, even if not from this specific launderer.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> A situation is not considered nolad (new) if the general category of event was foreseeable, even if the specific instance was not.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Abaye's Vow About His Daughter's Marriage</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Abaye's wife has a daughter from a previous marriage</div><div class="flow-arrow">↓</div><div class="flow-box question">Abaye says: Marry <b>my</b> relative<br>Wife says: Marry <b>my</b> relative</div><div class="flow-arrow">↓</div><div class="flow-box action">Abaye vows: <b>'Benefit from me is forbidden to you if you defy me'</b></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Wife <b>defies him</b> and marries the daughter to <b>her</b> relative</div><div class="flow-arrow">↓</div><div class="flow-box question">Rav Yosef asks: <b>'Had you known she would defy you, would you have vowed?'</b></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Abaye: <b>'No'</b> — Vow dissolved. He intended only a threat, not a real prohibition.</div></div><div class="callout" style="margin-top:20px"><strong>Tosefta Precedent</strong> A parallel case: A man vowed to prohibit his wife if she ascended to Jerusalem for the Festival. She defied him. R' Yosei dissolved the vow with the same reasoning.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Preemptive Annulment: Abaye vs. Rava</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Abaye</h3><ul><li>The Rosh HaShana declaration works if he does NOT remember it at vow time</li><li>If he remembers the stipulation and still vows, he has uprooted the stipulation</li><li>Emend the Mishna: 'provided he does NOT remember'</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3c"><h3 style="color:#9b59b6">Rava</h3><ul><li>Keep the Mishna as stated — it works even if he DOES remember</li><li>Key: He made a general stipulation but doesn't know which vows it covers</li><li>If he says 'I vow per my original intention' → vow is void</li><li>If he simply vows without referencing the stipulation → vow stands</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> According to Rava, the annulment works only if the vower actively invokes the original stipulation at the time of the vow. Merely remembering it is not enough — he must explicitly connect the vow to it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rava's Warning: Don't Teach This Publicly</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">תנא מסתים לה ולא אמר לה בהדיא... ואת אמרת לה בפירקא?</div><div class="callout"><strong>🤫 Concealed Teaching</strong> <b>Rav Huna bar Ḥinnana</b> planned to teach the method of preemptive vow annulment at the <b>public Festival lecture</b>.<br><br><b>Rava</b> objected: <i>'The Tanna of our Mishna intentionally conceals this teaching — even though Torah scholars study it — so that the public will not treat vows lightly (<b>zilzul bi-nedarim</b>). And you want to teach it publicly?!'</i><br><br>This tension — between making halakhic tools accessible and preserving the gravity of vows — underlies the entire sugya.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 23 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Vow Made</b> — Person seeks dissolution</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #c9a84c; padding: 8px;"><b>Sages search for a Petaḥ</b> — A fact the vower didn't consider</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border: 1px solid #4caf50; padding: 8px;"><b>Valid Opening Found</b><br>Not nolad; vower says 'I wouldn't have vowed'<br>→ <b>Vow Dissolved</b></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1e; border: 1px solid #e74c3c; padding: 8px;"><b>No Opening Found</b><br>All proposed facts were known<br>→ <b>Creative solutions needed</b> (e.g., Botnit, launderer)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left: 3px solid #9b59b6; padding: 8px;"><b>Preemptive Path:</b> Declare on Rosh HaShana that future vows are void — but don't publicize this method widely</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 23a-23b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 23a-23b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../22/">← Daf 22</a><a href="../24/">Daf 24 →</a></div>
+</body>
+</html>

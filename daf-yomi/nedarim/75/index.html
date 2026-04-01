@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 75 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔮</div>
+  <h1>Nedarim 75</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים עה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💍 Yevama's Status — Levirate betrothal and the yavam's authority over vows<br>
+    ⚖️ Pre-Emptive Nullification — Can a husband nullify future vows before they are made?<br>
+    🔗 Rabbi Eliezer vs. Rabbis — Debate over nullifying vows not yet in effect<br>
+    💧 Mikveh Analogy — Ritual bath as counterexample to Rabbi Eliezer's kal va'chomer<br>
+    ⏳ Momentary Effect — Do pre-emptively nullified vows take effect even briefly?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Can a Husband Nullify His Wife's Vows Before She Makes Them?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Mishna</div><div class="speech">If a husband says <b>'All vows you make until I return are ratified'</b> — it has <b>no effect</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Mishna</div><div class="speech">But if he says <b>'All vows you make until I return are nullified'</b> — this is disputed.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Eliezer</div><div class="speech">They <b>are nullified</b>. If he can nullify vows already in effect, surely he can nullify those <b>not yet in effect</b> (<i>kal va'chomer</i>).</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbis</div><div class="speech">They are <b>not nullified</b>. Only a vow eligible for <b>ratification</b> (already made) is eligible for <b>nullification</b> (Numbers 30:14).</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Dispute</strong> Does a husband's power to nullify vows extend to vows his wife <b>has not yet made</b>? R' Eliezer says yes via kal va'chomer; the Rabbis derive from the Torah that nullification requires an existing vow.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Yevama's Status: Proofs for Rabbi Ami</h2>
+  
+  <table><tr><th>Source of Proof</th><th>What It Shows</th></tr><tr><td>Rabbi Akiva distinguishes: <b>whether or not</b> he performed levirate betrothal (<i>ma'amar</i>)</td><td>R' Eliezer's ruling refers specifically to a yevama <b>with ma'amar</b></td></tr><tr><td>Baraita states: <b>'Once she enters his jurisdiction, she is fully under his authority'</b></td><td>This only makes sense if he performed <b>levirate betrothal</b></td></tr><tr><td>Rava: One is <b>not liable to stoning</b> for relations with a yevama (unlike a betrothed na'arah)</td><td>The yavam's authority over vows is <b>inferior</b>, matching her inferior marital status</td></tr><tr><td>Rav Ashi: Mishna (74a) says a yevama is <b>not a full-fledged wife</b></td><td>Precise language of the mishna <b>supports</b> this distinction</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Point</strong> The yavam's power over the yevama's vows is <b>lesser</b> than a husband's — parallel to the lesser severity of her forbidden relations.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Pre-Emptive Ratification vs. Pre-Emptive Nullification</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1810"><h3 style="color:#e74c3c">Pre-Emptive Ratification</h3><ul><li>Husband says: 'All future vows are ratified'</li><li>All agree: Has NO effect</li><li>Ratification cannot apply to non-existent vows</li><li>No dissenting opinion recorded</li></ul></div><div class="compare-box" style="border-top-color:#1a2a3a"><h3 style="color:#4a90d9">Pre-Emptive Nullification</h3><ul><li>Husband says: 'All future vows are nullified'</li><li>R' Eliezer: They ARE nullified</li><li>Rabbis: They are NOT nullified</li><li>Derives from Numbers 30:14 — nullification requires ratification eligibility</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Asymmetry</strong> Everyone agrees pre-emptive <b>ratification</b> fails. The dispute is only about pre-emptive <b>nullification</b> — R' Eliezer sees nullification as more powerful than ratification.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rabbi Eliezer's Kal Va'Chomer and the Rabbis' Response</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Eliezer</div><div class="speech">If a husband can nullify vows that <b>already reached the status of a prohibition</b> (already in effect)...</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Eliezer</div><div class="speech">...surely he can nullify vows that have <b>not yet reached</b> the status of a prohibition!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbis</div><div class="speech">The verse states: <b>'Her husband may ratify it, or her husband may nullify it'</b> (Numbers 30:14).</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbis</div><div class="speech">Only what is <b>eligible for ratification</b> (an existing vow) is <b>eligible for nullification</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbis</div><div class="speech">A vow not yet made cannot be ratified — therefore it <b>cannot be nullified</b> either.</div></div></div><div class="callout" style="margin-top:20px"><strong>Hermeneutic Principle</strong> The Rabbis link ratification and nullification through the juxtaposition in the verse (<i>hekesh</i>) — the scope of one defines the scope of the other.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Do Pre-Emptively Nullified Vows Take Effect Momentarily?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Husband nullifies wife's future vows in advance (per R' Eliezer)</div><div class="flow-arrow">↓</div><div class="flow-box action">Wife then makes a vow</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Dilemma:</b> Does the vow take effect even momentarily?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Takes effect momentarily</div><div class="flow-box result-good">If another person <b>associated</b> (<i>talah</i>) his vow with hers → his vow <b>takes effect</b></div></div><div class="flow-col"><div class="flow-label">Never takes effect at all</div><div class="flow-box result-bad">If another person associated his vow with hers → his vow has <b>no substance</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> The <i>nafka mina</i> (practical difference) is when a third party says <b>'I vow like her'</b> — does his vow stand if hers was pre-emptively nullified?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Attempts to Resolve R' Eliezer's View</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">📖 Proof from Mishna: R' Eliezer says 'not yet reached the status of a prohibition' → vows never take effect?</div><div class="process-arrow">↓</div><div class="process-step">❌ Rejected: 'Have not reached' could mean 'not yet' — they may still take effect momentarily</div><div class="process-arrow">↓</div><div class="process-step highlight">📖 Proof from Tosefta: R' Eliezer compares to one who stipulates his own vows won't take effect → his vows never take effect at all</div><div class="process-arrow">↓</div><div class="process-step">❌ Rejected: The analogy supports the kal va'chomer but the cases need not be identical in all respects</div><div class="process-arrow">↓</div><div class="process-step highlight">📖 Proof from Rabbis' mikveh objection: Their rebuttal assumes R' Eliezer holds vows never take effect at all</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ This proof stands — the Rabbis' analogy only works if R' Eliezer holds vows do not take effect at all</div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The Rabbis' mikveh analogy proves that <b>according to R' Eliezer</b>, pre-emptively nullified vows <b>never take effect at all</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 75 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;">Husband declares: <b>'All your future vows are nullified'</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>R' Eliezer:</b> Nullification is valid — vows never take effect at all</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1616; border-left: 3px solid #e74c3c;"><b>Rabbis:</b> Invalid — only existing vows eligible for ratification can be nullified</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left: 3px solid #9b59b6;">Per R' Eliezer: If a third party associates his vow with hers, <b>his vow also has no substance</b> (vows never take effect)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2a1a; border-left: 3px solid #e67e22;">Rabbis' mikveh analogy: Ability to <b>remove</b> a status ≠ ability to <b>prevent</b> it from arising</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 75a-75b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 75a-75b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../74/">← Daf 74</a><a href="../76/">Daf 76 →</a></div>
+</body>
+</html>

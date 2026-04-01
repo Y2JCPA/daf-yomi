@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 84 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Nedarim 84</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים פד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💍 Husband in Vows — Is a husband included when a woman vows against 'people'?<br>
+    🌾 Gifts to the Poor — Gleanings, forgotten sheaves, and pe'a remain permitted<br>
+    📊 Poor Man's Tithe — Dispute whether ma'aser ani is permitted under a vow<br>
+    🎯 Benefit of Discretion — Tovas hana'ah and its monetary significance<br>
+    🏠 Threshing Floor vs. House — Rava distinguishes two types of tithe distribution<br>
+    ⛩️ Priestly Gifts — Can priests take terumah against the owner's will?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 84: Vows Against 'People' — Scope & Exceptions</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A woman vows: <b>"Benefit from me is forbidden to all people"</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Is her <b>husband</b> included in "people"?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Naḥman: No</div><div class="flow-box result-good">Husband is <b>not</b> generally included — but context matters</div></div><div class="flow-col"><div class="flow-label">Rava's Challenge</div><div class="flow-box result-bad">Mishna implies husband <b>is</b> included (he must nullify his part)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Even under such a vow, she may benefit from <b>leket, shikḥah, pe'ah</b> — matanot aniyyim</div><div class="flow-arrow">↓</div><div class="flow-box question">What about <b>poor man's tithe</b> (ma'aser ani)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Mishna: Omits it</div><div class="flow-box result-bad">Owner has <b>tovas hana'ah</b> (benefit of discretion) → forbidden</div></div><div class="flow-col"><div class="flow-label">Baraita: Permits it</div><div class="flow-box result-good">No discretion → she may take it freely</div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY CONCEPT</strong> <b>Tovas hana'ah</b> (טובת הנאה) — the benefit of choosing who receives your gifts — determines whether taking constitutes 'benefit from people.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Is a Husband Included in 'People'?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Objection! The mishna says if a woman says <b>"I am removed from the Jews,"</b> her husband must <b>nullify his part</b> — implying he IS included!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Naḥman</div><div class="speech">Generally a husband is <b>not</b> included in 'people.' But here it's different — she clearly <b>intends</b> to include him.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">How do you know her intent?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Naḥman</div><div class="speech">She means to forbid what is <b>permitted</b> to her — intercourse with her husband. Relations with other men are <b>already forbidden</b>!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">If husband is included → he nullifies <b>his part only</b> (neder affecting relationship). If not → it's a neder of <b>innui</b> (affliction) and he nullifies <b>entirely</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> A vow is interpreted to apply to what the person could <b>meaningfully</b> prohibit — not what is already forbidden.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>What Can She Benefit From Under the Vow?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">✅ Permitted (Mishna)</h3><ul><li><b>Leket</b> (gleanings) — fallen stalks during harvest</li><li><b>Shikḥah</b> (forgotten sheaves) — sheaves left behind</li><li><b>Pe'ah</b> (corner of field) — unharvested corner for the poor</li></ul></div><div class="compare-box" style="border-top-color:#2a2a1e"><h3 style="color:#e67e22">❓ Disputed</h3><ul><li><b>Ma'aser Ani</b> (poor man's tithe)</li><li>Mishna omits it → possibly forbidden</li><li>Baraita includes it → possibly permitted</li></ul></div><div class="compare-box" style="border-top-color:#3a1e1e"><h3 style="color:#e74c3c">❌ Forbidden</h3><ul><li>Any gift where the giver has <b>tovas hana'ah</b></li><li>Benefit from any specific person</li><li>Anything that constitutes receiving from 'people'</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>WHY PERMITTED?</strong> Leket, shikḥah, and pe'ah have <b>no owner discretion</b> — any poor person may take them. No individual 'person' confers the benefit.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Poor Man's Tithe of Demai — R' Eliezer vs. Rabbis</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Yosef</div><div class="speech">The contradiction between mishna and baraita reflects a <b>tannaitic dispute</b>. The baraita follows <b>Rabbi Eliezer</b>; the mishna follows <b>the Rabbis</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Eliezer</div><div class="speech">One need not designate ma'aser ani of <b>demai</b> by name. The owner has <b>no benefit of discretion</b> → the vow-taker may take it.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">One must designate ma'aser ani by name — the owner <b>does</b> have discretion → it's forbidden to the vow-taker.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Yosef</div><div class="speech">R' Eliezer holds the doubt about demai does <b>not</b> render produce tevel → no discretion. The Rabbis hold it <b>does</b> → owner has discretion.</div></div></div><div class="callout" style="margin-top:20px"><strong>DEMAI</strong> <b>Demai</b> (דמאי) — doubtfully tithed produce purchased from an am ha'aretz (one not careful about tithes). Its uncertain status drives this entire dispute.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Abaye's Challenge to Rav Yosef</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Abaye:</b> Perhaps everyone agrees demai uncertainty <b>does</b> render produce tevel!</div><div class="flow-arrow">↓</div><div class="flow-box action">The dispute is about <b>why</b> an am ha'aretz would or wouldn't separate ma'aser ani</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Eliezer's Logic</div><div class="flow-box result-good">An am ha'aretz can declare his property <b>ownerless</b> (hefker), become 'poor,' and take the tithe himself — <b>no real loss</b> → he is assumed to have separated it</div></div><div class="flow-col"><div class="flow-label">Rabbis' Logic</div><div class="flow-box result-bad">A person does <b>not</b> ordinarily declare property ownerless — he <b>fears</b> someone else will acquire it → amei ha'aretz are <b>suspected</b> of not tithing</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Abaye's objection: Rav Yosef's proof linking the disputes is <b>inconclusive</b></div></div><div class="callout" style="margin-top:20px"><strong>ABAYE'S POINT</strong> Even if both sides agree demai is potentially tevel, they can still disagree about whether amei ha'aretz actually separate ma'aser ani — based on <b>behavioral assumptions</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rava's Resolution: Two Types of Ma'aser Ani Distribution</h2>
+  
+  <table><tr><th>Feature</th><th>🏠 Distributed in the House</th><th>🌾 Distributed at Threshing Floor</th></tr><tr><td>Source verse</td><td>"You shall <b>give</b> to the Levite..." (Deut. 26:12)</td><td>"You shall <b>leave</b> it at your gates" (Deut. 14:28)</td></tr><tr><td>Owner's role</td><td>Actively <b>gives</b> to poor of his choice</td><td>Passively <b>leaves</b> it — any poor person takes</td></tr><tr><td>Tovas hana'ah?</td><td>✅ <b>Yes</b> — benefit of discretion</td><td>❌ <b>No</b> — no discretion</td></tr><tr><td>Vow-taker may take?</td><td>❌ <b>Forbidden</b> (= Mishna)</td><td>✅ <b>Permitted</b> (= Baraita)</td></tr><tr><td>Halakhic logic</td><td>Taking = benefit <b>from the owner</b></td><td>Taking = benefit from <b>no one</b></td></tr></table><div class="callout" style="margin-top:20px"><strong>RAVA'S ELEGANCE</strong> No tannaitic dispute needed! The mishna and baraita discuss <b>different situations</b> — house distribution vs. threshing floor distribution.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 84 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; text-align:center;">Woman vows: <b>"No benefit from people"</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; color:#fff; padding:12px; border-radius:8px; text-align:center;">Can she take <b>gifts designated for the poor</b>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px;"><b>No discretion</b><br>Leket, shikḥah, pe'ah, ma'aser ani at threshing floor<br>→ ✅ Permitted</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1e1e; color:#fff; padding:12px; border-radius:8px;"><b>Owner has discretion</b><br>Ma'aser ani in the house, terumah, ma'aser<br>→ ❌ Forbidden</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; color:#fff; padding:12px; border-radius:8px; text-align:center;">Whether <b>tovas hana'ah</b> has monetary value is itself disputed: <b>R' Yehuda HaNasi</b> (yes) vs. <b>R' Yosei b"r Yehuda</b> (no)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 84a-84b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 84a-84b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../83/">← Daf 83</a><a href="../85/">Daf 85 →</a></div>
+</body>
+</html>

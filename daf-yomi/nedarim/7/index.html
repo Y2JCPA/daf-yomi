@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 7 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔔</div>
+  <h1>Nedarim 7</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים ז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💬 Intimation (Yad) — Does an incomplete expression work for charity, hefker, or bathroom designation?<br>
+    🚫 Ostracism Terminology — Debate over 'nadeina,' 'menudna,' and 'meshamattena'<br>
+    ⚖️ Rabbi Akiva's Stringency — Ruling on 'I am ostracized from you'<br>
+    📜 Laws of Niddui — When ostracism must be dissolved in the person's presence<br>
+    🙊 God's Name in Vain — Obligation to ostracize one who misuses God's name<br>
+    🎓 Scholar's Self-Ostracism — Mar Zutra Ḥasida's practice of ostracizing himself first<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 7: Intimation, Ostracism & Niddui</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Does <b>intimation (yad)</b> work beyond vows?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Charity</div><div class="flow-box action">Juxtaposed to offerings → maybe yes</div></div><div class="flow-col"><div class="flow-label">Hefker</div><div class="flow-box action">Available to rich & poor → maybe different</div></div><div class="flow-col"><div class="flow-label">Bathroom</div><div class="flow-box action">Is designation itself effective? → nested dilemma</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">All three dilemmas remain <b>unresolved (teiku)</b></div><div class="flow-arrow">↓</div><div class="flow-box action">Gemara shifts to <b>ostracism terminology</b> and <b>laws of niddui</b></div></div><div class="callout" style="margin-top:20px"><strong>DAF THEME</strong> This daf explores the boundaries of indirect expression — in vows, charity, property, and ostracism — and then details the laws governing excommunication.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Is Intimation (Yad) Effective for Charity?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A person says: <b>'This dinar is for charity, and this…'</b> (without saying 'also')</div><div class="flow-arrow">↓</div><div class="flow-box question">Is the second coin also designated as charity?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Intimation Works</div><div class="flow-box result-good">Charity is <b>juxtaposed to offerings</b> (Deut. 23:24) — just as intimation works for offerings, it works for charity</div></div><div class="flow-col"><div class="flow-label">No — Intimation Fails</div><div class="flow-box result-bad">The juxtaposition applies only to <b>'you shall not delay'</b> — not to other halakhot like intimation</div></div></div></div><div class="callout" style="margin-top:20px"><strong>UNRESOLVED</strong> The Gemara leaves this dilemma as a teiku — the question of whether intimation applies to charity remains undecided.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Nested Dilemmas: Charity → Hefker → Bathroom</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">💬 Is there intimation for <b>charity (tzedakah)</b>?</div><div class="process-arrow">↓</div><div class="process-step">📦 If yes — is there intimation for <b>hefker</b> (ownerless property)?</div><div class="process-arrow">↓</div><div class="process-step">⚠️ Hefker differs: available to <b>rich and poor alike</b>, unlike charity (poor only)</div><div class="process-arrow">↓</div><div class="process-step highlight">🚿 Ravina asks: Is there intimation for <b>designating a bathroom</b>?</div><div class="process-arrow">↓</div><div class="process-step">❓ But wait — is <b>designation itself</b> even effective before the place is used?</div><div class="process-arrow">↓</div><div class="process-step">🔄 Dilemma within a dilemma: First resolve designation, <b>then</b> resolve intimation</div><div class="process-arrow">↓</div><div class="process-step highlight">❌ All dilemmas remain <b>unresolved (teiku)</b></div></div><div class="callout" style="margin-top:20px"><strong>STRUCTURE</strong> The Gemara uses 'im tomar' (if you say) style — each question is contingent on resolving the previous one.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>What Does 'I Am Ostracized From You' Mean?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbi Akiva</div><div class="speech">The phrase <b>'menudna'</b> (ostracized) is a <b>language of distancing</b> — it functions as a vow and one is prohibited from benefiting.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis (Tanna Kamma)</div><div class="speech">'Menudna' is a <b>language of excommunication</b> — it is not the terminology people use for vows, so it has no vow-effect.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">Even Rabbi Akiva concedes there is <b>no flogging</b> for violating this — otherwise the Mishna would say he rules 'stringently,' not that he 'was inclined to be stringent.'</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Rav Pappa</div><div class="speech">The dispute is <b>only</b> about 'menudna.' Everyone agrees 'nadeina' (distanced) = <b>prohibited</b>, and 'meshamattena' (excommunicated) = <b>permitted</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY DISTINCTION</strong> Rav Pappa narrows the dispute to the ambiguous middle term 'menudna' — is it closer to 'neder' (vow) or 'niddui' (excommunication)?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Rav Pappa vs. Rav Ḥisda on the Scope of the Dispute</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Rav Pappa</h3><ul><li><b>Nadeina</b> (distanced) → All agree: PROHIBITED</li><li><b>Menudna</b> (ostracized) → DISPUTED between R' Akiva and Rabbis</li><li><b>Meshamattena</b> (excommunicated) → All agree: PERMITTED</li><li>Dispute is about ONE specific term only</li></ul></div><div class="compare-box" style="border-top-color:#1e2a3a"><h3 style="color:#4a90d9">Rav Ḥisda</h3><ul><li>A man said 'I am excommunicated from so-and-so's property'</li><li>Rav Ḥisda ruled: 'No one is concerned for R' Akiva's opinion'</li><li>Implies the dispute includes even 'meshamattena'</li><li>Broader question: Can excommunication language ever express vows?</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>PRACTICAL IMPACT</strong> Rav Ḥisda rules leniently even for explicit excommunication language — disagreeing with Rav Pappa's narrower framing of the dispute.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Laws of Ostracism (Niddui) — From Rav's Teachings</h2>
+  
+  <table><tr><th>Halakha</th><th>Rule</th><th>Source</th></tr><tr><td>Dissolving niddui declared <b>in person's presence</b></td><td>Must be dissolved <b>in their presence</b></td><td>R' Ila / Rav</td></tr><tr><td>Dissolving niddui declared <b>not in person's presence</b></td><td>May be dissolved <b>either way</b> — in their presence or not</td><td>R' Ila / Rav</td></tr><tr><td>Hearing God's name in vain</td><td>Must <b>ostracize the speaker</b>; if not, the listener is ostracized</td><td>Rav Ḥanin / Rav</td></tr><tr><td>Minimum waiting time before dissolving</td><td><b>No minimum</b> — can dissolve immediately</td><td>Rav Huna's incident</td></tr><tr><td>Torah scholar ostracizing himself</td><td>He <b>can dissolve it himself</b> — despite 'a prisoner cannot free himself'</td><td>Rav Giddel / Rav</td></tr></table><div class="callout" style="margin-top:20px"><strong>THREE LESSONS</strong> From Rav Huna's incident with the woman: (1) One must ostracize for misusing God's name, (2) In-person niddui requires in-person dissolution, (3) No waiting period is needed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 7 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>Intimation for Charity/Hefker/Bathroom</b><br>Does an incomplete expression carry legal force beyond vows?</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a1620; border-left:3px solid #e74c3c; padding:10px;"><b>All dilemmas unresolved (teiku)</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px;"><b>Ostracism Terminology</b><br>Nadeina = vow · Meshamattena = not a vow · Menudna = disputed</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding:8px;"><b>Rav Pappa:</b> Dispute is only about 'menudna'</div></div><div class="flow-col"><div class="flow-box" style="background:#1e2a3a; padding:8px;"><b>Rav Ḥisda:</b> Dispute extends to 'meshamattena' too</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left:3px solid #9b59b6; padding:10px;"><b>Laws of Niddui</b><br>In-person → dissolve in person · No minimum wait · Scholar can self-dissolve</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 7a-7b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 7a-7b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../6/">← Daf 6</a><a href="../8/">Daf 8 →</a></div>
+</body>
+</html>

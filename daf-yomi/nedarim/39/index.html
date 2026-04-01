@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 39 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏥</div>
+  <h1>Nedarim 39</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים לט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🤝 Visiting the Ill — Standing vs. sitting when property is forbidden by vow<br>
+    💰 Shmuel's Answer — Payment customs determine permitted benefit<br>
+    🔗 Ulla's Answer — Existential needs excluded from vow<br>
+    📖 Torah Source — Reish Lakish derives bikur cholim from Korah narrative<br>
+    🌍 Seven Pre-Creation Things — Torah, repentance, Gan Eden, Gehenna, Throne of Glory, Temple, Messiah's name<br>
+    ☀️ Sun & Moon Protest — Heavenly bodies challenged during Korah's rebellion<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 39 — Bikur Cholim: Obligations & Origins</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The mishna says a visitor may <b>stand</b> but not <b>sit</b> with the ill person. Why does this distinction matter?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Shmuel</div><div class="speech">The visitor's property is forbidden to the ill. In places where one <b>pays for sitting</b> but not standing, sitting provides forbidden benefit.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Ulla</div><div class="speech">The ill person's property is forbidden to the visitor, but <b>existential needs</b> were excluded. Visiting while standing qualifies; sitting does not.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Reish Lakish</div><div class="speech">The Torah itself alludes to bikur cholim: <b>"If these men die the common death of all men and be visited..."</b> (Numbers 16:29).</div></div></div><div class="callout" style="margin-top:20px"><strong>DAF THEME</strong> This daf resolves the standing/sitting distinction for visiting the ill under vows, then explores the Torah origins of bikur cholim through the Korah narrative and aggadic teachings about creation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Core Question: Standing vs. Sitting</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">If the <b>visitor's property</b> is forbidden to the ill — even sitting should be permitted (no benefit flows to the ill).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">If the <b>ill person's property</b> is forbidden to the visitor — even standing should be prohibited (he benefits from entering the house).</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Shmuel</div><div class="speech">The <b>visitor's property</b> is forbidden to the ill. In places where one <b>takes payment for sitting</b> but not standing, sitting spares the ill person expense — that is forbidden benefit.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">This also teaches: even where one pays for bikur cholim, payment is proper for <b>sitting</b> but not for <b>standing</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>SHMUEL'S PRINCIPLE</strong> The forbidden benefit is economic: sitting saves the ill person the cost of hiring someone to sit with him.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Ulla's Alternative Explanation</h2>
+  
+  <div class="flowchart"><div class="flow-box action">The <b>ill person's property</b> is forbidden to the visitor</div><div class="flow-arrow">↓</div><div class="flow-box action">But the ill person excluded <b>existential needs</b> from the vow</div><div class="flow-arrow">↓</div><div class="flow-box question">Is visiting the ill an existential need?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Standing</div><div class="flow-box result-good">Yes — this is how one fulfills the mitzva. <b>Permitted.</b></div></div><div class="flow-col"><div class="flow-label">Sitting</div><div class="flow-box result-bad">No — one can visit while standing; sitting is unnecessary. <b>Prohibited.</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY DISTINCTION</strong> According to Ulla, the exclusion of existential needs applies only to the minimum needed — standing suffices for bikur cholim.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Shmuel vs. Ulla — The Son's Illness</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">Shmuel</h3><ul><li>Visitor's property forbidden to the ill</li><li>Mishna deals with this case</li><li>Baraita (son's illness) deals with Ulla's case</li><li>Two separate scenarios — no contradiction</li></ul></div><div class="compare-box" style="border-top-color:#3a1a4c"><h3 style="color:#9b59b6">Ulla</h3><ul><li>Ill person's property forbidden to the visitor</li><li>Existential needs excluded from the vow</li><li>Exclusion covers HIS illness, not his SON's</li><li>When son is ill: inquire in marketplace only</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>BARAITA CHALLENGE</strong> If the person himself is ill — the visitor may enter. If his son is ill — the visitor may only inquire in the marketplace. Ulla explains this cleanly; Shmuel must split the cases.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Torah Source for Bikur Cholim</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אִם כְּמוֹת כׇּל הָאָדָם יְמוּתוּן אֵלֶּה וּפְקֻדַּת כׇּל הָאָדָם יִפָּקֵד עֲלֵיהֶם</div><div class="callout"><strong>REISH LAKISH</strong> <b>Reish Lakish</b> finds a Torah allusion to visiting the ill in <b>Numbers 16:29</b>: <em>"If these men die the common death of all men, and be visited after the visitation of all men..."</em><br><br><b>Rava</b> explains: Moses said — if Korah's congregation dies naturally, becoming ill and <b>confined to their beds with people coming to visit them</b>, then people will say <em>"the Lord has not sent me."</em> The verse presupposes that visiting the ill is the normal practice for all people.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Seven Things Created Before the World</h2>
+  
+  <table><tr><th>Creation</th><th>Proof Verse</th></tr><tr><td>Torah</td><td>"The Lord made me as the beginning of His way" (Proverbs 8:22)</td></tr><tr><td>Repentance (Teshuva)</td><td>"You return man to contrition" (Psalms 90:3)</td></tr><tr><td>Garden of Eden</td><td>"God planted a garden in Eden <i>mikedem</i>" — before (Genesis 2:8)</td></tr><tr><td>Gehenna</td><td>"For its hearth is ordained of old" (Isaiah 30:33)</td></tr><tr><td>Throne of Glory</td><td>"Your throne is established of old" (Psalms 93:2)</td></tr><tr><td>The Temple</td><td>"Your Throne of Glory on high from the beginning" (Jeremiah 17:12)</td></tr><tr><td>Name of Messiah</td><td>"May his name endure forever; before the sun" (Psalms 72:17)</td></tr></table><div class="callout" style="margin-top:20px"><strong>CONTEXT</strong> This teaching resolves Rava's homily on Numbers 16:30 — Moses wasn't unsure if Gehenna existed (it was pre-created), but whether its opening was nearby.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 39 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Mishna:</b> Visitor may <b>stand</b> but not <b>sit</b> with the ill</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a3e; color:#fff; padding:10px; border-radius:8px;"><b>Shmuel:</b> Visitor's property forbidden to ill — sitting saves the ill money (forbidden benefit)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Ulla:</b> Ill person's property forbidden to visitor — existential needs excluded, but sitting exceeds the minimum</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e2a16; color:#fff; padding:12px; border-radius:8px;"><b>Reish Lakish:</b> Torah alludes to bikur cholim via Korah's story (Numbers 16:29)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Seven things</b> created before the world — including Gehenna (resolves Rava's homily on Korah)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px;"><b>Abaye:</b> Bikur cholim has <b>no fixed measure</b> — visit as many times as needed</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 39a-39b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 39a-39b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../38/">← Daf 38</a><a href="../40/">Daf 40 →</a></div>
+</body>
+</html>

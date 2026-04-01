@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 85 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🤲</div>
+  <h1>Nedarim 85</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים פה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Benefit of Discretion — Does the owner's right to choose a kohen have monetary value?<br>
+    🌾 Untithed Produce & Theft — Who bears the penalty: thief or negligent owner?<br>
+    🧵 Woman's Vow on Her Labor — Can she forbid her earnings to her husband via konam?<br>
+    📜 Surplus Earnings Debate — R' Akiva vs R' Yochanan ben Nuri on excess work<br>
+    🔮 Consecrating the Not-Yet-Existent — Can a konam apply to something not yet in the world?<br>
+    ✋ 'My Hands Are Consecrated' — Rav Huna b. Rav Yehoshua's resolution<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 85 — Vows on a Wife's Labor & Future Entities</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Mishna:</b> Wife vows her labor is <i>konam</i> to her husband</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">First Tanna</div><div class="flow-box result-good">No need to nullify — she is obligated to work for him, vow is void</div></div><div class="flow-col"><div class="flow-label">R' Akiva</div><div class="flow-box question">Nullify — she may produce <b>surplus</b> beyond obligation</div></div><div class="flow-col"><div class="flow-label">R' Yochanan b. Nuri</div><div class="flow-box result-bad">Nullify — he may <b>divorce her</b> and the vow takes effect</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Shmuel:</b> Halakha follows R' Yochanan ben Nuri</div><div class="flow-arrow">↓</div><div class="flow-box question">Problem: Can one consecrate something <b>not yet in the world</b>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Yosef</div><div class="flow-box result-good"><i>Konamot</i> are different from <i>hekdesh</i> — they can apply to future entities</div></div><div class="flow-col"><div class="flow-label">Rav Huna b.R. Yehoshua</div><div class="flow-box result-good">She says: 'My <b>hands</b> are consecrated' — hands exist now</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Tension</strong> The Gemara struggles to reconcile Shmuel's ruling with the principle that one cannot consecrate what does not yet exist.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Thief of Untithed Produce: Who Is Penalized?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yehuda HaNasi</div><div class="speech">The <b>thief is penalized</b> — he must repay the <b>full value</b> of all the untithed produce, including the <i>teruma</i> and tithes portion.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yosei b.R. Yehuda</div><div class="speech">The <b>owner is penalized</b> — he receives only the value of the non-sacred portion. This encourages him to <b>separate tithes promptly</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Both agree that <i>tovat hana'ah</i> (benefit of discretion) has <b>no monetary value</b>. The dispute is about whom the Sages chose to penalize.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yehuda HaNasi</div><div class="speech">Penalize the <b>thief</b> so he won't steal again — even though the owner had no monetary rights in the <i>teruma</i>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yosei b.R. Yehuda</div><div class="speech">Penalize the <b>owner</b> so he won't delay separating tithes — had he acted promptly, the gifts wouldn't have been stolen.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The penalty's target depends on whom the Sages wish to incentivize: deterring theft vs. encouraging prompt tithing.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rava's Resolution: Teruma Is Different</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">תרומה שאני — דכיון דאתא לאסורה עלייהו, שוויה כעפרא</div><div class="callout"><strong>Rava</strong> When a person forbids <b>all priests</b> from benefiting from him, the <i>teruma</i> — which <b>only priests can eat</b> — becomes like <b>mere dust</b>. Since it is now forbidden to every possible consumer, the owner has effectively abandoned it. Therefore priests who take it derive <b>no benefit from him</b>, and there is no violation of the vow.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Mishna: Wife's Vow on Her Labor</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">Cannot Be Nullified</h3><ul><li>"I won't produce for <b>my father</b>"</li><li>"I won't produce for <b>your father</b>"</li><li>"I won't produce for <b>my/your brother</b>"</li><li>Does not affect husband-wife relationship</li><li>Husband has no authority to nullify</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4caf50">Automatically Void</h3><ul><li>"I won't produce for <b>you</b> (husband)"</li><li>She is <b>obligated</b> to work for him per ketubah</li><li>First Tanna: No nullification needed</li><li>Vow cannot override existing obligation</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e67e22">Should Still Nullify</h3><ul><li><b>R' Akiva:</b> She may produce <b>surplus</b> beyond her obligation — vow applies to the excess</li><li><b>R' Yochanan b. Nuri:</b> He may <b>divorce her</b> — then the vow takes full effect and he can never remarry her</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Halakha</strong> Shmuel rules like R' Yochanan ben Nuri: the husband should nullify the vow as a precaution against future divorce.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Shmuel's Contradictory Rulings?</h2>
+  
+  <table><tr><th>Ruling</th><th>Source</th><th>Implication</th></tr><tr><td>Halakha like <b>R' Yochanan b. Nuri</b></td><td>Our Mishna (Nedarim)</td><td>A konam on <b>future earnings</b> is valid → one <b>can</b> affect what doesn't yet exist</td></tr><tr><td>Halakha like <b>R' Yochanan HaSandlar</b></td><td>Ketubot 58b</td><td>Consecrating wife's future earnings is <b>ineffective</b> → one <b>cannot</b> consecrate what doesn't yet exist</td></tr><tr><td>Apparent contradiction</td><td>Gemara's question</td><td>Both rulings by Shmuel seem to conflict on whether future entities can be affected</td></tr></table><div class="callout" style="margin-top:20px"><strong>The Problem</strong> If Shmuel holds one cannot consecrate future entities, how can he rule that the wife's konam on future labor is valid?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Resolving Shmuel: Konamot vs. Hekdesh</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech"><b>Konamot are different</b> from <i>hekdesh</i>. Since a person can prohibit <b>another's produce</b> to himself via konam (which he cannot do with hekdesh), he can also prohibit <b>future entities</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">That logic doesn't hold! Granted, one can prohibit <b>another's produce to himself</b>. But here the wife prohibits her <b>own future produce to another person</b> (her husband). She has jurisdiction over neither the produce (it doesn't exist) nor the person.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Rav Huna b.R. Yehoshua</div><div class="speech">The case is where she says: <b>'My hands are consecrated to the One Who made them.'</b> Her hands already exist — so there is no problem of consecrating a future entity!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">But her hands are <b>pledged to her husband</b>! How can she consecrate them?</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Rav Huna b.R. Yehoshua</div><div class="speech">She stipulated: the vow takes effect <b>when I become divorced</b>. At that point, her hands are no longer pledged to him.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> By formulating the vow as 'my hands are consecrated — effective upon divorce,' both problems are solved: the object exists now, and it won't be pledged to the husband when the vow activates.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 85 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Wife vows:</b> 'My labor is <i>konam</i> to my husband'</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px;"><b>First Tanna:</b> Vow is automatically void — she is obligated to work for him</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1a16; color:#fff; padding:10px; border-radius:8px;"><b>R' Akiva:</b> Nullify — surplus labor beyond her obligation is affected</div></div><div class="flow-col"><div class="flow-box" style="background:#1a1640; color:#fff; padding:10px; border-radius:8px;"><b>R' Yochanan b. Nuri:</b> Nullify — divorce would activate vow permanently</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; border:2px solid #c9a84c;"><b>Shmuel:</b> Halakha like R' Yochanan ben Nuri — husband must nullify</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px; border:2px solid #4caf50;"><b>Resolution (Rav Huna b.R. Yehoshua):</b> She says 'My hands are consecrated — effective upon divorce.' Hands exist now; vow activates later.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 85a-85b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 85a-85b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../84/">← Daf 84</a><a href="../86/">Daf 86 →</a></div>
+</body>
+</html>

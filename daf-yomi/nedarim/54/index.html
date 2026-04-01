@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 54 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🥒</div>
+  <h1>Nedarim 54</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים נד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🥬 Vegetables Vow — Does forbidding vegetables include gourds?<br>
+    ⚖️ Agent Consultation Test — How an agent's behavior defines categories<br>
+    🔪 Me'ila Application — Agent deviation and consecrated property<br>
+    🥩 Meat Vow — What types of meat are included in a vow?<br>
+    🐟 Fish & Bloodletting — Medical context affects vow categories<br>
+    👁️ Health Exceptions — How physical conditions shape vow interpretation<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>What Counts as 'Vegetables'? What Counts as 'Meat'?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Mishna</div><div class="speech">One who vows <b>vegetables</b> are forbidden — may he eat <b>gourds</b>?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">Gourds are <b>permitted</b> — people don't call gourds 'vegetables'</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech">Gourds are <b>forbidden</b> — an agent who can't find vegetables brings gourds, not legumes</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Ulla</div><div class="speech">The case is one who said: <b>'Vegetables cooked in a pot'</b> are forbidden — gourds fit that category</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> When someone makes a vow using a general term, how broadly do we interpret it? The Gemara uses the <b>agent consultation test</b> to determine if sub-categories are included.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Gourds as Vegetables: The Agent Argument</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">A person tells his agent: <b>Buy me vegetables</b>. The agent returns and says: <i>'I found only gourds.'</i> This proves gourds are <b>not</b> vegetables!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech">Exactly my point! The agent says <i>'I found only gourds'</i> — but would he ever say <i>'I found only legumes'</i>? <b>No!</b> Gourds are a sub-type of vegetables; legumes are not.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">The agent <b>consults</b> before buying gourds — that shows they're a <b>different category</b></div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech">Consulting proves it's the <b>same type</b> — for a truly different type, the agent wouldn't even ask!</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> R' Akiva: If an agent <b>consults</b> before substituting, it's the same category. If he <b>wouldn't even consider</b> substituting, it's a different category entirely.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Agent Consultation Test</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Agent is sent to buy <b>Item X</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Agent cannot find Item X. Does he consider buying <b>Item Y</b> as a substitute?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Consults employer</div><div class="flow-box result-bad"><b>Rabbis:</b> Different type (permitted)<br/><b>R' Akiva:</b> Same type (forbidden)</div></div><div class="flow-col"><div class="flow-label">No — Wouldn't even consider it</div><div class="flow-box result-good"><b>Both agree:</b> Completely different type (permitted)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Qualification</strong> Even R' Akiva concedes: one who ate gourds after vowing off vegetables is <b>not flogged</b>, since the matter is not entirely clear.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Ulla's Clarification: What Did He Actually Vow?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1a1a"><h3 style="color:#e74c3c">Problem</h3><ul><li>Gourds are technically fruits, not vegetables</li><li>How can R' Akiva include them in a vegetable vow?</li><li>The vow must be interpreted more specifically</li></ul></div><div class="compare-box" style="border-top-color:#1a2c1a"><h3 style="color:#4caf50">Ulla's Solution</h3><ul><li>He vowed: 'A vegetable cooked in a pot is forbidden'</li><li>Gourds ARE cooked in pots alongside vegetables</li><li>Not 'vegetable that flavors the pot' — but 'vegetable cooked in a pot'</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Precision</strong> The Gemara distinguishes between <b>ירק שבקדירה</b> (vegetable cooked in a pot) and <b>ירק הנאכל בקדירה</b> (vegetable eaten as pot flavoring) — the exact wording determines whether gourds are included.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Vowing Off Meat: What's Included?</h2>
+  
+  <table><tr><th>Type of 'Meat'</th><th>First Tanna</th><th>R' Shimon b. Gamliel</th></tr><tr><td>Regular meat (beef, lamb)</td><td>Forbidden ❌</td><td>Forbidden ❌</td></tr><tr><td>Head, feet, windpipe</td><td>Forbidden ❌</td><td>Permitted ✅</td></tr><tr><td>Liver, heart</td><td>Forbidden ❌</td><td>Permitted ✅</td></tr><tr><td>Bird meat</td><td>Forbidden ❌</td><td>Permitted ✅</td></tr><tr><td>Fish</td><td>Permitted ✅</td><td>Permitted ✅</td></tr><tr><td>Grasshoppers</td><td>Permitted ✅</td><td>Permitted ✅</td></tr><tr><td>Innards (כרסין)</td><td>Forbidden ❌</td><td>Not considered meat</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' Shimon b. Gamliel's Saying</strong> <b>Innards are not meat, and one who eats them is not a person</b> — meaning: for <i>vows</i>, innards count as meat; for <i>purchase</i>, buying innards doesn't qualify as buying meat.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Me'ila: Agent Deviation & Consecrated Property</h2>
+  
+  <div class="process-bar"><div class="process-step">📋 Employer sends agent to use a specific item (forgetting it's consecrated — <i>hekdesh</i>)</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ Agent performs mission properly → <b>Employer</b> is liable for me'ila</div><div class="process-arrow">↓</div><div class="process-step highlight">❌ Agent deviates from mission → <b>Agent</b> is liable for me'ila</div><div class="process-arrow">↓</div><div class="process-step">🔍 Example: Employer says 'Give meat,' agent gives liver → Agent deviated = agent liable</div><div class="process-arrow">↓</div><div class="process-step">⚖️ Rav Ḥisda: This cannot follow R' Akiva — he'd say liver IS meat, so agent fulfilled his mission!</div><div class="process-arrow">↓</div><div class="process-step highlight">💡 Abaye: Even R' Akiva agrees — the agent should have <b>consulted</b> first; failing to consult = deviation</div></div><div class="callout" style="margin-top:20px"><strong>Rava's Verdict</strong> Rava affirmed Abaye's answer: <b>Naḥmani spoke well.</b> Even under R' Akiva's view, the agent's failure to consult constitutes deviation from his mission.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 54 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Person makes a vow</b> forbidding a category (vegetables, meat)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1e1e3a; border-left: 3px solid #9b59b6; padding: 8px;"><b>Question:</b> Does a borderline item fall within the vowed category?</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 8px;"><b>Test:</b> Would an agent consult before substituting this item?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2c1616; padding: 8px; border: 1px solid #e74c3c;"><b>R' Akiva:</b> Consultation = same type → <span style='color:#e74c3c'>Forbidden</span><br/>(But no lashes)</div></div><div class="flow-col"><div class="flow-box" style="background:#162c16; padding: 8px; border: 1px solid #4caf50;"><b>Rabbis / RSBG:</b> Consultation = different type → <span style='color:#4caf50'>Permitted</span></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 54a-54b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 54a-54b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../53/">← Daf 53</a><a href="../55/">Daf 55 →</a></div>
+</body>
+</html>

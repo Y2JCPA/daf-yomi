@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 29 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔄</div>
+  <h1>Nedarim 29</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים כט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Sanctity Departure — Can consecration lapse without redemption?<br>
+    ⚖️ Kedushat Damim vs. Kedushat HaGuf — Value-sanctity vs. inherent sanctity<br>
+    🐂 The Ox Baraita — Burnt-offering becoming peace-offering after 30 days<br>
+    💍 Betrothal Analogy — Comparing conditional sanctity to conditional marriage<br>
+    🗣️ Amirato LaGavoha — Verbal declaration to God as legal transfer<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Can Sanctity Depart on Its Own?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Hamnuna</div><div class="speech">Challenges Ulla: Where did the sanctity of the saplings go? Sanctity can't just vanish — like a wife doesn't leave marriage without a <i>get</i>!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">Distinguishes: <b>Kedushat damim</b> (value-sanctity) can lapse on its own when a condition is fulfilled. <b>Kedushat ha-guf</b> (inherent sanctity) requires an action to remove it.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Abaye</div><div class="speech">Challenges from a baraita: An ox consecrated as a burnt-offering for 30 days becomes a peace-offering automatically — that's inherent sanctity departing with nothing done!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Resolves: The baraita may refer to value-sanctity, not inherent sanctity. But the two-clause structure of the baraita suggests both types can lapse.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Pappa</div><div class="speech">Defends Bar Padda: The peace-offering sanctity takes effect <i>now</i> and doesn't depart — the burnt-offering sanctity then takes effect <i>after</i> 30 days, like delayed betrothal.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> Does conditional sanctity — whether of value or of the object itself — automatically lapse when the condition is met, or must an active process of redemption remove it?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav Hamnuna Challenges Ulla</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Hamnuna</div><div class="speech">Where did the sanctity of the saplings go? How can consecrated items become non-sacred <b>without redemption</b>?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Hamnuna</div><div class="speech">Analogy: If a man says <i>'Today you are my wife, tomorrow you are not'</i> — does she exit marriage <b>without a get</b>? Obviously not!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">You're comparing two different things! <b>Kedushat damim</b> (value-sanctity) is not the same as <b>kedushat ha-guf</b> (inherent sanctity).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">Value-sanctity departs on its own when the condition is fulfilled — the saplings are cut, sanctity lifts. But inherent sanctity (like a wife) requires an <b>action</b> to remove.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> <b>Kedushat damim</b> — sanctity of monetary value, can lapse conditionally.<br/><b>Kedushat ha-guf</b> — sanctity of the object itself, requires active removal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Two Types of Sanctity</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Kedushat Damim (Value-Sanctity)</h3><ul><li>Object's monetary value is consecrated</li><li>Used to purchase offerings</li><li>Can depart when a condition is fulfilled</li><li>Example: Saplings consecrated until cut down</li><li>No redemption needed if conditional</li></ul></div><div class="compare-box" style="border-top-color:#2c1a3a"><h3 style="color:#9b59b6">Kedushat HaGuf (Inherent Sanctity)</h3><ul><li>The object itself is holy</li><li>Directly placed on the altar</li><li>According to Rava: requires action to remove</li><li>Example: Animal designated as burnt-offering</li><li>Analogous to betrothal — needs a get</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Position</strong> The saplings in the mishna had only value-sanctity, so their consecration could lapse automatically when cut. A betrothed woman has inherent sanctity — she needs a bill of divorce.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Abaye's Challenge: The Ox Baraita</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A man says: <i>'This ox is a burnt-offering for 30 days, after 30 days a peace-offering'</i></div><div class="flow-arrow">↓</div><div class="flow-box action">For 30 days → the ox has the status of a <b>burnt-offering</b> (olah)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">After 30 days → it automatically becomes a <b>peace-offering</b> (shelamim)</div><div class="flow-arrow">↓</div><div class="flow-box question">But this is <b>kedushat ha-guf</b>! The inherent sanctity departed with nothing done!</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Gemara's Answer</div><div class="flow-box result-good">Perhaps the baraita refers to <b>kedushat damim</b> — he consecrated the ox's value for purchasing offerings, not the animal itself</div></div><div class="flow-col"><div class="flow-label">Problem</div><div class="flow-box result-bad">The second clause of the baraita seems to imply inherent sanctity — why teach two clauses if both are value-sanctity?</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Point</strong> If inherent sanctity can shift from burnt-offering to peace-offering without any action, Rava's distinction collapses.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>The Two Clauses of the Baraita</h2>
+  
+  <table><tr><th>Clause</th><th>First 30 Days</th><th>After 30 Days</th><th>Type of Sanctity</th></tr><tr><td>First Clause</td><td>Burnt-offering (olah)</td><td>Peace-offering (shelamim)</td><td>Stringent → lenient</td></tr><tr><td>Second Clause</td><td>Peace-offering (shelamim)</td><td>Burnt-offering (olah)</td><td>Lenient → stringent</td></tr><tr><td>If both are kedushat damim</td><td>Why teach two clauses?</td><td>Kal va-chomer from first!</td><td>Unnecessary</td></tr><tr><td>If one is kedushat ha-guf</td><td>Both types of sanctity lapse</td><td>Teaches both cases needed</td><td>Both depart on their own</td></tr></table><div class="callout" style="margin-top:20px"><strong>Logical Argument</strong> If both clauses refer to value-sanctity, the second is redundant — if stringent sanctity lapses, certainly lenient sanctity does. Two clauses imply one addresses inherent sanctity.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rav Pappa Defends Bar Padda</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">This baraita should refute <b>Bar Padda</b>, who holds sanctity doesn't depart on its own and trees require redemption!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Pappa</div><div class="speech">Bar Padda can reinterpret: When he says <i>'from now — peace-offering'</i>, that sanctity takes effect <b>immediately</b> and never departs.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Pappa</div><div class="speech">The burnt-offering sanctity then takes effect <b>after</b> 30 days — like betrothal that takes effect later. No sanctity actually departs!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">But what's the novelty? If he said it takes effect after 30 days, obviously it does!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Pappa</div><div class="speech">The novelty: even if he <b>retracted</b> within 30 days, the consecration still takes effect — he cannot undo his declaration.</div></div></div><div class="callout" style="margin-top:20px"><strong>Bar Padda's Defense</strong> The baraita doesn't show sanctity departing — it shows <b>new sanctity taking effect</b> at a predetermined time, like delayed betrothal with money given now.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 29 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px; text-align:center;"><b>Can sanctity depart on its own?</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Kedushat Damim</b><br/>Value-sanctity<br/>✅ Departs when condition met<br/>(Rava, agreed by all)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a2e; color:#fff; padding:10px; border-radius:8px;"><b>Kedushat HaGuf</b><br/>Inherent sanctity<br/>❓ Disputed — Rava says no,<br/>Abaye challenges from baraita</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e2a16; color:#fff; padding:10px; border-radius:8px; text-align:center;"><b>Rav Pappa defends Bar Padda:</b><br/>Sanctity doesn't depart — new sanctity takes effect at the set time</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px; text-align:center; border:2px solid #c9a84c;"><b>Amirato la-Gavoha k'mesirato l'hedyot</b><br/>Declaration to God = physical transfer → no retraction possible</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 29a-29b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 29a-29b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../28/">← Daf 28</a><a href="../30/">Daf 30 →</a></div>
+</body>
+</html>

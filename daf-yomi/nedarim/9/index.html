@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 9 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐑</div>
+  <h1>Nedarim 9</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים ט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Vows of Wicked vs. Virtuous — how intent shapes binding force<br>
+    🔍 Shmuel's Three Formulas — 'I am hereby,' 'I accept,' 'From it'<br>
+    ⚖️ Neder vs. Nedava — why vows and gift offerings differ<br>
+    🐂 Hillel's Method — avoiding misuse of consecrated animals<br>
+    💇 Shimon HaTzaddik & the Nazirite — the shepherd from the South<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Intimations of Vows: Wicked, Virtuous & Gift Offerings</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A person says: <b>'Like the vows of...'</b></div><div class="flow-branch"><div class="flow-col"><div class="flow-label">The Wicked</div><div class="flow-box result-bad"><b>Binding vow</b> — naziriteship, offering, or oath</div></div><div class="flow-col"><div class="flow-label">The Virtuous</div><div class="flow-box result-good"><b>Not binding</b> — virtuous people don't vow</div></div><div class="flow-col"><div class="flow-label">Gift Offerings of the Virtuous</div><div class="flow-box action"><b>Binding</b> — virtuous do bring voluntary offerings</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The <i>character</i> of the model person determines whether a vow-by-analogy takes effect.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Shmuel's Three Formulas for 'Vows of the Wicked'</h2>
+  
+  <table><tr><th>Formula</th><th>Applies To</th><th>Example Context</th></tr><tr><td><b>הריני</b> — 'I am hereby'</td><td>Naziriteship</td><td>Said while a nazirite passes before him</td></tr><tr><td><b>עלי</b> — 'I accept upon myself'</td><td>Offering (Korban)</td><td>Obligates to bring a sacrifice</td></tr><tr><td><b>ממנו</b> — 'From it' (I will not eat)</td><td>Oath (Shevua)</td><td>Restricts from a specific item</td></tr></table><div class="callout" style="margin-top:20px"><strong>Shmuel</strong> Each formula must be paired with a specific context — otherwise the vow is ambiguous and may not take effect.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why 'I Am Hereby' Means Naziriteship</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Perhaps <b>'I am hereby'</b> means: I am hereby accepting a <i>fast</i>, not naziriteship?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Shmuel</div><div class="speech">The case is where <b>a nazirite was passing in front of him</b> — context clarifies intent.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">And <b>'from it'</b> — perhaps he means 'I <i>will</i> eat from it,' not 'I will <i>not</i> eat'?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">The case is where he explicitly said <b>'I will not eat from it.'</b></div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">If he said it explicitly, why do we need this ruling at all?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Lest you say: since he didn't utter the word <b>'oath' (שבועה)</b>, it doesn't take effect — the Mishna teaches it is still a valid <b>intimation</b> of an oath.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> An intimation of an oath (<i>yad l'shevua</i>) is binding even without the explicit term 'oath.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Neder (Vow) vs. Nedava (Gift Offering)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Neder — נדר</h3><ul><li>Says: 'It is incumbent upon me to bring an offering'</li><li>Obligation falls on the person</li><li>Risk of delay — violating בל תאחר</li><li>Virtuous people avoid this</li></ul></div><div class="compare-box" style="border-top-color:#4caf50"><h3 style="color:#ffffff">Nedava — נדבה</h3><ul><li>Designates a specific animal as an offering</li><li>Obligation is on the animal</li><li>Risk of misuse (מעילה) of consecrated property</li><li>Virtuous people do bring these — using Hillel's method</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>R' Meir's View</strong> One should abstain from <i>vows</i> (nedarim), but <i>gift offerings</i> (nedavot) are acceptable — the risk can be mitigated.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Hillel the Elder's Method: Avoiding Misuse of Offerings</h2>
+  
+  <div class="process-bar"><div class="process-step">🐄 Bring the animal <b>unconsecrated</b> to the Temple courtyard</div><div class="process-arrow">↓</div><div class="process-step highlight">🙌 <b>Consecrate</b> the animal only upon arrival in the azara</div><div class="process-arrow">↓</div><div class="process-step">✋ Immediately perform <b>semicha</b> (laying of hands)</div><div class="process-arrow">↓</div><div class="process-step highlight">🔪 <b>Slaughter</b> the animal right away</div><div class="process-arrow">↓</div><div class="process-step">✅ No time gap = <b>no opportunity for misuse (מעילה)</b></div></div><div class="callout" style="margin-top:20px"><strong>Result</strong> They said about Hillel the Elder that <b>no person ever misused his burnt-offering</b> in his lifetime.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Meir vs. R' Yehuda: Should One Vow at All?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Meir</div><div class="speech">Better than vowing and paying, or vowing and not paying, is <b>one who does not vow at all</b>. (Ecclesiastes 5:4)</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yehuda</div><div class="speech">Better than both is <b>one who vows and pays</b> — fulfilling a vow is meritorious.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">Neither distinguishes between vows and gift offerings — yet the Mishna does! Who is the tanna?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">It can still be <b>R' Meir</b>: he only opposes <i>nedarim</i> (vows), not <i>nedavot</i> (gift offerings).</div></div></div><div class="callout" style="margin-top:20px"><strong>Ecclesiastes 5:4</strong> <i>"Better that you should not vow, than that you should vow and not pay."</i></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 9 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>Statement:</b> 'Like the vows of...'</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#4a1a1a; color:#fff; padding:8px; border-radius:8px;"><b>Wicked</b> → Binding (neder, nazir, or oath)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:8px; border-radius:8px;"><b>Virtuous</b> → Not binding (they don't vow)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a4a; color:#fff; padding:8px; border-radius:8px;"><b>Their Nedavot</b> → Binding (they do volunteer)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; color:#fff; padding:10px; border-radius:8px;"><b>Neder vs. Nedava:</b> Virtuous avoid vows (risk of delay) but bring gift offerings using <b>Hillel's method</b> (immediate consecration & slaughter)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Naziriteship:</b> Only pure-hearted vows like the <b>shepherd from the South</b> are praiseworthy — Shimon HaTzaddik's standard</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 9a-9b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 9a-9b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../8/">← Daf 8</a><a href="../10/">Daf 10 →</a></div>
+</body>
+</html>

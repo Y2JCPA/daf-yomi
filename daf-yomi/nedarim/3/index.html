@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 3 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔗</div>
+  <h1>Nedarim 3</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים ג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Mishna Order — Why substitutes are taught before intimations<br>
+    🔗 Biblical Source — Deriving intimations from 'nazir lehazir'<br>
+    ⚖️ Juxtaposition — Linking nazirite vows and general vows<br>
+    🗣️ Language of Men — Debate over doubled terms in Torah<br>
+    🚫 Profanation & Delay — Applying prohibitions to nazirite vows<br>
+    📌 Stacking Naziriteship — A term taking effect upon another term<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>From Torah Text to Binding Intimations</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Torah writes <b>'nazir lehazir'</b> — a doubled term (Numbers 6:2)</div><div class="flow-arrow">↓</div><div class="flow-box action">Derive: <b>Intimations</b> of nazirite vows = nazirite vows<br><b>Substitutes</b> for nazirite vows = nazirite vows</div><div class="flow-arrow">↓</div><div class="flow-box question">Nazirite vows are <b>juxtaposed</b> to general vows in the same verse</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Nazirite → Vows</div><div class="flow-box result-good">Intimations of <b>general vows</b> are binding like vows</div></div><div class="flow-col"><div class="flow-label">Vows → Nazirite</div><div class="flow-box result-good"><b>He shall not profane</b> & <b>You shall not delay</b> apply to nazirite vows too</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Mechanism</strong> The doubled expression 'nazir lehazir' is the textual hook for the entire halakhic framework of intimations (<i>yadot</i>), which the Gemara then extends to all vows through juxtaposition (<i>hekkesh</i>).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Does the Mishna List Substitutes Before Intimations?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Questioner</div><div class="speech">If the Tanna <b>cherishes</b> intimations (since they're derived by exegesis), why not teach them <b>first</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">The Tanna begins with <b>substitutes</b> (<i>kinuyim</i>) because they are <b>written in the Torah</b> — vows are valid in any language.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Questioner</div><div class="speech">That works if substitutes are <b>foreign-language terms</b>. But if they are terms the <b>Sages invented</b>, they're novel too!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">The Mishna is actually <b>incomplete</b> (<i>ḥassura meḥasra</i>) — once you insert the missing phrase, you <b>can</b> place intimations first: <i>'All intimations are like vows, all substitutes are like vows…'</i></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Point</strong> The Gemara resolves the ordering problem by declaring the Mishna text incomplete and reconstructing it with intimations listed first.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Deriving Intimations of Vows from the Torah</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Numbers 6:2</b> — <i>'nazir lehazir'</i><br>(doubled term for nazirite)</div><div class="flow-arrow">↓</div><div class="flow-box action">Doubled term teaches: <b>Intimations</b> of nazirite vows are binding</div><div class="flow-arrow">↓</div><div class="flow-box question">Same verse juxtaposes: <i>'lindor neder… nazir lehazir'</i><br>General vows ↔ Nazirite vows</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Direction 1</div><div class="flow-box result-good">Intimations of <b>general vows</b> are also binding (learned from nazirite)</div></div><div class="flow-col"><div class="flow-label">Direction 2</div><div class="flow-box result-good"><b>He shall not profane</b> & <b>You shall not delay</b> apply to nazirite vows (learned from vows)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Hekkesh</strong> The juxtaposition works bidirectionally — each category teaches halakhot to the other.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The 'Language of Men' Debate</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Torah Spoke in Language of Men</h3><ul><li>'Lindor neder' is just normal speech — no exegetical meaning</li><li>Intimations derived from JUXTAPOSITION to nazirite vows</li><li>'Nazir lehazir' teaches intimations of nazirite vows</li><li>Alternative: derives from 'all that proceeds from his mouth' (Num. 30:3)</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Torah Does NOT Speak in Language of Men</h3><ul><li>'Lindor neder' is a MEANINGFUL doubled term</li><li>Derives intimations of general vows DIRECTLY from this phrase</li><li>'Nazir lehazir' teaches naziriteship stacks upon naziriteship</li><li>Juxtaposition teaches additional halakhot (profanation, delay, nullification)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> Both sides agree intimations are binding — the debate is about <b>which verse</b> teaches it and what role the juxtaposition plays.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Halakhot Derived from the Juxtaposition (Hekkesh)</h2>
+  
+  <table><tr><th>Halakha</th><th>Source Category</th><th>Applied To</th></tr><tr><td>Intimations are binding</td><td>Nazirite → Vows</td><td>General vows</td></tr><tr><td>He shall not profane (לא יחל)</td><td>Vows → Nazirite</td><td>Nazirite vows</td></tr><tr><td>You shall not delay (לא תאחר)</td><td>Vows → Nazirite</td><td>Nazirite vows</td></tr><tr><td>Father nullifies daughter's vows</td><td>Vows → Nazirite</td><td>Nazirite vows</td></tr><tr><td>Husband nullifies wife's vows</td><td>Vows → Nazirite</td><td>Nazirite vows</td></tr><tr><td>Naziriteship stacks on naziriteship</td><td>Nazir lehazir (direct)</td><td>Nazirite vows</td></tr></table><div class="callout" style="margin-top:20px"><strong>Note</strong> Nullification of nazirite vows by a father or husband is not stated explicitly in the Torah but is derived through this juxtaposition with general vows.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>How Does 'He Shall Not Profane' Apply to a Nazirite?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Questioner</div><div class="speech">Once someone says <b>'I am a nazirite,'</b> he's bound immediately. If he eats grapes, he violates <b>'he shall not eat.'</b> If he drinks wine, <b>'he shall not drink.'</b> When does <b>profanation</b> ever apply?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">It applies <b>in addition to</b> the specific prohibition. If he drinks wine, he violates <b>two prohibitions</b>: 'he shall not drink' <b>AND</b> 'he shall not profane his word.'</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Questioner</div><div class="speech">And <b>'You shall not delay'</b> — when does that apply? He's a nazirite immediately!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">When he says: <b>'I will not depart this world until I become a nazirite.'</b> Since he doesn't know when he'll die, he's effectively a nazirite <b>right now</b> — like a man who gives his wife a bill of divorce effective one hour before his death.</div></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Principle</strong> Since we must say 'perhaps he is about to die at any moment,' the naziriteship takes effect immediately and any delay constitutes a violation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 3 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Torah Source</b><br><i>'Nazir lehazir'</i> (Num. 6:2) — doubled term</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #c9a84c; padding: 8px;"><b>Direct Derivation</b><br>Intimations of <b>nazirite</b> vows are binding</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1e2a1e; border-left: 3px solid #4caf50; padding: 8px;"><b>Juxtaposition (Hekkesh)</b><br>Nazirite vows ↔ General vows in same verse</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 8px;"><b>Nazirite → Vows:</b><br>Intimations of general vows are binding</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a1a; padding: 8px;"><b>Vows → Nazirite:</b><br>לא יחל, לא תאחר, and nullification apply</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 3a-3b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 3a-3b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../2/">← Daf 2</a><a href="../4/">Daf 4 →</a></div>
+</body>
+</html>

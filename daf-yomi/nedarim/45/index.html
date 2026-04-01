@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 45 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏘️</div>
+  <h1>Nedarim 45</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים מה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Hefker — When does ownerless declaration take effect?<br>
+    👥 Quorum for Hefker — How many witnesses are needed?<br>
+    ⚖️ Torah Law vs. Rabbinic Law — Standards for declaring property ownerless<br>
+    🏠 Shared Courtyard — Partners who vowed against mutual benefit<br>
+    🔀 R' Eliezer ben Ya'akov — Each partner enters their own portion<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Hefker, Quorum & Shared Property After Vows</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Two <i>baraitot</i> contradict each other — one says <b>hefker</b> takes effect immediately, the other says it doesn't leave the owner's possession until someone else acquires it.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Resolution</div><div class="speech">The baraita where hefker is <b>not immediate</b> refers to a declaration before <b>two</b> people; the one where it <b>is immediate</b> refers to a declaration before <b>three</b> people.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">In the name of <b>R' Shimon ben Yehotzadak</b>: Hefker before <b>three</b> — valid. Before <b>two</b> — not valid.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yehoshua ben Levi</div><div class="speech">By <b>Torah law</b>, even <b>one person</b> suffices. The Sages required three so that <b>one acquires</b> and <b>two testify</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>🔑 Key Issue</strong> Is the three-person requirement for <b>hefker</b> fundamental to the declaration, or merely a practical rabbinic measure to ensure proper testimony?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Contradiction in Baraitot</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">הפקר</div><div class="callout"><strong>⚡ Problem</strong> One <i>baraita</i> teaches that when an item is declared <b>hefker</b> (ownerless), it <b>does not leave</b> the owner's possession until another person acquires it.<br><br>Another <i>baraita</i> teaches the opposite — the item <b>is ownerless immediately</b> upon declaration.<br><br>How can both be true?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Resolution: It Depends on the Quorum</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Owner declares item <b>hefker</b> (ownerless)</div><div class="flow-arrow">↓</div><div class="flow-box question">How many people witnessed the declaration?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Before 2 People</div><div class="flow-box result-bad"><b>Not valid hefker</b><br>Item remains in owner's possession until acquired by another</div></div><div class="flow-col"><div class="flow-label">Before 3 People</div><div class="flow-box result-good"><b>Valid hefker</b><br>Item is ownerless immediately upon declaration</div></div></div></div><div class="callout" style="margin-top:20px"><strong>📖 Source</strong> R' Yochanan in the name of <b>R' Shimon ben Yehotzadak</b>: Three people — hefker is valid. Two people — not valid.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Why Three? Torah Law vs. Rabbinic Enactment</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">Three people are <b>fundamentally required</b> for a valid hefker declaration. With fewer, it simply doesn't work.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yehoshua ben Levi</div><div class="speech">By <b>Torah law</b>, even <b>one person</b> is enough for hefker to take effect.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yehoshua ben Levi</div><div class="speech">The Sages required three for a <b>practical reason</b>: one person <b>acquires</b> the item, and the other two serve as <b>witnesses</b> to testify that it was declared ownerless.</div></div></div><div class="callout" style="margin-top:20px"><strong>💡 Insight</strong> According to R' Yehoshua ben Levi, the three-person requirement is <b>not fundamental</b> to hefker itself — it is a rabbinic safeguard to ensure proper acquisition and testimony.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>R' Yochanan vs. R' Yehoshua ben Levi on Hefker</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">R' Yochanan (quoting R' Shimon ben Yehotzadak)</h3><ul><li>Three people required by law</li><li>Fewer than three = not valid hefker</li><li>Quorum is essential to the declaration</li><li>Item stays with owner if declared before two</li></ul></div><div class="compare-box" style="border-top-color:#2d1a4e"><h3 style="color:#9b59b6">R' Yehoshua ben Levi</h3><ul><li>Torah law: even one person suffices</li><li>Three is a rabbinic requirement only</li><li>Purpose: 1 acquires + 2 testify</li><li>Quorum is practical, not fundamental</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>⚖️ Nafka Mina</strong> If someone declared hefker before only <b>one or two</b> people — according to R' Yehoshua ben Levi it may be valid <b>mi-d'Oraita</b>, while R' Yochanan holds it is simply <b>not hefker</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Mishna: Partners Who Vowed Not to Benefit from Each Other</h2>
+  
+  <table><tr><th>Issue</th><th>Ruling</th></tr><tr><td>Partners vowed <b>mudarim</b> from each other</td><td>Cannot derive benefit from one another</td></tr><tr><td>Shared courtyard (<i>ḥatzer</i>)</td><td>Each has a portion and benefits from the other's share</td></tr><tr><td>Tanna Kamma's ruling</td><td><b>Prohibited</b> — entering the courtyard benefits from the other's portion</td></tr><tr><td>R' Eliezer ben Ya'akov's ruling</td><td><b>Permitted</b> — each enters only their own portion</td></tr></table><div class="callout" style="margin-top:20px"><strong>🏠 Context</strong> The dispute hinges on whether entering a <b>shared courtyard</b> constitutes benefiting from the other partner's property, or whether each can be seen as using <b>only their own share</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 45 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9"><b>Owner declares item Hefker</b><br>Wants to renounce ownership</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a5c; border-left: 3px solid #4a90d9"><b>R' Yochanan:</b><br>3 people → valid hefker<br>2 people → not valid<br><i>Fundamental requirement</i></div></div><div class="flow-col"><div class="flow-box" style="background:#2d1a4e; border-left: 3px solid #9b59b6"><b>R' Yehoshua ben Levi:</b><br>Even 1 suffices (Torah law)<br>3 is rabbinic: 1 acquires + 2 testify<br><i>Practical safeguard</i></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50"><b>Mishna: Shared Courtyard</b><br>Partners who vowed mudarim from each other</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border-left: 3px solid #e74c3c"><b>Tanna Kamma:</b><br>Prohibited from entering<br>Benefit from other's share is unavoidable</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50"><b>R' Eliezer ben Ya'akov:</b><br>Permitted — each enters their own portion<br>No mutual benefit</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 45a-45b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 45a-45b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../44/">← Daf 44</a><a href="../46/">Daf 46 →</a></div>
+</body>
+</html>

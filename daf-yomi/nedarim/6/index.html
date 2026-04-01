@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 6 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💍</div>
+  <h1>Nedarim 6</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים ו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Ambiguous Intimations — Refutations of Abaye's position that unclear hints are valid<br>
+    🗣️ 'Upon Me' vs. 'It Is Hereby' — How additional words clarify vow intent<br>
+    🔄 Abaye's Retraction — Conceding Rabbi Yehuda rejects ambiguous intimations<br>
+    💍 Intimation for Betrothal — Rav Pappa's dilemma: does kiddushin work via hints?<br>
+    🌾 Intimation for Pe'a — Can corner-of-field designation work through incomplete speech?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Can Incomplete Statements Create Legal Obligations?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">Even <b>ambiguous intimations</b> (yadot she'einan mochikhot) are valid — unclear hints still create vows.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">A baraita says '<b>upon me</b>' creates a vow — implying without 'upon me' it does <i>not</i>. This refutes Abaye!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">Without 'upon me,' it's not even an intimation — he could mean <b>ownerless property</b> or <b>charity</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">A second baraita: 'This is a sin-offering' without '<b>my</b>' says nothing. Conclusive refutation!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">That baraita follows <b>Rabbi Yehuda</b>, who rejects ambiguous intimations.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">But <i>you</i> said your view works even according to Rabbi Yehuda!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">I <b>retract</b> that claim. Rabbi Yehuda does reject ambiguous intimations.</div></div></div><div class="callout" style="margin-top:20px"><strong>OUTCOME</strong> Abaye's position is weakened through multiple refutations. The Gemara then pivots to Rav Pappa's new dilemmas about intimation in betrothal and pe'a.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Core Dispute: What Kind of Intimation Is Required?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Abaye</h3><ul><li>Ambiguous intimations (yadot she'einan mochikhot) ARE valid</li><li>Even unclear hints create binding vows</li><li>Initially claimed this works even per R' Yehuda</li><li>Later retracted the R' Yehuda claim</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Rava</h3><ul><li>Only obvious intimations (yadot mochikhot) are valid</li><li>Ambiguous hints do NOT create vows</li><li>Claims this is true even per the Rabbis</li><li>Rabbis only relaxed the rule for gittin (divorce)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>KEY TERMS</strong> <b>Yad Mokhakhat</b> = obvious intimation, clearly refers to a vow. <b>Yad she'einah Mokhakhat</b> = ambiguous intimation, could mean something else entirely.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>"Upon Me" vs. "It Is Hereby" — What Happens?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Person points to an object and speaks</div><div class="flow-arrow">↓</div><div class="flow-box question">What did he say?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">"It is upon me" / "This is hereby upon me"</div><div class="flow-box result-bad"><b>Forbidden</b> to him like an offering — clear intimation of a personal vow (neder)</div></div><div class="flow-col"><div class="flow-label">"It is hereby" (without 'upon me')</div><div class="flow-box result-good"><b>Abaye:</b> Not even an intimation — could mean hefker (ownerless) or tzedakah (charity)<br/><b>Gemara's challenge:</b> Both parties forbidden — perhaps he meant hekdesh (consecrated property)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>DISTINCTION</strong> The phrase <b>'alai' (upon me)</b> clarifies that the speaker is creating a personal prohibition. Without it, the statement is open to multiple interpretations.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Sin-Offering Refutation</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Baraita</div><div class="speech">If one says '<b>This is a sin-offering</b>' or '<b>This is a guilt-offering</b>' — even if he owes one — he has <b>said nothing</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Baraita</div><div class="speech">But if he says '<b>This is MY sin-offering</b>' or '<b>MY guilt-offering</b>' — and he owes one — <b>it takes effect</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">This is a <b>conclusive refutation</b> (teyuvta) of Abaye — ambiguous intimations clearly don't work!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">This baraita follows <b>Rabbi Yehuda</b>, not the Rabbis.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">But you yourself said your view works even according to Rabbi Yehuda!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">I <b>retract</b> that claim (hadar bei).</div></div></div><div class="callout" style="margin-top:20px"><strong>CRITICAL POINT</strong> The word <b>'sheli' (my)</b> transforms an ambiguous statement into an obvious intimation — connecting the offering to the speaker's personal obligation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>After Abaye's Retraction: Where Do They Stand?</h2>
+  
+  <table><tr><th>Position</th><th>Abaye (Revised)</th><th>Rava</th></tr><tr><td>Ambiguous intimations valid?</td><td>Yes — per the Rabbis only</td><td>No — not even per the Rabbis</td></tr><tr><td>R' Yehuda's view?</td><td>Rejects ambiguous intimations</td><td>Rejects ambiguous intimations</td></tr><tr><td>Rabbis' view on gittin?</td><td>Relaxed standard (obvious not required)</td><td>Relaxed standard (obvious not required)</td></tr><tr><td>Rabbis' view generally?</td><td>Ambiguous intimations valid</td><td>Obvious intimations required</td></tr><tr><td>Why gittin is different?</td><td>A man doesn't divorce another's wife</td><td>A man doesn't divorce another's wife</td></tr></table><div class="callout" style="margin-top:20px"><strong>NOTE</strong> Both agree that gittin (bills of divorce) have a lower threshold because context naturally clarifies intent — a scribe writing a get is obviously writing it for this man's wife.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rav Pappa's Dilemma: Intimation for Betrothal (Kiddushin)</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A man says to Woman A: <b>'You are hereby betrothed to me'</b></div><div class="flow-arrow">↓</div><div class="flow-box action">He then turns to Woman B and says: <b>'And you'</b> (ve'at)</div><div class="flow-arrow">↓</div><div class="flow-box question">What did he mean?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Betrothal intended</div><div class="flow-box result-good">He meant: '<b>And you too</b> are betrothed to me' — kiddushin takes effect for Woman B</div></div><div class="flow-col"><div class="flow-label">No betrothal</div><div class="flow-box result-bad">He meant: 'And <b>you see</b> that I am betrothing this woman' — no kiddushin for Woman B</div></div></div></div><div class="callout" style="margin-top:20px"><strong>UNRESOLVED</strong> The Gemara notes that Rav Pappa once asked Abaye whether Shmuel held ambiguous intimations valid for kiddushin — but this doesn't prove Rav Pappa's own view. He was questioning Shmuel's position, not stating his own.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 6 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Abaye:</b> Ambiguous intimations are valid</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a1a; border-left: 3px solid #e74c3c;"><b>Refutation 1:</b> 'Upon me' baraita — without it, no vow</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Abaye deflects:</b> 'It is hereby' alone isn't even an intimation</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a1a; border-left: 3px solid #e74c3c;"><b>Refutation 2:</b> Sin/guilt-offering baraita — conclusive refutation</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #e67e22;"><b>Abaye retracts:</b> R' Yehuda rejects ambiguous intimations</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top: 3px solid #4caf50;"><b>Rav Pappa's Dilemma 1:</b><br/>Is there intimation for <b>kiddushin</b> (betrothal)?<br/>'And you' — betrothed or witness?</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; border-top: 3px solid #9b59b6;"><b>Rav Pappa's Dilemma 2:</b><br/>Is there intimation for <b>pe'a</b>?<br/>'And this' — pe'a or private?<br/>Does hekesh to offerings apply?</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 6a-6b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 6a-6b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../5/">← Daf 5</a><a href="../7/">Daf 7 →</a></div>
+</body>
+</html>

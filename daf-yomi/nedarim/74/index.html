@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 74 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Nedarim 74</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים עד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👰 Yevama's Vows — Can a yavam nullify the vows of a widow awaiting levirate marriage?<br>
+    🔗 Zikah (Levirate Bond) — Is the levirate bond substantial enough to grant marital authority?<br>
+    ⚖️ Three-Way Tannaitic Dispute — R' Eliezer, R' Yehoshua, and R' Akiva debate yavam vow-nullification<br>
+    💍 Ma'amar (Levirate Betrothal) — Rav Ami explains the dispute involves levirate betrothal per Beit Shammai<br>
+    📜 Kal VaChomer Refuted — R' Akiva dismantles R' Eliezer's a fortiori argument about shared authority<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Can a Yavam Nullify a Yevama's Vows?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Eliezer</div><div class="speech">A <b>yavam</b> can always nullify her vows — whether she awaits one or two yevamin. A woman acquired from <b>Heaven</b> deserves the same authority as one acquired through betrothal.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yehoshua</div><div class="speech">Only if she waits for <b>one yavam</b> — then the bond is exclusive and substantial. With two, neither has sole authority.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech">A yavam can <b>never</b> nullify her vows. The <b>zikah</b> (levirate bond) is not substantial enough — she is not his full-fledged wife.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> Does the levirate bond (<b>zikah</b>) create enough of a marital connection that the yavam gains the husband's power to nullify vows?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Three Opinions: Yavam & Vow Nullification</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fdf3d7"><h3 style="color:#c9a84c">R' Eliezer</h3><ul><li>Yavam CAN nullify vows</li><li>Applies to one OR two yevamin</li><li>Woman 'acquired from Heaven' = woman acquired through betrothal</li><li>Holds zikah IS substantial</li></ul></div><div class="compare-box" style="border-top-color:#d6eaf8"><h3 style="color:#4a90d9">R' Yehoshua</h3><ul><li>Yavam CAN nullify — only with ONE yavam</li><li>With two yevamin — CANNOT nullify</li><li>Zikah is substantial only when exclusive</li><li>Shared authority = no authority</li></ul></div><div class="compare-box" style="border-top-color:#fadbd8"><h3 style="color:#e74c3c">R' Akiva</h3><ul><li>Yavam can NEVER nullify vows</li><li>Applies to one OR two yevamin</li><li>Zikah is NOT substantial</li><li>Yevama ≠ full-fledged wife</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Term</strong> <b>Zikah</b> (זיקה) — the levirate bond connecting a yevama to her yavam(in) before actual levirate marriage takes place.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Eliezer vs. R' Akiva: The Kal VaChomer</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Eliezer</div><div class="speech">A man nullifies vows of a woman <b>he acquired for himself</b> through betrothal. <b>Kal vachomer</b> — a woman acquired for him <b>from Heaven</b> (yevama) should be the same!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech">No! A betrothed woman — <b>others have no authority</b> over her. But a yevama — <b>others (brother-yevamin) share authority</b>. The cases are not comparable.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yehoshua</div><div class="speech">Akiva, your refutation works for <b>two yevamin</b>. But what about <b>one yavam</b> — where no one else shares authority?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech">A yevama is simply <b>not a full-fledged wife</b>. The yavam lacks the power to nullify vows regardless of numbers.</div></div></div><div class="callout" style="margin-top:20px"><strong>Logical Structure</strong> R' Akiva refutes the <b>kal vachomer</b> by showing the cases differ in a critical feature: exclusivity of authority.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rav Ami's Interpretation of the Dispute</h2>
+  
+  <div class="flowchart"><div class="flow-box question">What is the case in the Mishna?<br>Rav Ami: Where one yavam already performed <b>ma'amar</b> (levirate betrothal)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Eliezer (like Beit Shammai)</div><div class="flow-box result-good"><b>Ma'amar</b> effects a full-fledged acquisition — yavam can nullify vows</div></div><div class="flow-col"><div class="flow-label">R' Yehoshua</div><div class="flow-box action">Ma'amar works only with <b>one</b> yavam — with two, another brother can undo the betrothal</div></div><div class="flow-col"><div class="flow-label">R' Akiva</div><div class="flow-box result-bad">Zikah is <b>not substantial</b> at all — no nullification until actual levirate marriage</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Beit Shammai vs. Beit Hillel</strong> Beit Hillel: ma'amar does not have full force. Beit Shammai: ma'amar = full betrothal. R' Eliezer follows <b>Beit Shammai</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Underlying Principles Behind Each Opinion</h2>
+  
+  <table><tr><th>Tanna</th><th>Zikah Substantial?</th><th>Ma'amar = Full Betrothal?</th><th>Can Nullify Vows?</th></tr><tr><td><b>R' Eliezer</b></td><td>Yes</td><td>Yes (follows Beit Shammai)</td><td>Always — one or two yevamin</td></tr><tr><td><b>R' Yehoshua</b></td><td>Yes (when exclusive)</td><td>Partial — only with one yavam</td><td>Only with one yavam</td></tr><tr><td><b>R' Akiva</b></td><td>No</td><td>No</td><td>Never — until actual marriage</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' Yehoshua's Logic</strong> With two yevamin, one brother can perform intercourse or give a <i>get</i> and undo the ma'amar. Betrothal that can be nullified by a third party cannot grant vow-nullification power.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Elazar's Challenge to Rav Ami</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כל הנודרת — על דעת בעלה היא נודרת</div><div class="callout"><strong>Difficulty</strong> R' Elazar holds that ma'amar per <b>Beit Shammai</b> only removes a rival wife (<i>tzarah</i>) from the levirate bond — it does <b>not</b> effect a full acquisition. How then does R' Eliezer allow vow nullification?<br><br><b>Resolution:</b> The yavam was obligated by <i>beit din</i> to provide the yevama sustenance. Since he must support her, he gains authority over her vows — as <b>Rav Pinchas in the name of Rava</b> taught: a woman's vows are contingent upon her husband's (or supporter's) consent.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 74 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;">A widow falls to <b>yibum</b> — she is a <b>yevama</b> (שומרת יבם)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a1a3e; color:#e0e0ff; padding:12px; border-radius:8px; border:1px solid #4a90d9;">Can the <b>yavam</b> nullify her vows?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2e1a00; color:#f5d78e; padding:10px; border-radius:8px;"><b>R' Eliezer:</b> YES — always<br>(ma'amar = full betrothal per Beit Shammai)</div></div><div class="flow-col"><div class="flow-box" style="background:#0d253f; color:#a4c8e8; padding:10px; border-radius:8px;"><b>R' Yehoshua:</b> Only with ONE yavam<br>(exclusive zikah = substantial bond)</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; color:#f5a0a0; padding:10px; border-radius:8px;"><b>R' Akiva:</b> NEVER<br>(zikah not substantial — she's not his wife)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 74a-74b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 74a-74b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../73/">← Daf 73</a><a href="../75/">Daf 75 →</a></div>
+</body>
+</html>

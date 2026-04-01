@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 90 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Nedarim 90</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים צ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Nullification vs. Dissolution — Can vows be undone before taking effect?<br>
+    🔗 Sequential Vow Dissolution — Order of dissolving linked konam vows<br>
+    👩 Three Women's Claims — Mishna on wives seeking divorce with ketubah<br>
+    🍞 Teruma for a Priest's Wife — Is a claiming wife believed regarding teruma?<br>
+    🛡️ Preventing Manipulation — Sages' retraction to stop abuse of divorce claims<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 90: Dissolving Vows & Women's Divorce Claims</h2>
+  
+  <div class="callout"><strong>DAF OVERVIEW</strong> The daf explores whether vow <b>dissolution</b> (by a ḥakham) follows the same rules as vow <b>nullification</b> (by a husband) regarding vows not yet in effect. It then transitions to a pivotal Mishna listing <b>three types of women</b> originally entitled to divorce with their ketubah, and how the Sages <b>retracted</b> those rulings to prevent manipulation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Can Dissolution Apply Before a Vow Takes Effect?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Pappi</div><div class="speech">The dispute between <b>Rabbi Natan</b> and the <b>Rabbis</b> is about <b>nullification only</b>. But regarding <b>dissolution</b> by a ḥakham — <b>all agree</b> it works only <i>after</i> the vow takes effect.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Pappi</div><div class="speech">As it says: <b>"He shall not profane his word"</b> (Num. 30:3) — implying there must already be a <b>"word"</b> (an existing vow) for the ḥakham to dissolve.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ravina / Mareimar</div><div class="speech">The dispute is about <b>nullification only</b> — agreed. But regarding <b>dissolution</b>, all agree a ḥakham <b>can</b> dissolve even <i>before</i> the vow takes effect!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ravina / Mareimar</div><div class="speech">"He shall not <b>profane his word</b>" — meaning there was <b>only speech, not yet action</b>, and still the ḥakham may dissolve it.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">Ravina's version is <b>conclusively refuted</b> from the baraita about naziriteship — dissolution must wait until the vow takes effect.</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY DISPUTE</strong> Both Rav Pappi and Ravina agree the Rabbi Natan / Rabbis dispute is about <b>nullification</b>. They disagree about <b>dissolution</b> — but Ravina's lenient view is refuted.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Sequential Dissolution of Linked Vows</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A person declares: <b>"The property of X is konam for me"</b></div><div class="flow-arrow">↓</div><div class="flow-box action">Then adds: <b>"I am a nazirite for when I request dissolution of this vow"</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Which vow must be dissolved <b>first</b>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Step 1</div><div class="flow-box result-good">First dissolve the <b>konam</b> vow on property</div></div><div class="flow-col"><div class="flow-label">Step 2</div><div class="flow-box result-good">Only then dissolve the <b>naziriteship</b> vow (which now exists)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>PROOF</strong> This baraita proves that dissolution requires the vow to <b>already be in effect</b> — the naziriteship vow is triggered only once dissolution of the first vow is requested.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Three Women: Original Ruling vs. Retraction</h2>
+  
+  <table><tr><th>Woman's Claim</th><th>Original Ruling</th><th>Retracted Ruling</th></tr><tr><td>Priest's wife: <b>"I am defiled to you"</b> (claims rape)</td><td>Divorced with <b>ketubah</b></td><td>Must bring <b>proof</b> of her claim</td></tr><tr><td><b>"Heaven is between me and you"</b> (husband is impotent)</td><td>Divorced with <b>ketubah</b></td><td>Court deals with it <b>by way of request</b></td></tr><tr><td><b>"I am removed from the Jews"</b> (vow against intercourse)</td><td>Divorced with <b>ketubah</b></td><td>Husband <b>nullifies his part</b>; vow remains for all other Jews</td></tr></table><div class="callout" style="margin-top:20px"><strong>REASON FOR RETRACTION</strong> The Sages feared that a woman might <b>cast her eyes on another man</b> and use these claims to force a divorce while keeping her ketubah payment.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Can the Priest's Claiming Wife Eat Teruma?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Rav Sheshet — Permitted</h3><ul><li>She <b>may</b> partake of teruma</li><li>Reason: so she not <b>cast aspersions on her children</b></li><li>If barred from teruma, people assume her sons are <b>unfit for priesthood</b></li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Rava — Forbidden</h3><ul><li>She may <b>not</b> partake of teruma</li><li>She can eat <b>non-sacred food</b> (ḥullin) instead</li><li>Her claim should be <b>taken into account</b> regarding teruma</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>CONCESSION</strong> Rava says Rav Sheshet <b>concedes</b>: if the wife was <b>widowed or divorced</b>, she may not eat teruma — people will assume the rape happened <i>after</i> marriage ended, so no aspersion on children.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rav Aḥa bar Rav Huna's Clever Solution</h2>
+  
+  <div class="process-bar"><div class="process-step">🗣️ A man vowed that all benefit from the world is forbidden to him</div><div class="process-arrow">↓</div><div class="process-step">👕 He could no longer wear clothes (benefit from the world)</div><div class="process-arrow">↓</div><div class="process-step highlight">🧱 Rav Aḥa <b>smeared him with clay</b> to protect from the elements</div><div class="process-arrow">↓</div><div class="process-step">🏛️ Brought him before <b>Rav Ḥisda</b> to dissolve the vow</div><div class="process-arrow">↓</div><div class="process-step highlight">🌟 Rava praised: <b>"Who is wise enough if not Rav Aḥa bar Rav Huna!"</b></div></div><div class="callout" style="margin-top:20px"><strong>STRATEGY</strong> Rav Aḥa held that <b>dissolution requires the vow to take effect first</b>. He let it take effect, protected the man without forbidden benefit, then sought dissolution from a ḥakham.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 90 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Nullification (Husband)</b><br>Rabbi Natan: only after vow takes effect<br>Rabbis: even before it takes effect</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2d1a3a; border-left: 3px solid #9b59b6; padding: 10px;"><b>Dissolution (Ḥakham)</b><br>All agree: only after the vow takes effect<br>(Ravina's opposing view is <b>refuted</b>)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 10px;"><b>Mishna: Three Women's Claims</b><br>Originally: divorced with ketubah<br>Retracted: safeguards added</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a2a1a; border-left: 3px solid #e67e22; padding: 10px;"><b>Priest's wife</b>: Must bring proof; teruma status disputed (Rav Sheshet vs. Rava)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a3a; border-left: 3px solid #4a90d9; padding: 10px;"><b>"Removed from Jews"</b>: Husband nullifies his part; if divorced, she remains forbidden to all</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 90a-90b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 90a-90b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../89/">← Daf 89</a><a href="../91/">Daf 91 →</a></div>
+</body>
+</html>

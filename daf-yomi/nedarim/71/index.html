@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 71 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💍</div>
+  <h1>Nedarim 71</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים עא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💍 Vow Nullification — Father and final betrothed nullify vows of a betrothed woman<br>
+    📜 Shmuel's Derivation — Scriptural source for final betrothed's authority over prior vows<br>
+    ⚖️ Beit Shammai vs. Beit Hillel — Does nullification sever or weaken a vow?<br>
+    🔄 Multiple Betrothals — Rights transfer across successive betrothals on the same day<br>
+    📝 Divorce as Silence or Ratification — Status of a vow when husband divorces after hearing it<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nullifying a Betrothed Woman's Vows</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A <b>betrothed young woman</b> (<i>na'arah me'orasa</i>) takes a vow</div><div class="flow-arrow">↓</div><div class="flow-box question">Who has authority to nullify?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">General Rule</div><div class="flow-box result-good">Her <b>father</b> and her <b>current husband</b> must act together</div></div><div class="flow-col"><div class="flow-label">Key Principle</div><div class="flow-box result-good">If she has not yet entered her own jurisdiction, even after <b>100 betrothals</b>, father + final husband nullify</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Mishna Principle</strong> As long as a young woman has never left her father's jurisdiction through <i>nissu'in</i> (marriage) or reaching majority, her father and last betrothed nullify her vows jointly.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Mishna's Rule: Multiple Betrothals</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">💍 A betrothed young woman (<i>na'arah me'orasa</i>) takes a vow</div><div class="process-arrow">↓</div><div class="process-step">📋 She is divorced on the same day</div><div class="process-arrow">↓</div><div class="process-step">💍 She is betrothed again — even to 100 men in one day</div><div class="process-arrow">↓</div><div class="process-step highlight">👨‍👧 Her father and <b>final betrothed</b> nullify her vows together</div><div class="process-arrow">↓</div><div class="process-step highlight">🔑 Condition: She never entered her own jurisdiction (<i>reshut atzma</i>)</div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The Mishna establishes that vow-nullification authority passes to each new betrothed, as long as the woman remains under her father's jurisdiction.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Shmuel's Scriptural Source</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">From where do we derive that the <b>final betrothed</b> can nullify vows disclosed to the <b>first betrothed</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Shmuel</div><div class="speech">The verse states: <i>"And if she be to a husband and her vows are upon her"</i> (Numbers 30:7–9) — <b>"upon her"</b> indicates vows already existing upon her.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Perhaps this only applies to vows <b>not discerned</b> by the first betrothed?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Shmuel</div><div class="speech">The phrase <b><i>"aleha"</i> (upon her)</b> is superfluous — it teaches that <b>all vows</b>, even those known to the earlier betrothed, can be nullified by the final one.</div></div></div><div class="callout" style="margin-top:20px"><strong>Derivation</strong> The seemingly redundant word <i>aleha</i> (upon her) expands the final betrothed's nullification power to include vows that the previous betrothed already knew about.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Baraita: Father Nullified, Husband Died</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A betrothed young woman takes a vow</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Father hears</b> and nullifies his portion</div><div class="flow-arrow">↓</div><div class="flow-box action">Husband <b>dies before hearing</b> the vow</div><div class="flow-arrow">↓</div><div class="flow-box action">She is betrothed again on the same day</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Father + <b>new husband</b> nullify together</div></div><div class="callout" style="margin-top:20px"><strong>Supporting Shmuel</strong> This baraita accords with Shmuel's ruling: the new betrothed steps into the prior one's role, even regarding vows the first betrothed never heard.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Beit Shammai vs. Beit Hillel: Nature of Nullification</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1810"><h3 style="color:#e74c3c">Beit Shammai</h3><ul><li>Each party (father/husband) <b>severs</b> (<i>kotzetz</i>) his own portion of the vow</li><li>If the betrothed nullified and then died, his portion is fully removed</li><li>The father can then nullify his own portion independently</li><li>Vows disclosed to the betrothed — authority <b>reverts to the father</b> upon death</li></ul></div><div class="compare-box" style="border-top-color:#0d2137"><h3 style="color:#4a90d9">Beit Hillel</h3><ul><li>Nullification only <b>weakens</b> (<i>merafeh</i>) the vow, not sever it</li><li>Father <b>cannot</b> nullify alone after betrothed's death</li><li>Father must act together with a <b>new betrothed</b></li><li>Accords with Shmuel: final betrothed can nullify prior vows</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>R' Natan</strong> R' Natan identifies the dispute in the baraita: Beit Shammai say the father can nullify alone (severing), while Beit Hillel require a new betrothed to act jointly with the father (weakening).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Scenario Matrix: Who Heard, Who Died</h2>
+  
+  <table><tr><th>Scenario</th><th>Father's Status</th><th>Husband's Status</th><th>Result</th></tr><tr><td>Father nullified, husband died before hearing</td><td>Nullified ✓</td><td>Never heard</td><td>Father + new betrothed nullify</td></tr><tr><td>Husband nullified, father not yet heard, husband died</td><td>Not yet heard</td><td>Nullified ✓</td><td>Father nullifies husband's portion (Beit Shammai)</td></tr><tr><td>Husband nullified, father not yet heard, husband died</td><td>Not yet heard</td><td>Nullified ✓</td><td>Father cannot nullify alone (Beit Hillel)</td></tr><tr><td>Both heard, neither nullified yet</td><td>Heard, pending</td><td>Heard, pending</td><td>Both must nullify on same day</td></tr></table><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> The key dispute between Beit Shammai and Beit Hillel only matters when the husband nullified and then died — can the father complete the nullification alone?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 71 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px; border-radius:4px;">📜 <b>Mishna:</b> Father + last betrothed nullify vows, even after 100 betrothals</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e1a; border-left:3px solid #c9a84c; padding:8px; border-radius:4px;">💡 <b>Shmuel:</b> Derived from <i>"aleha"</i> — final betrothed nullifies even disclosed vows</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2c1810; border-left:3px solid #e74c3c; padding:8px; border-radius:4px;">⚔️ <b>Beit Shammai:</b> Nullification <i>severs</i> — father can finish alone</div></div><div class="flow-col"><div class="flow-box" style="background:#0d2137; border-left:3px solid #4a90d9; padding:8px; border-radius:4px;">🕊️ <b>Beit Hillel:</b> Nullification <i>weakens</i> — father needs new betrothed</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #e67e22; padding:8px; border-radius:4px;">❓ <b>Dilemma:</b> Is divorce like silence (can still nullify) or ratification (vow locked)?</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 71a-71b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 71a-71b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../70/">← Daf 70</a><a href="../72/">Daf 72 →</a></div>
+</body>
+</html>

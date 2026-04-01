@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 53 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍯</div>
+  <h1>Nedarim 53</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים נג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🍯 Derivatives of Vowed Foods — When date honey or grape vinegar follow the vow<br>
+    ⚖️ R' Yehuda ben Beteira vs. Rabbis — Dispute on named derivatives<br>
+    🫒 Location-Dependent Vows — Oil and vegetable meanings vary by region<br>
+    🥬 Sabbatical Year Vegetables — How Shemitah changes vow scope<br>
+    🫘 Singular vs. Plural Forms — How grammar changes what is forbidden<br>
+    🍲 Specific Foods and Their Derivatives — Cabbage, beans, lentils, and stew<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Vows on Foods: What About Their Derivatives?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A person vows a food is <b>forbidden</b> (konam)</div><div class="flow-arrow">↓</div><div class="flow-box question">Does the derivative <b>bear the name</b> of the original food?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes (e.g., date honey)</div><div class="flow-box result-bad"><b>R' Yehuda ben Beteira:</b> Derivative is also forbidden</div></div><div class="flow-col"><div class="flow-label">No (e.g., apple wine ≠ 'wine')</div><div class="flow-box result-good"><b>Permitted</b> — derivative is a different category</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Rabbis / First Tanna:</b> Even named derivatives are <b>permitted</b> unless the item is not commonly eaten raw (R' Shimon ben Elazar's principle)</div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> The scope of a vow depends on common usage, regional norms, and the relationship between a food and its derivative.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Named Derivatives: Forbidden or Permitted?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Tanna</div><div class="speech">One who vows <b>dates</b> are forbidden is <b>permitted</b> to eat <b>date honey</b>. Same for late grapes and their vinegar.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Yehuda ben Beteira</div><div class="speech">If the derivative <b>bears the name</b> of the original (דבש תמרים — date honey), then the derivative is <b>also forbidden</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">We <b>permit</b> the derivative even when it carries the original's name.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Question</strong> The Gemara asks: The Rabbis seem identical to the First Tanna! What is the difference between them?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Shimon ben Elazar's Principle — The Hidden Distinction</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Is the food <b>commonly eaten</b> in its original form?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes (e.g., dates)</div><div class="flow-box result-bad">Vow on the food → <b>both</b> the food and its derivative are forbidden<br/>(First Tanna disagrees; Rabbis agree with R' Shimon ben Elazar here)</div></div><div class="flow-col"><div class="flow-label">No (e.g., late grapes)</div><div class="flow-box result-good">Vow on the food → he intended only the <b>derivative</b><br/>The food itself is <b>permitted</b>, derivative is <b>forbidden</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Rabbis vs. First Tanna</strong> The First Tanna makes no distinction — derivative always permitted. The Rabbis follow R' Shimon ben Elazar: for items not commonly eaten raw, the vow targets the derivative, not the food itself.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Unspecified Terms: Meaning Depends on Context</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Standard Meanings</h3><ul><li>🍷 "Wine" = grape wine (not apple wine/cider)</li><li>🫒 "Oil" = olive oil (in Eretz Yisrael)</li><li>🍯 "Honey" = bee honey (not date honey)</li><li>🥗 "Vinegar" = wine vinegar (not late-grape vinegar)</li><li>🥬 "Vegetables" = garden vegetables (not wild/field)</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3e"><h3 style="color:#9b59b6">Regional Variation: Oil</h3><ul><li>In Eretz Yisrael → olive oil forbidden, sesame permitted</li><li>In Babylonia → sesame oil forbidden, olive permitted</li><li>Where both are used → BOTH forbidden</li><li>Even if only a minority uses one type — safek d'oraita l'chumra</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> An unspecified vow follows the common local usage (לשון בני אדם). Where usage is mixed, we rule stringently on uncertain Torah prohibitions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Sabbatical Year: How Shemitah Changes Vegetable Vows</h2>
+  
+  <table><tr><th>Condition</th><th>Forbidden</th><th>Permitted</th><th>Reason</th></tr><tr><td>Years 1–6</td><td>Garden vegetables</td><td>Field vegetables</td><td>Gardens are commonly cultivated</td></tr><tr><td>Shemitah Year</td><td>Field vegetables</td><td>Garden vegetables</td><td>Fields grow freely; gardens lie fallow</td></tr><tr><td>Shemitah + imports available</td><td>Both types</td><td>Neither</td><td>R' Abbahu / R' Ḥanina b. Gamliel: imported garden vegs are common</td></tr></table><div class="callout" style="margin-top:20px"><strong>Side Dispute</strong> May one bring vegetables from outside Eretz Yisrael? One Tanna forbids it (R' Yirmeya: a clod of impure earth might come with them). R' Ḥananya ben Gamliel permits it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Foods and Their Derivatives (Amud B Mishna)</h2>
+  
+  <table><tr><th>Vows Against</th><th>Also Forbidden?</th><th>R' Yosei</th></tr><tr><td>Cabbage (כרוב)</td><td>Ispargus (asparagus-type cabbage) — YES</td><td>—</td></tr><tr><td>Ispargus</td><td>Cabbage — NO (subcategory doesn't extend up)</td><td>—</td></tr><tr><td>Pounded beans (גריסין)</td><td>Pounded bean stew (מקפה) — YES</td><td>Permits stew</td></tr><tr><td>Stew (מקפה)</td><td>Garlic in stew — YES</td><td>Permits garlic</td></tr><tr><td>Lentils (עדשים)</td><td>Ashishim (lentil dish) — YES</td><td>Permits ashishim</td></tr><tr><td>Ashishim / Ispargus / Stew</td><td>Parent food — NO in all cases</td><td>—</td></tr></table><div class="callout" style="margin-top:20px"><strong>Pattern</strong> Vowing a general category forbids its specific derivatives, but vowing a specific derivative does NOT extend to the broader category.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 53 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:18px; border-radius:12px; text-align:center;"><b>Person vows a food is forbidden</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a3e; color:#fff; padding:14px; border-radius:10px;"><b>Named derivative?</b><br/>R' Yehuda b. Beteira: forbidden<br/>Rabbis: permitted (unless not commonly eaten raw)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:14px; border-radius:10px;"><b>Unspecified term?</b><br/>Follow local usage<br/>Mixed usage → both forbidden (safek l'chumra)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1a1a; color:#fff; padding:18px; border-radius:12px; text-align:center;"><b>General → Specific:</b> Vow on cabbage includes ispargus, but not reverse<br/><b>Grammar matters:</b> Singular (חיטה) = processed; Plural (חיטים) = raw grains</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 53a-53b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 53a-53b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../52/">← Daf 52</a><a href="../54/">Daf 54 →</a></div>
+</body>
+</html>

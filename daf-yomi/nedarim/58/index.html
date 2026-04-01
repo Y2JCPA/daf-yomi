@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 58 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌱</div>
+  <h1>Nedarim 58</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים נח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌾 Neutralization — When forbidden produce mixes with permitted produce<br>
+    🔓 Items That Can vs. Cannot Become Permitted — Categories affecting nullification rules<br>
+    📅 Sabbatical Year Produce — Special status of Shevi'it growth<br>
+    🧅 Sixth-Year Onions — Determining status when rain causes new growth<br>
+    🌿 Permitted Growths — Whether new growth neutralizes original prohibition<br>
+    ⚖️ Ground-Based Prohibitions — R' Yitzchak's principle on how nullification works<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Can Permitted Growth Neutralize a Prohibition?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A forbidden item is planted and produces <b>new growth</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Does permitted growth neutralize the original prohibition?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Sabbatical Year</div><div class="flow-box result-good">Yes — prohibition is <b>engendered by the ground</b>, so nullification works <b>through the ground</b> (R' Yitzchak)</div></div><div class="flow-col"><div class="flow-label">Orla / Kilayim</div><div class="flow-box result-bad">R' Yochanan & R' Yonatan say <b>no</b> — permitted growth does <b>not</b> neutralize</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> The Gemara searches for proof whether permitted growth can neutralize the prohibition of the original plant</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Two Categories of Forbidden Items</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Can Become Permitted (דבר שיש לו מתירין)</h3><ul><li>Untithed produce — permitted through tithing</li><li>Second tithe — permitted through redemption</li><li>Consecrated items — permitted through redemption</li><li>New crop (חדש) — permitted after the Omer offering</li><li>NO measure for neutralization — never nullified in a mixture</li></ul></div><div class="compare-box" style="border-top-color:#2c1a3a"><h3 style="color:#9b59b6">Cannot Become Permitted (דבר שאין לו מתירין)</h3><ul><li>Teruma and Teruma of the tithe</li><li>Ḥalla (חלה)</li><li>Orla — fruit of first 3 years</li><li>Kilei HaKerem — forbidden vineyard crops</li><li>The Sages DID set a measure for neutralization</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> If a prohibition will eventually lapse on its own, the Sages were <b>stricter</b> — it is never nullified in a mixture, since one can simply wait for it to become permitted</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Where Does Sabbatical Year Produce Fit?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbanan</div><div class="speech">Shevi'it produce <b>cannot become permitted</b> — yet the Sages did <b>not</b> set a measure for neutralization. It prohibits any amount!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Shimon</div><div class="speech">I agree it prohibits <b>any amount</b> — but only regarding <b>bi'ur</b> (removal). It <b>can</b> become permitted, since it may be eaten before the removal deadline.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Shimon</div><div class="speech">After the time for removal passes, the Sages <b>did</b> set a measure — enough to <b>impart flavor</b> (נותן טעם).</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">This seems to prove permitted growths neutralize the original! But perhaps this is only a <b>stringency</b>, not a leniency.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> R' Shimon splits Shevi'it into two phases: before bi'ur (can become permitted → strict) and after bi'ur (cannot → has a measure of nullification)</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Sixth-Year Onions Sprouting in Shevi'it</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Onions planted in the <b>sixth year</b> receive rain in <b>Shevi'it</b> and sprout new growth</div><div class="flow-arrow">↓</div><div class="flow-box question">What color are the leaves?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Dark Green (שחורין)</div><div class="flow-box result-bad">Leaves are <b>fresh</b> = new Shevi'it growth → <b>Forbidden</b></div></div><div class="flow-col"><div class="flow-label">Yellowish-Green (הוריקו)</div><div class="flow-box result-good">Leaves are <b>withered</b> = sixth-year product → <b>Permitted</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">R' Ḥanina ben Antigonus: test by <b>pulling the leaves</b> — if plant uproots easily, leaves are fresh → <b>forbidden</b></div></div><div class="callout" style="margin-top:20px"><strong>Gemara's Objection</strong> Perhaps the onions were <b>crushed</b> (מדוכנין) and no longer edible — not that permitted growth neutralized the prohibition</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Attempted Proofs: Does Permitted Growth Neutralize?</h2>
+  
+  <table><tr><th>Source</th><th>Proof Attempted</th><th>Rejection</th></tr><tr><td>R' Shimon on Shevi'it</td><td>Permitted growths neutralize after bi'ur time</td><td>Perhaps this applies only as a stringency</td></tr><tr><td>Sixth-year onions</td><td>Permitted eighth-year growth neutralizes Shevi'it</td><td>Perhaps the onions were crushed (מדוכנין)</td></tr><tr><td>Ḥasayot with Samaritan</td><td>Eighth-year weeding shows no Shevi'it concern</td><td>Perhaps seeds that cease? No — arum, garlic, onions don't cease</td></tr><tr><td>Ḥasayot — crushed?</td><td>Maybe they were crushed before sprouting</td><td>One suspect about Shevi'it wouldn't bother crushing</td></tr><tr><td>Ḥasayot — mixture?</td><td>Maybe forbidden mixed with permitted majority</td><td>"One who weeds" — eating leaves directly, no mixture</td></tr></table><div class="callout" style="margin-top:20px"><strong>Result</strong> The ḥasayot baraita survives all challenges — it appears to prove that permitted growth <b>does</b> neutralize Sabbatical Year prohibition</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Yitzchak's Distinction: Ground-Based Prohibitions</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The ḥasayot proof should refute R' Yochanan and R' Yonatan, who say orla and kilayim growth does <b>not</b> neutralize!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yitzchak</div><div class="speech">Shevi'it is <b>different</b>. Its prohibition is <b>engendered by the ground</b> — so its nullification is also <b>effected by the ground</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">But <b>untithed tithe</b> (מעשר) is also engendered by the ground, yet growth does <b>not</b> neutralize it!</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">A litra of untithed first tithe sown and grown to ten litra — the growth is still obligated in tithes, and the original litra must be tithed from <b>elsewhere</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Challenge</strong> R' Yitzchak's principle is questioned: tithe is also ground-based, yet its growth doesn't neutralize — the distinction needs further refinement</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 58 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Forbidden produce</b> is planted and generates <b>new permitted growth</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a1a2e; border-left: 3px solid #e67e22; padding: 8px;">Does the permitted growth <b>neutralize</b> the original prohibition?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 8px; border-left: 3px solid #4caf50;"><b>Shevi'it:</b> Yes — prohibition from the ground, nullified through the ground (R' Yitzchak)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; padding: 8px; border-left: 3px solid #e74c3c;"><b>Orla/Kilayim:</b> No — R' Yochanan says permitted growth does not neutralize (not yet refuted)</div></div><div class="flow-col"><div class="flow-box" style="background:#2c1a3a; padding: 8px; border-left: 3px solid #9b59b6;"><b>Tithe:</b> No — despite being ground-based, growth does not neutralize the obligation</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 58a-58b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 58a-58b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../57/">← Daf 57</a><a href="../59/">Daf 59 →</a></div>
+</body>
+</html>

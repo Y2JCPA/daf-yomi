@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 76 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⏰</div>
+  <h1>Nedarim 76</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים עו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌱 Seeds Analogy — R' Eliezer's a fortiori for preemptive nullification<br>
+    ⚖️ Kal VaChomer Debate — Do the Rabbis accept this type of reasoning?<br>
+    📜 Mishna: Timing of Nullification — All day on the day the vow was heard<br>
+    🕐 24-Hour vs. End of Day — Tannaitic dispute on nullification window<br>
+    📖 Verse Interpretation — 'On the day he hears' vs. 'from day to day'<br>
+    ⚡ Swift Dissolution — Hiyya bar Rav and Rabba bar Rav Huna's practices<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>When Can Vows Be Nullified? Preemptive Power & Time Limits</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Eliezer</div><div class="speech">Just as <b>impure seeds</b> planted in the ground become pure, vows nullified <b>preemptively</b> should also be valid</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">The verse says <b>'her husband may ratify or nullify it'</b> — only a vow <b>already taken</b> can be nullified</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Mishna</div><div class="speech">Nullification is valid <b>all day</b> on the day the vow was heard — with both leniency and stricture</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Yosei b. R' Yehuda</div><div class="speech">A vow can be nullified for a full <b>24-hour period</b> from the time it was heard</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakha</strong> R' Yehoshua ben Levi and R' Hiyya rule: the halakha is <b>not</b> like the pair — nullification is only until the <b>end of that day</b>, not a full 24 hours.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>R' Eliezer's Seeds Analogy (Amud A)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Eliezer</div><div class="speech">Impure seeds sown in the ground <b>become pure</b>. Seeds <b>already sown</b> that contact impurity — should they not <em>all the more so</em> be pure?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Eliezer</div><div class="speech">Similarly, since a husband <b>can nullify vows</b> after they are taken, <b>preemptive</b> nullification should certainly work!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">This proves R' Eliezer holds preemptively nullified vows <b>do not take effect at all</b> — like seeds already sown that never become impure</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rabbis</div><div class="speech">We asked him: Does immersing a <b>pure vessel</b> in a mikveh protect it from future impurity? Obviously not!</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Insight</strong> The Gemara clarifies R' Eliezer's position: preemptively nullified vows <b>never take effect</b>, rather than taking effect momentarily and then being nullified.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Rabbis' Double Challenge to R' Eliezer</h2>
+  
+  <div class="flowchart"><div class="flow-box action">R' Eliezer allows <b>preemptive nullification</b> of vows</div><div class="flow-arrow">↓</div><div class="flow-box question">What is his reasoning?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">If vows take effect momentarily…</div><div class="flow-box result-bad">Then a <b>vessel immersed before</b> becoming impure should also be purified — but it isn't! ❌</div></div><div class="flow-col"><div class="flow-label">If vows never take effect…</div><div class="flow-box result-bad">Then a <b>mikveh before impurity</b> should purify — but it doesn't! ❌</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> R' Eliezer responds with the <b>seeds analogy</b> — a kal vachomer from purity law that supports preemptive nullification.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Do the Rabbis Accept This Type of Kal VaChomer?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#c9a84c">R' Eliezer's Kal VaChomer</h3><ul><li>Seeds sown → become pure</li><li>Already sown + impurity → all the more so pure</li><li>Vows nullified after → works</li><li>Vows nullified before → should also work</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Rabbis' Similar Kal VaChomer</h3><ul><li>A sold maidservant goes free at na'arut</li><li>An unsold daughter — can she be sold as a na'arah?</li><li>Kal vachomer: if the sold one goes free, the unsold one certainly cannot be sold!</li><li>This proves the Rabbis DO use this type of reasoning</li></ul></div><div class="compare-box" style="border-top-color:#2c1320"><h3 style="color:#e74c3c">Why Rabbis Reject R' Eliezer Here</h3><ul><li>The verse states: 'Her husband may ratify or nullify'</li><li>Only what is eligible for ratification is eligible for nullification</li><li>A vow not yet taken cannot be ratified → cannot be nullified</li><li>The drasha overrides the kal vachomer</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> An explicit <b>verse (drasha)</b> overrides a logical <b>kal vachomer</b> — the Rabbis agree with the reasoning in theory but reject it here due to the pasuk.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Mishna: Timing of Vow Nullification</h2>
+  
+  <table><tr><th>Scenario</th><th>When She Vowed</th><th>Nullification Window</th><th>Category</th></tr><tr><td>Vowed Friday night</td><td>Beginning of Shabbat</td><td>All of Shabbat eve + Shabbat day until dark</td><td>Leniency (extension)</td></tr><tr><td>Vowed near nightfall</td><td>Approaching end of day</td><td>Only until nightfall</td><td>Stricture (curtailment)</td></tr><tr><td>After dark passes</td><td>Any time</td><td>Can no longer nullify</td><td>Deadline passed</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rule</strong> The husband or father may nullify <b>all day</b> on the day he heard the vow — <b>בְּיוֹם שׇׁמְעוֹ</b> (Numbers 30:13). The day ends at nightfall.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>End of Day vs. 24 Hours (Amud B)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Tanna</div><div class="speech">The verse says <b>'on the day he hears'</b> — he can nullify only until the <b>end of that calendar day</b></div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Yosei b. R' Yehuda</div><div class="speech">The verse says <b>'from day to day'</b> (מִיּוֹם אֶל יוֹם) — this means a full <b>24-hour period</b> from the time he heard</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Tanna</div><div class="speech">'From day to day' just teaches that nullification works <b>at night too</b> — not only during daytime hours</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Yosei b. R' Yehuda</div><div class="speech">'On the day he hears' limits it to <b>one day's worth</b> — not a full week from Sunday to Sunday. But within that, it's 24 hours!</div></div></div><div class="callout" style="margin-top:20px"><strong>Each Verse Limits the Other</strong> 'On the day he hears' prevents extending beyond 24 hours. 'From day to day' prevents limiting to daytime only. The dispute is which verse sets the <b>primary framework</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 76 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9">Wife/daughter <b>takes a vow</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #c9a84c">Father/husband <b>hears</b> the vow</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1320; border-left: 3px solid #e74c3c">Can he nullify?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a1a2e; border-top: 3px solid #e74c3c"><b>Before</b> she vows?<br>❌ Cannot nullify preemptively<br>(Rabbis vs. R' Eliezer)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top: 3px solid #4caf50"><b>Same day</b> heard?<br>✅ Nullify until nightfall<br>(Halakha: end of day, not 24 hrs)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 76a-76b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 76a-76b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../75/">← Daf 75</a><a href="../77/">Daf 77 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 21 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Nedarim 21</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים כא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏪 Bargaining Vows — vows made during price negotiation are not binding<br>
+    🎯 Explicitness of Intent — naziriteship and vows require genuine intent<br>
+    💧 Exaggerated Speech — 'a drop of cold water' illustrates hyperbolic vow language<br>
+    👨‍⚖️ Halakhic Authority — do the four vows require formal dissolution?<br>
+    💔 Dissolution by Regret — can a Sage dissolve a vow based on regret alone?<br>
+    🔍 Broaching Dissolution — different approaches to finding an opening for annulment<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 21: Vows Without Intent & Dissolution by Regret</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Mishna:</b> Sages dissolved <b>four types of vows</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Are these vows truly vows at all?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No real intent</div><div class="flow-box result-good">Bargaining vows, exaggeration vows — never binding</div></div><div class="flow-col"><div class="flow-label">Uncertain</div><div class="flow-box result-bad">Seller says 'more than a sela' / buyer says 'less than a shekel' — <i>teiku</i></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Do these four vows still need a <b>halakhic authority</b> (חכם)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Shmuel</div><div class="flow-box result-good">No — the Sages already dissolved them</div></div><div class="flow-col"><div class="flow-label">Rav Asi</div><div class="flow-box action">A חכם can only dissolve vows <b>similar</b> to these four</div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY THEME</strong> This daf explores the boundary between <b>genuine vows</b> and <b>exaggerated speech</b>, and whether dissolution requires a formal process or regret alone.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Who Is the Tanna of the Four Vows?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Abba bar Memel → R' Ami</div><div class="speech">You told us in the name of <b>R' Yehuda Nesia</b>: The tanna is <b>R' Yehuda</b> in the name of <b>R' Tarfon</b> — naziriteship requires <b>explicitness of intent</b> (פירוש). Similarly, bargaining vows lack genuine intent.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">You can say it follows even the <b>Rabbanan</b>! The Mishna says <b>'both want'</b> (present tense) — they were satisfied with three dinars <b>from the outset</b>. They never intended to vow at all.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Yehuda / R' Tarfon</div><div class="speech">Two people who wagered on naziriteship — <b>neither becomes a nazir</b>, because naziriteship requires <b>clear, certain intent</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> The Mishna's four vows may be invalid either because vows require explicit intent (R' Yehuda) or because these parties never intended to vow at all (Rava).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Buyer-Seller Dilemma: More Than a Sela / Less Than a Shekel</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Seller vows: <b>'I won't sell for less than a sela'</b><br>Buyer vows: <b>'I won't pay more than a shekel'</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Is this merely <b>encouragement</b> (זירוז) or a <b>real vow</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Exaggeration?</div><div class="flow-box result-good">Like 'a drop of cold water' — people speak in <b>exaggerated terms</b></div></div><div class="flow-col"><div class="flow-label">Firm position?</div><div class="flow-box result-bad">Each party specified an <b>exact price</b> — maybe they meant it literally</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Ravina challenges: the cold water case is different — <b>the righteous say little and do much</b></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>תיקו</b> — The dilemma remains <b>unresolved</b></div></div><div class="callout" style="margin-top:20px"><strong>UNRESOLVED</strong> When a buyer and seller each specify exact prices in vow form, we cannot determine if it's exaggeration or genuine intent.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Cold Water Case: Exaggerated Speech in Vows</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">What He Said</h3><ul><li>Entering your house is <b>konam</b> for me</li><li>A <b>drop of cold water</b> is konam for me</li><li>Seems to forbid even the tiniest amount</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4caf50">What He Meant</h3><ul><li>He was refusing a <b>full meal</b> invitation</li><li>He may enter the house and drink cold water</li><li>A person speaks in <b>exaggerated terms</b> (לשון הבאי)</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e67e22">Ravina's Challenge</h3><ul><li>The host offered 'a drop' meaning a <b>full meal</b></li><li>'The righteous say little and do much'</li><li>So the vow refers to the meal, not literally water</li><li>This logic may <b>not apply</b> to buyer-seller vows</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>CONCEPT</strong> <b>לשון הבאי</b> — Exaggerated language. People often use extreme formulations without literal intent, and the halakha recognizes this.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Do the Four Vows Need a Halakhic Authority?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Asi (via Rav Yehuda)</div><div class="speech">These four vows <b>still require</b> a request to a halakhic authority (שאלה לחכם) to dissolve them.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Shmuel</div><div class="speech">The Mishna says the <b>Sages dissolved</b> them — meaning they are already dissolved! Why would they need further authority?</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Yosef's Version of Rav Asi</div><div class="speech">A חכם can <b>only</b> dissolve vows that are <b>similar to these four</b> — i.e., vows not truly intended as vows, plus vows made <b>by mistake</b> (נדרי שגגות).</div></div></div><div class="callout" style="margin-top:20px"><strong>IMPLICATION</strong> Rav Yosef's version implies a חכם <b>cannot</b> dissolve a vow based on <b>regret alone</b> (חרטה) — he must find a concrete opening (פתח).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Approaches to Dissolving Vows: Finding an Opening</h2>
+  
+  <table><tr><th>Sage</th><th>Question Asked to the Vower</th><th>Basis for Dissolution</th></tr><tr><td><b>Rav Huna</b></td><td>Is your heart still upon you? (לבך עלך?)</td><td>Simple regret — if desire has changed, vow is dissolved</td></tr><tr><td><b>Rabba bar Rav Huna</b></td><td>Had 10 people appeased you, would you have vowed?</td><td>Hypothetical appeasement as an opening</td></tr><tr><td><b>R' Yehuda</b> (Baraita)</td><td>Is this desire still upon you?</td><td>Same as Rav Huna — regret-based dissolution</td></tr><tr><td><b>R' Yishmael b'R' Yosei</b></td><td>Had 10 people appeased you at the time?</td><td>Same as Rabba bar Rav Huna — hypothetical opening</td></tr><tr><td><b>R' Asi</b></td><td>Do you have regret?</td><td>Direct regret — dissolved when vower confirms</td></tr><tr><td><b>R' Elazar</b></td><td>Did you truly want to vow?</td><td>Vower: 'If they hadn't angered me, I wouldn't have' — emotional opening</td></tr><tr><td><b>R' Yochanan</b></td><td>Had you known your neighbors would speak of your daughter…</td><td>Unforeseen consequence as opening</td></tr></table><div class="callout" style="margin-top:20px"><strong>DISPUTE</strong> The core question: Can a חכם dissolve a vow based on <b>regret (חרטה)</b> alone, or must he find a <b>specific opening (פתח)</b> — a factor the vower didn't consider?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 21 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Four Vows Dissolved</b><br>Bargaining vows lack genuine intent</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #e67e22;"><b>Exaggerated Speech</b><br>לשון הבאי — people don't always mean what they literally say</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a1a; border-left: 3px solid #e74c3c;"><b>Buyer-Seller Dilemma</b><br>Specific prices in vow form — תיקו (unresolved)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a2a; border-left: 3px solid #9b59b6;"><b>Need for a חכם?</b></div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top: 3px solid #4caf50;"><b>Shmuel:</b> Already dissolved — no authority needed</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a1a; border-top: 3px solid #e74c3c;"><b>Rav Asi:</b> חכם dissolves only vows like these four + mistakes</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #c9a84c;"><b>Dissolution Methods</b><br>Regret (חרטה) vs. Finding an Opening (פתח)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 21a-21b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 21a-21b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../20/">← Daf 20</a><a href="../22/">Daf 22 →</a></div>
+</body>
+</html>

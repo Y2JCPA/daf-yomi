@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 82 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Nedarim 82</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים פב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Vow Categories — Distinguishing affliction vows from 'matters between him and her'<br>
+    💍 Husband's Nullification Power — Scope of hafarah for different vow types<br>
+    🔗 Benefit Vows — When a wife forbids benefit from or to another person<br>
+    🏪 Produce & Storekeeper — Can he nullify vows limiting her food sources?<br>
+    🍞 Two Loaves Dispute — Shmuel vs. R' Yochanan on partial affliction vows<br>
+    ⚖️ R' Yosei vs. Rabbis — Whose opinion governs this chapter?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 82: The Boundaries of a Husband's Power to Nullify Vows</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">A woman who says <b>'I am removed from the Jews'</b> — her husband nullifies only <em>his</em> part. She remains forbidden to all other men.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">If this were an <b>affliction vow</b>, nullification would apply to everyone. So it must be a vow affecting <b>the relationship between him and her</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">Our entire chapter follows <b>Rabbi Yosei</b>, who defines affliction more restrictively.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Shmuel (citing Levi)</div><div class="speech">A husband can nullify all <b>affliction vows</b>, except where she says: <b>'Benefit from me is konam for so-and-so'</b> — that's entirely between her and another.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> The Gemara clarifies which vows a husband can nullify, distinguishing between <b>innui nefesh</b> (affliction) and <b>devarim she-beinav le-veinah</b> (matters between him and her), and whether the mishna follows R' Yosei or the Rabbis.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Two Categories of Vows a Husband Can Nullify</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Innui Nefesh (Affliction)</h3><ul><li>Vows that cause the wife physical deprivation</li><li>Nullification applies to <b>everyone</b> — not just the husband</li><li>Example: 'Produce of this country is konam for me' (if no alternative)</li><li>Shmuel: husband can nullify all such vows</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3e"><h3 style="color:#9b59b6">Beinav le-Veinah (Between Him & Her)</h3><ul><li>Vows affecting the marital relationship specifically</li><li>Nullification applies only <b>with respect to the husband</b></li><li>Example: 'I am removed from the Jews'</li><li>If divorced, the vow remains in force toward others</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> The category determines the <b>scope</b> of nullification — affliction vows are fully nullified, while 'between him and her' vows are nullified only regarding the husband.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>'I Am Removed from the Jews' — Proving the Category</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Woman vows: <b>'I am removed from the Jews'</b> (forbids marital relations with all men)</div><div class="flow-arrow">↓</div><div class="flow-box action">Husband nullifies — but only <b>his part</b>. She remains forbidden to all other Jews.</div><div class="flow-arrow">↓</div><div class="flow-box question">If this were <b>innui nefesh</b>, nullification would cover everyone. Why is she still forbidden to others?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Conclusion</div><div class="flow-box result-good">This vow is classified as <b>beinav le-veinah</b> — he nullifies only regarding himself</div></div><div class="flow-col"><div class="flow-label">Limitation</div><div class="flow-box result-bad">Per Rabbis, this proof only works for <b>R' Yosei's</b> opinion, since Rav Huna says the chapter follows R' Yosei</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Rav Huna</strong> Our entire chapter (<b>kol ha-perek</b>) is in accordance with <b>Rabbi Yosei</b>. Proof: Why does the mishna repeat 'this is the statement of R' Yosei' at the end? To signal that <em>everything</em> from that point follows his view.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Shmuel (citing Levi): Benefit Vows — 'From Me' vs. 'For Me'</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Shmuel / Levi</div><div class="speech">A husband can nullify <b>all affliction vows</b>, except: <b>'Benefit from me is konam for so-and-so'</b> — this is entirely between her and another person.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Shmuel / Levi</div><div class="speech">But if she says: <b>'Benefit from so-and-so is konam for me'</b> — he <em>can</em> nullify it, because she may one day need that person's help. This is affliction.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara (Objection)</div><div class="speech">But the mishna says: <b>'Produce of this country is konam for me'</b> — he <em>cannot</em> nullify! She forbade benefit from others' produce, yet he can't nullify?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Yosef</div><div class="speech">The mishna means she said: <b>'that <em>you</em> bring'</b> — she only forbade produce her husband brings. She can still get it herself or from others.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> The direction of the vow matters: forbidding <em>her benefit to others</em> is not the husband's domain, but forbidding <em>others' benefit to her</em> is affliction he can nullify.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Produce & Storekeeper Vows — Resolving the Objections</h2>
+  
+  <table><tr><th>Vow Formulation</th><th>Can Husband Nullify?</th><th>Reason</th></tr><tr><td>'Produce of this country is konam for me'</td><td>No</td><td>He can bring produce from another country — no affliction</td></tr><tr><td>'Produce that <b>you bring</b> from this country'</td><td>No</td><td>She can get it herself or from others — no affliction</td></tr><tr><td>'Produce of this storekeeper is konam for me'</td><td>No (per R' Yosei)</td><td>Other storekeepers exist — not considered affliction</td></tr><tr><td>Same vow, but husband can only buy from that storekeeper</td><td>Yes</td><td>Without this store, she would be deprived — this <em>is</em> affliction</td></tr><tr><td>'Benefit from so-and-so is konam for me'</td><td>Yes (per Shmuel)</td><td>She may need that person someday — potential affliction</td></tr></table><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The Gemara ultimately concludes: the first clause of the mishna refers to a case where the woman forbids <em>all</em> produce from that source (even what she brings herself), and the mishna follows <b>R' Yosei</b>, while Shmuel follows <b>the Rabbis</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Two Loaves: Can Partial Affliction Extend Nullification?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Shmuel</div><div class="speech">If a woman vows that two loaves are forbidden to her — one fine-quality (abstaining = deprivation) and one poor-quality (abstaining ≠ deprivation) — since he can nullify for the <b>fine loaf</b>, he can <em>also</em> nullify for the <b>poor loaf</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">He can nullify only for the fine loaf that causes <b>actual deprivation</b>. He <em>cannot</em> nullify for the poor loaf — it does not constitute affliction.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Rav Asi</div><div class="speech">(Second version) I posed this as a dilemma to R' Yochanan: What is the halakha regarding the two loaves?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">He nullifies only regarding the loaf that would cause <b>deprivation</b>, not the other. Each item in the vow is assessed independently.</div></div></div><div class="callout" style="margin-top:20px"><strong>Dispute</strong> <b>Shmuel</b>: Nullification of part extends to the whole vow. <b>R' Yochanan</b>: Each component is evaluated separately — only items causing affliction can be nullified.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 82 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>Wife's Vow</b><br>She makes a neder that restricts her behavior or benefit</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left:3px solid #9b59b6; padding:10px;"><b>Classification</b><br>Is it innui nefesh (affliction) or beinav le-veinah (between him and her)?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px;"><b>Affliction</b><br>Full nullification — applies to all people</div></div><div class="flow-col"><div class="flow-box" style="background:#3e2a16; border-left:3px solid #e67e22; padding:10px;"><b>Between Him & Her</b><br>Partial nullification — only regarding the husband</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1616; border-left:3px solid #e74c3c; padding:10px;"><b>Neither</b><br>No nullification power (e.g., 'benefit from me is konam for X')</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left:3px solid #c9a84c; padding:10px;"><b>Two Loaves Dispute</b><br>Shmuel: partial affliction extends nullification to the whole vow<br>R' Yochanan: each item assessed independently</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 82a-82b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 82a-82b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../81/">← Daf 81</a><a href="../83/">Daf 83 →</a></div>
+</body>
+</html>

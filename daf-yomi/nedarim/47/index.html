@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 47 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏠</div>
+  <h1>Nedarim 47</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים מז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏠 Konam on Property — Does the vow follow the house or the owner?<br>
+    ⏳ Post-Possession Prohibition — Can one forbid items beyond one's ownership?<br>
+    🔄 Replacements (Chalifeihen) — Are exchanges of forbidden produce also forbidden?<br>
+    🌱 Replacements vs. Growths — Comparing traded items to what grows from forbidden produce<br>
+    🤝 Mutual Vow Formulations — 'I am forbidden to you' vs. 'You are forbidden to me'<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 47: Ownership, Replacements & Mutual Vows</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b><br>Does a <i>konam</i> on property persist after ownership changes?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">"Your house"</div><div class="flow-box result-good">Vow follows the <b>owner</b> — prohibition lifts when sold/inherited</div></div><div class="flow-col"><div class="flow-label">"This house"</div><div class="flow-box result-bad">Vow follows the <b>object</b> — prohibition persists regardless of owner</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Avimi's Dilemma:</b> What if the <i>owner</i> said "This house is <i>konam</i> for you" — can he forbid it beyond his ownership?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Rava:</b> Yes — proven from inheritance case where father forbids benefit "in lifetime and after death"</div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> A person can render an item in his possession forbidden even for a time after it leaves his possession.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>"Your House" vs. "This House" — Mishna's Distinction</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">"Entering YOUR House is Konam"</h3><ul><li>Vow is tied to the <b>person</b> (owner)</li><li>Owner dies → prohibition <b>lifted</b></li><li>Owner sells → prohibition <b>lifted</b></li><li>The relationship to the owner defines the vow</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">"Entering THIS House is Konam"</h3><ul><li>Vow is tied to the <b>object</b> (the house itself)</li><li>Owner dies → still <b>forbidden</b></li><li>Owner sells → still <b>forbidden</b></li><li>The physical house retains the prohibition</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Language Matters</strong> The precision of vow language — <i>"your"</i> vs. <i>"this"</i> — determines whether a prohibition is personal or attached to the object itself.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Can an Owner Forbid Property Beyond His Ownership?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Avimi</div><div class="speech">If the <b>owner</b> says "Entering <i>this</i> house is <i>konam</i> for you," and then dies or sells it — what is the <i>halakha</i>?</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Avimi</div><div class="speech">Can a person render an item in his possession forbidden even <b>after it will leave his possession</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">Proof from a Mishna (<i>Bava Kamma</i> 108b): A father says "Benefiting from me is <i>konam</i> for you" — if he dies, the son <b>still inherits</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">But if the father explicitly says <b>"in my lifetime and after my death"</b> — the son does <b>not</b> inherit.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">This proves a person <b>can</b> forbid his property even for after it leaves his possession!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech"><b>Conclude</b> from the mishna that this is indeed so.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> A person can extend a prohibition on his property beyond his own period of ownership — proven from the father-son inheritance case.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rami bar Ḥama's Dilemma: Replacements of Forbidden Produce</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Mishna (57a):</b> "This produce is <i>konam</i> upon me" — forbidden from <b>replacements</b> and <b>growths</b></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Rami bar Ḥama asks:</b><br>What if one says "This produce is <i>konam</i> for <b>so-and-so</b>"?<br>Are replacements forbidden to that other person?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Maybe Permitted</div><div class="flow-box result-good">For <b>oneself</b>: can forbid another's produce on himself → can extend to what doesn't yet exist.<br>For <b>another</b>: cannot forbid another's produce on that person → <b>cannot</b> extend to replacements.</div></div><div class="flow-col"><div class="flow-label">Maybe Forbidden</div><div class="flow-box result-bad">Replacements are like <b>growths</b> (<i>giduleihen</i>) — they derive from the original forbidden item.<br>If so, <b>no difference</b> between self and other.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Logic</strong> The dilemma hinges on <i>why</i> replacements of forbidden produce are forbidden — is it an extension of vow power, or an inherent quality of derivation?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Attempted Proofs: Are Replacements Like Growths?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Aḥa bar Minyumi</div><div class="speech">Proof from a <i>baraita</i>: A man vows "Benefiting from me is <i>konam</i> for you" to his wife — she may <b>borrow money</b> and creditors collect from him.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Aḥa bar Minyumi</div><div class="speech">She benefits only <b>indirectly</b>! This proves replacements are <b>not</b> like growths — they are permitted.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">No proof! Perhaps replacements are forbidden <b><i>l'khatchila</i></b> (ab initio), but <b><i>b'dieved</i></b> (after the fact) it stands.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">Since the wife has <b>no other means</b> of support, this is considered <i>b'dieved</i> — permitted out of necessity.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Second proof: Betrothal with money from sold <b><i>orla</i></b> fruit is valid — replacements are permitted!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">Same answer: <i>orla</i> replacement is also only valid <b><i>b'dieved</i></b>. The dilemma remains unresolved.</div></div></div><div class="callout" style="margin-top:20px"><strong>Unresolved — Teiku-like</strong> Both proofs are deflected with the <i>l'khatchila/b'dieved</i> distinction. The Gemara does not reach a final resolution on whether replacements equal growths for vows affecting another person.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Mishna: Mutual Vow Formulations</h2>
+  
+  <table><tr><th>Vow Formula</th><th>Who Said It</th><th>Who Is Forbidden</th><th>From Whose Property</th></tr><tr><td>"I am <i>konam</i> to you"</td><td>Vow-taker</td><td><b>Vow-taker</b> is forbidden</td><td>From the other's property</td></tr><tr><td>"You are <i>konam</i> to me"</td><td>Vow-taker</td><td><b>The other person</b> is forbidden</td><td>From the vow-taker's property</td></tr><tr><td>"I to you <b>and</b> you to me"</td><td>Vow-taker</td><td><b>Both</b> are forbidden</td><td>From each other's property</td></tr></table><div class="callout" style="margin-top:20px"><strong>Important Exception</strong> Even when both are mutually forbidden, they may still benefit from <b>communal property</b> — items belonging to <i>olei Bavel</i> (those who ascended from Babylonia), i.e., shared national assets.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 47 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>"Your house" vs. "This house"</b><br>Personal vow vs. object-bound vow</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #9b59b6;"><b>Avimi's Dilemma:</b><br>Can owner forbid property beyond ownership?</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Rava:</b> Yes — proven from father/son inheritance mishna</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a2e; border-left: 3px solid #e67e22;"><b>Rami bar Ḥama:</b><br>Are replacements of produce forbidden to <i>another</i> person?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a2a1a; border-top: 2px solid #e67e22;"><b>Unresolved</b><br>All proofs deflected via <i>l'khatchila/b'dieved</i></div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a3a; border-top: 2px solid #4a90d9;"><b>Mishna:</b><br>Mutual vows — "I to you" / "You to me" / Both</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 47a-47b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 47a-47b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../46/">← Daf 46</a><a href="../48/">Daf 48 →</a></div>
+</body>
+</html>

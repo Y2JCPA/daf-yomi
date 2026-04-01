@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 18 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Nedarim 18</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים יח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔗 Naziriteship Upon Naziriteship — Does a second nazirite vow take effect when one is already in force?<br>
+    📖 Nazir Lehazzir — Scriptural derivation that naziriteship layers onto prior naziriteship<br>
+    🔓 Rava on Oath Dissolution — When a first oath is dissolved, the second takes its place<br>
+    ⚖️ Unspecified Vows (Stam Nedarim) — Stringent treatment of ambiguous vow language<br>
+    🏛️ Judea vs. Galilee — Regional differences in interpreting teruma and dedications<br>
+    ❓ Uncertainty in Naziriteship — Dispute between R' Eliezer and the Rabbis<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 18: Layered Vows & Ambiguous Language</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Can a <b>second vow</b> take effect when the first is still active?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Huna</div><div class="flow-box result-bad">Second identical vow does <b>not</b> take effect</div></div><div class="flow-col"><div class="flow-label">Gemara's Refutation</div><div class="flow-box result-good"><i>Nazir lehazzir</i> teaches naziriteship <b>does</b> layer</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Mishna: When vow language is <b>ambiguous</b>, how do we rule?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Stam nedarim lehachmir</b> — Unspecified vows are treated stringently</div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> Ambiguous vow language is presumed to refer to the more sacred referent, making the vow binding.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Does Naziriteship Layer on Prior Naziriteship?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">If one says <b>'I am a nazirite today, I am a nazirite today'</b> — the second vow does <b>not</b> take effect. It is subsumed by the first.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Hamnuna</div><div class="speech">Objection! The verse says <b><i>nazir lehazzir</i></b> (Numbers 6:2) — this teaches naziriteship <b>takes effect upon</b> prior naziriteship!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">The verse refers to one who accepted <b>two terms simultaneously</b> ('I am a nazirite twice'), not identical sequential statements.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Hamnuna</div><div class="speech">If 'today/tomorrow' — it's obvious the second takes effect for the extra day. The verse must address <b>'today/today'</b> — refuting you!</div></div></div><div class="callout" style="margin-top:20px"><strong>A FORTIORI ARGUMENT</strong> If oaths (which are more stringent) don't layer, one might think naziriteship shouldn't either. The verse <i>nazir lehazzir</i> overrides this logic.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Are Oaths More Stringent Than Vows?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#e74c3c">Oath (Shevu'a) — More Stringent</h3><ul><li>Written: 'The Lord will not hold guiltless one who takes His name in vain' (Exodus 20:6)</li><li>Takes effect on matters with no substance (davar she'ein bo mamash)</li><li>An oath upon an oath does NOT take effect</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#4a90d9">Vow (Neder) — More Stringent</h3><ul><li>Takes effect on mitzvot — can prohibit even permitted commandments</li><li>Naziriteship upon naziriteship DOES take effect (nazir lehazzir)</li><li>Vows create prohibitions on objects, not on the person directly</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>RESOLUTION</strong> Oaths are considered more stringent overall because of the divine warning against taking God's name in vain.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rava: Dissolution of the First Oath</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A person says: <b>'I swear I will not eat'</b> then again: <b>'I swear I will not eat'</b></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">He eats — liable for <b>only one</b> oath violation</div><div class="flow-arrow">↓</div><div class="flow-box action">He then requests <b>dissolution</b> (<i>she'eilah</i>) of the <b>first</b> oath from a sage</div><div class="flow-arrow">↓</div><div class="flow-box question">Does the <b>second oath</b> now take effect?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rava's Proof</div><div class="flow-box result-good">Mishna says 'liable for <b>only one</b>' — not 'there is only one.' The second oath <b>exists</b> but lacked room to operate.</div></div><div class="flow-col"><div class="flow-label">Implication</div><div class="flow-box result-good">Once the first is dissolved, the second <b>takes its place</b> immediately.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>RAVA'S PRINCIPLE</strong> A dormant oath that lacked a 'span of time' to take effect is not void — it activates when the blocking oath is dissolved.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Mishna: Unspecified Vows — Stringent or Lenient?</h2>
+  
+  <table><tr><th>Vow Language</th><th>Sacred Referent (Forbidden)</th><th>Mundane Referent (Permitted)</th><th>If Unspecified?</th></tr><tr><td>'Like <b>salted meat</b>'</td><td>Meat of a peace-offering (korban)</td><td>Meat of idol worship</td><td>FORBIDDEN</td></tr><tr><td>'Like <b>wine of libation</b>'</td><td>Wine poured on the altar</td><td>Wine of idol worship</td><td>FORBIDDEN</td></tr><tr><td>'Like a <b>dedication</b> (cherem)'</td><td>Dedication to Heaven (hekdesh)</td><td>Dedication/gift to priests</td><td>FORBIDDEN</td></tr><tr><td>'Like <b>tithes</b> (ma'aser)'</td><td>Animal tithe (has sanctity)</td><td>Grain tithe to Levites (no sanctity)</td><td>FORBIDDEN</td></tr><tr><td>'Like <b>teruma</b>'</td><td>Teruma of the Temple chamber (communal offerings)</td><td>Teruma of the granary (to priests)</td><td>FORBIDDEN</td></tr></table><div class="callout" style="margin-top:20px"><strong>CORE RULE</strong> <b>Stam nedarim lehachmir</b> — When the referent is ambiguous, we presume the vow refers to the sacred item and it is binding.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Meir vs. R' Yehuda: Regional Differences</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">R' Meir</div><div class="speech">All unspecified teruma and dedications are <b>forbidden</b> everywhere. We always assume the more stringent referent.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yehuda</div><div class="speech">It depends on <b>local usage</b>. In <b>Judea</b>, people know the Temple chamber teruma — so unspecified 'teruma' is <b>forbidden</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yehuda</div><div class="speech">In the <b>Galilee</b>, they only know teruma given to priests — so unspecified 'teruma' is <b>permitted</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yehuda</div><div class="speech">Conversely, Galileans don't know priestly dedications — so 'cherem' in the Galilee means dedication to Heaven and is <b>forbidden</b>. In Judea it's <b>permitted</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>UNDERLYING LOGIC</strong> R' Yehuda holds that vow interpretation follows <b>common local parlance</b> — what people in that region typically mean by a given term.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 18 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Naziriteship upon Naziriteship</b><br>The verse <i>nazir lehazzir</i> teaches that a second nazirite vow takes effect even when a first is active</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e1a; border-left: 3px solid #4caf50; padding: 10px;"><b>Rava: Dormant Oaths</b><br>A second oath exists but is dormant — when the first is dissolved, the second immediately activates</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a2e; border-left: 3px solid #9b59b6; padding: 10px;"><b>Mishna: Ambiguous Vow Language</b><br>When a vow's referent could be sacred or mundane, how do we rule?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2e1616; border-left: 3px solid #e74c3c; padding: 10px;"><b>R' Meir:</b> Always stringent — presume the sacred referent</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #e67e22; padding: 10px;"><b>R' Yehuda:</b> Depends on local usage — Judea vs. Galilee differ</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 18a-18b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 18a-18b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../17/">← Daf 17</a><a href="../19/">Daf 19 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 56 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏠</div>
+  <h1>Nedarim 56</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים נו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏠 House Vows — Does a vow on a 'house' include the upper story?<br>
+    🦠 Leprosy Verses — Deriving that 'house' includes gallery and upper story for tzara'at<br>
+    🛏️ Bed vs. Dargash — What is a dargash and how does it differ from a bed?<br>
+    🪦 Mourner's Dargash — Rules for overturning beds in a mourner's house<br>
+    🏙️ City Vows — Outskirts vs. Shabbat boundary in vows on a city<br>
+    🚪 Doorstop Boundary — Where does 'inside the house' begin for vows and leprosy?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 56 — Defining Boundaries of Vows</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> When one vows that an object or place is forbidden, what is included?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">House</div><div class="flow-box action">Does 'house' include the <b>upper story</b> (aliyya)?</div></div><div class="flow-col"><div class="flow-label">Bed</div><div class="flow-box action">Does 'bed' include the <b>dargash</b>?</div></div><div class="flow-col"><div class="flow-label">City</div><div class="flow-box action">Does 'city' include <b>outskirts</b> and <b>Shabbat boundary</b>?</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Each case: <b>R' Meir</b> reads terms narrowly; <b>Rabbis</b> read them broadly</div></div><div class="callout" style="margin-top:20px"><strong>KEY THEME</strong> The daf explores how everyday terms in vows map to physical and legal boundaries — the scope of 'house,' 'bed,' and 'city.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Does 'House' Include the Upper Story?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Meir</div><div class="speech">One who vows that a <b>house</b> is forbidden may still enter the <b>upper story (aliyya)</b> — it is not included in 'house.'</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">The upper story <b>is included</b> in 'house,' so entry to the aliyya is also <b>prohibited</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Both</div><div class="speech">If one vows the <b>upper story</b> is forbidden, the ground floor <b>is permitted</b> — the house is not included in the aliyya.</div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> The direction matters: 'house' may include the upper story, but 'upper story' never includes the ground floor.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Leprosy Verse: Who Needs 'In the House'?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Leviticus 14:35:</b> 'a plague <em>in the house</em>' — includes gallery and upper story</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Ḥisda</div><div class="flow-box result-good">This must follow <b>R' Meir</b> — the Rabbis already include the upper story in 'house,' so the verse would be unnecessary.</div></div><div class="flow-col"><div class="flow-label">Abaye</div><div class="flow-box result-good">Even the <b>Rabbis</b> need the verse — you might think only what is <b>attached to the ground</b> counts as 'house' for leprosy (Lev. 14:34).</div></div></div></div><div class="callout" style="margin-top:20px"><strong>ABAYE'S INSIGHT</strong> Even if the Rabbis include an aliyya in 'house' for vows, leprosy law requires attachment to the ground — so a special verse is needed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Selling 'A House in My House' — Rav Huna bar Ḥiyya / Ulla</h2>
+  
+  <table><tr><th>Seller's Language</th><th>What Buyer Receives</th><th>Reasoning</th></tr><tr><td>'A house in my house I sell you'</td><td>The <b>most outstanding</b> part of the seller's property</td><td>Aliyya here means 'the finest' — not literally an upper story</td></tr><tr><td>'A house' (unspecified)</td><td>May show the buyer <b>a second story</b></td><td>An unspecified 'house' can include even a lesser unit</td></tr><tr><td>According to R' Meir</td><td>An unspecified 'house' does <b>not</b> include a second story</td><td>Because R' Meir holds aliyya ≠ house</td></tr></table><div class="callout" style="margin-top:20px"><strong>NOTE</strong> The Gemara reinterprets 'aliyya' as 'outstanding' rather than 'upper story' to align Ulla's ruling with the Rabbis.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>What Is a Dargash? Three Opinions</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#c9a84c">Ulla</h3><ul><li>A 'bed of good fortune' (שרירא טבא)</li><li>Placed in the home as a fortuitous omen</li><li>Not designated for sleeping</li><li>Challenged: does it have loops (karvitin)?</li></ul></div><div class="compare-box" style="border-top-color:#1a2e1a"><h3 style="color:#4caf50">Rav Taḥalifa</h3><ul><li>A leather bed</li><li>Reported by Ravin from Eretz Yisrael</li><li>Defined by material, not function</li></ul></div><div class="compare-box" style="border-top-color:#1a1a3e"><h3 style="color:#4a90d9">R' Yirmeya (Revised)</h3><ul><li>Bed: straps inserted through holes in the frame</li><li>Dargash: straps go through loops (karvitin) attached to the frame</li><li>The loops can be loosened and it collapses</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>HALAKHA</strong> R' Yehoshua ben Levi rules that the halakha follows Rabban Shimon ben Gamliel: a mourner loosens the loops of the dargash rather than overturning it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Mourner's Obligation: Overturning Beds</h2>
+  
+  <div class="process-bar"><div class="process-step">🪦 A mourner must overturn <b>all beds</b> in the house — not just the one slept in</div><div class="process-arrow">↓</div><div class="process-step">🛏️ <b>Exception:</b> A bed designated exclusively for <b>vessels</b> (not sleeping) need not be overturned</div><div class="process-arrow">↓</div><div class="process-step">✨ Similarly, Ulla's 'bed of fortune' need not be overturned — it's not for sleeping</div><div class="process-arrow">↓</div><div class="process-step highlight">🔗 <b>Dargash:</b> Rabban Shimon ben Gamliel says one loosens the <b>loops (karvitin)</b> and it collapses on its own</div><div class="process-arrow">↓</div><div class="process-step">📏 A bed whose two posts (<b>nakliteha</b>) protrude and cannot be overturned — stand it on its side (R' Yehuda HaNasi)</div></div><div class="callout" style="margin-top:20px"><strong>KEY DISTINCTION</strong> The dargash's unique loop-and-strap construction means it cannot simply be flipped — it requires a different method of mourning observance.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 56 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>Vow on a HOUSE</b><br/>R' Meir: excludes upper story | Rabbis: includes it</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e1a; border-left:3px solid #4caf50; padding:10px;"><b>Vow on a BED</b><br/>R' Meir: excludes dargash | Rabbis: includes it<br/>Dargash = leather bed with loop-strap construction</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a1a; border-left:3px solid #e74c3c; padding:10px;"><b>Vow on a CITY</b><br/>Outskirts (70 cubits) = part of city<br/>Shabbat boundary (2000 cubits) = outside city</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a1a2e; padding:8px;"><b>Doorstop</b> = boundary for vows on a house</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a2e; padding:8px;"><b>Lintel</b> = boundary for leprosy (stricter, per verse)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 56a-56b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 56a-56b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../55/">← Daf 55</a><a href="../57/">Daf 57 →</a></div>
+</body>
+</html>

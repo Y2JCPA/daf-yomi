@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 37 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📖</div>
+  <h1>Nedarim 37</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים לז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📖 Teaching Torah — Is it permitted to accept payment for teaching Bible vs. Midrash?<br>
+    👶 Watching Children — Rav says Bible teachers are paid for babysitting, not teaching<br>
+    🎵 Cantillation Notes — R' Yochanan says payment is for teaching punctuation (ta'amei hamikra)<br>
+    🕯️ Shabbat Reading — Why children may not read new passages on Shabbat<br>
+    📜 Scribal Traditions — Vocalization, ornamentation, and keri/ketiv as halakha l'Moshe miSinai<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>What Are Bible Teachers Really Paid For?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Moses taught Torah <b>for free</b> — so must we. Then why may Bible teachers take payment?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The payment is for <b>watching the children</b> (שְׁמִירַת תִּינוֹקוֹת), not for teaching Torah itself.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">The payment is for teaching <b>punctuation and cantillation</b> (פִּסּוּק טְעָמִים), a technical skill beyond the Torah obligation.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Each view has implications for <b>nedarim</b>, <b>Shabbat reading</b>, and whether cantillation is <b>d'Oraita</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> Teaching Torah must be free — but the Gemara debates what ancillary services justify a teacher's salary.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Can Bible Teachers Take Payment?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Moses said: <b>"Just as I taught for free, so shall you"</b> (Deut. 4:5, 4:14)</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Teaching <b>Midrash</b> for payment is <b>forbidden</b></div><div class="flow-arrow">↓</div><div class="flow-box question">But teaching <b>Bible</b> for payment is <b>permitted</b> — why?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav</div><div class="flow-box result-good">Payment is for <b>watching children</b><br/>(שְׁמִירַת תִּינוֹקוֹת)</div></div><div class="flow-col"><div class="flow-label">R' Yochanan</div><div class="flow-box result-good">Payment is for <b>teaching cantillation</b><br/>(פִּסּוּק טְעָמִים)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Bible teaching is permitted because the payment covers an ancillary service, not the Torah content itself.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Nedarim Implications: Teaching One Forbidden to Benefit</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Mishna</div><div class="speech">If benefit is forbidden by vow, the teacher <b>may not teach him Bible</b> — but <b>may teach his sons</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">This works perfectly: teaching <b>cantillation</b> is a benefit embedded in teaching Bible, so it's forbidden.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">But according to <b>Rav</b> — does an <b>adult</b> need watching? Where's the benefit?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The Mishna speaks of a <b>minor</b> student. For an adult, teaching is permitted since no watching benefit exists.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">But the Mishna says 'teach <b>his sons</b>' — can a minor have sons?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The Mishna is <b>incomplete</b>: minor = forbidden; adult = he <b>and</b> his sons are permitted (payment is for watching the son).</div></div></div><div class="callout" style="margin-top:20px"><strong>Textual Resolution</strong> According to Rav, the Mishna addresses two cases: a minor (forbidden) and an adult with sons (permitted, since payment covers watching the child).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>New vs. Review Reading on Shabbat</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">New Passage (Forbidden)</h3><ul><li>Children may NOT read a new passage on Shabbat</li><li>R' Yochanan: Would require paying for cantillation instruction</li><li>Alternative: Fathers must supervise new material — takes away from oneg Shabbat</li><li>Alternative: Children eat more on Shabbat and are sluggish (Shmuel)</li></ul></div><div class="compare-box" style="border-top-color:#4caf50"><h3 style="color:#ffffff">Review (Permitted)</h3><ul><li>Children MAY review previously learned passages</li><li>No new cantillation instruction needed</li><li>Less parental supervision required</li><li>Lighter cognitive load for well-fed children</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Shmuel's Insight</strong> A change in eating routine (שִׁנּוּי וֶסֶת) causes intestinal ailment — children who eat and drink more on Shabbat cannot concentrate on new material.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Nehemiah 8:8 — Components of Torah Reading</h2>
+  
+  <table><tr><th>Verse Phrase</th><th>Interpretation</th></tr><tr><td>"They read in the book, in the Torah of God"</td><td>The Biblical text (מִקְרָא)</td></tr><tr><td>"Distinctly" (מְפֹרָשׁ)</td><td>The Aramaic translation (תַּרְגּוּם)</td></tr><tr><td>"They gave the sense"</td><td>Division into verses (פְּסוּקִים)</td></tr><tr><td>"Caused them to understand the reading"</td><td>Cantillation notes (טְעָמִים) — or: vocalization traditions (מָסוֹרוֹת)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rav Ika bar Avin / Rav Chananel / Rav</strong> This verse proves that punctuation and cantillation are integral to Torah — supporting the view that they are d'Oraita and cannot be charged for separately.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Shabbat Payment — The Principle of Havla'ah (Incorporation)</h2>
+  
+  <div class="process-bar"><div class="process-step">💰 A day laborer watching a child/cow/seeds does NOT receive Shabbat pay separately</div><div class="process-arrow">↓</div><div class="process-step">⚖️ If items are lost on Shabbat, a day laborer has NO financial responsibility</div><div class="process-arrow">↓</div><div class="process-step highlight">📅 A weekly/monthly/yearly laborer receives Shabbat pay incorporated into the total</div><div class="process-arrow">↓</div><div class="process-step">🔒 If items are lost on Shabbat, the long-term laborer IS financially responsible</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ Teachers' Shabbat work is incorporated into weekly salary — therefore permitted</div></div><div class="callout" style="margin-top:20px"><strong>Havla'ah Principle</strong> When Shabbat payment is absorbed into a longer pay period, it is not considered direct payment for Shabbat labor.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 37 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Deuteronomy 4:5, 4:14</b><br/>"Just as I taught for free, so shall you"</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1a3e; color:#fff; padding:12px; border-radius:8px;"><b>Midrash</b> — payment forbidden<br/><b>Bible</b> — payment permitted (but why?)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px;"><b>Rav:</b> Payment for watching children<br/>• Adults don't need watching<br/>• Cantillation is d'Oraita</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a3e; color:#fff; padding:12px; border-radius:8px;"><b>R' Yochanan:</b> Payment for cantillation<br/>• Girls don't need watching<br/>• Cantillation is a teachable skill</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e2e16; color:#fff; padding:12px; border-radius:8px;"><b>Scribal traditions</b> (vocalization, ornamentation, keri/ketiv) are all <b>halakha l'Moshe miSinai</b></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 37a-37b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 37a-37b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../36/">← Daf 36</a><a href="../38/">Daf 38 →</a></div>
+</body>
+</html>

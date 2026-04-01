@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 73 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👂</div>
+  <h1>Nedarim 73</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים עג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👂 Hearing Requirement — Can vows be nullified without the husband hearing them?<br>
+    🔇 Deaf Husband — Whether a deaf man can nullify his wife's vows<br>
+    👫 Two Wives — Nullifying vows for multiple wives simultaneously<br>
+    💍 Betrothed Woman — When does a betrothed husband gain nullification rights?<br>
+    🍞 Teruma vs. Vows — Comparing rabbinic teruma to Torah-level vow nullification<br>
+    🤝 Consent Principle — A wife vows contingent on her husband's consent<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 73: Limits of a Husband's Nullification Power</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> What are the <em>boundaries</em> of a husband's power to nullify vows?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Must He Hear?</div><div class="flow-box action">Can he nullify <em>without hearing</em> the vow? — <b>Unresolved</b></div></div><div class="flow-col"><div class="flow-label">Deaf Husband</div><div class="flow-box result-bad">A deaf man <b>cannot</b> nullify — excluded by verse</div></div><div class="flow-col"><div class="flow-label">Two Wives</div><div class="flow-box result-bad">"<em>Disallows her</em>" — singular: <b>one wife at a time</b></div></div><div class="flow-col"><div class="flow-label">Betrothed</div><div class="flow-box action">After 12 months — <b>dispute</b> between R' Eliezer and Rabbis</div></div></div></div><div class="callout" style="margin-top:20px"><strong>DAF THEME</strong> This daf explores three structural limits on <em>hafarah</em> (nullification): hearing, number of wives, and marital status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Can a Husband Nullify Without Hearing the Vow?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">If a husband appoints a <em>steward</em> (shali'ach) to nullify — why not just nullify when he hears?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Answer</div><div class="speech">He reasons: <b>Perhaps I will be preoccupied</b> (tarud) at that moment and will forget to nullify.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The question of nullification <b>without hearing</b> is left <b>unresolved</b> (<em>teiku</em>).</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY POINT</strong> The Gemara cannot determine whether hearing is a formal <em>requirement</em> or merely the typical circumstance of nullification.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Can a Deaf Man Nullify His Wife's Vows?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Rami bar Ḥama asks:</b> What about a <em>cheresh</em> (deaf husband)?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>R' Zeira's Principle:</b><br/>If flour is <em>suitable</em> for mingling → mingling not indispensable<br/>If flour is <em>not suitable</em> → mingling <b>is</b> indispensable</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Perhaps</div><div class="flow-box result-bad">Hearing is <em>impossible</em> for a deaf man → stricter standard applies → <b>Cannot nullify</b></div></div><div class="flow-col"><div class="flow-label">Or Perhaps</div><div class="flow-box result-good">"Her husband hears" is not truly indispensable → <b>Can nullify</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>Rava resolves:</b> Baraita — "<em>Her husband hears it</em>" <b>excludes</b> the wife of a deaf man</div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> <b>R' Zeira's rule:</b> When a precondition is merely absent, it may be waived. When it is <em>structurally impossible</em>, it becomes indispensable.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Nullifying Vows for Two Wives Simultaneously</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#e74c3c">Sota Parallel</h3><ul><li>Two sota women are NOT given the bitter waters together</li><li>First Tanna: Each becomes emboldened (gas) by the other's presence</li><li>R' Yehuda: "He shall make HER drink" — singular, one at a time</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#4a90d9">Vow Nullification</h3><ul><li>Ravina applies the same logic from sota</li><li>"Disallows HER" (Numbers 30:9) — singular language</li><li>A husband cannot nullify vows for two wives simultaneously</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>METHOD</strong> Ravina uses a <em>gezeirah shavah</em>-style analogy: just as "her" in sota means one woman, "her" in vow nullification means one wife at a time.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Mishna: When Can a Betrothed Husband Nullify?</h2>
+  
+  <table><tr><th>Category</th><th>Waiting Period</th><th>After Period Ends</th></tr><tr><td>Virgin (na'arah)</td><td>12 months from betrothal</td><td>Husband obligated to support her</td></tr><tr><td>Widow</td><td>30 days from betrothal</td><td>Husband obligated to support her</td></tr><tr><td>R' Eliezer</td><td>—</td><td>Husband can nullify vows alone (like full marriage)</td></tr><tr><td>Rabbis (Chakhamim)</td><td>—</td><td>Cannot nullify until she enters his jurisdiction (chuppah)</td></tr></table><div class="callout" style="margin-top:20px"><strong>DISPUTE</strong> R' Eliezer ties nullification power to the <em>obligation of support</em> (mezonot). The Rabbis tie it to <em>actual entry into the marriage</em>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabba and Abaye: Why Does R' Eliezer Rule This Way?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">R' Eliezer follows the <b>initial mishna</b> (Ketubot): once 12 months pass, she partakes of his food — treated as married.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">Not necessarily! The initial mishna only permits <em>rabbinic-level teruma</em>. Vows are <b>Torah law</b> — you can't compare!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">Perhaps R' Eliezer's reason is <b>Rav Pineḥas in the name of Rava</b>: a wife vows <em>contingent on her husband's consent</em> since he supports her.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">So R' Eliezer may grant nullification power over <em>vows</em> but still <b>prohibit teruma</b> — even rabbinic teruma!</div></div></div><div class="callout" style="margin-top:20px"><strong>ABAYE'S CHALLENGE</strong> You cannot assume R' Eliezer equates vow-nullification with teruma eligibility. His reason for vows may be <em>entirely different</em> — rooted in the wife's implicit consent.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 73 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border:2px solid #4a90d9; color:#e0e0e0; padding:14px; border-radius:10px; text-align:center;"><b>Husband's Nullification Power</b><br/>What limits apply?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2c2c44; color:#c9a84c; padding:12px; border-radius:8px; text-align:center;"><b>Must Hear?</b><br/>Unresolved (<em>teiku</em>)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#e74c3c; padding:12px; border-radius:8px; text-align:center;"><b>Deaf Man</b><br/>Cannot nullify — excluded by verse</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a3a; color:#4a90d9; padding:12px; border-radius:8px; text-align:center;"><b>Two Wives</b><br/>One at a time only</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border:2px solid #4caf50; color:#e0e0e0; padding:14px; border-radius:10px; text-align:center;"><b>Betrothed Woman After Waiting Period</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#4caf50; padding:12px; border-radius:8px; text-align:center;"><b>R' Eliezer:</b> Husband can nullify alone — he already supports her</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a; color:#e67e22; padding:12px; border-radius:8px; text-align:center;"><b>Rabbis:</b> Not until she enters his jurisdiction (<em>chuppah</em>)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 73a-73b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 73a-73b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../72/">← Daf 72</a><a href="../74/">Daf 74 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 57 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🧅</div>
+  <h1>Nedarim 57</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים נז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔒 Vow Formulations — 'Konam upon me' vs. 'Konam for me' and their different legal consequences<br>
+    🌱 Seeds That Cease — Growths of prohibited items: when replacements and growths are permitted or forbidden<br>
+    🧵 Wife's Handicraft — Applying vow distinctions to a wife's labor and its products<br>
+    📅 Time-Limited Vows — Conditional vows tied to Passover and Sukkot deadlines<br>
+    🧅 Sabbatical Onion Dilemma — Do permitted 8th-year growths neutralize a Sabbatical-Year prohibition?<br>
+    ⚖️ Growths vs. Principal — Competing opinions on whether excess growth cancels the original prohibition<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 57: Vow Language & the Onion Growth Dilemma</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Mishna:</b> How does the <i>exact wording</i> of a vow affect what is forbidden?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">"Konam UPON me"</div><div class="flow-box result-bad">Produce, replacements, <b>and</b> growths are <b>forbidden</b></div></div><div class="flow-col"><div class="flow-label">"Konam FOR me"</div><div class="flow-box result-good">Only produce forbidden; replacements & growths <b>permitted</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Exception:</b> Items whose seed doesn't cease (e.g. onions) — even growths of growths are <b>forbidden</b></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Gemara:</b> Sabbatical-Year onion planted in 8th year — do permitted growths neutralize the prohibition?</div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> The precision of vow language determines the scope of prohibition, and the biological nature of the item (does its seed persist?) creates critical exceptions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Two Vow Formulations: Drastically Different Results</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">"Konam UPON Me / Upon My Mouth"</h3><ul><li>The produce itself is forbidden</li><li>Its <b>replacements</b> (חליפין) are forbidden</li><li>Anything that <b>grows</b> from it is forbidden</li><li>Stricter formulation — treats item as intrinsically prohibited</li></ul></div><div class="compare-box" style="border-top-color:#4caf50"><h3 style="color:#ffffff">"Konam FOR Me — I Won't Eat/Taste"</h3><ul><li>The produce itself is forbidden</li><li>Its <b>replacements</b> are <b>permitted</b></li><li>Anything that <b>grows</b> from it is <b>permitted</b></li><li>Lenient formulation — only a personal eating restriction</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> "Upon me" treats the item as having inherent prohibition status. "For me, I won't eat" is merely a personal commitment not to consume — the item itself is not transformed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Seeds That Cease vs. Seeds That Don't Cease</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Person vowed using the <b>lenient</b> formula: "Konam for me, I won't eat"</div><div class="flow-arrow">↓</div><div class="flow-box question">Does the <b>seed cease</b> to exist after planting?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Seed Ceases (e.g. wheat, barley)</div><div class="flow-box result-good">Growths are <b>permitted</b><br/>The original item no longer exists</div></div><div class="flow-col"><div class="flow-label">No — Seed Persists (e.g. onions, bulbs)</div><div class="flow-box result-bad">Even <b>growths of growths</b> are <b>forbidden</b><br/>The original prohibited item remains intact</div></div></div></div><div class="callout" style="margin-top:20px"><strong>דבר שזרעו כלה</strong> This biological distinction — whether the seed is consumed in producing the new plant or persists through growth cycles — is the halachic pivot point.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Time-Limited Vows: Word Order Changes Everything</h2>
+  
+  <table><tr><th>Vow Formulation</th><th>When She Prepares</th><th>After Passover?</th></tr><tr><td>"What you prepare, <b>I won't eat until Pesach</b>"</td><td>Before Pesach</td><td><b>Permitted</b> — the time limit has passed</td></tr><tr><td>"What you prepare <b>until Pesach</b>, I won't eat"</td><td>Before Pesach</td><td><b>Forbidden</b> — the item was made during the restricted period</td></tr><tr><td>First version</td><td>After Pesach</td><td>Permitted — vow already expired</td></tr><tr><td>Second version</td><td>After Pesach</td><td>Permitted — not made during restricted period</td></tr></table><div class="callout" style="margin-top:20px"><strong>Word Order Matters</strong> "Until Pesach" can modify either the <b>prohibition's duration</b> or the <b>scope of items covered</b>. The placement of the time phrase determines which reading applies.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>The Sabbatical-Year Onion Dilemma</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Yishmael of Kefar Yamma</div><div class="speech">An onion uprooted in the <b>Sabbatical Year</b>, then planted in the <b>8th year</b> — its growths exceeded the original. Do the <b>permitted growths neutralize</b> the prohibited principal?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Ami</div><div class="speech">I don't have a ready answer for this...</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yitzchak Nappacha</div><div class="speech">Yes! <b>R' Chanina Terita'a</b> said in the name of <b>R' Yannai</b>: A <i>teruma</i> onion planted — if growths exceed the principal, <b>it is permitted</b>. Same applies here!</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">R' Yirmeya</div><div class="speech">Master! You are abandoning the opinion of <b>two Sages</b> to follow <b>one</b>?</div></div></div><div class="callout" style="margin-top:20px"><strong>The Challenge</strong> R' Yirmeya objects: both R' Yochanan (re: orla) and R' Yonatan (re: kilayim) hold that prohibited items are NOT neutralized by excess growth. Why follow R' Yannai alone?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Three Opinions: Do Growths Neutralize the Original Prohibition?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#4caf50"><h3 style="color:#ffffff">R' Yannai (Lenient)</h3><ul><li>Case: <i>Teruma</i> onion planted</li><li>Growths exceeded principal</li><li>Ruling: <b>Permitted</b></li><li>Growths neutralize the prohibition</li></ul></div><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">R' Yochanan (Strict)</h3><ul><li>Case: <i>Orla</i> vine grafted onto old vine</li><li>Even if new fruit is 200× the original</li><li>Ruling: Original fruit <b>forbidden</b></li><li>"It was there from the outset" — not neutralized</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#ffffff">R' Yonatan (Strict)</h3><ul><li>Case: Onion planted in vineyard (<i>kilayim</i>)</li><li>Vineyard uprooted, most growth is permitted</li><li>Ruling: Still <b>forbidden</b></li><li>Prohibited principal retains its status</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Score</strong> Two Sages (R' Yochanan & R' Yonatan) say growths do NOT neutralize. One Sage (R' Yannai) says they do. The dilemma remains unresolved.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 57 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Vow Language</b><br/>"Upon me" = broad prohibition<br/>"For me, I won't eat" = narrow</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px;"><b>Seed Type</b><br/>Seed ceases → growths permitted<br/>Seed persists → growths forbidden</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1a3e; color:#fff; padding:12px; border-radius:8px;"><b>Gemara's Dilemma</b><br/>Shevi'it onion planted in 8th year:<br/>Do excess growths neutralize?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>R' Yannai:</b> Yes — growths neutralize (teruma onion)</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; color:#fff; padding:10px; border-radius:8px;"><b>R' Yochanan & R' Yonatan:</b> No — original prohibition persists (orla, kilayim)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 57a-57b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 57a-57b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../56/">← Daf 56</a><a href="../58/">Daf 58 →</a></div>
+</body>
+</html>

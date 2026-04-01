@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 13 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐑</div>
+  <h1>Nedarim 13</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים יג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐄 Firstborn Animal — Can one create a vow by associating with a bechor?<br>
+    📜 Torah vs. Vow Prohibitions — Source of the item's forbidden status matters<br>
+    🐑 Korban Formulas — Lamb, enclosures, wood, fires, altar, Sanctuary, Jerusalem<br>
+    🗣️ Vows on Speech & Action — Does a neder require substance (davar sheyeish bo mamash)?<br>
+    ❌ Ineffective Vows — Items forbidden by Torah law cannot serve as vow-anchors<br>
+    💍 Wife Compared to Mother — Rabbinic dissolution requirement for invalid vow formulas<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 13: What Can Anchor a Vow?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> Can a person create a <i>neder</i> by associating an item with something forbidden by the <b>Torah itself</b> (not by a vow)?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Permits (Excludes Bechor)</div><div class="flow-box result-bad"><b>"When a man takes a vow"</b> — only items forbidden <i>by means of a vow</i> can anchor new vows. Bechor is sacred from birth.</div></div><div class="flow-col"><div class="flow-label">Forbids (Includes Bechor)</div><div class="flow-box result-good"><b>"To the Lord"</b> — this phrase includes items forbidden by Torah law as valid vow-anchors.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> The effectiveness of a vow depends on whether the item used as a reference point was itself made forbidden through a human act of consecration or is inherently sacred by Torah law.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Can You Vow by a Firstborn Animal?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Setup</div><div class="speech">A person places <b>meat of a bechor</b> (firstborn) next to regular meat and says: <i>"This meat shall be like the bechor meat."</i></div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Tanna (Permits)</div><div class="speech">The verse says <b>"When a man takes a vow"</b> — he must vow with an item <b>forbidden by means of a vow</b>. A bechor is forbidden by <b>Torah law</b>, not by a vow!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Tanna (Forbids)</div><div class="speech">The verse says <b>"To the Lord"</b> — this <i>includes</i> items forbidden by Torah law as valid vow-anchors.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Both agree he refers to the bechor <b>before blood-sprinkling</b> (when it's still forbidden). The dispute is whether Torah-forbidden items can anchor vows.</div></div></div><div class="callout" style="margin-top:20px"><strong>CONTEXT</strong> A bechor (firstborn kosher animal) is sacred from birth — its meat is forbidden until the blood is sprinkled on the altar.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Sin-Offering vs. Firstborn: Why the Difference?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Chatat / Asham (Included)</h3><ul><li>The <b>owner designates</b> a specific animal</li><li>Forbidden status comes from <b>human act of consecration</b></li><li>Similar to a vow — person creates the prohibition</li><li>"To the Lord" includes these offerings</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Bechor / Firstborn (Excluded)</h3><ul><li>Sacred <b>from its mother's womb</b></li><li>Forbidden status is <b>automatic by Torah law</b></li><li>No human act creates the prohibition</li><li>Even R' Yehuda HaNasi's mitzva to consecrate it doesn't change its nature</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>R' YEHUDA HANASI</strong> There is a <i>mitzva</i> to verbally consecrate a firstborn (Deut. 15:19), but if the owner fails to do so, it is still consecrated — proving the sanctity is inherent, not vow-created.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Korban Formulation Variations</h2>
+  
+  <table><tr><th>Formula Used</th><th>Example</th><th>Effect (with "that I eat of yours")</th></tr><tr><td><b>A lamb</b> (imra)</td><td>"Imra that I eat of yours"</td><td>R' Meir: Forbidden / R' Yehuda: Permitted</td></tr><tr><td><b>For a lamb</b> (le'imra)</td><td>"Le'imra that I eat of yours"</td><td>R' Meir: Forbidden / R' Yehuda: Permitted</td></tr><tr><td><b>Like a lamb</b> (ke'imra)</td><td>"Ke'imra that I eat of yours"</td><td>Both: Forbidden</td></tr><tr><td><b>Enclosures / Wood / Fires</b></td><td>"Like the enclosures that I eat…"</td><td>Forbidden — all reference Temple items</td></tr><tr><td><b>The Altar / Sanctuary / Jerusalem</b></td><td>"Like Jerusalem that I eat…"</td><td>Forbidden — sacred items anchor the vow</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' MEIR vs. R' YEHUDA</strong> R' Meir treats all three formulations (a/for/like) as valid vow language. R' Yehuda requires the explicit comparison word <b>"like"</b> (כ-) to create a vow.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>"That Which I Will NOT Eat" — Positive from Negative?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Person says: <i>"That which I will <b>not</b> eat of yours shall be <b>lekorban</b>."</i></div><div class="flow-arrow">↓</div><div class="flow-box question">Does this imply that what he <b>does</b> eat is forbidden (like a korban)?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Meir — Forbidden</div><div class="flow-box result-bad">Read as: <b>"It shall be lekorban</b>, therefore I will not eat yours." He stated the <i>reason</i>, not a limitation.</div></div><div class="flow-col"><div class="flow-label">Baraita — Permitted</div><div class="flow-box result-good">Read as: <b>"La (not) le'imra"</b> — what I don't eat is not-a-lamb. Cannot infer positive from negative.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>R' Abba's resolution:</b> R' Meir's case uses <i>lekorban</i> ("it shall be an offering"), while the baraita uses <i>la le'imra</i> ("not a lamb") — different formulations, no contradiction.</div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> <b>מכלל לאו אי אתה שומע הן</b> — From a negative statement you cannot infer a positive one. R' Meir agrees with this principle; the resolution turns on how the statement is parsed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Vows on Speech and Actions — Substance Required?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Mishna</div><div class="speech">If one says: <i>"Konam for <b>my mouth</b> to speak with you"</i> or <i>"for <b>my hand</b> to work with you"</i> — it is <b>forbidden</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Baraita</div><div class="speech">Vows only take effect on <b>davar sheyeish bo mamash</b> (a matter of substance) — unlike oaths, which apply even to non-physical matters!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech"><b>Contradiction!</b> Speaking and walking are <i>actions</i>, not physical items. How can a vow apply?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Yehuda</div><div class="speech">He said: <b>"My mouth shall be forbidden regarding its speech."</b> The vow attaches to the <i>limb</i> (a physical thing), not to the <i>action</i>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">The mishna's language confirms this: it says <b>"for my mouth to speak"</b> — not "that which I speak" — the vow is on the mouth itself.</div></div></div><div class="callout" style="margin-top:20px"><strong>OATHS vs. VOWS</strong> <b>Oaths</b> apply to actions (substance or not). <b>Vows</b> require substance — Rav Yehuda shows the vow attaches to the limb, satisfying this requirement.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 13 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Person makes a vow</b> associating Item A with Item B</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a1a3a; border-left: 3px solid #9b59b6;">Is Item B forbidden by <b>human consecration/vow</b> or by <b>Torah law</b>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border: 1px solid #4caf50;"><b>By Vow/Consecration</b><br>(korbanot, sin-offerings)<br>→ Vow <span style='color:#4caf50;'>TAKES EFFECT</span></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border: 1px solid #e74c3c;"><b>By Torah Law</b><br>(bechor, pig, neveilah)<br>→ Vow <span style='color:#e74c3c;'>DOES NOT TAKE EFFECT</span></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2e1a; border-left: 3px solid #e67e22;"><b>Exception:</b> "You are like my mother" — invalid but requires <i>rabbinic dissolution</i> as a safeguard</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 13a-13b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 13a-13b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../12/">← Daf 12</a><a href="../14/">Daf 14 →</a></div>
+</body>
+</html>

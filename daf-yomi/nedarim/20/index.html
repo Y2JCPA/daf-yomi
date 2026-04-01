@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 20 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔓</div>
+  <h1>Nedarim 20</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים כ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Vows with Alternative Meanings — when a vow's wording can be reinterpreted<br>
+    ⚖️ Scholar vs. Ignoramus — who needs dissolution of ambiguous vows<br>
+    🚫 Avoiding Vows — ethical guidance against habitual vow-taking<br>
+    😳 The Virtue of Shame — shame as a sign of spiritual pedigree<br>
+    🗣️ R' Yochanan ben Dehavai vs. the Rabbis — conduct in marital intimacy<br>
+    🔍 Nine Problematic Traits — defective circumstances of conception<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 20: Reinterpreted Vows & Marital Ethics</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Person takes a vow</b> using terms like <i>ḥerem</i>, <i>korban</i>, <i>atzmi</i>, or <i>konam</i></div><div class="flow-arrow">↓</div><div class="flow-box question">Claims the vow had an <b>alternative, non-sacred meaning</b></div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Torah Scholar</div><div class="flow-box result-good"><b>No dissolution needed</b> — scholar clearly did not intend a real vow</div></div><div class="flow-col"><div class="flow-label">Ignoramus</div><div class="flow-box result-bad"><b>Court treats stringently</b> — must observe the vow before dissolution is considered</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Tension</strong> The daf pivots from legal formalism around vow dissolution to deeply personal ethical teachings about shame, speech, and marital conduct.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Four Reinterpreted Vows (Mishna)</h2>
+  
+  <table><tr><th>Vow as Stated</th><th>Claimed Reinterpretation</th></tr><tr><td>"This is <i>ḥerem</i> (dedication) to me"</td><td>"I meant <i>ḥermo shel yam</i> — a fishing net"</td></tr><tr><td>"This is like a <i>korban</i> (offering)"</td><td>"I meant offerings/gifts to kings, not to God"</td></tr><tr><td>"I am <i>atzmi</i> (myself) an offering"</td><td>"I meant <i>etzem</i> — a bone I set aside to pretend-vow with"</td></tr><tr><td>"Benefit from me is <i>konam</i> for my wife"</td><td>"I meant my first wife, whom I already divorced"</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> In each case, the speaker claims the vow's key word had a non-sacred, everyday meaning — so the vow never took effect at all.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Meir vs. the Rabbis: Treating Ambiguous Vows</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Meir</div><div class="speech">These vows <b>do not need dissolution</b> for a scholar. But if an <b>ignoramus</b> asks for dissolution, we <b>punish him and treat stringently</b> — the vow stands.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">We are <b>not stringent</b>. Instead, we <b>broach dissolution</b> by suggesting a different extenuation, and <b>teach him</b> not to vow this way again.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Yehuda</div><div class="speech">R' Meir's ruling distinguishes: a <b>Torah scholar</b> knows these vows don't take effect, so no dissolution is needed. An <b>am ha'aretz</b> who asks — he is treated stringently.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Yosef</div><div class="speech">Since the Sages say the authority <b>does not attend to him</b> prematurely, a court that dissolves the vow immediately is <b>not acting properly</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rav Aḥa bar Yaakov</div><div class="speech">A halakhic authority who dissolves the vow <b>prematurely</b> should be <b>excommunicated</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Punishment Defined</strong> An ignoramus nazirite who violated his naziriteship must first observe it for the same number of days he was lax (R' Yehuda). R' Yosei: for a long naziriteship, 30 days suffices.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Ethical Warnings: Avoid These Associations</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🚫 <b>Don't be accustomed to vows</b> — ultimately you'll disregard them and abuse oaths</div><div class="process-arrow">↓</div><div class="process-step">🧑‍🌾 <b>Don't associate with an am ha'aretz</b> — he'll feed you untithed produce</div><div class="process-arrow">↓</div><div class="process-step">👨‍⚖️ <b>Don't associate with an ignorant kohen</b> — he'll feed you <i>teruma</i></div><div class="process-arrow">↓</div><div class="process-step">🗣️ <b>Don't talk extensively with a woman</b> — ultimately you'll come to sin</div><div class="process-arrow">↓</div><div class="process-step highlight">👁️ <b>R' Aḥa b. R' Yoshiya:</b> Gazing at women leads to sin; looking at immodest areas leads to indecent children</div></div><div class="callout" style="margin-top:20px"><strong>Rav Yosef's Addition</strong> The prohibition of gazing applies even to one's own wife when she is a <i>niddah</i> (menstruating woman).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>The Virtue of Shame (Busha)</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">שֶׁלֹּא תֶחֱטָאוּ — מְלַמֵּד שֶׁהַבּוּשָׁה מְבִיאָה לִידֵי יִרְאַת חֵטְא</div><div class="callout"><strong>Baraita — Exodus 20:17</strong> "<i>That His fear may be upon your faces</i>" — this refers to <b>shame</b> (blushing). "<i>That you not sin</i>" — shame leads to fear of sin.<br><br>🔑 <b>It is a good sign that a person experiences shame.</b><br><br>Others say: One who feels shame <b>will not quickly sin</b>. One who lacks the capacity for shame — <b>his forefathers did not stand at Mount Sinai.</b></div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Yochanan ben Dehavai vs. the Rabbis: Marital Intimacy</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yochanan ben Dehavai</div><div class="speech">The <b>ministering angels</b> told me: Lameness, muteness, deafness, and blindness in children result from specific <b>improper conduct</b> during marital relations.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">That is the statement of ben Dehavai. But the <b>Rabbis said: the halakha is NOT in accordance</b> with him. <b>Whatever a man wishes to do with his wife, he may do.</b></div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Ameimar</div><div class="speech">The 'ministering angels' he mentions are actually <b>the Sages</b> — an honorary title. If they were real angels, we'd have to follow them!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rabbi (Yehuda HaNasi)</div><div class="speech">To a woman who complained her husband 'overturned the table': <b>The Torah permitted him</b> — what can I do for you?</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Rav</div><div class="speech">To a similar complaint: How is this different from <b>a fish (<i>binnita</i>) one may eat any way he wishes?</b></div></div></div><div class="callout" style="margin-top:20px"><strong>Halakha</strong> The Rabbis' permissive ruling is the accepted halakha: marital intimacy is compared to meat from a butcher or fish — it may be prepared in any manner.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 20 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:14px; border-radius:8px;"><b>Ambiguous Vow Taken</b><br>Speaker uses sacred-sounding terms</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px;"><b>Scholar</b><br>No dissolution needed — clearly no intent</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#fff; padding:12px; border-radius:8px;"><b>Ignoramus</b><br>Court is stringent — must observe vow first</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; color:#fff; padding:14px; border-radius:8px;"><b>Broader Ethics</b><br>Avoid habitual vows • Shame = spiritual health</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3a; color:#fff; padding:14px; border-radius:8px;"><b>Marital Conduct</b><br>Halakha follows Rabbis (permissive) over ben Dehavai<br>But: mindfulness and intention matter deeply</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 20a-20b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 20a-20b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../19/">← Daf 19</a><a href="../21/">Daf 21 →</a></div>
+</body>
+</html>

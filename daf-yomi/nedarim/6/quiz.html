@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 6 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Nedarim 6 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">Why does the Gemara consider the 'upon me' baraita a challenge to Abaye?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Because it implies that without 'upon me,' the statement is not a valid vow — suggesting ambiguous intimations fail</div>
+      <div class="option" onclick="select(1,this,1)">B. Because 'upon me' is a type of explicit vow, not an intimation at all</div>
+      <div class="option" onclick="select(1,this,2)">C. Because the baraita only discusses sin-offerings, not ordinary vows</div>
+      <div class="option" onclick="select(1,this,3)">D. Because Abaye never discussed the phrase 'upon me'</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: A — </strong>The baraita specifically states 'upon me' creates a vow, implying that without these clarifying words (i.e., with only an ambiguous intimation), no vow is created — directly challenging Abaye's position that ambiguous intimations are valid.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">How does Abaye defend against the argument that 'It is hereby' (without 'upon me') should still be a valid ambiguous intimation?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. He says the Rabbis disagree with the baraita</div>
+      <div class="option" onclick="select(2,this,1)">B. He argues it's not even an intimation — the speaker could mean ownerless property or charity</div>
+      <div class="option" onclick="select(2,this,2)">C. He claims the baraita is discussing a different type of vow</div>
+      <div class="option" onclick="select(2,this,3)">D. He says ambiguous intimations only apply to offerings, not vows</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>Abaye argues that 'It is hereby' without 'upon me' is not merely an ambiguous intimation — it's not an intimation at all, because the speaker could reasonably mean hefker (ownerless) or tzedakah (charity), not a neder.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">What does Abaye retract (hadar bei) in this sugya?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. His entire position that ambiguous intimations are valid</div>
+      <div class="option" onclick="select(3,this,1)">B. His claim that ambiguous intimations are valid even according to Rabbi Yehuda</div>
+      <div class="option" onclick="select(3,this,2)">C. His view that obvious intimations are required for offerings</div>
+      <div class="option" onclick="select(3,this,3)">D. His agreement with Rava about gittin</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Abaye retracts only his claim that his position works even according to Rabbi Yehuda. He still maintains that ambiguous intimations are valid according to the Rabbis, but concedes that Rabbi Yehuda requires obvious intimations.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">In Rav Pappa's betrothal dilemma, why is the case specifically where the man says 'And you' (ve'at) rather than 'And you too' (ve'at nami)?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Because 'And you too' would be too long a phrase for betrothal</div>
+      <div class="option" onclick="select(4,this,1)">B. Because 'And you too' is obviously betrothal — the dilemma only exists with the shorter, ambiguous phrase</div>
+      <div class="option" onclick="select(4,this,2)">C. Because 'And you' is the standard formula for kiddushin</div>
+      <div class="option" onclick="select(4,this,3)">D. Because Rav Pappa was testing whether any speech at all is needed</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>The Gemara clarifies that 'And you too' clearly extends the betrothal and is not a dilemma. The question only arises with the ambiguous 'And you,' which could mean 'you too are betrothed' or merely 'you are a witness to this betrothal.'</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">What is the significance of pe'a being juxtaposed to offerings in the Torah for Rav Pappa's dilemma?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. It proves pe'a must be brought to the Temple</div>
+      <div class="option" onclick="select(5,this,1)">B. If the juxtaposition imports all offering rules, then intimation would apply to pe'a; if it only teaches bal te'akher, it would not</div>
+      <div class="option" onclick="select(5,this,2)">C. It means pe'a can only be designated on Shabbat</div>
+      <div class="option" onclick="select(5,this,3)">D. It establishes that pe'a requires a minyan of ten</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>The crux of the dilemma is whether the hekesh (juxtaposition) between pe'a and offerings is broad — importing all rules including intimation — or narrow, teaching only the specific rule of bal te'akher (the prohibition against delaying fulfillment of one's obligation).</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":0,"2":1,"3":1,"4":1,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 48 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏛️</div>
+  <h1>Nedarim 48</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים מח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Communal Property — Two categories: property of 'those who ascended from Babylonia' vs. property of the city<br>
+    👑 Writing Portions to the Nasi — Remedy for vow-bound individuals to use public spaces<br>
+    🎁 The Beit Horon Gift — A failed attempt to circumvent a vow through a sham gift<br>
+    ⚖️ True vs. Sham Gifts — A gift must be absolute enough that the recipient could consecrate it<br>
+    🌾 The Flax Sheaves Case — Conditional acquisition through an intermediary (kinyan al m'nat l'haknot)<br>
+    🧵 Acquisition by Cloth (Sudar) — Rav Ashi's analogy and challenge to Rav Nachman's position<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nedarim 48: Communal Property, Sham Gifts & Conditional Acquisition</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Two people vow not to benefit from each other</b><br>Can they use communal property?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Property of Olei Bavel</div><div class="flow-box result-good">Temple Mount, Courtyards, Public cisterns<br><b>Permitted</b> — belongs to all Israel</div></div><div class="flow-col"><div class="flow-label">Property of the City</div><div class="flow-box result-bad">Square, Bathhouse, Synagogue, Torah scrolls<br><b>Forbidden</b> — jointly owned by residents</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Remedy:</b> Write your portion over to the <em>Nasi</em></div><div class="flow-arrow">↓</div><div class="flow-box action">Gift must be <b>absolute</b> — if recipient could consecrate it, it's valid</div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Any gift that is not absolute enough that the recipient could consecrate it is not a valid gift (כל מתנה שאינה שאם הקדישה מקודשת אינה מתנה).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Two Categories of Communal Property</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Property of Olei Bavel (עולי בבל)</h3><ul><li>Belongs to <b>all of Israel</b></li><li>Temple Mount (הר הבית)</li><li>Temple Courtyards (עזרות)</li><li>Water cistern in the middle of the road</li><li>Vow-bound persons may <b>use</b> these</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Property of the City (אותה העיר)</h3><ul><li>Belongs to <b>city residents jointly</b></li><li>City square (רחבה)</li><li>Bathhouse (מרחץ)</li><li>Synagogue (בית הכנסת)</li><li>Torah ark and Torah scrolls</li><li>Vow-bound persons are <b>forbidden</b></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Distinction</strong> National property is too broadly owned for any individual's share to matter; city property is considered joint ownership among residents.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Writing Portions to the Nasi: Dispute on Procedure</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yehuda</div><div class="speech">One may write his portion to the <em>Nasi</em> <b>or</b> to a common person (<em>hedyot</em>).</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yehuda</div><div class="speech">The <b>difference</b>: Writing to the Nasi does <b>not</b> require formal conferral of possession (<em>kinyan</em>). Writing to a commoner <b>does</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbanan</div><div class="speech"><b>Both</b> require formal conferral of possession — Nasi and commoner alike.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbanan</div><div class="speech">They mentioned the Nasi only <b>לדבר בהווה</b> — to speak of the common situation.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yehuda</div><div class="speech">The <b>Galileans</b> need not write at all — their forefathers already did! They were <em>kanteranin</em> (quarrelsome) and often vowed against each other.</div></div></div><div class="callout" style="margin-top:20px"><strong>Baraita</strong> R' Yehuda explains: The Galileans were quarrelsome and frequently took vows of prohibition against each other, so their ancestors preemptively wrote their communal portions to the Nasi.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Beit Horon Incident</h2>
+  
+  <div class="process-bar"><div class="process-step">👨‍👦 A father vowed <b>not to benefit</b> from his son</div><div class="process-arrow">↓</div><div class="process-step">💒 The son was marrying off <b>his own son</b> and wanted his father at the wedding</div><div class="process-arrow">↓</div><div class="process-step highlight">🎁 Son told a friend: 'The courtyard and meal are a <b>gift to you</b> — but only so my father can come and eat'</div><div class="process-arrow">↓</div><div class="process-step highlight">🏛️ The friend said: 'If they're truly mine, I <b>consecrate them to Heaven!</b>'</div><div class="process-arrow">↓</div><div class="process-step">😠 Son: 'I didn't give them so you could consecrate them!'</div><div class="process-arrow">↓</div><div class="process-step">🎯 Friend: 'You gave them only to circumvent the vow — the sin would be on <b>my</b> head!'</div><div class="process-arrow">↓</div><div class="process-step highlight">📜 <b>Ruling:</b> Any gift not absolute enough to be consecrated by the recipient is <b>not a gift</b></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> כל מתנה שאינה שאם הקדישה מקודשת אינה מתנה — The litmus test for a valid gift: could the recipient consecrate it?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Rava's Analysis: When Does Explicit Intent Invalidate a Gift?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Person gives a gift to bypass a vow.<br>What did the giver say?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Version 1 (Lenient)</div><div class="flow-box result-good">'The gifts are before you <b>only so that</b> my father should come'<br>→ <b>Forbidden</b> (explicit condition)<br><br>'They should be before you that my father should come'<br>→ <b>Permitted</b> (leaves it to recipient's judgment)</div></div><div class="flow-col"><div class="flow-label">Version 2 (Strict)</div><div class="flow-box result-bad">Even saying <b>'They are before you, my father should come and eat'</b><br>→ <b>Forbidden</b><br><br>Because his <em>ultimate actions</em> prove his initial intent was not a true gift</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Reasoning</strong> The stricter version holds that even casual mention of the purpose reveals that the giver never truly relinquished ownership — actions prove intent (סוף מעשה מוכיח על תחילתו).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Flax Sheaves Case: Acquisition to Transfer (קנה על מנת להקנות)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Setup</div><div class="speech">A father vowed his son can't benefit from him. But if the <b>grandson</b> becomes a Torah scholar, the father wants him to inherit. He gave property to the son <b>only</b> to pass to the grandson.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Sages of Pumbedita</div><div class="speech">This is <em>kinyan al m'nat l'haknot</em> — acquire <b>on condition</b> you transfer to another. The son does <b>not acquire</b>. The transfer fails.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Nachman</div><div class="speech">The son <b>does acquire</b>! Just like acquisition by <em>sudar</em> (cloth) — it's given only to transfer ownership of something else, yet it works.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ashi</div><div class="speech">Two problems with the analogy:<br><b>1)</b> The cloth recipient <em>could</em> keep the cloth if he seized it<br><b>2)</b> With <em>sudar</em>, acquisition is <b>immediate</b>. Here, the grandson acquires only <b>when</b> he becomes a scholar — by then the 'cloth has returned to its owner.'</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Dispute</strong> Can property be effectively transferred through an intermediary who never truly owns it? Rav Nachman says yes; the Sages of Pumbedita and Rav Ashi say no.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 48 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Vow prohibits benefit</b><br>from communal city property</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Remedy:</b> Write your portion<br>to the <em>Nasi</em> or another</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e2116; border-left: 3px solid #e67e22;"><b>Gift to bypass vow?</b><br>Must be truly absolute</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top: 3px solid #4caf50;"><b>Absolute gift</b><br>Recipient could consecrate it<br>✅ Valid</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border-top: 3px solid #e74c3c;"><b>Sham gift</b><br>Actions reveal intent to retain<br>❌ Invalid</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 48a-48b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 48a-48b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../47/">← Daf 47</a><a href="../49/">Daf 49 →</a></div>
+</body>
+</html>

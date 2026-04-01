@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nedarim 49 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nedarim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍲</div>
+  <h1>Nedarim 49</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נדרים מט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🍳 Cooked Foods — Defining what counts as 'cooked' in vows<br>
+    🔥 Roasting vs Cooking — R' Yoshiya's broader definition from Chronicles<br>
+    🥣 Loose vs Thick — Abaye: cooked food is what you eat with bread<br>
+    🥒 Gourds & the Sick — Hard vs soft gourds, and who counts as 'sick'<br>
+    😋 Porridge Etiquette — Babylonian customs, fingers vs forks<br>
+    💪 Labor & Honor — R' Yehuda and R' Shimon carry their own seats<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Vows on Cooked Foods: What's Forbidden?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A person vows: <b>'Cooked foods are forbidden to me'</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Our Tanna</div><div class="flow-box result-good"><b>Permitted:</b> roasted & boiled<br>Only 'cooked' (בישול) is forbidden</div></div><div class="flow-col"><div class="flow-label">R' Yoshiya</div><div class="flow-box result-bad"><b>Forbidden:</b> even roasted<br>Roasting = cooking (II Chron. 35:13)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Resolution: Both follow <b>language of people</b> — different locales had different usage</div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Vows follow the language of everyday people (<i>lashon bnei adam</i>), and local dialect determines their scope.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Mishna: Vow Formulations & Their Scope</h2>
+  
+  <table><tr><th>Vow Language</th><th>What's Forbidden</th><th>What's Permitted</th></tr><tr><td>'Cooked foods are forbidden to me'</td><td>Foods defined as 'cooked'</td><td>Roasted & boiled foods</td></tr><tr><td>'A cooked food is <i>konam</i>, I won't taste it'</td><td>Loose cooked food</td><td>Thick cooked food, <i>turemuta</i> egg, <i>remutza</i> gourd</td></tr><tr><td>'Food cooked in a dish is forbidden'</td><td>Food boiled in a dish</td><td>Other preparations</td></tr><tr><td>'What enters a dish is <i>konam</i>, I won't taste it'</td><td>Anything cooked in a dish</td><td>Nothing — broadest scope</td></tr></table><div class="callout" style="margin-top:20px"><strong>Pattern</strong> Adding '<i>konam</i>… I won't taste it' expands the vow's scope, but the specific formulation still determines its limits.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Does Roasting Count as 'Cooking'?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Yoshiya</div><div class="speech">One who vows against cooked foods is <b>forbidden</b> roasted foods too.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Yoshiya</div><div class="speech">Proof: <i>'Va-yevashlu ha-pesach ba-esh'</i> — 'They <b>cooked</b> the Pesach offering in fire' (II Chron. 35:13). Roasting is called cooking!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Do they disagree whether vows follow Torah language vs. people's language?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech"><b>No.</b> Both agree vows follow people's language. In R' Yoshiya's locale, even roasting was called 'cooking.'</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The verse is merely an <i>asmakhta</i> (allusion), not a formal proof — as he said: 'there is no proof, only an allusion.'</div></div></div><div class="callout" style="margin-top:20px"><strong>Takeaway</strong> Local dialect governs vows. The same word can have different scope in different communities.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Loose vs. Thick: What Is a 'Cooked Food'?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Vow: '<i>Tavshil</i> (cooked food) is <i>konam</i>, I won't taste it'</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Abaye:</b> A <i>tavshil</i> = something <b>eaten with bread</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Loose dish</div><div class="flow-box result-bad">Eaten <b>with bread</b> as accompaniment<br>→ <b>Forbidden</b></div></div><div class="flow-col"><div class="flow-label">Thick dish</div><div class="flow-box result-good">Eaten <b>on its own</b>, not with bread<br>→ <b>Permitted</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Baraita support: 'Soft gourds (<i>hiteriyyot</i>) with which <b>the sick eat their bread</b>' — confirms the bread criterion</div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Definition</strong> A 'cooked food' (<i>tavshil</i>) is specifically a side dish eaten to accompany bread. Thick porridge stands alone and doesn't qualify.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Gourds: Beneficial or Dangerous?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Baraita: Gourds for the Sick</h3><ul><li>Soft gourds (<i>hiteriyyot</i>) — the sick eat bread with them</li><li>Rava bar Ulla: the <b>innards</b> (<i>luliva</i>) of gourds are beneficial</li><li>Rava: 'the sick' = <b>Sages</b>, weakened by Torah study</li><li>Gourd innards best with chard (R' Yehuda)</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">R' Yirmeya's Doctor: Gourds Kill</h3><ul><li>Doctor sees a gourd in R' Yirmeya's house</li><li>Calls it an 'angel of death' and refuses to treat him</li><li>Resolution: <b>hard</b> gourds are harmful</li><li>Or: the gourd <b>itself</b> is harmful, only the innards help</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Secret Recipe</strong> Flax seed innards with <i>kutaḥ</i> — but don't tell an <i>am ha'aretz</i>, lest they uproot flax just for the seeds!</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Babylonian Porridge Customs</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Zeira</div><div class="speech">Babylonians are foolish — they <b>eat bread with bread!</b> Thick porridge with bread is bread with bread.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Ḥisda</div><div class="speech">The people of Huzal asked: wheat porridge with wheat bread, or wheat porridge with <b>barley</b> bread?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">I eat my bread with <i>ḥasisei</i> — toasted barley porridge.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Huna</div><div class="speech">Rav said: porridge with <b>one finger</b> is tasty. With <b>two</b> — more so. With <b>three</b> — best of all!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">For porridge, travel <b>1 parasang</b>. For ox meat, travel <b>3 parasangs</b>. And spit out gourd and porridge even before King Shapur — they burn like lead!</div></div></div><div class="callout" style="margin-top:20px"><strong>Halachic Note</strong> For Babylonians, even thick porridge counts as a 'cooked food' since they eat it with bread — so vows have broader scope there.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nedarim 49 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Vow Against Cooked Food</b><br>Scope depends on formulation & locale</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#fff; padding:10px; border-radius:8px; text-align:center;"><b>Loose dish</b><br>Eaten with bread = <i>tavshil</i><br>→ Forbidden</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px; text-align:center;"><b>Thick dish</b><br>Eaten alone ≠ <i>tavshil</i><br>→ Permitted</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Exception: Babylonians</b><br>They eat thick porridge with bread<br>→ Even thick = forbidden for them</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; color:#fff; padding:12px; border-radius:8px; text-align:center; border:1px solid #c9a84c;"><b>Principle:</b> Follow local custom (<i>lashon bnei adam</i>)<br>Words mean what people in your community mean by them</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nedarim 49a-49b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nedarim 49a-49b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../48/">← Daf 48</a><a href="../50/">Daf 50 →</a></div>
+</body>
+</html>
