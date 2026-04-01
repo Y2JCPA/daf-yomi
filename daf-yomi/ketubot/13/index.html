@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 13 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Ketubot 13</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות יג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🪵 Mukat Etz — Woman claims hymen ruptured by wood, not intercourse<br>
+    💰 Ketubah Dispute — R' Yochanan vs R' Elazar on the financial stakes<br>
+    🏚️ Seclusion & Ruins — Woman found secluded claims man was of good lineage<br>
+    🔒 Captive Woman Analogy — R' Yehoshua compares seclusion to captivity<br>
+    👶 Self vs Child — Testimony about herself vs her child's paternity<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Credibility, Presumption & the Burden of Proof</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabban Gamliel</div><div class="speech">A woman is <b>credible</b> about her own status — whether about her virginity or the lineage of a man she was with.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yehoshua</div><div class="speech">We do not rely on <b>her word alone</b>. She retains a negative presumption until she <b>brings proof</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Yochanan</div><div class="speech">In the <i>mukat etz</i> case, the dispute is <b>200 vs 100 dinars</b> — following R' Meir's view.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Elazar</div><div class="speech">The dispute is <b>100 vs nothing</b> — following the Rabbis' view that mukat etz always gets 100.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Tension</strong> When a woman's claim conflicts with presumption, does she have inherent credibility (Rabban Gamliel) or must she overcome the status quo with proof (R' Yehoshua)?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Mukat Etz: Who Is Credible?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Bride</div><div class="speech">My hymen was ruptured by <b>wood</b> (<i>mukat etz</i>), not by intercourse.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Groom</div><div class="speech">No — you were <b>trampled by a man</b> (<i>derusat ish</i>).</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabban Gamliel & R' Eliezer</div><div class="speech">She is <b>deemed credible</b> — she certainly knows what happened to her.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yehoshua</div><div class="speech">We do not conduct our lives based on <b>her mouth</b>. She has the presumptive status of <i>derusat ish</i> until she brings proof.</div></div></div><div class="callout" style="margin-top:20px"><strong>Mishna</strong> This is the second dispute in the series where Rabban Gamliel trusts the woman's claim and R' Yehoshua demands proof.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>What Are the Financial Stakes?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1f4a"><h3 style="color:#9b59b6">R' Yochanan (follows R' Meir)</h3><ul><li>She claims: mukat etz → still a virgin → 200 dinars</li><li>He claims: intercourse → non-virgin → 100 dinars</li><li>R' Meir: mukat etz who married unknowingly still gets 200</li><li>Dispute range: 200 vs 100</li></ul></div><div class="compare-box" style="border-top-color:#2c3319"><h3 style="color:#e67e22">R' Elazar (follows the Rabbis)</h3><ul><li>She claims: mukat etz → not full deception → 100 dinars</li><li>He claims: intercourse → mistaken transaction → nothing</li><li>Rabbis: mukat etz receives 100 whether known or unknown</li><li>Dispute range: 100 vs 0</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Difference</strong> R' Yochanan holds a non-virgin still gets 100 dinars, so under R' Elazar's reading both claims would yield the same 100 — making the dispute meaningless.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Why R' Yochanan Rejects R' Elazar's Reading</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Under <b>R' Elazar's</b> reading (Rabbis' view):</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Her Claim</div><div class="flow-box result-good">Mukat etz → entitled to <b>100 dinars</b></div></div><div class="flow-col"><div class="flow-label">His Claim</div><div class="flow-box result-good">Intercourse → entitled to <b>100 dinars</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Both claims yield <b>the same amount</b>!<br>What is there to dispute?</div><div class="flow-arrow">↓</div><div class="flow-box action">Therefore R' Yochanan explains per <b>R' Meir</b>: dispute is <b>200 vs 100</b></div></div><div class="callout" style="margin-top:20px"><strong>Logic</strong> R' Yochanan holds that a woman presumed virgin who is found non-virgin still receives 100 dinars — so under the Rabbis' view, both sides agree on 100, leaving no dispute.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Why the Tanna Teaches Two Mishnayot</h2>
+  
+  <table><tr><th>Mishna</th><th>Excludes Which Opinion?</th><th>Teaching</th></tr><tr><td>Previous Mishna (virgin claim)</td><td>Rav Sheshet: non-virgin gets 100</td><td>Groom claims mistaken transaction → she gets <b>nothing</b></td></tr><tr><td>This Mishna (mukat etz)</td><td>Rami bar Chama: unknown mukat etz gets nothing</td><td>Even if he didn't know she was mukat etz, she gets <b>100 dinars</b></td></tr><tr><td>Both together</td><td>Clarify the full range of disputes</td><td>Each mishna teaches a distinct exclusion</td></tr></table><div class="callout" style="margin-top:20px"><strong>According to R' Elazar</strong> Both mishnayot are needed to exclude specific minority opinions. R' Yochanan struggles to justify why two mishnayot are necessary.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Seclusion in a Ruin: Is She Credible?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Mishna</div><div class="speech">A woman was seen entering <b>seclusion</b> or <b>a ruin</b> with a man. She says: <i>He is a priest, my father's brother's son.</i></div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabban Gamliel & R' Eliezer</div><div class="speech">She is <b>deemed credible</b> to marry a priest.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yehoshua</div><div class="speech">She has the status of one who had relations with a <b>Gibeonite or mamzer</b> until she brings proof.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Ze'eiri</div><div class="speech">'Speaking' means <b>seclusion</b> — two cases needed: seclusion (lesser concern) and ruin (greater concern).</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Asi</div><div class="speech">'Speaking' means <b>intercourse</b> — one case: seclusion <i>within</i> a ruin. Or: ruin in city vs ruin in field.</div></div></div><div class="callout" style="margin-top:20px"><strong>Dispute</strong> Ze'eiri and Rav Asi disagree about whether 'speaking' (נשאת ונתנה) refers to mere seclusion or actual intercourse.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 13 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Woman makes a claim</b><br>About her virginity or the man's lineage</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 10px;"><b>Rabban Gamliel</b><br>She is credible — she knows best</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1621; border-left: 3px solid #e74c3c; padding: 10px;"><b>R' Yehoshua</b><br>Presumption stands — she must bring proof</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #9b59b6; padding: 10px;"><b>Financial Dispute (Mukat Etz)</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2c1f4a; border-left: 3px solid #9b59b6; padding: 10px;"><b>R' Yochanan</b><br>200 vs 100 dinars<br>(per R' Meir)</div></div><div class="flow-col"><div class="flow-box" style="background:#3e2c16; border-left: 3px solid #e67e22; padding: 10px;"><b>R' Elazar</b><br>100 vs 0 dinars<br>(per the Rabbis)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 13a-13b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 13a-13b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../12/">← Daf 12</a><a href="../14/">Daf 14 →</a></div>
+</body>
+</html>

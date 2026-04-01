@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 107 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Ketubot 107</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות קז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Wife's Sustenance — Does the court apportion food for a wife whose husband went overseas?<br>
+    💰 Rav vs. Shmuel — Core dispute over court authority to access the husband's estate<br>
+    🔍 Bundle vs. Earnings — Two explanations for why Shmuel exempts the court<br>
+    📜 Baraita Challenges — Multiple sources tested against Shmuel's position<br>
+    👰 Yevama & Minor — Special cases that test the limits of the dispute<br>
+    🏛️ Historical Rulings — R' Yehuda HaNasi and R' Yishmael's real-world decisions<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Does the Court Feed a Wife Whose Husband Went Overseas?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The court <b>apportions sustenance</b> (מזונות) for a married woman from her husband's estate — his property is legally <b>mortgaged</b> (משועבד) to her.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">The court does <b>not</b> apportion sustenance. We cannot assume he left her with nothing.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">Even Rav concedes: the court does <b>not touch</b> the estate for the <b>first three months</b> — a person does not leave his house empty.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">All agree: if they <b>heard the husband died</b>, the court sustains her. The dispute is only when his status is <b>unknown</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Framework</strong> This daf revolves around Shmuel's position being challenged by <b>multiple baraitot</b>, each of which he deflects by reinterpreting as referring to a case where the husband was rumored dead.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Does Shmuel Exempt the Court?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Rav Zevid's Explanation</h3><ul><li>Perhaps he gave her a <b>bundle of money</b> (צררי) before departing</li><li>Assumes husband provided financially</li><li>Applies more strongly to an <b>adult wife</b> — he'd trust her with money</li><li>Does NOT apply to a <b>minor wife</b> — one doesn't leave money with a child</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Rav Pappa's Explanation</h3><ul><li>Perhaps he told her: <b>Spend your earnings</b> to sustain yourself</li><li>He renounced her earnings in exchange for dropping sustenance obligation</li><li>Applies more strongly to a <b>minor</b> — even a child can earn something</li><li>Does NOT fully apply to an <b>adult</b> whose earnings may be insufficient</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> <b>Adult wife</b> whose earnings are insufficient: Rav Zevid says no court support (he left money); Rav Pappa says court must supplement. <b>Minor wife</b>: Rav Zevid says court must help (no money left); Rav Pappa says no support (she can use her earnings).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>When Does the Court Provide Sustenance?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Husband went overseas.<br>Wife demands sustenance.</div><div class="flow-arrow">↓</div><div class="flow-box question">Has the husband been <b>heard to have died</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Heard He Died</div><div class="flow-box result-good"><b>All agree</b>: Court sustains her from his estate</div></div><div class="flow-col"><div class="flow-label">No — Status Unknown</div><div class="flow-box result-bad"><b>Rav & Shmuel disagree</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Have <b>3 months</b> passed since departure?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Within 3 Months</div><div class="flow-box result-bad"><b>All agree</b>: Court does NOT touch estate (he left provisions)</div></div><div class="flow-col"><div class="flow-label">After 3 Months</div><div class="flow-box action"><b>Rav</b>: Court apportions<br><b>Shmuel</b>: Court does not</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Shmuel's Concession</strong> Shmuel notes that Rav agrees with him for the first 3 months — <b>a person does not leave his house empty</b> (אין אדם מניח ביתו ריקם).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Baraitot Challenging Shmuel — And His Responses</h2>
+  
+  <table><tr><th>Source / Challenge</th><th>Shmuel's Reinterpretation</th></tr><tr><td>Mishna: Ḥanan & sons of Kohanim Gedolim dispute <b>only the oath</b>, not sustenance itself</td><td>Refers to a case where they <b>heard he died</b></td></tr><tr><td>Baraita: If husband returns and says 'I left her money' — he is believed and she returns it</td><td>Also where they <b>heard he died</b> — then he returned after the rumor</td></tr><tr><td>Baraita: If he says 'use your earnings' — what court apportioned stays apportioned</td><td>Same — <b>heard he died</b></td></tr><tr><td>Baraita: Court feeds wife but <b>not</b> sons/daughters</td><td>Rav Sheshet: He appointed a <b>third party</b> for wife only; Rav Pappa: heard from <b>one witness</b> he died</td></tr><tr><td>Yevama sustained from yavam's property if he fled after court ruling</td><td>Yavam wouldn't give her money (not close); can't waive her earnings (she owes him none)</td></tr><tr><td>Minor who refuses husband — implies she <b>was</b> being sustained</td><td>Minor: no bundle given, and earnings insufficient — special case</td></tr></table><div class="callout" style="margin-top:20px"><strong>Pattern</strong> Shmuel consistently reinterprets every source as referring to a case where the husband was <b>rumored dead</b>, preserving his position that the court otherwise does not intervene.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>The Yevama Challenge — A Stronger Case Against Shmuel</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">A <b>yevama</b> waiting for levirate marriage: first 3 months sustained from deceased husband's estate. After that, if <b>yavam flees</b> after court orders him to marry her — she is sustained from <b>his</b> property!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">His obligation is <b>less</b> than a husband's — yet the court still takes from his estate in his absence!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">My concerns don't apply here: A yavam is <b>not close enough</b> to leave her money. And she doesn't owe him earnings yet — so he can't waive them.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">What about a wife who returned from overseas and said <b>'my husband divorced me'</b>? She collects sustenance up to the value of her <i>ketubah</i>!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">Again — this is where they <b>heard he died</b>. She gets only the ketubah amount because <b>she caused her own loss</b> by claiming divorce.</div></div></div><div class="callout" style="margin-top:20px"><strong>Logic</strong> The yevama case is powerful because Shmuel's usual defenses (bundle of money / earnings waiver) structurally cannot apply — forcing him to concede court intervention in that specific scenario.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Mishna's Oath Dispute — Ḥanan vs. Sons of High Priests</h2>
+  
+  <div class="process-bar"><div class="process-step">👩 Wife's husband goes overseas; she demands sustenance from his estate</div><div class="process-arrow">↓</div><div class="process-step highlight">📜 Both sides agree: the court <b>does</b> give her sustenance</div><div class="process-arrow">↓</div><div class="process-step">🤚 Ḥanan says: She takes an oath only <b>at the end</b> (when husband returns), not at the outset</div><div class="process-arrow">↓</div><div class="process-step">🏛️ Sons of High Priests say: She takes an oath <b>both at the outset and at the end</b></div><div class="process-arrow">↓</div><div class="process-step highlight">⚖️ Shmuel reinterprets: This mishna discusses only where they <b>heard he died</b></div></div><div class="callout" style="margin-top:20px"><strong>Note</strong> The fact that the mishna's dispute is <b>limited to the oath</b> is the strongest textual argument against Shmuel — sustenance itself appears undisputed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 107 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;">Husband goes overseas<br>Wife demands sustenance</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1a1a; color:#fff; padding:12px; border-radius:8px;">First <b>3 months</b>: All agree —<br>court does NOT intervene</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px;"><b>Heard he died</b>:<br>All agree — court sustains her</div></div><div class="flow-col"><div class="flow-box" style="background:#3e2c1a; color:#fff; padding:12px; border-radius:8px;"><b>Status unknown</b>:<br>Rav: Court apportions<br>Shmuel: Court does not</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; color:#fff; padding:12px; border-radius:8px;">Shmuel's reasoning:<br>💰 Bundle of money (Rav Zevid)<br>🔨 Earnings waiver (Rav Pappa)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1a3e; color:#fff; padding:12px; border-radius:8px;">No resolution reached —<br>historical authorities ruled <b>both ways</b></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 107a-107b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 107a-107b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../106/">← Daf 106</a><a href="../108/">Daf 108 →</a></div>
+</body>
+</html>

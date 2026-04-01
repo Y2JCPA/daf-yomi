@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 54 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👩‍👧</div>
+  <h1>Ketubot 54</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות נד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👩‍👧 Daughter's Sustenance — Unresolved dilemmas about daughters of irregular marriages<br>
+    🏠 Widow's Residence — 'In my house, not in my hovel'<br>
+    💔 Losing Sustenance — When a widow forfeits her right to support<br>
+    🌾 Land for Sustenance — R' Yochanan vs. Reish Lakish on designating property<br>
+    📜 Adding to the Ketubah — Tosefet ketubah and its legal status<br>
+    ⚖️ Minimum Ketubah — R' Meir's prohibition on reducing below the minimum<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 54: Sustenance Rights & Ketubah Additions</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> Which daughters receive sustenance from their father's estate?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Daughter of Prohibited Marriage</div><div class="flow-box result-bad">Mother penalized → Is daughter also penalized? <b>Teku</b></div></div><div class="flow-col"><div class="flow-label">Daughter of Betrothed Woman</div><div class="flow-box result-bad">Mother has ketubah but wasn't yet married → <b>Teku</b></div></div><div class="flow-col"><div class="flow-label">Daughter of Raped Woman</div><div class="flow-box result-bad">Per Rabbis: fine replaces ketubah → <b>Teku</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Widow's Sustenance:</b> When does she lose her right?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Tosefet Ketubah:</b> Additions have same legal status as the ketubah itself</div></div><div class="callout" style="margin-top:20px"><strong>Daf Theme</strong> Three unresolved dilemmas (<i>teku</i>) about daughters' sustenance, followed by rules on widows' rights and the legal power of ketubah additions</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Three Unresolved Dilemmas (Teku)</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Rava's Dilemma:</b> Daughter of a woman who violated a prohibition — mother lost her ketubah</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Penalize Daughter Too?</div><div class="flow-box result-bad">Sustenance flows from mother's ketubah → no ketubah, no sustenance</div></div><div class="flow-col"><div class="flow-label">Don't Penalize?</div><div class="flow-box result-good">Daughter didn't violate anything — why should she suffer?</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>Teku</b> — Unresolved</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>Same result</b> for daughter of betrothed woman and daughter of raped woman (per Rabbis)</div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> All three dilemmas ask: Can a daughter's sustenance rights exist independently of her mother's ketubah status?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Daughter of a Raped Woman</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Pappa</div><div class="speech">A man raped a woman, married her, had a daughter, and died. Does the daughter receive sustenance from his estate?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yosei b"R Yehuda</div><div class="speech">No dilemma here — a raped woman has a ketubah of <b>100 dinars</b>, so the daughter receives sustenance</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rabbis</div><div class="speech">The <b>fine</b> (kenas) replaces the ketubah — she has no separate ketubah</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Pappa</div><div class="speech">But the <i>reason</i> for ketubah — so he won't easily divorce her — doesn't apply here, since he <b>can never divorce her</b>! Perhaps the stipulations still apply?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech"><b>Teku</b> — the dilemma stands unresolved</div></div></div><div class="callout" style="margin-top:20px"><strong>Devarim 22:29</strong> "He may not send her away all his days" — a rapist can never divorce his victim, removing the primary purpose of the ketubah</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Widow's Right to Residence & Sustenance</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Rav Yosef</h3><ul><li>"In my house" — not in my hovel (bikati)</li><li>If no room in husband's house, heirs need not house her</li><li>But she STILL receives sustenance from the estate</li></ul></div><div class="compare-box" style="border-top-color:#3e1a1a"><h3 style="color:#e74c3c">Mar bar Rav Ashi</h3><ul><li>She does NOT even receive sustenance</li><li>Sustenance is tied to living in the husband's house</li><li>If she resides elsewhere, she gets nothing</li><li>⚠️ Halakha is NOT like Mar bar Rav Ashi</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Halakha</strong> The Gemara explicitly rejects Mar bar Rav Ashi — a widow retains sustenance even if she cannot live in the husband's house</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>When Does a Widow Lose Sustenance?</h2>
+  
+  <table><tr><th>Authority</th><th>She Loses Sustenance When...</th></tr><tr><td><b>Shmuel</b></td><td>She agrees to a marriage proposal</td></tr><tr><td><b>Rav Anan</b> (clarifying Shmuel)</td><td>She refuses suitors because they are <i>unsuitable for her</i> (showing willingness to remarry in principle)</td></tr><tr><td><b>Rav Anan</b> (exception)</td><td>She refuses saying "I still feel connected to my late husband" → she <b>keeps</b> sustenance</td></tr><tr><td><b>Rav Ḥisda</b></td><td>She engages in licentious sexual relations</td></tr><tr><td><b>Rav Yosef</b></td><td>She paints her eyes and dyes her hair (to attract men)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Kal Va'chomer</strong> According to Rav Ḥisda: if relations forfeit sustenance, then cosmetic adornment certainly does. But according to Rav Yosef: only adornment forfeits, while relations alone do not — she may have acted impulsively without intent to remarry.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Designating Land for a Widow's Sustenance</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yochanan</div><div class="speech">Tell your father to set aside land <b>for her sustenance</b> — if she accepts, she relinquishes claim to the rest of the estate</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Reish Lakish</div><div class="speech">All the more so — he has <b>increased</b> her sources of sustenance! She gets estate support AND the land</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yochanan</div><div class="speech">What can I do? A man <b>equal to me</b> disagrees with me</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Abbahu</div><div class="speech">R' Yochanan explained: it depends on his <b>language</b>. 'For her sustenance' = adds a source. 'As her sustenance' = replaces other sources</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The key distinction: <b>"for" (le-)</b> sustenance adds to existing support, while <b>"as" (be-)"</b> sustenance replaces it entirely</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 54 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Three Teku Dilemmas</b><br>Daughter of: prohibited marriage, betrothed woman, raped woman — all unresolved</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 10px;"><b>Widow's Sustenance</b><br>"In my house, not my hovel" — residence right can be lost, but sustenance generally continues</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border-left: 3px solid #e74c3c; padding: 10px;"><b>Loses Sustenance</b><br>Agrees to remarry, adorns herself, or acts licentiously (dispute)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 10px;"><b>Keeps Sustenance</b><br>Refuses suitors out of loyalty to deceased husband</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3e; border-left: 3px solid #9b59b6; padding: 10px;"><b>Tosefet Ketubah = Ketubah</b><br>Additions carry full legal weight: sale, waiver, moredet deductions, oath requirements</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 54a-54b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 54a-54b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../53/">← Daf 53</a><a href="../55/">Daf 55 →</a></div>
+</body>
+</html>

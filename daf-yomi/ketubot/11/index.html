@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 11 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👶</div>
+  <h1>Ketubot 11</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות יא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Conversion of Minors — Rav Huna's rule on immersion with court consent<br>
+    ⚖️ Privilege vs. Harm — Is conversion beneficial for a minor?<br>
+    🔄 Right to Protest — Can minor converts annul conversion at majority?<br>
+    💰 Ketubah Amounts — 200 vs. 100 dinars based on virginal status<br>
+    🧒 Age Thresholds — Significance of three years and one day<br>
+    📖 Mukat Etz — Status of a woman whose hymen was ruptured by wood<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 11 — Conversion of Minors & Status Presumptions</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Mishna:</b> Convert, captive, or freed maidservant <b>under 3 years + 1 day</b> → ketubah = <b>200 dinars</b> (virgin status)</div><div class="flow-arrow">↓</div><div class="flow-box question">Can a <b>minor</b> be converted by the court?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Huna</div><div class="flow-box result-good">Yes — immerse with <b>court consent</b>; conversion is a <em>privilege</em> for a minor</div></div><div class="flow-col"><div class="flow-label">Challenge</div><div class="flow-box result-bad">Perhaps licentiousness is <em>preferable</em> for a gentile, making conversion a <b>disadvantage</b>?</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Rav Huna answers: That concern applies only to an <b>adult</b> who has tasted prohibition. A <b>minor</b> has not — conversion is a privilege.</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Rav Yosef:</b> Minor converts may <b>protest</b> at majority and annul conversion</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Once she reaches majority <b>even one moment</b> without protest → can <b>no longer</b> protest</div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> The court may act in a minor's interest (<b>זכין לאדם שלא בפניו</b>), and conversion is deemed beneficial for a child who has not yet experienced forbidden conduct.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Mishna: Ketubah Based on Status & Age</h2>
+  
+  <table><tr><th>Category</th><th>Under 3 Years + 1 Day</th><th>Over 3 Years + 1 Day</th></tr><tr><td>Female Convert (גיורת)</td><td>200 dinars (virgin)</td><td>100 dinars (non-virgin)</td></tr><tr><td>Captive Woman (שבויה)</td><td>200 dinars (virgin)</td><td>100 dinars (non-virgin)</td></tr><tr><td>Freed Maidservant (משוחררת)</td><td>200 dinars (virgin)</td><td>100 dinars (non-virgin)</td></tr><tr><td>Virginity Claim</td><td>Subject to claim ✓</td><td>Not subject to claim ✗</td></tr><tr><td>Rationale</td><td>Hymen regenerates below this age</td><td>Physical signs of intercourse remain</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Age</strong> Three years and one day (<b>פחותה מבת שלש שנים ויום אחד</b>) is the threshold: below this age, intercourse leaves no lasting physical trace and the hymen is restored.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Can a Minor Be Converted by the Court?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">A <b>minor convert</b> is immersed in a mikveh <b>על דעת בית דין</b> — with the consent of the court.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">What is Rav Huna teaching? We already know <b>זכין לאדם שלא בפניו</b> — one may act in a person's <em>interest</em> without their knowledge!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">You might think a gentile <em>prefers</em> licentiousness, so conversion is <b>against</b> his interests — like a Canaanite slave.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">That only applies to an <b>adult</b> who has tasted prohibition. A <b>minor</b> has not — for him, conversion is a <em>privilege</em> (זכות).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Our Mishna supports this — it discusses converts under age 3, implying their conversion is valid!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Rejected: The Mishna may refer to children who converted <b>with their father</b> — they are content with his decision.</div></div></div><div class="callout" style="margin-top:20px"><strong>Distinction</strong> An <b>adult</b> slave/gentile may prefer the freedom of fewer obligations. A <b>minor</b> has no such experience, so conversion is presumed beneficial.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rav Yosef: Right of Protest at Majority</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Rav Yosef:</b> Minor converts, upon reaching majority, <b>can protest</b> and annul their conversion</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Abaye objects:</b> If she can annul, why does she receive a <b>ketubah of 200 dinars</b>? She might revert to gentile status!</div><div class="flow-arrow">↓</div><div class="flow-box result-good">She receives the ketubah only <b>after reaching majority without protesting</b></div><div class="flow-arrow">↓</div><div class="flow-box question">But even at majority — might she <b>still</b> protest later?</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Once she reaches majority <b>even one moment</b> without protesting → she can <b>never</b> protest again</div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The window to protest is <b>instantaneous</b>: the very first moment of majority. Silence = permanent acceptance of conversion.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Abaye vs. Rava: Why Different Objections?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Abaye's Objection</h3><ul><li>Objects from <b>ketubah</b> (200 dinars)</li><li>Cannot use Rava's source (fine for rape)</li><li>Reason: Fine exists so the <b>sinner won't profit</b> — it would be imposed regardless of conversion status</li><li>Ketubah is a better proof because it's a benefit <em>for her</em></li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Rava's Objection</h3><ul><li>Objects from the <b>fine</b> (for rape of a convert)</li><li>Cannot use Abaye's source (ketubah)</li><li>Reason: Ketubah exists <b>so she won't be trivial in his eyes</b> — it protects the marriage, not just her</li><li>Fine is a better proof because it's a pure <em>monetary benefit</em> to her</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Both Agree</strong> Both Abaye and Rava accept Rav Yosef's resolution: she collects only <b>after reaching majority without protest</b>, and silence for even one moment = permanent acceptance.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Amud B: Minor Boy's Intercourse — Rav vs. Shmuel</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">A <b>minor boy</b> who has intercourse with an adult woman renders her like <b>mukat etz</b> (hymen ruptured by wood) — it is not full intercourse.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">A woman does <b>not</b> become mukat etz through <b>flesh</b>. Intercourse by a minor is still intercourse by flesh, not wood.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava (interpreting Mishna)</div><div class="speech">Adult man + girl <b>under 3</b> = like poking a finger in an eye — a tear falls, another replaces it. The hymen <b>regenerates</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Minor boy + adult woman = renders her as <b>mukat etz</b>. The dispute between R' Meir and the Rabbis is about <em>actual</em> mukat etz only.</div></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Reading</strong> The Mishna lists three cases: (1) adult + girl under 3 → no effect; (2) minor boy + woman → mukat etz; (3) actual mukat etz → disputed between R' Meir (200) and Rabbis (100).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 11 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Mishna:</b> Convert/captive/maidservant<br>under 3 + 1 day → ketubah = <b>200 dinars</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 8px;"><b>Rav Huna:</b> Court may immerse a minor convert —<br>conversion is a <em>privilege</em> for one who hasn't tasted sin</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a1a1a; border-left: 3px solid #e74c3c; padding: 8px;"><b>Rav Yosef:</b> Minor can <b>protest</b> at majority</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border: 1px solid #4caf50; padding: 8px;">🔇 <b>Silent</b> even one moment at majority → conversion is <b>permanent</b>; collects ketubah/fine</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border: 1px solid #e74c3c; padding: 8px;">📢 <b>Protests</b> immediately at majority → conversion is <b>annulled</b>; no collection</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left: 3px solid #9b59b6; padding: 8px;"><b>Amud B:</b> Mukat etz dispute — R' Meir: 200 (like bogeret);<br>Rabbis: 100 (like be'ulah) or nothing if husband unaware</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 11a-11b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 11a-11b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../10/">← Daf 10</a><a href="../12/">Daf 12 →</a></div>
+</body>
+</html>

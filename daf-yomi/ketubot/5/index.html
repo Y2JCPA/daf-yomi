@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 5 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🕊️</div>
+  <h1>Ketubot 5</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות ה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🗓️ Sunday Weddings — Why marriage is prohibited at the conclusion of Shabbat<br>
+    🐔 Slaughtering Decree — Concern one might slaughter a fowl on Shabbat for the feast<br>
+    🐟 Blessings of Creation — Timing intercourse to the blessings of the fifth and sixth days<br>
+    👰 Sages' Assiduousness — Ensuring a widow's well-being with three days of rejoicing<br>
+    👂 Guarding the Ears — Fingers as pegs and the soft earlobe to block improper speech<br>
+    🩸 First Intercourse on Shabbat — Is the blood pooled or from a wound?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 5: From Wedding Timing to Shabbat Prohibitions</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Why can't a virgin marry on Sunday?</b><br>(Conclusion of Shabbat)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rejected: Calculations</div><div class="flow-box result-bad">Calculations for a <b>mitzvah</b> are permitted on Shabbat</div></div><div class="flow-col"><div class="flow-label">Accepted: R' Zeira</div><div class="flow-box result-good">Decree lest one <b>slaughter a fowl</b> on Shabbat for the feast</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>When does a virgin have intercourse?</b><br>Wednesday or Thursday?</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Bar Kappara:</b> Thursday — aligning with the <b>blessing to the fish</b> on Day 5</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>New dilemma:</b> May one have first intercourse with a virgin on <b>Shabbat</b>?</div></div><div class="callout" style="margin-top:20px"><strong>THEME</strong> This daf weaves together wedding logistics, Shabbat prohibitions, and creation blessings to determine ideal timing for marriage and intimacy.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Not Marry on Sunday Night?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Zeira</div><div class="speech">A virgin cannot marry at the conclusion of Shabbat because one might <b>slaughter a young fowl</b> on Shabbat for the wedding feast.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">If so, <b>Yom Kippur on Monday</b> should also be moved — one might slaughter on Shabbat for the Yom Kippur eve meal!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Preparing a meal <b>for oneself</b> (Yom Kippur eve) — one is not preoccupied and won't forget it's Shabbat.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Preparing a meal <b>for others</b> (wedding feast) — one is preoccupied and may violate Shabbat.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Alternatively: For Yom Kippur eve there is <b>time the next day</b> to slaughter. For a wedding feast at night, there is <b>no interval</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY DISTINCTION</strong> Preoccupation (<i>tarud</i>) and lack of available time together explain why the decree applies only to weddings, not to Yom Kippur eve.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Mitzva Calculations Permitted on Shabbat</h2>
+  
+  <table><tr><th>Authority</th><th>Ruling</th></tr><tr><td><b>Rav Ḥisda & Rav Hamnuna</b></td><td>Calculations for a <b>mitzvah</b> may be reckoned on Shabbat</td></tr><tr><td><b>R' Elazar</b></td><td>One may <b>allocate charity</b> to the poor on Shabbat</td></tr><tr><td><b>R' Yaakov / R' Yoḥanan</b></td><td>One may go to synagogues to <b>supervise public matters</b> on Shabbat</td></tr><tr><td><b>R' Yaakov bar Idi / R' Yoḥanan</b></td><td>One may supervise <b>matters of saving life</b> (<i>pikuaḥ nefesh</i>) on Shabbat</td></tr><tr><td><b>R' Shmuel bar Naḥmani</b></td><td>One may go to theaters/circuses to <b>supervise public welfare</b></td></tr><tr><td><b>School of Menashya</b></td><td>One may arrange <b>matches</b> (<i>shiddukhin</i>) and <b>Torah study</b> for children on Shabbat</td></tr></table><div class="callout" style="margin-top:20px"><strong>CONCLUSION</strong> Since mitzva calculations are permitted, the prohibition of Sunday weddings cannot be based on Shabbat calculations — leading to R' Zeira's slaughtering decree.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Virgin vs. Widow: Wedding & Intercourse Timing</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Virgin (Betulah)</h3><ul><li>Married on <b>Wednesday</b></li><li>Intercourse on <b>Thursday</b> (Day 5)</li><li>Aligned with the <b>blessing to the fish</b>: "Be fruitful and multiply"</li><li>Bar Kappara's teaching based on <b>Creation</b></li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Widow (Almanah)</h3><ul><li>Married on <b>Thursday</b></li><li>Intercourse on <b>Friday</b> (Day 6)</li><li>Aligned with the <b>blessing to man</b> on the sixth day of Creation</li><li>Also ensures <b>three days of rejoicing</b>: Thu, Fri, Shabbat</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>BAR KAPPARA</strong> The blessings of Creation determine the ideal timing — the fish were blessed on Day 5, mankind on Day 6.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>The Sages' Assiduousness for a Widow's Welfare</h2>
+  
+  <div class="process-bar"><div class="process-step">📅 <b>Thursday:</b> The widow is married — celebration begins</div><div class="process-arrow">↓</div><div class="process-step highlight">💑 <b>Friday:</b> Intercourse takes place — intimacy and connection</div><div class="process-arrow">↓</div><div class="process-step">🕯️ <b>Shabbat:</b> The couple rejoices together — a full day of rest</div><div class="process-arrow">↓</div><div class="process-step highlight">⚠️ <b>Why not Thursday night?</b> The groom would go to work Friday morning and leave her alone</div><div class="process-arrow">↓</div><div class="process-step">💡 <b>Result:</b> Three consecutive days of togetherness ensured</div></div><div class="callout" style="margin-top:20px"><strong>PRACTICAL DIFFERENCES</strong> For an <b>idle person</b> (no job) or when a <b>Festival falls on Friday</b>, the assiduousness reason doesn't apply — but the <i>blessing</i> reason still does.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Fingers and the Ears</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מפני מה אצבעותיו של אדם דומות ליתדות</div><div class="callout"><strong>AGGADAH</strong> <b>R' Elazar:</b> Why are fingers pointed like <b>pegs</b>? So that if one hears an inappropriate matter, one can place them in the ears to block it.<br><br><b>School of R' Yishmael:</b> Why is the ear hard but the <b>earlobe soft</b>? So one can fold it over to seal the ear from improper speech.<br><br><b>Each finger has a sacred function:</b><br>• <b>Pinky</b> — measuring a <i>zeret</i> (span) for the priestly breastplate<br>• <b>Ring finger</b> — taking a fistful (<i>kemitzah</i>) of the meal-offering<br>• <b>Middle finger</b> — measuring an <i>amah</i> (cubit)<br>• <b>Index finger</b> — sprinkling sacrificial blood<br>• <b>Thumb</b> — purification ritual of the <i>metzora</i> (leper)</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 5 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Why not marry Sunday?</b><br>Lest one slaughter on Shabbat for the feast</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 8px;"><b>Virgin: Wed → Thu</b><br>Blessing of fish (Day 5)<br><b>Widow: Thu → Fri</b><br>Blessing of man (Day 6)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; border-left: 3px solid #9b59b6; padding: 8px;"><b>Sages' care:</b> Widow gets 3 days of rejoicing<br>(Thu, Fri, Shabbat)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a2e1a; border-left: 3px solid #e67e22; padding: 8px;"><b>Guard your ears</b><br>Fingers = pegs<br>Earlobe = soft seal</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2e3a; border-left: 3px solid #e74c3c; padding: 8px;"><b>First intercourse on Shabbat?</b><br>Pooled vs. wound blood<br>Unresolved series of dilemmas</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 5a-5b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 5a-5b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../4/">← Daf 4</a><a href="../6/">Daf 6 →</a></div>
+</body>
+</html>

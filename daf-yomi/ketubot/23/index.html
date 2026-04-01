@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 23 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔍</div>
+  <h1>Ketubot 23</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות כג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Betrothal vs. Divorce Testimony — Why contradictory witnesses yield different results<br>
+    🏠 Private Ceremonies — Betrothal and divorce can happen without neighbors knowing<br>
+    👩 Rav Hamnuna's Presumption — A woman is not insolent in her husband's presence<br>
+    🔗 Captive Women's Testimony — Two captives testifying about each other's purity<br>
+    🪞 Self-Incrimination Logic — When admitting taint is believed vs. claiming purity<br>
+    👁️ 'We Did Not See' — Why negative testimony carries no evidentiary weight<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 23: Conflicting Testimony & Captive Women</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> When witnesses conflict about a woman's status, what determines if she must leave her husband?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Amud A</div><div class="flow-box action">Resolving contradictions between <b>betrothal</b> and <b>divorce</b> testimony clauses</div></div><div class="flow-col"><div class="flow-label">Amud B</div><div class="flow-box action">Two <b>captive women</b> testifying about each other's purity — when is each believed?</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> The Gemara explores how <b>credibility, presumptive status</b>, and <b>self-interest</b> interact when testimony conflicts.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Different Rulings for Betrothal vs. Divorce?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">In the <b>betrothal clause</b>, if she married another she <b>need not leave</b>. In the <b>divorce clause</b>, she <b>must leave</b>. Why the difference?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Abaye</div><div class="speech">Each testimony is from <b>one witness</b>. For betrothal — both agree she was <b>unmarried</b>. The one saying 'betrothed' is a single witness against two, so she may stay.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Abaye</div><div class="speech">For divorce — both agree she was <b>married</b>. The one saying 'divorced' is a single witness, so she remains presumed married and <b>must leave</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Ashi</div><div class="speech">Actually there are <b>two witnesses</b> on each side. <b>Reverse</b> the rulings: betrothal — must leave; divorce — need not leave.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> <b>עד אחד בדבר ערוה</b> — One witness has no standing in matters of marital status where two witnesses exist.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rav Ashi: 'We Did Not See' Is Not Proof</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Two witnesses: <b>'We saw her betrothed'</b><br>Two witnesses: <b>'We did NOT see her betrothed'</b></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Negative testimony</b> ('we didn't see') has no evidentiary value — <i>לא ראינו אינה ראיה</i></div><div class="flow-arrow">↓</div><div class="flow-box question">But what if they all live in <b>one courtyard</b>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Betrothal</div><div class="flow-box result-bad">People are prone to <b>betroth in private</b> — neighbors may not know</div></div><div class="flow-col"><div class="flow-label">Divorce</div><div class="flow-box result-bad">People also <b>divorce in private</b> — despite the assumption that marital strife is public</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Chiddush</strong> Both <b>betrothal (קידושין)</b> and <b>divorce (גירושין)</b> can be performed privately, even among neighbors.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Oshaya vs. Rabba bar Avin: 'Need Not Leave'</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">R' Oshaya</h3><ul><li>Teaches 'need not leave' regarding the <b>first clause</b> — the divorcée</li><li>Holds Rav Hamnuna's presumption: a woman is <b>not insolent</b> before her husband</li><li>All the more so applies to the captive woman (Sages were lenient)</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Rabba bar Avin</h3><ul><li>Teaches 'need not leave' only regarding the <b>latter clause</b> — the captive woman</li><li>Captive status involves mere <b>suspicion/uncertainty</b>, so Sages are lenient</li><li>Does NOT extend leniency to the divorcée claim</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Underlying Dispute</strong> Do they disagree about <b>Rav Hamnuna's presumption</b> (חזקת רב המנונא) — that a woman would not be so brazen as to lie in her husband's presence?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Mishna & Tosefta: Captive Woman's Self-Testimony</h2>
+  
+  <table><tr><th>She Claims</th><th>About Herself</th><th>About Her Counterpart</th></tr><tr><td>'I am tainted, she is pure'</td><td>✅ Believed (self-incrimination)</td><td>✅ Believed</td></tr><tr><td>'I am pure, she is tainted'</td><td>❌ Not believed</td><td>❌ Not believed</td></tr><tr><td>'We are both tainted'</td><td>✅ Believed (self-incrimination)</td><td>❌ Not believed</td></tr><tr><td>'We are both pure'</td><td>❌ Not believed about self</td><td>✅ Believed about counterpart</td></tr></table><div class="callout" style="margin-top:20px"><strong>Mishna Rule</strong> Each captive woman <b>cannot testify for herself</b> (when witnesses establish captivity), but <b>can testify for the other</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Are All Cases With or Without Witnesses?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The Tosefta's four cases seem inconsistent — some require witnesses of captivity to exist, others require no witnesses. How?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Abaye</div><div class="speech">The <b>first and last</b> clauses deal with cases where <b>witnesses exist</b>. The <b>middle clause</b> deals with <b>no witnesses</b> (so 'the mouth that prohibited is the mouth that permitted' applies).</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Pappa</div><div class="speech">All cases have <b>witnesses of captivity</b>, plus <b>one witness</b> who contradicts her claim. Her self-incrimination always works; her counterpart is freed by whichever source — her testimony or the witness.</div></div></div><div class="callout" style="margin-top:20px"><strong>Abaye vs. Rav Pappa</strong> Abaye reads the Tosefta as <b>mixed scenarios</b>; Rav Pappa creates a <b>unified framework</b> using a contradicting single witness.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 23 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Conflicting Testimony</b><br>About betrothal, divorce, or captive status</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 10px;"><b>Abaye:</b> One witness each — follow the <b>presumptive status</b> (unmarried vs. married)</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; padding: 10px;"><b>Rav Ashi:</b> Two vs. two — 'we did not see' is <b>no proof</b>, even among neighbors</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2e1a; border-left: 3px solid #e67e22; padding: 10px;"><b>Captive Women:</b> Cannot testify for themselves, but <b>can testify for each other</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 10px;"><b>Self-incrimination</b> → Always believed</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; padding: 10px;"><b>Self-permission</b> → Not believed when witnesses exist</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 23a-23b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 23a-23b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../22/">← Daf 22</a><a href="../24/">Daf 24 →</a></div>
+</body>
+</html>

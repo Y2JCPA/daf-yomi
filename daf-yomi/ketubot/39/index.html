@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 39 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Ketubot 39</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות לט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👶 Minor & Conception — Can a minor girl conceive, and the three women permitted contraceptive<br>
+    ⚰️ Grown-Woman Status in the Grave — Does death effect bodily maturation (bagrot)<br>
+    💍 Betrothal After Rape — Does subsequent betrothal change who receives the fine<br>
+    📜 Mishna: Rapist vs. Seducer — The four vs. three payments and their differences<br>
+    🩸 Pain Payment — What constitutes the pain unique to rape<br>
+    🚫 Preventing the Marriage — Father's and daughter's right to refuse<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 39 — Rapist vs. Seducer: Payments & Obligations</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Rapist (אונס)</h3><ul><li>Pays <b>four</b> things: humiliation, degradation, fine, and <b>pain</b></li><li>Pays <b>immediately</b></li><li>Must marry her — even if lame, blind, or afflicted with boils</li><li>Cannot divorce her (by Torah law)</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Seducer (מפתה)</h3><ul><li>Pays <b>three</b> things: humiliation, degradation, and fine</li><li>No payment for pain — she consented</li><li>Pays only <b>when he opts not to marry</b> her</li><li>May choose not to marry her</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>MISHNA</strong> The rapist 'drinks from his vessel' — he must marry the woman he violated and may never divorce her, unless she is unfit or committed adultery.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Can a Minor Conceive?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">My dilemma about a rape victim dying assumes she can conceive before becoming a grown woman (<b>bogeret</b>).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Beivai</div><div class="speech">Three women may use a <b>mokh</b> (contraceptive): a minor (lest she conceive and <b>die</b>), a pregnant woman, and a nursing woman.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Meir</div><div class="speech">A minor who may use contraceptive is <b>11 years + 1 day to 12 years + 1 day</b>. Outside that range — normal relations.</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Rabbis</div><div class="speech">In <b>all</b> these cases she may have normal relations — <b>'שׁוֹמֵר פְּתָאיִם ה׳'</b> — God preserves the simple (Psalms 116:6).</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">So a minor <b>cannot</b> conceive. And Shmuel says there are <b>exactly</b> six months between na'arah and bogeret — too short for pregnancy and birth.</div></div></div><div class="callout" style="margin-top:20px"><strong>RESOLUTION</strong> Rava's dilemma is reframed: not about inheritance, but whether there is <b>achievement of grown-woman status in the grave</b> — causing the father's right to lapse.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Does Death Effect Bogeret Status?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A na'arah (young woman) is raped, then <b>dies</b> before becoming a bogeret</div><div class="flow-arrow">↓</div><div class="flow-box question">Does the passage of time in the grave produce <b>bogeret</b> status?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Bogeret in Grave</div><div class="flow-box result-bad">Father's right to the fine <b>lapses</b>. No claimant exists → rapist <b>does not pay</b>.</div></div><div class="flow-col"><div class="flow-label">No — No Bogeret in Grave</div><div class="flow-box result-good">Father's right <b>did not lapse</b>. The fine passes to his <b>heirs</b>.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>TEIKU</strong> Mar bar Rav Ashi rephrased: Does <b>death effect bogeret status</b>? The dilemma stands <b>unresolved</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Raped Then Betrothed — Who Gets the Fine?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">If he raped a na'arah and she was later <b>betrothed</b> to someone else — what happens to the fine?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">The verse says <b>'who was not betrothed'</b> (Deut. 22:28) — referring to the <b>time of the rape</b>, not the time of payment. Fine goes to the father.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">But a baraita says if she later <b>married</b>, the fine goes to <b>her</b> — even though the verse doesn't say 'not married'!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">Marriage, like bogeret, <b>removes her from her father's authority</b>. But betrothal does <b>not</b> — her father and husband <b>jointly</b> annul her vows (Nedarim 66b).</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY DISTINCTION</strong> Betrothal ≠ full removal from father's authority. Therefore the halakha of marriage cannot be derived for betrothal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Mishna: Rapist vs. Seducer — Full Comparison</h2>
+  
+  <table><tr><th>Dimension</th><th>Rapist (אונס)</th><th>Seducer (מפתה)</th></tr><tr><td>Payments</td><td>4: Humiliation, Degradation, Fine, <b>Pain</b></td><td>3: Humiliation, Degradation, Fine</td></tr><tr><td>Timing of Payment</td><td><b>Immediately</b></td><td>When he opts <b>not to marry</b> her</td></tr><tr><td>Marriage Obligation</td><td>Must marry — <b>cannot divorce</b></td><td>May choose to <b>release</b> her</td></tr><tr><td>Whom He Must Marry</td><td>Even if lame, blind, or afflicted with boils</td><td>Same, but he can refuse</td></tr><tr><td>Exception</td><td>If she is unfit (mamzeret) or committed adultery</td><td>Same exceptions apply</td></tr></table><div class="callout" style="margin-top:20px"><strong>METAPHOR</strong> The rapist <b>'drinks from his vessel' (עציצו)</b> — he must keep what he damaged. The seducer has a choice.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>What Is the 'Pain' Payment?</h2>
+  
+  <div class="process-bar"><div class="process-step">❌ R' Shimon ben Yehuda first suggests: pain of future pregnancy — but she'd have pain with her husband too!</div><div class="process-arrow">↓</div><div class="process-step highlight">💡 Response: Forced intercourse is <b>not comparable</b> to willing intercourse</div><div class="process-arrow">↓</div><div class="process-step highlight">🦵 Rav Naḥman / Rabba bar Avuh: Pain of <b>spreading her legs</b> — as in Ezekiel 16:25</div><div class="process-arrow">↓</div><div class="process-step">❓ But a seduced woman also spreads her legs! Answer: She consented — like saying 'tear my silk and be exempt'</div><div class="process-arrow">↓</div><div class="process-step">🗣️ 'Clever women' say: a willing woman has <b>negligible pain</b> — like hot water on a bald head (Abaye's foster mother)</div><div class="process-arrow">↓</div><div class="process-step highlight">🔪 Rava's wife (Rav Ḥisda's daughter): Like the stab of a <b>bloodletting knife</b></div><div class="process-arrow">↓</div><div class="process-step">🍞 Rav Pappa's wife: Like hard <b>bread on the gums</b> — uncomfortable but bearable</div></div><div class="callout" style="margin-top:20px"><strong>CONCLUSION</strong> First intercourse causes some pain, but when <b>willing</b>, it is minor and waived by consent. The rapist must pay because the victim <b>did not</b> consent to that pain.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 39 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 4px solid #4a90d9;"><b>Rape or Seduction of a Na'arah</b><br/>Torah imposes financial penalties and marriage obligations</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3b1a1a; border-left: 4px solid #e74c3c;"><b>Rapist</b>: 4 payments (including pain), pays immediately, must marry and never divorce</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 4px solid #4caf50;"><b>Seducer</b>: 3 payments (no pain — she consented), pays only if he refuses to marry</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left: 4px solid #9b59b6;"><b>Both Father & Daughter Can Refuse</b><br/>Abaye: logic — sinner shouldn't profit<br/>Rava: kal va-ḥomer from the seducer</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2a1a; border-left: 4px solid #e67e22;"><b>Unresolved: Bogeret in the Grave</b><br/>Does death effect grown-woman status? — <b>Teiku</b></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 39a-39b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 39a-39b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../38/">← Daf 38</a><a href="../40/">Daf 40 →</a></div>
+</body>
+</html>

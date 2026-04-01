@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 64 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Ketubot 64</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות סד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Moredet — Concluding rules for the rebellious wife: seizure, divorce delay, and sustenance<br>
+    📜 Iggeret Mered — When courts write a letter of rebellion for betrothed vs. yevama<br>
+    👫 Chalitza vs. Yibum — Different rebellion rules depending on the yavam's request<br>
+    🍞 Mezonot — Mishna detailing minimum weekly provisions a husband must provide<br>
+    👗 Kesut — Clothing, shoes, and seasonal garment requirements<br>
+    🧵 Ma'aseh Yadeha — The wife's required earnings in spinning wool<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 64: From Rebellion to Obligations</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Moredet</b> — Rebellious wife final rulings</div><div class="flow-arrow">↓</div><div class="flow-box question">Does the court write an <b>iggeret mered</b> (letter of rebellion)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Betrothed wife</div><div class="flow-box result-good">✅ Court writes letter of rebellion</div></div><div class="flow-col"><div class="flow-label">Yevama</div><div class="flow-box action">Depends on chalitza vs. yibum request</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Mishna:</b> Husband's obligations when feeding wife through a trustee</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Minimum provisions: wheat, legumes, oil, figs, clothing, silver ma'a</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf transitions from the laws of rebellion to the detailed obligations a husband owes his wife — establishing the <b>minimum standard of support</b> in Jewish marriage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Moredet: Seizure & Divorce Delay</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Rava's dilemma about the moredet's worn clothes was <b>never resolved</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Did the moredet <b>seize</b> her possessions?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">She seized</div><div class="flow-box result-good">We do <b>not</b> take it away from her</div></div><div class="flow-col"><div class="flow-label">She did not seize</div><div class="flow-box result-bad">We do <b>not</b> give it to her</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Court delays her <b>get</b> for <b>12 months</b> — no sustenance during this period</div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> When the halacha is unresolved, the rule of <b>seizure</b> (תפיסה) determines the outcome — possession creates presumptive right.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Iggeret Mered: Betrothed vs. Yevama</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">The court writes an <b>iggeret mered</b> (letter of rebellion) for a <b>betrothed woman</b> who rebels.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">But the court does <b>not</b> write one for a <b>yevama</b> (widow awaiting yavam).</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Baraita</div><div class="speech"><b>Objection!</b> The baraita says it applies equally — betrothed, married, menstruating, ill, <b>or yevama</b>!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">The baraita refers to where <b>he</b> asked to marry and <b>she</b> refuses. Shmuel refers to where <b>she</b> asked and <b>he</b> refuses.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> R' Tachalifa bar Avimi in Shmuel's name: If <b>he</b> asks and she rebels — the court responds. If <b>she</b> asks and he refuses — the court does not add to her ketubah.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Chalitza vs. Yibum: When Does the Court Act?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a5276"><h3 style="color:#4a90d9">Yavam Requests Chalitza</h3><ul><li>She refuses chalitza → court WRITES iggeret mered against her</li><li>His valid claim: 'She is attached to me — no one else will marry me'</li><li>R' Yochanan: Court responds to his request</li></ul></div><div class="compare-box" style="border-top-color:#4a1a2e"><h3 style="color:#e74c3c">Yavam Requests Yibum</h3><ul><li>She refuses yibum → court does NOT write iggeret mered</li><li>Court tells him: 'Go marry another woman'</li><li>Shmuel: Court does not compel her in this case</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> With chalitza refusal, the yavam is truly stuck — potential wives fear the unresolved levirate bond. With yibum refusal, he can simply marry someone else.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Why Is a Rebellious Wife's Penalty Greater?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Chiyya bar Yosef</div><div class="speech">Why is the <b>moredet</b>'s fine greater than that of the rebellious <b>husband</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">Go learn from the marketplace — <b>who hires whose services?</b> A man suffers more from lack of intimacy.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">Additionally, his desire is <b>visible externally</b> — he suffers both pain and shame. Hers is <b>internal</b> and not obvious.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Halacha</strong> The asymmetric penalties reflect the Gemara's assessment of differential suffering — the greater the deprivation experienced, the greater the penalty for causing it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Mishna: Minimum Weekly Provisions for a Wife</h2>
+  
+  <table><tr><th>Category</th><th>Minimum Amount</th></tr><tr><td>🌾 Wheat</td><td>2 kav per week</td></tr><tr><td>🌾 Barley (R' Yishmael)</td><td>4 kav per week</td></tr><tr><td>🫘 Legumes</td><td>½ kav</td></tr><tr><td>🫒 Oil</td><td>½ log</td></tr><tr><td>🍇 Dried figs / fig cakes</td><td>1 kav / 1 maneh weight</td></tr><tr><td>🛏️ Bedding</td><td>Bed, soft mat, hard mat</td></tr><tr><td>👗 Clothing</td><td>50 dinar value per year</td></tr><tr><td>👟 Shoes</td><td>New pair each Festival</td></tr><tr><td>🪙 Spending money</td><td>Silver ma'a coin</td></tr><tr><td>🕯️ Shabbat meal</td><td>She eats with him Friday night</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' Yosei's Note</strong> Only R' Yishmael, who lived near Edom, allocated <b>barley</b> — implying that in most communities, the minimum standard was <b>wheat</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 64 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Moredet</b> — Rebellious wife:<br/>Seized property stays; 12-month divorce delay; no sustenance</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #9b59b6; padding: 10px;"><b>Iggeret Mered</b> — Letter of rebellion:<br/>Written for betrothed wife; yevama depends on chalitza vs. yibum</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top: 3px solid #4caf50; padding: 10px;"><b>His Obligations</b><br/>Wheat, legumes, oil, figs, bed, clothing (50 dinar/yr), shoes, silver ma'a, Shabbat meal</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a; border-top: 3px solid #e67e22; padding: 10px;"><b>Her Obligations</b><br/>Spinning wool: 5 sela warp weight (Judea); reduced if nursing</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 64a-64b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 64a-64b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../63/">← Daf 63</a><a href="../65/">Daf 65 →</a></div>
+</body>
+</html>

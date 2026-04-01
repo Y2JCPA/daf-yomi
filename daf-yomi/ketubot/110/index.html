@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 110 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏔️</div>
+  <h1>Ketubot 110</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות קי׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Promissory Notes vs. Bills of Sale — Admon and the Rabbis debate whether a subsequent land sale undermines a debt claim<br>
+    ⚖️ Cross-Debts & Donkey Packs — Rav Naḥman and Rav Sheshet on offsetting mutual promissory notes<br>
+    🏘️ Town vs. City — Restrictions on forcing a spouse to relocate between urban and rural settings<br>
+    🌿 Pleasant vs. Noxious Residence — Rabban Shimon ben Gamliel warns that even improvements can harm<br>
+    🏔️ Ascending to Eretz Yisrael — The universal obligation to move to the Land of Israel and Jerusalem<br>
+    💰 Ketubah Currency — Which region's currency applies when marriage and divorce occur in different lands<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 110 — Debts, Dwellings & the Land of Israel</h2>
+  
+  <div class="callout"><strong>DAF OVERVIEW</strong> <b>Amud A</b> explores two disputes between <b>Admon</b> and the <b>Rabbis</b>: whether a land sale undermines a debt claim, and whether cross-debts cancel out or must each be collected. <b>Rav Naḥman</b> and <b>Rav Sheshet</b> debate whether mutual collections are meaningful or mere 'shifting of donkey packs.' <b>Amud B</b> turns to spousal relocation rights — from town to city, from noxious to pleasant dwellings — culminating in the famous principle that <b>all may be compelled to ascend to Eretz Yisrael</b>, and no one may be forced to leave.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Debt & Land Sale: Admon vs. the Rabbis</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Admon</div><div class="speech">If I truly owed you money, you should have <b>collected your debt</b> when you sold me the field — instead of selling it!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">The lender was <b>perspicacious</b> (<i>pikei'aḥ</i>) — he sold the field specifically so he could <b>seize it back as collateral</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Where people <b>pay first, then write the deed</b> — all agree with Admon. The dispute is where the <b>deed is written first</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">If I declared my intent, <b>'your friend has a friend'</b> — word would reach the borrower and he'd refuse the sale!</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> The Rabbis hold that the lender need not publicize his strategy, since disclosure would undermine the very transaction designed to secure the debt.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Cross-Debts: Shifting Donkey Packs?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Two people each hold a <b>promissory note</b> against the other for the <b>same amount</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Naḥman</div><div class="flow-box result-good"><b>Each collects</b> from the other — land quality differs per individual (<i>beinonit</i> is relative)</div></div><div class="flow-col"><div class="flow-label">Rav Sheshet</div><div class="flow-box result-bad">Why <b>shift donkey packs</b> (<i>matrata</i>)? Let each keep what he has — it's futile.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>CORE DISPUTE</strong> Is land quality assessed <b>relative to each individual's holdings</b> (Rav Naḥman) or by a <b>universal standard</b> (Rav Sheshet)? This determines whether cross-collection produces a meaningful difference.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Land Quality & Cross-Collection</h2>
+  
+  <table><tr><th>Scenario</th><th>Rav Naḥman</th><th>Rav Sheshet</th></tr><tr><td>Both have <b>same quality</b> land</td><td>Agree: no point collecting</td><td>Agree: no point collecting</td></tr><tr><td>One has <i>beinonit</i>, other has <i>ziburit</i></td><td>Each collects — quality is <b>relative</b>, so different fields change hands</td><td>Still futile — universal standard means same field returns to owner</td></tr><tr><td>Assessment basis</td><td>Assessed per <b>individual's</b> fields</td><td>Assessed per <b>all people's</b> fields</td></tr></table><div class="callout" style="margin-top:20px"><strong>PRACTICAL DIFFERENCE</strong> When Reuven (inferior land) collects first from Shimon's intermediate land, that field becomes Reuven's <i>best</i> land — so Shimon then collects Reuven's <i>inferior</i> land. The exchange is real.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Spousal Relocation: Town vs. City</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">Town → City ✘</h3><ul><li>R' Yosei bar Ḥanina: City life is <b>difficult</b></li><li>Proof: Nehemiah 11:2 — those who volunteered to dwell in Jerusalem were <b>blessed</b></li><li>Noise, crowding, and urban stress harm quality of life</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e67e22">City → Town ✘</h3><ul><li>All goods are <b>readily available</b> in a city</li><li>A town lacks the same <b>accessibility</b></li><li>Wife can argue: living in a town is <b>inconvenient</b></li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4caf50">Noxious → Pleasant?</h3><ul><li>Generally permitted — husband can compel this move</li><li>R' Shimon b. Gamliel: Even this is <b>forbidden</b></li><li>Shmuel: Change of <i>veset</i> (routine) causes <b>intestinal disease</b></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>BEN SIRA</strong> The poor man's roof is the lowest — rain from above flows to him. His vineyard is at the peak — rain washes his soil to vineyards below.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Ascending to Eretz Yisrael: Who Can Compel Whom?</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">📜 <b>All may force</b> family members to ascend to Eretz Yisrael — husband, wife, or master</div><div class="process-arrow">↓</div><div class="process-step">🚫 <b>No one may force</b> family to <i>leave</i> Eretz Yisrael — even for a pleasant residence</div><div class="process-arrow">↓</div><div class="process-step highlight">🏛️ <b>All may force</b> ascent to Jerusalem — even from pleasant to noxious residence</div><div class="process-arrow">↓</div><div class="process-step">🚫 <b>No one may force</b> departure from Jerusalem — even from noxious to pleasant</div><div class="process-arrow">↓</div><div class="process-step">👤 Includes <b>slaves</b>: a Canaanite slave who fled to Eretz Yisrael — master must sell him there, not take him back</div></div><div class="callout" style="margin-top:20px"><strong>HALACHA</strong> The mitzva of settling Eretz Yisrael overrides even the principle that one should not be forced from a pleasant to a noxious dwelling.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 110 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9"><b>Debt vs. Land Sale</b><br/>Admon: sale proves no debt existed<br/>Rabbis: lender strategically sold to seize as collateral</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left:3px solid #c9a84c"><b>Cross-Debts</b><br/>Rav Naḥman: each collects (land quality is relative)<br/>Rav Sheshet: don't shift donkey packs</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1e2a1e; border-left:3px solid #4caf50"><b>Spousal Relocation</b><br/>Cannot force: town↔city, pleasant→noxious<br/>R' Yosei b. Ḥanina: city life is hard (Nehemiah 11:2)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:2px solid #4caf50"><b>Eretz Yisrael</b><br/>All compel ascent — even pleasant→noxious<br/>None may force departure</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; border:2px solid #9b59b6"><b>Jerusalem</b><br/>All compel ascent — even noxious residence<br/>None may force departure — even to pleasant</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 110a-110b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 110a-110b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../109/">← Daf 109</a><a href="../111/">Daf 111 →</a></div>
+</body>
+</html>

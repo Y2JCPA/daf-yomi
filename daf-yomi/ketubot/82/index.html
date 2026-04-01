@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 82 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Ketubot 82</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות פב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⛓️ Chain of Debts — R' Natan's principle of appropriating funds through linked obligations<br>
+    🏠 Yevama's Property — Division of the deceased brother's estate upon levirate marriage<br>
+    🐄 Delayed Acquisition — When meshikha (pulling) takes effect after 30 days<br>
+    ⚖️ Ulla's Ruling — Yavam's division of property is ineffective<br>
+    💍 Ketubah Lien — All husband's property is mortgaged for the marriage contract<br>
+    🏛️ Shimon ben Shatach — Historical evolution of the ketubah institution<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 82 — Property, Levirate Marriage & the Ketubah Institution</h2>
+  
+  <div class="process-bar"><div class="process-step">📜 Baraita rejected: no Tanna holds both R' Meir's and R' Natan's stringencies together</div><div class="process-arrow">↓</div><div class="process-step highlight">🏠 Yavam in Mata Meḥasya promises to share inheritance — can he transfer property he doesn't yet own?</div><div class="process-arrow">↓</div><div class="process-step">🐄 Delayed acquisition debate: R' Yochanan — 'acquire from now' vs. unspecified timing</div><div class="process-arrow">↓</div><div class="process-step highlight">⚖️ Ulla & Reish Lakish: Yavam's division of inherited property is void</div><div class="process-arrow">↓</div><div class="process-step">💍 Ketubah after yibum: responsibility falls on first husband's property</div><div class="process-arrow">↓</div><div class="process-step highlight">🏛️ Shimon ben Shatach's ordinance: from cash deposit to property lien</div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> This daf traces how property obligations in levirate marriage connect to the broader institution of the ketubah — from the yavam's inability to pre-divide inheritance, to the historical reforms that created the modern ketubah lien.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rejecting the Baraita: Two Stringencies Combined</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Yosef</div><div class="speech">This <b>baraita</b> supports my position — movable property can be seized for a ketubah debt through a chain of obligations.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Perhaps the baraita follows <b>R' Natan</b>: a creditor can appropriate funds from a debtor's debtor (Numbers 5:7 — <i>'he shall give it to him against whom he has been guilty'</i>).</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But we find <b>no single Tanna</b> who holds <em>both</em> R' Meir's stringency (movable property mortgaged for ketubah) <em>and</em> R' Natan's (chain appropriation).</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">Now I understand what <b>Abaye</b> meant when he said: <i>'This is not a mishna'</i> — the baraita is <b>non-authoritative</b> because it combines two opinions no one holds together.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> A teaching that can only be explained by combining two independent stringencies — held by no single authority — is rejected as non-authoritative.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Yavam of Mata Meḥasya: Dividing the Inheritance</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A man's <b>yevama</b> falls to him in Mata Meḥasya. His brother tries to <b>disqualify her</b> via a <i>get</i>.</div><div class="flow-arrow">↓</div><div class="flow-box action">Yavam offers: <i>'I'll divide the property with you'</i></div><div class="flow-arrow">↓</div><div class="flow-box question">Brother fears a <b>Pumbedita swindle</b> — promises made and retracted</div><div class="flow-arrow">↓</div><div class="flow-box action">Yavam: <i>'Divide it for yourself <b>from now</b>'</i></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Mar bar Rav Ashi</div><div class="flow-box result-bad"><b>Invalid</b> — the yavam doesn't yet own the property (hasn't performed yibum), so he <b>cannot transfer</b> what isn't his</div></div><div class="flow-col"><div class="flow-label">Cow Precedent</div><div class="flow-box result-good">R' Yochanan: pulling a cow with 30-day delay works — but only because the <b>seller already owns</b> the cow</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Delayed acquisition works only when the transferor currently owns the item. A yavam who hasn't yet performed yibum cannot divide property he doesn't possess.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Delayed Acquisition: 'From Now' vs. Unspecified</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a5276"><h3 style="color:#4a90d9">Rav Dimi: R' Yochanan</h3><ul><li>Pull a cow, acquire after 30 days</li><li>Even if cow is in a distant meadow at day 30</li><li>The present act of pulling IS effective for later</li><li>✅ Acquisition succeeds</li></ul></div><div class="compare-box" style="border-top-color:#78281f"><h3 style="color:#e74c3c">Ravin: R' Yochanan</h3><ul><li>Pull a cow, acquire after 30 days</li><li>Acquisition does NOT take effect</li><li>Seems to contradict Rav Dimi's version!</li><li>❌ Acquisition fails</li></ul></div><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Resolution</h3><ul><li>Rav Dimi's case: seller said 'acquire from now'</li><li>Retroactive acquisition after 30 days</li><li>Ravin's case: no 'from now' stipulation</li><li>Without present activation, future acquisition fails</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>קנה מעכשיו</strong> The phrase <b>'from now' (מעכשיו)</b> is the key to delayed acquisitions. It activates the kinyan in the present, with completion deferred.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Ulla & Reish Lakish: Can the Yavam Divide the Property?</h2>
+  
+  <table><tr><th>Scenario</th><th>Ruling</th><th>Reasoning</th></tr><tr><td>Yibum first, <b>then</b> divided property</td><td>❌ He has done nothing</td><td>The division is void — property belongs to the yevama's ketubah lien</td></tr><tr><td>Divided property <b>then</b> yibum</td><td>❌ He has done nothing</td><td>Cannot transfer what he doesn't yet own</td></tr><tr><td>Rav Sheshet's objection</td><td>If yibum-then-divide fails, why even ask about divide-then-yibum?</td><td>Two separate incidents brought before Ulla independently</td></tr><tr><td>Reish Lakish's rule</td><td>❌ Either order — ineffective</td><td>Whether yibum first or division first, it has no legal effect</td></tr><tr><td>Final halakha</td><td>❌ He has done nothing</td><td>The practical ruling follows this position</td></tr></table><div class="callout" style="margin-top:20px"><strong>הלכה</strong> The Gemara concludes: regardless of the sequence, the yavam's attempt to divide inherited property with his brother is legally void.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Why the Ketubah Falls on the First Husband's Property</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">דברים כה:ה — וּלְקָחָהּ לוֹ לְאִשָּׁה — 'Once he has taken her, she is like his wife in all respects'</div><div class="callout"><strong>מן השמים זיכו לו — From Heaven They Acquired Her for Him</strong> The yavam did not choose his wife — <b>Heaven assigned her to him</b> through the mitzvah of levirate marriage. Therefore he is not obligated to write a new ketubah from his own property. He relies on his deceased brother's marriage contract.<br><br>However, if the first husband left <b>no property at all</b>, the yevama still receives a ketubah from the yavam — <b>so that she will not be demeaned in his eyes</b> (<i>שלא תהא קלה בעיניו להוציאה</i>), ensuring he cannot easily divorce her.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 82 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#2c1810; border-left:3px solid #e67e22; padding:10px;"><b>Rejected Baraita</b><br>No Tanna holds both R' Meir + R' Natan stringencies together</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>Yavam's Property Division</b><br>Cannot transfer what he doesn't own — void before or after yibum</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3a; border-left:3px solid #9b59b6; padding:10px;"><b>Delayed Acquisition</b><br>Requires 'מעכשיו — from now' to activate present kinyan with future completion</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px;"><b>Yevama's Ketubah</b><br>Falls on first husband's property — 'from Heaven they acquired her for him'</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a2e; border-left:3px solid #e74c3c; padding:10px;"><b>Shimon ben Shatach</b><br>Cash → father's house → husband's house → <b>lien on all property</b></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 82a-82b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 82a-82b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../81/">← Daf 81</a><a href="../83/">Daf 83 →</a></div>
+</body>
+</html>

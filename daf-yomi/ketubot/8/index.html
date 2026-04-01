@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 8 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💍</div>
+  <h1>Ketubot 8</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות ח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💒 Sheva Brachot — The text and structure of the seven wedding blessings<br>
+    🔢 Five, Six, or Seven — How many blessings to recite and why<br>
+    👤 New Faces — Rules for extending blessings after the wedding day<br>
+    📅 Timeline of Celebration — When 'In Whose Dwelling Is Joy' applies<br>
+    🕯️ Mourner's Blessings — Quorum rules and comforting the bereaved<br>
+    🤐 Don't Open Your Mouth to Satan — Avoiding ill-omened speech<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 8: Wedding Blessings & Their Boundaries</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Sheva Brachot</b><br>The Mishnah lists the seven wedding blessings recited under the chuppah</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>How many blessings?</b><br>Dispute: Levi said 5, Rav Asi said 6</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">One Act of Creation</div><div class="flow-box result-good">Man & woman created as one entity → only one 'Creator of mankind' blessing needed</div></div><div class="flow-col"><div class="flow-label">Two Acts of Creation</div><div class="flow-box result-bad">Man & woman created separately → two distinct blessings for mankind's creation</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Resolution:</b> All agree one act — dispute is whether we follow God's <em>initial thought</em> (two) or <em>actual deed</em> (one)</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Duration rules</b><br>Day 1: all 7 blessings · Days 2–7: depends on new faces · Days 7–30: 'In Whose dwelling is joy' · Up to 12 months if stated for <em>hillula</em></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf explores both the joyous structure of wedding blessings and the parallel structure of mourner's blessings — linking celebration and consolation through the same halakhic framework of quorum and duration.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Seven Wedding Blessings (Sheva Brachot)</h2>
+  
+  <div class="process-bar"><div class="process-step">🍷 <b>Blessing over wine</b> — Borei pri hagafen</div><div class="process-arrow">↓</div><div class="process-step">🌍 <b>Who created all for His glory</b> — She'hakol bara likhvodo</div><div class="process-arrow">↓</div><div class="process-step">🧑 <b>Creator of mankind</b> — Yotzer ha'adam</div><div class="process-arrow">↓</div><div class="process-step highlight">🪞 <b>Who made mankind in His image</b> — Asher yatzar et ha'adam b'tzalmo</div><div class="process-arrow">↓</div><div class="process-step">🏛️ <b>Gladdens Zion through her children</b> — Sos tasis (barren Jerusalem rejoicing)</div><div class="process-arrow">↓</div><div class="process-step">💑 <b>Who brings joy to groom and bride</b> — Sameach tsamach re'im ahuvim</div><div class="process-arrow">↓</div><div class="process-step highlight">🎶 <b>Who created joy and gladness</b> — Asher bara sasson v'simcha (the long blessing with 10 expressions of joy)</div></div><div class="callout" style="margin-top:20px"><strong>Note</strong> The sixth blessing contains 10 expressions of joy: <em>sasson, simcha, chatan, kallah, gilah, rinah, ditzah, chedvah, ahavah, achvah, shalom, re'ut</em>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>How Many Blessings? One Creation or Two?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Levi</div><div class="speech">Recited <b>five</b> blessings at the wedding of R' Shimon, son of Rabbi Yehuda HaNasi</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Asi</div><div class="speech">Recited <b>six</b> blessings at the wedding of Mar, son of Rav Ashi</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Do they disagree whether man was created in <b>one act</b> (two-sided being) or <b>two acts</b> (separate creations)?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">No — all agree it was <b>one act</b>. The dispute: do we follow God's <b>initial thought</b> (to create two) or the <b>actual action</b> (created as one)?</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Yehuda</div><div class="speech">Resolves the contradiction: <em>'God created man in His image'</em> (one) vs. <em>'Male and female He created them'</em> (two) — <b>thought</b> was two, <b>deed</b> was one</div></div></div><div class="callout" style="margin-top:20px"><strong>Proof Text</strong> Genesis 1:27 indicates one creation; Genesis 5:2 indicates two. The resolution: God's initial plan was two beings, but the actual creation was a single dual-sided entity.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>When Are Wedding Blessings Recited After the Wedding?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Day 1 of celebration</b><br>All 7 blessings are recited</div><div class="flow-arrow">↓</div><div class="flow-box question">Are <b>new faces</b> (panim chadashot) present?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — New Faces</div><div class="flow-box result-good">Recite <b>all seven</b> blessings again</div></div><div class="flow-col"><div class="flow-label">No — Same Guests</div><div class="flow-box result-bad">Only <em>she'hasimcha bim'ono</em> in zimmun + <em>Asher bara</em> after bentching</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>After 7 days</b> through day 30:<br>Recite <em>she'hasimcha bim'ono</em> (In Whose dwelling is joy) automatically</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>After 30 days</b> up to 12 months:<br>Only if groom explicitly states the meal is for the <em>hillula</em> (wedding celebration)</div></div><div class="callout" style="margin-top:20px"><strong>Rav Ashi's Practice</strong> Rav Ashi attended a wedding at Rav Kahana's house: Day 1 — all 7 blessings. Subsequent days — all 7 only if new faces; otherwise just the zimmun addition and one blessing.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Timeline: When Does the Wedding Blessing Period Begin & End?</h2>
+  
+  <table><tr><th>Period</th><th>Rule</th><th>Source</th></tr><tr><td><b>Before wedding</b></td><td>From when barley is cast into the mortar (beer preparation begins)</td><td>Rav Pappa</td></tr><tr><td><b>Exception</b></td><td>Rav Pappa himself began from betrothal — because preparations were already complete</td><td>Gemara</td></tr><tr><td><b>Ravina's caution</b></td><td>Began from betrothal, confident they wouldn't retract — but they did cancel</td><td>Gemara</td></tr><tr><td><b>Days 1–7</b></td><td>Full blessings with new faces; abbreviated without</td><td>Rav Ashi</td></tr><tr><td><b>Days 7–30</b></td><td><em>She'hasimcha bim'ono</em> added automatically</td><td>Gemara</td></tr><tr><td><b>Day 30 – 12 months</b></td><td>Only if groom declares the meal is for the hillula</td><td>Rava via Rav Pappi</td></tr></table><div class="callout" style="margin-top:20px"><strong>Lesson from Ravina</strong> Ravina was so confident in the match that he began reciting the blessing early — yet the engagement was broken off. The Gemara records this as a cautionary tale about premature celebration.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Groom vs. Mourner: Parallel Quorum Rules</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Wedding Blessings</h3><ul><li>Require a quorum of <b>10 men</b></li><li>The <b>grooms are included</b> in the count of 10</li><li>Recited for <b>7 days</b> of celebration</li><li>New faces trigger full repetition of blessings</li></ul></div><div class="compare-box" style="border-top-color:#2e1a1a"><h3 style="color:#e74c3c">Mourner's Blessings</h3><ul><li>Require a quorum of <b>10 men</b></li><li>The <b>mourners are NOT included</b> in the count of 10</li><li>Recited in the <b>square</b> (rechavah) adjacent to the cemetery</li><li>New faces during shiva trigger repetition of blessings</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>R' Yitzchak / R' Yochanan</strong> The mourner is excluded from the quorum because the blessings are recited <em>for</em> the mourner — unlike the groom, who actively participates in the joy being blessed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 8 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Sheva Brachot</b><br>7 blessings recited at the wedding, including wine</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>New Faces Present</b><br>All 7 blessings repeated for 7 days</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#fff; padding:10px; border-radius:8px;"><b>No New Faces</b><br>Only zimmun addition + Asher Bara</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; color:#fff; padding:12px; border-radius:8px;"><b>Days 7–30</b><br><em>She'hasimcha bim'ono</em> recited automatically</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2e1a; color:#fff; padding:12px; border-radius:8px;"><b>30 days – 12 months</b><br>Only if groom declares meal is for the <em>hillula</em></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; border:1px solid #e74c3c;"><b>Parallel: Mourner's Blessings</b><br>Same quorum of 10, same 7-day period, same new-faces rule — but mourners excluded from the count</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 8a-8b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 8a-8b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../7/">← Daf 7</a><a href="../9/">Daf 9 →</a></div>
+</body>
+</html>

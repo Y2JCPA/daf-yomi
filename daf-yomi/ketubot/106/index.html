@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 106 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏛️</div>
+  <h1>Ketubot 106</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות קו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Rav Anan's Error — How indirect bias caused a miscarriage of justice<br>
+    📖 Seder deEliyahu — Origin of the Major and Minor Orders of Elijah<br>
+    🎓 Academy Numbers — The vast student bodies of the great Babylonian yeshivot<br>
+    💰 Temple Treasury Wages — Public servants paid from the Temple chamber funds<br>
+    🔨 Vessels vs. Maintenance — Debate over funding sources for Temple service vessels<br>
+    📜 Leftover Funds — Tannaitic dispute over allocation of Temple remainders<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 106 — Public Funding for Sacred Work</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">⚖️ Rav Anan inadvertently perverts justice → loses Elijah's visits</div><div class="process-arrow">↓</div><div class="process-step">🎓 The Gemara catalogues the enormous student bodies of the great academies</div><div class="process-arrow">↓</div><div class="process-step">💰 Torah scholars, inspectors, and artisans receive wages from the Temple treasury</div><div class="process-arrow">↓</div><div class="process-step highlight">🏛️ Debate: Are curtain-weavers paid from offerings or building maintenance funds?</div><div class="process-arrow">↓</div><div class="process-step">🔨 Extended analysis of funding sources for Temple service vessels</div><div class="process-arrow">↓</div><div class="process-step">📜 Three Tannaitic views on how leftover Temple funds are allocated</div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> This daf explores who deserves communal support and from which sacred funds — linking judicial integrity, Torah scholarship, and Temple service under the principle of proper public stewardship.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav Anan's Unintended Perversion of Justice</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A man brings a gift to <b>Rav Anan</b>, claiming to be a relative of his</div><div class="flow-arrow">↓</div><div class="flow-box action">Rav Anan declines the gift but gives the man <b>priority in court</b> to honor a Torah scholar's family</div><div class="flow-arrow">↓</div><div class="flow-box question">The opposing litigant sees the honor shown and <b>becomes intimidated</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Result</div><div class="flow-box result-bad">The litigant's <b>mouth became closed</b> — he lost his ability to argue and <b>lost the case</b></div></div><div class="flow-col"><div class="flow-label">Consequence</div><div class="flow-box result-bad"><b>Elijah the Prophet</b> departs from Rav Anan and only returns after fasting and prayer — but now appears in <b>frightening forms</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Seder deEliyahu</strong> The teachings Elijah gave before the incident became <b>Seder deEliyahu Rabba</b> (the Major Order); those taught afterward, while Rav Anan sat in a box, became <b>Seder deEliyahu Zuta</b> (the Minor Order).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Student Numbers in the Great Academies</h2>
+  
+  <table><tr><th>Academy</th><th>Scholars Remaining After Others Departed</th><th>Notable Detail</th></tr><tr><td>Prophet <b>Elisha</b></td><td>2,200</td><td>Derived from II Kings 4:43 — 20 loaves × 100 men + 2 extra portions</td></tr><tr><td><b>Rav</b></td><td>1,200</td><td>—</td></tr><tr><td><b>Rav Huna</b></td><td>800</td><td>Used <b>13 speakers</b> to relay his lectures; dust from departing students blocked the sun</td></tr><tr><td><b>Rabba & Rav Yosef</b></td><td>400</td><td>Called themselves <b>"orphans"</b></td></tr><tr><td><b>Abaye</b> (or Rav Pappa / Rav Ashi)</td><td>200</td><td>Called themselves <b>"orphans of orphans"</b></td></tr></table><div class="callout" style="margin-top:20px"><strong>In Eretz Yisrael</strong> When the dust cloud rose from Rav Huna's departing students, people in the West would say: <b>"The scholars have just arisen in the yeshiva of Rav Huna the Babylonian."</b></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rav Yosef Refuses to Pray During Famine</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">The Sages</div><div class="speech">Let the Master <b>pray for mercy</b> concerning this divine anger and famine!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech">If <b>Elisha</b>, who supported <b>2,200 scholars</b> from his own pocket, did not pray for mercy during famine — <b>should I</b> pray for mercy?</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">The Gemara</div><div class="speech">How do we derive 2,200? From <b>"How should I set this before 100 men?"</b> (II Kings 4:43) — each of 20 loaves served 100, plus 2 extra portions.</div></div></div><div class="callout" style="margin-top:20px"><strong>Humility</strong> Rav Yosef reasoned <i>kal va-ḥomer</i>: if a prophet who personally sustained thousands of scholars did not intervene in divine decrees, how much more so should he refrain.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Who Receives Wages from the Temple Treasury?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">From the Chamber Collection (Offerings)</h3><ul><li>🔍 <b>Inspectors of blemishes</b> — examined sacrificial animals (R' Yitzḥak b. Redifa / R' Ami)</li><li>🔪 <b>Teachers of shechita</b> — taught priests the laws of slaughter (Shmuel)</li><li>✋ <b>Teachers of kemitza</b> — taught priests handful-removal (Rav)</li><li>📜 <b>Torah scroll proofreaders</b> in Jerusalem (R' Yoḥanan)</li><li>🧵 <b>Curtain weavers</b> — according to the initial teaching</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">From Temple Maintenance Funds (Rav Naḥman's View)</h3><ul><li>🧵 <b>Curtain weavers</b> — since curtains serve <b>in place of the building</b> itself</li><li>The <i>parokhet</i> separating the Sanctuary from the Holy of Holies is structural</li><li>Therefore paid from <b>building maintenance</b> funds, not offering funds</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Objection</strong> A baraita groups curtain weavers with the <b>House of Garmu</b> (shewbread) and <b>House of Avtinas</b> (incense) — all paid from the <b>chamber collection</b>, challenging Rav Naḥman.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Service Vessels: Chamber or Maintenance Funds?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Huna</div><div class="speech">Vessels can come from <b>maintenance funds</b>! As it says: <i>"Of which were made vessels for the House of the Lord"</i> (II Chron. 24:14)</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">Whoever taught you <b>Writings</b> didn't teach you <b>Prophets</b>! — <i>"There were <b>not</b> made for the House of the Lord cups of silver…"</i> (II Kings 12:14)</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">The Gemara</div><div class="speech">The verses <b>contradict</b> each other!</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Resolution</div><div class="speech">No contradiction — when there are <b>leftover</b> maintenance funds, they may be used for vessels. When there is <b>no surplus</b>, all funds go to maintenance.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Abbahu</div><div class="speech">The court makes a <b>mental stipulation</b> (<i>tenai</i>) from the start: if the money isn't needed for maintenance, it may be redirected to vessels.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> R' Yishmael's school teaches: Service vessels come from the <b>chamber collection</b>, as the verse says <i>"the rest of the money"</i> — referring to money that has a <b>remainder</b>, i.e., the chamber funds.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 106 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#3a1a2e; border-left: 3px solid #e74c3c; padding: 10px; border-radius: 6px;"><b>Judicial Integrity</b><br>Even indirect bias perverts justice — Rav Anan's story warns against favoring litigants</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px; border-radius: 6px;"><b>Public Support for Scholars</b><br>Great academies housed hundreds to thousands — the community sustains Torah learning</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 10px; border-radius: 6px;"><b>Temple Treasury Wages</b><br>Inspectors, teachers, proofreaders, and artisans receive wages from sacred funds</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a3e; border: 1px solid #4a90d9; padding: 8px; border-radius: 6px;"><b>Chamber Collection</b><br>Funds offerings, communal needs, and (per some) service vessels</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a1a; border: 1px solid #e74c3c; padding: 8px; border-radius: 6px;"><b>Maintenance Funds</b><br>Funds building, altar, courtyards — and curtains (per Rav Naḥman)</div></div><div class="flow-col"><div class="flow-box" style="background:#2e2a1a; border: 1px solid #c9a84c; padding: 8px; border-radius: 6px;"><b>Leftovers</b><br>Allocated per tannaitic dispute — vessels, altar offerings, or city needs</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 106a-106b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 106a-106b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../105/">← Daf 105</a><a href="../107/">Daf 107 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 15 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Ketubot 15</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות טו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏪 Kavu'a — Fixed items create 50/50 doubt, not majority rule<br>
+    👥 Two Majorities — Lineage requires double majority (rov)<br>
+    🍖 Nine Stores — The classic case of fixed vs. separated<br>
+    👶 Abandoned Baby — Status in a mixed Jewish-gentile city<br>
+    🐂 Damages — Uncertain status and burden of proof<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>When Do We Follow the Majority (Rov)?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A woman was raped — is the child of <b>flawed</b> or <b>unflawed</b> lineage?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>R' Yannai:</b> She is fit to marry a Kohen <em>if</em> it occurred at the time of the <b>wagons (keronot)</b> in Tzippori</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>R' Ami:</b> This requires a <b>contingent of unflawed men</b> passing through — <em>two</em> majorities needed</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Two Majorities Present</div><div class="flow-box result-good">City majority + contingent majority both unflawed → <b>Fit for Kehuna</b></div></div><div class="flow-col"><div class="flow-label">Single Majority Only</div><div class="flow-box result-bad">One majority alone is <b>insufficient</b> for lineage matters</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The Sages established a <b>higher standard for lineage (yiḥus)</b> — requiring two concurrent majorities, unlike other areas of halakha where a single majority suffices.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Incident at Tzippori: What Does R' Yannai Mean?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yannai</div><div class="speech">If she was forced to engage in intercourse <b>at the time of the wagons (keronot)</b>, she is <b>fit</b> to marry a Kohen.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Does it enter your mind she was raped <em>in</em> the wagons? In the crowded marketplace?!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Rather — <b>at the time</b> the convoys pass through, when the majority of passersby are of unflawed lineage.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Ami</div><div class="speech">This ruling applies <b>only</b> when there is a contingent of men of <b>unflawed lineage</b> passing there — creating a <b>double majority</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Clarification</strong> The ruling is not about the physical wagons, but about the <b>time period</b> when traveling contingents of known lineage pass through Tzippori's marketplace.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Kavu'a vs. Parish: Fixed vs. Separated</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Is the item/person <b>in its fixed place</b> or has it <b>separated</b> from the group?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Parish (Separated)</div><div class="flow-box result-good"><b>Kol d'parish me-rubba parish</b><br/>Whatever separates from a group is presumed from the <b>majority</b></div></div><div class="flow-col"><div class="flow-label">Kavu'a (Fixed)</div><div class="flow-box result-bad"><b>R' Zeira:</b> Uncertainty about a fixed item is treated as <b>equally balanced (50/50)</b> — we do NOT follow the majority</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">This distinction explains why <b>city residents</b> (fixed) are treated differently from <b>passing travelers</b> (separated)</div></div><div class="callout" style="margin-top:20px"><strong>R' Zeira's Rule</strong> <b>Kol kavu'a k'meḥetza al meḥetza dami</b> — The legal status of uncertainty regarding any item fixed in its place is that of an uncertainty that is equally balanced.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Nine Stores: Classic Case of Kavu'a</h2>
+  
+  <table><tr><th>Scenario</th><th>Ruling</th><th>Principle</th></tr><tr><td>9 stores sell <b>kosher</b> meat, 1 sells <b>non-kosher</b></td><td></td><td></td></tr><tr><td>Person bought from a store but <b>doesn't know which</b></td><td><b>Prohibited</b></td><td>Kavu'a — fixed place = 50/50</td></tr><tr><td>Meat <b>found in the street</b> outside the stores</td><td><b>Permitted</b></td><td>Parish — separated = follow majority</td></tr><tr><td>City gates are <b>locked</b> (R' Zeira)</td><td><b>Still permitted</b> if found in street</td><td>One majority suffices for non-lineage matters</td></tr></table><div class="callout" style="margin-top:20px"><strong>Distinction</strong> For <b>kosher meat</b> a single majority suffices. For <b>lineage</b> the Sages required a stricter standard of two majorities — <em>maḥmirin b'yiḥusin</em>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Abandoned Baby: Rav vs. Shmuel</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">Rav</h3><ul><li>Majority Jewish city → baby deemed Jewish <b>only for sustaining him</b> (feeding, care)</li><li>For <b>lineage</b> (e.g., marrying a Jewish woman) — <b>not</b> deemed Jewish based on majority alone</li><li>Requires <b>conversion</b> for lineage purposes</li><li>Consistent: single majority insufficient for lineage</li></ul></div><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Shmuel</h3><ul><li>Majority Jewish → deemed Jewish for <b>saving his life on Shabbat</b> (pikuaḥ nefesh)</li><li>Even in a <b>gentile majority</b> city — still desecrate Shabbat to save him</li><li><b>One does not follow the majority in matters involving saving a life</b></li><li>Any doubt about endangering a Jewish life → save him</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rav Yosef / Shmuel</strong> <b>Ein holkhin b'pikuaḥ nefesh aḥar ha-rov</b> — One does not follow the majority in matters of saving a life. Even the slightest chance of a Jewish life at risk overrides Shabbat.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Practical Rulings for the Abandoned Baby (Rav Pappa & Reish Lakish)</h2>
+  
+  <div class="process-bar"><div class="process-step">🏘️ <b>Majority Gentile city</b> → Baby deemed gentile: may be fed non-kosher food (neveilot)</div><div class="process-arrow">↓</div><div class="process-step">✡️ <b>Majority Jewish city</b> → Baby deemed Jewish: obligated to <b>return his lost property</b></div><div class="process-arrow">↓</div><div class="process-step highlight">⚖️ <b>Half and half</b> → Baby deemed Jewish for <b>damages</b> (Reish Lakish)</div><div class="process-arrow">↓</div><div class="process-step">🐂 His ox gored ours → He pays <b>half-damage</b> (as a Jew); for the other half, <b>burden of proof</b> is on the claimant</div><div class="process-arrow">↓</div><div class="process-step highlight">📜 Principle: In uncertain status, the <b>claimant must bring proof</b> — ha-motzi me-ḥaveiro alav ha-re'aya</div></div><div class="callout" style="margin-top:20px"><strong>Reish Lakish</strong> In a 50/50 city, the baby has <b>presumptive Jewish status</b> for damages. The one seeking additional payment must <b>prove</b> the baby is not Jewish.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 15 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Question:</b> Can we attribute an uncertain event to the majority?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1c1c; padding: 8px; border-left: 3px solid #e74c3c;"><b>Kavu'a</b> (Fixed)<br/>Person went TO the source → treated as <b>50/50</b></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 8px; border-left: 3px solid #4caf50;"><b>Parish</b> (Separated)<br/>Item left the source → follow the <b>majority</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #e67e22; padding: 8px;"><b>If Parish — is it a matter of lineage (yiḥusin)?</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2d1a4e; padding: 8px; border-left: 3px solid #9b59b6;"><b>Lineage matter</b><br/>Requires <b>TWO</b> majorities<br/>(maḥmirin b'yiḥusin)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 8px; border-left: 3px solid #4caf50;"><b>Other halakha</b><br/>(e.g., kashrut, pikuaḥ nefesh)<br/>ONE majority suffices</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 15a-15b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 15a-15b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../14/">← Daf 14</a><a href="../16/">Daf 16 →</a></div>
+</body>
+</html>

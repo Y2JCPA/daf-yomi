@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 63 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💔</div>
+  <h1>Ketubot 63</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות סג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Rabbi Akiva's Return — 24,000 students and a faithful wife<br>
+    🔓 Ben Kalba Savua's Vow — nullification and reconciliation<br>
+    ⚖️ The Rebellious Wife (Moredet) — Mishna's deduction rules<br>
+    🗣️ Nature of Rebellion — marital relations vs. household tasks<br>
+    📢 Public Announcements — later enactment replacing weekly fines<br>
+    💍 'I Am Disgusted' — Ameimar vs. Mar Zutra on compelling marriage<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 63: Devotion, Rebellion & Marital Obligations</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מורדת</div><div class="callout"><strong>DAF OVERVIEW</strong> <b>Ketubot 63</b> transitions from powerful aggadic narratives — Rabbi Akiva's wife's extraordinary sacrifice and Ben Kalba Savua's reconciliation — into the halakhic framework of the <b>moredet</b> (rebellious wife). The Mishna establishes weekly financial penalties, while the Gemara debates the <i>nature</i> of rebellion and evolves the procedure from gradual deductions to public announcements.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rabbi Akiva's Journey: From Shepherd to Sage</h2>
+  
+  <div class="process-bar"><div class="process-step">📖 Rabbi Akiva returns after 12 years with 12,000 students</div><div class="process-arrow">↓</div><div class="process-step highlight">👂 Overhears wife saying: 'If he'd listen to me, he'd study another 12 years'</div><div class="process-arrow">↓</div><div class="process-step">🔄 Turns back immediately — studies another 12 years</div><div class="process-arrow">↓</div><div class="process-step highlight">👥 Returns with 24,000 students</div><div class="process-arrow">↓</div><div class="process-step">🙇‍♀️ Wife falls at his feet; attendants push her away</div><div class="process-arrow">↓</div><div class="process-step highlight">✋ Rabbi Akiva: 'Leave her — my Torah and yours is hers'</div><div class="process-arrow">↓</div><div class="process-step">🤝 Ben Kalba Savua nullifies vow, gives half his wealth</div></div><div class="callout" style="margin-top:20px"><strong>KEY QUOTE</strong> <b>"צדיק יודע נפש בהמתו"</b> — 'A righteous man understands the life of his beast' (Proverbs 12:10). Rachel refused to borrow fine clothes, trusting that Akiva would recognize her worth.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Two Father-Son Torah Conflicts</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Rabbi Akiva's Daughter & Ben Azzai</h3><ul><li>Daughter followed her mother's path</li><li>Betrothed Ben Azzai (a simple man)</li><li>Sent him off to study Torah</li><li>Folk saying: 'The ewe follows the ewe'</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3e"><h3 style="color:#9b59b6">Rav Yosef b. Rava & Rav Yosef</h3><ul><li>Agreed to study 6 years at the study hall</li><li>After 3 years, wanted to visit wife on Erev Yom Kippur</li><li>Father came with a weapon to confront him</li><li>Neither father nor son ate the cessation meal</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>CONTRAST</strong> The Daf juxtaposes women who <b>encourage</b> prolonged Torah study with a father who <b>demands</b> it — showing different motivations behind devotion to learning.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Mishna: Penalties for Marital Rebellion</h2>
+  
+  <table><tr><th>Scenario</th><th>Tanna Kamma</th><th>R' Yehuda</th><th>R' Yosei</th></tr><tr><td>Wife rebels (מורדת)</td><td>Reduce ketubah by <b>7 dinars</b>/week</td><td>Reduce by <b>7 terapa'ikin</b> (half-dinars)/week</td><td>Continue deducting even beyond ketubah value</td></tr><tr><td>Husband rebels</td><td>Add <b>3 dinars</b>/week to ketubah</td><td>Add <b>3 terapa'ikin</b>/week</td><td>—</td></tr><tr><td>Limit of deductions</td><td>Until ketubah reaches zero</td><td>Until ketubah reaches zero</td><td>No limit — can collect from future inheritance</td></tr></table><div class="callout" style="margin-top:20px"><strong>NOTE</strong> R' Yosei's unique position: deductions can create a <b>debt</b> beyond the ketubah, collectible from any future inheritance the rebellious wife receives.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>What Constitutes 'Rebellion'?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">She rebels against <b>marital relations</b> (תשמיש).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yosei b. R' Ḥanina</div><div class="speech">She rebels against performing <b>household tasks</b> (מלאכה).</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">The Mishna says a <b>husband</b> can also rebel — can a husband rebel against tasks? He doesn't perform tasks!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yosei b. R' Ḥanina</div><div class="speech">Yes — a husband who says <b>'I will not sustain or support her'</b> is rebelling against his obligations.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">But Rav says such a husband must <b>immediately</b> divorce and pay the ketubah!</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Answer</div><div class="speech">The weekly fine applies <b>while the court consults with him</b> to see if he'll retract.</div></div></div><div class="callout" style="margin-top:20px"><strong>RESOLUTION</strong> The Gemara concludes: rebellion against <b>marital relations</b> is universally agreed to be rebellion. The dispute is only about whether refusal of <b>tasks</b> also qualifies.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Later Enactment: The Moredet Procedure</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Woman declares rebellion against her husband</div><div class="flow-arrow">↓</div><div class="flow-box action">Court sends messengers <b>before</b> announcements</div><div class="flow-arrow">↓</div><div class="flow-box question">Public announcements in <b>synagogues & study halls</b> for 4 consecutive Shabbatot</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">She retracts</div><div class="flow-box result-good">Keeps her ketubah</div></div><div class="flow-col"><div class="flow-label">She persists</div><div class="flow-box result-bad">Loses <b>entire</b> ketubah — even if worth 10,000 dinars</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Court sends messengers <b>after</b> announcements (Rami bar Ḥama)</div></div><div class="callout" style="margin-top:20px"><strong>RAVA vs. RAV NAḤMAN</strong> <b>Rav Naḥman bar Rav Ḥisda:</b> Halakha follows this later enactment (immediate total loss after announcements).<br><b>Rava:</b> This is absurd (<i>burkha</i>)! Halakha follows gradual weekly deductions while consulting her.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 63 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Moredet</b> — Wife refuses marital relations or tasks</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 8px;"><b>Original Mishna:</b><br>Deduct 7 dinars/week from ketubah</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; padding: 8px;"><b>Later Enactment:</b><br>4 Shabbatot of announcements → total loss</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left: 3px solid #9b59b6; padding: 8px;"><b>Key Distinction (Ameimar):</b><br>'I want him but refuse' = moredet penalties<br>'מאיס עלי' (he disgusts me) = not compelled</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border: 2px solid #c9a84c; padding: 8px;"><b>Principle:</b> The system balances enforcement of marital duties with recognition of genuine incompatibility</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 63a-63b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 63a-63b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../62/">← Daf 62</a><a href="../64/">Daf 64 →</a></div>
+</body>
+</html>

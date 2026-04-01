@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 79 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Ketubot 79</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות עט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Document of Evasion — When a wife transfers property to avoid her husband's rights<br>
+    🏠 Inherited Property — Rules for money and produce a wife inherits during marriage<br>
+    🌿 Attached vs. Detached Produce — Dispute over husband's rights to different types of produce<br>
+    🐑 Usufruct Offspring — Who owns the offspring of a wife's usufruct animals and maidservants<br>
+    👨‍👩‍👧 Family Assets — When inherited slaves or trees need not be sold<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Wife's Property During Marriage: Key Pathways</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Wife inherits property</b> during marriage</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Money / Detached Produce</div><div class="flow-box result-good">Buy <b>land</b> → husband eats produce, principal remains hers</div></div><div class="flow-col"><div class="flow-label">Attached Produce</div><div class="flow-box action">Dispute: R' Meir evaluates surplus; Rabbis say it's <b>his</b></div></div><div class="flow-col"><div class="flow-label">Usufruct Animals</div><div class="flow-box result-bad">Offspring = produce → belongs to <b>husband</b>; double payment → <b>wife</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> The husband consumes <b>produce</b> (פירות) from his wife's property, but the <b>principal</b> (קרן) remains hers — the challenge is defining which is which.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Torn Document: Shtar Mabrachat</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Anan</div><div class="speech">Look at <b>Naḥman the farmer</b> — he tears people's documents!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Mar Ukva</div><div class="speech">Tell me — what actually happened?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Mar Ukva</div><div class="speech">A <b>shtar mabrachat</b> (document of evasion)? <b>Shmuel</b> said: If one comes to my hand, <b>I tear it</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">But she gave it to her <b>daughter</b> — a mother gives wholeheartedly to a daughter!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Naḥman</div><div class="speech">Even so — where her interests <b>clash</b> with her daughter's, her own interests come first.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Concept</strong> <b>Shtar Mabrachat</b> (שטר מברחת) — a document transferring property solely to evade the husband's rights, not as a genuine gift. Such documents are void.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>How to Distance Property from a Husband</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Wife wants to <b>protect property</b> from husband's control</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Shimon b. Gamliel</div><div class="flow-box action">Write a document giving property to <b>another person</b> who agrees not to acquire it</div></div><div class="flow-col"><div class="flow-label">Rabbis</div><div class="flow-box result-bad">Recipient could <b>deceive her</b> and keep the property!</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Solution:</b> Write "from today, while I still wish to give it" — she can revoke at any time</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>R' Zeira's distinction:</b> Document covering <b>all</b> property = obvious evasion (void). Only <b>part</b> = may be valid.</div></div><div class="callout" style="margin-top:20px"><strong>Abaye</strong> Property given away to evade is treated like <b>property unknown to the husband</b> (נכסים שאינן ידועין) — per R' Shimon, her sale is valid.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Inherited Produce: Attached vs. Detached</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbi Meir</h3><ul><li>Evaluate land <b>with</b> produce vs. <b>without</b></li><li>The <b>surplus value</b> belongs to the wife</li><li>Buy land with the surplus</li><li>Husband eats produce of that land</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">The Rabbis</h3><ul><li><b>Attached</b> produce = his (husband's right to פירות)</li><li><b>Detached</b> produce = hers (like money)</li><li>Buy land with detached produce</li><li>Husband eats produce of that land</li></ul></div><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Rabbi Shimon</h3><ul><li>Superior at <b>entry</b> → inferior at <b>exit</b></li><li>Attached: his at marriage, <b>hers</b> at divorce</li><li>Detached: hers at marriage, <b>his</b> at divorce</li><li>Balances rights across the marriage</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rava</strong> The practical difference between R' Shimon and the Rabbis: produce <b>attached at the time of divorce</b> — Rabbis say his, R' Shimon says hers.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Usufruct Offspring: Who Owns What?</h2>
+  
+  <table><tr><th>Category</th><th>Rabbis</th><th>Ḥananya</th></tr><tr><td>Offspring of usufruct <b>animal</b></td><td>Belongs to <b>husband</b></td><td>Belongs to <b>husband</b></td></tr><tr><td>Child of usufruct <b>maidservant</b></td><td>Belongs to <b>wife</b></td><td>Belongs to <b>husband</b></td></tr><tr><td>Reason for maidservant ruling</td><td>Concern: if mother dies, wife loses everything</td><td>Same as animal — offspring is produce</td></tr><tr><td>Why animal is different (Rabbis)</td><td>Animal's <b>hide</b> remains — principal not fully lost</td><td>No distinction needed</td></tr><tr><td><b>Double payment</b> for stolen offspring</td><td>Goes to <b>wife</b> — produce of produce</td><td>Goes to <b>wife</b> — produce of produce</td></tr><tr><td><b>Halakha</b></td><td>—</td><td><b>Shmuel: Halakha follows Ḥananya</b></td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> The Sages gave the husband rights to <b>produce</b> (פירות) but NOT to <b>produce of produce</b> (פירי פירות) — so double payment for theft goes to the wife.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rav Naḥman: Consuming the Principal</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🐐 Wife brings a <b>goat for its milk</b> — husband drinks milk until goat dies</div><div class="process-arrow">↓</div><div class="process-step">🐑 Wife brings a <b>sheep for its shearings</b> — husband takes wool until sheep dies</div><div class="process-arrow">↓</div><div class="process-step">🐔 Wife brings a <b>hen for its eggs</b> — husband takes eggs until hen dies</div><div class="process-arrow">↓</div><div class="process-step">🌴 Wife brings a <b>palm tree for its dates</b> — husband eats dates until tree dies</div><div class="process-arrow">↓</div><div class="process-step highlight">🧥 Wife brings a <b>cloak</b> as usufruct property — husband wears it until it's worn out</div></div><div class="callout" style="margin-top:20px"><strong>Rabbis vs. R' Meir</strong> Salt mines and sulfur quarries: <b>R' Meir</b> says extractions are <b>principal</b> (finite resource). <b>Rabbis</b> say extractions are <b>produce</b>, the location is principal — Rav Naḥman follows the Rabbis.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 79 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Wife's Property During Marriage</b><br>Principal (קרן) = hers | Produce (פירות) = his</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 8px;"><b>Money / Detached Produce</b><br>Buy land → husband eats produce</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; padding: 8px;"><b>Attached Produce</b><br>Dispute: R' Meir (surplus) vs. Rabbis (his) vs. R' Shimon (entry/exit)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left: 3px solid #9b59b6; padding: 10px;"><b>Usufruct Animals & Maidservants</b><br>Offspring = produce (husband's) | Double payment = produce of produce (wife's)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 10px;"><b>Family Assets Exception</b><br>Elderly slaves (RSBG) and old trees (R' Yehuda) — need not be sold to preserve family dignity</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 79a-79b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 79a-79b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../78/">← Daf 78</a><a href="../80/">Daf 80 →</a></div>
+</body>
+</html>

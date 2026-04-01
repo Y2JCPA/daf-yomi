@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 6 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🕯️</div>
+  <h1>Ketubot 6</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות ו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Intercourse with a Virgin on Shabbat — Rav vs. Shmuel on permissibility<br>
+    🔨 Unintentional Acts (Davar She'eino Mitkaven) — R' Yehuda vs. R' Shimon<br>
+    🪓 Inevitable Consequences (Psik Reisha) — When lack of intent doesn't help<br>
+    🍷 The Barrel Stopper (Nazyata) — Analogy for squeezing on Shabbat<br>
+    📖 Groom's Exemption from Shema — Preoccupation with a mitzva<br>
+    👰 Beit Shammai vs. Beit Hillel — How many nights for the bride<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>May One Consummate Marriage on Shabbat?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The <b>halakha</b> follows <b>Rabbi Yehuda</b>: unintentional acts are <b>prohibited</b> on Shabbat</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">The <b>halakha</b> follows <b>Rabbi Shimon</b>: unintentional acts are <b>permitted</b> on Shabbat</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Each locale attributes the <b>lenient</b> ruling to its own authority — <i>these are lenient with regard to themselves</i></div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Naḥman bar Yitzḥak</div><div class="speech">Your <b>mnemonic</b>: each community claims the permissive view for their local authority</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Question</strong> Does consummating a marriage on Shabbat violate the <i>melakha</i> of wounding (<b>ḥovel</b>) or squeezing blood (<b>mefarek</b>)?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Two Views on the Blood of Virginity</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Version 1: Blood Is Pooled</h3><ul><li>Blood is already collected behind the hymen</li><li>Breaking the membrane releases stored blood</li><li>He is <b>destructive</b> vis-à-vis the opening</li><li>Even R' Yehuda permits — destructive act</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Version 2: Blood Flows from Vessels</h3><ul><li>Blood flows from blood vessels attached to the body</li><li>Rupturing causes an active wound</li><li>He is <b>destructive</b> in causing the wound</li><li>R' Yehuda concedes — destructive wounding is permitted</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Under <b>both</b> versions, Rav can permit intercourse on Shabbat because the act is <b>destructive</b> (מקלקל), not constructive — and even R' Yehuda permits destructive unintentional acts.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Is an Unintentional Act Forbidden on Shabbat?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Is the forbidden result <b>intended</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Intentional</div><div class="flow-box result-bad"><b>Forbidden</b> by all opinions</div></div><div class="flow-col"><div class="flow-label">No — Unintentional</div><div class="flow-box question">Is the result <b>inevitable</b>? (פסיק רישא)</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Inevitable</div><div class="flow-box result-bad">Forbidden even per <b>R' Shimon</b><br><i>Cut off its head — will it not die?</i></div></div><div class="flow-col"><div class="flow-label">No — Not Inevitable</div><div class="flow-box question">R' Shimon: <b>Permitted</b><br>R' Yehuda: <b>Forbidden</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Abaye & Rava</strong> Both agree: R' Shimon concedes that <b>psik reisha</b> (inevitable consequences) is forbidden — e.g., the barrel stopper (<b>nazyata</b>) that inevitably squeezes liquid.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Barrel Stopper Challenge to Rav</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Rav said inserting a cloth stopper (<b>nazyata</b>) tightly into a barrel is <b>forbidden</b> on Yom Tov because liquid will be squeezed out</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">This proves Rav forbids even <b>unintentional</b> squeezing — so how can he permit intercourse?</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Answer</div><div class="speech">The barrel stopper is a <b>psik reisha</b> — liquid will <i>inevitably</i> be squeezed. Even R' Shimon forbids this!</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Answer</div><div class="speech">Intercourse is different: the wound is <b>destructive</b> (מקלקל), which R' Yehuda permits</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Rav follows R' Yehuda but still permits consummation because a <b>destructive</b> wound is not the type of melakha R' Yehuda prohibits.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Beit Shammai vs. Beit Hillel: Nights for a Bride</h2>
+  
+  <table><tr><th>Scenario</th><th>Beit Shammai</th><th>Beit Hillel</th></tr><tr><td>Girl <b>below</b> puberty (time to see blood has not arrived)</td><td>Four nights — blood attributed to hymen</td><td>No limit — until the wound heals</td></tr><tr><td>Girl <b>at</b> puberty (time has arrived, not yet menstruated)</td><td>First night only</td><td>Wednesday through Motzaei Shabbat — <b>four nights</b></td></tr><tr><td>Rationale</td><td>Stricter: blood may be menstrual sooner</td><td>More lenient: blood attributed to wound longer</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rav Ḥisda's Challenge</strong> Beit Hillel says <i>until Motzaei Shabbat</i> — implying intercourse is permitted <b>on Shabbat itself</b>. This challenges the view that Rav prohibits it!</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Groom's Exemption from Shema — What Does It Prove?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech">A groom is exempt from Shema even on Shabbat night if he hasn't consummated — proof he <b>may</b> consummate on Shabbat!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">No — he's exempt because he's <b>preoccupied</b> that he hasn't yet fulfilled the mitzva, not because he may do it on Shabbat</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">If preoccupation exempts from Shema, would one whose <b>ship sank</b> also be exempt? A mourner must still recite Shema!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">The groom is exempt because he is preoccupied with a <b>future mitzva</b> — not past distress. This is a <b>tannaitic dispute</b></div></div></div><div class="callout" style="margin-top:20px"><strong>Distinction</strong> Preoccupation with a <b>past</b> event (mourning, shipwreck) does not exempt from Shema. Only preoccupation with a <b>future mitzva</b> still to be performed exempts.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 6 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px;"><b>Core Issue:</b> Consummation causes a wound — is this a Shabbat violation?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a3e; border:1px solid #9b59b6; padding:8px;"><b>R' Yehuda:</b> Unintentional acts are <b>forbidden</b><br>But destructive acts (מקלקל) are permitted → consummation allowed</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:1px solid #4caf50; padding:8px;"><b>R' Shimon:</b> Unintentional acts are <b>permitted</b><br>Unless psik reisha — but experts can avoid it → consummation allowed</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2a0e; border-left:3px solid #c9a84c; padding:8px;"><b>Result:</b> Under both views, consummation on Shabbat can be permitted — Rav and Shmuel each find a path to leniency</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 6a-6b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 6a-6b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../5/">← Daf 5</a><a href="../7/">Daf 7 →</a></div>
+</body>
+</html>

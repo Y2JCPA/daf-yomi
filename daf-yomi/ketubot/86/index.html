@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 86 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Ketubot 86</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות פו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Selling Promissory Notes — Can the original creditor forgive a sold debt?<br>
+    ⚖️ Indirect Damage (Garme) — Liability for voiding a sold document<br>
+    💰 Creditor vs. Wife — Priority when debtor has limited assets<br>
+    ✋ Compelling Mitzvot — Forcing a debtor to repay as a positive mitzva<br>
+    💍 Get with 30-Day Delay — Status of bill of divorce placed in public domain<br>
+    🔐 Oath to a Wife-Storekeeper — When a husband can administer oaths<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 86: Debts, Documents & Oaths</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Selling a Promissory Note</b><br>Can the original creditor forgive the debt?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Shmuel</div><div class="flow-box result-bad">Yes — the debt is <b>forgiven</b>. The obligation is non-transferable.</div></div><div class="flow-col"><div class="flow-label">Purchaser's Remedy</div><div class="flow-box result-good">Pay the debtor to write a <b>new note</b> in the purchaser's name.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>If creditor forgives anyway</b> → Is this <i>garme</i> (indirect damage)?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Judges Garme</div><div class="flow-box result-good">Creditor pays <b>full value</b> of the document</div></div><div class="flow-col"><div class="flow-label">Doesn't Judge Garme</div><div class="flow-box result-bad">Creditor pays only <b>value of paper</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf explores the enforceability of transferred debts, priority among creditors, and the limits of judicial authority.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav Naḥman's Regret: Judge or Advisor?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Naḥman</div><div class="speech">Daughter should <b>forgive</b> her mother's ketubah debt to her father, then <b>inherit</b> the full amount when he dies — defeating the purchasers.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Daughter</div><div class="speech">Follows advice and forgives the ketubah obligation.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Naḥman</div><div class="speech"><i>"We have made ourselves like <b>advisors of judges</b>"</i> — we acted as lawyers, not impartial judges.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Initially: <i>"Do not hide from your own flesh"</i> (Isaiah 58:7) — help relatives. Ultimately: An <b>important person</b> must avoid any appearance of favoritism.</div></div></div><div class="callout" style="margin-top:20px"><strong>Judicial Ethics</strong> A judge must maintain impartiality even when halakha might permit helping a relative. The higher one's stature, the greater the standard.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Selling a Promissory Note: Shmuel's Rule</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Creditor <b>sells</b> a promissory note to a purchaser</div><div class="flow-arrow">↓</div><div class="flow-box action">Original creditor then <b>forgives</b> the debtor's obligation</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>Shmuel:</b> The debt is forgiven!<br>Even an <b>heir</b> can forgive the debt.</div><div class="flow-arrow">↓</div><div class="flow-box question">What remedy does the purchaser have?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Huna b. R' Yehoshua</div><div class="flow-box result-good"><b>Jangle dinars</b> (<i>mekarkesh</i>) — pay the debtor to write a <b>new note</b> in your name</div></div><div class="flow-col"><div class="flow-label">If Forgiven Already</div><div class="flow-box action">Seek compensation from the creditor for <b>indirect damage</b> (<i>garme</i>)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Tip</strong> A savvy purchaser protects himself by having the debtor write a fresh promissory note directly to him, bypassing the original creditor entirely.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Creditor vs. Wife: Who Gets What?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Creditor</h3><ul><li>Gave the debtor <b>money</b></li><li>Fitting to receive <b>money</b> in return</li><li>If only one plot of land — <b>creditor gets it</b></li><li>Priority to encourage future lending</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Wife (Ketubah)</h3><ul><li>Did not give money — relied on <b>land lien</b></li><li>Receives payment in <b>land</b></li><li>If only one plot — she does <b>not</b> receive it</li><li>Reason: Women want marriage more than the ketubah payment</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Ameimar / Rav Ḥama</strong> Each party is settled according to their law (<i>zeh k'dino v'zeh k'dinah</i>). The creditor gets cash; the wife gets land. When assets are limited, the creditor takes priority.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Bill of Divorce After 30 Days: Sides of the Public Domain</h2>
+  
+  <table><tr><th>Position</th><th>Ruling</th><th>Reasoning</th></tr><tr><td><b>Rav Ḥisda</b> (Version 1)</td><td>She is <b>not</b> divorced</td><td>Sides of public domain = public domain. Like Rav & Shmuel: objects in reshut ha-rabbim cannot be acquired.</td></tr><tr><td><b>Rami bar Ḥama</b> (Version 1)</td><td>She <b>is</b> divorced</td><td>Like Rav Naḥman/Rabba bar Avuh: cow acquired after 30 days even in ownerless meadow. Sides = meadow.</td></tr><tr><td><b>Rav Ḥisda</b> (Version 2)</td><td>She <b>is</b> divorced</td><td>Sides of public domain = meadow (ownerless), not actual reshut ha-rabbim.</td></tr><tr><td><b>Rami bar Ḥama</b> (Version 2)</td><td>She is <b>not</b> divorced</td><td>Sides of public domain = public domain proper. Like Rav & Shmuel.</td></tr></table><div class="callout" style="margin-top:20px"><strong>Core Question</strong> Are the <i>tziddei reshut ha-rabbim</i> (sides of the public domain) treated like the public domain itself, or like an ownerless field (<i>agam</i>)?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Compelling a Debtor: Repayment as Mitzva</h2>
+  
+  <div class="process-bar"><div class="process-step">💰 A debtor owes money and has land but says: <i>"Pay yourself from the land"</i></div><div class="process-arrow">↓</div><div class="process-step highlight">📖 Rav Pappa: Repaying a creditor is a <b>mitzva</b> (positive commandment)</div><div class="process-arrow">↓</div><div class="process-step">❓ Rav Kahana challenges: What if debtor says <i>"I don't want to do the mitzva"</i>?</div><div class="process-arrow">↓</div><div class="process-step highlight">📜 Baraita: For positive mitzvot, the court <b>strikes</b> him until he complies</div><div class="process-arrow">↓</div><div class="process-step">⚖️ Just as one is forced to sit in a sukkah or take a lulav — one is <b>forced to repay</b></div><div class="process-arrow">↓</div><div class="process-step highlight">✅ Conclusion: The court can compel debt repayment by force</div></div><div class="callout" style="margin-top:20px"><strong>Rav Pappa → Rav Kahana</strong> A debtor cannot escape payment by claiming he doesn't wish to perform the mitzva. The court compels performance of positive mitzvot — including debt repayment.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 86 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Sold Promissory Notes</b><br>Original creditor can forgive — purchaser must protect himself</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a1a; border-left: 3px solid #4caf50; padding: 10px;"><b>Garme Liability</b><br>If creditor forgives a sold note, he may owe the purchaser full value</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a2a; border-left: 3px solid #9b59b6; padding: 10px;"><b>Creditor vs. Wife Priority</b><br>Creditor gets money, wife gets land; if limited assets — creditor first</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #e67e22; padding: 10px;"><b>Debt = Mitzva</b><br>Court compels repayment like any positive commandment</div></div><div class="flow-col"><div class="flow-box" style="background:#1e2a3e; border-left: 3px solid #c9a84c; padding: 10px;"><b>Wife-Storekeeper Oath</b><br>Husband may administer oath; R' Eliezer: even for spindle & dough ab initio</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 86a-86b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 86a-86b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../85/">← Daf 85</a><a href="../87/">Daf 87 →</a></div>
+</body>
+</html>

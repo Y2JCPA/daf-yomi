@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 84 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Ketubot 84</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות פד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Stipulating Against Torah Law — Can conditions override Torah or rabbinic obligations?<br>
+    🏛️ Husband's Inheritance — Is it Torah law or rabbinic?<br>
+    💰 Mishna: Wife, Creditor & Heirs — Who gets the deceased's deposits and loans?<br>
+    🐄 Seizure of Assets — When does taking a debtor's property work?<br>
+    🤝 R' Akiva vs. R' Tarfon — No mercy in judgment vs. give to the weakest<br>
+    🔍 Presumption of Ownership — Livestock and the migo principle<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 84 — Inheritance, Stipulations & Competing Claims</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Can one stipulate against Torah law?</b><br>Rav vs. Shmuel on fraud waiver</div><div class="flow-arrow">↓</div><div class="flow-box action">Rav holds: stipulation counter to Torah <b>or rabbinic</b> law is <b>void</b></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Mishna:</b> Man dies leaving wife, creditor & heirs — who gets deposits?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Tarfon</div><div class="flow-box result-bad">Give to the <b>weakest</b> party</div></div><div class="flow-col"><div class="flow-label">R' Akiva</div><div class="flow-box result-good">Give to the <b>heirs</b> — no mercy in judgment</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Gemara explores: <b>When does seizure of assets work?</b><br>While alive vs. after death • Public domain vs. alley</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf balances legal precision against compassion — ultimately ruling that <b>law, not mercy, governs monetary disputes</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Can One Stipulate Against Torah Law?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Does Rav hold that stipulating counter to Torah law is valid?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Challenge</div><div class="speech">But Rav said regarding fraud: <b>the seller must reimburse</b> — one cannot abrogate <i>'You shall not wrong one another'</i> (Lev. 25:17)!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The halakha follows <b>Rabban Shimon ben Gamliel</b> — if she died, he inherits — but <b>not</b> because of his reasoning.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">What does this mean? Multiple attempts to explain…</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Resolution</div><div class="speech">RSBG holds husband's inheritance is <b>Torah law</b>. Rav holds it's <b>rabbinic</b> — but the Sages <b>reinforced their laws with Torah-level severity</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> <b>עשו חיזוק לדבריהם כשל תורה</b> — The Sages reinforced their pronouncements with the severity of Torah law.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Is Husband's Inheritance Torah or Rabbinic Law?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Bekhorot 52b Challenge:</b><br>R' Yochanan ben Beroka says husband must return inherited land in Jubilee Year</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">If Torah law</div><div class="flow-box result-bad">Inheritance is <b>never</b> returned at Jubilee!</div></div><div class="flow-col"><div class="flow-label">If Rabbinic law</div><div class="flow-box result-bad">Why does he get <b>any</b> compensation from her family?</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Rav's answer:</b> The case involves a <b>family graveyard</b> (<i>beit ha-kevarot</i>)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Due to <b>פגם משפחה</b> (family flaw), Sages ruled: take compensation, return the graveyard</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Resolution:</b> Rav was explaining R' Yochanan ben Beroka's reasoning — not stating his own view</div></div><div class="callout" style="margin-top:20px"><strong>Key Concept</strong> <b>פגם משפחה</b> — Harm to family dignity if relatives must be buried in strangers' plots overrides normal property rules.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Mishna: Who Gets the Deceased's Deposits?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#ffffff">R' Tarfon</h3><ul><li>Give deposits/loans to the <b>weakest</b> party</li><li>Prioritizes mercy and need</li><li>The most vulnerable claimant receives first</li><li>Whoever seizes first — acquires</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">R' Akiva</h3><ul><li><b>אין מרחמין בדין</b> — No mercy in judgment</li><li>Money goes to the <b>heirs</b></li><li>All others (wife, creditor) require an <b>oath</b> to collect</li><li>Halakha follows R' Akiva</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Halakha</strong> The law follows <b>R' Akiva</b>: deposits go to heirs because all other claimants need to swear an oath before collecting, and one cannot swear to collect from orphans' property.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>When Is Seizure of a Debtor's Assets Effective?</h2>
+  
+  <table><tr><th>Condition</th><th>Rav & Shmuel</th><th>R' Yochanan & Reish Lakish</th></tr><tr><td>Seized <b>while debtor alive</b></td><td>✅ Effective</td><td>✅ Effective</td></tr><tr><td>Seized <b>after debtor died</b></td><td>❌ Belongs to heirs</td><td>❌ Belongs to heirs</td></tr><tr><td>Produce in <b>public domain</b> (reshut ha-rabim)</td><td>✅ First to grab acquires</td><td>✅ First to grab acquires</td></tr><tr><td>Produce in an <b>alley</b> (simta)</td><td>❌ Heirs acquire automatically</td><td>✅ First to grab still acquires</td></tr><tr><td>According to R' Tarfon</td><td>Weakest party takes it</td><td>Weakest party takes it</td></tr><tr><td>According to R' Akiva</td><td>Heirs take — no mercy in law</td><td>Heirs take — no mercy in law</td></tr></table><div class="callout" style="margin-top:20px"><strong>Why the Alley Matters</strong> A <b>simta</b> (alley) is a valid location for acquisition — so items there are automatically acquired by heirs. The <b>public domain</b> is not, so items there are ownerless and available to any claimant.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Yochanan vs. Reish Lakish: Reversing the Judges</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Background</div><div class="speech">Judges ruled like <b>R' Tarfon</b> — giving money to the weakest party.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">I <b>reverse</b> their ruling! The money goes to the heirs per R' Akiva.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">You treated this like a <b>Torah-level error</b>! That's too strict.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Three possible explanations of their dispute:</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Option 1</div><div class="speech">R' Yochanan: Halakha follows R' Akiva vs. <b>colleague</b> only, not vs. <b>teacher</b>. R' Tarfon was his teacher.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Option 2</div><div class="speech">Both agree re: colleague only — they disagree whether R' Tarfon was Akiva's <b>teacher or colleague</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Option 3</div><div class="speech">R' Yochanan: The rule favoring R' Akiva is only an <b>inclination</b>, not a definitive halakha — so we don't reverse the judges.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Case</strong> R' Yochanan's own relatives seized an orphan's cow. He approved it per R' Tarfon, but when Reish Lakish reversed it, R' Yochanan conceded: <b>'One whose stature equals mine disagrees — what can I do?'</b></div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 84 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#e0e0e0; padding:12px; border-radius:8px; border-left:4px solid #c9a84c;"><b>Stipulations vs. Law</b><br>Rav: Conditions against Torah <i>or rabbinic</i> law are void</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; color:#e0e0e0; padding:12px; border-radius:8px; border-left:4px solid #4a90d9;"><b>Husband's Inheritance</b><br>Rav: Rabbinic law — but reinforced to Torah-level severity</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a2e; color:#e0e0e0; padding:12px; border-radius:8px; border-left:4px solid #9b59b6;"><b>Mishna: Competing Claims</b><br>Man dies with wife, creditor & heirs claiming deposits</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e2a16; color:#e0e0e0; padding:10px; border-radius:8px; border-top:3px solid #e67e22;"><b>R' Tarfon:</b> Give to the weakest</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#e0e0e0; padding:10px; border-radius:8px; border-top:3px solid #4caf50;"><b>R' Akiva (Halakha):</b> Heirs get it — אין מרחמין בדין</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a2e; color:#e0e0e0; padding:12px; border-radius:8px; border-left:4px solid #4caf50;"><b>Seizure Rules</b><br>Effective only while debtor alive • Location matters (public domain vs. alley)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 84a-84b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 84a-84b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../83/">← Daf 83</a><a href="../85/">Daf 85 →</a></div>
+</body>
+</html>

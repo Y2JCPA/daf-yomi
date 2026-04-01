@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 94 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Ketubot 94</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות צד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Stolen Field — When estate property turns out to be stolen and a wife loses her ketubah payment<br>
+    🤝 Later Creditor — Dispute whether a later creditor who collected first keeps the property<br>
+    🌾 Depleting the Field — Concern that uncertain ownership leads to exploitation of land<br>
+    👥 Brothers in Court — Whether one partner's court loss binds the other partner<br>
+    📋 Two Deeds, Same Date — Rav vs Shmuel on competing simultaneous documents<br>
+    🏛️ Shuda D'Dayyanei — Judicial discretion as a method of resolving ownership disputes<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 94 — Competing Claims & Judicial Discretion</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Estate has a stolen field</b><br>One wife may lose her ketubah payment</div><div class="flow-arrow">↓</div><div class="flow-box action">4th wife collects — then earlier wife's field is repossessed</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">First Tanna</div><div class="flow-box result-good">What she collected — <b>she has NOT collected</b><br>Property returned to earlier wife</div></div><div class="flow-col"><div class="flow-label">Ben Nanas</div><div class="flow-box result-bad">What she collected — <b>she HAS collected</b><br>4th wife must swear an oath first</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> This daf explores how we resolve competing claims — through oaths, division, or judicial discretion (<i>shuda d'dayyanei</i>).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Stolen Field: Does the Later Creditor Keep What She Collected?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Tanna</div><div class="speech">A later creditor who collected before the earlier creditor — <b>what he collected, he has NOT collected</b>. The 4th wife must return property to accommodate the earlier wife.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Ben Nanas</div><div class="speech">What the later creditor collected — <b>he HAS collected</b>. It is not taken from him. Therefore the 4th wife must <b>take an oath</b> before collecting.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Tanna</div><div class="speech">No oath is needed — since whatever the 4th wife collects <b>can be taken back</b>, there is no risk of permanent loss to the earlier wives.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Ben Nanas</div><div class="speech">Since property <b>cannot</b> be taken from her, an oath ensures she collects legitimately and no other wife is harmed.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Dispute</strong> The disagreement about creditor priority directly determines whether the 4th wife needs an oath.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rav Nachman's Alternative: Concern for Depleting the Field</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Rav Nachman in the name of Rabba bar Avuh:</b><br>Everyone agrees — what the later creditor collected, <b>he has NOT collected</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Then why does Ben Nanas require an oath?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Ben Nanas</div><div class="flow-box result-bad">We ARE concerned she will <b>deplete the field</b> (<i>machsha lei</i>)<br>Knowing the land may be repossessed, she'll exploit it short-term</div></div><div class="flow-col"><div class="flow-label">First Tanna</div><div class="flow-box result-good">We are NOT concerned about depletion<br>We assume she'll maintain the field's value — <b>no oath needed</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Reframing</strong> Rav Nachman shifts the dispute from creditor law to a behavioral concern — will uncertain ownership cause the 4th wife to damage the land?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Abaye's Explanation: Connection to Abaye the Elder</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">First Tanna</h3><ul><li>Does NOT accept the ruling of Abaye the Elder</li><li>No special oath requirement when collecting from an estate</li><li>4th wife collects without an oath</li></ul></div><div class="compare-box" style="border-top-color:#5c1a1a"><h3 style="color:#e74c3c">Ben Nanas</h3><ul><li>ACCEPTS the ruling of Abaye the Elder</li><li>Anyone collecting from orphans must take an oath</li><li>Even adult orphans may not know their parents' affairs</li><li>4th wife must swear before collecting</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Abaye the Elder's Rule</strong> When the Sages said one cannot collect from orphans without an oath — this includes even <b>adult</b> orphans, and certainly minors.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Rav Huna: One Partner's Court Loss Binds the Other</h2>
+  
+  <table><tr><th>Scenario</th><th>Ruling</th></tr><tr><td>Two brothers/partners have a lawsuit</td><td>One goes to court and loses</td></tr><tr><td>Can the absent partner say: 'I'm not bound by this'?</td><td><b>No</b> — the one who appeared acted as agent for both</td></tr><tr><td>Rav Nachman's proof from our Mishnah</td><td>1st wife swears to 2nd — not separately to 3rd and 4th</td></tr><tr><td>Why not separate oaths?</td><td>Because the 2nd wife acts as <b>agent</b> for those behind her</td></tr><tr><td>Gemara's distinction</td><td>An oath to one = oath to 100. But in litigation, the absent partner can say: <b>'I would have argued better!'</b></td></tr><tr><td>Final rule</td><td>Only applies if the partner was <b>out of town</b>. If in town and didn't come — he accepted the representation</td></tr></table><div class="callout" style="margin-top:20px"><strong>Practical Rule</strong> A partner present in town who fails to appear in court is deemed to have consented to representation by the other partner.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Two Deeds on the Same Day: Rav vs. Shmuel</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">When two deeds bear the <b>same date</b>, the recipients <b>divide the property equally</b>. We cannot determine who acquired it first.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Shmuel</div><div class="speech">The property is awarded by <b><i>shuda d'dayyanei</i></b> — the <b>discretion of the judges</b>. The court determines the owner's likely intent.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Rav follows <b>R' Meir</b>: signatory witnesses effect the transaction — same date means simultaneous validity. So divide.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Shmuel follows <b>R' Elazar</b>: transmission witnesses effect the transaction — the deeds weren't delivered simultaneously, so one person truly acquired it.</div></div></div><div class="callout" style="margin-top:20px"><strong>Underlying Debate</strong> R' Meir: <i>Eidei chatimah karsei</i> — signing witnesses finalize the deed. R' Elazar: <i>Eidei mesirah karsei</i> — transmission witnesses finalize the deed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 94 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Competing Claims Arise</b><br>Stolen field in estate / Two deeds same date / Two brothers in court</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #c9a84c; padding: 10px;"><b>Can We Determine Priority?</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 10px;"><b>Yes — Priority Exists</b><br>Earlier creditor prevails (First Tanna)<br>Specific date beats general date (Rav Yosef)</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border-left: 3px solid #e74c3c; padding: 10px;"><b>No — True Uncertainty</b><br>Rav: Divide equally<br>Shmuel: <i>Shuda d'dayyanei</i> — judge decides based on intent</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 94a-94b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 94a-94b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../93/">← Daf 93</a><a href="../95/">Daf 95 →</a></div>
+</body>
+</html>

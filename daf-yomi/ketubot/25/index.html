@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 25 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔍</div>
+  <h1>Ketubot 25</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות כה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Chazakah — The power of presumptive priestly status<br>
+    🌾 Teruma — Torah vs. rabbinic obligation after the return from Babylon<br>
+    🤲 Birkat Kohanim — Lifting hands as proof of priesthood<br>
+    🌍 Geographic Distinctions — Different standards in Eretz Yisrael, Syria, and Babylonia<br>
+    📖 Torah Reading Order — Establishing priestly status through aliyot<br>
+    👨‍👦 Family Testimony — A father's credibility regarding his son's priesthood<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>How Is Priestly Status Established?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> What actions create a <i>chazakah</i> (presumptive status) of priesthood?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">For Teruma</div><div class="flow-box action">Lifting hands, challah, priestly gifts</div></div><div class="flow-col"><div class="flow-label">For Lineage</div><div class="flow-box question">Disputed — does chazakah elevate to full priestly lineage?</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Multiple baraitot examined — each time the Gemara asks if chazakah establishes <b>lineage</b>, the answer deflects to a lesser status</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Practical rulings: Torah reading order + witness testimony can establish priestly status</div></div><div class="callout" style="margin-top:20px"><strong>Key Concept</strong> The Gemara systematically tests whether presumptive status (<i>chazakah</i>) for priesthood — established through actions like Birkat Kohanim or receiving teruma — is strong enough to establish full priestly <b>lineage</b> (yichus).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>What Does 'Great Is Chazakah' Mean?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The priests maintained their practice from Babylon to Eretz Yisrael. What's novel about saying <i>chazakah</i> is great?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Answer 1</div><div class="speech">In Babylon they ate <b>rabbinic teruma</b>. Now in Eretz Yisrael they eat <b>Torah-level teruma</b> based on that same chazakah — an elevation in status!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Answer 2</div><div class="speech">Even in Eretz Yisrael they only eat <b>rabbinic teruma</b>. The novelty: we don't decree against rabbinic teruma out of concern for Torah-level teruma.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But the verse in Ezra implies they <b>did</b> eat Torah-level teruma — only <i>kodesh hakodashim</i> (offerings) were forbidden!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Reinterpretation</div><div class="speech">Read the verse differently: they ate neither <i>kodesh</i> (= teruma) nor <i>kodashim</i> (= offerings). Both were forbidden.</div></div></div><div class="callout" style="margin-top:20px"><strong>Ezra 2:63</strong> The verse "that they should not eat of <i>kodesh hakodashim</i>" is reinterpreted as two separate prohibitions: <i>kodesh</i> (teruma) AND <i>kodashim</i> (sacrificial portions).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Establishing Priestly Chazakah by Location</h2>
+  
+  <table><tr><th>Location</th><th>Method of Establishing Status</th><th>Level Established</th></tr><tr><td><b>Eretz Yisrael</b></td><td>Lifting hands + teruma at threshing floors</td><td>Full priesthood (with court investigation)</td></tr><tr><td><b>Syria</b></td><td>Challah consumption</td><td>Presumptive status (not full lineage)</td></tr><tr><td><b>Babylonia</b></td><td>Lifting hands (permanent courts)</td><td>Like Syria — courts examine lineage</td></tr><tr><td><b>Cities (general)</b></td><td>Distribution of priestly gifts (foreleg, jaw, maw)</td><td>Presumptive priestly status</td></tr><tr><td><b>Alexandria (initially)</b></td><td>Lifting hands (permanent court)</td><td>Like Syria — per R' Shimon b. Gamliel</td></tr></table><div class="callout" style="margin-top:20px"><strong>Geographic Principle</strong> The strength of priestly presumptive status depends on the <b>location</b> and whether permanent courts existed to investigate lineage of those performing priestly functions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Torah vs. Rabbinic: Teruma and Challah</h2>
+  
+  <div class="flowchart"><div class="flow-box action">After the return from Babylon, not all Jews ascended to Eretz Yisrael</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Key Dispute:</b> Are teruma and challah obligations Torah-level or rabbinic today?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">View A (First Baraita)</div><div class="flow-box action"><b>Challah</b> = Rabbinic<br><b>Teruma</b> = Torah law<br>We elevate from challah → teruma</div></div><div class="flow-col"><div class="flow-label">View B (Second Baraita)</div><div class="flow-box action"><b>Teruma</b> = Rabbinic<br><b>Challah</b> = Torah law<br>We elevate from teruma → challah</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Each baraita is deflected: chazakah elevates only to the <b>next level</b>, not to full lineage</div></div><div class="callout" style="margin-top:20px"><strong>Rav Huna b. R' Yehoshua</strong> His opinion — that challah today is only a rabbinic obligation — is used to explain why the first baraita teaches elevation from challah to teruma, not to lineage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Establishing Priesthood via Torah Reading: Three Incidents</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">R' Ami</h3><ul><li>A witness says: 'He is a priest'</li><li>R' Ami asks: Did he read first because he's a <b>priest</b> or a <b>great man</b>?</li><li>Answer: A Levite read after him — proving he was called as a priest</li><li>✅ R' Ami <b>elevated him</b> to priesthood</li></ul></div><div class="compare-box" style="border-top-color:#1e2a4a"><h3 style="color:#4a90d9">R' Yehoshua b. Levi</h3><ul><li>A witness says: 'He is a Levite'</li><li>R' Yehoshua asks: Did he read second as a <b>Levite</b> or a <b>great man</b>?</li><li>Answer: A priest read before him — confirming Levite status</li><li>✅ R' Yehoshua <b>elevated him</b> to Levite status</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Reish Lakish</h3><ul><li>A witness says: 'He read first — he's a priest'</li><li>Reish Lakish demands: Did he receive <b>teruma at the threshing floor</b>?</li><li>R' Elazar objects: If there's no threshing floor, does priesthood cease?</li><li>⚡ R' Yochanan later says the same — Reish Lakish glares at R' Elazar</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>The Glare</strong> Reish Lakish looked harshly at R' Elazar because he realized R' Elazar had quoted R' Yochanan's ruling without attribution. Had he cited the source, Reish Lakish would have accepted it immediately.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Reish Lakish vs. R' Yochanan: What Proves Priesthood?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">Only receiving <b>teruma at the threshing floor</b> establishes priestly status. Torah reading is insufficient!</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Elazar</div><div class="speech">And if there is no threshing floor there, does the <b>priesthood cease to exist</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech"><i>(Later, same ruling:)</i> And if there is no threshing floor there, does the <b>priesthood cease to exist</b>?</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech"><i>(Turns to glare at R' Elazar:)</i> You heard this from <b>bar Nappaḥa</b> and didn't tell me it was his ruling? I would have accepted it!</div></div></div><div class="callout" style="margin-top:20px"><strong>Bar Nappaḥa</strong> 'Son of a blacksmith' — an epithet for R' Yochanan. Reish Lakish's deference to his teacher shows the weight of received tradition over independent reasoning.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 25 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Observable Priestly Actions</b><br>Lifting hands, teruma, Torah reading order</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 8px;"><b>Eretz Yisrael</b><br>Stronger chazakah — courts investigate lineage</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a2e; border-left: 3px solid #9b59b6; padding: 8px;"><b>Diaspora</b><br>Weaker chazakah — elevates to teruma, not necessarily lineage</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a2a1e; border-left: 3px solid #c9a84c; padding: 10px;"><b>Witness Testimony</b><br>Torah reading + Levite following = accepted proof (R' Ami, R' Yochanan)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1e2a3a; border-left: 3px solid #e67e22; padding: 10px;"><b>Family Testimony</b><br>Father believed for teruma (within purview) but not for marriage (R' Yehuda HaNasi)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 25a-25b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 25a-25b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../24/">← Daf 24</a><a href="../26/">Daf 26 →</a></div>
+</body>
+</html>

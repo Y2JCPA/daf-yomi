@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 30 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Ketubot 30</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות ל׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👶 Mamzerut & Positive Mitzvot — When violations of positive commandments produce mamzerim<br>
+    ⚡ Kim Leih Bid'rabba Minei — Exemption from payment when liable for death penalty<br>
+    🔗 R' Neḥunya ben HaKana — Yom Kippur equated with Shabbat for payment exemptions<br>
+    💀 Four Death Penalties — Divine punishments mirror court-imposed executions after Temple destruction<br>
+    🍞 Non-Priest Eating Teruma — Practical difference between Abaye and Rava's derivations<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 30: Death Penalties, Divine Punishment & Payment Exemptions</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Mamzerut</b>: When does violating a <em>positive mitzva</em> produce a <i>mamzer</i>?</div><div class="flow-arrow">↓</div><div class="flow-box action">Distinction: mitzvot <b>equal for all</b> vs. <b>not equal for all</b> (e.g., High Priest's non-virgin)</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>R' Neḥunya ben HaKana</b>: Yom Kippur = Shabbat for <em>kim leih bid'rabba minei</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Abaye</div><div class="flow-box result-good"><b>Gezerah shavah</b>: 'harm' — death at hand of Heaven = death at hand of man</div></div><div class="flow-col"><div class="flow-label">Rava</div><div class="flow-box result-bad"><b>Juxtaposition</b>: karet with Molech — only <em>karet</em> exempts, not all Heavenly death</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> This daf explores when severe spiritual liability (karet or death at Heaven's hand) exempts one from monetary payment — and the precise derivation determines the scope of that exemption.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Mamzerut from Positive Mitzvot</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">If R' Yeshevav states his own view: anyone without possibility of permitted relations → child is <b>mamzer</b>, even from violations of <em>positive mitzvot</em> (Egyptian/Edomite converts)</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">Then what is the difference between <b>Shimon HaTimni</b> and <b>R' Shimon ben Menasya</b>?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The difference: a <b>non-virgin</b> raped by a <b>High Priest</b></div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">But that too violates a positive mitzva — 'a <em>virgin</em> of his own people shall he take' (Lev. 21:14)!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">It is different: a <b>positive mitzva not equal for all</b> (<em>mitzvat aseh she'einah shavah bakol</em>) — applies only to the High Priest, not all Jews</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> A positive mitzva that applies only to specific people (like the High Priest's obligation to marry a virgin) has a more lenient status — its violation does not produce mamzerut even according to the broadest view.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rav Ḥisda's Ruling: Forced Relations with a Niddah</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אונס נדה — משלם קנס</div><div class="callout"><strong>Unanimous Agreement</strong> <b>Rav Ḥisda</b> said: <em>Everyone agrees</em> that one who has forced intercourse with a <b>menstruating woman</b> (<em>niddah</em>) pays the fine.<br><br>• According to the view that <b>betrothal</b> is the criterion — betrothal <em>does</em> take effect with a niddah<br>• According to the view that <b>suitability to sustain</b> is the criterion — she <em>is</em> suitable to sustain as a wife (after purification)</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Neḥunya ben HaKana: Yom Kippur = Shabbat</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#c9a84c">Shabbat (agreed by all)</h3><ul><li>Intentional violation → death penalty (stoning)</li><li>Kim leih bid'rabba minei applies</li><li>Exempt from monetary payments for damages caused while violating Shabbat</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e67e22">Yom Kippur (R' Neḥunya)</h3><ul><li>Intentional violation → karet (divine excision)</li><li>R' Neḥunya: treated like court-imposed death</li><li>Exempt from monetary payments for damages caused while violating Yom Kippur</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Mishna Context</strong> The mishna's ruling that one who has relations with his sister pays a fine comes to <b>exclude</b> R' Neḥunya ben HaKana's view, since such relations carry karet.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>The Four Death Penalties After the Temple's Destruction</h2>
+  
+  <table><tr><th>Court Penalty</th><th>Divine Equivalent</th></tr><tr><td><b>Stoning</b> (Sekilah)</td><td>Falls from roof or trampled by beast</td></tr><tr><td><b>Burning</b> (Sereifah)</td><td>Falls into fire or bitten by snake</td></tr><tr><td><b>Decapitation</b> (Hereg)</td><td>Handed to monarchy or killed by bandits</td></tr><tr><td><b>Strangulation</b> (Ḥenek)</td><td>Drowns in river or dies of diphtheria (serunki)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rav Yosef / R' Ḥiyya</strong> Though the Sanhedrin was abolished, the <em>punishment</em> of the four death penalties was not abolished — they continue through Divine Providence in equivalent forms.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Abaye vs. Rava: Source for R' Neḥunya's Rule</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Abaye</b>: <em>Gezerah shavah</em> on the word <b>'harm'</b> (ason)</div><div class="flow-arrow">↓</div><div class="flow-box action">'Harm' at hands of man (Exodus 21:23) ↔ 'Harm' at hand of Heaven (Genesis 42:38)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Result: <b>All</b> death at hand of Heaven exempts from payment</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Rava</b>: Juxtaposition in Leviticus 20:4–5 — Molech/karet passage</div><div class="flow-arrow">↓</div><div class="flow-box action">'My karet is like your death penalty'</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Result: Only <b>karet</b> exempts from payment, not mere death at hand of Heaven</div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> A <b>non-priest who ate teruma</b> is liable to death at the hand of Heaven but NOT karet. According to Abaye — exempt from payment. According to Rava — liable to pay.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 30 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#c9a84c; padding:10px; border-radius:8px;"><b>Does the act carry karet or death at hand of Heaven?</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#4caf50; padding:10px; border-radius:8px;"><b>Abaye</b>: Even death at hand of Heaven exempts (gezerah shavah on 'ason')</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; color:#e74c3c; padding:10px; border-radius:8px;"><b>Rava</b>: Only karet exempts (Molech verse juxtaposition)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3e; color:#9b59b6; padding:10px; border-radius:8px;"><b>Practical difference</b>: Non-priest who ate teruma — death at hand of Heaven but not karet</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#e67e22; padding:10px; border-radius:8px;"><b>Requirement</b>: Payment liability and death/karet liability must arise <em>simultaneously</em> for exemption to apply</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 30a-30b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 30a-30b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../29/">← Daf 29</a><a href="../31/">Daf 31 →</a></div>
+</body>
+</html>

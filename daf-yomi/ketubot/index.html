@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot — Daf Yomi</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Georgia',serif;background:#1a1a2e;color:#e0e0e0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+h1{font-size:2.8em;color:#c9a84c;margin-bottom:5px}
+.hebrew-title{font-family:'David','Times New Roman',serif;direction:rtl;font-size:1.8em;color:#e8d5a3;margin-bottom:10px}
+.subtitle{color:#aaa;font-size:1em;max-width:600px;text-align:center;margin-bottom:40px;line-height:1.6}
+.breadcrumb{margin-bottom:20px}.breadcrumb a{color:#c9a84c;text-decoration:none}
+.daf-list{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:700px}
+.daf-link{background:#16213e;border:2px solid #c9a84c;border-radius:10px;padding:16px 24px;text-align:center;text-decoration:none;color:#e0e0e0;min-width:80px;transition:transform 0.2s,border-color 0.2s;font-size:1.1em}
+.daf-link:hover{transform:translateY(-3px);border-color:#f0d060}
+.daf-link .num{color:#c9a84c;font-size:1.3em;font-weight:bold}
+footer{margin-top:60px;color:#555;font-size:0.85em}
+</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="../../">← All Masechtos</a></div>
+<h1>Ketubot</h1>
+<div class="hebrew-title">כתובות</div>
+<div class="subtitle">💍 Marriage contracts, obligations, and financial rights between spouses. 112 dapim · Seder Nashim</div>
+<div class="daf-list" id="dafList"></div>
+<script>
+const heNums=["", "", "\u05d1", "\u05d2", "\u05d3", "\u05d4", "\u05d5", "\u05d6", "\u05d7", "\u05d8", "\u05d9", "\u05d9\u05f4\u05d0", "\u05d9\u05f4\u05d1", "\u05d9\u05f4\u05d2", "\u05d9\u05f4\u05d3", "\u05d8\u05f4\u05d5", "\u05d8\u05f4\u05d6", "\u05d9\u05f4\u05d6", "\u05d9\u05f4\u05d7", "\u05d9\u05f4\u05d8", "\u05db", "\u05db\u05f4\u05d0", "\u05db\u05f4\u05d1", "\u05db\u05f4\u05d2", "\u05db\u05f4\u05d3", "\u05db\u05f4\u05d4", "\u05db\u05f4\u05d5", "\u05db\u05f4\u05d6", "\u05db\u05f4\u05d7", "\u05db\u05f4\u05d8", "\u05dc", "\u05dc\u05f4\u05d0", "\u05dc\u05f4\u05d1", "\u05dc\u05f4\u05d2", "\u05dc\u05f4\u05d3", "\u05dc\u05f4\u05d4", "\u05dc\u05f4\u05d5", "\u05dc\u05f4\u05d6", "\u05dc\u05f4\u05d7", "\u05dc\u05f4\u05d8", "\u05de", "\u05de\u05f4\u05d0", "\u05de\u05f4\u05d1", "\u05de\u05f4\u05d2", "\u05de\u05f4\u05d3", "\u05de\u05f4\u05d4", "\u05de\u05f4\u05d5", "\u05de\u05f4\u05d6", "\u05de\u05f4\u05d7", "\u05de\u05f4\u05d8", "\u05e0", "\u05e0\u05f4\u05d0", "\u05e0\u05f4\u05d1", "\u05e0\u05f4\u05d2", "\u05e0\u05f4\u05d3", "\u05e0\u05f4\u05d4", "\u05e0\u05f4\u05d5", "\u05e0\u05f4\u05d6", "\u05e0\u05f4\u05d7", "\u05e0\u05f4\u05d8", "\u05e1", "\u05e1\u05f4\u05d0", "\u05e1\u05f4\u05d1", "\u05e1\u05f4\u05d2", "\u05e1\u05f4\u05d3", "\u05e1\u05f4\u05d4", "\u05e1\u05f4\u05d5", "\u05e1\u05f4\u05d6", "\u05e1\u05f4\u05d7", "\u05e1\u05f4\u05d8", "\u05e2", "\u05e2\u05f4\u05d0", "\u05e2\u05f4\u05d1", "\u05e2\u05f4\u05d2", "\u05e2\u05f4\u05d3", "\u05e2\u05f4\u05d4", "\u05e2\u05f4\u05d5", "\u05e2\u05f4\u05d6", "\u05e2\u05f4\u05d7", "\u05e2\u05f4\u05d8", "\u05e4", "\u05e4\u05f4\u05d0", "\u05e4\u05f4\u05d1", "\u05e4\u05f4\u05d2", "\u05e4\u05f4\u05d3", "\u05e4\u05f4\u05d4", "\u05e4\u05f4\u05d5", "\u05e4\u05f4\u05d6", "\u05e4\u05f4\u05d7", "\u05e4\u05f4\u05d8", "\u05e6", "\u05e6\u05f4\u05d0", "\u05e6\u05f4\u05d1", "\u05e6\u05f4\u05d2", "\u05e6\u05f4\u05d3", "\u05e6\u05f4\u05d4", "\u05e6\u05f4\u05d5", "\u05e6\u05f4\u05d6", "\u05e6\u05f4\u05d7", "\u05e6\u05f4\u05d8", "\u05e7", "\u05e7\u05f4\u05d0", "\u05e7\u05f4\u05d1", "\u05e7\u05f4\u05d2", "\u05e7\u05f4\u05d3", "\u05e7\u05f4\u05d4", "\u05e7\u05f4\u05d5", "\u05e7\u05f4\u05d6", "\u05e7\u05f4\u05d7", "\u05e7\u05f4\u05d8", "\u05e7\u05f4\u05d9", "\u05e7\u05d9\u05f4\u05d0", "\u05e7\u05d9\u05f4\u05d1"];
+const maxDaf=112;
+const list=document.getElementById('dafList');
+for(let d=2;d<=maxDaf;d++){const a=document.createElement('a');a.href=d+'/';a.className='daf-link';a.innerHTML='<div class="num">'+d+'</div><div style="font-size:0.8em;color:#aaa">'+(heNums[d]||'')+'</div>';list.appendChild(a);}
+</script>
+<footer>Built with ☕ by Yaacov & Akiva</footer>
+</body>
+</html>

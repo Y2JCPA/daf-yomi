@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 93 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Ketubot 93 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">When the estate is 200 dinars, why does the wife with a 100-dinar ketubah receive 50 instead of 33⅓?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. The wife with the 200-dinar ketubah concedes her claim to the first 100 vis-à-vis the 100-dinar wife</div>
+      <div class="option" onclick="select(1,this,1)">B. The court grants her extra as compensation for having the smallest ketubah</div>
+      <div class="option" onclick="select(1,this,2)">C. She receives interest on her original claim</div>
+      <div class="option" onclick="select(1,this,3)">D. The other wives voluntarily gift her the difference</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: A — </strong>Shmuel explains that the 200-dinar wife writes a document removing herself from litigation with the 100-dinar wife regarding the first 100 dinars, leaving only two claimants (100 and 300) to split it equally — hence 50 each.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">According to Shmuel, what is the nature of the concession (siluk) that a higher-claiming wife makes?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. She permanently surrenders all rights to that tranche</div>
+      <div class="option" onclick="select(2,this,1)">B. She waives her claim only against a specific claimant, not absolutely</div>
+      <div class="option" onclick="select(2,this,2)">C. She transfers her share to the orphans</div>
+      <div class="option" onclick="select(2,this,3)">D. She reduces her total ketubah amount</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>The concession is personal — the 200-dinar wife removes herself from dealings with the 100-dinar wife only. Against the 300-dinar wife, she still maintains her claim to the first 100 dinars.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">What is the dispute between Rabba and Rav Hamnuna regarding an ox bought for plowing but slaughtered?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Rabba says divide equally; Rav Hamnuna says proportionally</div>
+      <div class="option" onclick="select(3,this,1)">B. Rabba says divide proportionally to investment; Rav Hamnuna says divide equally</div>
+      <div class="option" onclick="select(3,this,2)">C. Both agree to divide equally</div>
+      <div class="option" onclick="select(3,this,3)">D. Both agree to divide proportionally</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Rabba holds that when an ox bought for plowing is slaughtered, profits follow monetary investment (proportional). Rav Hamnuna holds profits are still divided equally regardless of how the ox was used.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">In the Mishna of four wives, who does Ben Nanas say must also take an oath?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. The first wife</div>
+      <div class="option" onclick="select(4,this,1)">B. All four wives to the orphans</div>
+      <div class="option" onclick="select(4,this,2)">C. The fourth (last) wife</div>
+      <div class="option" onclick="select(4,this,3)">D. The husband's creditors</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>The Tanna Kamma says the fourth wife collects without an oath since no one comes after her. Ben Nanas disagrees — since she collects from property that would go to orphans, she too must swear.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">How does Rav Naḥman (citing Rabba bar Avuh) reconcile the Mishna's proportional partnership division with Shmuel's equal-split rule?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. The Mishna overrules Shmuel</div>
+      <div class="option" onclick="select(5,this,1)">B. The Mishna's 'profit and loss' refers only to changes in coin value, not actual business earnings</div>
+      <div class="option" onclick="select(5,this,2)">C. Shmuel later retracted his opinion</div>
+      <div class="option" onclick="select(5,this,3)">D. The Mishna applies only to three or more partners</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>Rav Naḥman explains that 'profit' means receiving newer, more valuable coins and 'loss' means receiving defective ones — this is currency exchange, not business profit. Actual business profits would still be divided equally per Shmuel.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":0,"2":1,"3":1,"4":2,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

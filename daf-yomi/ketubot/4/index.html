@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 4 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Ketubot 4</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות ד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💀 Death Before Wedding — procedures when a close relative dies before the ceremony<br>
+    🥩 Water on the Meat — Rav Ḥisda's financial loss threshold for proceeding<br>
+    🏘️ City vs. Village — Rava and Rav Pappa debate where meat can be sold<br>
+    🛏️ Sleeping Apart — seclusion rules during post-wedding mourning and menstruation<br>
+    🔄 Mourning vs. Niddah — which prohibition is more stringent regarding intimacy<br>
+    🕯️ Shabbat Restrictions — no first intercourse on Shabbat eve or conclusion<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>When Death Meets Wedding: The Procedure</h2>
+  
+  <div class="process-bar"><div class="process-step">💀 A close relative dies right before the wedding</div><div class="process-arrow">↓</div><div class="process-step">🏠 Move the corpse into a private room</div><div class="process-arrow">↓</div><div class="process-step highlight">💍 Bride & groom are ushered to the chuppah and married</div><div class="process-arrow">↓</div><div class="process-step">🤝 Groom fulfills initial mitzva of intercourse, then withdraws</div><div class="process-arrow">↓</div><div class="process-step">⚰️ The corpse is buried</div><div class="process-arrow">↓</div><div class="process-step highlight">🎉 Seven days of wedding feast observed first</div><div class="process-arrow">↓</div><div class="process-step">😢 Then seven days of mourning</div><div class="process-arrow">↓</div><div class="process-step highlight">🛏️ Throughout both periods: groom sleeps among men, bride among women</div></div><div class="callout" style="margin-top:20px"><strong>KEY CONDITION</strong> This procedure applies only when the <b>father of the groom</b> or <b>mother of the bride</b> dies — the ones responsible for wedding preparations. If the opposite parent dies, the corpse is buried first, mourning observed, and only then do they marry.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Which Parent Died? Different Rules Apply</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Father of Groom / Mother of Bride</h3><ul><li>These are the ones who handle wedding preparations</li><li>Wedding proceeds immediately</li><li>Corpse moved to a room</li><li>Marriage → mitzva intercourse → burial</li><li>7 days feast THEN 7 days mourning</li></ul></div><div class="compare-box" style="border-top-color:#3e1a1a"><h3 style="color:#e74c3c">Mother of Groom / Father of Bride</h3><ul><li>Others can step in for preparations</li><li>Wedding is postponed</li><li>Corpse is buried immediately</li><li>7 days of mourning first</li><li>Only afterward does the couple marry</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>LOGIC</strong> The distinction depends on who is irreplaceably responsible for the wedding arrangements — their death means the completed preparations would go to waste.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The 'Water on the Meat' Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ḥisda</div><div class="speech">The wedding proceeds immediately <b>only if water was already placed on the meat</b> — otherwise it can be sold and there's no significant loss.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">In a <b>city</b>, even if water was placed on the meat, it can still be sold — there are plenty of buyers. Postpone for mourning.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Pappa</div><div class="speech">In a <b>village</b>, even without water on the meat, it <em>cannot</em> be sold — no buyers exist for such a quantity. Proceed with the wedding.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">If Rava's rule governs cities and Rav Pappa's governs villages, where does Rav Ḥisda's condition ever apply?</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Rav Ashi</div><div class="speech">It applies in a place like <b>Mata Meḥasya</b> — too small to be a city, too large to be a village!</div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> The core concern is <b>financial loss</b> (<i>hefsed merubeh</i>). Whether to proceed depends on whether the prepared food can be sold to recoup costs.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Can You Sell the Wedding Meat?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A death occurs before the wedding.<br>Meat has been prepared.</div><div class="flow-arrow">↓</div><div class="flow-box question">Where is the wedding taking place?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">City (Rava)</div><div class="flow-box result-good">Meat <b>can</b> be sold regardless.<br>Postpone wedding for mourning.</div></div><div class="flow-col"><div class="flow-label">Mid-size (Rav Ḥisda)</div><div class="flow-box action">Was water placed on the meat?<br><b>Yes</b> → Proceed with wedding<br><b>No</b> → Postpone for mourning</div></div><div class="flow-col"><div class="flow-label">Village (Rav Pappa)</div><div class="flow-box result-bad">Meat <b>cannot</b> be sold regardless.<br>Proceed with wedding.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>MATA MEḤASYA</strong> Rav Ashi's hometown — the only locale where Rav Ḥisda's 'water on the meat' distinction is practically relevant.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Mourning vs. Menstruation: Seclusion Rules</h2>
+  
+  <table><tr><th>Factor</th><th>Mourning (Availut)</th><th>Menstruation (Niddah)</th></tr><tr><td>After initial intercourse — seclusion?</td><td>❌ Still forbidden — sleep apart</td><td>✅ Permitted — she may sleep with him</td></tr><tr><td>Pouring his cup</td><td>✅ Permitted (her mourning)</td><td>❌ Forbidden</td></tr><tr><td>Arranging his bed</td><td>✅ Permitted (her mourning)</td><td>❌ Forbidden</td></tr><tr><td>Washing face/hands/feet</td><td>✅ Permitted (her mourning)</td><td>❌ Forbidden</td></tr><tr><td>Cosmetics (eye paint, rouge)</td><td>❌ Not compelled during mourning</td><td>Not discussed here</td></tr><tr><td>Rationale for stringency</td><td>Post-wedding leniency → extra safeguard</td><td>Standard ongoing prohibition</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' YOḤANAN'S PRINCIPLE</strong> Although mourning is not observed on a Festival, <b>private mourning practices</b> (<i>devarim she-b'tzin'a</i>) still apply. The seven wedding feast days have Festival status for the couple.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>His Mourning vs. Her Mourning</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">A baraita says when his in-laws die, he mourns <b>with her</b>. Does 'with her' mean together in bed?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Answer</div><div class="speech">No — 'with him/her' means <b>in the same house</b>, as Rav told his son Ḥiyya: observe mourning <em>before her</em>, but not when she's absent.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Rav Ashi</div><div class="speech">You can't compare this mourning to regular mourning! Regular mourning is treated strictly and won't be taken lightly.</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Rav Ashi</div><div class="speech">But <b>post-wedding mourning</b> — since the Sages already made leniencies (feast before mourning), people might take it lightly. So extra safeguards are needed: <b>no seclusion</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>DISTINCTION</strong> When <b>she</b> is mourning, he need not sleep apart — she would resist any improper advance. When <b>he</b> is mourning (or both), they must sleep separately as an extra safeguard.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 4 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#3e1a1a; border-left: 4px solid #e74c3c; padding: 10px;">💀 <b>Death of father of groom / mother of bride</b><br>before the wedding</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 4px solid #4a90d9; padding: 10px;">🥩 <b>Can the prepared food be sold?</b></div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 10px;">🏙️ <b>City</b> — Yes, sell it.<br>Postpone wedding.</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; padding: 10px;">🏘️ <b>Mid-size</b> — Depends on<br>water on meat.</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2e1a; padding: 10px;">🏕️ <b>Village</b> — No buyers.<br>Proceed with wedding.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 4px solid #c9a84c; padding: 10px;">💍 <b>If proceeding:</b> Marry → Mitzva → Burial → 7 Feast → 7 Mourning<br>🛏️ Sleep apart throughout — extra safeguard against leniency</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 4a-4b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 4a-4b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">← Daf 3</a><a href="../5/">Daf 5 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 112 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍇</div>
+  <h1>Ketubot 112</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות קיב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🍑 Giant Fruit — Miraculous produce of Eretz Yisrael and its decline due to sin<br>
+    🍇 Grape Clusters of Gavla — R' Yehoshua ben Levi's curse on the land's bounty<br>
+    🌾 Fertility Calculations — Hebron vs. Zoan and the hundredfold blessing<br>
+    🦌 The Deer Metaphor — Why Eretz Yisrael is compared to a tzvi<br>
+    🌿 Love of the Land — Sages who rolled in its dust and sought its comfort<br>
+    ⏳ Signs of Mashiach — Refinement, plunder, and barren trees bearing fruit<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ketubot 112: The Miraculous Land</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אֶרֶץ פְּרִי לִמְלֵחָה מֵרָעַת יוֹשְׁבֵי בָהּ — Psalms 107:34</div><div class="callout"><strong>CORE THEME</strong> This daf celebrates the extraordinary <b>fertility of Eretz Yisrael</b> through vivid stories of giant fruit and astonishing agricultural yields, while warning that <b>sin diminishes the land's blessing</b>. It concludes with the Sages' deep physical love for the land and prophecies of the <b>messianic era</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>🍑 The Giant Peach of Kefar Hino</h2>
+  
+  <div class="process-bar"><div class="process-step">🍑 R' Ḥelbo, R' Avira & R' Yosei bar Ḥanina visit a certain place</div><div class="process-arrow">↓</div><div class="process-step highlight">🫕 Locals bring a peach the size of a stewpot (ilpas) — capacity of <b>5 se'a</b></div><div class="process-arrow">↓</div><div class="process-step">🍽️ They ate ⅓, declared ⅓ ownerless, and fed ⅓ to their animals</div><div class="process-arrow">↓</div><div class="process-step highlight">📅 Next year: R' Elazar visits — the peach fits in <b>one hand</b></div><div class="process-arrow">↓</div><div class="process-step">📖 He quotes Psalms 107:34: <i>"A fruitful land into a salt waste, from the wickedness of they who dwell there"</i></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> The fertility of the land is directly tied to the <b>spiritual merit</b> of its inhabitants — sin causes the produce to diminish.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>🍇 The Grape Clusters of Gavla</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yehoshua ben Levi</div><div class="speech">Calves are standing between the grapevines! Aren't you concerned about damage?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Locals</div><div class="speech">Those are not calves — they are <b>grape clusters</b>!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yehoshua ben Levi</div><div class="speech"><i>O earth, gather in your fruit!</i> For whom do you produce? For the <b>gentiles who stand over us</b> in our sins?</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Ḥiyya (next year)</div><div class="speech">Goats are standing between the vines! <i>(Clusters had shrunk from calf-size to goat-size)</i></div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Locals</div><div class="speech">Go away! Don't do to us what <b>your colleague</b> already did!</div></div></div><div class="callout" style="margin-top:20px"><strong>RESULT</strong> R' Yehoshua ben Levi's curse was fulfilled — the fruit shrank because the land's bounty was benefiting foreign rulers rather than Israel.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>🌾 Fertility Comparison: Eretz Yisrael vs. Egypt</h2>
+  
+  <table><tr><th>Location</th><th>Quality</th><th>Yield per Beit Se'a</th></tr><tr><td>Zoan, Egypt</td><td>Best land in the best country outside Israel</td><td>70 kor</td></tr><tr><td>Beit She'an valley</td><td>Good irrigated land outside Israel's borders</td><td>70 kor (R' Meir)</td></tr><tr><td>Hebron (rocky terrain)</td><td>Rockiest land in Eretz Yisrael — burial ground</td><td>490 kor (7× Zoan)</td></tr><tr><td>Non-rocky Eretz Yisrael</td><td>Regular arable land of Israel</td><td>Up to 500 kor</td></tr><tr><td>Blessed year (Isaac)</td><td>Hundredfold blessing (Genesis 26:12)</td><td>50,000 kor</td></tr></table><div class="callout" style="margin-top:20px"><strong>KEY PROOF</strong> <b>Nivneta</b> (Numbers 13:22) — "Hebron was <i>built</i> seven years before Zoan" means it was <b>seven times more fertile</b>, not literally built earlier. A father wouldn't build for his younger son (Canaan) before his older son (Mizraim).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>📐 Deriving the 50,000 Kor Calculation</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Zoan (best of Egypt) produces <b>70 kor</b> per beit se'a</div><div class="flow-arrow">↓</div><div class="flow-box action">Hebron = 7× Zoan = <b>490 kor</b> (from Numbers 13:22)</div><div class="flow-arrow">↓</div><div class="flow-box action">Non-rocky Israel yields up to <b>~500 kor</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Isaac's blessed year = <b>100× normal</b> (Genesis 26:12)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">500 × 100 = <b>50,000 kor</b> per beit se'a in a blessed year</div></div><div class="callout" style="margin-top:20px"><strong>R' YOSEI ADDS</strong> One se'a of Judean wheat yields <b>5 se'a</b>: flour, fine flour, bran fiber, coarse bran, and <i>kiburaya</i> (inferior flour).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>🦌 Why Is Eretz Yisrael Called a "Deer" (Tzvi)?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">The Deer's Skin</h3><ul><li>Once a deer is skinned, its hide <b>shrinks</b> and cannot contain its meat</li><li>The skin appears small relative to the animal's full body</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Eretz Yisrael</h3><ul><li>When inhabited by Israel, the land <b>expands</b> to hold everyone</li><li>When Israel is exiled, the land <b>contracts</b> and appears small</li><li>Source: Jeremiah 3:19 — <i>"a pleasant land, the goodliest (tzvi) heritage"</i></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>INSIGHT</strong> The land's capacity is not fixed — it miraculously adjusts to match the spiritual state of the Jewish people.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 112 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 10px;">🍑 <b>Giant Produce</b><br/>Peaches the size of stewpots, grape clusters like calves</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1a1a; border-left: 3px solid #e74c3c; padding: 10px;">📉 <b>Sin Diminishes the Land</b><br/>R' Elazar: fruit shrinks from wickedness<br/>R' Yehoshua b"L curses the bounty going to gentile rulers</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;">📐 <b>Calculating the Blessing</b><br/>Hebron = 7× Zoan (490 kor) despite being rockiest<br/>Blessed year = 100× normal = 50,000 kor</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a3e; border-left: 3px solid #9b59b6; padding: 10px;">🦌 <b>Deer Metaphor</b><br/>Land expands/contracts based on Israel's presence</div></div><div class="flow-col"><div class="flow-box" style="background:#3e2a1a; border-left: 3px solid #e67e22; padding: 10px;">⏳ <b>Messianic Promise</b><br/>Refinement, then all barren trees bear fruit</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 112a-112b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 112a-112b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../111/">← Daf 111</a></div>
+</body>
+</html>

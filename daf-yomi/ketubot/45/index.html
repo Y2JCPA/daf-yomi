@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 45 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Ketubot 45</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות מה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏠 Place of Stoning — where a betrothed na'arah who sinned is executed<br>
+    🔄 Changed Status — does bodily change affect the method of execution?<br>
+    📜 Motzi Shem Ra — the defamer case as a novel halakha<br>
+    👑 Horayot Parallel — dispute about sin vs. awareness timing for kings & High Priests<br>
+    🔗 Verbal Analogy — deriving execution location from idolatry verses<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Core Question of the Daf: Status at Sin vs. Status at Punishment</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A <b>betrothed na'arah</b> commits adultery</div><div class="flow-arrow">↓</div><div class="flow-box question">She reaches <b>majority (bageret)</b> before punishment</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Follow Time of Sin</div><div class="flow-box result-good"><b>Stoning</b> — she was a na'arah when she sinned</div></div><div class="flow-col"><div class="flow-label">Follow Current Status</div><div class="flow-box result-bad"><b>Strangulation</b> — she is now a grown woman</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Issue</strong> Does a change in the body or status of the sinner retroactively change the method of execution?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Where Is a Na'arah Me'orasah Stoned?</h2>
+  
+  <table><tr><th>Scenario</th><th>Place of Stoning</th></tr><tr><td>Sinned while in her father's house (during betrothal)</td><td>Entrance to her <b>father's house</b> — 'See what you raised!'</td></tr><tr><td>Witnesses testify she sinned in father's house</td><td>Entrance to the <b>gate of the city</b></td></tr><tr><td>No entrance to father's house</td><td>Entrance to the <b>gate of that city</b></td></tr><tr><td>City is mostly populated by gentiles</td><td>Entrance to the <b>court (beit din)</b></td></tr></table><div class="callout" style="margin-top:20px"><strong>Baraita</strong> The location of execution sends a public message — either to the family or to the community.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Does a Change in Body Change the Punishment?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">A na'arah me'orasah sinned and then became a <b>bageret</b> (grown woman). The Mishnah says: she is sentenced to <b>strangulation</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech"><b>Contradiction!</b> A baraita about a <b>motzi shem ra</b> (defamer) says: even if she became a bageret and married, she is still <b>stoned</b>!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">A <b>defamer's case is different</b> — it's a <i>chiddush</i> (novel halakha). Normally a married woman gets strangulation, yet here the Torah says stoning. So the defamer case follows the time of sin.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Huna b. Rav Yehoshua</div><div class="speech">Perhaps the chiddush of motzi shem ra only applies when her <b>body hasn't changed</b> (still a na'arah). If she became a bageret, even the defamer case would be strangulation!</div></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Principle</strong> The defamer case is inherently novel — a married woman executed by stoning — so you cannot extrapolate from it to other cases.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Tannaitic Dispute: Sin vs. Awareness (Horayot 10a)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Tanna Kamma (First Opinion)</h3><ul><li>A Kohen Gadol or King who sinned <b>before</b> appointment</li><li>Became aware <b>after</b> appointment</li><li>They are <b>like commoners</b> — bring a female sheep/goat</li><li>Status at time of <b>sin</b> determines the offering</li></ul></div><div class="compare-box" style="border-top-color:#3a1a2e"><h3 style="color:#e74c3c">Rabbi Shimon</h3><ul><li>If sin became known <b>before</b> appointment → liable as commoner</li><li>If sin became known <b>after</b> appointment → <b>entirely exempt</b></li><li>Change in status <b>nullifies</b> original obligation</li><li>Analogous: na'arah who becomes bageret → strangulation, not stoning</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rav Nachman bar Yitzchak</strong> Whether bodily change affects the punishment is a <b>tannaitic dispute</b> — R' Shimon holds the change in status retroactively alters liability.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>R' Yochanan vs. R' Chanina: 'The Young Woman' (הנערה)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yochanan</div><div class="speech">Teach that she is sentenced to <b>stoning</b>, not strangulation — even if she became a bageret.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But the Torah says <b>'na'arah'</b> — and she is now a grown woman!</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">R' Ile'a</div><div class="speech">The verse says <b>'ha-na'arah' (THE young woman)</b> — referring to the na'arah she <b>already was</b> at the time of her sin.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Chanina</div><div class="speech">If so, the defaming husband should also be <b>flogged</b> and pay <b>100 sela</b> — since she was a na'arah at the time of sin!</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">R' Ile'a</div><div class="speech">May the Merciful One save us from this opinion! <b>Her act</b> caused her punishment (she was a na'arah then). <b>His lips</b> caused his punishment (she was a bageret then).</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Chanina</div><div class="speech">May the Merciful One save us from <b>your</b> opinion!</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution (R' Yitzchak bar Avin)</strong> <b>Her sin</b> is judged by when she <b>acted</b> (she was a na'arah). <b>His sin</b> is judged by when he <b>spoke</b> (she was already a bageret). Different moments determine different liabilities.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Deriving the Place of Execution: Gezerah Shavah</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Idol worshipper: <b>"To your gates"</b> (Deut. 17:5)</div><div class="flow-arrow">↓</div><div class="flow-box action">Which gates? Gezerah shavah with <b>"your gates"</b> (Deut. 17:2) — the gate <b>where he worshipped</b></div><div class="flow-arrow">↓</div><div class="flow-box question">"Your gates" — not gates of <b>gentiles</b>; and the gate where he <b>sinned</b></div><div class="flow-arrow">↓</div><div class="flow-box action">Na'arah: <b>"petach" (entrance)</b> → linked to Tabernacle <b>"petach"</b> → linked to <b>"sha'ar" (gate)</b> → linked to idolatry <b>"she'arekha"</b></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Na'arah without father's house → stoned at <b>city gate</b>, derived via R' Abbahu's chain of gezerah shavah</div></div><div class="callout" style="margin-top:20px"><strong>R' Abbahu</strong> A triple verbal analogy links 'entrance' (na'arah) → 'entrance of the gate' (Tabernacle) → 'gate' → 'your gates' (idolatry) to derive the default place of stoning.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 45 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px;">Na'arah me'orasah commits <b>adultery</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left:3px solid #e67e22; padding:8px;">Her body <b>changes</b> — she becomes a <b>bageret</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:1px solid #4caf50; padding:8px;"><b>Stoning</b><br/>R' Yochanan / R' Ile'a: 'ha-na'arah' — follow time of sin</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border:1px solid #e74c3c; padding:8px;"><b>Strangulation</b><br/>Mishnah / R' Shimon logic: changed body = changed punishment</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left:3px solid #9b59b6; padding:8px;"><b>Defamer case (motzi shem ra)</b>: unique — her sin → stoning; his speech → no fine (asymmetric)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 45a-45b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 45a-45b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../44/">← Daf 44</a><a href="../46/">Daf 46 →</a></div>
+</body>
+</html>

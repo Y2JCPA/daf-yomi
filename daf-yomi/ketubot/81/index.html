@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ketubot 81 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Ketubot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Ketubot 81</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">כתובות פא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚰️ Burial of the Yevama — Who bears responsibility for burying a widow awaiting yibbum?<br>
+    🔄 Two-Sided Claim — Abaye's argument that the yavam cannot escape both burial and ketubah<br>
+    📜 Expounding the Ketubah — Whether ketubah language is interpreted like Torah text<br>
+    🏠 Selling the Deceased Brother's Property — Can the yavam sell before performing yibbum?<br>
+    ⚖️ Rav Yosef vs. Abaye — Validity of a yavam's sale or promise regarding inherited property<br>
+    💡 Good Advice vs. Law — Whether the mishna's instructions are mandatory or advisory<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>The Yavam's Obligations: Burial, Ketubah & Property</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Mishna</div><div class="speech">A widow's burial falls on the <b>heirs of her ketubah</b>, not her husband's general heirs</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Abaye</div><div class="speech">This refers to a <b>yevama</b> — the yavam inherits the ketubah and therefore must bury her</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">The yavam can claim: <b>I inherit my brother</b>, not his wife — I have no obligation to bury her</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Abaye</div><div class="speech">They come upon him <b>from two sides</b>: either accept burial duties <i>or</i> pay her ketubah</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">A ketubah <b>cannot be collected during the husband's lifetime</b> — the yavam stands in his place</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> Can the yavam avoid <b>both</b> burying the yevama <b>and</b> paying her ketubah? The Gemara explores whether the ketubah's language traps him either way.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Who Must Bury the Yevama?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A widow waiting for her <b>yavam</b> dies</div><div class="flow-arrow">↓</div><div class="flow-box question">Who are the <b>heirs of her ketubah</b>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yavam's View</div><div class="flow-box result-bad">I inherit my <b>brother</b>, not his wife — no burial duty</div></div><div class="flow-col"><div class="flow-label">Abaye's View</div><div class="flow-box result-good">The yavam inherits the <b>ketubah</b>, so he must handle her <b>burial</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Mishna 95b</strong> Orphans sustain the widow but are <b>not</b> obligated in her burial — that falls on the heirs of her <i>ketubah</i>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Abaye's 'Two Sides' Argument</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Abaye</div><div class="speech">The yavam is trapped: If you <b>inherit your brother</b>, you inherit his duties — <b>bury his wife</b></div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Abaye</div><div class="speech">If you refuse to bury her, you reject his obligations — then <b>pay her ketubah</b></div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">I inherit my brother. As for the ketubah — it says <b>'when you marry another'</b> — she hasn't married another!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">A ketubah <b>cannot be collected during the husband's lifetime</b>, and I stand in his place</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Ashi</div><div class="speech">The yavam himself counts as <b>'another man'</b> — she is considered ready to marry another</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Rav Ashi resolves the problem: since the yevama <i>can</i> marry the yavam, she satisfies the ketubah clause <b>'when you marry another'</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Beit Shammai vs. Beit Hillel on Sotah's Ketubah</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">Beit Shammai</h3><ul><li>Sotah whose husband died <b>takes her ketubah</b></li><li>She does <b>not drink</b> the bitter waters</li><li>An uncertain claim (maybe unfaithful) <b>supersedes</b> the heirs' certain claim</li><li>Implies: a document ready to be collected <b>is considered collected</b></li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4a90d9">Beit Hillel</h3><ul><li>She <b>cannot drink</b> — no husband to bring her</li><li>Since she doesn't drink, she <b>cannot collect</b> the ketubah</li><li>Uncertainty about her faithfulness <b>blocks</b> collection</li><li>The heirs' certain claim prevails</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Proof</strong> Beit Shammai treat a ketubah ready to be collected as <b>already collected</b> — this undermines Rava's claim that the yevama's ketubah is uncollectable.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Can the Yavam Sell His Brother's Property?</h2>
+  
+  <table><tr><th>Scenario</th><th>Rule</th><th>Reason</th></tr><tr><td>Yavam before yibbum</td><td>May <b>not</b> sell</td><td>All property mortgaged for ketubah</td></tr><tr><td>Set aside ketubah amount & sell rest?</td><td>Technically valid, but <b>not advised</b></td><td>Risk of losing set-aside funds</td></tr><tr><td>Husband selling wife's property</td><td>Same — <b>not advised</b></td><td>Good advice (עצה טובה), not strict prohibition</td></tr><tr><td>Priest-yavam who wants to sell</td><td>Divorce her, sell, then remarry</td><td>Avoids enmity from designating funds</td></tr><tr><td>Yavam promises brother half the property</td><td>Promise is <b>void</b> (Rav Yosef)</td><td>Cannot sell what is mortgaged</td></tr></table><div class="callout" style="margin-top:20px"><strong>Sumakhos's Advice</strong> A priest-yavam should marry the yevama, divorce her (freeing the property), then <b>remarry</b> her — avoiding enmity while enabling the sale.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rav Yosef vs. Abaye: Is the Yavam's Sale Valid?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Yosef</div><div class="speech">The Sages said a yavam <b>may not sell</b> — therefore if he sold, the sale is <b>void</b></div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Abaye</div><div class="speech">Not so! Beit Hillel say a betrothed woman <b>may not sell</b>, yet if she sold — <b>the sale is valid</b>!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Ḥanina bar Pappi</div><div class="speech">The halakha is in accordance with <b>Rav Yosef</b></div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Abaye</div><div class="speech">Has R' Ḥanina <b>hung jewelry on it</b>? A ruling without reasoning adds nothing!</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Rav Minyumi</div><div class="speech">The halakha follows <b>Abaye</b> — but if Rav Yosef has a better reason, send it to me</div></div></div><div class="callout" style="margin-top:20px"><strong>Pumbedita Case</strong> A man promised his brother half the inheritance to allow yibbum, then <b>reneged</b>. Rav Yosef voided the promise; Abaye argued it should stand.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Ketubot 81 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;">Widow awaiting <b>yibbum</b> — who bears her burial?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 8px; border-left: 3px solid #c9a84c;"><b>Abaye:</b> Yavam inherits ketubah → must bury her. Two-sided claim traps him.</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; padding: 8px; border-left: 3px solid #4a90d9;"><b>Rava:</b> Yavam inherits brother only. Ketubah uncollectable during his lifetime.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; border-left: 3px solid #9b59b6; padding: 8px;"><b>Rav Ashi:</b> Yavam = 'another man' → ketubah clause is satisfied → she <i>can</i> collect</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #e67e22; padding: 8px;">Yavam <b>may not sell</b> brother's property — all mortgaged for ketubah</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e2e1a; padding: 8px; border-left: 3px solid #e67e22;"><b>Rav Yosef:</b> If he sold — sale is <b>void</b></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 8px; border-left: 3px solid #c9a84c;"><b>Abaye:</b> If he sold — sale is <b>valid</b> (like betrothed woman)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Ketubot 81a-81b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Ketubot 81a-81b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../80/">← Daf 80</a><a href="../82/">Daf 82 →</a></div>
+</body>
+</html>
