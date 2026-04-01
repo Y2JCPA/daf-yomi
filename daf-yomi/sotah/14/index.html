@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 14 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🪦</div>
+  <h1>Sotah 14</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה יד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🪦 Moses's Hidden Grave — No one knows where Moses is buried, not even Moses himself<br>
+    🤲 Imitatio Dei — Walking after God means emulating His acts of kindness<br>
+    📜 Torah Begins & Ends with Kindness — R' Samlai's teaching on gemilut chasadim<br>
+    🏔️ Moses & Eretz Yisrael — Why Moses desired to enter the Land<br>
+    🧺 Sota Meal-Offering — The Egyptian wicker basket and its unique procedure<br>
+    ⚱️ Service Vessels — Debate over which materials are fit for Temple service<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Sotah 14 — Walking in God's Ways</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אחרי ה׳ אלהיכם תלכו (דברים י״ג:ה׳)</div><div class="callout"><strong>CORE THEME</strong> This daf transitions from the laws of <i>sotah</i> to one of the Talmud's most famous ethical teachings: <b>imitatio Dei</b> — we must emulate God's acts of loving-kindness (<i>gemilut chasadim</i>). The Torah itself is bookended by divine kindness: clothing Adam and Ḥavah at its beginning, and burying Moses at its end. The daf then returns to the <i>sotah</i> procedure, examining the meal-offering and its unique vessels.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Hidden Grave of Moses</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Rome sent a <b>garrison</b> (<i>gastera</i>) to Beth Peor:<br/>"Show us Moses's grave!"</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Standing Above</div><div class="flow-box result-bad">Grave appeared to be <b>below</b></div></div><div class="flow-col"><div class="flow-label">Standing Below</div><div class="flow-box result-bad">Grave appeared to be <b>above</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">"<b>No man knows of his grave</b> to this day" (Deut. 34:6)</div></div><div class="callout" style="margin-top:20px"><strong>R' ḤAMA BAR R' ḤANINA</strong> Even <b>Moses himself</b> does not know where he is buried — the verse calls him 'the <i>man</i> of God,' and says 'no <i>man</i> knows his grave.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Imitatio Dei — Following God's Attributes</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a237e"><h3 style="color:#c9a84c">God's Act</h3><ul><li>👗 Clothed the naked — made garments for Adam & Ḥavah (Gen. 3:21)</li><li>🏥 Visited the sick — appeared to Avraham after his circumcision (Gen. 18:1)</li><li>💐 Consoled mourners — blessed Yitzḥak after Avraham's death (Gen. 25:11)</li><li>⚰️ Buried the dead — buried Moses in the valley of Moab (Deut. 34:6)</li></ul></div><div class="compare-box" style="border-top-color:#1b5e20"><h3 style="color:#c9a84c">Our Obligation</h3><ul><li>👗 Clothe the naked</li><li>🏥 Visit the sick (<i>bikur cholim</i>)</li><li>💐 Console mourners (<i>nihum aveilim</i>)</li><li>⚰️ Bury the dead (<i>halvayat ha-met</i>)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>KEY QUESTION</strong> How can we 'walk after God' when He is a 'devouring fire' (Deut. 4:24)? <b>Answer:</b> We follow His <i>attributes</i>, not His literal presence.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Garments of Skin — What Were They?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The garments were made of <b>something that comes from skin</b> — i.e., wool or similar animal-derived material</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">The garments were <b>something from which skin benefits</b> — i.e., linen or smooth fabric pleasant against the body</div></div></div><div class="callout" style="margin-top:20px"><strong>R' SAMLAI'S TEACHING</strong> The Torah <b>begins with kindness</b> (clothing Adam, Gen. 3:21) and <b>ends with kindness</b> (burying Moses, Deut. 34:6). <i>Gemilut chasadim</i> is the Torah's framework.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>R' Samlai Expounds Isaiah 53:12 on Moses</h2>
+  
+  <table><tr><th>Verse Phrase</th><th>Application to Moses</th></tr><tr><td>"I will divide him a portion among the great"</td><td>Moses receives reward like the <b>Patriarchs</b> — Avraham, Yitzḥak, and Yaakov</td></tr><tr><td>"He bared his soul unto death"</td><td>Offered his life for Israel: <i>"Blot me out of Your book"</i> (Ex. 32:32)</td></tr><tr><td>"Numbered with the transgressors"</td><td>Counted among those who <b>died in the desert</b> without entering Eretz Yisrael</td></tr><tr><td>"He bore the sin of many"</td><td>Atoned for the sin of the <b>Golden Calf</b></td></tr><tr><td>"Made intercession for the transgressors"</td><td>Prayed for sinners to do <b>teshuvah</b> — <i>pegia</i> = prayer</td></tr></table><div class="callout" style="margin-top:20px"><strong>WHY MOSES WANTED ERETZ YISRAEL</strong> Not for its produce or goodness — but to <b>fulfill the mitzvot</b> that can only be performed there. God replied: I credit you <i>as if</i> you performed them.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Sota Meal-Offering Procedure</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🧺 Husband brings meal-offering in an <b>Egyptian wicker basket</b> (<i>kefifah mitzrit</i>)</div><div class="process-arrow">↓</div><div class="process-step">🤲 Placed in the <i>sotah</i>'s hands to <b>fatigue her</b> — hoping she confesses</div><div class="process-arrow">↓</div><div class="process-step">💧 Priest gives her the <b>bitter waters</b> to drink</div><div class="process-arrow">↓</div><div class="process-step">🔥 Only afterward is the <b>meal-offering sacrificed</b></div><div class="process-arrow">↓</div><div class="process-step">📐 Priest brings it near the <b>southwest horn</b> of the altar</div></div><div class="callout" style="margin-top:20px"><strong>WHY FATIGUE HER?</strong> The Torah is <b>protective of her</b> — the discomfort may prompt a confession, sparing her from drinking the waters unnecessarily.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 14 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:14px; border-radius:8px; text-align:center;">🪦 <b>Moses's Grave</b><br/>Hidden from all — even Moses himself doesn't know its location</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:14px; border-radius:8px; text-align:center;">🤲 <b>Imitatio Dei</b><br/>Clothe naked · Visit sick · Console mourners · Bury dead</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1a3e; color:#fff; padding:14px; border-radius:8px; text-align:center;">📜 <b>Torah = Kindness</b><br/>Begins with clothing Adam, ends with burying Moses</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e2a16; color:#fff; padding:12px; border-radius:8px; text-align:center;">🏔️ <b>Moses & the Land</b><br/>Wanted to enter only to fulfill mitzvot — credited as if he did</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2e3e; color:#fff; padding:12px; border-radius:8px; text-align:center;">🧺 <b>Sota Meal-Offering</b><br/>Wicker basket → fatigue → confession → protection of the woman</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 14a-14b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 14a-14b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../13/">← Daf 13</a><a href="../15/">Daf 15 →</a></div>
+</body>
+</html>

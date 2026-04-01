@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 4 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⏱️</div>
+  <h1>Sotah 4</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה ד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⏱️ Measure of Seclusion — How long must a sotah be secluded to establish suspicion?<br>
+    🌴 Palm Tree Debate — Circling vs. returning of a palm branch<br>
+    🍞 Bread & Harlotry — Homiletical readings of Proverbs 6:26<br>
+    🫧 Washing Hands — Laws and consequences of neglecting hand-washing<br>
+    😤 Arrogance — Severity of pride compared to cardinal sins<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>How Long Is the 'Measure of Seclusion'?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Baraita</div><div class="speech">The measure of seclusion = time for <b>defilement</b> = time for <b>intercourse</b> = time for <b>initial stage of intercourse</b></div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yishmael</div><div class="speech">Time to <b>circle a palm tree</b> on foot</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">R' Eliezer</div><div class="speech">Time to <b>mix a cup of wine</b> (quarter-log)</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yehoshua</div><div class="speech">Time to <b>drink</b> that cup of wine</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Ben Azzai</div><div class="speech">Time to <b>roast an egg</b></div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Akiva</div><div class="speech">Time to <b>swallow</b> that egg</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Peleimu</div><div class="speech">Time for a woman to reach into a basket and <b>take a loaf of bread</b></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Nine Sages offer practical examples of the minimal time for seclusion — each a brief, everyday action</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Nine Opinions on the Measure of Seclusion</h2>
+  
+  <table><tr><th>Sage</th><th>Equivalent Time</th></tr><tr><td>R' Yishmael</td><td>Circling a palm tree on foot</td></tr><tr><td>R' Eliezer</td><td>Mixing a cup of wine (quarter-log)</td></tr><tr><td>R' Yehoshua</td><td>Drinking that cup of wine</td></tr><tr><td>Ben Azzai</td><td>Roasting an egg</td></tr><tr><td>R' Akiva</td><td>Swallowing an egg</td></tr><tr><td>R' Yehuda ben Beteira</td><td>Swallowing three eggs consecutively</td></tr><tr><td>R' Elazar ben Yirmeya</td><td>A weaver (<i>gardi</i>) tying a string (<i>nima</i>)</td></tr><tr><td>Ḥanin ben Pineḥas</td><td>Removing a wood chip from between one's teeth</td></tr><tr><td>Peleimu</td><td>Reaching into a basket for a loaf of bread</td></tr></table><div class="callout" style="margin-top:20px"><strong>Scriptural Allusion</strong> Peleimu cites Proverbs 6:26 — <i>"For on account of a harlot, a man is brought to a loaf of bread"</i></div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Are Three Definitions Needed?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">If only <b>"time for defilement"</b></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Might include time for <b>appeasement</b> (persuasion)</div><div class="flow-arrow">↓</div><div class="flow-box action">So the baraita adds: <b>"time for intercourse"</b> — excluding appeasement</div><div class="flow-arrow">↓</div><div class="flow-box question">If only <b>"time for intercourse"</b></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Might mean <b>completion</b> of the act</div><div class="flow-arrow">↓</div><div class="flow-box result-good">So the baraita adds: <b>"initial stage of intercourse"</b> (<i>ha'ara'ah</i>)</div></div><div class="callout" style="margin-top:20px"><strong>Conclusion</strong> All three terms are necessary: each excludes a potential misunderstanding about the duration</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Circling vs. Returning of the Palm Tree</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Baraita 1: R' Yishmael says <b>circling</b> a palm tree. R' Eliezer disagrees.<br>Baraita 2: R' Eliezer himself says <b>returning</b> of a palm tree. Contradiction!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech"><b>Circling</b> = walking around the trunk on foot (longer).<br><b>Returning</b> = a palm branch blown by wind snapping back (shorter). Two different measures!</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rav Ashi</div><div class="speech">This 'returning' — is it <b>one snap back</b>? Or does it include the time until the branch <b>fully settles</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech"><b>Teiku</b> — the question stands unresolved</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Abaye resolves the contradiction: R' Eliezer's two statements refer to different physical phenomena — walking around a tree vs. a branch reverting after wind</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Ben Azzai's Knowledge</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">סוד ה׳ ליראיו</div><div class="callout"><strong>How Did Ben Azzai Know?</strong> <b>R' Yoḥanan</b> says each Sage estimated based on <b>his own experience</b>. But Ben Azzai never married!<br><br>Three answers:<br>1. He <b>was married</b> and later separated<br>2. He <b>heard from his teacher</b><br>3. <i>"The counsel of the Lord is with them that fear Him"</i> (Psalms 25:14) — those who fear God receive knowledge beyond personal experience</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Proverbs 6:26 — Two Interpretations</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5e"><h3 style="color:#4a90d9">Rav Avira (in name of R' Ami / R' Asi)</h3><ul><li>"On account of a harlot → a loaf of bread"</li><li>One who eats bread <b>without washing hands</b></li><li>is <b>as if</b> he engaged with a harlot</li><li>The verse connects bread to illicit behavior</li></ul></div><div class="compare-box" style="border-top-color:#3e1a1a"><h3 style="color:#e74c3c">Rava's Reinterpretation</h3><ul><li>The verse's phrasing is inverted from this reading</li><li>Should say: "On account of a loaf → a harlot"</li><li>Rather: one who sins with a harlot</li><li>will eventually be <b>reduced to begging for bread</b></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Note</strong> Both readings derive moral lessons from the same verse, but in opposite causal directions</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 4 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Measure of Seclusion</b><br>Time for initial stage of intercourse — 9 practical examples given</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e1a; border-left: 3px solid #4caf50; padding: 10px;"><b>Contradictions Resolved</b><br>Abaye: Circling ≠ Returning of palm tree<br>Multiple <i>teiku</i> remain</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a1a; border-left: 3px solid #e74c3c; padding: 10px;"><b>Proverbs 6:26 Expounded</b><br>Connects to hand-washing and to poverty from sin</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 10px;"><b>Hand-Washing</b><br>Raise before meal, lower after<br>Neglect = uprooted from world</div></div><div class="flow-col"><div class="flow-box" style="background:#3e2a16; padding: 10px;"><b>Arrogance</b><br>= Idol worship<br>= Denying God<br>= Forbidden relations</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 4a-4b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 4a-4b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">← Daf 3</a><a href="../5/">Daf 5 →</a></div>
+</body>
+</html>

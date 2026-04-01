@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 28 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Sotah 28</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה כח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💧 Bitter Waters & the Paramour — Does the water also punish the alleged paramour (bo'el)?<br>
+    🔤 The Superfluous Vav — R' Akiva vs R' Yehuda HaNasi on deriving halakhot from the prefix vav<br>
+    📜 Six Derivations from Three Verses — Command, execution, and knowledge for both her and him<br>
+    ❓ Safek Tumah from Sotah — Uncertain ritual impurity derived from the sotah case<br>
+    🏠 Private vs Public Domain — Rules of uncertain impurity depend on domain and awareness<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Does the Bitter Water Evaluate the Paramour Too?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The mishna says the water evaluates <b>him</b> — who is 'him'? The <b>husband</b> or the <b>paramour (bo'el)</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">It can't mean the husband — if he sinned similarly, the water <b>doesn't even evaluate her</b> (Numbers 5:31)!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Akiva</div><div class="speech">The superfluous <b>vav</b> in 'and the water shall enter' teaches that the <b>paramour is also punished</b> by the water.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yehuda HaNasi</div><div class="speech">I derive the paramour's punishment from <b>'belly to swell and thigh to fall away'</b> — referring to the paramour's body.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The bitter waters don't just test the woman — they also reach the paramour, wherever he may be.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Who Does 'Him' Refer To in the Mishna?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The mishna says the water evaluates <b>'him'</b> — could this mean the <b>husband</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Baraita</div><div class="speech"><b>'The man shall be clear of iniquity'</b> (Num. 5:31) — if the husband sinned, the water <b>doesn't evaluate her at all</b>!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">So 'him' must refer to the <b>paramour (bo'el)</b>. But why isn't the paramour named explicitly?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Since the first clause uses <b>'her'</b> (direct object), it parallels with <b>'him'</b> — no need to specify. The latter clause names both explicitly.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The entire mishna refers to the paramour. The first clause uses shorthand; the latter clause names him explicitly.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Akiva vs R' Yehuda HaNasi: Source of the Paramour's Punishment</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#c9a84c">R' Akiva</h3><ul><li>Derives from the superfluous <b>vav</b> prefix</li><li>'<b>Ve</b>-nitma'a' — the 'and' teaches an additional prohibition</li><li>'<b>U</b>-va'u' — the 'and' teaches the paramour is evaluated too</li><li>Each vav doubles the three verses → <b>6 derivations</b></li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#9b59b6">R' Yehuda HaNasi (Rebbi)</h3><ul><li>Derives from <b>repetition</b> of full phrases in two verses</li><li>'Nitma'a' in Num. 5:14 and again in 5:29</li><li>Does <b>not</b> expound the prefix vav</li><li>Only <b>3 derivations</b> — all for the woman herself</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Proof</strong> Since Rebbi uses repetition of full phrases, by contrast R' Akiva must derive his halakhot from the vav.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Akiva's Six Derivations from Three Verses</h2>
+  
+  <table><tr><th>Verse</th><th>For Her (Woman)</th><th>For Him (Paramour)</th></tr><tr><td>Num. 5:24 — 'And the water shall enter'</td><td>Command (צִוּוּי) — God empowers water to punish her</td><td>Vav → Command for him — water also punishes paramour</td></tr><tr><td>Num. 5:27 — 'And the water shall enter and become bitter'</td><td>Execution (קִיּוּם) — punishment takes effect</td><td>Vav → Execution for him — his punishment also takes effect</td></tr><tr><td>Num. 5:22 — 'And the water that causes the curse'</td><td>Knowledge (הוֹדָעָה) — priest informs her of consequences</td><td>Vav → Knowledge for him — awareness of his punishment</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rebbi's View</strong> R' Yehuda HaNasi reads only 3 derivations (command, execution, knowledge) — all for the woman. He derives the paramour's punishment from 'belly to swell and thigh to fall away.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Safek Tumah: Uncertain Impurity Derived from Sotah</h2>
+  
+  <div class="flowchart"><div class="flow-box action">The sotah case establishes the model for <b>uncertain ritual impurity</b> (ספק טומאה)</div><div class="flow-arrow">↓</div><div class="flow-box question">What conditions from sotah apply to all uncertain impurity?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Condition 1</div><div class="flow-box result-good"><b>Private Domain</b><br/>Just as sotah secluded herself privately, uncertain impurity applies only in a <b>reshut ha-yachid</b></div></div><div class="flow-col"><div class="flow-label">Condition 2</div><div class="flow-box result-good"><b>Awareness (Da'at)</b><br/>Just as sotah can be <b>asked</b> about what happened, impurity applies only to an entity with <b>yesh bo da'at lisha'el</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Safek tumah in a reshut ha-rabbim (public domain) is deemed pure — unlike a private domain where it is impure.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Uncertain Impurity: Domain × Awareness Matrix</h2>
+  
+  <table><tr><th>Scenario</th><th>Private Domain</th><th>Public Domain</th></tr><tr><td>Entity with awareness (יש בו דעת לישאל)</td><td>IMPURE ❌ — like sotah</td><td>PURE ✓</td></tr><tr><td>Entity without awareness (אין בו דעת לישאל)</td><td>PURE ✓ — not similar to sotah</td><td>PURE ✓</td></tr></table><div class="callout" style="margin-top:20px"><strong>Source</strong> This matrix is derived entirely from the analogy to sotah — she was in private, and she could be asked. Both conditions must be met for uncertain impurity.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 28 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:white; padding:12px; border-radius:8px;">💧 <b>Bitter Waters</b><br/>Three verses mention water entering the sotah</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:white; padding:12px; border-radius:8px;">🔤 <b>R' Akiva: Vav Prefix</b><br/>Each superfluous vav doubles the verse → 6 derivations<br/>(command, execution, knowledge × her & him)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2c1a3e; color:white; padding:10px; border-radius:8px;">👩 <b>Her</b><br/>Command, execution, knowledge for the woman</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; color:white; padding:10px; border-radius:8px;">👤 <b>Him (Paramour)</b><br/>Command, execution, knowledge for the bo'el</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3e; color:white; padding:12px; border-radius:8px;">🏠 <b>Safek Tumah from Sotah</b><br/>Private domain + entity with awareness = impure<br/>Otherwise = pure</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 28a-28b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 28a-28b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../27/">← Daf 27</a><a href="../29/">Daf 29 →</a></div>
+</body>
+</html>

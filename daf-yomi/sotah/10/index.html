@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 10 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🦊</div>
+  <h1>Sotah 10</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה י׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🦊 Samson & the Foxes — why foxes were chosen to punish the Philistines<br>
+    💪 Five Divine Traits — figures blessed and stricken by God-like qualities<br>
+    🔥 Tamar's Modesty — preferring death over public humiliation<br>
+    👁️ Measure for Measure — Samson's sins and punishments<br>
+    ✡️ Sanctifying God's Name — Joseph in private, Judah in public<br>
+    🪞 Haker Na — the word 'discern' links Judah's deception to his reckoning<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Sotah 10: Samson's Rise & Fall / Tamar's Righteousness</h2>
+  
+  <div class="callout"><strong>CORE THEME</strong> This daf examines <b>Samson's extraordinary qualities and downfall</b> — how divine-like gifts become the instruments of punishment when misused — then pivots to <b>Tamar's self-sacrifice</b>, teaching that it is better to be cast into a furnace than to publicly humiliate another person.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Did Samson Choose Foxes?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Samson caught <b>300 foxes</b> and tied torches between their tails to burn Philistine fields. Why specifically <b>foxes</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Ḥiyya bar Abba</div><div class="speech">The fox <b>walks backwards</b> when trying to escape — let the animal that <b>goes in reverse</b> punish the Philistines who <b>reneged</b> on Abimelech's oath to Abraham.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Shimon the Pious</div><div class="speech">Samson's shoulders were <b>60 cubits wide</b>, matching the gates of Gaza that he carried to Hebron (Judges 16:3).</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav</div><div class="speech">Samson judged Israel for <b>22 years</b> without ever asking anyone to even move a stick for him — total selflessness.</div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> Samson's choice of foxes was not arbitrary — it was <b>midda k'neged midda</b> (measure for measure) against those who went back on their word.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Five Figures with Divine-Like Traits</h2>
+  
+  <table><tr><th>Figure</th><th>God-Like Gift</th><th>How It Led to Downfall</th></tr><tr><td><b>Samson</b></td><td>💪 Strength</td><td>Lost his strength when Delilah shaved his locks (Judges 16:19)</td></tr><tr><td><b>Saul</b></td><td>👔 Neck / Stature</td><td>Fell on his sword — struck in his proud stature (I Samuel 31:4)</td></tr><tr><td><b>Absalom</b></td><td>💇 Hair</td><td>His hair caught in a tree, leading to his death (II Samuel 18:9)</td></tr><tr><td><b>Zedekiah</b></td><td>👁️ Eyes</td><td>Nebuchadnezzar put out his eyes (II Kings 25:7)</td></tr><tr><td><b>Asa</b></td><td>🦶 Feet</td><td>Afflicted with disease in his feet (I Kings 15:23)</td></tr></table><div class="callout" style="margin-top:20px"><strong>PATTERN</strong> Each was blessed with a quality <b>akin to the Divine</b> — and each was <b>stricken through that very quality</b>. God-like gifts carry God-like responsibility.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Yoḥanan's Teachings on Samson</h2>
+  
+  <div class="flowchart"><div class="flow-box action">R' Yoḥanan: Samson <b>judged Israel as God does</b> — 'Dan shall judge his people <b>as One</b>' (Gen. 49:16)</div><div class="flow-arrow">↓</div><div class="flow-box action">Samson's name (<b>Shimshon</b>) is akin to God's name — 'The Lord God is a <b>sun (shemesh)</b> and shield' (Ps. 84:12)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Not Literally God's Name</div><div class="flow-box result-bad">His name is not sacred and <b>may be erased</b> — it is merely <b>akin</b> to God's name</div></div><div class="flow-col"><div class="flow-label">The Parallel</div><div class="flow-box result-good">As God <b>protects the whole world</b>, Samson <b>protected all Israel</b> in his generation</div></div></div></div><div class="callout" style="margin-top:20px"><strong>ALSO</strong> R' Yoḥanan: <b>Balaam</b> was lame in one leg (<i>shefi</i>). <b>Samson</b> was lame in both — from <i>shefifon</i> (Gen. 49:17), a doubled <i>shefi</i>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Tamar's Modesty — Why Judah Didn't Recognize Her</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">The Question</h3><ul><li>Judah 'thought her a prostitute for she <b>covered her face</b>' (Gen. 38:15)</li><li>But prostitutes typically <b>uncover</b> their faces!</li><li>How does covering her face make her seem like a prostitute?</li></ul></div><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">R' Elazar's Answer</h3><ul><li>Tamar always <b>covered her face</b> in her father-in-law Judah's home out of modesty</li><li>So when she sat <b>uncovered</b> at the crossroads, Judah didn't recognize her</li><li>The verse means: <i>because</i> she had been modest, he never saw her face</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#c9a84c">R' Shmuel bar Naḥmani</h3><ul><li>A daughter-in-law who is <b>modest in her father-in-law's home</b> merits kings and prophets</li><li>From Tamar came <b>King David</b> and <b>Isaiah the prophet</b></li><li>Amoz (Isaiah's father) and Amaziah (king of Judah) were <b>brothers</b> — both from David's line</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>TRADITION</strong> R' Levi: We have a tradition — Amoz and Amaziah were brothers. Isaiah was therefore royalty, and both lines trace back to Tamar.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Tamar's Signs & the Angelic Struggle</h2>
+  
+  <div class="process-bar"><div class="process-step">📜 Tamar is brought to trial — she sends Judah's <b>signet, cords, and staff</b> as proof</div><div class="process-arrow">↓</div><div class="process-step highlight">😈 The angel <b>Samael</b> distances the signs — trying to prevent Judah's admission and David's lineage</div><div class="process-arrow">↓</div><div class="process-step highlight">😇 The angel <b>Gabriel</b> brings the signs back — ensuring the truth is revealed</div><div class="process-arrow">↓</div><div class="process-step">🕊️ <b>'Yonat eilem reḥokim'</b> (Ps. 56:1) — 'the mute dove whose signs were distanced' alludes to Tamar</div><div class="process-arrow">↓</div><div class="process-step highlight">🔥 Tamar refuses to name Judah directly — '<b>By the man whose these are</b>, am I with child'</div><div class="process-arrow">↓</div><div class="process-step">✅ Judah acknowledges: '<b>She is more righteous than I</b>' (Gen. 38:26)</div></div><div class="callout" style="margin-top:20px"><strong>CRITICAL TEACHING</strong> Better to throw oneself into a <b>fiery furnace</b> than to publicly humiliate another person — derived from Tamar, who risked being burned rather than shame Judah.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 10 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Samson's Gifts & Fall</b><br/>Blessed with God-like strength, judged 22 years selflessly, but misuse of gifts led to downfall</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1a3e; border-left: 3px solid #9b59b6;"><b>Five Divine Traits</b><br/>Samson, Saul, Absalom, Zedekiah, Asa — each stricken through the very quality that made them great</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1a1a; border-left: 3px solid #e74c3c;"><b>Tamar's Modesty & Courage</b><br/>Covered her face in Judah's home; risked death by fire rather than shame him publicly</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; border-top: 3px solid #4a90d9;"><b>Joseph</b>: Sanctified God's name <b>privately</b> — gained one letter (ה) in his name</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top: 3px solid #4caf50;"><b>Judah</b>: Sanctified God's name <b>publicly</b> — his entire name contains the Tetragrammaton</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 10a-10b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 10a-10b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../9/">← Daf 9</a><a href="../11/">Daf 11 →</a></div>
+</body>
+</html>

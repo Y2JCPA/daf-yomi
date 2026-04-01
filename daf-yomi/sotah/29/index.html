@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 29 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔬</div>
+  <h1>Sotah 29</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה כט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Sota's Prohibitions — R' Akiva vs R' Yishmael on deriving the four defilements of a sota<br>
+    🔗 The Expounded Vav — Whether the prefix vav in 'venitma'a' yields an additional derivation<br>
+    ❓ Uncertain Ritual Impurity — Distinguishing entities with and without awareness (yesh/ein da'at lisha'el)<br>
+    ⚖️ Degrees of Tumah — How second, third, and fourth-degree impurity affect teruma and kodshim<br>
+    🏛️ Rabban Yochanan ben Zakkai — His a fortiori inference that second-degree impurity disqualifies teruma<br>
+    🧪 R' Yosei's Inference — Deriving fourth-degree impurity for sacrificial food<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 29: Degrees of Defilement & Uncertain Impurity</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>"Venitma'a"</b> (Numbers 5:29) — How many prohibitions does the sota verse teach?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Akiva (4 derivations)</div><div class="flow-box action">Expounds the <b>vav</b>: Husband, Paramour, Priesthood, Teruma</div></div><div class="flow-col"><div class="flow-label">R' Yishmael (3 derivations)</div><div class="flow-box action">Does not expound the <b>vav</b>: Husband, Paramour, Teruma; Priesthood via <em>kal vachomer</em></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">The Gemara then derives <b>uncertain impurity</b> rules from both the sota and Leviticus 7:19</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Discussion of <b>degrees of tumah</b>: How far does impurity chain for teruma and kodshim?</div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> This daf bridges the laws of sota's defilement to the broader framework of uncertain ritual impurity and the chain-reaction of tumah through multiple degrees.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>How Many Prohibitions from 'Venitma'a'?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Akiva</div><div class="speech">The prefix <b>vav</b> in <em>venitma'a</em> is expounded — yielding <b>four</b> derivations from the verse.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yishmael</div><div class="speech">The <b>vav</b> is not expounded. Only <b>three</b> derivations come from the verse.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Akiva</div><div class="speech">The four: forbidden to <b>husband</b>, to <b>paramour</b>, to <b>priesthood</b>, and to <b>teruma</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yishmael</div><div class="speech">Three: forbidden to <b>husband</b>, <b>paramour</b>, and <b>teruma</b>. The priesthood prohibition is derived via <em>kal vachomer</em>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Dispute</strong> R' Akiva and R' Yishmael agree on the prohibitions but disagree on whether each requires its own verse or can be derived logically.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Yishmael: Why Teruma (Not Priesthood) from the Verse?</h2>
+  
+  <table><tr><th>Factor</th><th>Teruma Prohibition</th><th>Priesthood Prohibition</th></tr><tr><td>When does it apply?</td><td>During husband's lifetime</td><td>Only after husband's death</td></tr><tr><td>Similar to husband/paramour?</td><td>✅ Yes — applies while married</td><td>❌ No — only relevant post-divorce/death</td></tr><tr><td>Derived from verse?</td><td>✅ Directly from 'venitma'a'</td><td>❌ Via kal vachomer</td></tr><tr><td>R' Akiva's view?</td><td>Separate verse needed</td><td>Separate verse needed</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' Yishmael's Logic</strong> We derive the prohibition most <em>similar</em> to the other derivations — teruma applies during the husband's lifetime, just like the prohibitions to husband and paramour.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Uncertain Impurity: Rav Giddel's Derivation from Leviticus 7:19</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Leviticus 7:19</b>: "The flesh that touches any <em>impure</em> thing shall not be eaten"</div><div class="flow-arrow">↓</div><div class="flow-box question">Implication: Only <b>certainly impure</b> meat is forbidden — uncertain impurity = permitted?</div><div class="flow-arrow">↓</div><div class="flow-box question">But the verse continues: "Every one that is <b>pure</b> may eat" — only <b>certainly pure</b> people may eat?</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Resolution: The verse distinguishes <b>two types</b> of uncertain impurity</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yesh Da'at Lisha'el</div><div class="flow-box result-bad">Entity with <b>awareness</b> to be asked (e.g., a person) — uncertain impurity = <b>impure</b></div></div><div class="flow-col"><div class="flow-label">Ein Da'at Lisha'el</div><div class="flow-box result-good">Entity <b>without</b> awareness (e.g., food) — uncertain impurity = <b>pure</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Rav Giddel / Rav</strong> Both derivations are needed: from the verse (to distinguish awareness) and from sota (to limit uncertain impurity to the private domain).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Why We Need Both Derivations for Uncertain Impurity</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a365d"><h3 style="color:#4a90d9">From Leviticus 7:19</h3><ul><li>Teaches: yesh da'at = impure, ein da'at = pure</li><li>Without sota: would apply in BOTH private and public domains</li><li>Needed for: the awareness distinction</li></ul></div><div class="compare-box" style="border-top-color:#3d1a1a"><h3 style="color:#e74c3c">From Sota (Numbers 5:29)</h3><ul><li>Teaches: uncertain impurity is impure only in private domain</li><li>Without Lev. 7:19: would require BOTH parties to have awareness</li><li>Needed for: the domain distinction (private vs. public)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Complementary Sources</strong> Each derivation corrects a flaw we'd have if we relied on only one source. Together they establish the full framework of uncertain tumah.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabban Yochanan ben Zakkai's A Fortiori Inference</h2>
+  
+  <div class="process-bar"><div class="process-step">🔹 One who immersed that day (<em>tevul yom</em>) — does NOT render non-sacred food impure, but DISQUALIFIES teruma</div><div class="process-arrow">↓</div><div class="process-step">🔹 An earthenware vessel — does NOT render non-sacred food impure, but DISQUALIFIES teruma</div><div class="process-arrow">↓</div><div class="process-step highlight">⚖️ Common denominator: both permit non-sacred food but disqualify teruma on contact</div><div class="process-arrow">↓</div><div class="process-step">🍞 A loaf with second-degree impurity disqualifies even non-sacred food — which is MORE stringent</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ Kal vachomer: it should certainly disqualify teruma on contact (third-degree for teruma)</div></div><div class="callout" style="margin-top:20px"><strong>Future Challenge</strong> RYBZ predicted a future generation would refute this by arguing that both sources share a unique stringency — but he held the inference valid since their stringencies differ from each other.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 29 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Venitma'a</b> — Sota's defilement verse yields prohibitions to husband, paramour, teruma, and priesthood</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3e; border-left: 3px solid #c9a84c; padding: 8px;"><b>Uncertain Impurity</b> — Derived from both sota (private domain) and Lev. 7:19 (awareness distinction)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3d1a1a; padding: 8px; border: 1px solid #e74c3c;"><b>Yesh Da'at</b><br/>Entity with awareness → uncertain = <em>impure</em></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 8px; border: 1px solid #4caf50;"><b>Ein Da'at</b><br/>Entity without awareness → uncertain = <em>pure</em></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left: 3px solid #9b59b6; padding: 8px;"><b>Degrees of Tumah</b> — Impurity chains further for teruma (2nd→disqualified) and kodshim (3rd→4th per R' Yosei)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 29a-29b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 29a-29b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../28/">← Daf 28</a><a href="../30/">Daf 30 →</a></div>
+</body>
+</html>

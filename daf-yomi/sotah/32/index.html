@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 32 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🗣️</div>
+  <h1>Sotah 32</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה לב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🗣️ Language of Recitations — Which prayers and rituals require Hebrew vs. any language<br>
+    ⛰️ Blessings & Curses Ceremony — The ritual on Mount Gerizim and Mount Ebal<br>
+    🔗 Gezera Shava — Verbal analogies deriving language requirements<br>
+    🤫 Whispering the Amida — Protecting the dignity of sinners<br>
+    📜 Priest's Explanation to Sota — What must be communicated and why<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>The Great Language Divide: Hebrew vs. Any Language</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Any Language 🌍</h3><ul><li>Sota warning & oath</li><li>Declaration of tithes</li><li>Shema</li><li>Amida prayer</li><li>Grace after Meals</li><li>Oath of testimony</li><li>Oath on a deposit</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#c9a84c">Hebrew Only 🕎</h3><ul><li>First fruits (Bikkurim)</li><li>Ḥalitza recitation</li><li>Blessings & curses (Gerizim/Ebal)</li><li>Priestly Benediction</li><li>High Priest's Yom Kippur blessing</li><li>King's Torah reading (Hakhel)</li><li>Eglah Arufa portion</li><li>Anointed priest's war address</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The Torah uses <b>"speaking and saying"</b> (<i>v'anu v'amru</i>) to indicate Hebrew is required via <i>gezera shava</i> from the Levites at Gerizim/Ebal. Where only <b>"saying"</b> appears, any language suffices.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Mishna: Recitations by Language Requirement</h2>
+  
+  <table><tr><th>Recitation</th><th>Language</th><th>Source</th></tr><tr><td>Sota warning & oath</td><td>Any language</td><td>"The priest shall <i>say</i> to the woman" (Num. 5:21)</td></tr><tr><td>Declaration of tithes</td><td>Any language</td><td>"Then you shall <i>say</i>" (Deut. 26:13)</td></tr><tr><td>Shema & Amida</td><td>Any language</td><td>Discussed in Gemara</td></tr><tr><td>First fruits (Bikkurim)</td><td>Hebrew only</td><td>"You shall <i>speak and say</i>" (Deut. 26:5)</td></tr><tr><td>Ḥalitza</td><td>Hebrew only</td><td>"She shall <i>speak and say</i>" (Deut. 25:9)</td></tr><tr><td>Blessings & curses</td><td>Hebrew only</td><td>"The Levites shall <i>speak and say</i>" (Deut. 27:14)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Pattern</strong> The distinction hinges on whether the verse uses <b>"say" alone</b> (any language) or <b>"speak and say"</b> (Hebrew only, linked to the Levites via <i>gezera shava</i>).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>How Do We Derive the Language for Tithes?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Zevid</div><div class="speech">Why not derive the declaration of tithes from <b>"the Levites shall <i>speak and say</i>"</b> (Deut. 27:14)? That would require <b>Hebrew</b>!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">We derive a <i>gezera shava</i> from <b>"saying" alone</b> to another instance of <b>"saying" alone</b> — not from a verse that uses <b>"speaking <i>and</i> saying."</b></div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Zevid</div><div class="speech">What is the significance of that distinction?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">R' Shimon ben Yoḥai teaches: <b>"Saying" alone</b> = soft voice (one's own praise, like tithes). <b>"Speaking and saying"</b> = loud voice (one's pain/discredit, like Bikkurim recounting hardships).</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> The verbal form matters: <b>אמירה</b> (saying) alone vs. <b>דיבור ואמירה</b> (speaking and saying) are treated as distinct categories for <i>gezera shava</i> derivations.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Ceremony at Mount Gerizim & Mount Ebal</h2>
+  
+  <div class="process-bar"><div class="process-step">🏔️ Israel crosses the Jordan and arrives at the two mountains near Shechem</div><div class="process-arrow">↓</div><div class="process-step">👥 Six tribes ascend Gerizim, six tribes ascend Ebal</div><div class="process-arrow">↓</div><div class="process-step highlight">📦 Priests, Levites, and the Ark stand in the valley between</div><div class="process-arrow">↓</div><div class="process-step highlight">✨ Levites face Gerizim: <b>"Blessed be the man who does not make a graven image"</b> — Both sides answer <b>Amen</b></div><div class="process-arrow">↓</div><div class="process-step highlight">⚡ Levites face Ebal: <b>"Cursed be the man who makes a graven image"</b> — Both sides answer <b>Amen</b></div><div class="process-arrow">↓</div><div class="process-step">🔄 Continue through all blessings and curses in this pattern</div></div><div class="callout" style="margin-top:20px"><strong>Location</strong> The Mishna identifies these mountains as being in <b>Samaria, near Shechem</b>, proven by linking <b>"oaks of Moreh"</b> (Deut. 11:30) to Abraham's journey to Shechem (Gen. 12:6).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>What the Priest Explains to the Sota</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Priest addresses the sota <b>in any language she understands</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Why she drinks</div><div class="flow-box action">Because of the <b>warning</b> and subsequent <b>seclusion</b></div></div><div class="flow-col"><div class="flow-label">From what vessel</div><div class="flow-box action">A <b>mekeida</b> — a simple <b>clay vessel</b></div></div><div class="flow-col"><div class="flow-label">What defiled her</div><div class="flow-box action">Matters of <b>levity and immaturity</b></div></div><div class="flow-col"><div class="flow-label">How she was defiled</div><div class="flow-box question"><b>Unwitting vs. intentional</b>, <b>coerced vs. willing</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Purpose: <b>Not to cast aspersions on the bitter water</b> — if she sinned unwittingly or under coercion, the water won't affect her</div></div><div class="callout" style="margin-top:20px"><strong>Why Explain?</strong> If the woman drinks and nothing happens, people might doubt the water's power. By explaining that coercion or accident exempts her, the <b>sanctity of the bitter water</b> is preserved.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Loud Voice or Whisper? Dignity vs. Publicizing Pain</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Shimon b. Yoḥai</div><div class="speech">Say your <b>praise softly</b> (derived from tithes — just "say"). Say your <b>discredit loudly</b> (derived from Bikkurim — "speak and say").</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">But R' Shimon b. Yoḥai <i>himself</i> says the Amida is whispered <b>so as not to embarrass sinners!</b> The sin-offering and burnt-offering are slaughtered in the same place for this reason!</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Gemara (corrected)</div><div class="speech">Correction: Don't say one should state <b>discredit</b> loudly. Rather, one should publicize one's <b>pain</b> loudly — so that the community will <b>pray for mercy</b> on his behalf.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Proof</div><div class="speech">A leper must cry <b>"Impure! Impure!"</b> (Lev. 13:45) — announcing his pain so the public prays for him.</div></div></div><div class="callout" style="margin-top:20px"><strong>Distinction</strong> <b>Sin</b> → whisper (protect dignity). <b>Suffering</b> → announce (invite communal prayer). The Bikkurim recitation recounts national <i>suffering</i>, not personal sin.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 32 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#1a3a2e; border-left:4px solid #4caf50;"><b>Torah uses "say" (אמירה)</b><br/>Sota oath · Tithes · Shema · Amida</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:2px solid #4caf50;"><b>Any Language</b><br/>Understanding is what matters</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; border:2px solid #c9a84c;"><b>Hebrew Only</b><br/>Exact words required via <i>gezera shava</i> from Levites</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left:4px solid #c9a84c;"><b>Torah uses "speak and say" (דיבור ואמירה)</b><br/>Bikkurim · Ḥalitza · Blessings/Curses · Priestly Benediction</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left:4px solid #9b59b6;"><b>Parallel Principle:</b> Praise softly ("say") · Pain loudly ("speak and say") · Sin in a whisper (protect dignity)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 32a-32b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 32a-32b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../31/">← Daf 31</a><a href="../33/">Daf 33 →</a></div>
+</body>
+</html>

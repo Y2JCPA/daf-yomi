@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 40 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🙏</div>
+  <h1>Sotah 40</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה מ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🗣️ Congregational Responses — What the people say during Birkat Kohanim<br>
+    🙇 Rabbi Abbahu's Humility — Three stories of remarkable selflessness<br>
+    🙏 Modim d'Rabbanan — Competing formulations of the thanksgiving response<br>
+    🏛️ No Amen in the Temple — Why the Temple response differs<br>
+    📜 High Priest's Torah Reading — The Yom Kippur scroll-passing ceremony<br>
+    👑 Honor for the High Priest — Passing the scroll through a chain of dignitaries<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Sotah 40: Congregational Responses & Humility</h2>
+  
+  <div class="callout"><strong>DAF OVERVIEW</strong> This daf explores <b>what the congregation says</b> during the Priestly Benediction and the Modim prayer, featuring a rich debate among Amoraim. It then presents <b>three unforgettable stories</b> of Rabbi Abbahu's humility, before transitioning to the <b>Yom Kippur Torah reading ceremony</b> of the High Priest — including the chain of honor in passing the scroll and the question of where the reading takes place.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>When Does the Congregation Recite Psalms 128 During Birkat Kohanim?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech">The congregation recites the verses of Psalms 128 <b>between each blessing</b> of the Priestly Benediction.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Sheshet</div><div class="speech">They are said <b>during the mention of God's name</b> in each of the three blessings.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">One opinion</div><div class="speech">The congregation recites <b>one verse at a time</b>, corresponding to each verse the Kohanim recite.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Other opinion</div><div class="speech">For <b>every single verse</b> the Kohanim recite, the congregation says <b>all three verses</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">R' Ḥiyya bar Abba</div><div class="speech">Anyone who recites these verses <b>outside the Temple</b> is simply <b>mistaken</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Aḥa bar Ḥanina</div><div class="speech">One <b>must</b> recite them even outside the Temple — is there a servant being blessed <b>whose face doesn't brighten</b>?</div></div></div><div class="callout" style="margin-top:20px"><strong>RESOLUTION</strong> Rabbi Abbahu initially recited these verses, but stopped when he saw that Rabbi Abba of Akko did not say them.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Three Stories of Rabbi Abbahu's Humility</h2>
+  
+  <div class="process-bar"><div class="process-step">📖 <b>The Interpreter's Wife</b> boasts that her husband doesn't need Rabbi Abbahu. Rabbi Abbahu's wife reports this to him.</div><div class="process-arrow">↓</div><div class="process-step highlight">🤷 Rabbi Abbahu responds: <b>"What difference does it make? Through me and through him, the One above will be exalted."</b></div><div class="process-arrow">↓</div><div class="process-step">🏛️ The Sages decide to appoint Rabbi Abbahu as <b>Rosh Yeshiva</b>.</div><div class="process-arrow">↓</div><div class="process-step highlight">💰 He declines, saying <b>Rabbi Abba of Akko is greater</b> — really to help him escape his creditors.</div><div class="process-arrow">↓</div><div class="process-step">📢 Rabbi Abbahu teaches <b>Aggada</b>; R' Ḥiyya bar Abba teaches <b>Halakha</b>. Everyone flocks to Aggada.</div><div class="process-arrow">↓</div><div class="process-step highlight">💎 Rabbi Abbahu consoles R' Ḥiyya: <b>"You sell precious stones; I sell small items (sidkit). Who do customers flock to?"</b></div></div><div class="callout" style="margin-top:20px"><strong>INSIGHT</strong> Rabbi Abbahu consistently elevated others above himself — deflecting honor, yielding positions, and comforting a colleague whose audience he had drawn away.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Modim d'Rabbanan — What Does the Congregation Say?</h2>
+  
+  <table><tr><th>Sage</th><th>Formulation</th></tr><tr><td><b>Rav</b></td><td>We give thanks to You… <b>for the merit of giving thanks to You</b></td></tr><tr><td><b>Shmuel</b></td><td><b>God of all living flesh</b>, for the merit of giving thanks to You</td></tr><tr><td><b>Rabbi Simai</b></td><td><b>Our Creator, Who created everything in the beginning</b>, for giving thanks</td></tr><tr><td><b>Sages of Neharde'a</b></td><td>Blessings and praises to Your great name, <b>for You have given us life and sustained us</b></td></tr><tr><td><b>Rav Aḥa bar Ya'akov</b></td><td>Give us life, show favor, <b>collect us and gather our exiles</b> to Your courtyards</td></tr><tr><td><b>Rav Pappa</b></td><td><b>Combine them all together</b> and recite everything</td></tr></table><div class="callout" style="margin-top:20px"><strong>HALAKHA</strong> Rav Pappa's ruling to combine all formulations is the basis for the Modim d'Rabbanan prayer we recite today.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Temple vs. Outlying Areas: Responding to Blessings</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a237e"><h3 style="color:#c9a84c">🏛️ In the Temple</h3><ul><li>God's full Name (Shem HaMeforash) is pronounced</li><li>People respond: <b>"Barukh Shem Kevod Malkhuto"</b></li><li>One does <b>NOT</b> answer Amen</li><li>Source: Nehemiah 9:5 — "Stand up and bless the Lord"</li><li>No pause between blessings</li></ul></div><div class="compare-box" style="border-top-color:#1b5e20"><h3 style="color:#c9a84c">🏘️ Outside the Temple</h3><ul><li>God's Name is replaced with a <i>kinui</i> (substitute)</li><li>People respond: <b>Amen</b></li><li>Each blessing is a separate unit</li><li>Congregation may recite Psalms verses (disputed)</li><li>Pauses between blessings for Amen</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>SOURCE</strong> "Blessed be Your glorious name, which is exalted above all blessing and praise" (Nehemiah 9:5) — for each blessing, give Him praise.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Yom Kippur Torah Reading: Chain of Honor</h2>
+  
+  <div class="flowchart"><div class="flow-box action">📜 Synagogue attendant (<b>ḥazzan</b>) takes the Torah scroll</div><div class="flow-arrow">↓</div><div class="flow-box action">Gives it to the <b>Rosh HaKnesset</b> (head of the synagogue)</div><div class="flow-arrow">↓</div><div class="flow-box action">Gives it to the <b>Segan</b> (deputy High Priest)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Gives it to the <b>Kohen Gadol</b> (High Priest)</div><div class="flow-arrow">↓</div><div class="flow-box question">Does this prove honor may be shown to a student before his teacher?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Suggested</div><div class="flow-box result-bad">Yes — others are honored even in the High Priest's presence</div></div><div class="flow-col"><div class="flow-label">Abaye</div><div class="flow-box result-good">No — the entire chain <b>is itself</b> for the honor of the High Priest</div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> The ascending chain of dignitaries demonstrates the Kohen Gadol's supreme status — it is honor, not a challenge to his authority.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 40 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;">🗣️ <b>Birkat Kohanim</b><br>Congregation recites Psalms 128 — timing disputed</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e1a; border-left: 3px solid #4caf50;">🙏 <b>Modim d'Rabbanan</b><br>Multiple formulations combined per Rav Pappa</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a2e; border-left: 3px solid #9b59b6;">🙇 <b>Rabbi Abbahu's Humility</b><br>Three stories: interpreter, Rosh Yeshiva, Aggada vs. Halakha</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; border-left: 3px solid #c9a84c;">🏛️ <b>Temple Practice</b><br>No Amen — respond with Barukh Shem</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #e67e22;">📜 <b>Kohen Gadol Reading</b><br>Scroll passed through chain of honor on Yom Kippur</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 40a-40b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 40a-40b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../39/">← Daf 39</a><a href="../41/">Daf 41 →</a></div>
+</body>
+</html>

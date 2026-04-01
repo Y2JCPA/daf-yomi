@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 36 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐝</div>
+  <h1>Sotah 36</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה לו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏔️ Miracles at the Jordan — The extraordinary events when Israel entered the Land<br>
+    🐝 The Hornet Debate — Did the tzira cross the Jordan or not?<br>
+    💎 Stones of the Ephod — How the tribal names were divided and spelled<br>
+    🧿 Evil Eye & Joseph — Why the evil eye has no power over Joseph's descendants<br>
+    ✡️ Sanctifying God's Name — Joseph in private vs. Judah in public<br>
+    📜 Torah in 70 Languages — Writing the Torah on the altar stones<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Sotah 36: Entry into Eretz Yisrael & the Ephod Stones</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🌊 Israel crosses the Jordan with miraculous protection</div><div class="process-arrow">↓</div><div class="process-step">🏔️ They travel 60+ mil to Mt. Gerizim & Mt. Ebal in one day</div><div class="process-arrow">↓</div><div class="process-step">📜 Altar built, Torah inscribed in 70 languages, blessings & curses proclaimed</div><div class="process-arrow">↓</div><div class="process-step highlight">🐝 Debate: How did the hornet (tzira) help conquer the Land?</div><div class="process-arrow">↓</div><div class="process-step">💎 How were the 12 tribes divided on the ephod stones?</div><div class="process-arrow">↓</div><div class="process-step highlight">✡️ Joseph & Judah each sanctified God's name — one privately, one publicly</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf weaves together the miraculous conquest of the Land with the priestly garments, showing how tribal identity shaped both national history and sacred worship.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Miracles of the Day Israel Entered the Land</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🌊 Crossed the Jordan River</div><div class="process-arrow">↓</div><div class="process-step">🏔️ Arrived at Mt. Gerizim & Mt. Ebal — over 60 mil away</div><div class="process-arrow">↓</div><div class="process-step">😱 No enemy could stand before them — struck with diarrhea</div><div class="process-arrow">↓</div><div class="process-step highlight">🪨 Built the altar, plastered it, wrote Torah in 70 languages</div><div class="process-arrow">↓</div><div class="process-step">🐂 Offered burnt-offerings and peace-offerings, ate, drank, celebrated</div><div class="process-arrow">↓</div><div class="process-step">📢 Proclaimed blessings and curses from the mountains</div><div class="process-arrow">↓</div><div class="process-step highlight">🏕️ Carried stones to Gilgal and lodged there that night</div></div><div class="callout" style="margin-top:20px"><strong>Proof Text</strong> <b>"I will send My terror before you and confound all the people you encounter"</b> (Exodus 23:27) — The second arrival from Babylon deserved the same miracles, but sin caused them to enter naturally.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Did the Hornet (צִרְעָה) Cross the Jordan?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Baraita</div><div class="speech">The <b>hornet (tzira)</b> did <b>not</b> cross the Jordan with them.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But the verse says: <b>"I will send the hornet before you"</b> (Exodus 23:28)!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">It stood on the <b>bank</b> of the Jordan and threw its <b>venom</b> — blinding their eyes from above and <b>castrating</b> them from below.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">As it says: <b>"I destroyed their fruit from above and their roots from beneath"</b> (Amos 2:9).</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Pappa</div><div class="speech">There were <b>two hornets</b>: one of <b>Moshe</b> (east of Jordan) and one of <b>Yehoshua</b> (west). Moshe's didn't cross — Yehoshua's did.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Both opinions reconcile the verse with the baraita — either the hornet acted from a distance, or only one of two hornets stayed behind.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Tribes on the Ephod Stones — The Debate</h2>
+  
+  <table><tr><th>Opinion</th><th>First Stone</th><th>Second Stone</th></tr><tr><td>Tanna Kamma</td><td>Judah, Reuben, Shimon, Levi, Dan, Naphtali</td><td>Gad, Asher, Yissachar, Zevulun, Yosef, Binyamin</td></tr><tr><td>R' Chanina b. Gamliel</td><td>Reuben, Shimon, Levi, Yehuda, Yissachar, Zevulun (sons of Leah)</td><td>Binyamin (bottom), Yosef (top), with Dan, Naphtali, Gad, Asher (handmaids' sons) in middle</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Point</strong> Both opinions agree there were <b>50 letters</b> total across both stones, and the Gemara refutes Rav Kahana's claim that the ephod division matched the Mt. Gerizim/Ebal division — <b>תיובתא</b> (conclusive refutation).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>The 50th Letter — How to Reach 50?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">R' Yitzchak</h3><ul><li>Added a ה to יוסף → יהוסף</li><li>Proof: "He appointed it in Yehosef" (Psalms 81:6)</li><li>The extra letter ה comes from God's name</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Rav Nachman bar Yitzchak</h3><ul><li>Objects: Names must be "according to their birth" — he wasn't called Yehosef at birth</li><li>Instead: בנימין is written with a second י (as in Genesis 35:18)</li><li>"His father called him Binyamin" — with full spelling at birth</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Significance</strong> The requirement of <b>"according to their birth" (כתולדותם)</b> means the names used by Yaakov, not Moshe — Reuben not Reubenites, Shimon not Simeonites.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Evil Eye & the Descendants of Joseph</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Tribe of Yosef complains to Yehoshua:<br><b>"We are a great people"</b> (Joshua 17:14)</div><div class="flow-arrow">↓</div><div class="flow-box action">Yehoshua: <b>"Go hide in the forests"</b><br>so the evil eye won't affect you</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Yosef's tribe responds:<br><b>The evil eye has no dominion over us!</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Abbahu's Source</div><div class="flow-box result-good"><b>"Yosef is a fruitful vine by a fountain"</b> (Gen 49:22)<br>Read as: <em>olei ayin</em> — those who rise above the eye</div></div><div class="flow-col"><div class="flow-label">R' Yosi b. R' Chanina's Source</div><div class="flow-box result-good"><b>"Let them grow [veyidgu] like fish"</b> (Gen 48:16)<br>Just as fish are covered by water, the evil eye cannot reach Yosef's seed</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Lesson</strong> The tribe of Yosef's large numbers were a sign of blessing, not vulnerability — their ancestor's merit shielded them from jealousy.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 36 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;">🌊 <b>Crossing the Jordan</b><br>Miracles paralyze enemies — 60+ mil traversed in one day</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px;">🏔️ <b>Mt. Gerizim & Mt. Ebal</b><br>Torah in 70 languages, blessings & curses, sacrifices</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2a1a; border-left:3px solid #e67e22; padding:10px;">🐝 <b>The Hornet Debate</b><br>Did it cross? Venom from the bank vs. two separate hornets</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left:3px solid #9b59b6; padding:10px;">💎 <b>Ephod Stones</b><br>50 letters, tribal divisions — refutation of Rav Kahana</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top:3px solid #4caf50; padding:10px;"><b>Yosef</b> — sanctified God's name <b>privately</b><br>Earned one letter ה</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border-top:3px solid #e74c3c; padding:10px;"><b>Yehuda</b> — sanctified God's name <b>publicly</b><br>Earned God's full four-letter name</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 36a-36b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 36a-36b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../35/">← Daf 35</a><a href="../37/">Daf 37 →</a></div>
+</body>
+</html>

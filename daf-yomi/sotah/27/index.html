@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 27 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Sotah 27</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה כז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💍 Marrying a Suspected Woman — Debate over marrying a 'duma' vs. her daughter<br>
+    👨‍⚖️ Court-Issued Warnings — When beit din warns in place of the husband<br>
+    🔄 Comparing Husband & Wife — Physical disqualifications apply to both<br>
+    🌊 Water Tests Both — The sota water evaluates her and the paramour<br>
+    📜 Rabbi Akiva's Teachings — Impurity, Levite cities, and the Song at the Sea<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Sotah 27 — Mutual Standards & Parallel Consequences</h2>
+  
+  <div class="callout"><strong>DAF OVERVIEW</strong> This daf explores <b>symmetry</b> in the sota process: the water tests <b>both</b> the woman and her paramour; disqualifications that apply to the wife also apply to the husband; and the court can step in to warn when the husband cannot. The daf concludes with a series of teachings from the famous day R' Elazar ben Azarya was appointed Nasi.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Marry a Suspected Woman or Her Daughter?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Opinion</div><div class="speech">Better to marry the <b>duma</b> (suspected woman) herself — she comes from <b>unflawed seed</b></div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yoḥanan</div><div class="speech">Better to marry her <b>daughter</b> — the daughter has a <b>ḥezkat kashrut</b> (presumption of virtue), but the duma does not</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">The baraita saying one 'may marry' a duma is <b>imprecise</b> — it means: if he already married her, she is permitted. It does not endorse it <i>ab initio</i></div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Rav Taḥalifa</div><div class="speech"><b>Halakha follows R' Yoḥanan</b>: most intercourse is attributed to the husband (<b>rov be'ilot min ha'ba'al</b>), so her daughter's lineage is unflawed</div></div></div><div class="callout" style="margin-top:20px"><strong>HALAKHA</strong> The law follows R' Yoḥanan — marry the daughter, not the suspected woman herself, since children are presumed to be from the husband.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rav Amram's Dilemma: The Extremely Promiscuous Woman</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A married woman is <b>extremely promiscuous</b> — can we still attribute most intercourse to her husband?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Conception near menstruation</div><div class="flow-box result-bad">Husband <b>doesn't know</b> the timing → <b>cannot</b> watch her → children's lineage is <b>uncertain</b></div></div><div class="flow-col"><div class="flow-label">Conception near immersion</div><div class="flow-box question">Husband <b>knows</b> the timing → perhaps he watches her? Or perhaps she is <b>too promiscuous</b> to be watched?</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">⚠️ <b>TEIKU</b> — The dilemma remains unresolved</div></div><div class="callout" style="margin-top:20px"><strong>KEY CONCEPT</strong> Even when the general rule favors the husband, extreme circumstances can cast doubt on the children's lineage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>When Does Beit Din Warn in Place of the Husband?</h2>
+  
+  <table><tr><th>Husband's Status</th><th>Court Warning Valid?</th><th>Does She Drink?</th></tr><tr><td>Deaf-mute (ḥeresh)</td><td>✅ Yes</td><td>Rabbis: No / R' Yosei: Yes</td></tr><tr><td>Imbecile (shoteh)</td><td>✅ Yes</td><td>Rabbis: No / R' Yosei: Yes</td></tr><tr><td>Insane</td><td>✅ Yes</td><td>Rabbis: No / R' Yosei: Yes</td></tr><tr><td>Overseas</td><td>✅ Yes</td><td>Rabbis: No / R' Yosei: Yes</td></tr><tr><td>In prison</td><td>✅ Yes</td><td>Rabbis: No / R' Yosei: Yes (when released)</td></tr></table><div class="callout" style="margin-top:20px"><strong>DISPUTE</strong> Rabbis: The same person who warns must bring her to the Temple. R' Yosei: Warning and bringing need not be by the same person.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Disqualifications Apply to Both Husband & Wife</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">Wife Cannot Drink If She Is…</h3><ul><li>🚫 Blind — 'hidden from the eyes' requires sight</li><li>🚫 Lame — 'shall stand the woman' requires standing</li><li>🚫 Without hands — offering must be 'placed in her hands'</li><li>🚫 Mute — 'the woman shall say Amen' requires speech</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4a90d9">Husband Cannot Administer If He Is…</h3><ul><li>🚫 Blind — same verse applies symmetrically (Rav Sheshet)</li><li>🚫 Lame — same verse applies symmetrically (Rav Ashi)</li><li>🚫 Without hands — same verse applies symmetrically (Rav Ashi)</li><li>🚫 Mute — same verse applies symmetrically (Mar bar Rav Ashi)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>SOURCE</strong> Numbers 5:29 — 'This is the law of jealousy' compares the man to the woman and the woman to the man.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Sota Water Tests Both Parties</h2>
+  
+  <div class="process-bar"><div class="process-step">🌊 The water 'enters into her' is stated TWICE (Num 5:24 & 5:27)</div><div class="process-arrow">↓</div><div class="process-step highlight">🔍 Double mention teaches: water evaluates BOTH her and the paramour</div><div class="process-arrow">↓</div><div class="process-step">🚫 She becomes forbidden to her HUSBAND after defilement</div><div class="process-arrow">↓</div><div class="process-step highlight">🚫 The extra vav in 've-nitma'a' (5:29) teaches she is ALSO forbidden to the PARAMOUR</div><div class="process-arrow">↓</div><div class="process-step">📖 R' Akiva, Zekharya ben HaKatzav, and Rabbi Yehuda HaNasi each derive this from different sources</div></div><div class="callout" style="margin-top:20px"><strong>MISHNA</strong> Just as the water evaluates her, it evaluates him. Just as she is forbidden to her husband, she is forbidden to her paramour.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 27 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Court Warning</b><br>Beit din can warn when husband cannot (deaf-mute, prisoner, etc.)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 10px;"><b>Symmetrical Disqualifications</b><br>Blind, lame, handless, or mute — applies equally to both spouses</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1621; border-left: 3px solid #e74c3c; padding: 10px;"><b>Water tests BOTH</b><br>Her and the paramour are evaluated together</div></div><div class="flow-col"><div class="flow-box" style="background:#3e2c16; border-left: 3px solid #e67e22; padding: 10px;"><b>Dual prohibition</b><br>Forbidden to husband AND to paramour</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 27a-27b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 27a-27b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../26/">← Daf 26</a><a href="../28/">Daf 28 →</a></div>
+</body>
+</html>

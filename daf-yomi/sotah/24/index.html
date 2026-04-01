@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 24 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Sotah 24</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה כד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🚫 Prohibited Marriages — Women in forbidden unions neither drink nor collect ketubah<br>
+    📜 Confession & Witnesses — Categories of women excluded from the sotah ritual<br>
+    ⚔️ Beit Shammai vs. Beit Hillel — Dispute when husband dies before wife drinks<br>
+    🔍 R' Yoshiya vs. R' Yonatan — Biblical derivations for excluding betrothed and yevama<br>
+    💍 Rav vs. Shmuel — Whether yibum intercourse creates full marriage acquisition<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Who Drinks the Sotah Waters?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Woman suspected of adultery</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Is the marriage <b>permitted</b> (not involving mamzer, Gibeonite, etc.)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No — Prohibited Marriage</div><div class="flow-box result-bad">Neither drinks<br/>nor collects <b>ketubah</b></div></div><div class="flow-col"><div class="flow-label">Yes — Permitted Marriage</div><div class="flow-box action">Proceed to sotah process</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Did she <b>confess</b>, did <b>witnesses</b> testify, or did she <b>refuse</b> to drink?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box result-bad">Neither drinks<br/>nor collects ketubah</div></div><div class="flow-col"><div class="flow-label">No — Husband's fault</div><div class="flow-box result-good">Collects ketubah<br/>without drinking</div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> The Mishnah systematically categorizes which women drink, which collect their ketubah, and which lose both — based on the nature of the marriage and the circumstances of the accusation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Three Categories of Sotah Outcomes</h2>
+  
+  <table><tr><th>Category</th><th>Drinks?</th><th>Collects Ketubah?</th><th>Examples</th></tr><tr><td>Prohibited marriage</td><td>No</td><td>No</td><td>Mamzeret, Gibeonite, married to mamzer/Gibeonite</td></tr><tr><td>Woman at fault</td><td>No</td><td>No</td><td>Confesses guilt, witnesses testify, refuses to drink</td></tr><tr><td>Husband at fault</td><td>No</td><td>Yes</td><td>Husband says 'I won't have her drink,' or had relations with her on the way to Temple</td></tr><tr><td>Standard sotah</td><td>Yes</td><td>If innocent</td><td>All other women in permitted marriages</td></tr></table><div class="callout" style="margin-top:20px"><strong>STRUCTURE</strong> The Mishnah organizes women into neat categories based on <b>two variables</b>: whether they undergo the ritual, and whether they receive their ketubah payment.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Husband Dies Before Wife Drinks</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Beit Shammai</div><div class="speech">She <b>collects her ketubah</b> and does not drink. Since the husband died, the ritual cannot proceed — but she should not be penalized.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">She <b>either drinks or does not collect</b> her ketubah. The suspicion remains unresolved — she cannot simply collect without clearing her name.</div></div></div><div class="callout" style="margin-top:20px"><strong>LOGIC</strong> Beit Hillel maintains the binary: a suspected woman must either prove innocence through the ritual or forfeit her ketubah. Beit Shammai treats the husband's death as an external circumstance that should not harm her.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Pregnant/Nursing & Barren Women — Can They Drink?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e67e22">Pregnant/Nursing from Another Man</h3><ul><li><b>R' Meir:</b> Neither drinks nor collects — marriage is prohibited (must wait 24 months)</li><li><b>Rabbis:</b> He can separate and remarry her later — marriage is considered permitted, so she drinks</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#9b59b6">Ailonit / Elderly / Barren</h3><ul><li><b>Rabbis:</b> Neither drinks nor collects — marrying a woman who can't bear children violates 'be fruitful and multiply'</li><li><b>R' Elazar:</b> He can marry another woman to fulfill the mitzvah — so this marriage is permitted, and she drinks</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>PATTERN</strong> Both disputes hinge on the same question: Is the marriage considered <b>prohibited</b> (blocking sotah) or merely <b>irregular</b> but still valid?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Court-Issued Warnings (Beit Din as Proxy)</h2>
+  
+  <div class="process-bar"><div class="process-step">👨‍⚖️ Husband becomes a <b>deaf-mute</b>, <b>imbecile</b>, or is <b>imprisoned</b></div><div class="process-arrow">↓</div><div class="process-step highlight">⚠️ Beit Din issues the <b>warning (kinui)</b> on his behalf</div><div class="process-arrow">↓</div><div class="process-step">🚫 Purpose: to <b>disqualify her from ketubah</b> if she violates the warning</div><div class="process-arrow">↓</div><div class="process-step highlight">💬 <b>R' Yosei disagrees:</b> The court's warning also serves to have her <b>drink</b> when husband is released</div></div><div class="callout" style="margin-top:20px"><strong>SPECIAL CASES</strong> The Mishnah also notes: a husband can warn his wife about seclusion with <b>any man</b> — even relatives with whom relations are biblically forbidden — except a <b>minor</b> or an <b>animal</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Excluding Betrothed & Yevama — Biblical Sources</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Yoshiya</div><div class="speech">"<i>While under your husband</i>" (Num. 5:19) — excludes a <b>betrothed woman</b> who doesn't yet live with her husband. "<i>The wife of any man</i>" (Num. 5:12) — <b>includes</b> a yevama.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yonatan</div><div class="speech">"<i>While under your husband</i>" — excludes the <b>yevama</b>, whose bond comes from the brother. "<i>This is the law of jealousy… under her husband</i>" (Num. 5:29) — separately excludes a <b>betrothed woman</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">R' Yonatan holds the <b>betrothed bond is stronger</b> — it's his own betrothal, and adultery carries <b>stoning</b>. The yevama's bond is weaker — from the brother, and violation carries only <b>lashes</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY DISTINCTION</strong> Both agree that neither betrothed women nor yevamot drink — they disagree on <b>which verse</b> excludes which category, reflecting different views of the relative strength of these bonds.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 24 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Suspected Wife</b><br/>Husband warns, she secludes</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a1a3e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Marriage Status Check</b><br/>Prohibited? Betrothed? Yevama?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; color:#fff; padding:10px; border-radius:8px; text-align:center;"><b>Excluded</b><br/>Prohibited marriage, betrothed, or yevama — no drinking</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px; text-align:center;"><b>Included</b><br/>Permitted, consummated marriage — proceed to ritual</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Ketubah Determination</b><br/>Fault-based: wife's fault = no ketubah; husband's fault = collects ketubah</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 24a-24b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 24a-24b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../23/">← Daf 23</a><a href="../25/">Daf 25 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 19 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🫗</div>
+  <h1>Sotah 19</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה יט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔄 Drinking & Repeating — When a sotah must undergo the ordeal again<br>
+    🌾 Meal-Offering Procedure — Waving, handful, and burning the mincha<br>
+    ⚖️ Order of Ritual — Debate over drinking vs. sacrificing the meal-offering first<br>
+    ✋ Waving by the Owner — Gezeira shava linking sotah to peace-offering<br>
+    📜 Three Prerequisites — Scroll erasure, oath, and handful before drinking<br>
+    💪 Forced Drinking — Can the sotah be compelled to drink after scroll is erased?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Sotah 19: The Ritual Order & When She Drinks Again</h2>
+  
+  <div class="process-bar"><div class="process-step">🔁 Gemara clarifies four combinations of husband/paramour for repeat drinking</div><div class="process-arrow">↓</div><div class="process-step highlight">🌾 Meal-offering: placed in service vessel → woman's hand → priest waves with her</div><div class="process-arrow">↓</div><div class="process-step highlight">⚖️ Rabbis vs. R' Shimon: Does she drink before or after the meal-offering is sacrificed?</div><div class="process-arrow">↓</div><div class="process-step">📜 R' Shimon: Three things must precede drinking — handful, scroll erasure, and oath</div><div class="process-arrow">↓</div><div class="process-step">💪 Once scroll is erased, she can be forced to drink — but R' Akiva qualifies this</div></div><div class="callout" style="margin-top:20px"><strong>KEY THEME</strong> The Gemara dissects three nearly identical verses about making the sotah drink, deriving from each a distinct halakha about the ritual's sequence and enforceability.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>When Does a Sotah 'Drink and Repeat'?</h2>
+  
+  <table><tr><th>Scenario</th><th>First Tanna</th><th>Rabbis</th><th>R' Yehuda</th></tr><tr><td>1 husband, 1 paramour</td><td>❌ Does NOT repeat</td><td>❌ Does NOT repeat</td><td>❌ Does NOT repeat</td></tr><tr><td>1 husband, 2 paramours</td><td>✅ Drinks again</td><td>❌ Does NOT repeat</td><td>❌ Does NOT repeat</td></tr><tr><td>2 husbands, 1 paramour</td><td>✅ Drinks again</td><td>❌ Does NOT repeat</td><td>✅ Drinks again</td></tr><tr><td>2 husbands, 2 paramours</td><td>✅ Drinks again</td><td>✅ Drinks again</td><td>✅ Drinks again</td></tr></table><div class="callout" style="margin-top:20px"><strong>SOURCE</strong> All three opinions derive from <b>"This is the law of jealousy"</b> (Numbers 5:29) — <b>"this"</b> excludes, <b>"law of jealousy"</b> includes. They disagree on how many cases each phrase covers.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Sotah Meal-Offering Procedure (Mishna)</h2>
+  
+  <div class="process-bar"><div class="process-step">🧺 Meal-offering taken from Egyptian wicker basket</div><div class="process-arrow">↓</div><div class="process-step">🏺 Placed into a service vessel (כלי שרת)</div><div class="process-arrow">↓</div><div class="process-step highlight">✋ Placed on the woman's hand; priest places his hand beneath hers</div><div class="process-arrow">↓</div><div class="process-step highlight">🌊 Priest and woman wave the offering together (תנופה)</div><div class="process-arrow">↓</div><div class="process-step">📐 Brought near to the southwest corner of the altar</div><div class="process-arrow">↓</div><div class="process-step">🔥 Priest removes a handful (קמיצה) and burns it on the altar</div><div class="process-arrow">↓</div><div class="process-step">🍞 Remainder eaten by the priests</div></div><div class="callout" style="margin-top:20px"><strong>GEZEIRA SHAVA</strong> R' Yoshiya derives that the <b>owner</b> (the woman) must also wave from a verbal analogy: <b>"hand"</b> in the sotah passage (Num. 5:25) is linked to <b>"hand"</b> in the peace-offering (Lev. 7:30) — just as the owner waves the shelamim, so the sotah waves her mincha.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Drink First or Sacrifice First?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis (Tanna Kamma)</div><div class="speech">The priest <b>forces her to drink first</b>, and <b>afterward</b> sacrifices the meal-offering.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Shimon</div><div class="speech">The priest <b>sacrifices the meal-offering first</b>, and afterward forces her to drink — as it says: <b>"and burn it upon the altar, and afterward he shall make the woman drink"</b> (Num. 5:26).</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis (Tanna Kamma)</div><div class="speech">The verse in 5:24 — <b>"And he shall make the woman drink"</b> — comes <em>before</em> the meal-offering passage, teaching the proper order: drink first.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Shimon</div><div class="speech">That first verse teaches only that if he <em>did</em> make her drink first, <b>it is valid after the fact (בדיעבד)</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis (Tanna Kamma)</div><div class="speech">The Torah does not <b>begin</b> a discussion with a rule that applies only after the fact!</div></div></div><div class="callout" style="margin-top:20px"><strong>AGREEMENT</strong> R' Shimon concedes: if the priest <b>did</b> make her drink first and only then sacrificed the meal-offering, <b>it is still valid (כשר)</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Three Verses About Drinking — Three Halakhot</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Three times the Torah says 'make her drink':</b><br/>① Num. 5:24 · ② Num. 5:26 · ③ Num. 5:27</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbis' Reading</div><div class="flow-box action"><b>Verse ①:</b> Teaches proper order — drink <em>before</em> meal-offering<br/><b>Verse ②:</b> Scroll ink must be <em>completely</em> erased before drinking<br/><b>Verse ③:</b> If scroll already erased and she refuses — <b>she is forced to drink</b></div></div><div class="flow-col"><div class="flow-label">R' Shimon's Reading</div><div class="flow-box action"><b>Verse ②:</b> Teaches proper order — meal-offering <em>before</em> drinking<br/><b>Verse ①:</b> If she drank first — still valid (בדיעבד)<br/><b>Verse ③:</b> If scroll already erased and she refuses — <b>she is forced to drink</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>NOTE</strong> Both opinions agree on verse ③: once the scroll is erased into the water, <b>the woman can be compelled to drink against her will</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Shimon's Three Prerequisites Before Drinking</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">1. Handful Sacrificed (קמיצה)</h3><ul><li>R' Shimon holds: sacrifice meal-offering FIRST</li><li>Consistent with his ruling in the Mishna</li><li>Derived from 'and afterward he shall make the woman drink' (5:26)</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">2. Scroll Fully Erased (מחיקה)</h3><ul><li>Obvious: what would she drink without the erased ink?</li><li>Rav Ashi: needed for where ink impression is still VISIBLE</li><li>Must be totally dissolved — no discernible writing remains</li></ul></div><div class="compare-box" style="border-top-color:#2c1a3e"><h3 style="color:#9b59b6">3. Oath Accepted (שבועה)</h3><ul><li>She must accept the oath upon herself before drinking</li><li>Rava: scroll written BEFORE oath is completely INVALID</li><li>The oath is a prerequisite even for WRITING the scroll</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>RAVA'S PRINCIPLE</strong> A scroll of a sotah written <b>before she accepted the oath</b> is entirely invalid — the scribe 'did nothing.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 19 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#2c1a3e; border-left:3px solid #9b59b6;"><b>Repeat Drinking?</b><br/>זאת = excludes · תורת הקנאות = includes<br/>Tannaim disagree on scope</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50;"><b>Meal-Offering Ritual</b><br/>Basket → vessel → woman's hand<br/>Priest waves with her (gezeira shava of 'hand')</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; border-top:3px solid #4a90d9;"><b>Rabbis:</b> Drink FIRST<br/>then sacrifice mincha<br/>(Verse ① = proper order)</div></div><div class="flow-col"><div class="flow-box" style="background:#2c1a3e; border-top:3px solid #9b59b6;"><b>R' Shimon:</b> Sacrifice FIRST<br/>then drink<br/>(Verse ② = proper order)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left:3px solid #c9a84c;"><b>Three Prerequisites (R' Shimon)</b><br/>① Handful burned · ② Scroll fully erased · ③ Oath accepted</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1a1a; border-left:3px solid #e74c3c;"><b>Forced Drinking</b><br/>After scroll erased: she can be compelled<br/>R' Akiva: before handful = refusal is admission<br/>After handful = refusal from fear → must drink</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 19a-19b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 19a-19b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../18/">← Daf 18</a><a href="../20/">Daf 20 →</a></div>
+</body>
+</html>

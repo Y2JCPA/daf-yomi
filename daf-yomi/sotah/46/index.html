@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 46 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🪓</div>
+  <h1>Sotah 46</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה מו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐄 Blemish & Labor — What disqualifies the eglah arufah vs. red heifer vs. offerings<br>
+    📜 The Word 'Bah' — How a single word limits a fortiori inferences<br>
+    🌾 The Valley's Sanctity — Debate over 'neither worked nor sown' (past vs. future)<br>
+    🤲 Elders' Declaration — Washing hands and attesting innocence<br>
+    🚶 Accompaniment (Levaya) — R' Meir's teaching on its boundless reward<br>
+    🏙️ The City of Luz — Reward for guiding travelers and a city death cannot enter<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Sotah 46 — Eglah Arufah: Disqualifications, Ritual, & Accompaniment</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Does a blemish disqualify the eglah arufah?</b></div><div class="flow-arrow">↓</div><div class="flow-box action">A fortiori from <b>red heifer</b> suggests yes</div><div class="flow-arrow">↓</div><div class="flow-box result-good">The word <b>"bah"</b> (בה) excludes: blemish disqualifies <em>only</em> the red heifer</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Valley restrictions:</b> Land may not be worked or sown</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Elders wash hands</b> and declare: We did not neglect this person</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>R' Meir:</b> Accompaniment (לוויה) is obligatory — its reward is without measure</div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> The Gemara traces how precise Torah language — especially the word <b>"bah"</b> — limits legal inferences between the eglah arufah, red heifer, and sacred offerings, then transitions to the communal obligation of caring for travelers.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Blemish, Labor & Age: Three Categories Compared</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Red Heifer (פרה אדומה)</h3><ul><li>❌ Blemish disqualifies</li><li>❌ ANY labor disqualifies (even placing a bundle of sacks)</li><li>✅ Not disqualified by age</li></ul></div><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#ffffff">Eglah Arufah (עגלה ערופה)</h3><ul><li>✅ Blemish does NOT disqualify</li><li>❌ Labor disqualifies only if it pulls/moves a burden</li><li>❌ Disqualified by age (must be under 2 years)</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Sacred Offerings (קדשים)</h3><ul><li>❌ Blemish disqualifies</li><li>✅ Labor does NOT disqualify</li><li>❌ Some offerings disqualified by age</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Insight</strong> No single category shares all its disqualifications with another — the word <b>"bah"</b> in each context creates precise legal boundaries.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>How Does 'Bah' Block the A Fortiori?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">A <b>kal va-chomer</b>: If the red heifer — not disqualified by age — is disqualified by blemish, surely the eglah arufah — which IS disqualified by age — should also be disqualified by blemish!</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Answer</div><div class="speech">The verse says <b>"bah"</b> (בה) — 'wherein has no blemish' — <em>it</em> alone. Blemish disqualifies only the red heifer, not the eglah arufah.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But 'bah' also appears regarding the eglah arufah: 'that has not been worked <b>bah</b>.' So labor beyond pulling a yoke shouldn't disqualify the red heifer either!</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Answer</div><div class="speech">A <b>gezeira shava</b> (verbal analogy) of 'yoke'–'yoke' teaches that all labor disqualifies the red heifer. The 'bah' of the eglah arufah is needed to exclude <b>sacred offerings</b> from labor disqualification.</div></div></div><div class="callout" style="margin-top:20px"><strong>Legal Principle</strong> The same word — <b>"bah"</b> — serves different exclusionary functions in each context: limiting blemish to the red heifer and limiting labor-disqualification away from sacred offerings.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rav Yehuda's Distinction: Labor & the Two Heifers</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>A person places a bundle of sacks on a heifer</b></div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Red Heifer</div><div class="flow-box result-bad"><b>Immediately disqualified</b><br/>Any labor — even passive weight-bearing — invalidates</div></div><div class="flow-col"><div class="flow-label">Eglah Arufah</div><div class="flow-box result-good"><b>Not disqualified</b> until the heifer <em>pulls and moves</em> the burden<br/>(Deut. 21:3 — 'that has not <b>pulled</b> a yoke')</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Rav Yehuda in the name of Rav</strong> The red heifer's stricter standard comes from the <b>gezeira shava</b> of 'yoke,' which imports all forms of labor from the eglah arufah context.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>'Neither Worked Nor Sown' — Past or Future?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yoshiya</div><div class="speech">The verse 'which may be neither worked nor sown' refers to <b>the past</b> — the valley must be a place that was <em>never previously</em> worked or sown.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yonatan</div><div class="speech">It refers to <b>the future</b> — after the ritual, the land is <em>permanently prohibited</em> from being worked or sown.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rava</div><div class="speech"><b>Resolution:</b> Everyone agrees the land is prohibited <em>for the future</em>. They disagree only about whether the valley must also have been unworked <em>in the past</em>.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yoshiya</div><div class="speech">The word <b>'which'</b> (אשר) indicates the past tense.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yonatan</div><div class="speech">The word <b>'which'</b> is a term of <em>amplification</em> (ריבוי), not a past-tense indicator.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> According to R' Yoshiya, the elders must find a valley <em>never before cultivated</em>. According to R' Yonatan, any rough valley qualifies — only future use is restricted.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>What Is Permitted vs. Prohibited in the Eglah Arufah Valley?</h2>
+  
+  <table><tr><th>Activity</th><th>Status</th><th>Reason</th></tr><tr><td>Sowing</td><td>❌ Prohibited</td><td>Explicitly stated in the verse</td></tr><tr><td>Plowing / working the soil</td><td>❌ Prohibited</td><td>Derived from 'neither worked' — labor on the land itself</td></tr><tr><td>Combing flax</td><td>✅ Permitted</td><td>Not labor performed <em>on the land itself</em></td></tr><tr><td>Cutting stones</td><td>✅ Permitted</td><td>Not labor performed <em>on the land itself</em></td></tr></table><div class="callout" style="margin-top:20px"><strong>Hermeneutical Key</strong> The word <b>'which'</b> (אשר) functions as an <b>amplification</b> (ריבוי), preventing the verse from being read as a generalization-and-detail (כלל ופרט), which would have limited the prohibition to sowing alone.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 46 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>Blemish:</b> 'Bah' limits disqualification to <b>red heifer only</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; color:#fff; padding:10px; border-radius:8px;"><b>Labor:</b> Gezeira shava of 'yoke' imports all labor to red heifer; 'bah' of eglah arufah excludes <b>sacred offerings</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Valley:</b> Prohibited for future agricultural use; permitted for non-land labor (flax, stones)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; color:#fff; padding:10px; border-radius:8px;"><b>Elders' declaration:</b> We provided food & <b>accompaniment</b> (לוויה)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2e1a; color:#fff; padding:10px; border-radius:8px;"><b>R' Meir:</b> Accompaniment is obligatory — the man of Bethel earned the eternal city of <b>Luz</b></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 46a-46b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 46a-46b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../45/">← Daf 45</a><a href="../47/">Daf 47 →</a></div>
+</body>
+</html>

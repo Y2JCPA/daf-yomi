@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 23 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Sotah 23</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה כג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔥 Meal-Offerings Burned — Women married to kohanim and the fate of their mincha<br>
+    ⚖️ Kohen vs. Bat Kohen — Halakhic distinctions between priests and their daughters<br>
+    👤 Men vs. Women — Legal differences derived from Torah verses<br>
+    🪵 Burning as Firewood — R' Eliezer's solution for the remainder of the offering<br>
+    📜 Biblical Derivations — Sources for gender-specific halakhot<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Sotah 23 — Halakhic Distinctions: Kohen vs. Bat Kohen, Man vs. Woman</h2>
+  
+  <div class="callout"><strong>CORE THEME</strong> The Mishna catalogues <b>halakhic differences</b> between a <b>kohen</b> and a <b>bat kohen</b>, and between a <b>man</b> and a <b>woman</b>. The Gemara then traces each distinction to its <b>biblical source</b> and resolves the complex problem of what happens to the <b>meal-offering of a sota married to a kohen</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Women Whose Meal-Offerings Are Burned</h2>
+  
+  <table><tr><th>Category</th><th>Fate of Mincha</th></tr><tr><td>Woman who confesses: <i>"I am defiled"</i></td><td>Does not drink; forfeits ketuba</td></tr><tr><td>Witnesses testify she is defiled</td><td>Does not drink</td></tr><tr><td>Woman who refuses to drink</td><td>Does not drink even without confession</td></tr><tr><td>Husband changes his mind</td><td>Does not force her to drink</td></tr><tr><td>Husband had relations on way to Temple</td><td>Disqualified from drinking</td></tr><tr><td><b>All women married to kohanim</b></td><td><b>Mincha is always burned</b> (Lev. 6:16)</td></tr></table><div class="callout" style="margin-top:20px"><strong>KEY RULE</strong> An Israelite woman married to a kohen — her mincha is <b>burned</b>. A bat kohen married to an Israelite — her mincha is <b>eaten</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Kohen vs. Bat Kohen: Four Key Differences</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1810"><h3 style="color:#e67e22">Bat Kohen 👩</h3><ul><li>Her mincha <b>is eaten</b> by kohanim</li><li>Can become <b>disqualified</b> from teruma through forbidden relations</li><li><b>May</b> become tamei from a corpse</li><li>May <b>not</b> eat from kodshei kodashim</li></ul></div><div class="compare-box" style="border-top-color:#1a1a3e"><h3 style="color:#4a90d9">Kohen 👨‍🦳</h3><ul><li>His mincha is <b>not eaten</b> — entirely burned</li><li>Does <b>not</b> become desacralized through forbidden relations</li><li>May <b>not</b> become tamei from a corpse (except 7 relatives)</li><li><b>May eat</b> from kodshei kodashim</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>SOURCE</strong> <b>Lev. 6:11</b> — <i>"Every male among the children of Aaron may eat of it"</i> — males, not daughters.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Mincha of a Sota Married to a Kohen</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Sota married to a kohen brings a <b>mincha</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Both she and her husband have a <b>share</b> in the offering</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Her Share</div><div class="flow-box action">As an Israelite-origin woman — her portion <b>should be eaten</b></div></div><div class="flow-col"><div class="flow-label">His Share</div><div class="flow-box action">As a kohen — his portion <b>must be burned entirely</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Solution: The <b>handful (kometz)</b> is sacrificed by itself</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">The <b>remainder</b> — neither eaten nor burned as offering</div></div><div class="callout" style="margin-top:20px"><strong>RESOLUTION</strong> The remainder is <b>scattered on the place of the ashes</b> (beit hadeshen) — per R' Elazar b'R' Shimon.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>How to Dispose of the Remainder?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Problem</div><div class="speech">If we burn the remainder on the altar, we violate <b>"lo taktiru"</b> — the prohibition against burning non-designated parts as an offering!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Yehuda b. R' Shimon b. Pazi</div><div class="speech">Burn it <b>as firewood</b>, not as an offering — this is permitted per <b>R' Eliezer</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Eliezer</div><div class="speech"><i>"For a pleasing aroma you may not burn them, but you may burn them as <b>firewood</b> on the altar."</i></div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Chakhamim</div><div class="speech">We disagree with R' Eliezer! You cannot burn the remainder on the altar even as firewood.</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Elazar b'R' Shimon</div><div class="speech">The remainder is <b>scattered on the beit hadeshen</b> (ash heap) — not eaten, not burned on the altar.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">Even the Rabbis agree with R' Elazar b'R' Shimon <b>in this case</b>, since the handful <i>was</i> removed from the offering.</div></div></div><div class="callout" style="margin-top:20px"><strong>DISTINCTION</strong> The Rabbis only disagree regarding a <b>kohen's sin-offering mincha</b> (which should be burned entirely without kemitza). Here, where kemitza was performed, all agree the remainder goes to the <b>ash heap</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Man vs. Woman: Halakhic Differences</h2>
+  
+  <table><tr><th>Halakha</th><th>Man</th><th>Woman</th><th>Source</th></tr><tr><td>Leper: hair & garments</td><td>Lets hair grow wild, rends garments</td><td>Does not</td><td>Lev. 13:44-45</td></tr><tr><td>Nazir vow for son</td><td>Can vow son as nazir</td><td>Cannot</td><td>Halakha l'Moshe mi'Sinai</td></tr><tr><td>Shaving with father's offerings</td><td>Can use father's nazir offerings</td><td>Cannot</td><td>Halakha l'Moshe mi'Sinai</td></tr><tr><td>Betrothing daughter</td><td>Can betroth minor daughter</td><td>Cannot</td><td>Deut. 22:16</td></tr><tr><td>Selling daughter</td><td>Can sell as maidservant</td><td>Cannot</td><td>Exodus 21:7</td></tr><tr><td>Stoning</td><td>Stoned unclothed</td><td>Not stoned unclothed</td><td>Lev. 24:14 — "him"</td></tr><tr><td>Hanging after stoning</td><td>Hanged</td><td>Not hanged</td><td>Deut. 21:22 — "him"</td></tr><tr><td>Sold for theft</td><td>Sold to pay debt</td><td>Not sold</td><td>Derived from verses</td></tr></table><div class="callout" style="margin-top:20px"><strong>PATTERN</strong> Many distinctions derive from the Torah's use of <b>masculine pronouns</b> — "him" (<i>oto</i>) — which the Gemara reads as <b>exclusionary</b>: him, but not her.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 23 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:white; padding:12px; border-radius:8px;"><b>Sota Married to Kohen</b><br>Both spouses share the mincha</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:white; padding:10px; border-radius:8px;"><b>Kometz</b><br>Burned on altar as offering</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; color:white; padding:10px; border-radius:8px;"><b>Remainder</b><br>Scattered on ash heap (beit hadeshen)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3e; color:white; padding:12px; border-radius:8px;"><b>Kohen vs. Bat Kohen</b><br>4 differences: mincha, disqualification, corpse-impurity, kodshei kodashim</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:white; padding:12px; border-radius:8px;"><b>Man vs. Woman</b><br>8 differences: leper, nazir (×2), betrothal, sale, stoning, hanging, theft</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 23a-23b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 23a-23b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../22/">← Daf 22</a><a href="../24/">Daf 24 →</a></div>
+</body>
+</html>
