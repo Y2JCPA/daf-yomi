@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 94 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 94</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות צד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔍 Contradicted Testimony — Analyzing when two witnesses override earlier testimony<br>
+    👤 One Witness for Yevama — Can a single witness free a yevama from her bond?<br>
+    💔 Marrying Wife's Sister — Consequences of erroneous marriage after false death report<br>
+    📜 Rabbi Akiva's Get Requirement — When does a wife's sister need a bill of divorce?<br>
+    👶 Mamzer Status — Determining legitimacy of children from mistaken marriages<br>
+    🔥 Mother-in-Law Prohibition — Rabbi Akiva vs Rabbi Yishmael on burning penalty<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 94: Testimony, Yevama, & Mistaken Marriages</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Central Question:</b><br>Is one witness credible to testify that a <i>yavam</i> died, freeing the <i>yevama</i>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Attempted Proofs</div><div class="flow-box action">Rav Sheshet's mishna analysis<br>Rav Mordekhai's inference<br>Rava's <i>kal va-chomer</i></div></div><div class="flow-col"><div class="flow-label">All Refuted</div><div class="flow-box result-bad">Hazamah witnesses<br>Rabbi Akiva's reason<br>Woman's hatred undermines reliability</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>Question remains unresolved (<i>teiku</i>-like)</b></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Amud B shifts to:</b> Man told wife died → marries her sister → consequences</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">His Wife</div><div class="flow-box result-good">Remains <b>permitted</b> to him</div></div><div class="flow-col"><div class="flow-label">Brother-in-law's Wife</div><div class="flow-box result-bad">Becomes <b>forbidden</b> to brother-in-law</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> The Gemara tests multiple proofs for single-witness credibility regarding yevama but cannot resolve the question, then shifts to analyzing erroneous marriages with wife's sister.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav Sheshet's Proof from the Mishna</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Sheshet</div><div class="speech">The mishna says: If told 'your husband died, then your child died,' she remarried, then learned the <b>matters were reversed</b> — she must leave, and <b>both children are mamzerim</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Sheshet</div><div class="speech">If this were <b>two vs. two witnesses</b>, why rely on the second pair over the first? The child should only be a <i>safek mamzer</i>!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Sheshet</div><div class="speech">It must be <b>one witness</b> contradicted by two — proving a single witness is normally credible for such testimony!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">No — as <b>Rav Aḥa bar Manyumi</b> explained: It's two vs. two, but the second pair are <b><i>edei hazamah</i></b> (conspiring witnesses).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">They didn't just contradict the story — they said the first witnesses <b>were elsewhere</b> at the time. This fully disqualifies them.</div></div></div><div class="callout" style="margin-top:20px"><strong>Hazamah</strong> <i>Edei hazamah</i> don't merely offer an alternate account — they testify the first witnesses couldn't have seen what they claimed, completely invalidating their testimony.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rav Mordekhai's Attempted Proof</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Mishna (118b):</b> A woman is <b>not credible</b> to say:<br>'My <i>yavam</i> died' (to permit herself to marry)</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Inference:</b> It's specifically <i>she</i> who isn't credible —<br>implying <b>one witness would be credible</b>?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Problem:</b> The same mishna says a <i>man</i> isn't credible to say 'my brother died'</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Woman's Case</div><div class="flow-box result-good">Sages were lenient due to <i>iguna</i> (deserted wife) concern</div></div><div class="flow-col"><div class="flow-label">Man's Case</div><div class="flow-box result-bad">No <i>iguna</i> concern — a man can marry multiple wives</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>Conclusion:</b> The mishna's exclusion of the woman herself doesn't imply one witness is credible — it addresses <b>Rabbi Akiva's opinion</b> specifically</div></div><div class="callout" style="margin-top:20px"><strong>Why Mention Her?</strong> Under Rabbi Akiva, a yevama's child from an unlawful marriage is a <i>mamzer</i>. You might think she'd be extra careful — so the mishna teaches she fears her own ruin but not her children's.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rava's Kal Va-Chomer & Its Refutation</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">One witness should be credible for a <i>yevama</i> by <b><i>kal va-chomer</i></b>: If for <b><i>karet</i></b> (married woman/adultery) one witness suffices, then for a <b>regular prohibition</b> (<i>yevama</i> to another man), certainly!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Challenger</div><div class="speech">The <b>woman herself</b> disproves this: For <i>karet</i> she <i>is</i> believed, but for a regular prohibition (yavam's death) she is <i>not</i>!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Challenger</div><div class="speech">Why isn't she believed? Because sometimes she <b>hates the yavam</b> and won't investigate carefully.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Challenger</div><div class="speech">The same applies to one witness — the court only trusts him because they assume <b>she</b> verified. But if she hates the yavam, she won't verify his report either!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The <i>kal va-chomer</i> collapses. The question of one witness for <i>yevama</i> remains <b>unresolved</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Logic</strong> One witness is trusted for a married woman because the court assumes <i>she</i> independently verifies before remarrying. If she hates the yavam, this assumption fails — so the witness's credibility depends on her diligence, not merely the severity of the prohibition.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Marrying Wife's Sister by Mistake (Amud B)</h2>
+  
+  <table><tr><th>Scenario Element</th><th>Halachic Outcome</th></tr><tr><td>Man told wife died → married her sister</td><td>Marriage to sister is <b>invalid</b></td></tr><tr><td>His relationship with his wife</td><td><b>Permitted</b> — erroneous forbidden relations don't affect his marriage</td></tr><tr><td>Sister's status vis-à-vis brother-in-law</td><td><b>Forbidden</b> to brother-in-law (she was "married" to another by error)</td></tr><tr><td>His relationship with sister's relatives</td><td><b>Permitted</b> (e.g., her daughter) — invalid marriage creates no affinal bonds</td></tr><tr><td>Sister's relationship with his relatives</td><td><b>Permitted</b> (e.g., his son)</td></tr><tr><td>If first wife later dies</td><td>He <b>may</b> now marry the sister</td></tr><tr><td>Child born while wife alive</td><td><b>Mamzer</b> (born from union with sister-in-law)</td></tr><tr><td>Child born after wife died</td><td><b>Not a mamzer</b></td></tr></table><div class="callout" style="margin-top:20px"><strong>Principle</strong> An erroneous marriage to a wife's sister is treated as mere licentious relations — it invalidates the sister for her own husband but does not affect the man's original marriage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabbi Akiva's Get Requirement: Betrothal vs. Marriage</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e67e22">Rabbi Akiva's Rule</h3><ul><li>Wife's sister who was erroneously married requires a <i>get</i></li><li>Brother's wife erroneously taken in yibum requires a <i>get</i></li><li>These women <i>could</i> become permitted (sister after wife dies; brother's wife via yibum)</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4a90d9">Rav Giddel's Limitation (in Rav's name)</h3><ul><li>Rabbi Akiva's rule applies only to <b>betrothal</b> (<i>kiddushin</i>), not full marriage</li><li>Reason: Onlookers might think there was a <b>condition</b> in the betrothal that was unfulfilled</li><li>They'd conclude the second marriage was <b>valid</b> — hence a get is needed to dispel this</li><li>But with full <b>marriage</b> (<i>nisuin</i>): no one assumes a condition — so <b>no get needed</b></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Practical Result</strong> Our mishna involves actual marriage, not mere betrothal — so even Rabbi Akiva agrees no <i>get</i> is needed, and the wife remains permitted to her husband.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 94 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Can one witness free a yevama?</b><br>Three proofs attempted</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a1a2e; color:#e74c3c; padding:10px; border-radius:8px;"><b>Rav Sheshet:</b> Mishna implies it<br>↓ Refuted: <i>hazamah</i> witnesses</div></div><div class="flow-col"><div class="flow-box" style="background:#1a1a2e; color:#e67e22; padding:10px; border-radius:8px;"><b>Rav Mordekhai:</b> Inference from 'she'<br>↓ Refuted: R' Akiva's opinion</div></div><div class="flow-col"><div class="flow-box" style="background:#1a1a2e; color:#9b59b6; padding:10px; border-radius:8px;"><b>Rava:</b> Kal va-chomer<br>↓ Refuted: hatred factor</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#4a1a1a; color:#e74c3c; padding:12px; border-radius:8px; text-align:center; font-weight:bold;"><b>Unresolved</b> — question remains open</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#4caf50; padding:12px; border-radius:8px; text-align:center;"><b>Amud B:</b> Mistaken marriage to wife's sister<br>Wife remains permitted · Sister's marriage void · Mamzer status depends on timing</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; color:#4a90d9; padding:12px; border-radius:8px; text-align:center;"><b>Rabbi Akiva's get for wife's sister</b> limited to <i>kiddushin</i> only (Rav Giddel)<br>Full marriage = no condition assumed = no get needed</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 94a-94b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 94a-94b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../93/">← Daf 93</a><a href="../95/">Daf 95 →</a></div>
+</body>
+</html>

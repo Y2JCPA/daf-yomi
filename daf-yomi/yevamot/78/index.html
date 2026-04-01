@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 78 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏛️</div>
+  <h1>Yevamot 78</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות עח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🇪🇬 Egyptian Converts — How generations are counted for entry into the congregation<br>
+    ⚖️ 'That If' Principle — Whether Torah legislates cases arising from transgression<br>
+    👶 Fetus & Conversion — Whether an unborn child counts as a separate generation<br>
+    🔗 Lineage Among Nations — Following the father vs. the more flawed parent after conversion<br>
+    🚫 Mamzer & Verbal Analogy — Reish Lakish's derivation that a mamzeret is permitted after ten generations<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Egyptian Convert Generations & Lineage Rules</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> How does a 2nd-generation Egyptian convert produce permitted 3rd-generation offspring?</div><div class="flow-arrow">↓</div><div class="flow-box action">Torah says <b>"sons of the third generation"</b> — each word is expounded</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">"Sons"</div><div class="flow-box result-bad">Prohibition applies in <b>later generations</b> too — not just the first three after Sinai</div></div><div class="flow-col"><div class="flow-label">"Generation"</div><div class="flow-box result-good">Depends on <b>generation count</b>, not birth order among siblings</div></div><div class="flow-col"><div class="flow-label">"To Them"</div><div class="flow-box action"><b>Count from the converts</b> themselves & follow the <b>disqualified parent</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The Torah's treatment of Egyptian converts teaches rules about generational counting, lineage tracing, and how status follows the more flawed parent after conversion.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Can Torah Legislate Cases Arising from Sin?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">How can a <b>2nd-generation Egyptian convert</b> produce permitted offspring? He can marry neither a Jewess nor an Egyptian convert!</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Answer</div><div class="speech">Perhaps if he <b>transgressed</b> and married a convert or Jewess, his seed is purified.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">A case of <b>'that if' (אם עבר)</b> — the Torah does not legislate situations arising only through transgression!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Objection</div><div class="speech">But a <b>mamzer</b> is itself a case of 'that if' — and the Torah writes it!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Resolution</div><div class="speech">A 'that if' resulting in a <b>prohibition</b>, the Torah writes. A 'that if' leading to an <b>allowance</b>, it does not.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> The Torah legislates consequences of transgression only when the result is a prohibition (mamzer), not when it would create a leniency.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Both 'Sons' and 'Generation' Are Needed</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#e74c3c">If Only 'Sons' (בנים)</h3><ul><li>Might think prohibition depends on birth order</li><li>1st & 2nd sons forbidden, 3rd son permitted</li><li>Would ignore generational status entirely</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#4a90d9">If Only 'Generation' (דור)</h3><ul><li>Might count generations from Mount Sinai</li><li>After 3 generations from Torah-giving, all Egyptians permitted</li><li>Would ignore individual family lineage</li></ul></div><div class="compare-box" style="border-top-color:#1a2e1a"><h3 style="color:#4caf50">Both Together</h3><ul><li>Prohibition depends on generational status</li><li>Count from each convert's own family line</li><li>Third generation of each convert family is permitted</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Baraita</strong> Deut. 23:9 — "The sons of the third generation that are born to them may enter the congregation of the Lord."</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Expounding 'To Them' (להם) and 'That Are Born'</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Verse says <b>"to them"</b> twice and <b>"that are born"</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">1st 'To Them'</div><div class="flow-box result-good"><b>Count from the converts themselves</b> — they are Generation 1</div></div><div class="flow-col"><div class="flow-label">2nd 'To Them'</div><div class="flow-box result-bad"><b>Follow the disqualified parent</b> — child's status follows the unfit parent</div></div><div class="flow-col"><div class="flow-label">'That Are Born'</div><div class="flow-box action"><b>Each birth = new generation</b> — a fetus in a converting mother is Gen 2, not Gen 1</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Case</strong> A pregnant Egyptian woman who converts: without 'that are born,' her fetus would be considered part of her (Gen 1). The verse teaches the fetus is a separate generation (Gen 2).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Fetus, Immersion & Interposition (Amud B)</h2>
+  
+  <table><tr><th>Issue</th><th>Rule</th><th>Reasoning</th></tr><tr><td>Does immersion require the fetus to be exposed to water?</td><td>No — the womb is not an interposition (חציצה)</td><td>It is the fetus's <b>natural manner of growth</b></td></tr><tr><td>Rav Kahana's rule on interposition</td><td>A substance covering the <b>entire</b> body is an interposition even if one is not particular</td><td>Torah-level interposition applies</td></tr><tr><td>Why doesn't this disqualify the fetus's immersion?</td><td>The womb is <b>not a foreign substance</b> — it is the fetus's natural place</td><td>Therefore the fetus is considered to have immersed</td></tr></table><div class="callout" style="margin-top:20px"><strong>Result</strong> A fetus present during its mother's conversion immersion is considered to have validly immersed, making it a second-generation convert.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabbi Yochanan's Lineage Rules (via Ravina)</h2>
+  
+  <div class="process-bar"><div class="process-step">📜 Among <b>gentile nations</b>: lineage follows the <b>father</b></div><div class="process-arrow">↓</div><div class="process-step">🔄 Source: Lev. 25:45 — Canaanite father + non-Canaanite mother = Canaanite child (cannot remain in Eretz Yisrael)</div><div class="process-arrow">↓</div><div class="process-step highlight">✡️ After <b>conversion and marriage</b>: follow the <b>more flawed</b> parent</div><div class="process-arrow">↓</div><div class="process-step">👨 Example: Male Ammonite convert + Female Egyptian convert → <b>son</b> follows Ammonite father (permanently barred)</div><div class="process-arrow">↓</div><div class="process-step highlight">👩 Same couple → <b>daughter</b> follows Egyptian mother (treated as 2nd-generation Egyptian)</div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Before conversion: patrilineal. After conversion: the child's status follows whichever parent bears the greater disqualification.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 78 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px;"><b>Egyptian Convert Law:</b> 3rd generation may enter the congregation</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e2e; border-left:3px solid #4caf50; padding:8px;"><b>Generational Counting:</b> Starts from the converts themselves; each birth = new generation</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a1a; border-left:3px solid #e74c3c; padding:8px;"><b>Follow Disqualified Parent:</b> Child's status follows the more flawed parent after conversion</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a1a2e; border-top:3px solid #9b59b6; padding:8px;"><b>Mamzer:</b> Permanently barred (Mishna). Reish Lakish — mamzeret permitted after 10 generations via gezeira shava</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top:3px solid #c9a84c; padding:8px;"><b>Among Nations:</b> Follow father. <b>After Conversion:</b> Follow the more flawed parent</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 78a-78b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 78a-78b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../77/">← Daf 77</a><a href="../79/">Daf 79 →</a></div>
+</body>
+</html>

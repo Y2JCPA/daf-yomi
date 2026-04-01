@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 109 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 109</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות קט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔄 Divorce & Remarriage — Rabbi Elazar's prohibition on levirate marriage after divorce and remarriage<br>
+    🧒 Orphan in Father's Lifetime — Minor girl divorced after father's marriage loses Torah-level status<br>
+    📜 Four Explanations — Eifa, Abaye, Rava, and Rav Ashi explain Rabbi Elazar's reasoning<br>
+    ⚠️ Three Things to Avoid — Mi'un (refusal), deposits, and Sheltziyyon guarantees<br>
+    🏛️ Judicial Caution — A judge must act as if a sword rests between his thighs<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Why Does Rabbi Elazar Prohibit Levirate Marriage After Divorce & Remarriage?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Mishna</div><div class="speech">If a man <b>divorces</b> and <b>remarries</b> a woman and then dies childless, she is <b>permitted</b> to the <i>yavam</i> — but <b>Rabbi Elazar prohibits</b> it.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Eifa</div><div class="speech">She was <b>forbidden at one time</b> — when divorced, she was his brother's ex-wife. But this is <b>rejected</b>: if so, she shouldn't even need <i>ḥalitza</i>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">Rabbi Elazar is <b>uncertain</b>: does <b>death</b> or the <b>original marriage</b> establish levirate candidacy? Due to <i>safek</i>, she does <i>ḥalitza</i> but not <i>yibum</i>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Death clearly determines candidacy. But people <b>know about divorces</b> and <b>not about remarriages</b> — they'll think the <i>yavam</i> married his brother's ex-wife!</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Ashi</div><div class="speech">It's a <b>decree</b> due to the case of an <b>orphan in her father's lifetime</b> — where everyone agrees she is forbidden to the <i>yavam</i>.</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY ISSUE</strong> Four Amoraim offer four different explanations for Rabbi Elazar's prohibition — from prior forbidden status, to uncertainty, to appearances, to protective decree.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Mishna's Case: Divorce, Remarriage & Levirate Marriage</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Brother <b>marries</b> a woman</div><div class="flow-arrow">↓</div><div class="flow-box action">Brother <b>divorces</b> her</div><div class="flow-arrow">↓</div><div class="flow-box action">Brother <b>remarries</b> her</div><div class="flow-arrow">↓</div><div class="flow-box question">Brother <b>dies childless</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Sages</div><div class="flow-box result-good"><b>Permitted</b> to the <i>yavam</i> for levirate marriage</div></div><div class="flow-col"><div class="flow-label">R' Elazar</div><div class="flow-box result-bad"><b>Forbidden</b> — performs <i>ḥalitza</i> only, not <i>yibum</i></div></div></div></div><div class="callout" style="margin-top:20px"><strong>NOTE</strong> The dispute applies to both a standard divorced-and-remarried wife and an orphaned minor girl whose mother/brothers arranged the marriage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Eifa's Explanation — Rejected</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Eifa</div><div class="speech">Rabbi Elazar's reason: she was <b>forbidden at one time</b>. When divorced, she was the brother's ex-wife — forbidden to the <i>yavam</i>. <i>Yibum</i> only overrides the prohibition when the brother dies <b>while still married</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Sages</div><div class="speech">If she's truly a <b>forbidden relative</b>, she shouldn't need <i>ḥalitza</i> at all! But a <i>baraita</i> teaches that Rabbi Elazar requires <i>ḥalitza</i>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Eifa</div><div class="speech">I <b>do not know</b> the reason for Rabbi Elazar's opinion.</div></div></div><div class="callout" style="margin-top:20px"><strong>LOGIC</strong> If she were a true <i>ervah</i> (forbidden relative), she'd be completely exempt from both <i>yibum</i> and <i>ḥalitza</i> — but Rabbi Elazar still requires <i>ḥalitza</i>, so Eifa's reasoning fails.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Three Amoraic Explanations for Rabbi Elazar</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1654"><h3 style="color:#9b59b6">Abaye — Uncertainty</h3><ul><li>Does <b>death</b> establish levirate candidacy?</li><li>Or does the <b>original marriage</b>?</li><li>If death → she's a valid candidate</li><li>If marriage → she was once forbidden, so exempt</li><li>Due to doubt: <i>ḥalitza</i> yes, <i>yibum</i> no</li></ul></div><div class="compare-box" style="border-top-color:#3b1111"><h3 style="color:#e74c3c">Rava — Appearances</h3><ul><li>Death clearly determines candidacy</li><li>Everyone knows about <b>divorces</b></li><li>Not everyone knows about <b>remarriages</b></li><li>People will think the <i>yavam</i> took his brother's ex-wife</li><li>Even if remarried in the evening and he died in the morning</li></ul></div><div class="compare-box" style="border-top-color:#3b2508"><h3 style="color:#e67e22">Rav Ashi — Decree</h3><ul><li>A protective <b>gezeira</b> (decree)</li><li>Based on: orphan in father's lifetime</li><li>Minor married by father, then divorced</li><li>Remarriage is only rabbinic, not Torah-level</li><li>Everyone agrees she's forbidden to <i>yavam</i></li><li>Decree extends to all divorce-remarriage cases</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>CONCLUSION</strong> A <i>baraita</i> supports Rav Ashi: the Rabbis concede to Rabbi Elazar about the orphan case because 'her divorce was Torah-level but her remarriage was not.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Orphan in Father's Lifetime — Key Distinctions</h2>
+  
+  <table><tr><th>Scenario</th><th>Divorce</th><th>Remarriage</th><th>Status with Yavam</th></tr><tr><td>Father married her off, divorced as minor, remarried as <b>minor</b></td><td>Torah-level ✓</td><td>Rabbinic only</td><td><b>Forbidden</b> — all agree</td></tr><tr><td>Father married her off, divorced as minor, remarried as <b>adult</b></td><td>Torah-level ✓</td><td>Torah-level ✓</td><td><b>Dispute</b> — Sages permit, R' Elazar forbids</td></tr><tr><td>Standard adult woman divorced & remarried</td><td>Torah-level ✓</td><td>Torah-level ✓</td><td><b>Dispute</b> — Sages permit, R' Elazar forbids</td></tr><tr><td>Orphan minor married by mother/brothers</td><td>Rabbinic</td><td>Rabbinic</td><td><b>Dispute</b> — Sages permit, R' Elazar forbids</td></tr></table><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> When the divorce is stronger than the remarriage (Torah vs. rabbinic), everyone agrees the woman is forbidden to the <i>yavam</i>. Rabbi Elazar extends this to all divorce-remarriage cases as a decree.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Three Things One Should Distance From</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🚫 <b>Mi'un (Refusal)</b> — A minor girl may grow up and regret refusing a suitable husband</div><div class="process-arrow">↓</div><div class="process-step">📦 <b>Deposits from neighbors</b> — The owner treats your home as his own; may enter and take it, then falsely sue you</div><div class="process-arrow">↓</div><div class="process-step highlight">🤝 <b>Sheltziyyon Guarantees</b> — The lender can demand payment from the guarantor <i>before</i> the borrower defaults</div><div class="process-arrow">↓</div><div class="process-step">⚠️ <b>R' Yitzḥak:</b> Evil befalls those who accept converts, Sheltziyyon guarantors, and those who confound themselves in halakha</div></div><div class="callout" style="margin-top:20px"><strong>CONNECTION</strong> The discussion of <i>mi'un</i> (refusal) connects directly to the Daf's theme of minors in marriage — the consequences of a minor's decisions can ripple forward.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 109 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Brother divorces & remarries wife, then dies childless</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #c9a84c;"><b>Sages:</b> Permitted to <i>yavam</i><br><b>R' Elazar:</b> Forbidden — <i>ḥalitza</i> only</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left: 3px solid #9b59b6;"><b>Why?</b> Four explanations proposed</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Rav Ashi (accepted):</b> Gezeira — decree due to 'orphan in father's lifetime' where divorce is Torah-level but remarriage is only rabbinic</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a; border-left: 3px solid #e67e22;"><b>Amud B:</b> Distance from mi'un, deposits & guarantees. Torah study requires practice. A judge must act with extreme caution.</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 109a-109b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 109a-109b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../108/">← Daf 108</a><a href="../110/">Daf 110 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 92 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 92</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות צב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Rumors After Marriage — Court ignores unsubstantiated rumors post-marriage<br>
+    🐂 Court Ruling vs. Error — Is permission to remarry a hora'ah or a ta'ut?<br>
+    ⚠️ 'Ruined Herself' — Debate on the meaning of improper remarriage<br>
+    💍 Betrothal of a Yevama — Does kiddushin take effect with a yevama?<br>
+    📖 Proofs from Mishnayot — R' Yochanan and Reish Lakish debate sources<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 92: Court Errors, Offerings & Yevama Betrothal</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Woman remarries with <b>court permission</b> based on one witness</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Husband turns out to be <b>alive</b> — she must leave</div><div class="flow-arrow">↓</div><div class="flow-box question">Is the court's permission a <b>ruling (hora'ah)</b> or a <b>factual error (ta'ut)</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Hora'ah (Ruling)</div><div class="flow-box result-good"><b>Rav Nachman:</b> Court brings communal sin-offering</div></div><div class="flow-col"><div class="flow-label">Ta'ut (Error)</div><div class="flow-box result-bad"><b>Ze'eiri, Rava, R' Eliezer:</b> She brings individual sin-offering</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> This daf explores the <b>legal nature of court permission</b> — whether it constitutes an authoritative ruling or merely a factual determination — and examines whether <b>betrothal (kiddushin)</b> can take effect with a yevama.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rumors After Marriage</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אין חוששין לקול לאחר נישואין</div><div class="callout"><strong>Rav Ashi's Principle</strong> Even when a woman's case was <b>discussed in court</b> before she was permitted to remarry, we do <b>not give credence to rumors</b> that arise after her marriage.<br><br>One might think that since her case required court deliberation, her status is uncertain — but <b>Rav Ashi teaches</b> that once married, unsubstantiated rumors are disregarded.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Is Court Permission a Ruling or an Error?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Ze'eiri</div><div class="speech">The mishna's exemption from a sin-offering is <b>not accepted</b>. Just as when the court declares the sun has set and then it shines again — that is an <b>error (ta'ut)</b>, not a ruling. Each individual must bring their own offering.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Nachman</div><div class="speech">The court's permission <b>is a ruling (hora'ah)</b>. Proof: normally one witness is not credible, yet here he is. Why? Because she relies on the <b>court's decision</b>, not on the witness alone.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">It is an <b>error</b>. With forbidden fat, once the court reverses a ruling, a new argument cannot reinstate permission. But here — one witness permits, two forbid, one more permits again. The court merely follows <b>facts from witnesses</b>, not its own reasoning.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Eliezer</div><div class="speech"><b>יקוב הדין את ההר</b> — 'Let the law pierce the mountain!' If the husband is alive, <b>she</b> brings a sin-offering. If it were a ruling, the <b>court</b> should bring the offering — proving it's an error.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Argument</strong> Rava's proof: Unlike standard rulings on forbidden substances, the court here changes its mind based on <b>new witnesses</b>, not new legal reasoning — indicating factual error, not mistaken ruling.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>What Does 'Ruined Herself' Mean?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">R' Eliezer</h3><ul><li>She engaged in <b>licentious relations</b> (not for marriage)</li><li>If liable for this, she is <b>all the more so</b> liable for marrying a Kohen Gadol as a widow</li><li>Broader scope of liability</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4a90d9">R' Yochanan</h3><ul><li>She married in a <b>prohibited manner</b> (e.g., widow to Kohen Gadol, divorcée to a kohen)</li><li>For mere licentious relations she is <b>NOT liable</b></li><li>She can claim: 'You deemed me unattached — I may live with whom I choose'</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Baraita</strong> A baraita supports <b>R' Yochanan</b>: 'If the court ruled she may marry and she ruined herself — for example, a widow with a Kohen Gadol, or a divorcée/ḥalutza with a kohen.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Does Betrothal (Kiddushin) Apply to a Yevama?</h2>
+  
+  <table><tr><th>Authority</th><th>Position</th><th>Implication</th></tr><tr><td><b>Rav</b></td><td>Betrothal does <b>not</b> take effect</td><td>No get required from the second man</td></tr><tr><td><b>Shmuel</b></td><td>Uncertain — she requires a <b>get</b></td><td>Verse may be a prohibition (kiddushin valid) or nullification (kiddushin void)</td></tr><tr><td><b>Ameimar</b></td><td>Halakha follows <b>Shmuel</b></td><td>Get required; if yavam is a kohen, he performs ḥalitza and she may marry the second man</td></tr><tr><td><b>Rav Giddel / Rav</b></td><td>Betrothal doesn't apply; <b>marriage</b> does</td><td>Reinterpreted: neither applies, or 'marriage' = licentious relations forbid her to yavam</td></tr></table><div class="callout" style="margin-top:20px"><strong>Verse</strong> <b>Devarim 25:5</b> — 'The wife of the dead man shall not be married outside the family' — does this <b>prohibit</b> marriage or <b>nullify</b> betrothal entirely?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rav Ashi's Practical Ruling (per Ameimar/Shmuel)</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A man <b>betroths a yevama</b> before ḥalitza</div><div class="flow-arrow">↓</div><div class="flow-box action">Per Shmuel: she needs a <b>get</b> from the second man</div><div class="flow-arrow">↓</div><div class="flow-box question">What is the <b>yavam's</b> status?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yavam is a Kohen</div><div class="flow-box result-bad">He <b>cannot marry her</b> (she's a divorcée). He performs <b>ḥalitza</b> → she may marry the second man.</div></div><div class="flow-col"><div class="flow-label">Yavam is a Yisrael</div><div class="flow-box result-good">Second man gives her a <b>get</b> → she is permitted to the <b>yavam</b> (non-priest may marry a divorcée).</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> A sinner must <b>not benefit</b> from his transgression — so the case where the yavam is a kohen is structured to prevent the second man from gaining through his illegal betrothal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 92 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Court permits remarriage</b> based on one witness</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#4a1a1a; color:#fff; padding:12px; border-radius:8px;"><b>Husband found alive</b> — she must leave</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Hora'ah</b> (Rav Nachman): Court brings communal offering</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a3a; color:#fff; padding:10px; border-radius:8px;"><b>Ta'ut</b> (Ze'eiri, Rava, R' Eliezer): She brings individual sin-offering</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Yevama betrothal:</b> Kiddushin by another man is ineffective — only ḥalitza or yibum resolves her status</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 92a-92b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 92a-92b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../91/">← Daf 91</a><a href="../93/">Daf 93 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 114 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👶</div>
+  <h1>Yevamot 114</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות קיד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👶 Minors & Prohibitions — Is the court obligated to stop a child from sinning?<br>
+    ⚖️ Torah vs. Rabbinic — Does the obligation differ based on the severity of the prohibition?<br>
+    🔥 Father's Consent — R' Yochanan's distinction about a child acting on a parent's behalf<br>
+    🧏 Deaf-Mute Status — Legal competence of a deaf-mute compared to a minor<br>
+    💍 Levirate & Sisters — Cases of deaf-mute brothers married to sisters<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Must the Court Prevent a Minor from Sinning?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Pedat</div><div class="speech">A minor who eats forbidden food — <b>the court is not commanded to prevent him</b>. We can let children walk where keys were lost on Shabbat without concern.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">But a <i>baraita</i> says if a Jewish child comes to extinguish a fire on Shabbat, we <b>must</b> say 'Do not extinguish!'</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">R' Yochanan</div><div class="speech">That case is different — it refers to a child <b>acting with his father's consent</b> (<i>da'at aviv</i>). Only then must the court intervene.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">R' Yochanan seems <b>uncertain</b> — he refutes proofs in both directions, treating each case on its own merits.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Dispute</strong> The Gemara brings multiple proofs attempting to resolve whether <b>קטן אוכל נבלות בית דין מצווין להפרישו</b> — whether the court must separate a minor from forbidden food. No definitive resolution is reached.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>R' Pedat's Ruling: Children & Shabbat Keys</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Keys lost in an area where <b>carrying on Shabbat</b> is forbidden</div><div class="flow-arrow">↓</div><div class="flow-box question">Can adults carry them back?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No</div><div class="flow-box result-bad">Carrying in public domain is a <b>Torah prohibition</b> for adults</div></div><div class="flow-col"><div class="flow-label">Solution</div><div class="flow-box result-good">Let <b>boys and girls walk there</b> — if they find the keys, they'll bring them on their own</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Implication</strong> R' Pedat holds: <b>קטן אוכל נבלות — אין ב"ד מצווין להפרישו</b> — the court need not prevent a minor from violating prohibitions on his own initiative.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Proof from Shabbat: Detaching Plants & Throwing</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">A <i>baraita</i> says: One may <b>not tell</b> a child to carry on Shabbat, but one may <b>allow</b> a child to detach plants and throw objects in the public domain.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">This supports R' Pedat — you needn't stop a child who acts on his own!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech"><b>No proof.</b> 'Detaching plants' means from an <b>unperforated flowerpot</b> (rabbinic only). 'Throwing' means in a <b>karmelit</b> (also rabbinic).</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">Perhaps for a <b>Torah prohibition</b>, one IS obligated to stop the child. This proof only addresses rabbinic matters.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> <b>Unperforated flowerpot</b> (עציץ שאינו נקוב) — detaching from it is only rabbinically prohibited. A <b>karmelit</b> (כרמלית) is an intermediate domain, also only rabbinic.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Gentile vs. Child: Extinguishing Fire on Shabbat</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Gentile Extinguishes</h3><ul><li>Don't say 'Extinguish'</li><li>Don't say 'Don't extinguish'</li><li>His rest is NOT your responsibility</li><li>A gentile acts on his own wishes — he's an independent agent</li></ul></div><div class="compare-box" style="border-top-color:#5c1a1a"><h3 style="color:#e74c3c">Jewish Child Extinguishes</h3><ul><li>You MUST say 'Don't extinguish!'</li><li>His rest IS your responsibility</li><li>R' Yochanan limits this: only when child acts with father's consent (דעת אביו)</li><li>If acting independently — no obligation to stop him</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>R' Yochanan's Principle</strong> The obligation to stop a minor applies only when the child acts <b>on his father's behalf</b> — even without explicit instruction, if the child knows his father's wishes.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Proofs Tested & Rejected</h2>
+  
+  <table><tr><th>Source</th><th>What It Seems to Prove</th><th>How It's Rejected</th></tr><tr><td>Child carrying keys (R' Pedat)</td><td>Court need NOT stop minors</td><td>Starting point of discussion</td></tr><tr><td>Detaching plants / throwing on Shabbat</td><td>Court need NOT stop minors</td><td>Abaye: These are only rabbinic prohibitions</td></tr><tr><td>Child extinguishing fire</td><td>Court MUST stop minors</td><td>R' Yochanan: Only with father's consent</td></tr><tr><td>Son of ḥaver eating demai at grandfather's</td><td>Court need NOT stop minors</td><td>R' Yochanan: Sages were lenient specifically for demai</td></tr><tr><td>Impure teruma at grandfather's</td><td>Court need NOT stop minors (Torah level!)</td><td>Refers to teruma separated by rabbinic law only</td></tr><tr><td>Suckling from non-kosher animal</td><td>Court need NOT stop minors</td><td>Permitted only due to danger — child must eat</td></tr></table><div class="callout" style="margin-top:20px"><strong>Outcome</strong> R' Yochanan remains <b>uncertain</b> (מסתפקא ליה) — he refutes proofs in both directions, unable to reach a definitive conclusion.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Why All Three Cases Were Needed (Amud B)</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🦎 <b>Creeping animals</b> (שרצים) — prohibited by <i>any amount</i> (whole creature)</div><div class="process-arrow">↓</div><div class="process-step">🩸 <b>Blood</b> (דם) — entails <i>karet</i>, but only prohibited at a quarter-log</div><div class="process-arrow">↓</div><div class="process-step">⚱️ <b>Ritual impurity</b> (טומאה) — applies to <i>priests only</i>, not all Jews</div><div class="process-arrow">↓</div><div class="process-step highlight">❓ Each case has a unique stringency AND leniency</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ Therefore <b>all three</b> must be stated — you cannot derive one from the others</div></div><div class="callout" style="margin-top:20px"><strong>Talmudic Logic</strong> The Gemara shows that <b>each prohibition has a unique feature</b> — you might have thought one case is more or less severe, so every case must be explicitly taught.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 114 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px; border-radius:6px;"><b>Core Question:</b> Must the court stop a minor from sinning on his own?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding:8px; border-radius:6px;"><b>R' Pedat:</b> Court is NOT commanded to prevent a minor</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1621; padding:8px; border-radius:6px;"><b>R' Yochanan:</b> Only obligated when child acts with <i>father's consent</i></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e2416; border-left:3px solid #c9a84c; padding:8px; border-radius:6px;">R' Yochanan remains <b>uncertain</b> — refutes proofs in both directions</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left:3px solid #9b59b6; padding:8px; border-radius:6px;"><b>Deaf-mute = minor</b> in legal status, yet rabbinic decrees still require divorce to prevent public error about <i>yevama</i> status</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 114a-114b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 114a-114b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../113/">← Daf 113</a><a href="../115/">Daf 115 →</a></div>
+</body>
+</html>

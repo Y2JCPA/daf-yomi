@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 117 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔍</div>
+  <h1>Yevamot 117</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות קיז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Inheritance via Testimony — Rav Hisda on yavam inheriting based on wife's testimony<br>
+    💰 Ketubah & Credibility — Rav Nachman on how a woman's request affects her trustworthiness<br>
+    🚫 Five Disqualified Women — Who cannot testify about a husband's death<br>
+    👨‍👩‍👧 Father-in-Law's Daughter — Dilemma whether she is also disqualified<br>
+    🗣️ Contradicting Witnesses — Rules when witnesses disagree about a husband's death<br>
+    📜 Rabbi Nehemya's Rule — Following majority of opinions even with disqualified witnesses<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 117: Testimony, Credibility & Contradicting Witnesses</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A woman testifies<br><b>her husband died</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Asks to Remarry</div><div class="flow-box result-good">Credible — permitted to marry<br>and receives <em>ketubah</em></div></div><div class="flow-col"><div class="flow-label">Asks for Ketubah $</div><div class="flow-box result-bad">Suspected of lying —<br>not even permitted to marry</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Who else may testify<br>on her behalf?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Most People</div><div class="flow-box result-good">All are credible<br>to testify</div></div><div class="flow-col"><div class="flow-label">5 Women</div><div class="flow-box result-bad">Mother-in-law, her daughter,<br>rival wife, yavam's wife,<br>stepdaughter — <b>disqualified</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf explores the intersection of credibility, motive, and testimony — who we trust, why, and what happens when witnesses contradict each other.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Does the Yavam Inherit Based on Her Testimony?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ḥisda</div><div class="speech">If a woman entered <b>levirate marriage</b> based on her own testimony, her <em>yavam</em> inherits his dead brother's property based on that same testimony.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ḥisda</div><div class="speech">Beit Shammai derived her <em>ketubah</em> rights from the <b>language of the marriage contract</b>. Shall we not also derive inheritance from the <b>Torah itself</b>?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ḥisda</div><div class="speech">The Torah says: <b>"He shall succeed in the name of his dead brother"</b> (Deut. 25:6). He succeeded in the marital relationship — so he succeeds in inheritance too.</div></div></div><div class="callout" style="margin-top:20px"><strong>Kal Va-Ḥomer Logic</strong> If Beit Shammai derived ketubah rights from contract language, we can certainly derive inheritance rights from Torah language — a fortiori reasoning applied to testimony.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rav Naḥman: What Did She Ask For First?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A woman comes to court and says:<br><b>"My husband died"</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">"Permit me to marry"</div><div class="flow-box result-good">✅ Permitted to marry<br>✅ Receives <em>ketubah</em></div></div><div class="flow-col"><div class="flow-label">"Give me my ketubah"</div><div class="flow-box result-bad">❌ Suspected of lying<br>❌ Not even permitted to marry</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">What if she says <b>both</b>?<br>"Permit me and give me my ketubah"</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Unresolved</b> (<em>teiku</em>)<br>Whether order of mention<br>reveals her true motive</div></div><div class="callout" style="margin-top:20px"><strong>Rav Naḥman's Principle</strong> A person's initial request reveals their true motive. If money comes first, we suspect her testimony is driven by financial interest rather than truth.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Five Disqualified Women (Mishna)</h2>
+  
+  <table><tr><th>Woman</th><th>Reason for Disqualification</th></tr><tr><td><b>Mother-in-law</b> (חמותה)</td><td>Hates her daughter-in-law</td></tr><tr><td><b>Daughter of mother-in-law</b> (בת חמותה)</td><td>Hates her because her mother does</td></tr><tr><td><b>Rival wife</b> (צרתה)</td><td>Natural jealousy and enmity</td></tr><tr><td><b>Wife of the yavam</b> (יבמתה)</td><td>Fears being displaced by a new wife</td></tr><tr><td><b>Stepdaughter</b> (בת בעלה)</td><td>Resents the woman who replaced her mother</td></tr></table><div class="callout" style="margin-top:20px"><strong>Distinction</strong> These women are disqualified only for testimony about death. For delivering a <em>get</em> (bill of divorce), even they are trusted — because the document itself serves as proof.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Is the Father-in-Law's Daughter Also Disqualified?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Side A</div><div class="speech">The mother-in-law's daughter hates because <b>her mother hates</b>. The father-in-law's daughter has no such hostile mother — she should be <b>credible</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Side B</div><div class="speech">The real reason is resentment: <b>"She eats the food of my father's house"</b> (<em>girsena</em>). This applies equally to the father-in-law's daughter!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Proof from Baraita</div><div class="speech">One baraita lists <b>five</b> women — implying she is not separate. But another baraita lists <b>seven</b> — implying she is a separate case!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">The contradicting baraitot cannot resolve this. The dilemma remains <b>unresolved</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Underlying Question</strong> Is the disqualification based on a specific hostile relationship (through the mother-in-law), or on a general resentment toward a woman who consumes the family's resources?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Contradicting Witnesses: The Three Cases</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">1 vs. 1 (Already Married)</h3><ul><li>One witness: "He died" → she married</li><li>Second witness: "He didn't die"</li><li>Result: She NEED NOT leave her husband</li><li>Her permitted status stands</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">1 vs. 2</h3><ul><li>One witness: "He died" → she married</li><li>Two witnesses: "He didn't die"</li><li>Result: She MUST leave her husband</li><li>Majority negates the single witness</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">2 vs. 1</h3><ul><li>Two witnesses: "He died"</li><li>One witness: "He didn't die"</li><li>Result: She MAY marry ab initio</li><li>Two prevail over one</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Ulla's Principle</strong> Wherever the Torah relies on one witness, his testimony is treated as complete proof — like two witnesses. This is why one vs. one maintains the status quo.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 117 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:18px; border-radius:12px;"><b>Woman testifies her husband died</b><br>Credibility depends on what she requests</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:14px; border-radius:10px;"><b>"Permit me to marry"</b><br>→ Trusted for marriage & ketubah</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#fff; padding:14px; border-radius:10px;"><b>"Give me my ketubah"</b><br>→ Suspected — not even permitted to marry</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; color:#fff; padding:18px; border-radius:12px;"><b>Five women are disqualified</b><br>Mother-in-law, her daughter, rival wife, yavam's wife, stepdaughter</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:18px; border-radius:12px;"><b>Contradicting witnesses</b><br>1 vs 1 (already married): stays married<br>1 vs 2: must leave<br>2 vs 1: may marry</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:18px; border-radius:12px;"><b>R' Neḥemya:</b> Follow majority of opinions,<br>even disqualified witnesses count</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 117a-117b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 117a-117b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../116/">← Daf 116</a><a href="../118/">Daf 118 →</a></div>
+</body>
+</html>

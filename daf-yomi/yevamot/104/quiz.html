@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 104 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Yevamot 104 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">Why is the court's ḥalitza sandal valid even though it was never actually used for walking?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Because the court has special authority to validate any sandal</div>
+      <div class="option" onclick="select(1,this,1)">B. Because it is capable of being walked in, even if it is not used that way</div>
+      <div class="option" onclick="select(1,this,2)">C. Because it was once walked in during a previous ḥalitza</div>
+      <div class="option" onclick="select(1,this,3)">D. Because court property is exempt from normal sandal requirements</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Rav Ashi explains that if a court messenger walked in it, no one would reprimand him — the sandal is capable of being used for walking, unlike the Elder's burial sandal which is forbidden for any other use.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">What was the specific problem Shmuel identified with Rabba bar Ḥiyya Ketosfa'a's ḥalitza?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Using a non-leather slipper, which has no basis in halakha</div>
+      <div class="option" onclick="select(2,this,1)">B. Performing ḥalitza at night, which contradicts the mishna</div>
+      <div class="option" onclick="select(2,this,2)">C. Conducting ḥalitza in private as the sole judge, relying on an individual opinion</div>
+      <div class="option" onclick="select(2,this,3)">D. All three of his leniencies equally troubled Shmuel</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: C — </strong>The Gemara identifies that the slipper and nighttime practices have support from unattributed (majority) sources. Only the private setting relies on the individual opinion of Rabbi Akiva, which is what Shmuel criticized.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">How does Rabbi Zeira's principle about meal-offerings apply to ḥalitza?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Just as meal-offerings require mixing, ḥalitza requires spitting</div>
+      <div class="option" onclick="select(3,this,1)">B. If one is capable of reciting the verses, recitation is not indispensable; if one cannot recite, it invalidates the ḥalitza</div>
+      <div class="option" onclick="select(3,this,2)">C. Meal-offerings and ḥalitza share the same Torah source</div>
+      <div class="option" onclick="select(3,this,3)">D. Both meal-offerings and ḥalitza must be performed during daytime</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Rabbi Zeira's principle — 'what is fit to be mixed, mixing is not indispensable' — teaches that capability determines indispensability. A normal person can recite, so skipping recitation doesn't invalidate. A mute person cannot recite, so the inability becomes a fatal flaw.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">According to the Gemara's final understanding, why is a deaf-mute's ḥalitza invalid?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Only because they cannot physically remove the shoe</div>
+      <div class="option" onclick="select(4,this,1)">B. Because they lack intellectual capacity (da'at)</div>
+      <div class="option" onclick="select(4,this,2)">C. Because the Torah explicitly excludes deaf-mutes from ḥalitza</div>
+      <div class="option" onclick="select(4,this,3)">D. Because they cannot fulfill 'he says' and 'she shall say' as required by the verse</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: D — </strong>The scholars from the house of Rabbi Yannai explain that deaf-mutes are disqualified because they cannot fulfill the verse's requirements of 'he says' and 'she shall say' — not merely due to lacking intellectual capacity.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">What is the core dispute between the first Tanna and Rabbi Elazar regarding ḥalitza at night?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Whether monetary law can be compared to leprosy law at all</div>
+      <div class="option" onclick="select(5,this,1)">B. Whether ḥalitza is analogous to the commencement of a court case or to the delivery of a verdict</div>
+      <div class="option" onclick="select(5,this,2)">C. Whether ḥalitza is a Torah obligation or rabbinic</div>
+      <div class="option" onclick="select(5,this,3)">D. Whether nighttime invalidates the shoe or only the recitation</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>Both agree that monetary verdicts may be delivered at night. They disagree on the analogy: Rabbi Elazar views ḥalitza as the commencement of judgment (requiring daytime), while the first Tanna views it as the verdict (permitted at night).</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":2,"3":1,"4":3,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

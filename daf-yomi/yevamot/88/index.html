@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 88 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 88</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות פח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔍 One Witness — Why a single witness is believed regarding a husband's death<br>
+    🤫 Silence as Admission — Whether silence constitutes agreement with testimony<br>
+    🥩 Uncertain Meat Analogy — Comparing testimony to resolving doubt about forbidden fat<br>
+    💍 Contradicting Witnesses — When two pairs of witnesses conflict about the husband's status<br>
+    ⛪ Priestly Stringency — Special rules for kohanim regarding uncertain marriages<br>
+    🔄 Returning to First Husband — Whether a remarried woman may return if her first husband lives<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Why Is One Witness Believed About a Husband's Death?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> What is the source for accepting <i>ed echad</i> (one witness) that a husband died?</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Attempt 1: Because silence = admission? <b>Rejected</b> — no proof witness is actually believed</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Attempt 2: Like uncertain meat — one witness resolves doubt? <b>Rejected</b> — married woman has <i>chezkat issur</i></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Attempt 3: Analogy to <i>tevel</i>, <i>hekdesh</i>, <i>konamot</i>? <b>Rejected</b> — each case is due to personal power, not witness credibility</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>R' Zeira's Answer:</b> The <em>stringency</em> imposed if testimony is wrong justifies the <em>leniency</em> of accepting one witness</div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> The Gemara tests multiple logical analogies for why one witness suffices, rejecting each before arriving at R' Zeira's principle: the severe consequences of error justify the initial leniency.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Does Silence Obligate an Offering?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The mishna says: if he <b>remains silent</b>, the Rabbis obligate him to bring an offering based on one witness's testimony. Why?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Attempt</div><div class="speech">Perhaps the witness is <b>deemed credible</b>?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech"><b>Rejected!</b> Even with two witnesses, if he contradicts them he is exempt. One witness should certainly not obligate him!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Conclusion</div><div class="speech">Rather, <b>silence is like admission</b> (<i>shtikah k'hoda'ah</i>). The offering stems from his silence, not from the witness's credibility.</div></div></div><div class="callout" style="margin-top:20px"><strong>IMPLICATION</strong> If the reason is silence = admission, this proves nothing about a single witness being independently believed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Uncertain Meat Analogy — And Its Rejection</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Proposed analogy:</b> Like uncertain meat (<i>safek chelev, safek shuman</i>) — one witness says 'it's permitted fat' and is believed</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Uncertain Meat</div><div class="flow-box result-good">No <i>chezkat issur</i> established — never proven forbidden</div></div><div class="flow-col"><div class="flow-label">Married Woman</div><div class="flow-box result-bad"><b>Chezkat issur</b> IS established — she was definitely married</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Counter:</b> Unlike definite <i>chelev</i> (where even 100 witnesses can't help), here 2 witnesses <em>could</em> permit — so maybe 1 can too?</div><div class="flow-arrow">↓</div><div class="flow-box action">This leads to the analogy of <i>tevel</i>, <i>hekdesh</i>, and <i>konamot</i>...</div></div><div class="callout" style="margin-top:20px"><strong>DISTINCTION</strong> The key difference: forbidden fat with established status can never be permitted by witnesses, but a married woman's status CAN change through testimony — opening the door for one witness.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Three Failed Analogies: Tevel, Hekdesh & Konamot</h2>
+  
+  <table><tr><th>Category</th><th>Case Proposed</th><th>Why Rejected</th></tr><tr><td><b>Tevel</b> (untithed produce)</td><td>Witness says tithes were separated from another's produce</td><td>If he can tithe it himself → believed because of <i>b'yado</i> (in his power). If not → this very case needs its own source!</td></tr><tr><td><b>Hekdesh</b> (consecrated property)</td><td>Witness says the item was redeemed or the vow dissolved</td><td>If it's his → <i>b'yado</i> to redeem. If another's → from where do we derive he's believed?</td></tr><tr><td><b>Konamot</b> (vow-prohibitions)</td><td>Witness says the owner asked a Sage to dissolve the vow</td><td>Same problem: if his own → <i>b'yado</i>. If another's → this itself needs a source</td></tr></table><div class="callout" style="margin-top:20px"><strong>PATTERN</strong> Each analogy collapses because the witness is believed only when the matter is 'in his power' (b'yado) — which doesn't apply to testifying about another's husband.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>R' Zeira's Resolution</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מתוך חומרא שהחמרת עליה בסופה — הקלת עליה בתחילתה</div><div class="callout"><strong>BREAKTHROUGH</strong> <b>R' Zeira said:</b> Due to the <em>stringency</em> that the Sages imposed on her at the end — if the testimony proves false and the husband is alive, the consequences are devastating — therefore, they were lenient at the beginning to accept one witness.<br><br>The severity of the consequences <b>deters false testimony</b> and <b>justifies the leniency</b> of relying on a single witness.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Contradicting Pairs of Witnesses (Amud B)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">First Tanna (Majority View)</h3><ul><li>2 say dead + 2 say alive → she may NOT marry</li><li>But if she married anyway → she need NOT leave</li><li>Applies whether witnesses came before or after marriage</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">R' Menaḥem b. R' Yosei</h3><ul><li>If contradicting witnesses came BEFORE marriage → she must leave</li><li>If she married FIRST and then witnesses came → she need not leave</li><li>Timing of contradiction is decisive</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>RAV'S RULING</strong> Rav rules she need not leave — either following the first tanna entirely, or (per 'some say') following R' Menaḥem b. R' Yosei's timing distinction.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 88 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px;"><b>One witness</b> testifies that the husband died</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3a; border-left:3px solid #c9a84c; padding:8px;">She is permitted to <b>remarry</b> based on this testimony</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border:1px solid #e74c3c; padding:8px;"><b>Husband returns:</b><br>Stringent consequences — must leave 2nd husband, loses ketubah, children are <i>mamzerim</i></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:1px solid #4caf50; padding:8px;"><b>Husband confirmed dead:</b><br>Marriage is fully valid, no issues arise</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left:3px solid #9b59b6; padding:8px;">R' Zeira: The <b>stringency at the end</b> justifies the <b>leniency at the start</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px;">Rav Ashi: Even if husband returns — she may <b>return to him</b> since she acted under <i>ones</i> (duress)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 88a-88b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 88a-88b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../87/">← Daf 87</a><a href="../89/">Daf 89 →</a></div>
+</body>
+</html>

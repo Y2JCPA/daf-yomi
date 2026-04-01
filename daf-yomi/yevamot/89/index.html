@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 89 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 89</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות פט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Get & Priesthood — A get from the wrong husband has no halachic effect<br>
+    💰 Ketubah Removal — No marriage contract for a forbidden union to encourage divorce<br>
+    🌾 Teruma from Impure — Debate on separating teruma from ritually impure produce<br>
+    👶 Mamzer Status — Child of both men declared mamzer and its implications<br>
+    🏛️ Uprooting Torah Law — Can the Sages enact decrees that override Torah law?<br>
+    💍 Minor Wife — When does a husband inherit from his minor wife?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Yevamot 89: Rabbinic Authority & Torah Law</h2>
+  
+  <div class="callout"><strong>CORE THEME</strong> This daf explores the <b>extent of rabbinic power</b> — from eliminating a woman's <em>ketubah</em> to declaring children <em>mamzerim</em> — culminating in the fundamental question: <b>Can the Beit Din stipulate to uproot something prohibited by Torah law?</b> The debate plays out through cases of <em>terumah</em> separation, forbidden marriages, and inheritance of minor wives.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Get from the Second Husband — Does It Matter?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Woman erroneously married a second man</div><div class="flow-arrow">↓</div><div class="flow-box action">Second man gives her a <b>get</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Is she disqualified from <em>kehunah</em>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No — Mishna's ruling</div><div class="flow-box result-good">The get has <b>no validity</b> — she was never his wife. She remains permitted to a <em>Kohen</em>.</div></div><div class="flow-col"><div class="flow-label">Implication</div><div class="flow-box result-bad">She does <b>not require</b> a get from the second man at all.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY DISTINCTION</strong> The Sages penalized her to receive a get in the <b>first clause</b> (intercourse occurred) lest people say she divorced and remarried — but <b>not</b> in the latter clause (betrothal only).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why No Ketubah, Sustenance, or Profits?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Ordinary Marriage</h3><ul><li>Ketubah instituted so she won't be demeaned</li><li>Prevents hasty divorce</li><li>Stipulations (mezonot, worn clothes) follow ketubah</li><li>Husband must pay to divorce</li></ul></div><div class="compare-box" style="border-top-color:#3e1616"><h3 style="color:#e74c3c">Forbidden Marriage (This Case)</h3><ul><li>Sages WANT her demeaned in his eyes</li><li>Goal: encourage him to divorce quickly</li><li>No ketubah = no stipulations either</li><li>Must return anything already taken</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>CHIDDUSH</strong> Even items she already took must be returned — we do not say <em>since she has hold of them we leave them</em>. The court actively removes them.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Teruma from Impure Produce — Rav Ḥisda vs. Rav Natan</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Mishna (Terumot 2:2)</div><div class="speech">If one separated <em>terumah</em> from <b>impure</b> produce for <b>pure</b> produce: <b>unwitting</b> = valid terumah; <b>intentional</b> = he has done nothing.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ḥisda</div><div class="speech">"He has done nothing" means <b>nothing at all</b> — even that <em>griva</em> returns to its untithed state. The entire act is disregarded.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Natan b. R' Oshaya</div><div class="speech">"He has done nothing" means the <b>remaining produce</b> is not exempted — but the separated portion <b>is itself terumah</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ḥisda (responds)</div><div class="speech">If you say it's terumah, he may be <b>negligent</b> and never separate again, thinking he fulfilled his obligation.</div></div></div><div class="callout" style="margin-top:20px"><strong>R' ELAI'S PROOF</strong> Numbers 18:32 — 'you shall bear no sin seeing you have set apart its best.' If separating inferior produce had NO effect, there would be no sin. Therefore terumah from bad for good IS valid by Torah law.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Unwitting vs. Intentional — Terumah Rulings Compared</h2>
+  
+  <table><tr><th>Case</th><th>Status of Separated Portion</th><th>Must Separate Again?</th><th>Reasoning</th></tr><tr><td>Impure for pure — <b>unwitting</b></td><td>Valid terumah</td><td>No (per Rav Ḥisda)</td><td>Did not transgress willfully</td></tr><tr><td>Impure for pure — <b>intentional</b></td><td>Disputed (Ḥisda vs. Natan)</td><td>Yes</td><td>Penalized for willful transgression</td></tr><tr><td>Bitter serpent melon — <b>unwitting</b></td><td>Valid terumah</td><td>Yes — must separate again</td><td>Close to intentional: should have tasted first</td></tr><tr><td>Perforated pot for non-perforated</td><td>Valid terumah</td><td>Yes — from that portion itself</td><td>Terumah must be separated for it too</td></tr></table><div class="callout" style="margin-top:20px"><strong>DISTINCTION</strong> The Gemara distinguishes between a true <em>shogeg</em> (unwitting) and a <b>shogeg karov le-meizid</b> (unwitting close to intentional) — one who should have checked first.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Can the Sages Uproot Torah Law? (Beit Din Matnin)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ḥisda</div><div class="speech">The Sages CAN uproot Torah law! Proof: The mishna declares the <b>first husband's child a mamzer</b> — yet by Torah law she is his wife and the child is legitimate!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ḥisda (cont.)</div><div class="speech">Moreover, calling him mamzer <b>permits him to a mamzeret</b> — the Sages actively <b>created a new permission</b> against Torah law!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabba (citing Shmuel)</div><div class="speech">The child is <b>forbidden to a mamzeret</b>. So the Sages did NOT truly uproot Torah law — they only added a <b>stringency</b> (can't marry a regular Jewess).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yoḥanan (via Ravin)</div><div class="speech">Agrees: the child is forbidden to a mamzeret. He is called 'mamzer' only to teach that marrying a <b>regular Jewish woman is prohibited</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ḥisda (counter-proof)</div><div class="speech">But a husband <b>inherits his minor wife</b> and becomes <b>impure for her</b> — yet her marriage is only rabbinic! That IS uprooting Torah law!</div></div></div><div class="callout" style="margin-top:20px"><strong>FUNDAMENTAL QUESTION</strong> Is there anything that by Torah law is terumah, yet due to rabbinic concern the Sages removed its sacred status and gave it the status of <em>chullin</em> (non-sacred)?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 89 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#3e1616; border-left:4px solid #e74c3c; padding:10px; border-radius:6px; color:#fff;"><b>Forbidden Marriage</b><br>Woman married second man while first husband alive</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; padding:10px; border-radius:6px; color:#fff;"><b>Penalties Applied</b><br>No ketubah, no sustenance, no profits — must return what she took</div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a3e; padding:10px; border-radius:6px; color:#fff;"><b>Child's Status</b><br>Called mamzer from both men — but not permitted to mamzeret either</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:4px solid #4caf50; padding:10px; border-radius:6px; color:#fff;"><b>Core Question: Beit Din Matnin La'akor?</b><br>Can rabbinic authority uproot Torah law?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; border:2px solid #c9a84c; padding:10px; border-radius:6px; color:#fff;"><b>Rav Ḥisda:</b> Yes — terumah status can be removed; minor wife inheritance proves it</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; border:2px solid #9b59b6; padding:10px; border-radius:6px; color:#fff;"><b>Rabba / Shmuel:</b> No — the Sages only add stringencies, never truly uproot Torah prohibitions</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 89a-89b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 89a-89b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../88/">← Daf 88</a><a href="../90/">Daf 90 →</a></div>
+</body>
+</html>

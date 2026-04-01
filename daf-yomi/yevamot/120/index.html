@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 120 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🪦</div>
+  <h1>Yevamot 120</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות קכ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Rabbi Elazar's Reasoning — Rival wife testimony vs. self-injury presumption<br>
+    👤 Facial Identification — Countenance with nose required to identify the dead<br>
+    🔍 Distinguishing Marks — Validity of simanim for corpse identification<br>
+    🗡️ Cut Open (Meguyyad) — Can one testify about death of a severely wounded person?<br>
+    🐾 Animal Attack — Testimony limits when animal is eating from the body<br>
+    🌊 Water Wounds — Aggravating effect of water on survivability<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 120: Identifying the Dead & Testimony Requirements</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Can we testify that someone has died?</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Facial ID</div><div class="flow-box action">Must see <b>partzuf</b> (face) with nose</div></div><div class="flow-col"><div class="flow-label">Simanim</div><div class="flow-box result-bad">Body marks & belongings — <b>insufficient</b> alone</div></div><div class="flow-col"><div class="flow-label">Condition</div><div class="flow-box result-bad">Cut open, crucified, animal eating — <b>not yet dead</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Three-day limit on identification<br><i>R' Yehuda ben Bava: No fixed rule — decomposition varies</i></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf establishes rigorous standards for identifying the dead — balancing the need to free an <i>agunah</i> against the catastrophic consequences of a mistaken remarriage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rabbi Elazar's Reasoning: Why Permit the Rival Wife?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">What is the basis of <b>Rabbi Elazar's</b> ruling that the rival wife may remarry?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Option A</div><div class="speech">One <b>rival wife may testify</b> for another — the rival wife can marry even if the testifying wife hasn't married yet.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Option B</div><div class="speech">She <b>would not cause herself injury</b> — only if she has actually married can we permit the rival wife.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Elazar</div><div class="speech"><i>"Since they were permitted to marry the brothers-in-law, they are now permitted to marry any man."</i> — He spoke of a case where they <b>already married</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">This proves his reason is <b>self-injury</b> — she wouldn't marry if her husband were alive.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rejection</div><div class="speech">No — he argued to the Rabbis on <i>their</i> terms. On his own view, rival wife testimony suffices.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabbis</div><div class="speech"><i>"Let me die with the Philistines"</i> — A woman might harm herself just to harm her rival wife!</div></div></div><div class="callout" style="margin-top:20px"><strong>Unresolved</strong> The Gemara cannot conclusively determine R' Elazar's reasoning — both explanations remain viable.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Divorce Concern: Could She Be Lying?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A woman returns from overseas and says:<br><b>"My husband died"</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Could she actually have received a <b>get</b> (divorce)?<br>If so, she's free to marry — but her rival wife is <b>not</b>!</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Married a Kohen</div><div class="flow-box result-good">A divorcee <b>cannot</b> marry a Kohen — so she must truly be a widow. ✅ Rival wife permitted.</div></div><div class="flow-col"><div class="flow-label">Married a Yisrael</div><div class="flow-box result-bad">A divorcee <b>can</b> marry a Yisrael — maybe she lied! ❌ Rival wife <b>not</b> permitted.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Logic</strong> If she married a Kohen, this proves she's truly a widow — she wouldn't enter a forbidden marriage just to harm her rival wife.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Mishna: Standards for Identifying the Dead</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">פרצוף הפנים עם החוטם</div><div class="callout"><strong>Core Rule</strong> One may testify that a man died <b>only</b> if he saw the <b>partzuf</b> (countenance of the face) <b>with the nose</b>. Distinguishing marks (<b>simanim</b>) on the body or belongings are <b>not sufficient</b>.<br><br>One may not testify until the <b>soul has actually departed</b> — even if the person was cut open, crucified, or being eaten by an animal.<br><br>Testimony is valid only within <b>three days</b> of death.<br><b>R' Yehuda ben Bava:</b> <i>"Not every person, place, or time is the same"</i> — decomposition varies.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Distinguishing Marks (Simanim): When Are They Valid?</h2>
+  
+  <table><tr><th>Category</th><th>Example</th><th>Valid for ID?</th><th>Reason</th></tr><tr><td>Weak body marks</td><td>Tall or short</td><td>❌ No</td><td>Too general — many people share these</td></tr><tr><td>Clothing/belongings</td><td>White or red garments</td><td>❌ No</td><td>Concern of <b>borrowing</b> (she'eila)</td></tr><tr><td>Unambiguous marks</td><td>Mole (R' Eliezer b. Mahavai)</td><td>⚖️ Dispute</td><td>Is a mole an unambiguous siman?</td></tr><tr><td>Saddle on donkey</td><td>Returning lost property</td><td>✅ Yes</td><td>People don't lend saddles — they bruise the donkey</td></tr><tr><td>Signet ring</td><td>Found with get</td><td>✅ Yes</td><td>Owner won't lend it — concern of forgery</td></tr><tr><td>Purse/money bag</td><td>Found with get</td><td>✅ Yes</td><td>Bad omen to lend — people don't lend these</td></tr></table><div class="callout" style="margin-top:20px"><strong>Principle</strong> The concern of <b>borrowing</b> (she'eila) weakens clothing-based identification but does not apply to items people customarily never lend.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Cut Open (Meguyyad): Can He Survive?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Tanna Kamma (Rabbis)</h3><ul><li>A person who is <b>cut open</b> — one <b>may</b> testify he is dead</li><li>A person who is <b>crucified</b> — one may <b>not</b> testify</li><li>Cut open = certainly fatal</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">R' Shimon ben Elazar</h3><ul><li>Even <b>cut open</b> — one may <b>not</b> testify</li><li>The wound can be <b>scorched/cauterized</b></li><li>Cauterization may stop bleeding and allow survival</li><li>Our <b>Mishna</b> follows this stricter view</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Resolution — Rava</strong> Our Mishna refers to being cut with a <b>white-hot knife</b> — the heat closes the wound, so all agree one cannot testify to death.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 120 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:white; padding:10px; border-radius:8px; text-align:center;"><b>Can We Identify the Dead?</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:white; padding:10px; border-radius:8px; text-align:center;">Must see <b>partzuf</b> (face) with <b>nose</b><br>Simanim on body/clothes alone = insufficient</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a1a2e; color:white; padding:10px; border-radius:8px; text-align:center;">Soul must have <b>actually departed</b><br>Cut open / crucified / animal eating ≠ confirmed dead</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:white; padding:8px; border-radius:8px; text-align:center;"><b>Within 3 days</b><br>Features recognizable ✅</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:white; padding:8px; border-radius:8px; text-align:center;"><b>After 3 days</b><br>Decomposition may distort ❌<br><i>R' Yehuda b. Bava: It varies</i></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 120a-120b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 120a-120b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../119/">← Daf 119</a><a href="../121/">Daf 121 →</a></div>
+</body>
+</html>

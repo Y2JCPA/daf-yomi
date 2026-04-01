@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 96 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👦</div>
+  <h1>Yevamot 96</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות צו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔄 Rav vs. Shmuel — Multiple interpretations of their yevama dispute<br>
+    💍 False Death Reports — Sequential marriages to sisters and their validity<br>
+    👦 Minor's Intercourse — A nine-year-old's relations with a yevama<br>
+    ⚖️ Disqualification Rules — How a minor disqualifies brothers from yibum<br>
+    📜 Ben Azzai — Levirate betrothal after levirate betrothal<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 96 — The Minor's Yibum & False Death Reports</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Rav vs. Shmuel</b><br>Is a <i>shomeret yavam</i> like a married woman?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav</div><div class="flow-box result-bad">She is like a married woman — disqualified by illicit relations; betrothal by others invalid</div></div><div class="flow-col"><div class="flow-label">Shmuel</div><div class="flow-box result-good">She is <b>not</b> like a married woman — not disqualified; betrothal takes effect</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Mishna:</b> False reports of wife's death → sequential marriages to sisters</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Mishna:</b> Nine-year-old boy's intercourse with yevama — status and disqualification rules</div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> This daf explores the legal weight of a minor's sexual act in levirate marriage and the consequences of marrying sisters based on erroneous death reports.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Three Interpretations of the Rav-Shmuel Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">Rav and Shmuel disagree about whether a <i>shomeret yavam</i> who was <b>violated</b> (<i>ne'enesa</i>) is disqualified from her <i>yavam</i>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Perhaps they disagree about <b>Rav Hamnuna's</b> ruling: a widow awaiting her <i>yavam</i> who had <b>licentious relations</b> is forbidden to her <i>yavam</i>.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rav</div><div class="speech">She is like a married woman — licentious relations <b>disqualify</b> her.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Shmuel</div><div class="speech">She is <b>not</b> like a married woman — she is not disqualified by such relations.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Or perhaps they disagree about whether <b>betrothal (<i>kiddushin</i>)</b> takes effect with a <i>yevama</i> from another man.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But they already disputed this elsewhere! Answer: one ruling was stated <b>by inference</b> from the other.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Point</strong> The Gemara offers three possible frameworks for the Rav-Shmuel dispute, each centering on whether a shomeret yavam has the status of a married woman.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>False Death Reports — Marrying Sisters in Sequence</h2>
+  
+  <table><tr><th>Wife #</th><th>Relationship</th><th>Status if All Alive</th><th>Exempt Rival Wife?</th></tr><tr><td>1st wife</td><td>Original wife</td><td>✅ Permitted</td><td>Yes</td></tr><tr><td>2nd wife</td><td>1st wife's sister</td><td>❌ Forbidden</td><td>No</td></tr><tr><td>3rd wife</td><td>2nd wife's sister (not 1st's)</td><td>✅ Permitted</td><td>Yes</td></tr><tr><td>4th wife</td><td>3rd wife's sister = 1st's sister</td><td>❌ Forbidden</td><td>No</td></tr><tr><td>5th wife</td><td>4th wife's sister (not 1st's)</td><td>✅ Permitted</td><td>Yes</td></tr></table><div class="callout" style="margin-top:20px"><strong>Pattern</strong> Odd-numbered wives (1st, 3rd, 5th) are permitted because they are not sisters of the original wife. Even-numbered wives are forbidden as sisters of an existing wife.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>After Definite Death of the First Wife</h2>
+  
+  <div class="flowchart"><div class="flow-box action">First wife <b>definitely dies</b><br>(not just a rumor)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">2nd wife (her sister) now <b>permitted</b></div><div class="flow-arrow">↓</div><div class="flow-box question">False reports about wives 2–5 — all discovered alive</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Permitted</div><div class="flow-box result-good">2nd & 4th wives<br>(sisters of the now-deceased 1st wife)</div></div><div class="flow-col"><div class="flow-label">Forbidden</div><div class="flow-box result-bad">3rd & 5th wives<br>(sisters of his current wives)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Rav Sheshet</strong> The mishna's second scenario requires the <b>definite</b> (<i>vadai</i>) death of the first wife, not merely a rumor — reversing which wives are permitted and forbidden.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Nine-Year-Old Boy vs. Adult Yavam — Disqualification</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a237e"><h3 style="color:#90caf9">Boy (9 yrs + 1 day)</h3><ul><li>Intercourse is valid as a <b>ma'amar</b> (levirate betrothal)</li><li>Disqualifies brothers only if he acts <b>first</b></li><li>Brothers disqualify him whether they act first <b>or</b> last</li><li>Does not fully acquire the yevama</li></ul></div><div class="compare-box" style="border-top-color:#1b5e20"><h3 style="color:#a5d6a7">Adult Yavam</h3><ul><li>Intercourse fully acquires the yevama</li><li>Disqualifies brothers whether first or last</li><li>Full-fledged levirate marriage</li><li>Intercourse considered a complete kinyan</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rav Zevid bar Rav Oshaya</strong> A nine-year-old who has relations <b>after</b> his brother's levirate betrothal still disqualifies — but if the boy performed <b>ma'amar</b> (not intercourse) last, he does <b>not</b> disqualify.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabbi Shimon vs. the Rabbis — Two Minors</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabbis</div><div class="speech">If a second nine-year-old has relations with the yevama after the first, he <b>disqualifies</b> her to the first boy.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Shimon</div><div class="speech">He does <b>not</b> disqualify. If the first act counts as intercourse, the second is meaningless. If the first doesn't count, neither does the second!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabbis</div><div class="speech">A minor's intercourse is like <b>ma'amar</b> — and one <i>ma'amar</i> can take effect after another <i>ma'amar</i>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ben Azzai</div><div class="speech">There is <i>ma'amar</i> after <i>ma'amar</i> with <b>two yevamin / one yevama</b>, but <b>not</b> with two yevamot / one yavam.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Our mishna (which applies the rule to two yevamot) is <b>not</b> in accordance with Ben Azzai.</div></div></div><div class="callout" style="margin-top:20px"><strong>R' Shimon's Logic</strong> Rabbi Shimon presents a logical dilemma: the minor's intercourse either counts fully (making the second irrelevant) or doesn't count at all. The Rabbis find a middle ground — it's like ma'amar.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 96 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Is the yevama like a married woman?</b><br>Rav says yes; Shmuel says no</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a1e; border-left: 3px solid #4caf50;"><b>False Death Reports</b><br>Odd wives permitted, even wives forbidden<br>(reversed if first wife truly died)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a2e; border-left: 3px solid #9b59b6;"><b>Minor's Intercourse = Ma'amar?</b></div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2e1616; border-top: 2px solid #e74c3c;"><b>Rav:</b> Not in all regards</div></div><div class="flow-col"><div class="flow-box" style="background:#162e1a; border-top: 2px solid #4caf50;"><b>Shmuel & R' Yoḥanan:</b> Full equivalence</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #c9a84c;"><b>Result:</b> She performs <b>ḥalitza</b> only — not yibum<br>Even without a rival wife (Rava)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 96a-96b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 96a-96b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../95/">← Daf 95</a><a href="../97/">Daf 97 →</a></div>
+</body>
+</html>

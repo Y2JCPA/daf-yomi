@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 108 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Yevamot 108 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to R' Yosei bar Yehuda, what is the most expansive scenario in which a minor's statement counts as refusal?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. When she is sent by her husband to a shopkeeper and says she doesn't want him</div>
+      <div class="option" onclick="select(1,this,1)">B. When she is sitting in the bridal chair on the way to the wedding</div>
+      <div class="option" onclick="select(1,this,2)">C. When she is serving drinks at the wedding feast</div>
+      <div class="option" onclick="select(1,this,3)">D. When she is standing before a beit din</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: A — </strong>R' Yosei bar Yehuda expanded refusal to the most casual domestic context — even when sent on an errand to a shopkeeper, her statement 'I do not want him' is valid refusal.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">According to R' Yehuda ben Beteira, what happens if a minor girl doesn't formally refuse but marries another man?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. She must first perform formal refusal before the new marriage is valid</div>
+      <div class="option" onclick="select(2,this,1)">B. Her new marriage itself constitutes her refusal of the first husband</div>
+      <div class="option" onclick="select(2,this,2)">C. She is considered married to both men simultaneously</div>
+      <div class="option" onclick="select(2,this,3)">D. The second marriage is void until she obtains a get from the first</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>R' Yehuda ben Beteira's innovative ruling: the act of marrying (or even becoming betrothed to) another man inherently demonstrates her refusal of the first husband. Shmuel rules this is the halakha.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Why does R' Elazar (citing Shmuel's praise) describe the minor as immersing and eating teruma by evening?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. To show that teruma purification requires a full day</div>
+      <div class="option" onclick="select(3,this,1)">B. To illustrate that the marriage has absolutely no legal effect — she remains as if unmarried</div>
+      <div class="option" onclick="select(3,this,2)">C. To demonstrate that a priest's daughter loses her teruma rights upon marriage</div>
+      <div class="option" onclick="select(3,this,3)">D. To prove that immersion is required after every marital relation</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Shmuel praised R' Elazar's consistency: since the minor's marriage is 'nothing,' a priest's daughter can rise from her husband's bed, immerse, and eat teruma by evening — as if no marriage ever took place.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">According to Rava, why does a minor's refusal of her own husband nullify his prior get, but her refusal of a different husband does not?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Because refusal only works against the man she is currently married to</div>
+      <div class="option" onclick="select(4,this,1)">B. Because she already proved she can resist his influence by refusing him, but might be manipulated to refuse others</div>
+      <div class="option" onclick="select(4,this,2)">C. Because a get from another man has greater legal force</div>
+      <div class="option" onclick="select(4,this,3)">D. Because refusal and get cannot apply to different men simultaneously</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>The concern is that a husband familiar with her could manipulate her into refusing a new husband to return to him. But if she already refused HIM, she proved she resists his influence — so her refusal nullifies his get. With another man's get, this proof doesn't exist.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">What is the key principle stated in the mishna regarding a minor who left multiple husbands by different means?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. She may return to any husband regardless of how she left</div>
+      <div class="option" onclick="select(5,this,1)">B. She may never return to any prior husband</div>
+      <div class="option" onclick="select(5,this,2)">C. Anyone she left by mi'un — she may return to; anyone she left by get — she may not return to</div>
+      <div class="option" onclick="select(5,this,3)">D. She may return only to the first husband but not subsequent ones</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>The mishna's organizing principle: mi'un retroactively erases the marriage (so she can return), while a get treats it as real (so the prohibition against remarrying a divorced wife after she married another applies).</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":0,"2":1,"3":1,"4":1,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

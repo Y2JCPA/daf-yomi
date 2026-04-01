@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 99 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔀</div>
+  <h1>Yevamot 99</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות צט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔀 Ḥalitza with Relatives — performing ḥalitza with mother, sister, or daughter due to uncertain identity<br>
+    👨‍👩‍👧‍👦 Five Nations — R' Meir's case of five lineage categories from one couple<br>
+    ⚖️ Mixed Offspring — halitza and yibum rules when babies are confused<br>
+    🔒 Priest-Slave Uncertainty — restrictions on mixed priest/slave offspring<br>
+    🌾 Teruma Distribution — R' Yehuda vs R' Yosei on giving teruma to a possible slave<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 99: Identity Uncertainty & Its Halakhic Consequences</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Babies born in hiding</b> — identities mixed up</div><div class="flow-arrow">↓</div><div class="flow-box question">Which relatives are they? <b>Mother? Sister? Daughter?</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Ḥalitza Cases</div><div class="flow-box result-good">Perform <b>ḥalitza</b> with both women due to <em>safek</em></div></div><div class="flow-col"><div class="flow-label">Yibum Blocked</div><div class="flow-box result-bad"><b>No levirate marriage</b> — might be a forbidden relative</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> When identities are uncertain, we apply stringencies of all possible statuses — ḥalitza resolves the bond without risking forbidden unions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Ḥalitza with One's Mother Due to Uncertainty</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Two mothers each have a <b>known son</b>, then each gives birth <b>in hiding</b> — babies get mixed</div><div class="flow-arrow">↓</div><div class="flow-box action">Known son of Woman A marries <b>Woman B</b> (mother of known son B), and vice versa</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Both known sons <b>die childless</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Which widow is the mixed son's <b>mother</b> vs. his <b>yevama</b>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Resolution</div><div class="flow-box result-good">Each mixed son performs <b>ḥalitza with both women</b></div></div><div class="flow-col"><div class="flow-label">Result</div><div class="flow-box result-bad">Each one ends up performing ḥalitza with his <b>own mother</b> due to <em>safek</em></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> The same pattern applies to ḥalitza with one's <b>sister</b> (mixed female babies, paternal half-brothers marry them) and one's <b>daughter</b> (mixed female babies, brothers marry them).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Meir: Five Nations from One Couple</h2>
+  
+  <div class="process-bar"><div class="process-step">1️⃣ <b>Gentile</b> — slave & maidservant have a child before immersion</div><div class="process-arrow">↓</div><div class="process-step">2️⃣ <b>Convert</b> — one of those children converts to Judaism</div><div class="process-arrow">↓</div><div class="process-step highlight">3️⃣ <b>Slave</b> — master immerses both parents; they have a child with slave status</div><div class="process-arrow">↓</div><div class="process-step highlight">4️⃣ <b>Mamzer</b> — master frees maidservant (now a Jewess); slave has relations with her → child is mamzer (per R' Meir)</div><div class="process-arrow">↓</div><div class="process-step">5️⃣ <b>Regular Jew</b> — master frees both, marries them; their new child is fully Jewish</div></div><div class="callout" style="margin-top:20px"><strong>R' Meir's Principle</strong> A gentile or slave who has relations with a Jewish woman — their offspring is a <b>mamzer</b>. This view underlies the entire teaching.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>A Son Sells His Own Father</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">מוכר אדם את אביו לגבות כתובת אמו</div><div class="callout"><strong>Unusual Case</strong> A Jew buys a <b>slave and maidservant</b>. They have a son. The master <b>frees the maidservant</b> and marries her. He then writes all his property — <em>including the slave</em> — to her son.<br><br>The son now <b>owns his own father</b> (the slave). If the mother demands her <em>ketubah</em>, the son may need to <b>sell his father</b> to pay it.<br><br>This teaches that according to <b>R' Meir</b>, movable property (including slaves) can be <b>mortgaged for a ketubah</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Mixed Offspring: Mother-in-Law vs. Daughter-in-Law's Sons</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Certain Sons of Daughter-in-Law</h3><ul><li>Perform <b>ḥalitza only</b> with mixed sons' widows</li><li>Cannot do yibum — widow might be father's brother's wife</li><li>Each widow is <em>safek</em> sister-in-law or uncle's wife</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3c"><h3 style="color:#9b59b6">Certain Sons of Elder Woman</h3><ul><li>Can perform <b>ḥalitza OR yibum</b></li><li>Widow is either brother's wife (yibum valid) or nephew's wife (permitted)</li><li>More lenient because neither possibility is a forbidden relative</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rava Pappa's Correction</strong> The mixed-up status does not render the sons <b>unfit</b> — the text should read 'if the certain sons died,' not implying any disqualification.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Priest–Slave Mixed Offspring: What They Can & Cannot Do</h2>
+  
+  <table><tr><th>Category</th><th>Ruling</th><th>Reason</th></tr><tr><td>Corpse Impurity</td><td>❌ May NOT become impure</td><td>Each might be a priest</td></tr><tr><td>Marriage</td><td>❌ May NOT marry (before freeing each other)</td><td>Uncertain if priest or slave</td></tr><tr><td>After Freeing Each Other</td><td>✅ May marry women fit for priesthood</td><td>Freed slave may marry such women</td></tr><tr><td>Marrying Unfit Women</td><td>❌ May NOT marry unfit women</td><td>Each might be a priest</td></tr><tr><td>Eating Teruma</td><td>❌ May NOT eat teruma</td><td>One of them is not a priest</td></tr><tr><td>If Ate Teruma Unwittingly</td><td>✅ Do NOT pay principal + fifth</td><td>Each might actually be a priest</td></tr><tr><td>Receiving Teruma at Granary</td><td>❌ Do NOT receive a share</td><td>Neither can prove priesthood</td></tr><tr><td>Selling Own Teruma</td><td>✅ May sell, keep money</td><td>Cannot be proven non-priest</td></tr><tr><td>Temple Offerings</td><td>❌ Not given offerings to sacrifice</td><td>Each might not be a priest</td></tr><tr><td>Firstborn Animal</td><td>🐑 Grazes until blemished</td><td>Then cannot be taken from him</td></tr></table><div class="callout" style="margin-top:20px"><strong>General Rule</strong> We place upon each mixed son <b>both the stringencies of priests and the stringencies of Israelites</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 99 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Babies Mixed at Birth</b><br>Identity uncertain — who is mother's son vs. other woman's son?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 10px;"><b>Ḥalitza Cases</b><br>Must do ḥalitza with mother/sister/daughter due to <em>safek</em></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a2e; padding: 10px;"><b>Five Nations</b><br>R' Meir: one couple can produce gentile, convert, slave, mamzer, & Jew</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #9b59b6; padding: 10px;"><b>Mixed Priest/Slave</b><br>Double stringency: cannot become impure (priest) AND cannot marry freely (slave)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a16; border-left: 3px solid #e67e22; padding: 10px;"><b>Teruma Distribution</b><br>R' Yehuda: only with master present | R' Yosei: alone is fine — depends on local <em>ḥazakah</em> practice</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 99a-99b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 99a-99b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../98/">← Daf 98</a><a href="../100/">Daf 100 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 90 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Yevamot 90</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות צ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Rabbinic Authority — Can the Sages uproot Torah law?<br>
+    🌾 Teruma Payment — Paying impure produce for eaten teruma<br>
+    🩸 Impure Blood — Sprinkling and the frontplate's acceptance<br>
+    🛑 Shev V'Al Ta'aseh — Passive inaction vs. active uprooting<br>
+    📜 Canceling a Get — Court power over betrothal<br>
+    🔥 Elijah's Precedent — A prophet's authority to override mitzvot<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Can the Sages Uproot Torah Law?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The central question: Do the Sages have the power to uproot something established by <b>Torah law</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Proofs Attempted</div><div class="speech">Multiple cases are brought — teruma payment, impure blood, canceling a <i>get</i> — each attempting to prove the Sages <b>can</b> override Torah law.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Resolution</div><div class="speech">Each proof is deflected: <b>Shev v'al ta'aseh</b> (passive inaction) is different from active uprooting. Betrothal works only by rabbinic authorization, so the Sages can revoke it.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> The Sages can instruct passive inaction (<i>shev v'al ta'aseh</i>) even when it sidelines a Torah obligation, but they cannot command an <b>active violation</b> of Torah law.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Teruma Payment: Impure Produce for Eaten Teruma</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A non-priest <b>ate impure teruma</b> belonging to a Kohen</div><div class="flow-arrow">↓</div><div class="flow-box action">He must pay with <b>ritually pure, non-sacred produce</b></div><div class="flow-arrow">↓</div><div class="flow-box question">What if he paid with <b>impure</b> non-sacred produce instead?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Sumakhos / R' Meir</div><div class="flow-box result-bad"><b>Unwittingly</b> → payment valid<br/><b>Intentionally</b> → payment NOT valid</div></div><div class="flow-col"><div class="flow-label">The Rabbis</div><div class="flow-box result-good">Either way → payment <b>is valid</b> as teruma, but he must <b>go back and pay again</b> with pure produce</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Clarification</strong> Rav Aḥa b. Rav Ika: The dispute is only about <b>pure teruma</b> that was eaten. For impure teruma, all agree even impure payment works.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Does 'Payment Is Not Payment' Uproot Torah Law?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara (Challenge)</div><div class="speech">R' Meir says intentional impure payment is <b>not valid</b>. But by Torah law it <i>is</i> valid — a Kohen could even <b>betroth a woman</b> with it! This means the Sages uproot Torah-level ownership!</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Gemara (Answer)</div><div class="speech">'Not payment' means he must <b>pay again</b> with pure produce — but the original food <b>is also consecrated</b> as teruma. Torah law is not uprooted.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara (Follow-up)</div><div class="speech">If so, <b>Sumakhos and the Rabbis say the same thing!</b></div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Aḥa b. Rav Ika</div><div class="speech">The difference: did the Sages <b>decree against unwitting sinners</b> on account of intentional ones? Rabbis say yes; Sumakhos says no.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> <b>גזרו שוגג אטו מזיד</b> — The Rabbis penalize accidental wrongdoers due to intentional ones; Sumakhos disagrees.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Impure Blood Sprinkled on the Altar</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Torah Law (via Tzitz)</h3><ul><li>The High Priest's frontplate (<b>tzitz</b>) effects acceptance</li><li>Covers blood, meat, and fat that became impure</li><li>Works whether unwitting, intentional, or accidental</li><li>Applies to both individual and communal offerings</li></ul></div><div class="compare-box" style="border-top-color:#3e1a1a"><h3 style="color:#e74c3c">Rabbinic Ruling</h3><ul><li>If sprinkled <b>intentionally</b> while impure → not accepted</li><li>Owner must bring <b>another offering</b></li><li>Seems to uproot Torah law — bringing a new animal would be <i>chulin ba'azarah</i>!</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>R' Yosei bar Ḥanina's Resolution</strong> 'Not accepted' means the <b>meat may not be eaten</b>, but the owner <b>does</b> gain atonement — no new offering needed. Torah law is preserved.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>The Key Distinction: Shev V'Al Ta'aseh</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">שאני שב ואל תעשה</div><div class="callout"><strong>שב ואל תעשה — Sit and Do Not Act</strong> The Gemara draws a critical line: the Sages <b>can</b> instruct a person to <b>refrain from performing</b> a Torah mitzvah (passive inaction). They <b>cannot</b> instruct a person to <b>actively violate</b> Torah law.<br/><br/>Even if refraining means a mitzvah goes unfulfilled — like eating the sacrificial meat (<i>'And they shall eat those things with which atonement was made'</i> — Exodus 29:33) — this is permitted because the Sages are not commanding an <b>action</b>, only <b>inaction</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rav Ḥisda's Seven Cases of Shev V'Al Ta'aseh</h2>
+  
+  <table><tr><th>Case</th><th>Torah Obligation Sidelined</th><th>Rabbinic Reason</th></tr><tr><td>Uncircumcised convert on Pesach eve</td><td>Eat the Paschal lamb</td><td>Impurity from circumcision prevents participation</td></tr><tr><td>Sprinkling purification water on Shabbat/Pesach eve</td><td>Purify for Paschal lamb</td><td>Sprinkling prohibited on Shabbat</td></tr><tr><td>Circumcision knife</td><td>Circumcise on Shabbat</td><td>May not carry the knife on Shabbat</td></tr><tr><td>Linen cloak with wool fringes</td><td>Wear tzitzit</td><td>Decree lest he wear it at night (sha'atnez without mitzvah)</td></tr><tr><td>Shavuot lambs on Shabbat</td><td>Sprinkle blood of offering</td><td>Invalid intent disqualifies; no re-sprinkling on Shabbat</td></tr><tr><td>Shofar on Shabbat</td><td>Blow shofar on Rosh HaShana</td><td>Lest one carry it 4 amot in public domain</td></tr><tr><td>Lulav on Shabbat</td><td>Take lulav on first day of Sukkot</td><td>Same concern as shofar</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rav Ḥisda to Rabba</strong> All seven cases are resolved by the principle of <b>shev v'al ta'aseh</b> — passive non-performance is not considered 'uprooting' Torah law.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 90 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Question:</b> Can the Sages uproot Torah law?</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1a3e; border-left: 3px solid #9b59b6;"><b>Proofs brought:</b> Teruma payment, impure blood, prophet at Carmel, canceling a <i>get</i></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Shev v'al ta'aseh:</b><br/>Passive inaction is <b>permitted</b> — not considered uprooting</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border-left: 3px solid #e74c3c;"><b>Active violation:</b><br/>The Sages <b>cannot</b> command an active transgression of Torah law</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e3a1a; border-left: 3px solid #c9a84c;"><b>Betrothal exception:</b> Since marriage operates <i>ad'ata d'rabbanan</i> (by rabbinic authorization), the court can nullify it entirely</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 90a-90b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 90a-90b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../89/">← Daf 89</a><a href="../91/">Daf 91 →</a></div>
+</body>
+</html>

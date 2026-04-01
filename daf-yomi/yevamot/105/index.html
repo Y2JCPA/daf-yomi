@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevamot 105 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Yevamot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👟</div>
+  <h1>Yevamot 105</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">יבמות קה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👟 Ḥalitza Elements — Which components (shoe removal, spitting, recitation) are indispensable<br>
+    ⚖️ R' Eliezer vs R' Akiva — Dispute over what constitutes a valid ḥalitza<br>
+    🔄 Order of Ḥalitza — Whether spitting before shoe removal invalidates the act<br>
+    👦 Minor's Ḥalitza — R' Meir vs the Rabbis on ḥalitza performed by minors<br>
+    🙏 Prayer Posture — Eyes downward, heart upward<br>
+    ⚡ Abdon's Rebuke — Consequences of disrespecting a Torah scholar<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Ḥalitza: What Makes It Valid?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Ḥalitza Ceremony</b><br>Three elements: shoe removal, spitting, recitation</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Eliezer</div><div class="flow-box result-bad">Any <b>action</b> (shoe + spit) is indispensable<br><em>'So shall it be done'</em> — actions matter</div></div><div class="flow-col"><div class="flow-label">R' Akiva</div><div class="flow-box result-good">Only actions <b>on the yavam's body</b> (shoe removal) are indispensable</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Secondary question:</b> Can a <b>minor</b> perform ḥalitza?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Meir</div><div class="flow-box result-bad">Minor's ḥalitza <b>disqualifies</b> levirate marriage but doesn't fully permit remarriage</div></div><div class="flow-col"><div class="flow-label">R' Yosei / Rabbis</div><div class="flow-box result-good">Female minor <b>may</b> perform valid ḥalitza — 'yevama' not 'woman' is written</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf dissects ḥalitza into its component parts — asking which elements are biblically required, in what order, and who may perform them.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Three Elements of Ḥalitza — What If One Is Missing?</h2>
+  
+  <table><tr><th>Scenario</th><th>Shoe Removed?</th><th>Spat?</th><th>Recited?</th><th>Status</th></tr><tr><td>Full ḥalitza</td><td>✅</td><td>✅</td><td>✅</td><td>✅ Valid</td></tr><tr><td>No recitation</td><td>✅</td><td>✅</td><td>❌</td><td>✅ Valid</td></tr><tr><td>No spit, no recitation</td><td>✅</td><td>❌</td><td>❌</td><td>⚠️ Depends on opinion</td></tr><tr><td>No shoe removal</td><td>❌</td><td>✅</td><td>❌</td><td>❌ Disqualified (from brothers)</td></tr><tr><td>No shoe, no spit</td><td>❌</td><td>❌</td><td>✅</td><td>❌ No significance at all</td></tr></table><div class="callout" style="margin-top:20px"><strong>Core Rule</strong> <b>Shoe removal</b> (חליצה) is the essential act. Without it, nothing of halakhic significance occurs. Spitting and recitation are secondary but may have disqualifying effects.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Does Spitting Alone Disqualify from the Brothers?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">According to R' Akiva, <b>spitting</b> and <b>recitation</b> are both non-essential. Why does spitting disqualify her from the brothers, but recitation has no effect?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Akiva's Reasoning</div><div class="speech"><b>Recitation</b> happens both <em>before</em> and <em>after</em> shoe removal. A witness seeing her recite won't assume the shoe was removed.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Akiva's Reasoning</div><div class="speech">But <b>spitting</b> happens only <em>after</em> shoe removal. A witness seeing her spit may <b>assume</b> she already removed the shoe — leading to confusion.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">So the Rabbis <b>rabbinically</b> disqualify her from the brothers after spitting, to prevent people from permitting a true <em>ḥalutza</em> to marry the brothers.</div></div></div><div class="callout" style="margin-top:20px"><strong>מראית עין</strong> The concern is <b>appearance</b>: onlookers who see the spit may conclude a full ḥalitza occurred and mistakenly permit a ḥalutza to marry the yavam's brothers.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Ami's Ruling: Spitting Before Shoe Removal</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A woman comes before <b>R' Ami</b> for ḥalitza.<br>She <b>spits before</b> removing the shoe.</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>R' Ami:</b> Tell her to remove the shoe.<br>She does <em>not</em> need to spit again.</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>R' Abba bar Memel challenges:</b><br>Don't we need proper order?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Ami Responds</div><div class="flow-box result-good">Proper order is <b>not indispensable</b>.<br>And requiring a second spit could cause a <em>disaster</em> — people will think spit alone is meaningless!</div></div><div class="flow-col"><div class="flow-label">Supporting Baraita</div><div class="flow-box result-good">Whether shoe removal preceded spitting or spitting preceded shoe removal — <b>what is done is done</b>.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Halakha</strong> R' Abba bar Memel initially thought R' Ami was making weak arguments, but upon investigation found a <b>baraita</b> confirming that the order of ḥalitza steps is not indispensable.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Minor's Ḥalitza: Male vs Female</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Male Minor (Yavam)</h3><ul><li>R' Meir: Ḥalitza disqualifies her from brothers but doesn't permit remarriage</li><li>Rabbis: Minor's ḥalitza has NO significance at all</li><li>She remains fully permitted to brothers in levirate marriage</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3c"><h3 style="color:#9b59b6">Female Minor (Yevama)</h3><ul><li>R' Meir: Must perform ḥalitza again as adult; first ḥalitza is invalid if she doesn't</li><li>R' Yosei: Torah says 'man' (adult male required) but 'yevama' — not 'woman'</li><li>Therefore a female minor CAN validly perform ḥalitza</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Textual Basis</strong> <em>"And if the <b>man</b> does not wish"</em> (Deut. 25:7) — 'Man' requires adult male. But <em>"his <b>yevama</b>"</em> (Deut. 25:9) uses a general term, not 'woman,' so the female may be a minor.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Story of R' Yishmael, Abdon, and Rebbi</h2>
+  
+  <div class="process-bar"><div class="process-step">🗣️ R' Ḥiyya and R' Shimon debate prayer posture — eyes up or eyes down?</div><div class="process-arrow">↓</div><div class="process-step highlight">🙏 R' Yishmael b. R' Yosei arrives: 'My father said — eyes DOWN, heart UP'</div><div class="process-arrow">↓</div><div class="process-step">🏃 Rebbi arrives at the study hall — everyone rushes to sit</div><div class="process-arrow">↓</div><div class="process-step">🚶 R' Yishmael, being heavy, walks slowly over seated students</div><div class="process-arrow">↓</div><div class="process-step highlight">😤 Abdon (Rebbi's attendant) rebukes him: 'Who steps over a sacred people?'</div><div class="process-arrow">↓</div><div class="process-step highlight">⚡ R' Yishmael retorts sharply — 'Is your teacher God?' — Rebbi stays silent</div><div class="process-arrow">↓</div><div class="process-step">👧 A minor yevama comes for ḥalitza — R' Yishmael cites his father R' Yosei that a minor may perform ḥalitza</div><div class="process-arrow">↓</div><div class="process-step highlight">💥 Abdon is punished with leprosy, two sons drown, two daughters-in-law refuse their marriages</div></div><div class="callout" style="margin-top:20px"><strong>Moral</strong> Rav Naḥman bar Yitzḥak: <em>Blessed is the Merciful One who punishes Abdon in this world</em> — suffering in this world atones and prevents punishment in the World to Come.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Yevamot 105 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Ḥalitza Elements</b><br>Shoe removal is indispensable; spitting & recitation are secondary</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a1e; border-left: 3px solid #e74c3c; padding: 10px;"><b>Spitting Without Shoe Removal</b><br>Disqualifies her from brothers rabbinically (appearance concern)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 10px;"><b>Order of Steps</b><br>Not indispensable — spit before shoe removal is still valid</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a3e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Male Minor's Ḥalitza</b><br>R' Meir: disqualifies<br>Rabbis: no significance</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a3e; border-left: 3px solid #9b59b6; padding: 10px;"><b>Female Minor's Ḥalitza</b><br>R' Yosei: valid — Torah says 'yevama' not 'woman'</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Yevamot 105a-105b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Yevamot 105a-105b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../104/">← Daf 104</a><a href="../106/">Daf 106 →</a></div>
+</body>
+</html>
