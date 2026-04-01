@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 28 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐐</div>
+  <h1>Nazir 28</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר כח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐐 Sin-Offering Funds — Can a son use his father's separated money or animals?<br>
+    💰 Allocated vs. Unallocated — Status of money, blemished animals, and unblemished animals<br>
+    💍 Husband Nullifying Wife's Vow — After blood sprinkling or slaughter of offerings<br>
+    ✂️ Shaving Dispute — R' Meir vs. Tanna Kamma on nullifying at purity shaving<br>
+    👦 Father's Nazirite Vow for Son — A father can impose naziriteship on his minor son<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nazir 28: Offerings, Nullification & Father's Vow</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> When can separated offerings be redirected or a vow nullified?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Father→Son</div><div class="flow-box result-bad">Son <b>cannot</b> use father's allocated animal; <b>can</b> use unallocated money</div></div><div class="flow-col"><div class="flow-label">Husband→Wife</div><div class="flow-box result-bad">Cannot nullify after blood sprinkled (or slaughter per R' Akiva)</div></div><div class="flow-col"><div class="flow-label">Father→Minor Son</div><div class="flow-box action">Father can impose naziriteship; son/relatives can <b>protest</b> to cancel</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Verse</strong> "His offering… for his sin" (Lev. 4:28, 32, 35) — offerings must match both the <b>person</b> and the specific <b>transgression</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Allocated vs. Unallocated: Animals & Money</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Unblemished Animal</h3><ul><li>Status: ALLOCATED (מיוחדים)</li><li>Son CANNOT use father's animal</li><li>Cannot lose consecrated status</li><li>Cannot be redesignated for different sin</li><li>If misused — no me'ilah violation applies to the animal itself</li></ul></div><div class="compare-box" style="border-top-color:#e67e22"><h3 style="color:#ffffff">Blemished Animal</h3><ul><li>Status: UNALLOCATED (like money)</li><li>Son CAN use for his own offering</li><li>Fit only for its monetary value</li><li>Rav Nachman: equivalent to unallocated funds</li><li>Gemara: 'What is it fit for? Its value — which is money'</li></ul></div><div class="compare-box" style="border-top-color:#4caf50"><h3 style="color:#ffffff">Money (Coins)</h3><ul><li>Unallocated money: son CAN use</li><li>CAN lose consecrated status (me'ilah applies)</li><li>But CANNOT redesignate for different sin</li><li>Verse: "For his sin" — must match specific transgression</li><li>Allocated money: son CANNOT use</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Challenge</strong> Rava questioned Rav Nachman: The baraita says a son can't use his father's <b>animal</b> — doesn't that include blemished ones? Gemara answers: only unblemished animals are 'allocated.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>"For His Sin" — Redirecting Offerings Between Transgressions</h2>
+  
+  <table><tr><th>Scenario</th><th>Animal</th><th>Money</th></tr><tr><td>Separated for ḥelev (fat), used for dam (blood)</td><td>Does NOT atone</td><td>Does NOT atone</td></tr><tr><td>Separated for dam, used for ḥelev</td><td>Does NOT atone</td><td>Does NOT atone</td></tr><tr><td>Minor sin → different minor sin</td><td>Does NOT atone</td><td>Does NOT atone</td></tr><tr><td>Major sin → different major sin</td><td>Does NOT atone</td><td>Does NOT atone</td></tr><tr><td>Can it lose consecrated status?</td><td>No — remains holy</td><td>Yes — me'ilah applies</td></tr><tr><td>Can it be redesignated?</td><td>No (parallel to status)</td><td>No — "for his sin" overrides</td></tr></table><div class="callout" style="margin-top:20px"><strong>The Logic</strong> One might think money <em>can</em> be redesignated because it can lose its sacred status (unlike animals). But the verse <b>"for his sin"</b> (Lev. 4:35) teaches that even money cannot atone for a different transgression.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>When Can a Husband Nullify His Wife's Nazirite Vow?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna Kamma</div><div class="speech">Once <b>blood is sprinkled</b> (זריקה) on her behalf, the husband <b>cannot nullify</b> her vow.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech">Even <b>before</b> sprinkling — once any <b>animal is slaughtered</b> (שחיטה) he cannot nullify!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Tanna Kamma's logic: after sprinkling she may <b>drink wine</b> immediately — she is no longer 'downcast,' so the vow doesn't affect the husband.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">R' Akiva's logic: nullifying after slaughter causes <b>loss of consecrated property</b> (הפסד הקדשים) — the offering would go to waste.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Tanna Kamma focuses on <b>her status</b> (is she still restricted?), while R' Akiva focuses on <b>Temple property</b> (would nullification waste a sacrifice?).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>R' Zeira's Challenge: Why Not Sprinkle 'Not For Its Sake'?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>R' Zeira asks:</b> If husband nullifies after slaughter, why is the offering wasted?</div><div class="flow-arrow">↓</div><div class="flow-box action">Sprinkle the blood <b>not for the sake</b> of nazirite offerings → meat can still be eaten!</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Proof:</b> Shavuot peace-offering slaughtered at wrong time — blood sprinkled shelo lishmah and meat is eaten</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>Sages respond:</b> R' Akiva's case is where the <b>sin-offering</b> (חטאת) was slaughtered first</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">A sin-offering sprinkled <b>not for its sake</b> is <b>invalid</b> — the animal IS wasted</div></div><div class="callout" style="margin-top:20px"><strong>Source</strong> The sin-offering can be brought first because a nazirite may change the order of offerings (Mishna 45a): shaving after <em>any</em> of the three sacrifices fulfills the obligation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Shaving Dispute: R' Meir vs. Tanna Kamma</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna Kamma</div><div class="speech">At <b>shaving of impurity</b> — husband can nullify. At <b>shaving of purity</b> — he cannot.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Meir</div><div class="speech">He can nullify <b>even at the purity shaving</b>, because he can say: <b>"I don't want a shaven wife!"</b> (אי אפשי באשה מגולחת)</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna Kamma</div><div class="speech">She can wear a <b>wig</b> (פאה נכרית) — so her shaven head doesn't affect him!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Meir</div><div class="speech">A wig is <b>dirty/unpleasant</b> (מאוסה) — he is not amenable to this solution!</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> A husband can only nullify vows that cause his wife to be 'downcast' (עינוי נפש) or that affect the relationship between them (דברים שבינו לבינה).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 28 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#ffffff; padding:10px; border-radius:8px;"><b>"His offering"</b> — Son cannot use father's allocated animal</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#ffffff; padding:10px; border-radius:8px;"><b>"For his sin"</b> — Cannot redesignate offering for a different transgression (even money)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1a3e; color:#ffffff; padding:10px; border-radius:8px;"><b>Wife's Offerings:</b> After sprinkling (or slaughter per R' Akiva) — husband cannot nullify</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e2a16; color:#ffffff; padding:10px; border-radius:8px;"><b>Father → Son:</b> Can impose naziriteship; son can protest to cancel</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2e3e; color:#ffffff; padding:10px; border-radius:8px;"><b>Canceled offerings:</b> Sin-offering dies; others sacrificed with modified rules</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 28a-28b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 28a-28b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../27/">← Daf 27</a><a href="../29/">Daf 29 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 64 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🪦</div>
+  <h1>Nazir 64</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר סד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌊 Floating Impurity — When uncertain contact with impurity in motion leaves one pure<br>
+    📜 Verse Derivations — Biblical sources for floating impurity rules from Leviticus<br>
+    🔗 Layered Impurity Dilemmas — Rami bar Chama's chain of nested impurity scenarios<br>
+    ⚰️ Grave in the Depths — Nazirite and Paschal offering purity on the seventh day<br>
+    🌅 Sun Sets By Itself — Whether lacking sunset is considered a deficiency in purification<br>
+    🪦 Found Corpse — Rules for discovering a single buried corpse<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nazir 64: Floating Impurity & Grave in the Depths</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> When is uncertain contact with <i>tumah</i> considered 'floating' and therefore pure?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">First Tanna</div><div class="flow-box result-good">All uncertain floating impurity → <b>pure</b><br>(derived from creeping animal verses)</div></div><div class="flow-col"><div class="flow-label">R' Shimon</div><div class="flow-box result-bad">Floating in <b>ground water</b> → pure<br>Floating in <b>vessels</b> → impure</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Rami bar Chama:</b> Series of dilemmas about layered impurity — corpse in floating vessel, corpse on creeping animal, etc.</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Amud B:</b> Rav Hamnuna — nazirite/Paschal offering person at grave in depths on day 7 → <b>pure</b></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Principle: <b>'The sun sets by itself'</b> — lacking sunset is not a deficiency that blocks purity</div></div><div class="callout" style="margin-top:20px"><strong>Key Concept</strong> Uncertain contact with impurity that is in motion ('floating') is treated leniently — the person remains <b>pure</b> — but the definition of 'floating' generates extensive debate.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Biblical Sources for Floating Impurity</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yitzḥak bar Avudimi</div><div class="speech">Two verses about creeping animals: <i>'any swarming thing that swarms'</i> implies impurity <b>everywhere</b>...</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yitzḥak bar Avudimi</div><div class="speech">But <i>'that swarm upon the earth'</i> limits it to <b>on the ground</b>. Resolution: <b>definite</b> contact = impure; <b>uncertain</b> floating contact = pure.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ulla (for R' Shimon)</div><div class="speech"><i>'A fountain or cistern... shall be pure'</i> — creeping animal in ground water doesn't impart impurity.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ulla</div><div class="speech">But <i>'he who touches their carcass shall be impure'</i> — so floating in <b>vessels</b> of water = impure, in <b>ground water</b> = pure.</div></div></div><div class="callout" style="margin-top:20px"><strong>First Tanna vs. R' Shimon</strong> The first tanna derives a <b>blanket rule</b> that all uncertain floating impurity is pure. R' Shimon distinguishes between ground water (pure) and water in vessels (impure).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Carried, Dragged, or Thrown: Categories of Moving Impurity</h2>
+  
+  <table><tr><th>Category of Movement</th><th>Status in Case of Uncertainty</th><th>Reason</th></tr><tr><td>Carried by hand</td><td><b>Impure</b></td><td>Considered as though at rest</td></tr><tr><td>Dragged along</td><td><b>Impure</b></td><td>Considered as though at rest</td></tr><tr><td>Thrown</td><td><b>Pure</b></td><td>Treated as floating impurity</td></tr><tr><td>Thrown olive-bulk of corpse</td><td><b>Impure</b> (exception)</td><td>Corpse impurity is uniquely stringent</td></tr><tr><td>Thrown item overlying corpse (<i>ohel</i>)</td><td><b>Impure</b> (exception)</td><td>Tent-impurity applies even in motion</td></tr><tr><td>Thrown near <i>zav/zavah</i></td><td><b>Impure</b> (exception)</td><td>They transmit impurity above and below</td></tr></table><div class="callout" style="margin-top:20px"><strong>Tosefta</strong> The Tosefta (Teharot 3:13) establishes that only <b>thrown</b> items qualify as floating — items moved by direct human control (carrying/dragging) are treated as stationary.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rami bar Chama's Chain of Dilemmas</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Dilemma 1:</b> Corpse in a <b>floating vessel</b> — do we follow the vessel (floating → pure) or the corpse resting inside (at rest → impure)?</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Dilemma 2:</b> Corpse atop a floating <b>creeping animal</b> — are they one unit (both float → pure) or separate (corpse 7-day vs. sheretz 1-day → like vessel → impure)?</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Dilemma 3:</b> Creeping animal atop floating <b>animal carcass</b> — both 1-day impurity, but different <i>shiurim</i> (olive-bulk vs. lentil-bulk). One unit or two?</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Dilemma 4:</b> Creeping animal atop <b>another</b> creeping animal — same impurity, same measure. Surely one unit?</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Dilemma 5:</b> Creeping animal atop <b>dissolved carcass</b> — is dissolved meat like liquid (floating) or still food (solid surface)?</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Dilemma 6:</b> Creeping animal atop <b>semen</b> — is ejaculated semen liquid or viscous like food?</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Dilemma 7:</b> Creeping animal atop <b>waters of purification</b> (red heifer ashes) — unresolved</div></div><div class="callout" style="margin-top:20px"><strong>Unresolved</strong> Rami bar Chama builds each dilemma on a possible resolution of the prior one, creating a <b>chain of uncertainty</b>. The Gemara leaves these dilemmas without definitive answers (<i>teiku</i>).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Grave in the Depths: Nazirite & Paschal Offering</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Hamnuna</div><div class="speech">A nazirite or one bringing the Paschal offering who walked over an <b>unknown grave</b> (<i>kever ha-tehom</i>) on their <b>7th day</b> of purification — they are <b>pure</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech"><b>Objection:</b> The mishna says one whose status is <b>presumptively impure</b> remains impure! On day 7 before sunset, their status is still impure!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Hamnuna</div><div class="speech">I concede regarding a <b>nazirite</b> who hasn't yet shaved — he lacks an action and retains impure status.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">And I concede regarding the <b>Paschal offering</b> person — he lacks <b>no action</b> on his body, so he has presumptive purity on day 7.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">But he still <b>lacks sunset</b>! He's a <i>tevul yom</i>!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">The <b>sun sets by itself</b> — it's not considered a deficiency requiring action.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Rav Hamnuna and Rava reach agreement: the nazirite (lacking shaving) follows presumptive impurity, but the Paschal offering person (lacking only sunset) is pure, because <b>the sun sets by itself</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Nazirite vs. Paschal Offering Person at Kever HaTehom</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1810"><h3 style="color:#e74c3c">Nazirite on Day 7</h3><ul><li>Still needs to <b>shave</b> for impurity</li><li>Shaving = active bodily action</li><li>Presumptive status remains <b>impure</b></li><li>Grave in the depths → <b>impure</b></li><li>Must restart count</li></ul></div><div class="compare-box" style="border-top-color:#0d2137"><h3 style="color:#4a90d9">Paschal Offering Person on Day 7</h3><ul><li>No bodily action remaining</li><li>Only lacks <b>sunset</b></li><li>Sun sets by itself — not a deficiency</li><li>Presumptive status → <b>pure</b></li><li>Grave in the depths → <b>pure</b></li><li>Offering remains valid</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> <b>Tumaat kever ha-tehom</b> (impurity from an unknown grave) is a leniency — it does not retroactively invalidate completed purification acts, but it <b>does</b> apply when the person's status is still presumptively impure.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 64 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9"><b>Floating Impurity</b><br>Uncertain contact with impurity in motion</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3b1a1a; border-left: 3px solid #e74c3c"><b>Carried/Dragged</b><br>Treated as at rest → Impure</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50"><b>Thrown/Floating</b><br>Treated as in motion → Pure<br>(exceptions: corpse, ohel, zav)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1f3d; border-left: 3px solid #9b59b6"><b>Grave in the Depths (Day 7)</b><br>Does the person have presumptive purity?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3b1a1a; border-left: 3px solid #e74c3c"><b>Nazirite</b><br>Lacks shaving (action) → Still impure</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50"><b>Paschal Offering</b><br>Lacks only sunset → Pure<br><i>The sun sets by itself</i></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #c9a84c"><b>Found Corpse:</b> Single body in normal burial position → remove with surrounding earth</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 64a-64b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 64a-64b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../63/">← Daf 63</a><a href="../65/">Daf 65 →</a></div>
+</body>
+</html>

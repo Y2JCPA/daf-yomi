@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 30 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💇</div>
+  <h1>Nazir 30</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר ל׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💇 Shaving with Father's Offerings — a son may use his father's nazirite money, but a daughter may not<br>
+    ⚖️ Halakha l'Moshe miSinai — the son-daughter distinction is a transmitted tradition, not inheritance law<br>
+    🔀 R' Yosei vs. the Rabbis — dispute over which scenario allows using the father's money<br>
+    👦 Son's Naziriteship & Puberty — R' Yehuda HaNasi's view on two hairs mid-term<br>
+    ❓ Unresolved Dilemmas — two sons, firstborn portions, and mismatched nazirite types<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nazir 30: Using a Father's Nazirite Offerings</h2>
+  
+  <div class="callout"><strong>Core Question</strong> When a nazirite father dies leaving unallocated money for his offerings, <b>can his son use that money to complete his own naziriteship?</b> The Mishna rules yes for a son but not a daughter — and the Gemara explores <em>why</em>, revealing a <b>halakha l'Moshe miSinai</b> that operates independently of inheritance law.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Son's Naziriteship When Two Hairs Grow Mid-Term</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Father vows naziriteship on his son; son also vows independently</div><div class="flow-arrow">↓</div><div class="flow-box question">When does the son develop <b>two pubic hairs</b> (physical maturity)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Before father's vow</div><div class="flow-box result-good">Son bound by <b>his own</b> naziriteship only</div></div><div class="flow-col"><div class="flow-label">After term ends</div><div class="flow-box result-good">Son bound by <b>father's</b> naziriteship only</div></div><div class="flow-col"><div class="flow-label">Mid-term (R' Yehuda HaNasi)</div><div class="flow-box result-bad">Must observe <b>60 days total</b> to ensure a full 30-day term is completed</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key</strong> R' Yosei b'R' Yehuda holds the father's authority extends to the <b>age of vows</b> (rabbinic), so mid-term hairs don't cancel the vow. R' Yehuda HaNasi holds it ends at two hairs (Torah law).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Mishna: Who Can Shave with Father's Nazirite Money?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Son ✓</h3><ul><li>A son may <b>shave</b> (bring closing offerings) using money his nazirite father set aside</li><li>This applies even though the money was <b>unallocated</b> among the three offerings</li><li>Based on a <b>halakha l'Moshe miSinai</b></li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Daughter ✗</h3><ul><li>A daughter may <b>not</b> use her father's nazirite money</li><li>Even if she is the <b>sole heir</b> and inherits his entire estate</li><li>The rule is <b>not</b> based on inheritance — it is a special transmitted tradition</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>R' Yochanan</strong> This distinction is a <b>halakha l'Moshe miSinai</b> — a tradition transmitted to Moses at Sinai regarding nazirites, independent of general inheritance law.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Yosei vs. the Rabbis: When Can the Son Use the Money?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Yosei</div><div class="speech">If the father died and <em>then</em> the son vowed naziriteship, the son <b>can</b> use the money.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Yosei</div><div class="speech">But if both were nazirites <em>during the father's lifetime</em> and the father died, the money goes to <b>communal gift offerings</b> (nedavah).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Eliezer, R' Meir & R' Yehuda</div><div class="speech">The exact <b>opposite</b>: if both were nazirites during the father's lifetime, <em>that</em> is when the son can use the money.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Eliezer, R' Meir & R' Yehuda</div><div class="speech">If the son vowed only <em>after</em> the father's death, the money goes to <b>nedavah</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Total Disagreement</strong> The Rabbis disagree with R' Yosei on <b>both clauses</b> — wherever he permits, they forbid, and vice versa.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Unresolved Dilemmas (Teku): Two Sons & Mixed Naziriteships</h2>
+  
+  <table><tr><th>Dilemma</th><th>Option A</th><th>Option B</th></tr><tr><td>Two nazirite sons — who gets the money?</td><td>Whoever <b>shaves first</b> takes it all (halakha, not inheritance)</td><td>They <b>split equally</b> (derived from inheritance)</td></tr><tr><td>Firstborn & regular son?</td><td>Both get <b>equal shares</b> (halakha unrelated to inheritance)</td><td>Firstborn gets <b>double portion</b> (treated as inheritance)</td></tr><tr><td>Father: permanent nazirite; Son: standard (or vice versa)?</td><td>Son <b>can</b> use the money — both involve pure naziriteship</td><td>Son <b>cannot</b> — the halakha applies only to matching types</td></tr><tr><td>Father: impure nazirite; Son: pure (or vice versa)?</td><td>Son <b>can</b> use the money regardless</td><td>Son <b>cannot</b> — pure and impure naziriteships are fundamentally different</td></tr></table><div class="callout" style="margin-top:20px"><strong>Teku</strong> All four dilemmas remain <b>unresolved</b>. The core tension: is the son's right to use his father's money rooted in <b>inheritance</b> or in a standalone <b>halakha</b>?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Mishna's Case Step by Step</h2>
+  
+  <div class="process-bar"><div class="process-step">👨 Father becomes a nazirite and sets aside <b>unallocated money</b> for his offerings</div><div class="process-arrow">↓</div><div class="process-step">💰 The money is not designated — it could go toward any of the three nazirite offerings</div><div class="process-arrow">↓</div><div class="process-step highlight">⚰️ The father <b>dies</b> before purchasing the animals</div><div class="process-arrow">↓</div><div class="process-step">👦 The son declares: <em>"I am a nazirite on condition that I shave with my father's money"</em></div><div class="process-arrow">↓</div><div class="process-step highlight">💇 The son completes his naziriteship and uses the money for <b>his own</b> closing offerings</div><div class="process-arrow">↓</div><div class="process-step">👩 A daughter in the same situation may <b>not</b> use the money — it goes to nedavah</div></div><div class="callout" style="margin-top:20px"><strong>Note</strong> R' Yosei disagrees with this scenario and holds the son can use the money only when <b>both</b> were nazirites during the father's lifetime.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 30 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;">Father dies leaving <b>unallocated nazirite money</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#4caf50; padding:10px; border-radius:8px;"><b>Son</b> may shave using the money<br>(halakha l'Moshe miSinai)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#e74c3c; padding:10px; border-radius:8px;"><b>Daughter</b> may not — money goes to nedavah</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1f3d; color:#d4c5f9; padding:12px; border-radius:8px;">Disputes remain: <b>R' Yosei vs. Rabbis</b> on which scenario applies; multiple dilemmas about two sons, firstborns, and mismatched nazirite types left <b>unresolved (teku)</b></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 30a-30b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 30a-30b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../29/">← Daf 29</a><a href="../31/">Daf 31 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 43 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🚪</div>
+  <h1>Nazir 43</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר מג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🚪 Entering a Corpse-House — How can a nazir incur double liability for impurity and enclosure?<br>
+    ⏱️ Moment of Death — When does corpse impurity begin: at dying or at death?<br>
+    🧍 Goses (Dying Person) — Dispute whether a dying person imparts impurity<br>
+    🦴 Wholeness Requirement — Must a relative's body be whole for priestly impurity?<br>
+    📦 Met Mitzva — The unattended corpse overrides all restrictions<br>
+    ✂️ Severed Limbs — Does a priest become impure for a relative's detached limb?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nazir 43: Simultaneous Impurity & the Wholeness Requirement</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Problem:</b> How can entering a house with a corpse create <em>simultaneous</em> impurity + enclosure liability?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Pappa</div><div class="flow-box action">Enters in a sealed chest (40+ se'a) — someone removes the lid</div></div><div class="flow-col"><div class="flow-label">Mar bar Rav Ashi</div><div class="flow-box action">Enters house while person is alive — person dies while he sits there</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Second Topic:</b> When does corpse impurity <em>begin</em>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">First Tanna</div><div class="flow-box result-bad">"To profane himself" — even a <em>goses</em> (dying person) included</div></div><div class="flow-col"><div class="flow-label">R' Yehuda HaNasi</div><div class="flow-box result-good">"When they die" — only <em>after</em> actual death</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Tension</strong> The daf explores the precise <em>moment</em> impurity attaches — both for entering an enclosure and for the onset of death itself.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>How Can a Nazir Be Liable Twice?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">When entering a house with a corpse, one's <b>hand enters first</b> — he's already impure before his body enters! How can impurity and enclosure be simultaneous?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Elazar</div><div class="speech">If he inserts his hand first: liable only for <b>impurity</b>, not enclosure. Only if his whole body enters at once — <b>both liabilities</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But his <b>nose</b> would enter before his body!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">He enters <b>standing upright</b> so his head doesn't enter first. Then impurity and enclosure happen simultaneously.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But his <b>toes</b> would still enter first!</div></div></div><div class="callout" style="margin-top:20px"><strong>Problem</strong> No matter how one enters, <em>some</em> body part enters first — creating a sequence rather than simultaneity.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Solutions for Simultaneous Liability</h2>
+  
+  <div class="flowchart"><div class="flow-box question">How can impurity + enclosure occur at the <b>exact same moment</b>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Pappa</div><div class="flow-box result-good">Enters in a <b>chest/box/cabinet</b> (holds 40+ se'a, blocks impurity). Someone <em>removes the lid</em> — both liabilities attach at once.</div></div><div class="flow-col"><div class="flow-label">Mar bar Rav Ashi</div><div class="flow-box result-good">Enters house while occupant is <b>alive</b>. The person <em>dies</em> while the nazir is sitting inside — both attach simultaneously.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Insight</strong> Only scenarios where the nazir is already fully inside when impurity begins can produce truly simultaneous liability.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>When Does Corpse Impurity Begin?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#c9a84c">First Tanna (Leviticus 21:4)</h3><ul><li>Source: "He shall not become impure… <b>to profane himself</b>"</li><li>A <em>goses</em> (dying person) is included in the prohibition</li><li>Impurity prohibition may apply even before actual death</li><li>"When they die" teaches: no impurity from leprosy/zav of relatives</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Rabbi Yehuda HaNasi (Numbers 6:7)</h3><ul><li>Source: "…for his father or mother… <b>when they die</b>"</li><li>A <em>goses</em> does NOT impart impurity</li><li>Only actual death triggers the prohibition</li><li>Same verse also teaches: impurity only from corpses, not from tzara'at/zav</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Reish Lakish</strong> The practical difference between the two derivations is the status of a <b>goses</b> (dying person) — does proximity to a dying person violate the impurity prohibition?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>What Each Verse Teaches</h2>
+  
+  <table><tr><th>Verse / Phrase</th><th>According to First Tanna</th><th>According to R' Yehuda HaNasi</th></tr><tr><td>"To profane himself" (Lev. 21:4)</td><td>Impurity begins even for a <em>goses</em></td><td>Applies only to one not yet profaned (excludes already-impure priest)</td></tr><tr><td>"When they die" (Num. 6:7)</td><td>No impurity from leprosy/zav of relatives</td><td>Impurity begins only at death + no impurity from leprosy/zav</td></tr><tr><td>"To profane <em>himself</em>" (emphasis)</td><td>Two halakhot: timing of impurity + already-profaned exclusion</td><td>Only: already-profaned priest excluded</td></tr><tr><td>"When <em>they</em> die" (emphasis)</td><td>Only: leprosy/zav exclusion</td><td>Two halakhot: timing + leprosy/zav exclusion</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' Yochanan</strong> According to R' Yochanan, there is <b>no practical difference</b> between the two opinions — they simply derive the same halakha from different verses.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Must a Father Be 'Whole' for Priestly Impurity?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav (via Rav Ḥisda)</div><div class="speech">If a priest's <b>father's head was severed</b>, the son may <em>not</em> become impure for him. The verse says "for his father" — when he is <b>whole</b>, not lacking.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Hamnuna</div><div class="speech">If bandits in the Valley of Aravot severed his father's head — you'd say his son the priest <em>can't bury him</em>?!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ḥisda</div><div class="speech">That's a <b>met mitzva</b>! If a priest must become impure for <em>strangers</em> with no one to bury them, <em>kal va-chomer</em> for his own father!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">But his son is <em>with</em> him — so there IS someone to bury him. That's not a met mitzva!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Since they were traveling on the road, he is <b>considered like one with no one</b> to bury him.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> A <b>met mitzva</b> (unattended corpse) overrides even the nazir's and priest's impurity restrictions — the wholeness requirement does not apply.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 43 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>Double Liability:</b> Impurity + enclosure must be truly simultaneous</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:8px; border-radius:8px;"><b>Rav Pappa:</b> Sealed chest opened over him</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:8px; border-radius:8px;"><b>Mar b. Rav Ashi:</b> Person dies while he's inside</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1a3e; color:#fff; padding:10px; border-radius:8px;"><b>When does impurity begin?</b> Dispute: even a goses (First Tanna) vs. only at death (R' Yehuda HaNasi)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1a1a; color:#fff; padding:10px; border-radius:8px;"><b>Wholeness:</b> Rav Ḥisda/Rav — priest becomes impure only for a <em>whole</em> relative (except met mitzva)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>R' Yehuda vs. Rabbis:</b> Limb from dead father — R' Yehuda permits impurity; Rabbis require wholeness</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 43a-43b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 43a-43b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../42/">← Daf 42</a><a href="../44/">Daf 44 →</a></div>
+</body>
+</html>

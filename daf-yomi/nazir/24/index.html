@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 24 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐑</div>
+  <h1>Nazir 24</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר כד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐑 Nullified Nazirite Vow — what happens to animals already separated<br>
+    💍 Husband's Obligation — is he required to fund his wife's offerings?<br>
+    ⚖️ Rav Ḥisda vs. Rava — identifying the tanna of the mishna<br>
+    💰 Allocated vs. Unallocated Funds — different rules for consecrated money<br>
+    🍞 Four Rams Without Bread — nazirite peace-offerings that skip the loaves<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Woman's Nazirite Vow Nullified by Husband — What Happens to Her Offerings?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Woman vows <b>naziriteship</b> and separates animals for offerings</div><div class="flow-arrow">↓</div><div class="flow-box action">Husband <b>nullifies</b> her vow</div><div class="flow-arrow">↓</div><div class="flow-box question">Whose animal was it?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">His Animal</div><div class="flow-box result-good">Goes out to <b>graze</b> among the flock — loses sanctity entirely</div></div><div class="flow-col"><div class="flow-label">Her Animal</div><div class="flow-box result-bad"><b>Sin-offering</b> → left to die<br><b>Burnt-offering</b> → sacrificed as olah<br><b>Peace-offering</b> → sacrificed, eaten <b>one day</b>, <b>no bread</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Once the husband nullifies the vow, the woman no longer <i>needs</i> these offerings — this changes whether the husband bears any obligation for them.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Mishna: Fate of the Separated Animals</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Animal Was His</h3><ul><li>Goes out to graze among the flock</li><li>Treated as non-consecrated</li><li>Waits until it gets a blemish</li><li>Then may be used for any purpose</li></ul></div><div class="compare-box" style="border-top-color:#3a1a2e"><h3 style="color:#e74c3c">Animal Was Hers</h3><ul><li>Sin-offering (chatat) → left to die</li><li>Burnt-offering (olah) → sacrificed on altar</li><li>Peace-offering (shelamim) → sacrificed</li><li>Eaten for ONE day only (not two)</li><li>Does NOT require bread (loaves/wafers)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Why the Difference?</strong> If the animal was his, after nullification there's no valid vow to sustain the consecration. If hers, each offering type follows its own rule for what to do with an ownerless consecrated animal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Who Is the Tanna? — Husband's Obligation to Fund Offerings</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ḥisda</div><div class="speech">The mishna follows the <b>Rabbis</b> — a husband is <b>not indebted</b> to his wife for her offerings.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ḥisda</div><div class="speech">If it were <b>R' Yehuda</b>, the husband's animal would stay consecrated — because he's <b>obligated</b> to provide her offerings!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Yehuda</div><div class="speech">(Baraita) A husband brings the <b>offering of a rich man</b> on behalf of his wife, even for obligations <b>from before their marriage</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Yehuda</div><div class="speech">He wrote in the <b>ketubah</b>: <i>"I accept all claims of guarantee upon me from beforehand."</i></div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">You can even say it's <b>R' Yehuda</b>! He's only obligated for what she <b>needs</b>. After nullification, she <b>doesn't need</b> it anymore.</div></div></div><div class="callout" style="margin-top:20px"><strong>Two Versions</strong> The Gemara presents an alternative version where Rav Ḥisda attributes the mishna to R' Yehuda (not the Rabbis), applying the same logic that obligation only exists for necessary offerings.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Allocated Funds — What Happens to Consecrated Money?</h2>
+  
+  <table><tr><th>Offering Type</th><th>Fate of Money</th><th>Misuse Liability (Me'ilah)</th></tr><tr><td><b>Sin-offering</b> (Chatat)</td><td>Cast into the Dead Sea (destroyed)</td><td>No benefit allowed, but no me'ilah liability</td></tr><tr><td><b>Burnt-offering</b> (Olah)</td><td>Used to bring a burnt-offering</td><td>Full me'ilah liability applies</td></tr><tr><td><b>Peace-offering</b> (Shelamim)</td><td>Used to bring a peace-offering</td><td>Eaten for one day, no bread required</td></tr><tr><td><b>Unallocated funds</b></td><td>All go to communal gift offerings (nedavah)</td><td>Treated as voluntary communal donations</td></tr></table><div class="callout" style="margin-top:20px"><strong>Allocated vs. Unallocated</strong> If she hadn't specified which coins go to which offering, all funds default to communal <b>nedavah</b> offerings. Only when funds are designated do the specific rules per offering type apply.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>How Does a Married Woman Own Property?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Mishna says: <i>"If the animal was <b>hers</b>…"</i></div><div class="flow-arrow">↓</div><div class="flow-box question">But a married woman's acquisitions belong to her <b>husband</b>!<br>How can she own an animal?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Pappa</div><div class="flow-box result-good">She <b>saved from her dough</b> — ate less and used the savings to buy the animal</div></div><div class="flow-col"><div class="flow-label">Alternative</div><div class="flow-box result-good">Another person <b>gave it to her</b> on condition that the husband <b>has no rights</b> to it</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Halakhic Background</strong> The general rule is <b>mah she-kantah ishah kantah ba'alah</b> — what a wife acquires, her husband acquires. These two scenarios are exceptions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Four Nazirite Rams That Don't Require Bread</h2>
+  
+  <div class="process-bar"><div class="process-step">🍞 Normally, a nazirite's peace-offering (ram) is accompanied by <b>loaves and wafers</b></div><div class="process-arrow">↓</div><div class="process-step highlight">👩 <b>Hers</b> — Woman whose husband nullified her nazirite vow</div><div class="process-arrow">↓</div><div class="process-step highlight">👦 <b>His</b> — Father vowed son as nazirite, but the son (or relatives) objected</div><div class="process-arrow">↓</div><div class="process-step highlight">⚰️ <b>After Death</b> — Owner died before bringing the offering</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ <b>After Atonement</b> — Owner already gained atonement through a different offering</div><div class="process-arrow">↓</div><div class="process-step">💡 Common logic: in all four cases, the offering is <b>no longer fit for its original atonement purpose</b></div></div><div class="callout" style="margin-top:20px"><strong>Shmuel to Avuh bar Ihi</strong> Shmuel urgently demanded: <i>"You shall not sit on your feet until you explain this baraita to me!"</i> — emphasizing the importance of understanding these four exceptions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 24 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:18px; border-radius:12px;">Woman separates animals for <b>nazirite offerings</b></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:18px; border-radius:12px;">Husband <b>nullifies</b> her vow — she is no longer a nazirite</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#4caf50; padding:14px; border-radius:10px;"><b>His animal</b><br>→ Grazes until blemished<br>→ Loses all sanctity</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a2e; color:#e74c3c; padding:14px; border-radius:10px;"><b>Her animal</b><br>→ Chatat dies<br>→ Olah sacrificed<br>→ Shelamim: 1 day, no bread</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; color:#d4a5ff; padding:18px; border-radius:12px;">Key dispute: Is the husband <b>obligated</b> to fund her offerings?<br><b>Rabbis</b>: No obligation at all | <b>R' Yehuda</b>: Yes, but only for <i>necessary</i> offerings</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 24a-24b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 24a-24b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../23/">← Daf 23</a><a href="../25/">Daf 25 →</a></div>
+</body>
+</html>

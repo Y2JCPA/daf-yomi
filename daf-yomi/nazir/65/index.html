@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 65 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚱️</div>
+  <h1>Nazir 65</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר סה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚱️ Graveyard Status — What qualifies three corpses as an ancient cemetery<br>
+    🔍 Exclusions — Corpses that don't establish a graveyard (killed, seated, incomplete)<br>
+    🌍 Surrounding Earth — How much soil must be removed with a relocated corpse<br>
+    🏗️ Eretz Yisrael's Purity — Reish Lakish's lenient pretexts for purity<br>
+    ✨ Uncertain Leprosy — Default purity for doubtful nega'im<br>
+    💧 Examining a Zav — Seven factors that disqualify a discharge as ziva<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>From Found Corpse to Graveyard Status</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Single corpse found <b>lying in usual manner</b></div><div class="flow-arrow">↓</div><div class="flow-box action">May remove corpse + surrounding earth (teḥum)</div><div class="flow-arrow">↓</div><div class="flow-box question">Examine 20 cubits — find more corpses?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No more found</div><div class="flow-box result-good">Not a graveyard — area is <b>pure</b></div></div><div class="flow-col"><div class="flow-label">3 found (all new)</div><div class="flow-box result-bad">Graveyard established — <b>examine further 20 cubits</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Rule</strong> Only three <b>previously unknown</b> corpses buried in Jewish manner establish a graveyard. Known corpses, killed persons, or non-standard burials do not count.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>What Doesn't Count Toward a Graveyard</h2>
+  
+  <table><tr><th>Exclusion</th><th>Reason</th></tr><tr><td>Already <b>known</b> corpse (מת שהוכר)</td><td>Must be newly discovered</td></tr><tr><td><b>Killed</b> person (הרוג)</td><td>May have been buried at site of death</td></tr><tr><td>Buried <b>sitting</b> (יושב)</td><td>Not Jewish burial custom</td></tr><tr><td>Head <b>between thighs</b></td><td>Not the usual Jewish manner</td></tr><tr><td><b>Incomplete</b> body (missing vital part)</td><td>No surrounding earth or graveyard status</td></tr><tr><td>Corpses facing <b>opposite directions</b></td><td>Jewish cemeteries align all bodies same direction</td></tr><tr><td>Mix of <b>known + newly found</b></td><td>Cannot combine — must be all one type</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rav Yehuda's Reasoning</strong> Each exclusion is derived from precise language in the Mishna: <b>'found'</b> excludes known; <b>'corpse'</b> excludes killed; <b>'lying'</b> excludes sitting; <b>'in the usual manner'</b> excludes abnormal positions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Yeshevav vs. R' Akiva: Mixing Known and Found Corpses</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Yeshevav</div><div class="speech">I found <b>two known</b> corpses and <b>one newly discovered</b> — together they form a graveyard!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Akiva</div><div class="speech">All your toil is <b>in vain</b>. A graveyard requires either <b>three known</b> or <b>three newly found</b> — you cannot combine them.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Yeshevav</div><div class="speech">But there are three bodies here in one location!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Akiva</div><div class="speech">The known corpses were <b>intentionally</b> placed there. Only three <b>unexpected</b> discoveries together raise the concern of an ancient cemetery.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakha</strong> R' Akiva's view prevails: <b>mixed categories</b> of corpses (some known, some found) do not combine to establish graveyard status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Two Definitions of 'Surrounding Earth' (עפר תבוסה)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Ben Azzai (via R' Yoḥanan)</h3><ul><li>Take all <b>loose earth</b> near the corpse</li><li>Dig into <b>virgin ground</b> beneath</li><li>To a depth of <b>three fingerbreadths</b></li><li>Assumes blood/moisture absorbed into soil</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3e"><h3 style="color:#9b59b6">R' Elazar b. R' Tzadok (Baraita)</h3><ul><li>Take <b>wood chips</b> (possible coffin remnants)</li><li>Take <b>lumps of earth</b> (possible absorbed blood)</li><li>Discard items <b>certainly</b> unrelated (stones)</li><li>Set aside <b>uncertain</b> items</li><li>Remaining items combine to majority of skeleton, ¼ kav bones, or full ladle of dust</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Source</strong> Rav Yehuda derives the concept from <b>Genesis 47:30</b> — Jacob's instruction to Joseph: 'Carry me out from Egypt' implies taking the <b>surrounding earth</b> with the remains.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Rava's Dilemma: Sequential Discovery of Corpses</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Find corpse #1 → examine → <b>remove it</b></div><div class="flow-arrow">↓</div><div class="flow-box action">Find corpse #2 nearby → examine → <b>remove it</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Find corpse #3 — now it's a <b>graveyard!</b></div><div class="flow-branch"><div class="flow-col"><div class="flow-label">First Version of Rava</div><div class="flow-box result-bad">Do <b>not</b> move #3. But also do <b>not</b> return #1 and #2 — they stay where reburied.</div></div><div class="flow-col"><div class="flow-label">Second Version of Rava</div><div class="flow-box result-good">Since permission was granted to move #1 and #2, one may <b>move all three</b>.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Reish Lakish</strong> <b>"They found a pretext and deemed Eretz Yisrael pure."</b> The Sages were lenient to avoid multiplying uncertain impurity in the Holy Land.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Uncertainty in Leprous Sores (נגעים)</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">לטהרו או לטמאו — פתח הכתוב בטהרה תחילה</div><div class="callout"><strong>Principle</strong> Any <b>uncertain</b> case of leprosy is initially deemed <b>pure</b>. Source: <i>"To pronounce it pure or to pronounce it impure"</i> (Leviticus 13:59) — since the verse <b>opens with purity</b>, uncertainty defaults to purity.<br><br><b>R' Yehoshua</b> ruled '<b>keiha</b>' (כהה) on the dispute about whether baheret or white hair came first. Rav Yehuda explains: he pronounced it <b>unsolvable — and therefore pure</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 65 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;">⚱️ <b>Finding Corpses</b><br>3 unknown corpses in Jewish burial = graveyard</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a1e; border-left: 3px solid #4caf50; padding: 10px;">🔍 <b>Exclusions Apply</b><br>Killed, seated, incomplete, mixed known/unknown — do NOT establish graveyard</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a1e; border-left: 3px solid #e74c3c; padding: 10px;">🌍 <b>Eretz Yisrael Leniency</b><br>Reish Lakish: Sages found pretexts to deem the land pure</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a2a1e; border-left: 3px solid #c9a84c; padding: 10px;">✨ <b>Nega'im</b>: Uncertain leprosy → <b>pure</b> (verse opens with purity)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a1a3e; border-left: 3px solid #9b59b6; padding: 10px;">💧 <b>Zav</b>: Once confirmed, all discharges impure — <b>רגלים לדבר</b></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 65a-65b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 65a-65b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../64/">← Daf 64</a><a href="../66/">Daf 66 →</a></div>
+</body>
+</html>

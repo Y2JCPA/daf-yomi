@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 37 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Nazir 37 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to the Rabbis, what principle does the term 'soaked' (משרה) in Numbers 6:3 teach?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Permitted food combines with forbidden food (heter mitzaref l'issur)</div>
+      <div class="option" onclick="select(1,this,1)">B. The legal status of the flavor of forbidden food is like that of its substance (ta'am k'ikkar)</div>
+      <div class="option" onclick="select(1,this,2)">C. A nazirite who merely smells wine is liable</div>
+      <div class="option" onclick="select(1,this,3)">D. Grape derivatives are forbidden only when consumed as food</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>The Rabbis derive from 'soaked' that if a nazirite soaked grapes in water and the water tastes like wine, he is liable — establishing ta'am k'ikkar. R' Akiva, by contrast, uses 'soaked' for heter mitzaref l'issur.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Why does Rav Dimi dismiss Abaye's objection from teruma?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Teruma no longer exists after the destruction of the Temple</div>
+      <div class="option" onclick="select(2,this,1)">B. Teruma in the present era applies only by rabbinic law, not Torah law</div>
+      <div class="option" onclick="select(2,this,2)">C. The laws of teruma were never meant to apply to mixtures</div>
+      <div class="option" onclick="select(2,this,3)">D. Teruma is not a true prohibition but merely a sanctity status</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>Rav Dimi explains that since the exile, teruma applies only miderabanan (by rabbinic law), which is why the lenient ruling about mixtures applies — it cannot serve as a Torah-level objection.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">From where does R' Akiva derive the principle of ta'am k'ikkar (flavor = substance)?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. The term 'soaked' regarding a nazirite</div>
+      <div class="option" onclick="select(3,this,1)">B. The purging of Midianite vessels (Numbers 31:23)</div>
+      <div class="option" onclick="select(3,this,2)">C. The sin-offering verse 'anything that touches its flesh'</div>
+      <div class="option" onclick="select(3,this,3)">D. The prohibition of kilayim in a vineyard</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>R' Akiva derives ta'am k'ikkar from the vessels of gentiles — the Torah required purging the Midianite vessels of their absorbed non-kosher flavor, proving that flavor has the legal status of substance.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">Why do the Rabbis reject deriving ta'am k'ikkar from the vessels of gentiles?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. The verse about Midianite vessels is not about food law</div>
+      <div class="option" onclick="select(4,this,1)">B. Vessels of gentiles is a novelty — even tainted flavor (noten ta'am lifgam) is forbidden there</div>
+      <div class="option" onclick="select(4,this,2)">C. The purging requirement was a one-time wartime command</div>
+      <div class="option" onclick="select(4,this,3)">D. Absorbed flavor in vessels is too minimal to be legally significant</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>The Rabbis hold that vessels of gentiles is a chiddush (novelty) because normally noten ta'am lifgam (flavor that taints) is permitted, yet here it is forbidden. You cannot derive general principles from a novelty.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Why does R' Yochanan limit heter mitzaref l'issur to only the case of a nazirite?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. The verse 'soaked' explicitly limits it to nazirite law</div>
+      <div class="option" onclick="select(5,this,1)">B. Nazirite and sin-offering are 'two verses that come as one' (shnei ketuvim), which do not teach beyond their cases</div>
+      <div class="option" onclick="select(5,this,2)">C. Other prohibitions are more severe than naziriteship</div>
+      <div class="option" onclick="select(5,this,3)">D. Heter mitzaref is a rabbinic principle that only applies to vows</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>Both the nazirite ('soaked') and sin-offering ('anything that touches its flesh') teach that permitted combines with forbidden. Since two verses teaching the same principle cannot extend it to other cases (shnei ketuvim ha'ba'im k'echad ein melamdim), the principle stays limited.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":1,"3":1,"4":1,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

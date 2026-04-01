@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 6 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📅</div>
+  <h1>Nazir 6</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר ו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📅 Duration Debate — Is an unspecified naziriteship 29 or 30 days?<br>
+    ✂️ Shaving Timelines — When to shave for consecutive naziriteship terms<br>
+    🌅 Miktzat HaYom — Part of the day counts as a full day<br>
+    ⚠️ Impurity on Day 30 — Does it negate the entire naziriteship?<br>
+    📖 Scriptural Sources — Rabbi Yoshiya vs Rabbi Yonatan on the derivation<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>How Long Is a Standard Naziriteship?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Mattana</div><div class="speech">An unspecified naziriteship is <b>30 days</b>. The thirtieth day can count toward both terms via <i>miktzat hayom k'kulo</i>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Bar Padda</div><div class="speech">An unspecified naziriteship is <b>29 days</b>. The mishna's case of shaving on day 30 for the first term proves this.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Each side claims support from different clauses of the mishna. The Gemara tests both positions against multiple mishnayot.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Dispute</strong> The debate hinges on whether the 30th day is the <b>last day</b> of naziriteship (Rav Mattana) or the <b>first day after</b> naziriteship ends on day 29 (Bar Padda).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav Mattana vs Bar Padda: Duration of Naziriteship</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rav Mattana</h3><ul><li>Unspecified naziriteship = 30 days</li><li>Shaving on day 31 is the standard case</li><li>Shaving on day 30 uses miktzat hayom k'kulo</li><li>Day 30 can count for BOTH terms of consecutive naziriteships</li></ul></div><div class="compare-box" style="border-top-color:#3a2a1a"><h3 style="color:#e67e22">Bar Padda</h3><ul><li>Unspecified naziriteship = 29 days</li><li>Shaving on day 30 is the standard case</li><li>Mishna clause about shaving on day 31 = one who specified 30 complete days</li><li>Proof from: shaving for 2nd term on day 60 (= 2×29 + 2 shaving days)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Difference</strong> They each claim a different clause of the mishna as the straightforward reading and reinterpret the other clause.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Two Consecutive Naziriteships: Shaving Timeline</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Person vows <b>two consecutive terms</b> of naziriteship</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Mattana (30 days)</div><div class="flow-box result-good">Shave on day <b>31</b> for 1st term<br>Shave on day <b>61</b> for 2nd term<br><i>Or</i> day 30 via miktzat hayom</div></div><div class="flow-col"><div class="flow-label">Bar Padda (29 days)</div><div class="flow-box result-good">Shave on day <b>30</b> for 1st term<br>Shave on day <b>60</b> for 2nd term<br>(standard, no special principle needed)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Miktzat HaYom</strong> The principle that <b>part of the day is like an entire day</b> allows Rav Mattana to explain early shaving. For two terms, this principle applies to bridge one term's end into the next term's beginning.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Impurity on the 30th Day: Who Has the Problem?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Mishna</div><div class="speech">If an unspecified nazirite becomes <b>impure on day 30</b>, it <b>negates the entire tally</b> and he must restart.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Mattana</div><div class="speech">This works well — day 30 is still <b>within</b> his naziriteship, so impurity negates it.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Bar Padda</div><div class="speech">Difficulty! If naziriteship ended on day 29, why does day 30 impurity negate anything?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Bar Padda</div><div class="speech">Answer: Look at the <b>latter clause</b> — R' Eliezer says impurity negates only 7 days. If naziriteship were 30 days, he should negate all of them! This proves it's 29.</div></div></div><div class="callout" style="margin-top:20px"><strong>Challenge Pattern</strong> The Gemara repeatedly tests each position against different mishnayot, forcing each sage to reinterpret the clause that challenges them.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Rabbi Eliezer: Impurity Negation Rules</h2>
+  
+  <table><tr><th>Scenario</th><th>First Tanna</th><th>Rabbi Eliezer</th></tr><tr><td>Unspecified nazirite, impure on day 30</td><td>Negates ALL days</td><td>Negates only <b>7 days</b></td></tr><tr><td>100-day nazirite, impure on day 100</td><td>Negates ALL days</td><td>Negates only <b>30 days</b></td></tr><tr><td>Underlying principle</td><td>Full restart required</td><td>Day of completion gets special law</td></tr></table><div class="callout" style="margin-top:20px"><strong>Reish Lakish's Explanation</strong> Numbers 6:13 — <i>"on the day when the days of his consecration are complete"</i> — teaches: if impure on the completion day, give him the law of an <b>unspecified nazirite</b> (30 days) rather than negating everything.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Tannaitic Source: Rabbi Yoshiya vs Rabbi Yonatan</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">R' Yoshiya</div><div class="speech">"Days" implies minimum of 2 days. But the verse adds <b>"he shall let his hair grow long"</b> — significant hair growth requires <b>30 days</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yonatan</div><div class="speech">"Until the <b>days are complete</b>" — what days need completion? The days of a <b>month</b>. A month can be 29 or 30 days.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Perhaps Rav Mattana follows R' Yoshiya (30 days from hair growth) and Bar Padda follows R' Yonatan (month = possibly 29)?</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution Attempt</strong> Rav Mattana responds: Both may agree naziriteship is 30 days. They disagree about whether <b>"until" (ad)</b> means <i>until but not including</i> or <i>until and including</i> the 30th day.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 6 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Core Question:</b> How long is an unspecified naziriteship?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a4a; color:#4a90d9; padding:10px; border-radius:8px;"><b>Rav Mattana:</b> 30 days<br>Miktzat hayom allows shaving on day 30<br>Day 30 counts for both consecutive terms</div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a0a; color:#e67e22; padding:10px; border-radius:8px;"><b>Bar Padda:</b> 29 days<br>Shaving on day 30 is the natural endpoint<br>Proved from consecutive-term mishna</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Tannaitic Roots:</b> R' Yoshiya derives from hair growth; R' Yonatan from "days of completion" of a month</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; color:#ddd; padding:12px; border-radius:8px; text-align:center;"><b>Unresolved:</b> Rav Mattana claims both tannaim agree on 30 days — they differ only on whether "until" (עד) is inclusive</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 6a-6b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 6a-6b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../5/">← Daf 5</a><a href="../7/">Daf 7 →</a></div>
+</body>
+</html>

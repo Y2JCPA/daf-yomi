@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 16 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⏳</div>
+  <h1>Nazir 16</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר טז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📅 Nazirite Term Length — unspecified vs. explicit 30-day vows and their shaving rules<br>
+    ✂️ Two Terms of Naziriteship — timing of shaving between consecutive terms<br>
+    ☠️ Impurity During Naziriteship — when contact with a corpse negates the tally<br>
+    🪦 Vowing in a Cemetery — does naziriteship take effect while ritually impure?<br>
+    ⚖️ R' Yochanan vs. Reish Lakish — debate on naziriteship pending in impurity<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nazirite Vow: Duration, Impurity & Cemetery Rules</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>"I am a nazirite"</b><br>(unspecified duration)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Standard term = <b>30 days</b><br>Shaves on <b>day 31</b> (or day 30 fulfills)</div><div class="flow-arrow">↓</div><div class="flow-box question">What if he becomes <b>impure</b> on <b>day 30</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Tanna Kamma</div><div class="flow-box result-bad">Negates <b>entire tally</b> — must restart</div></div><div class="flow-col"><div class="flow-label">R' Eliezer</div><div class="flow-box result-good">Negates only <b>7 days</b> — day 30 is after completion</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Dispute</strong> Does the 30th day count as <b>within</b> or <b>after</b> the nazirite term? This question drives the entire daf.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Mishna: Shaving Rules for Nazirite Terms</h2>
+  
+  <table><tr><th>Vow Type</th><th>Shaves On</th><th>Day 30 Valid?</th></tr><tr><td>"I am a nazirite" (unspecified)</td><td>Day 31</td><td>✅ Yes — fulfilled</td></tr><tr><td>"I am a nazirite for 30 days" (explicit)</td><td>Day 31</td><td>❌ No — full 30 required</td></tr><tr><td>Two terms — first term</td><td>Day 31</td><td>✅ Yes — starts 2nd term</td></tr><tr><td>Two terms — second term</td><td>Day 61 (or day 60)</td><td>✅ Day 59 even valid</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' Pappeyas Testifies</strong> If he shaved the first term on day 30, he shaves the second on day 60. If he shaved on <b>day 59</b>, he has fulfilled — because <b>day 30 of the first term counts toward the second</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Impurity on the Last Day: Who Negates What?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Tanna Kamma</h3><ul><li>Unspecified nazirite impure on day 30 → <b>negates entire tally</b></li><li>Explicit 30-day vow impure on day 30 → negates entire tally</li><li>100-day vow impure on day 100 → negates entire tally</li><li>100-day vow impure on day 101 → negates only 30 days</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3c"><h3 style="color:#9b59b6">R' Eliezer</h3><ul><li>Unspecified nazirite impure on day 30 → <b>negates only 7 days</b></li><li>Explicit 30-day vow impure on day 30 → agrees: negates entire tally</li><li>100-day vow impure on day 100 → <b>negates only 30 days</b></li><li>100-day vow impure on day 101 → <b>negates only 7 days</b></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>R' Eliezer's Logic</strong> For an unspecified vow, <b>day 30 is after completion</b> of the term, so impurity at that point only negates 7 days — the purification period.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Vowing Naziriteship While in a Cemetery</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Person says <b>"I am a nazirite"</b><br>while standing <b>in a cemetery</b></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Even if he stays <b>30 full days</b> —<br>days do <b>NOT</b> count toward his tally</div><div class="flow-arrow">↓</div><div class="flow-box question">Does he bring <b>impurity offerings</b><br>(korbanot tum'ah)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No</div><div class="flow-box result-bad">He does <b>not</b> bring offerings of impurity for this period</div></div><div class="flow-col"><div class="flow-label">But if he leaves & re-enters</div><div class="flow-box result-good">Days <b>do</b> count and he <b>does</b> bring impurity offerings</div></div></div></div><div class="callout" style="margin-top:20px"><strong>R' Eliezer's Addition</strong> If he re-enters the cemetery <b>on the same day</b> he left, he still doesn't bring offerings — he needs <b>"first days"</b> of purity (Numbers 6:12).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Does Naziriteship Take Effect in a Cemetery?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">Naziriteship <b>takes effect</b> — it is <b>pending</b> (taluy) from the moment he vows, and activates when he becomes pure.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">Naziriteship does <b>NOT take effect at all</b>. If he doesn't repeat his vow after leaving, he is not a nazirite.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">Proof from the Mishna: it says he doesn't bring <b>impurity offerings</b> — implying the naziriteship <b>does</b> take effect, just without the offering obligation!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">No — the Mishna means he is <b>not included in the law of impurity at all</b>, because he is simply <b>not a nazirite</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">But a baraita teaches: an impure person who vows naziriteship is <b>prohibited from shaving, wine, and impurity</b> — and receives <b>40 lashes</b> for violations!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">If naziriteship doesn't take effect while impure, <b>why would he receive lashes</b>?</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Objection</strong> The baraita (Tosefta 2:14) states that an impure nazirite receives <b>malkot (lashes)</b> for violations — strong evidence that the vow takes effect even in a state of impurity.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Timeline: Two Consecutive Nazirite Terms</h2>
+  
+  <div class="process-bar"><div class="process-step">📜 Day 1 — Accepts two terms of naziriteship</div><div class="process-arrow">↓</div><div class="process-step">⏳ Days 1–29 — Observes first nazirite term (no shaving, wine, or impurity)</div><div class="process-arrow">↓</div><div class="process-step highlight">✂️ Day 31 — Shaves for first term (or day 30 is valid)</div><div class="process-arrow">↓</div><div class="process-step highlight">📜 Day 31 — Second term begins immediately after shaving</div><div class="process-arrow">↓</div><div class="process-step">⏳ Days 31–60 — Observes second nazirite term</div><div class="process-arrow">↓</div><div class="process-step highlight">✂️ Day 61 — Shaves for second term (day 60 valid; even day 59 valid per R' Pappeyas)</div></div><div class="callout" style="margin-top:20px"><strong>Overlap Principle</strong> The <b>30th day of the first term</b> can count as the <b>first day of the second term</b> — this is why shaving on day 59 from the start can fulfill the second term.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 16 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Nazirite Vow Declared</b><br>Unspecified = 30 days; explicit = as stated</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1810; border-left: 3px solid #e67e22; padding: 10px;"><b>Impurity on Last Day?</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1520; border-left: 3px solid #e74c3c; padding: 10px;"><b>Tanna Kamma:</b><br>Negates entire tally if within the term</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 10px;"><b>R' Eliezer:</b><br>Day 30 is after completion — only 7 days negated</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a1a3a; border-left: 3px solid #9b59b6; padding: 10px;"><b>Vow in Cemetery:</b><br>R' Yochanan — naziriteship is pending<br>Reish Lakish — no effect at all</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 16a-16b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 16a-16b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../15/">← Daf 15</a><a href="../17/">Daf 17 →</a></div>
+</body>
+</html>

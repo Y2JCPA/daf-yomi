@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 25 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💰</div>
+  <h1>Nazir 25</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר כה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💰 Unallocated Nazirite Funds — surplus money used for gift burnt-offerings<br>
+    📜 Halakha vs. Verse — R' Yochanan and Reish Lakish debate the source<br>
+    🐄 Offspring & Substitutes — rules for consecrated animal offspring and substitutes<br>
+    ⚖️ R' Yishmael vs. R' Akiva — excluding sin-offering offspring and guilt-offering substitutes<br>
+    🔪 Guilt-Offering Consigned to Grazing — Rav's ruling on slaughtering it as a burnt-offering<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>What Happens to a Deceased Nazirite's Surplus Funds?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The nazirite's unallocated funds include money for a <b>sin-offering</b>. How can it <i>all</i> go to gift burnt-offerings?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yochanan</div><div class="speech">It is an accepted <b>halakha</b> (tradition from Sinai) regarding a nazirite that unallocated funds go to gift offerings — even though sin-offering money is mixed in.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">The verse states: <i>'Whether for any of their vows or gift offerings'</i> (Lev 22:18) — the Torah teaches that <b>surplus of a vow</b> becomes a gift offering.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">According to Reish Lakish, why limit this to <b>unallocated</b> funds? Even <b>allocated</b> money should become gift offerings!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">The Tanna of R' Yishmael's school already ruled: the word <b>'Only'</b> (Deut 12:26) <i>excludes</i> sin-offering offspring and guilt-offering substitutes from being sacrificed.</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY ISSUE</strong> When a nazirite dies, what is the source for using unallocated surplus funds as gift burnt-offerings, given that sin-offering money is mixed in?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Source for Unallocated Funds → Gift Offerings</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Sin-offering money is mingled with the unallocated funds. How can it all be used for gift burnt-offerings?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yochanan</div><div class="speech">It is an accepted <b>halakha</b> (הלכה) — a tradition specific to a nazirite that unallocated funds go to gift offerings.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">The verse <i>'for any of their vows or gift offerings'</i> (Lev 22:18) teaches: <b>surplus of a vow</b> → gift offering.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">For R' Yochanan, the halakha limits it to <b>unallocated</b> funds. But for Reish Lakish, even <b>allocated</b> funds should qualify!</div></div></div><div class="callout" style="margin-top:20px"><strong>PRACTICAL DIFFERENCE</strong> R' Yochanan's tradition-based source naturally limits the rule to unallocated funds. Reish Lakish's verse-based derivation requires additional reasoning to exclude allocated funds.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Nazirite Dies — What Happens to the Money?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Nazirite set aside money for offerings, then <b>dies</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Were the funds <b>allocated</b> to specific offerings?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Unallocated (סתומין)</div><div class="flow-box result-good">All funds go to <b>gift burnt-offerings</b> (נדבה)</div></div><div class="flow-col"><div class="flow-label">Allocated (מפורשין)</div><div class="flow-box result-bad">Each fund follows its own rule — sin-offering money goes to the <b>Dead Sea</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>NOTE</strong> Both R' Yochanan and Reish Lakish agree on the outcome — they differ only on the source of the halakha.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Yishmael vs. R' Akiva — Excluding Guilt-Offering Substitutes</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">R' Yishmael</h3><ul><li>Derives from the word <b>"Only"</b> (אַךְ) in Deut 12:26</li><li>"Only" <i>excludes</i> offspring of sin-offerings and substitutes of guilt-offerings</li><li>These may NOT be sacrificed on the altar</li><li>Uses a single verse to exclude both cases</li></ul></div><div class="compare-box" style="border-top-color:#3a1a5c"><h3 style="color:#9b59b6">R' Akiva</h3><ul><li>For guilt-offering: the verse "It is a guilt-offering" (Lev 5:19) is sufficient</li><li>"It" = <i>it alone</i>, not its substitute</li><li>No need for "Only" to exclude guilt-offering substitutes</li><li>"Only" is needed only for sin-offering offspring</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>AGREEMENT</strong> Both agree that offspring of sin-offerings and substitutes of guilt-offerings cannot be sacrificed — they differ on the scriptural source.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Offspring & Substitutes of Consecrated Animals</h2>
+  
+  <table><tr><th>Animal Type</th><th>Offspring</th><th>Substitute</th></tr><tr><td>Burnt-offering (עולה)</td><td>N/A (male animal)</td><td>Sacrificed as burnt-offering</td></tr><tr><td>Peace-offering (שלמים)</td><td>Sacrificed as peace-offering (eaten by owners)</td><td>Sacrificed as peace-offering</td></tr><tr><td>Sin-offering (חטאת)</td><td>Left to die ☠️</td><td>Left to die ☠️</td></tr><tr><td>Guilt-offering (אשם)</td><td>Grazes until blemished, sold → burnt-offering</td><td>Grazes until blemished, sold → burnt-offering</td></tr></table><div class="callout" style="margin-top:20px"><strong>SOURCE</strong> Deut 12:26-27 — 'You shall sacrifice your burnt-offerings... and you shall eat the flesh' — teaching distinct rules for each offering type.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Why Can't We Let Offspring of Peace-Offerings Die?</h2>
+  
+  <div class="process-bar"><div class="process-step">💭 Perhaps offspring of peace-offerings, like sin-offerings, should be brought to the Temple and left to die?</div><div class="process-arrow">↓</div><div class="process-step highlight">📖 The verse states: 'You shall sacrifice your burnt-offerings, the flesh and the blood' (Deut 12:27)</div><div class="process-arrow">↓</div><div class="process-step">🐑 Treat a burnt-offering's substitute like a burnt-offering — sacrificed entirely</div><div class="process-arrow">↓</div><div class="process-step">🍖 Treat a peace-offering's offspring like a peace-offering — innards on altar, flesh eaten</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ Conclusion: Offspring of peace-offerings are <b>sacrificed</b>, not left to die</div></div><div class="callout" style="margin-top:20px"><strong>LOGIC</strong> Only the offspring of a sin-offering is left to die. Without the verse, we might have extended this stringency to peace-offerings as well.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 25 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Nazirite dies</b> with surplus funds set aside for offerings</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Unallocated</b>: All → gift burnt-offerings (both R' Yochanan & Reish Lakish agree)</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1621; border-left: 3px solid #e74c3c;"><b>Allocated</b>: Burnt-offering $ → burnt-offering; Peace-offering $ → peace-offering; Sin-offering $ → Dead Sea</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; border-left: 3px solid #9b59b6;">Source debate: <b>R' Yochanan</b> = halakha (tradition) | <b>Reish Lakish</b> = verse (Lev 22:18)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #c9a84c;">Related: Offspring/substitutes of sin-offerings die; guilt-offering substitutes graze until blemished</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 25a-25b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 25a-25b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../24/">← Daf 24</a><a href="../26/">Daf 26 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 35 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍇</div>
+  <h1>Nazir 35</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר לה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Hermeneutical Methods — Detail, generalization, and detail vs. restriction and amplification<br>
+    🔢 R' Elazar ben Azarya — Nazirite liable only for two seeds and a skin<br>
+    ⚖️ Sources for Klal u'Frat — Deriving the method from bailees and offerings<br>
+    🔍 Comparing Methods — How generalization/detail and restriction/amplification differ<br>
+    🥤 Combining Substances — Permitted and forbidden foods combining for a nazirite<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>How Do We Read 'From Pits to Grape Skin'?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Verse: <b>"From pits to grape skin"</b> (Numbers 6:4)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbis (Frat-Klal-Frat)</div><div class="flow-box action">Serves as a <b>detail</b> in the hermeneutical structure — limits the generalization to items <em>similar</em> to the detail</div></div><div class="flow-col"><div class="flow-label">R' Elazar ben Azarya</div><div class="flow-box action">Teaches that a nazirite is liable only if he eats <b>two grape seeds</b> (ḥartzanim) <b>and one grape skin</b> (zag)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Gemara reconciles: The verse serves <b>both</b> purposes — the placement after the generalization teaches frat-klal-frat, and the singular/plural forms teach R' Elazar ben Azarya's halakha</div></div><div class="callout" style="margin-top:20px"><strong>Key Question</strong> The sugya explores the foundations of two major hermeneutical systems and how they produce different results for nazirite prohibitions</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>How Does R' Elazar ben Azarya Read the Verse?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">According to R' Elazar ben Azarya, <b>"from pits to grape skin"</b> teaches liability only for two seeds and a skin. So how does he derive <em>frat-klal-frat</em>?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Answer 1</div><div class="speech">He holds like <b>R' Elazar</b>, who uses <em>ribui u'mi'ut</em> (restriction and amplification) — he doesn't need frat-klal-frat at all</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Answer 2</div><div class="speech">He agrees with the <b>Rabbis</b> that it is frat-klal-frat. The phrase's <em>placement</em> after the generalization teaches the method, and the <em>singular/plural</em> forms teach his halakha</div></div></div><div class="callout" style="margin-top:20px"><strong>Textual Proof</strong> If the Torah only meant to teach R' Elazar ben Azarya's rule, it would have placed 'pits and skin' alongside the other details of wine and vinegar — not after the generalization</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Singular vs. Plural — R' Elazar ben Azarya's Proof</h2>
+  
+  <table><tr><th>Term</th><th>Form</th><th>Implication</th></tr><tr><td>חרצנים (Ḥartzanim)</td><td>Plural — pits</td><td>At least <b>two</b> grape seeds</td></tr><tr><td>זג (Zag)</td><td>Singular — skin</td><td>Only <b>one</b> grape skin</td></tr><tr><td>Expected pattern</td><td>Both plural or both singular</td><td>Would indicate no special halakha</td></tr><tr><td>Actual text</td><td>Plural + Singular</td><td>Teaches <b>minimum measure</b>: 2 seeds + 1 skin</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Derivation</strong> The mismatch between plural 'ḥartzanim' and singular 'zag' is not accidental — it establishes the minimum quantity for nazirite liability</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Where Does R' Elazar Learn Frat-Klal-Frat?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">R' Abbahu's Source</h3><ul><li>From the <b>bailees</b> verse (Exodus 22:9)</li><li>Detail: 'donkey, ox, sheep'</li><li>Generalization: 'or any animal'</li><li>Detail: 'to guard'</li><li>→ Only items <b>similar to detail</b>: things that can be guarded</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Rava's Source</h3><ul><li>From the <b>offerings</b> verse (Leviticus 1:10)</li><li>Detail: 'if his offering is from'</li><li>Generalization: 'the flock'</li><li>Detail: 'sheep' and 'goats'</li><li>→ Only items <b>similar to detail</b>: animals that copulated with a person may not be offered</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Why Not Leviticus 1:2?</strong> Rav Yehuda of Diskarta challenged Rava: derive it from 'from animals, from the herd or flock'! Rava responded: 'animals' there includes undomesticated animals in the generalization, so the method cannot be properly demonstrated</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Three Hermeneutical Methods Compared</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Generalization → Detail</b><br>The generalization is added to the detail — <em>everything</em> is included</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Generalization → Detail → Generalization</b><br>Only items similar to the detail in <em>one</em> aspect are included</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Detail → Generalization → Detail</b><br>Only items similar to the detail in <em>two</em> aspects are included (more restrictive)</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>Restriction & Amplification</b><br>Includes more than klal-frat but less than frat-klal — e.g., tendrils yes, leaves no</div></div><div class="callout" style="margin-top:20px"><strong>Critical Distinction</strong> With two generalizations (klal-frat-klal), similarity in ONE aspect suffices. With two details (frat-klal-frat), similarity in TWO aspects is required — the extra detail creates a more restrictive filter</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Second Tithe — The Classic Klal-Frat-Klal</h2>
+  
+  <div class="process-bar"><div class="process-step">📜 Verse: 'You shall bestow the money on all your heart desires' — <b>Generalization</b> (no specific food)</div><div class="process-arrow">↓</div><div class="process-step highlight">🐄 'On cattle, sheep, wine, strong drink' — <b>Detail</b> (specific items)</div><div class="process-arrow">↓</div><div class="process-step">✨ 'On whatever your soul requests' — <b>Generalization again</b></div><div class="process-arrow">↓</div><div class="process-step highlight">🔍 Apply klal-frat-klal: only items <b>similar to the detail</b></div><div class="process-arrow">↓</div><div class="process-step">🌱 Common feature: <b>produce of produce</b> and <b>grown from the ground</b></div><div class="process-arrow">↓</div><div class="process-step highlight">✅ Includes birds (fed from ground) | ❌ Excludes fish, water, salt</div></div><div class="callout" style="margin-top:20px"><strong>Deuteronomy 14:26</strong> This verse from ma'aser sheni is the Gemara's primary demonstration of how klal-frat-klal operates in practice</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 35 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:white; padding:12px; border-radius:8px;"><b>Verse:</b> "From pits to grape skin" (Num. 6:4)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:white; padding:10px; border-radius:8px;"><b>Rabbis:</b> Frat-Klal-Frat — only items similar to the details</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a2e; color:white; padding:10px; border-radius:8px;"><b>R' Elazar:</b> Ribui u'Mi'ut — includes even tendrils</div></div><div class="flow-col"><div class="flow-box" style="background:#2e2a16; color:white; padding:10px; border-radius:8px;"><b>R' Elazar b. Azarya:</b> Teaches minimum measure — 2 seeds + 1 skin</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a1a3e; color:white; padding:12px; border-radius:8px;"><b>R' Yochanan:</b> Nazirite is unique — permitted foods <em>combine</em> with forbidden grape products (mishrat anavim)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 35a-35b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 35a-35b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../34/">← Daf 34</a><a href="../36/">Daf 36 →</a></div>
+</body>
+</html>

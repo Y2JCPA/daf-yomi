@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 27 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐑</div>
+  <h1>Nazir 27</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר כז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐑 Allocated Animals vs. Unallocated Funds — when do separated animals count as designated?<br>
+    🕊️ Birds Exception — a special verse governs bird offering allocation<br>
+    ♂️ Inherent Designation — male/female distinctions automatically allocate animals<br>
+    🔨 Blemished Animals — do they have the status of money or designated offerings?<br>
+    👨‍👦 Father's Naziriteship — can a son use his father's animals or money?<br>
+    📜 Sin-Offering Inheritance — verses limit using a father's separated sin-offering<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Allocated Animals or Unallocated Funds?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Pappa</div><div class="speech">If animals are like <b>unallocated funds</b>, how does R' Shimon ben Gamliel rule that each animal goes to its specific offering?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Shimi bar Ashi</div><div class="speech">Birds are a special case — a verse gives the owner or priest power to designate them.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Shimi bar Ashi</div><div class="speech">R' Shimon ben Gamliel's case is also special: <b>male/female</b> distinctions inherently allocate the animals.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Hamnuna</div><div class="speech">Objection to Rav Naḥman: A <i>baraita</i> distinguishes animals from money — doesn't that include blemished animals?</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Gemara</div><div class="speech">No — the baraita means <b>unblemished</b> animals. A blemished animal is consecrated only for its sale value = money.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Another objection: A sin-offering <i>baraita</i> distinguishes a father's <b>animal</b> (can't use) from his <b>money</b> (can use).</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> The Gemara tests whether blemished animals and other separated items are treated as <b>allocated offerings</b> or as <b>unallocated funds</b> (סתומים).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav Pappa's Challenge: R' Shimon ben Gamliel's Ruling</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Pappa</div><div class="speech">If separated animals are like <b>unallocated funds</b>, consider the Mishna (45a):</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Shimon ben Gamliel</div><div class="speech">If one brings 3 animals without specifying: a <b>ewe</b> → sin-offering, a <b>male</b> → burnt-offering, any other → peace-offering.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Pappa</div><div class="speech">But if they're unallocated, <b>how can you decide</b> which animal goes to which offering?</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Question</strong> If animals are unallocated funds, what gives them their designation for specific offerings?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Two Special Cases Resolved</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Are separated items considered <b>allocated</b> or <b>unallocated funds</b>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">🕊️ Birds</div><div class="flow-box result-good">Special verse (Lev. 14:21–31): designated by <b>owner's purchase</b> or <b>priest's action</b></div></div><div class="flow-col"><div class="flow-label">🐑 R"ShBG's Animals</div><div class="flow-box result-good">Male/female distinctions <b>inherently allocate</b>: ewe = sin-offering, male = burnt-offering</div></div><div class="flow-col"><div class="flow-label">💰 Generic Items</div><div class="flow-box result-bad">Blemished animal or silver bar = <b>unallocated funds</b> (no inherent designation)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Rav Shimi bar Ashi</strong> Both birds and R' Shimon ben Gamliel's animals are exceptions — they have built-in mechanisms of designation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Allocated Animals vs. Unallocated Funds</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Allocated (מפורשים)</h3><ul><li>Unblemished animals separated for specific offerings</li><li>Birds designated by owner or priest (per verse)</li><li>Animals with inherent male/female designation</li><li>Sin-offering animal of deceased → must die</li><li>Burnt-offering animal → sacrificed as burnt-offering</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Unallocated Funds (סתומים)</h3><ul><li>Money separated without specifying which offering</li><li>Blemished animals (value = their sale price)</li><li>Silver bars or other non-specific items</li><li>If owner dies → go to communal gift offerings (נדבה)</li><li>Treated as currency, not as offerings themselves</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rav Naḥman's Position</strong> A blemished animal is consecrated only for its <b>sale value</b> — it functions like money, not like an allocated offering.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Father's Naziriteship: What Happens When He Dies?</h2>
+  
+  <table><tr><th>What Father Left</th><th>Status</th><th>Son's Rights</th></tr><tr><td>Unallocated money (סתומים)</td><td>Undesignated funds</td><td>Go to communal gift offerings</td></tr><tr><td>Allocated animals (unblemished)</td><td>Designated offerings</td><td>Sin-offering → left to die; burnt-offering → sacrificed; peace-offering → sacrificed</td></tr><tr><td>Blemished animal</td><td>= Money (per Rav Naḥman)</td><td>Treated like unallocated funds</td></tr><tr><td>Son says 'I'll shave with father's money'</td><td>Attempted inheritance</td><td>Cannot shave for father's naziriteship</td></tr></table><div class="callout" style="margin-top:20px"><strong>Baraita Rule</strong> A son who was also a nazir <b>cannot</b> bring offerings for his father's naziriteship using his father's separated assets.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rava's Objection: Father's Sin-Offering</h2>
+  
+  <div class="process-bar"><div class="process-step">📜 Verse says "<b>his</b> offering" (Lev. 4:23) — must bring your <b>own</b> sin-offering</div><div class="process-arrow">↓</div><div class="process-step highlight">❌ Cannot use father's separated <b>animal</b> — even for the same type of transgression</div><div class="process-arrow">↓</div><div class="process-step">📜 Verse repeats "his offering" (Lev. 4:28) — excludes even matching severity</div><div class="process-arrow">↓</div><div class="process-step highlight">💰 But father's separated <b>money</b> — a son <b>can</b> use it to purchase a sin-offering</div><div class="process-arrow">↓</div><div class="process-step">🔑 Parallel to naziriteship: can't use father's <b>animal</b>, can use father's <b>money</b></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Point</strong> The baraita distinguishes animal from money — does this prove blemished animals are <b>not</b> like unallocated funds?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 27 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;">Item separated for nazirite offerings</div><div class="flow-arrow">↓</div><div class="flow-box question" style="background:#2a1a3e; color:#fff; padding:10px; border-radius:8px;">Is the item <b>inherently designated</b>?<br>(unblemished, gender-specific, or per verse)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Yes → Allocated</b><br>Each animal goes to its specific offering. If owner dies: sin-offering dies, others sacrificed.</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; color:#fff; padding:10px; border-radius:8px;"><b>No → Unallocated Funds</b><br>Blemished animals & money treated alike. If owner dies → communal gift offerings.</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 27a-27b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 27a-27b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../26/">← Daf 26</a><a href="../28/">Daf 28 →</a></div>
+</body>
+</html>

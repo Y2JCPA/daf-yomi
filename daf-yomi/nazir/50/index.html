@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 50 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💀</div>
+  <h1>Nazir 50</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר נ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💀 Corpse Impurity — When a nazirite must shave for unusual corpse cases<br>
+    🫠 Liquefied Flesh — Status of congealed fluid (mohal) from a corpse<br>
+    🐄 Animal Fluid — Whether liquefied animal carcass retains impurity<br>
+    🍯 Stream Connection — Does poured liquid connect pure and impure vessels<br>
+    🥣 Food Stream — Whether melted food functions like a connecting stream<br>
+    ✋ Full Ladle of Dust — Measuring the quarter-kav of corpse dust<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Nazir 50: Impurity of Corpses, Fluids & Streams</h2>
+  
+  <div class="flowchart"><div class="flow-box question">When must a <b>nazirite shave</b> for corpse impurity?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Yochanan</div><div class="flow-box action">Miscarried fetus — limbs not joined by sinews</div></div><div class="flow-col"><div class="flow-label">Rava</div><div class="flow-box action">Majority of bone structure of a tiny corpse (< ¼ kav)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">What about <b>liquefied flesh</b> (mohal)?</div><div class="flow-arrow">↓</div><div class="flow-box result-good">If it <b>congeals</b> → impure flesh<br>If it <b>doesn't congeal</b> → maybe phlegm/spittle → pure</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf explores the boundaries of corpse impurity — what counts as a 'corpse,' what counts as 'flesh,' and how physical transformation affects ritual status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Shaving for Unusual Corpse Cases</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">R' Yosei</div><div class="speech">A nazirite must shave even for a corpse without an olive-bulk of flesh</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But if he shaves for a <b>limb</b> without an olive-bulk, surely a whole corpse is a <em>kal va-chomer</em>!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yochanan</div><div class="speech">It refers to a <b>miscarried fetus</b> (נפל) whose limbs aren't yet joined by sinews — the whole body imparts impurity though individual limbs do not</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">It refers to the <b>majority of bones</b> of a very small corpse — less than a quarter-kav total, but still the majority of the body's structure</div></div></div><div class="callout" style="margin-top:20px"><strong>Context</strong> The mishna's ruling about corpse impurity needed explanation because it seemed redundant with the rule about limbs.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Identifying Corpse Fluid (Mohal)</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Unidentified substance found near a corpse</div><div class="flow-arrow">↓</div><div class="flow-box question">Is it definitely <b>from the corpse</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No</div><div class="flow-box result-bad">Cannot determine impurity status regardless</div></div><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box action">Examine further ↓</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Does it <b>congeal</b> (קרש)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Congeals</div><div class="flow-box result-bad">It is <b>liquefied flesh</b> → <span style='color:#e74c3c'>IMPURE</span></div></div><div class="flow-col"><div class="flow-label">No — Stays liquid</div><div class="flow-box result-good">Possibly phlegm/spittle → <span style='color:#4caf50'>PURE</span></div></div></div></div><div class="callout" style="margin-top:20px"><strong>R' Yirmeya</strong> The congealment test distinguishes flesh-derived fluid (impure) from bodily secretions like phlegm (pure).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Animal Carcass Fluid — Does It Impart Impurity?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a5276"><h3 style="color:#4a90d9">Impurity Until Inedible for Humans</h3><ul><li>Severe impurity (contact/carrying) requires fitness for human consumption</li><li>Liquefied meat is NOT fit for humans</li><li>Therefore: fluid from animal carcass is PURE</li><li>Dilemma resolved easily</li></ul></div><div class="compare-box" style="border-top-color:#4a235a"><h3 style="color:#9b59b6">Impurity Until Inedible for Dogs</h3><ul><li>Severe impurity lasts as long as a dog would eat it</li><li>Liquefied meat may still be edible for a dog</li><li>Therefore: the dilemma about fluid remains open</li><li>Tosefta about fat melted in sun brought as proof but refuted</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Dilemma</strong> Is the impurity of fluid (mohal) a special tradition limited to human corpses, or a general principle applying to animal carcasses too?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Stream Connection (ניצוק) — What Connects?</h2>
+  
+  <table><tr><th>Substance</th><th>Connects Upper & Lower Vessel?</th><th>Reason</th></tr><tr><td>Regular liquids</td><td>No — stream is pure</td><td>Poured liquid does not link vessels</td></tr><tr><td>Zifim honey (דבש זיפים)</td><td>Yes — connects</td><td>Highly viscous; acts as soft solid food</td></tr><tr><td>Batter (צוק)</td><td>Yes — connects</td><td>Viscous mixture; returns backward when pouring stops</td></tr><tr><td>Bean stew (Beit Shammai)</td><td>Yes — connects</td><td>Flow returns backward (חוזר לאחוריו)</td></tr><tr><td>Bean stew (Rabbis)</td><td>No</td><td>Not viscous enough to return backward</td></tr></table><div class="callout" style="margin-top:20px"><strong>Mishna Makhshirin 5:9</strong> The general rule: poured streams don't connect. The exceptions are thick, viscous substances that 'return backward' when pouring stops.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Is There a 'Stream' for Melted Food?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rami bar Chama</div><div class="speech">If one pours <b>melted food</b> into an impure vessel — does it become impure? Is there a 'stream' (ניצוק) for food?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">From a Tosefta: whole fat of a corpse (olive-bulk) that was melted remains <b>impure</b> — proving food retains unity when melted!</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">R' Zeira</div><div class="speech">No proof — that case is where <b>fire rose under the pan</b> and fat congealed at the mouth of the vessel. It was all in one place, no stream at all!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Ravina</div><div class="speech">From the mishna: Beit Shammai say bean stew connects — implying the Rabbis accept viscous food streams like honey!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ashi</div><div class="speech">Not comparable — honey connects because of <b>viscosity</b>, bean stew because of <b>backward flow</b>. Different criteria entirely.</div></div></div><div class="callout" style="margin-top:20px"><strong>Unresolved</strong> The dilemma about whether melted food creates a connecting stream remains without definitive resolution.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 50 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px; border-radius:6px; color:white"><b>Corpse Impurity Cases</b><br>Fetus without sinews • Majority of tiny skeleton</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#4a235a; border-left:3px solid #9b59b6; padding:10px; border-radius:6px; color:white"><b>Fluid Test</b><br>Congeals → impure flesh<br>Stays liquid → possibly phlegm (pure)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px; border-radius:6px; color:white"><b>Animal Fluid</b><br>Depends on standard of 'inedible'</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; border-left:3px solid #e67e22; padding:10px; border-radius:6px; color:white"><b>Stream (ניצוק)</b><br>Viscous substances connect vessels<br>Regular liquids do not</div></div><div class="flow-col"><div class="flow-box" style="background:#1e3a5f; border-left:3px solid #c9a84c; padding:10px; border-radius:6px; color:white"><b>Full Ladle</b><br>Chizkiyya: palm<br>R' Yochanan: whole hand</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 50a-50b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 50a-50b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../49/">← Daf 49</a><a href="../51/">Daf 51 →</a></div>
+</body>
+</html>

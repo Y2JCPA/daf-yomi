@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 17 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Nazir 17</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר יז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Flogging Debate — R' Yochanan vs. Reish Lakish on lashes for impure nazirite<br>
+    🔄 Mar bar Rav Ashi's Reframing — The dispute is about flogging, not the vow's validity<br>
+    📅 Seventh Day Counting — When the 7th day of purification counts toward the tally<br>
+    🪦 Cemetery Exit Delay — Rava asks if delayed exit is needed for liability<br>
+    ✂️ Shaving Requirement — Rav Ashi's dilemma on shaving before starting naziriteship<br>
+    🩹 Leprosy Comparison — Whether days of confirmed leprosy count toward the tally<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Naziriteship in the Cemetery: Does the Vow Bite?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">A vow of naziriteship taken in a cemetery <b>takes effect</b>, and the nazirite <b>is flogged</b> for remaining impure.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">The vow <b>takes effect</b>, but the nazirite is <b>not flogged</b> for impurity contracted while in the cemetery.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Mar bar Rav Ashi</div><div class="speech">Both agree the vow takes effect. The <b>only dispute</b> is whether he receives <b>lashes</b> (malkot) for the impurity.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">A <i>baraita</i> conclusively refutes Reish Lakish: one who vowed while impure and then drank wine or touched a corpse <b>incurs forty lashes</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The Gemara concludes that R' Yochanan is correct: a nazirite who vowed in a cemetery <b>is liable for lashes</b> if he violates nazirite prohibitions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Mar bar Rav Ashi Reframes the Dispute</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Mar bar Rav Ashi</div><div class="speech">Everyone agrees the <b>vow takes effect</b> even in the cemetery. The real dispute is about <b>flogging</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">Since the vow takes effect, he <b>is flogged</b> for becoming impure — the nazirite prohibitions apply immediately.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">He is <b>not flogged</b> for impurity — the vow takes effect for prohibitions like wine and shaving, but not for corpse impurity while still in the cemetery.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">The mishna says he doesn't bring <b>offerings of impurity</b> — implying he <b>is</b> flogged! This refutes Reish Lakish.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Shift</strong> The dispute is <b>not</b> about whether the vow takes effect — both agree it does. It is <b>only</b> about whether flogging applies.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Impure Vower vs. Pure Nazirite Who Became Impure</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Impure Person Who Vowed</h3><ul><li>Took vow while already in cemetery</li><li>7th day of purification COUNTS toward tally</li><li>Starts naziriteship count upon becoming pure</li><li>Must shave (disputed by Rav Ashi)</li><li>Is flogged for violations (per R' Yochanan)</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Pure Nazirite Who Became Impure</h3><ul><li>Began naziriteship in purity, then defiled it</li><li>7th day of purification does NOT count</li><li>Starts counting from the next day (8th day)</li><li>Must shave before restarting</li><li>Is flogged for impurity violations</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Baraita</strong> The <b>only</b> stated difference between them is whether the 7th day of purification counts toward the tally. With regard to flogging, both are equal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rava's Dilemma: Delayed Exit from Cemetery</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Nazirite enters cemetery in a <b>chest/box/cabinet</b><br>(does not contract impurity)</div><div class="flow-arrow">↓</div><div class="flow-box action">Takes a vow of naziriteship while inside the container</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Someone <b>removes the lid</b> — he becomes impure</div><div class="flow-arrow">↓</div><div class="flow-box action">He is warned to <b>leave</b> the cemetery</div><div class="flow-arrow">↓</div><div class="flow-box question">Must his exit be <b>delayed</b> (שהייה) to incur lashes?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Temple Rule Applies</div><div class="flow-box result-good">Just as in the Temple — lashes only if he <b>delays</b> his exit beyond the minimum time</div></div><div class="flow-col"><div class="flow-label">Cemetery Is Different</div><div class="flow-box result-bad">Outside the Temple, he is liable <b>immediately</b> without needing a delayed exit</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Teiku</strong> The dilemma remains <b>unresolved</b> (תיקו). The Gemara does not determine whether the delay requirement applies outside the Temple.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Refutations of Reish Lakish</h2>
+  
+  <table><tr><th>Source</th><th>Proof Against Reish Lakish</th><th>Reish Lakish's Defense</th></tr><tr><td>Mishna: no offerings of impurity</td><td>Implies he IS flogged (just not offerings)</td><td>Mishna phrased to match the latter clause; not a proof</td></tr><tr><td>Baraita: only difference is 7th day</td><td>Both are equal regarding flogging</td><td>Equality is about shaving, not flogging</td></tr><tr><td>Counter: Why not teach flogging difference?</td><td>If there were a difference, the baraita would state it</td><td>Baraita discusses remedies, not punishments</td></tr><tr><td>Tosefta 2:14: impure nazirite incurs 40 lashes</td><td>Explicitly states he is flogged for wine, shaving, or impurity</td><td>NO DEFENSE — conclusive refutation (תיובתא)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Conclusion</strong> The Tosefta provides a <b>conclusive refutation</b> (תיובתא) of Reish Lakish's position as reframed by Mar bar Rav Ashi.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rav Ashi's Dilemma: Must the Impure Vower Shave?</h2>
+  
+  <div class="process-bar"><div class="process-step">🧔 A pure nazirite who became impure must shave before restarting</div><div class="process-arrow">↓</div><div class="process-step highlight">❓ But what about one who vowed while ALREADY impure?</div><div class="process-arrow">↓</div><div class="process-step">📜 Mishna proof attempt: 'He does not bring offerings' — implying he DOES shave?</div><div class="process-arrow">↓</div><div class="process-step">🚫 Rejected: Maybe it means he doesn't shave EITHER, and that's WHY no offerings</div><div class="process-arrow">↓</div><div class="process-step">📜 Baraita proof attempt: Only one difference stated — so shaving must be equal?</div><div class="process-arrow">↓</div><div class="process-step">🚫 Rejected: The equality is about flogging, not shaving</div><div class="process-arrow">↓</div><div class="process-step highlight">📜 Leprosy baraita mentions 'whose hair is fit for shaving' in the cemetery — implying shaving IS required</div></div><div class="callout" style="margin-top:20px"><strong>Analysis</strong> The Gemara attempts multiple proofs but each is rejected. The leprosy baraita provides the strongest indication that shaving <b>is</b> required.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 17 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Vow in Cemetery</b><br>Naziriteship takes effect immediately</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3e; border-left: 3px solid #c9a84c;"><b>Prohibitions Apply</b><br>Wine, shaving, and corpse impurity all forbidden</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1a1a; border-left: 3px solid #e74c3c;"><b>Lashes for Violations</b><br>R' Yochanan confirmed: 40 lashes apply</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e2e1a; border-left: 3px solid #e67e22;"><b>Impure Days</b><br>Do NOT count toward tally</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Upon Purification</b><br>7th day COUNTS toward tally; begin naziriteship</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 17a-17b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 17a-17b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../16/">← Daf 16</a><a href="../18/">Daf 18 →</a></div>
+</body>
+</html>

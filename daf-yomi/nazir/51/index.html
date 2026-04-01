@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 51 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🪦</div>
+  <h1>Nazir 51</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר נא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🪦 Dust of a Corpse — conditions for dust to impart ritual impurity<br>
+    ⚖️ Composition of Impure Dust — must include flesh, sinews, and bones together<br>
+    🔀 Mixtures (Galgallin) — two corpses buried together or foreign matter mixed in<br>
+    ❓ Unresolved Dilemmas — heel dust, fetus, semen, excrement, skin, phlegm<br>
+    🧹 Purifying a Corpse — removing foreign matter before burial<br>
+    🦴 Deficient Corpse — a corpse missing a part lacks certain impurity laws<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>When Does Corpse Dust Impart Impurity?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A corpse decays into <b>a full ladle of dust</b> (מלא תרווד רקב)</div><div class="flow-arrow">↓</div><div class="flow-box question">Was it buried in conditions that preserve <b>pure dust</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">✅ Naked in marble/stone</div><div class="flow-box result-good">Dust is <b>solely from the corpse</b> → <b>Impure</b></div></div><div class="flow-col"><div class="flow-label">❌ Clothed/wood/brick</div><div class="flow-box result-bad">Dust is <b>mixed with foreign particles</b> → <b>Pure</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Corpse dust imparts impurity only when it comes <b>exclusively</b> from the corpse itself, with no admixture of foreign materials.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Burial Conditions for Impure Dust</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Dust IS Impure</h3><ul><li>Buried <b>naked</b> (no clothing)</li><li>In a <b>marble coffin</b> (ארון של שיש)</li><li>Or on a <b>stone floor</b></li><li>All dust must come solely from the corpse</li></ul></div><div class="compare-box" style="border-top-color:#3e1a1a"><h3 style="color:#e74c3c">Dust is NOT Impure</h3><ul><li>Buried in <b>clothing</b></li><li>In a <b>wooden coffin</b></li><li>Or on a <b>brick floor</b></li><li>Dust includes particles from non-body sources</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Source</strong> Tosefta Oholot 2:3 — The principle: only dust that came <b>entirely</b> from the corpse imparts impurity.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>What Must the Dust Contain?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Ulla</div><div class="speech">Impure dust must come from <b>flesh, sinews, and bones together</b> — not from any one alone.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">A baraita says dust from <b>flesh alone</b> is pure — implying dust from <b>bone alone is impure</b>! This contradicts you!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Ulla</div><div class="speech">Read it: dust from flesh is pure <b>unless there is bone in the flesh</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">But there's no mention of <b>sinews</b> at all!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Ulla</div><div class="speech">It is <b>impossible</b> for there to be flesh and bones without sinews. They are necessarily included.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Ulla's requirement stands: flesh + bones + sinews must all be present, but sinews are <b>automatically included</b> wherever flesh and bones exist together.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Two Corpses and the Mixture Problem</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>R' Yoḥanan</b> (via Rav Shmuel bar Abba): Two corpses buried <b>together</b> form a <b>mixture</b> (גלגלין) — their dust is <b>not impure</b></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Rav Natan objects:</b> A baraita says dust from two corpses <b>is</b> impure!</div><div class="flow-arrow">↓</div><div class="flow-box question">How does <b>Rava</b> reconcile?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Baraita's Case</div><div class="flow-box result-good">Each corpse buried <b>separately</b>, decayed separately, each yielded a full ladle → <b>Impure</b></div></div><div class="flow-col"><div class="flow-label">R' Yoḥanan's Case</div><div class="flow-box result-bad">Corpses buried <b>together</b>, decayed together → dust is a <b>mixture</b> → <b>Pure</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Dust from each corpse must have <b>independently</b> reached a full ladle. If they decayed together, the dust cannot be attributed to either corpse alone.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Unresolved Dilemmas — What Forms a Mixture?</h2>
+  
+  <table><tr><th>Element in Question</th><th>Raised By</th><th>Two Sides</th><th>Resolution</th></tr><tr><td>Dust from the <b>heel</b></td><td>R' Yirmeya</td><td>Tradition applies only to whole corpse? Or heel is no different?</td><td>Unresolved (תיקו)</td></tr><tr><td>Dead <b>fetus</b> in dead mother</td><td>R' Yirmeya</td><td>Part of mother's body? Or separate entity = mixture?</td><td>Unresolved</td></tr><tr><td><b>Semen</b> in dead woman</td><td>Gemara</td><td>No fetus formed, so part of her? Or comes from outside?</td><td>Unresolved</td></tr><tr><td><b>Excrement</b> (food waste)</td><td>Rav Pappa</td><td>Essential for life = part of body? Or comes from outside?</td><td>Unresolved</td></tr><tr><td><b>Skin</b> of corpse</td><td>Rav Aḥa b. Rav Ika</td><td>Integral part of body? Or a covering?</td><td>Unresolved</td></tr><tr><td><b>Phlegm & spittle</b></td><td>Rav Huna bar Manoaḥ</td><td>Bodily product = part of body? Or foreign?</td><td>Unresolved</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rav Shmuel bar Aḥa's Challenge</strong> If <b>all</b> these elements form a mixture, how can dust <b>ever</b> be impure? Answer: give the person a <b>laxative</b>, apply a <b>depilatory</b>, and boil in the <b>hot springs of Tiberias</b> to remove all foreign matter.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Abaye's Tradition: Ground Corpse</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כתשוהו — אין לו תורת רקב</div><div class="callout"><strong>Halakha</strong> <b>Abaye</b> transmits a tradition: A corpse that was <b>ground into small pieces</b> (כתשוהו) has <b>no halakha of dust</b>.<br><br><b>Dilemma:</b> If it was ground <b>after death</b> and then decayed, what is the law?<br>• Perhaps: flesh + sinews + bones are present → <b>impure</b><br>• Perhaps: it must decay from its <b>initial natural state</b> → <b>pure</b><br><br>This dilemma stands <b>unresolved</b> (תיקו).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 51 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;">A full ladle of <b>corpse dust</b> (רקב) is a source of impurity for which a nazirite must shave</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #c9a84c;">The dust must come from <b>flesh + sinews + bones</b> together (Ulla), buried in conditions that exclude foreign matter</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Pure dust:</b> Naked in marble coffin / stone floor — solely from the corpse → <b>Impure</b></div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border-left: 3px solid #e74c3c;"><b>Mixed dust:</b> Clothed, wood coffin, two corpses together, cut hair — forms a <b>mixture</b> → <b>Pure</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left: 3px solid #9b59b6;">A <b>deficient corpse</b> (missing a limb) has no halakha of dust, tefusa, or cemetery designation</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e2a1a; border-left: 3px solid #e67e22;">Multiple dilemmas about what counts as foreign matter (fetus, semen, excrement, skin, phlegm) remain <b>unresolved</b> (תיקו)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 51a-51b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 51a-51b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../50/">← Daf 50</a><a href="../52/">Daf 52 →</a></div>
+</body>
+</html>

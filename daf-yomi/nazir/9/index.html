@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazir 9 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Nazir Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍇</div>
+  <h1>Nazir 9</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">נזיר ט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🧑‍⚖️ Nazirite from Figs — Beit Shammai vs Beit Hillel on a nazirite vow specifying non-grape items<br>
+    🗣️ Statements for Naught — R' Meir's principle that words always carry legal weight<br>
+    🔓 Vow with Inherent Opening — When a vow contains its own grounds for dissolution<br>
+    🌾 Meal-Offering from Barley — Parallel case of donating in an atypical manner<br>
+    🔄 Chizkiyya's Retraction — Distinguishing barley from lentils in vow interpretation<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>"I Am a Nazirite from Dried Figs"</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Mishna</div><div class="speech">One says: <b>"I am hereby a nazirite and will refrain from dried figs and fig cakes."</b> What is the law?</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">He <b>is a nazirite</b>. The addition about figs is insignificant — only grape products are prohibited to a nazirite.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">He is <b>not a nazirite</b>. He did not properly accept naziriteship upon himself.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Yehuda</div><div class="speech">Even Beit Shammai only meant when he said figs are <b>forbidden like an offering</b> — it's a vow on figs, not naziriteship.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> When someone combines a valid nazirite declaration with an impossible restriction (figs instead of grapes), do we follow the first clause or the last?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Underlying Tannaitic Principles</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Beit Shammai → R' Meir</h3><ul><li>A person does not utter a statement for naught</li><li>"I am a nazirite" — immediately effective</li><li>"From figs" = he misspoke, intended real naziriteship</li><li>First clause stands independently</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Beit Hillel → R' Yosei / R' Shimon</h3><ul><li>A person is held to the conclusion of his statement</li><li>"From figs" shows he never intended grape-based naziriteship</li><li>This is a vow with its inherent opening (petach)</li><li>Not donated in the typical manner → void</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Contrast</strong> R' Meir preserves the vow by ignoring the impossible clause; R' Yosei uses it to reveal the speaker's true intent.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Beit Shammai's Logic: Step by Step</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Person says: <b>"I am hereby a nazirite"</b></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Naziriteship takes effect <b>immediately</b><br/>(a person doesn't speak for naught)</div><div class="flow-arrow">↓</div><div class="flow-box action">He then adds: <b>"from dried figs"</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Is this a built-in opening to dissolve the vow?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No — Beit Shammai</div><div class="flow-box result-bad">Naziriteship = <b>consecrated property</b>.<br/>One <b>cannot request dissolution</b> of consecrated vows.<br/>He remains a <b>full nazirite</b>.</div></div><div class="flow-col"><div class="flow-label">Yes — Beit Hillel</div><div class="flow-box result-good">The ending clause <b>reveals his intent</b>.<br/>He never meant real naziriteship.<br/>He is <b>not a nazirite</b>.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Neder vs. Hekdesh</strong> Beit Shammai equate naziriteship with consecrated property (hekdesh), which cannot be dissolved by a halakhic authority.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Natan's Baraita — Two Versions</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Natan (Version 1)</div><div class="speech"><b>Beit Shammai:</b> Figs are forbidden by vow <b>AND</b> he is a nazirite.<br/><b>Beit Hillel:</b> Figs are forbidden by vow but he is <b>not</b> a nazirite.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Natan (Version 2)</div><div class="speech"><b>Beit Shammai:</b> Figs are forbidden by vow but he is <b>not</b> a nazirite.<br/><b>Beit Hillel:</b> Figs are <b>not</b> forbidden and he is <b>not</b> a nazirite.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Version 1: Beit Shammai follow <b>R' Meir</b> (nazirite) + <b>R' Yehuda</b> (fig vow). Beit Hillel follow <b>R' Yosei</b> (fig vow only).</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Version 2: Beit Shammai follow <b>R' Yehuda</b> (fig vow, no naziriteship). Beit Hillel follow <b>R' Shimon</b> (nothing at all).</div></div></div><div class="callout" style="margin-top:20px"><strong>Our Mishna</strong> The standard mishna does not match R' Natan's version, as R' Natan gives the figs independent vow-status in at least one reading of Beit Hillel.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Meal-Offering from Barley (Menachot 103a)</h2>
+  
+  <table><tr><th>What He Vowed</th><th>What He Brings</th><th>Why</th></tr><tr><td>Meal-offering from <b>barley</b></td><td>Meal-offering from <b>wheat</b></td><td>Omer & Sotah use barley — plausible confusion</td></tr><tr><td>Meal-offering from <b>flour</b></td><td>From <b>fine flour</b></td><td>Standard meal-offerings require fine flour</td></tr><tr><td>Without <b>oil & frankincense</b></td><td>With <b>oil & frankincense</b></td><td>These are required components</td></tr><tr><td><b>Half</b> a tenth of an ephah</td><td><b>Full</b> tenth of an ephah</td><td>Minimum is one tenth</td></tr><tr><td><b>Tenth and a half</b></td><td><b>Two</b> full tenths</td><td>Rounded up to next whole unit</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' Shimon Disagrees</strong> R' Shimon exempts in ALL these cases: one who did not donate in the manner typical of donors has not donated at all.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Who Authored the Menachot Mishna?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Chizkiyya</div><div class="speech">The mishna follows <b>Beit Shammai</b>: just as they say a nazirite from figs is still a nazirite (we follow the first clause), so too a barley meal-offering becomes wheat.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">Even <b>Beit Hillel</b> agree — the mishna speaks of one who later clarifies: <b>"Had I known barley was invalid, I would have said wheat."</b> This is an error, not a condition.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Chizkiyya</div><div class="speech">If so, only <b>barley</b> works (since omer/sotah use barley — plausible mistake). But <b>lentils</b>? No meal-offering uses lentils — clearly no intent to donate.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">But wait — figs are equally foreign to naziriteship, yet Beit Shammai say he's a nazirite! <b>Chizkiyya retracted</b> his position.</div></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Proof</strong> If the mishna were Beit Shammai, it should teach the greater novelty of lentils, not just barley. Since it teaches barley specifically, it must not follow Beit Shammai.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Nazir 9 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>"I am a nazirite from dried figs"</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1c1c; color:#e74c3c; padding:10px; border-radius:8px;"><b>Beit Shammai</b><br/>First clause = nazirite<br/>(R' Meir: no statement for naught)<br/>Naziriteship = hekdesh, can't dissolve</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a4a; color:#4a90d9; padding:10px; border-radius:8px;"><b>Beit Hillel</b><br/>Last clause reveals intent<br/>(R' Yosei / R' Shimon)<br/>Vow with inherent opening = void</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#4caf50; padding:12px; border-radius:8px;"><b>Parallel:</b> Meal-offering from barley → wheat<br/>Chizkiyya initially links to Beit Shammai, then <b>retracts</b></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Nazir 9a-9b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Nazir 9a-9b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../8/">← Daf 8</a><a href="../10/">Daf 10 →</a></div>
+</body>
+</html>
