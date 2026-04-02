@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horayot 12 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Horayot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👑</div>
+  <h1>Horayot 12</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">הוריות יב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏺 Sequestered Ark — Anointing oil hidden with the Ark by King Josiah<br>
+    👑 Anointing Kings vs. Priests — Crown shape for kings, chi shape for priests<br>
+    💧 Aaron's Miraculous Oil — Two pearl-like drops on Aaron's beard<br>
+    ⛲ Anointing at a Spring — Kings anointed at flowing water as an omen<br>
+    ⚖️ High Priest Categories — Differences between anointed, garment-consecrated, former, and war-anointed priests<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Anointing Oil & Priestly Hierarchies</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Was there anointing oil in Jehoahaz's time?</b></div><div class="flow-arrow">↓</div><div class="flow-box action">The Ark & anointing oil were <b>sequestered by Josiah</b> based on the Torah's warning of exile</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Rav Pappa:</b> Jehoahaz was anointed with <em>pure balsam oil</em>, not the original anointing oil</div><div class="flow-arrow">↓</div><div class="flow-box action">The Gemara then explores <b>how</b> kings and priests are anointed, and the <b>hierarchy</b> of High Priest categories</div></div><div class="callout" style="margin-top:20px"><strong>Central Theme</strong> This daf traces the anointing oil from its sequestering with the Ark through the methods of anointing, and culminates in distinguishing the legal statuses of different categories of High Priests.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Items Sequestered with the Ark</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>King Josiah</b> reads the Torah's warning of exile (Deut. 28:36)</div><div class="flow-arrow">↓</div><div class="flow-box action">Commands the Levites to <b>sequester the Ark</b> (II Chron. 35:3)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Sequestered Items</div><div class="flow-box result-good">🏺 Anointing Oil<br>🫙 Jar of Manna<br>🌸 Aaron's Staff<br>📦 Philistine Chest</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>R' Elazar:</b> Derives through <em>gezera shava</em> — linking 'there,' 'keepsake,' and 'generations' across verses</div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Rav Pappa: Jehoahaz was anointed with <b>pure balsam oil</b> (שמן אפרסמון), not the original anointing oil which had already been sequestered.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>How Kings vs. Priests Are Anointed</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a2744"><h3 style="color:#c9a84c">Kings 👑</h3><ul><li>Oil smeared in the shape of a <b>crown</b> (כמין נזר) around the head</li><li>Anointed only upon a <b>spring</b> (מעיין) — an omen for enduring kingship</li><li>Source: Solomon anointed at <b>Gihon</b> (I Kings 1:33–34)</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3e"><h3 style="color:#9b59b6">Priests ✋</h3><ul><li>Oil smeared in shape of Greek letter <b>chi</b> (כמין כי)</li><li>Rav Menashya bar Gadda: Like the Greek equivalent of the Hebrew letter <b>כ (kaf)</b></li><li>Dispute: Pour on head first, or anoint between the eyes first?</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> The crown shape for kings symbolizes sovereignty; the chi/kaf shape for priests reflects their unique consecration for Temple service.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Order of Priestly Anointing: Pour or Smear First?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna 1</div><div class="speech"><b>Pouring first</b> — as it says: '<em>He poured</em> the anointing oil on Aaron's head <em>and anointed</em> him' (Lev. 8:12). The verse lists pouring before anointing.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Tanna 2</div><div class="speech"><b>Anointing (smearing) first</b> — because the service vessels were <em>anointed</em> but oil was never <em>poured</em> on them (Num. 7:1). Anointing is the primary act.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna 1</div><div class="speech">But the verse explicitly says 'he poured' and then 'anointed'!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Tanna 2</div><div class="speech">Reread the verse: <em>Why</em> did he pour? <b>Because</b> he had already anointed. The pouring follows the anointing — anointing is the עיקר (primary component).</div></div></div><div class="callout" style="margin-top:20px"><strong>Takeaway</strong> The dispute turns on whether the verse in Leviticus describes chronological order or explains causation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Aaron's Miraculous Oil Drops</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">כשמן הטוב על הראש יורד על הזקן זקן אהרן (תהלים קלג:ב)</div><div class="callout"><strong>Aggadic Passage</strong> Two drops of anointing oil, shaped like <b>pearls</b>, hung from Aaron's beard. When he spoke and his beard moved, the drops <b>miraculously rose</b> to settle at the roots so they wouldn't fall.<br><br><b>Moses worried:</b> 'Perhaps I misused consecrated oil — extra drops remain!'<br>🔊 <em>Bat Kol:</em> 'Like the dew of Hermon' (Ps. 133:3) — just as dew is not consecrated, there is no <em>me'ila</em>.<br><br><b>Aaron worried:</b> 'Perhaps <em>I</em> misused it, since the oil is on <em>my</em> beard and I benefit!'<br>🔊 <em>Bat Kol:</em> 'How good and pleasant for brothers to dwell together' (Ps. 133:1) — just as Moses did not commit me'ila, neither did you.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Categories of High Priest: What Applies to Each?</h2>
+  
+  <table><tr><th>Halakha</th><th>Anointed HP</th><th>Garment-Consecrated HP</th><th>Former HP</th><th>War-Anointed Priest</th></tr><tr><td>Bull for all mitzvot (par he'elem)</td><td>✅</td><td>❌</td><td>✅</td><td>❌</td></tr><tr><td>Bull of Yom Kippur</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr><tr><td>Daily tenth of ephah</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr><tr><td>May not grow hair long</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr><tr><td>May not rend garments</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr><tr><td>May not defile for relatives</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr><tr><td>Must marry a virgin</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr><tr><td>May not marry a widow</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr><tr><td>Restores murderer from refuge</td><td>✅</td><td>✅</td><td>✅</td><td>✅ (R' Yehuda) / ❌ (Rabbis)</td></tr><tr><td>Exempt from sliding-scale offering</td><td>✅ (R' Shimon)</td><td>✅ (R' Shimon)</td><td>✅ (R' Shimon)</td><td>❌</td></tr><tr><td>Serves in 8 garments</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr><tr><td>Yom Kippur service</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr></table><div class="callout" style="margin-top:20px"><strong>Source</strong> Based on the comprehensive baraita cited on Amud B, attributed by Rav Pappa to Rabbi Shimon, who holds in accordance with Rabbi Meir regarding a former High Priest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Horayot 12 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #c9a84c; padding: 10px;"><b>Anointing Oil Sequestered</b><br>Josiah hid the Ark, oil, manna jar & Aaron's staff before the exile</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #4a90d9; padding: 10px;"><b>Methods of Anointing</b><br>Kings: crown shape at a spring<br>Priests: chi shape, dispute over pour vs. smear first</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left: 3px solid #9b59b6; padding: 10px;"><b>Aaron's Oil Miracle</b><br>Two pearl-like drops; Bat Kol assures no me'ila for Moses or Aaron</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top: 3px solid #4caf50; padding: 10px;"><b>Anointed HP</b><br>Full obligations including bull for mitzvot</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2744; border-top: 3px solid #4a90d9; padding: 10px;"><b>Garment-Consecrated HP</b><br>All obligations except bull for mitzvot</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border-top: 3px solid #e74c3c; padding: 10px;"><b>Former HP</b><br>All except Yom Kippur bull & tenth of ephah</div></div><div class="flow-col"><div class="flow-box" style="background:#3e2a1a; border-top: 3px solid #e67e22; padding: 10px;"><b>War-Anointed</b><br>Only 5 matters from Leviticus 21</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Horayot 12a-12b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Horayot 12a-12b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../11/">← Daf 11</a><a href="../13/">Daf 13 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horayot 14 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Horayot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⛰️</div>
+  <h1>Horayot 14</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">הוריות יד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏷️ Attribution — Rabbi Yehuda HaNasi and crediting Rabbi Meir by name<br>
+    ⛰️ Sinai vs. Oker Harim — Breadth of knowledge vs. sharp analysis<br>
+    👑 Leadership Selection — Rav Yosef and Rabba's appointments as Rosh Yeshiva<br>
+    🙇 Humility in Leadership — Rav Yosef's extraordinary deference to Rabba<br>
+    📚 Abaye's Rise — Selecting a head for the study group<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Horayot 14a — Sinai vs. One Who Uproots Mountains</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">סיני וְעוֹקֵר הָרִים — אֵיזֶה מֵהֶם קוֹדֵם?</div><div class="callout"><strong>Core Theme</strong> This daf explores <b>what qualities make an ideal Torah leader</b>: encyclopedic knowledge (<i>Sinai</i>) or razor-sharp analytical ability (<i>Oker Harim</i>). Through the stories of Rav Yosef, Rabba, and Abaye, the Gemara examines <b>humility, proper attribution, and the criteria for communal leadership</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Should We Name the Sages?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yehuda HaNasi's Son</div><div class="speech">Who are these Sages <b>whose water we drink</b> but whose names we do not mention?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yehuda HaNasi</div><div class="speech">They are people who sought to <b>abolish your honor</b> and the honor of your father's house.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yehuda HaNasi's Son</div><div class="speech">"Their love, hatred, and envy <b>is long ago perished</b>" (Kohelet 9:6) — they have already died!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yehuda HaNasi</div><div class="speech">"The enemy are come to an end; <b>the wasted places are forever</b>" (Tehillim 9:7) — the desolation they created remains.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rabban Shimon</div><div class="speech">That applies when their actions were <b>effective</b>. Here, their actions <b>were not effective</b>!</div></div></div><div class="callout" style="margin-top:20px"><strong>Result</strong> R' Yehuda HaNasi relents and teaches: <b>"The Sages said in the name of Rabbi Meir."</b> Even so, Rava notes he still did not say <i>"Rabbi Meir said"</i> directly — a mark of humility.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Sinai vs. Oker Harim — The Great Debate</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">🏔️ Sinai</h3><ul><li>Encyclopedic knowledge of sources</li><li>Like one who received Torah at Sinai</li><li>"Owner of the wheat" — everyone needs the source expert</li><li>Represented by <b>Rav Yosef</b></li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">⛰️ Oker Harim</h3><ul><li>Extremely sharp and incisive analysis</li><li>Uproots mountains with reasoning</li><li>Powerful dialectical skill</li><li>Represented by <b>Rabba</b></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Ruling from Eretz Yisrael</strong> <b>Sinai takes precedence</b> — "Everyone requires the owner of the wheat" (<i>hakol tzerichin l'marei chitaya</i>).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rav Yosef's Extraordinary Humility</h2>
+  
+  <div class="process-bar"><div class="process-step">📜 Eretz Yisrael rules: <b>Sinai (Rav Yosef)</b> should lead</div><div class="process-arrow">↓</div><div class="process-step highlight">🙅 Rav Yosef <b>declines</b> the appointment as Rosh Yeshiva</div><div class="process-arrow">↓</div><div class="process-step">👑 <b>Rabba</b> reigns as head for <b>22 years</b></div><div class="process-arrow">↓</div><div class="process-step highlight">🩸 For all 22 years, Rav Yosef <b>never even called a bloodletter to his home</b> — refusing any air of authority</div><div class="process-arrow">↓</div><div class="process-step">👑 After Rabba's passing, <b>Rav Yosef</b> finally accepts leadership</div></div><div class="callout" style="margin-top:20px"><strong>Insight</strong> Rav Yosef's refusal to summon even a bloodletter demonstrates <b>total deference</b> — he would not exercise the slightest privilege that might appear to rival Rabba's authority.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Selecting a Head for the Study Group</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Abaye, Rava, R' Zeira, and Rabba bar Mattana <b>study together</b> and need a leader</div><div class="flow-arrow">↓</div><div class="flow-box question">Test: Whoever says a statement <b>that is not refuted</b> becomes head</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Others</div><div class="flow-box result-bad">Statements <b>refuted</b> ❌</div></div><div class="flow-col"><div class="flow-label">Abaye</div><div class="flow-box result-good">Statement <b>not refuted</b> ✓</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Rabba notices Abaye "raised his head" and tells him: <b>"Naḥmani, begin your lecture!"</b></div></div><div class="callout" style="margin-top:20px"><strong>Note</strong> Rabba called Abaye by his real name <b>Naḥmani</b>, signaling formal recognition of his scholarly standing.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Zeira vs. Rabba bar Rav Mattana</h2>
+  
+  <table><tr><th>Quality</th><th>R' Zeira</th><th>Rabba bar Rav Mattana</th></tr><tr><td>Style</td><td>Sharp and incisive</td><td>Moderate and methodical</td></tr><tr><td>Strength</td><td>Raises pertinent difficulties</td><td>Draws appropriate conclusions</td></tr><tr><td>Approach</td><td>Penetrating questions</td><td>Steady, thorough reasoning</td></tr><tr><td>Verdict</td><td>—</td><td>—</td></tr></table><div class="callout" style="margin-top:20px"><strong>Teyku</strong> The dilemma <b>stands unresolved</b> — the Gemara cannot determine which quality is preferable. This echoes the broader Sinai vs. Oker Harim tension.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Horayot 14 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>What makes an ideal leader?</b><br/>R' Yochanan: Sinai vs. Oker Harim</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border: 2px solid #4caf50;"><b>Sinai</b> 📜<br/>Encyclopedic knowledge<br/>(Rav Yosef)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border: 2px solid #e74c3c;"><b>Oker Harim</b> ⛰️<br/>Sharp analysis<br/>(Rabba)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left: 3px solid #9b59b6;"><b>Eretz Yisrael rules: Sinai is preferable</b><br/>"Everyone requires the owner of the wheat"</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #c9a84c;"><b>Yet Rav Yosef declines</b> — Rabba leads 22 years<br/>Rav Yosef refuses even the slightest authority</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Horayot 14a-14b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Horayot 14a-14b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../13/">← Daf 13</a></div>
+</body>
+</html>

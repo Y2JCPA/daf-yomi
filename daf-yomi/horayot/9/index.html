@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horayot 9 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Horayot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Horayot 9</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">הוריות ט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👑 Sliding-Scale Exclusion — King and High Priest cannot become poor, so they are excluded from the korban oleh v'yored<br>
+    💰 Priestly Wealth — The High Priest must be the greatest among his brethren, including in wealth<br>
+    🐐 King's Goat Offering — Debate over whether the king brings a goat or sliding-scale offering for Temple defilement<br>
+    🔗 'From One of These' — Derivation linking liability for all sliding-scale tiers together<br>
+    🏛️ Defiling the Temple — R' Shimon exempts the anointed priest from liability for tum'at Mikdash<br>
+    📜 R' Eliezer's Scope — Dispute whether the king's goat applies to all cases or only Temple defilement<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Who Brings What? Sliding-Scale Offering Logic</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Unwitting transgression</b> requiring a sliding-scale offering (<i>korban oleh v'yored</i>)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Individual</div><div class="flow-box result-good">Wealthy → <b>sheep</b><br/>Poor → <b>birds</b><br/>Extreme poverty → <b>meal-offering</b></div></div><div class="flow-col"><div class="flow-label">King</div><div class="flow-box result-bad">Excluded from sliding-scale entirely — <b>cannot become poor</b></div></div><div class="flow-col"><div class="flow-label">Anointed Priest</div><div class="flow-box result-bad">R' Akiva: <b>exempt from all</b> sliding-scale offerings<br/>R' Shimon: exempt only from <b>extreme poverty</b> tier</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> The sliding-scale offering applies only to one who can experience both poverty and wealth — excluding the king and (according to some) the anointed priest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why King & High Priest Are Excluded from Sliding-Scale</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#c9a84c">👑 The King</h3><ul><li>Cannot come to a state of poverty</li><li>"He has only the Lord his God upon him" (Lev 4:22)</li><li>Greater than the entire nation</li><li>Not dependent on others</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#9b59b6">⛪ Anointed Priest</h3><ul><li>"Greatest among his brethren" (Lev 21:10)</li><li>Greater in beauty, power, wisdom, and wealth</li><li>If he lacks wealth — brethren make him wealthy</li><li>"Make him great from the property of his brethren"</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Verse</strong> The Torah's language of "if his means suffice not" presupposes the possibility of poverty — which cannot apply to a king or High Priest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>A Leprous King: Still Exempt?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Ravina</div><div class="speech">If a king is afflicted with <i>tzara'at</i> and unfit to serve — what is his status regarding the sliding-scale offering?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Ravina</div><div class="speech">Was he <b>completely eliminated</b> from the obligation (permanently exempt)? Or merely <b>exempted</b> during his reign (now obligated)?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Naḥman bar Yitzḥak</div><div class="speech">Does he bring the offering from <b>your</b> (public) property? No — he brings it from his <b>personal treasure</b> (<i>gazza</i>).</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Naḥman bar Yitzḥak</div><div class="speech">Since he still has his personal wealth, he <b>remains exempt</b> from the sliding-scale offering.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> The exemption follows the person's financial reality, not merely their title — since a leprous king retains his personal fortune, he remains exempt.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Akiva: Anointed Priest Exempt from All Sliding-Scale</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Rava's reasoning for R' Akiva:</b><br/>Leviticus 6:13 — "One-tenth of an ephah… on the day he is anointed"</div><div class="flow-arrow">↓</div><div class="flow-box question">"<b>This</b> tenth of an ephah comes as his obligation — <b>and no other</b>"</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Challenge:</b> Maybe only the meal-offering (extreme poverty) tier is excluded?</div><div class="flow-arrow">↓</div><div class="flow-box action">Leviticus 5:13 — "<b>from one of these</b>"<br/>One who gains atonement with <i>every</i> tier gains atonement with <i>any</i>; one who doesn't — doesn't.</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Result</div><div class="flow-box result-bad">Since the anointed priest <b>cannot bring the meal-offering tier</b>, he is exempt from <b>all tiers</b> of the sliding-scale offering</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Abaye & Rava</strong> R' Akiva derives this from "<b>from one</b>" (מֵאַחַת, Lev 5:13) but not from "of one" (מֵאַחַת, Lev 5:5) — the placement at the end of the passage, by the meal-offering, is what teaches the all-or-nothing rule.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Mishna Summary: Who Brings What for Unwitting Karet-Violations?</h2>
+  
+  <table><tr><th>Person</th><th>Offering for Unwitting Sin</th><th>Notes</th></tr><tr><td>Individual</td><td>Ewe or female goat</td><td>Standard fixed sin-offering</td></tr><tr><td>King</td><td>Male goat (שָׂעִיר)</td><td>Unique offering; never sliding-scale</td></tr><tr><td>Anointed Priest</td><td>Bull (פָּר)</td><td>Only for ruling-based errors</td></tr><tr><td>Court (Sanhedrin)</td><td>Bull + male goat</td><td>For erroneous communal rulings</td></tr></table><div class="callout" style="margin-top:20px"><strong>Note</strong> These are for sins whose intentional violation carries karet — the sliding-scale offering applies to a different set of transgressions (hearing of a voice, oath of utterance, tum'at Mikdash).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Why Is the High Priest Exempt from Tum'at Mikdash?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Shimon</div><div class="speech">The anointed priest is <b>not liable</b> for defiling the Temple or its sacrificial foods.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Ḥizkiyya</div><div class="speech">Numbers 19:20 says the impure person is "excised from the <b>congregation</b>" — this applies to one whose offering <b>equals</b> the congregation's.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Ḥizkiyya</div><div class="speech">The High Priest's Yom Kippur offering (a <b>bull</b>) differs from the congregation's (<b>goat</b>) — so he is excluded.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But then the <b>king</b> should also be exempt — he brings a goat, not the same as the congregation!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The king's Yom Kippur <b>atonement</b> is achieved through the same offerings as the congregation — he is included.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Better answer: "One whose <b>sin-offering</b> equals that of individuals" — the High Priest brings his unique sin-offering only for <b>ruling-based errors</b>, unlike anyone else.</div></div></div><div class="callout" style="margin-top:20px"><strong>R' Shimon's View</strong> The High Priest's unique sin-offering mechanism (bull for his own erroneous ruling) sets him apart from both individuals and the congregation, exempting him from tum'at Mikdash liability.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Horayot 9 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Sliding-Scale Offering</b><br/>Applies to oaths, tum'at Mikdash, etc.</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px; text-align:center;"><b>Individual</b><br/>Sheep → Birds → Meal-offering<br/>(based on wealth)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2e1a; color:#fff; padding:10px; border-radius:8px; text-align:center;"><b>King</b><br/>Brings a male goat<br/>(R' Eliezer: for tum'at Mikdash only)</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; color:#fff; padding:10px; border-radius:8px; text-align:center;"><b>Anointed Priest</b><br/>R' Akiva: exempt from all<br/>R' Shimon: exempt from tum'at Mikdash</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a1a2e; color:#e0c068; padding:12px; border-radius:8px; text-align:center; border:1px solid #c9a84c;"><b>Key Derivation:</b> "From one of these" (Lev 5:13) — All tiers are linked: exempt from one = exempt from all</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Horayot 9a-9b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Horayot 9a-9b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../8/">← Daf 8</a><a href="../10/">Daf 10 →</a></div>
+</body>
+</html>

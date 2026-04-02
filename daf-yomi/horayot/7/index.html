@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horayot 7 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Horayot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Horayot 7</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">הוריות ז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐂 Anointed Priest's Offering — comparing the kohen mashi'ach to the tzibbur or nasi<br>
+    📜 Absence of Awareness — priest must err in ruling AND act unwittingly<br>
+    🔀 Abaye vs. Rava — defining when the priest 'sinned by himself'<br>
+    ❓ Unresolved Dilemmas — are different types of chelev one category?<br>
+    ⚖️ Partial Nullification — court and priest liable only for nullifying part of a mitzva<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>The Anointed Priest: Like the Public or Like the King?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">The <b>anointed priest</b> (כהן משיח) is removed from the category of an individual</div><div class="flow-arrow">↓</div><div class="flow-box question">To whom is he compared for liability?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Like the Tzibbur (Public)</div><div class="flow-box result-good">Bull offering, no provisional <i>asham</i> → requires <b>absence of awareness + unwitting action</b></div></div><div class="flow-col"><div class="flow-label">Like the Nasi (King)</div><div class="flow-box result-bad">Goat for idol worship, brings definite <i>asham</i> → liable for <b>unwitting action alone</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Verse resolves: <b>"so as to bring guilt upon the people"</b> (Lev. 4:3) — priest is like the <b>tzibbur</b></div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> The anointed priest brings an offering only for absence of awareness of the matter together with unwitting performance of the action — just like the general public.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Who Is the Anointed Priest Like?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Like the Tzibbur (Public)</h3><ul><li>Both bring a <b>bull</b> as sin-offering</li><li>Neither brings a <b>provisional guilt-offering</b> (asham talui)</li><li>Both require <b>absence of awareness + unwitting action</b></li><li>Verse: "so as to bring guilt upon the people" links them</li></ul></div><div class="compare-box" style="border-top-color:#3a2a1a"><h3 style="color:#e67e22">Like the Nasi (King)</h3><ul><li>Both bring a <b>female goat</b> for unwitting idol worship</li><li>Both bring a <b>definite guilt-offering</b> for certain sins</li><li>King liable for <b>unwitting action alone</b></li><li>This analogy is ultimately <b>rejected</b></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>RESOLUTION</strong> Since either analogy is logically valid, the verse is needed to decide: the anointed priest is like the <b>tzibbur</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>What Does 'Sinned By Himself' Mean?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">The priest 'sinned by himself' means he and the court were in <b>two different places</b> issuing rulings about <b>two different prohibitions</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Does being in two places make it 'by himself'? Even in <b>one place</b> — if they rule on <b>different prohibitions</b>, he sinned by himself!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">The <b>subject of the ruling</b> determines independence, not the <b>location</b> of the ruling.</div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> Rava holds: the determining factor is whether the priest and court ruled on the <b>same prohibition</b>, not whether they were in the same place.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Cases: Are the Priest's and Court's Rulings Distinct?</h2>
+  
+  <table><tr><th>Priest's Ruling</th><th>Court's Ruling</th><th>Distinct?</th><th>Reason</th></tr><tr><td>Chelev (forbidden fat)</td><td>Idol worship</td><td>✅ Clearly yes</td><td>Different sources, different offerings (bull vs. bull + goat)</td></tr><tr><td>Idol worship</td><td>Chelev</td><td>✅ All the more so</td><td>Totally different offerings (female goat vs. bull)</td></tr><tr><td>Chelev on innards</td><td>Chelev on intestines</td><td>❓ Unresolved</td><td>Same offering, but derived from different verses</td></tr><tr><td>Chelev</td><td>Blood (dam)</td><td>❓ Unresolved</td><td>Different sources, but same atonement offering</td></tr></table><div class="callout" style="margin-top:20px"><strong>TEIKU</strong> The Gemara leaves unresolved whether different types of <i>chelev</i> count as one category, and whether <i>chelev</i> and <i>dam</i> are equated because they share the same offering.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Why the Priest Doesn't Bring an Asham Talui</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Verse: <b>"The priest shall atone for him for his unwitting act that he performed unwittingly"</b> (Lev. 5:18)</div><div class="flow-arrow">↓</div><div class="flow-box question">This applies only to one whose <b>transgression and unwitting action are equal</b></div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Ordinary Person</div><div class="flow-box result-good">Unwitting act = the transgression itself → <b>brings</b> provisional guilt-offering</div></div><div class="flow-col"><div class="flow-label">Anointed Priest</div><div class="flow-box result-bad">Unwitting act = erroneous <b>ruling</b>, transgression = the <b>action</b> → they are <b>not equal</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Therefore the anointed priest is <b>excluded</b> from the provisional guilt-offering (<i>asham talui</i>)</div></div><div class="callout" style="margin-top:20px"><strong>KEY DERIVATION</strong> The priest's "unwitting act" is his erroneous ruling, while the sin is the action — since these are not the same, the asham talui does not apply.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Priest Bears Only His Own Sin</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">על חטאתו אשר חטא — הוא מביא על חטאו ואינו מביא על חטא אחרים</div><div class="callout"><strong>VERSE</strong> From <b>"then he shall offer for his sin that he has sinned"</b> (Lev. 4:3) — he brings an offering for the sin <b>he himself</b> committed based on his ruling, but <b>not</b> for sins that <b>others</b> committed based on his ruling. Unlike the court, whose offering atones for the public's transgression, the priest's offering is personal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Horayot 7 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Anointed Priest</b> removed from category of individual</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border: 1px solid #4caf50;">Like <b>Tzibbur</b>: bull, no <i>asham talui</i>, needs ruling + action</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a; border: 1px solid #e67e22;">Like <b>Nasi</b>: goat for A"Z, definite <i>asham</i>, action alone suffices</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50;">Verse decides: <b>"so as to bring guilt upon the people"</b> → like the tzibbur</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a2e; border-left: 3px solid #9b59b6;">But priest liable only for <b>his own</b> sin, not for others who followed his ruling</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #c9a84c;">Requires <b>partial nullification</b> — not total nullification of the mitzva</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Horayot 7a-7b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Horayot 7a-7b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../6/">← Daf 6</a><a href="../8/">Daf 8 →</a></div>
+</body>
+</html>
