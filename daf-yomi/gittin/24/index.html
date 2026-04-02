@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 24 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">✋</div>
+  <h1>Gittin 24</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין כד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Wife as Agent — When a woman brings her own get from abroad<br>
+    🔄 Dual Agency Problem — Being both delivery and receipt agent<br>
+    ✍️ Lishmah Requirement — A get must be written for the specific woman<br>
+    🪞 Identical Names — Using a get written for someone with the same name<br>
+    ⚖️ No Retroactive Clarification — Bereirah rejected for gittin<br>
+    🤝 Agent from Agent — Whether a wife can appoint an agent to receive from husband's agent<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 24: Agency, Identity & Lishmah</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Wife Brings Her Own Get</b><br>From outside Eretz Yisrael</div><div class="flow-arrow">↓</div><div class="flow-box question">Problem: Once the get reaches her hand, she's already divorced — why must she testify?</div><div class="flow-arrow">↓</div><div class="flow-box action">Various solutions proposed involving <b>conditional delivery</b> and <b>dual agency</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Amud A</div><div class="flow-box result-good">Agency mechanics for a wife delivering her own get</div></div><div class="flow-col"><div class="flow-label">Amud B</div><div class="flow-box result-good">A get must be written <b>lishmah</b> — for <em>this</em> woman specifically</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> The precision required in both the <b>delivery</b> and the <b>writing</b> of a get — agency must be legally coherent, and the document must be created for the specific divorce.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Abaye vs. Rav Yosef: Where Does the Mishna Take Place?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">The entire mishna — including the wife bringing her own get — discusses a case <b>outside Eretz Yisrael</b>, which is why she must say 'it was written and signed in my presence.'</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Yosef</div><div class="speech">The first and last clauses are outside Eretz Yisrael, but the <b>middle clause</b> (women not deemed credible) takes place in <b>Eretz Yisrael</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Ashi</div><div class="speech">The mishna's precise language supports Abaye — it says she must state it was written and signed in her presence, implying <b>outside Eretz Yisrael</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Yosef</div><div class="speech">My proof: the mishna says 'the <b>writing</b> proves it' — not 'writing <em>and statement</em>.' No declaration is needed, so it's in Eretz Yisrael.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Issue</strong> Outside Eretz Yisrael, the agent must declare the get was written and signed in their presence to confirm its validity (לשמה).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Woman's Agency Problem</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A woman brings <b>her own get</b> from outside Eretz Yisrael</div><div class="flow-arrow">↓</div><div class="flow-box question">❓ Once the get reaches her hand, she's <b>already divorced!</b><br>Why must she testify before a court?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Rav Huna:</b> Husband stipulated divorce only in the presence of a <b>specific court</b></div><div class="flow-arrow">↓</div><div class="flow-box question">❓ But once she arrives at that court, she's <b>immediately divorced</b> — same problem!</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Rav Huna bar Manoaḥ:</b> Husband said 'Place the get on the ground and pick it up'</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">❌ Rava rules: 'Take your get from the ground' = <b>as though he said nothing</b></div></div><div class="callout" style="margin-top:20px"><strong>Rejected</strong> If the husband tells her to take the get from the ground, it's as if she took it on her own — not a valid giving (<b>נתינה</b>).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Dual Agency Solution</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">📤 Husband appoints wife as <b>agent for delivery</b> (שליח הולכה)</div><div class="process-arrow">↓</div><div class="process-step">🚶‍♀️ She carries the get to the designated court</div><div class="process-arrow">↓</div><div class="process-step highlight">👤 Upon arrival, she appoints a <b>third-party agent for receipt</b> (שליח קבלה)</div><div class="process-arrow">↓</div><div class="process-step">📥 She hands the get to that agent, who receives it on her behalf</div><div class="process-arrow">↓</div><div class="process-step highlight">📣 She testifies: 'It was written and signed in my presence'</div><div class="process-arrow">↓</div><div class="process-step">✅ Divorce takes effect through the receipt agent</div></div><div class="callout" style="margin-top:20px"><strong>Why Not Self-Receive?</strong> She cannot be both delivery and receipt agent because the <b>agency never returns to the husband</b> (לא חזרה שליחות אצל הבעל) — the first mission is never completed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Agent Receiving from Agent: Two Reasons It's Usually Forbidden</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#c9a84c">Degradation of Husband</h3><ul><li>Husband wants to give the get directly to his wife</li><li>Appointing an agent to receive from his agent is demeaning</li><li>Here: husband himself instructed this — <b>no degradation</b></li><li>This reason permits our case ✅</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#e74c3c">Decree Due to Courtyard</h3><ul><li>Concern: people might confuse agent-receipt with her courtyard acquiring the get</li><li>A courtyard acquires automatically — different mechanism</li><li>This is a blanket decree — no exceptions</li><li>This reason may still prohibit our case ❌</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> If the prohibition is about the husband's honor, our case works because he consented. If it's a general decree, even his consent may not help.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The 'Moreover' Clauses: Progressive Novelties of Lishmah</h2>
+  
+  <table><tr><th>Case</th><th>What's Novel</th><th>Why Unfit</th></tr><tr><td>Scribes <b>practicing</b> — someone finds a matching get</td><td>Not written for the sake of <b>any</b> divorce</td><td>Derived from: 'He gives a scroll of <b>severance</b>' — must be for actual divorce</td></tr><tr><td>Man writes get to divorce wife, <b>reconsiders</b> — another man wants to use it</td><td>Written for divorce, but <b>not his</b> divorce</td><td>Derived from: '<b>He writes</b>' — must be written by the one divorcing</td></tr><tr><td>Two wives, same name — writes for <b>older</b>, wants to divorce <b>younger</b></td><td>Same man wrote it for divorce, but <b>wrong wife</b></td><td>Derived from: 'He writes <b>for her</b>' — must be for this specific woman</td></tr><tr><td>Writes for 'whichever wife I choose'</td><td>Written for his own divorce of one of his wives</td><td><b>No retroactive clarification</b> (אין ברירה) — must be specified from the outset</td></tr></table><div class="callout" style="margin-top:20px"><strong>Torah Source</strong> "וְכָתַב <b>לָהּ</b> סֵפֶר כְּרִיתֻת" (Devarim 24:1) — 'And he writes <b>for her</b>' teaches three requirements: for severance, by the husband, for this specific wife.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 24 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>Wife as Agent</b><br>She cannot simply bring and receive her own get — the agency must be legally complete</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left:3px solid #c9a84c; padding:10px;"><b>Dual Agency Solution</b><br>She acts as delivery agent, then appoints a separate receipt agent at the court</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1e2a1e; border-left:3px solid #4caf50; padding:10px;"><b>Lishmah Requirement</b><br>The get must be written for the sake of this specific divorce — derived from וכתב לה</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a1a; border:1px solid #e74c3c; padding:8px;"><b>Written for practice</b><br>❌ Not for severance</div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a1a; border:1px solid #e74c3c; padding:8px;"><b>Written for another man</b><br>❌ Not 'he writes'</div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a1a; border:1px solid #e74c3c; padding:8px;"><b>Wrong wife / unspecified</b><br>❌ Not 'for her'</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 24a-24b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 24a-24b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../23/">← Daf 23</a><a href="../25/">Daf 25 →</a></div>
+</body>
+</html>

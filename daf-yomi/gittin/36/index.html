@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 36 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Gittin 36</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין לו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🤝 Public Vows — Vows taken with public consent cannot be nullified<br>
+    ✍️ Witness Signatures — Why witnesses sign a get and the requirement for full names<br>
+    🎨 Pictorial Marks — Sages who used symbols instead of signatures<br>
+    📋 Prosbol — Hillel's institution to prevent debt cancellation in Shemittah<br>
+    ⚖️ Rabbinic Authority — Can the Sages override Torah law passively?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 36: Prosbol & Witness Signatures</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Public Vows</b><br>Cannot be nullified without public consent</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Exception:</b> Can be nullified for a <em>mitzvah</em> purpose</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Witness Signatures on Gittin</b><br>Why were they instituted?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabba (R' Elazar)</div><div class="flow-box result-good">Transmission witnesses effect divorce; signatures added so get can be ratified if witnesses die/travel</div></div><div class="flow-col"><div class="flow-label">Rav Yosef (R' Meir)</div><div class="flow-box result-good">Signatory witnesses effect divorce; full names required so witnesses can be identified</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Prosbol</b><br>Hillel saw people refusing to lend before Shemittah — instituted prosbol to transfer debts to court</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> Rabbinic institutions — public vows, witness signatures, and prosbol — were enacted <em>l'tikkun ha'olam</em> (for the betterment of the world).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Can a Public Vow Be Nullified?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Initial View</div><div class="speech">A vow taken <b>in public</b> (b'rabbim) has no possibility of nullification.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Challenger</div><div class="speech">But according to the one who says a public vow <em>can</em> be nullified — what then?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Ameimar</div><div class="speech">A vow taken <b>al da'at rabbim</b> (with public consent) — <em>even the lenient view agrees</em> it cannot be nullified.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Limitation</div><div class="speech">This applies only for <b>optional matters</b>. For a <b>mitzvah</b>, even such a vow can be nullified.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Example</div><div class="speech">Rav Aḥa imposed a vow on a teacher who hit children excessively. <b>Ravina</b> nullified it because no better teacher could be found.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Public-consent vows are the strongest form — nullifiable only for mitzvah purposes.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Do Witnesses Sign a Get?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabba — following R' Elazar</h3><ul><li>Witnesses of <b>transmission</b> (mesirah) effect the divorce</li><li>Signatures are NOT required by Torah law</li><li>Sages added signatures so the get can be <b>ratified later</b></li><li>Concern: witnesses may die or travel overseas</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Rav Yosef — following R' Meir</h3><ul><li><b>Signatory</b> witnesses effect the divorce</li><li>Signatures ARE required by Torah law</li><li>The takanah: witnesses must write their <b>full names</b></li><li>Previously they wrote only 'I, so-and-so, signed' — identity unclear</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rabban Gamliel</strong> Instituted that witnesses write: '<em>So-and-so son of so-and-so</em>' — with identifying details — for the betterment of the world.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Pictorial Marks (Simanim) of the Sages</h2>
+  
+  <table><tr><th>Sage</th><th>Signature Mark</th></tr><tr><td>Rav</td><td>🐟 A fish</td></tr><tr><td>R' Ḥanina</td><td>🌴 A palm branch (ḥaruta)</td></tr><tr><td>Rav Ḥisda</td><td>ס The letter <em>samekh</em></td></tr><tr><td>Rav Hoshaya</td><td>ע The letter <em>ayin</em></td></tr><tr><td>Rabba bar Rav Huna</td><td>⛵ A sail (makota)</td></tr></table><div class="callout" style="margin-top:20px"><strong>How It Worked</strong> The Sages first used these marks in <b>personal letters</b> (no legal requirement). Once people recognized them, they could use them on <b>legal documents</b> too.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>How the Prosbol Works</h2>
+  
+  <div class="process-bar"><div class="process-step">📉 People <b>refrain from lending</b> as Shemittah approaches — violating Devarim 15:9</div><div class="process-arrow">↓</div><div class="process-step highlight">💡 Hillel sees the problem and <b>institutes the prosbol</b></div><div class="process-arrow">↓</div><div class="process-step">📝 Creditor declares: 'I transfer to you, judges of [place], the right to collect my debts'</div><div class="process-arrow">↓</div><div class="process-step">👨‍⚖️ Judges or witnesses <b>sign below</b> the prosbol document</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ Shemittah <b>does not cancel</b> the debt — creditor may collect whenever he wishes</div></div><div class="callout" style="margin-top:20px"><strong>Mechanism</strong> The prosbol effectively transfers the debt to <em>beit din</em>. Since Shemittah only cancels <b>personal</b> debts, court-held debts remain collectible.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Can the Sages Cancel Debts That Torah Law Preserves?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Question</div><div class="speech">If Shemittah debt cancellation is only <b>rabbinic</b> today, the Sages are essentially telling debtors to <b>keep money</b> the Torah says they owe!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Abaye</div><div class="speech">It's <b>shev v'al ta'aseh</b> — the Sages instruct one to <em>sit passively</em> and not pay. Passive violation of Torah law is permitted.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">The Sages can do this because <b>hefker beit din hefker</b> — property declared ownerless by the court is ownerless.</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Yitzḥak</div><div class="speech">Source: <em>Ezra 10:8</em> — 'All his property shall be <b>forfeited</b>' — the court can confiscate property.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Eliezer</div><div class="speech">Source: <em>Yehoshua 19:51</em> — Just as <b>fathers</b> transmit to children, so <b>heads of the nation</b> transmit to the people as they wish.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Dispute</strong> <b>Abaye:</b> passive non-compliance | <b>Rava:</b> court has direct power over property (<em>hefker beit din hefker</em>)</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 36 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Public Vows</b><br>Vows with public consent cannot be nullified — except for mitzvah purposes</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e1a; border-left: 3px solid #4caf50; padding: 8px;"><b>Witness Signatures</b><br>Rabba: ratification backup | Rav Yosef: full names required</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a1a; border-left: 3px solid #e74c3c; padding: 8px;"><b>Prosbol</b><br>Hillel transfers debts to beit din so Shemittah doesn't cancel them</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding: 8px;"><b>Abaye:</b> Sages can instruct <em>passive</em> non-compliance with Torah law (shev v'al ta'aseh)</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; padding: 8px;"><b>Rava:</b> <em>Hefker beit din hefker</em> — court has direct authority over property</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 36a-36b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 36a-36b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../35/">← Daf 35</a><a href="../37/">Daf 37 →</a></div>
+</body>
+</html>

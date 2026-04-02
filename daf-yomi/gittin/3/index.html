@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 3 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Gittin 3</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין ג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Leniency or Stringency — Is the single-agent rule lenient or strict?<br>
+    🔏 Ratification of Documents — Reish Lakish's principle on signed witnesses<br>
+    👤 One Witness for Prohibitions — Credibility of a single witness in issur cases<br>
+    📜 Lishmah Debate — Must writing and signing both be for her sake?<br>
+    🧑‍⚖️ Rabbi Meir vs. Rabbi Elazar — Whose opinion does the Mishnah follow?<br>
+    ✂️ Shortening the Formula — Risk of omitting parts of the declaration<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Why Must the Agent Testify? — The Ongoing Debate</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">The agent must say <b>"written and signed in my presence"</b> because a get must be written <b>lishmah</b> (for her sake), and overseas witnesses can't confirm this.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">The declaration is needed because <b>witnesses are unavailable</b> overseas to ratify the document, so the agent serves as the ratifier.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Each position is challenged: Is this really a <b>leniency</b>? With two witnesses the husband <b>can't contest</b> the get — with one agent, he can!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Answer: The get must be delivered before <b>2 or 3 people</b> (R' Yochanan / R' Chanina), so the agent will be careful not to deliver an invalid get.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Tension</strong> Both Rabba and Rava must explain why a <b>single agent</b> suffices when normally two witnesses are required — and why this is truly a leniency to prevent <i>iguna</i> (desertion).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rava's Challenge to Rabba's Reason</h2>
+  
+  <div class="debate"><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rava</div><div class="speech">If lishmah is the reason, the mishna should require the agent to say: <b>"written in my presence <i>for her sake</i>"</b> — but it doesn't!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">The Sages deliberately omitted 'for her sake' — if you <b>increase</b> the required formula, the agent may <b>forget parts</b> of it.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">But even now he might shorten the current formula by dropping one of the two clauses!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">A person may omit <b>one of three</b> terms, but will not omit <b>one of two</b>. The current two-part formula is safe from shortening.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Insight</strong> The Sages calibrated the formula's length to balance <b>completeness</b> against the risk of <b>human error</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Is the Single-Agent Rule a Leniency or Stringency?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Agent brings get with <b>one</b> witness (himself)</div><div class="flow-arrow">↓</div><div class="flow-box question">Is this a <b>leniency</b> for the woman?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Challenge</div><div class="flow-box result-bad">With <b>two witnesses</b>, husband <b>cannot</b> contest the get — stronger protection!</div></div><div class="flow-col"><div class="flow-label">Answer</div><div class="flow-box result-good">Delivery before <b>2–3 people</b> ensures agent is careful — effectively equivalent protection</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The public delivery requirement compensates for having only one witness, so the rule remains a <b>leniency</b> preventing <i>iguna</i>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rabba vs. Rava — Why Must the Agent Testify?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#fdf2e9"><h3 style="color:#c9a84c">Rabba: Lishmah Concern</h3><ul><li>A get must be written <b>for her sake</b> (lishmah)</li><li>Overseas scribes may not know this requirement</li><li>Agent confirms proper intent behind the writing</li><li>Declaration covers both writing and signing</li></ul></div><div class="compare-box" style="border-top-color:#eaf2f8"><h3 style="color:#4a90d9">Rava: Ratification Concern</h3><ul><li>Witnesses overseas are <b>unavailable</b> to ratify</li><li>Normally ratification requires <b>two</b> witnesses</li><li>One witness is credible for prohibitions (<i>issur</i>)</li><li>Reish Lakish: signed witnesses = examined testimony</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Common Ground</strong> Both agree the rule was enacted <b>due to the possibility of iguna</b> — to prevent women from becoming 'deserted wives' with uncertain marital status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>One Witness for Prohibitions — When Does It Apply?</h2>
+  
+  <table><tr><th>Scenario</th><th>Standard Rule</th><th>Get Ruling</th></tr><tr><td>Piece of fat — uncertain if forbidden</td><td>One witness is credible (no prior presumption)</td><td>—</td></tr><tr><td>Married woman (presumed forbidden)</td><td>Two witnesses required for <i>arayot</i></td><td>One agent suffices</td></tr><tr><td>Ratification of documents</td><td>Normally requires two witnesses</td><td>Agent alone suffices</td></tr><tr><td>Reish Lakish's principle</td><td>Signed witnesses = examined testimony</td><td>Basis for leniency here</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Unlike ordinary prohibition cases, a married woman has a <b>presumptive status</b> (<i>chazaka</i>) of being forbidden — yet the Sages were lenient due to <i>iguna</i>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabbi Meir vs. Rabbi Elazar on Lishmah</h2>
+  
+  <div class="process-bar"><div class="process-step">📜 Mishna (21b): Get written on something attached to the ground — if detached, <b>signed</b>, and given — valid</div><div class="process-arrow">↓</div><div class="process-step highlight">✍️ Rabbi Meir: The essential act of 'writing' a get = the <b>signing</b> by witnesses → signing must be lishmah</div><div class="process-arrow">↓</div><div class="process-step highlight">👁️ Rabbi Elazar: Witnesses sign only for <b>tikkun ha-olam</b> (betterment of the world) — signing is not essential</div><div class="process-arrow">↓</div><div class="process-step">📋 Rabbi Elazar: Get given before <b>two witnesses</b> without signatures is valid — she can even collect from liened property</div><div class="process-arrow">↓</div><div class="process-step highlight">❓ Problem: Neither opinion requires <b>both</b> writing and signing lishmah — so whose view does the mishna follow?</div></div><div class="callout" style="margin-top:20px"><strong>The Dilemma</strong> R' Meir requires <b>signing</b> lishmah but not writing; R' Elazar requires <b>writing</b> lishmah but not signing. The mishna's declaration covers <b>both</b> — fitting neither perfectly.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 3 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:18px; border-radius:12px; text-align:center;"><b>Agent brings get from overseas</b><br>Must declare: "Written and signed in my presence"</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a0a; color:#c9a84c; padding:14px; border-radius:10px; text-align:center;"><b>Rabba:</b> Ensures get was written <i>lishmah</i> (for her sake)</div></div><div class="flow-col"><div class="flow-box" style="background:#0a1a2a; color:#4a90d9; padding:14px; border-radius:10px; text-align:center;"><b>Rava:</b> Serves as ratification when witnesses are unavailable</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1621; color:#e74c3c; padding:14px; border-radius:12px; text-align:center;"><b>Challenge:</b> Single agent = husband can contest<br>Two witnesses = husband cannot contest — how is this lenient?</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#4caf50; padding:18px; border-radius:12px; text-align:center;"><b>Resolution:</b> Delivery before 2–3 people ensures agent's care<br>+ One witness credible for prohibitions + Reish Lakish's signed-witness principle</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 3a-3b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 3a-3b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../2/">← Daf 2</a><a href="../4/">Daf 4 →</a></div>
+</body>
+</html>

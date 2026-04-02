@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 76 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Gittin 76</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין עו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📋 Compound Conditions — Must a tenai be stated in both positive and negative forms?<br>
+    🔄 Multiple Conditions — When a second condition nullifies or supplements the first<br>
+    🗺️ Geographic Conditions — Antipatris, Kefar Otnai, and Akko in conditional divorce<br>
+    👤 Departing from Presence — Rav Huna vs R' Yochanan on the meaning of 'your presence'<br>
+    🤝 Wife's Credibility — Trusting the wife to confirm non-seclusion<br>
+    ⚰️ Death Before Fulfillment — Get cannot take effect after husband's death<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Conditional Divorce: Key Decision Points on Daf 76</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Husband gives conditional <b>get</b> (bill of divorce)</div><div class="flow-arrow">↓</div><div class="flow-box question">Is the <b>tenai</b> (condition) properly formulated?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Meir: Must be compound</div><div class="flow-box result-good">Condition must state both <b>positive and negative</b> outcomes — otherwise void and get is valid</div></div><div class="flow-col"><div class="flow-label">Rabbis: Need not be compound</div><div class="flow-box result-bad">Condition is valid even without double formulation — if unfulfilled, <b>get is invalid</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Can the condition <b>still be fulfilled</b>? (e.g., father/son died)</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Hindrance not from her</div><div class="flow-box result-good">R' Shimon b. Gamliel: Get is <b>valid</b> — she can say 'Give me your father and I will serve him'</div></div><div class="flow-col"><div class="flow-label">Her fault</div><div class="flow-box result-bad">Get remains <b>conditional</b> on fulfillment</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> This daf examines the mechanics of conditional divorce — how conditions must be formulated, what happens when multiple conditions are given, and what occurs when fulfillment becomes impossible.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Must a Condition Be Compounded? (Tenai Kaful)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Meir</div><div class="speech">A condition must be <b>compounded</b> (tenai kaful) — stated in both positive and negative forms. If not, the condition is <b>void</b> and the get is valid.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">A condition is <b>valid even without</b> double formulation. If unfulfilled, the get is <b>not valid</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Shimon b. Gamliel</div><div class="speech">Every condition in the <b>Torah</b> is compounded — but which side does this support?</div></div></div><div class="callout" style="margin-top:20px"><strong>Two Readings of RSBG</strong> Some say RSBG supports R' Meir (compound conditions are two verses teaching one thing — cannot derive a general rule). Others say he supports the Rabbis (we <b>do</b> learn from the Torah that conditions must be compounded).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>When Fulfillment Becomes Impossible</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Husband says: <b>'Get on condition you serve my father 2 years'</b> or <b>'nurse my son 2 years'</b></div><div class="flow-arrow">↓</div><div class="flow-box action">The <b>father dies</b> or the <b>son dies</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Is the get valid?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Meir</div><div class="flow-box result-bad"><b>Not valid</b> — the condition was not fulfilled (here he <em>did</em> compound it)</div></div><div class="flow-col"><div class="flow-label">Rabbis (= RSBG)</div><div class="flow-box result-good"><b>Valid</b> — she can say: <em>'Give me your father and I will serve him!'</em> The hindrance is <b>not from her</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Resolving the Contradiction</strong> R' Meir's two baraitot are reconciled: where the get is valid, he didn't compound the condition (so it's void). Where it's invalid, he did compound it. The 'Rabbis' in the second baraita are actually RSBG.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Multiple Conditions: Which Prevails?</h2>
+  
+  <table><tr><th>Scenario</th><th>First Condition</th><th>Second Condition</th><th>Result</th></tr><tr><td>Different types</td><td>Serve my father 2 years</td><td>Give me 200 dinars</td><td>She may <b>choose either</b> — both remain valid</td></tr><tr><td>Same type, different amount</td><td>Give me 200 dinars</td><td>Give me 300 dinars</td><td>Latter <b>nullifies</b> the first — must give 300</td></tr><tr><td>Witnesses</td><td>Said before Pair A</td><td>Said before Pair B</td><td>One from each pair may <b>combine</b> as witnesses</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> When the second condition is of a <b>different kind</b>, the husband is offering a choice. When it is <b>the same kind</b> with a different amount, he is retracting and replacing the first condition.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Geographic Conditions: Abaye's Explanation</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Galilee Condition</h3><ul><li>Antipatris is in <b>Judea</b>, Kefar Otnai is in <b>Galilee</b></li><li>Husband's dual condition: If I reach Galilee → get valid immediately</li><li>OR if I tarry 30 days without returning → get valid</li><li>He reached Antipatris and returned → <b>neither fulfilled</b> → not divorced</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Overseas Condition</h3><ul><li>Akko is part of <b>Eretz Yisrael</b> (Rav Safra: Sages took leave there)</li><li>Husband's dual condition: If I reach overseas → get valid immediately</li><li>OR if I tarry 30 days without returning → get valid</li><li>He reached Akko and returned → <b>neither fulfilled</b> → not divorced</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Method</strong> Abaye resolves each mishna by reading the husband's statement as containing <b>two alternative conditions</b>, neither of which was met when he turned back from a location that did not cross the relevant boundary.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>What Does 'Departing from Your Presence' Mean?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech"><b>'Your presence'</b> is a euphemism for <b>sexual intercourse</b>. If he doesn't have relations with her for 30 days, the get is valid — even if he was going and coming.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech"><b>'Your presence'</b> means <em>literally</em> being in her presence. Since he was <b>not secluded</b> with her for 30 days, the get is not considered <b>outdated</b> (get yashan). When 30 consecutive days of absence are fulfilled, the get takes effect.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">A <b>baraita</b> supports R' Yochanan: going and coming without seclusion means the get is valid and not considered outdated.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> For Rav Huna, the get takes effect after the 30 days of 'going and coming' themselves. For R' Yochanan, those 30 days only preserve the get from being outdated — divorce happens when 30 <b>consecutive</b> days of absence are eventually completed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 76 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Conditional Get Given</b><br>Husband attaches a tenai to the bill of divorce</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left: 3px solid #9b59b6;"><b>Is the Condition Properly Formulated?</b><br>R' Meir requires tenai kaful; Rabbis do not</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Fulfillment Possible</b><br>Evaluate whether condition was met — geographic, temporal, or action-based</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border-left: 3px solid #e74c3c;"><b>Fulfillment Impossible</b><br>If hindrance not from her (RSBG): get valid. If from her: get invalid</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3e; border-left: 3px solid #e67e22;"><b>Final Validity</b><br>Get cannot take effect after death. Wife's credibility on seclusion may be relied upon if husband so stipulated.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 76a-76b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 76a-76b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../75/">← Daf 75</a><a href="../77/">Daf 77 →</a></div>
+</body>
+</html>

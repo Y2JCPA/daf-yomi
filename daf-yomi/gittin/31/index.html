@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 31 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍷</div>
+  <h1>Gittin 31</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין לא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Teruma Comparisons — Standard teruma and teruma of the tithe share rules<br>
+    🫙 Setting Aside Produce — Presumption that designated produce/money still exists<br>
+    ⏰ From Time to Time — Dispute over retroactive period of concern<br>
+    🍷 Checking Wine — Three annual times to verify wine hasn't soured<br>
+    🌊 Mikveh Deficiency — Retroactive impurity when a ritual bath is found lacking<br>
+    🌬️ The East Wind — Meanings of ḥarishit and the four daily winds<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Setting Aside Produce for Tithes: What If It's Lost?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>One sets aside produce or money</b> for separating terumot, tithes, or redeeming ma'aser sheni</div><div class="flow-arrow">↓</div><div class="flow-box action">He may rely on the <b>presumption</b> (chazakah) that the produce/money still exists</div><div class="flow-arrow">↓</div><div class="flow-box question">What if the produce/money is <b>discovered lost</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Yochanan</div><div class="flow-box result-bad">Concern goes back <b>24 hours</b> before discovery</div></div><div class="flow-col"><div class="flow-label">R' Elazar b. Antigonus</div><div class="flow-box result-bad">Concern goes back to <b>24 hours after</b> it was originally set aside</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Issue</strong> How far back must one retroactively re-tithe produce that was rendered fit using the now-lost designation?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Teruma vs. Teruma of the Tithe</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">Standard Teruma (תרומה גדולה)</h3><ul><li>Separated by the homeowner</li><li>Taken by <b>estimate</b> — no precise measurement required</li><li>Can be designated <b>by thought</b> alone</li><li>No need to physically separate before consuming remainder</li></ul></div><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Teruma of the Tithe (תרומת מעשר)</h3><ul><li>Normally separated by the Levite</li><li>Learned from the verse: also taken by <b>estimate</b></li><li>Also designated <b>by thought</b></li><li>The <b>homeowner</b> also has permission to separate it</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Derivation</strong> Since the Torah mentions both terumot together, they are compared: rules of standard teruma apply to teruma of the tithe as well.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Mishna: Setting Aside Produce for Future Tithes</h2>
+  
+  <div class="process-bar"><div class="process-step">📦 A person sets aside produce or money for future teruma, tithes, or ma'aser sheni redemption</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ He may later use it, relying on the <b>presumption</b> (chazakah) that it still exists</div><div class="process-arrow">↓</div><div class="process-step">❌ If he discovers it was lost — he must re-tithe retroactively</div><div class="process-arrow">↓</div><div class="process-step highlight">⏳ Retroactive concern applies <b>'from the time until the same time'</b> (מעת לעת)</div><div class="process-arrow">↓</div><div class="process-step">🔁 All produce rendered fit during that window must be tithed again</div></div><div class="callout" style="margin-top:20px"><strong>R' Elazar</strong> This ruling is the statement of the Tanna R' Elazar in the Mishna.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>What Does 'From Time to Time' (מעת לעת) Mean?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">It means from the time it was <b>checked and found lost</b>, going back <b>24 hours</b>. Any produce rendered fit within those 24 hours must be re-tithed.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Elazar b. Antigonus (in name of R' Elazar b. R' Yannai)</div><div class="speech">It means from the time it was <b>originally set aside</b> until 24 hours later. Only produce rendered fit <b>after</b> that first 24-hour period is in doubt.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">The Mishna's wording — <b>'from the time until the same time'</b> — fits R' Yochanan's reading more naturally. R' Elazar b. Antigonus's reading is <b>difficult</b> with the Mishna's language.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> R' Yochanan's window moves with discovery; R' Elazar b. Antigonus's window is fixed from the moment of designation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>R' Yehuda: Three Times to Check Wine for Vinegar</h2>
+  
+  <table><tr><th>Time of Year</th><th>Season</th><th>Reason</th></tr><tr><td>When the <b>east wind</b> blows after Sukkot</td><td>Tishrei (Autumn)</td><td>Weather change may sour wine</td></tr><tr><td>When <b>blossoms fall</b> and grape buds emerge</td><td>Spring</td><td>Seasonal shift affects fermentation</td></tr><tr><td>When <b>water enters</b> unripe grapes</td><td>Summer</td><td>Moisture change risks souring</td></tr></table><div class="callout" style="margin-top:20px"><strong>Exception</strong> If the summer heat continues until Sukkot (unusual weather), one does not check after Sukkot — the east wind concern doesn't apply.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Mikveh Found Deficient — Retroactive Impurity</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A mikveh was <b>known to have 40 se'a</b></div><div class="flow-arrow">↓</div><div class="flow-box action">People immersed and were <b>deemed pure</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Mikveh is later <b>measured and found deficient</b></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>All items</b> immersed since it was last measured are <b>retroactively impure</b> — whether in private or public domain</div></div><div class="callout" style="margin-top:20px"><strong>R' Elazar (Amora)</strong> This mikveh ruling disagrees with R' Elazar the Tanna — it goes back to the last measurement, not merely 24 hours.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 31 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #c9a84c; padding:8px;"><b>Set Aside</b> produce or money for tithes</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:8px;"><b>Presume</b> it still exists — use it to render produce fit</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1616; border-left:3px solid #e74c3c; padding:8px;">If <b>found lost</b> — must re-tithe retroactively</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; border-top:3px solid #4a90d9; padding:8px;"><b>R' Yochanan:</b> 24 hours before discovery</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; border-top:3px solid #e67e22; padding:8px;"><b>R' Elazar b. Antigonus:</b> After first 24 hours from designation</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3e; border-left:3px solid #9b59b6; padding:8px;"><b>Wine:</b> Check at 3 times yearly — after Sukkot, at blossom-fall, at grape-filling</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 31a-31b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 31a-31b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../30/">← Daf 30</a><a href="../32/">Daf 32 →</a></div>
+</body>
+</html>

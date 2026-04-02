@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 26 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Gittin 26</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין כו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📝 Pre-Written Gets — Scribes preparing standard document templates in advance<br>
+    ⚖️ Tofes vs. Toref — Which parts of a get may be written beforehand<br>
+    🏛️ The Ordinance — Why the Sages permitted or required pre-writing<br>
+    👫 Deserted Wives — Protecting women from being left without a get<br>
+    📅 Dating the Get — Why a date is required even for betrothal divorces<br>
+    👶 Benefit of the Child — Ulla's reason for dating a bill of divorce<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Pre-Writing Bills of Divorce: The Tofes Question</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Can a scribe write the standard part (<i>tofes</i>) of a get in advance?</b></div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Yehuda</div><div class="flow-box result-bad"><b>Invalidates ALL</b> pre-written documents — gittin, loans, and sales alike</div></div><div class="flow-col"><div class="flow-label">First Tanna</div><div class="flow-box result-good"><b>Valid</b> — but must leave blank: names, date, and key phrase</div></div><div class="flow-col"><div class="flow-label">R' Elazar</div><div class="flow-box action">Valid for loans & sales, <b>invalid for gittin</b> — "he writes <i>for her</i>"</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Debate</strong> The mishna's first clause follows R' Elazar per Shmuel — witnesses of <i>transmission</i> effect divorce, so the <i>writing</i> must be for her sake.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Mishna: What Must Be Left Blank?</h2>
+  
+  <table><tr><th>Document Type</th><th>Fields Left Empty</th></tr><tr><td><b>Get</b> (Bill of Divorce)</td><td>Man's name, Woman's name, Date, "Permitted to any man" (per Shmuel)</td></tr><tr><td><b>Loan Document</b></td><td>Lender's name, Borrower's name, Amount, Date</td></tr><tr><td><b>Sale of Land</b></td><td>Buyer's name, Seller's name, Amount, Field description, Date</td></tr></table><div class="callout" style="margin-top:20px"><strong>Shmuel's Addition</strong> The scribe must also leave blank the essential phrase <b>"הרי את מותרת לכל אדם"</b> — You are hereby permitted to marry any man — because this too must be written <i>for her sake</i> (<i>lishmah</i>).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Three Tannaitic Views on Pre-Written Documents</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Tanna</div><div class="speech">A scribe <b>may</b> write the <i>tofes</i> (standard part) of any document in advance, as long as the essential details are left blank.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Yehuda</div><div class="speech">I <b>invalidate all</b> these documents if the standard part was pre-written — gittin, loans, and sales alike.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Elazar</div><div class="speech">All are <b>valid except gittin</b>. The Torah says <b>"וכתב לה"</b> — he must write it <i>for her</i>. Even the standard part of a get cannot be pre-written.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Shmuel</div><div class="speech">The first clause of our mishna actually follows R' Elazar — who holds that <b>witnesses of transmission</b> effect the divorce, so the <i>writing</i> must be lishmah.</div></div></div><div class="callout" style="margin-top:20px"><strong>Contradiction?</strong> The first clause permits pre-writing the tofes of a get, while R' Elazar in the last clause forbids it. Answer: <b>Two tannaim disagree about R' Elazar's opinion.</b></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>What Is the "Ordinance" (Takana)?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a237e"><h3 style="color:#90caf9">R' Shabbetai / Ḥizkiyya: Prevent a Quarrel</h3><ul><li>Follows <b>R' Meir</b> — signatory witnesses effect divorce</li><li>Writing need not be <i>lishmah</i></li><li>By right, even the essential part could be pre-written</li><li>But a wife might <b>hear</b> the scribe writing her name by chance</li><li>She would think her husband ordered the get — causing a <b>quarrel</b></li></ul></div><div class="compare-box" style="border-top-color:#1b5e20"><h3 style="color:#a5d6a7">Rav Ḥisda / Avimi: Remedy for Deserted Wives</h3><ul><li>Explained per <b>both</b> R' Meir and R' Elazar</li><li>Per R' Meir: Don't let husband have a ready get to throw in anger</li><li>Making him wait gives time to <b>calm down</b> and reconsider</li><li>Per R' Elazar: Allow tofes so a get can be completed quickly</li><li>Otherwise a husband traveling overseas may <b>abandon</b> his wife</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Takana</strong> The ordinance balances two risks: a get that's <b>too easy</b> to deliver (impulsive divorce) vs. <b>too hard</b> to obtain (deserted wives).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Deserted Wives: Two Directions of the Same Concern</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Husband wants to divorce his wife</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Is a scribe readily available to write a complete get?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Risk of Impulsive Divorce (R' Meir)</div><div class="flow-box result-bad">If the essential part is pre-written, husband might <b>throw the get in anger</b> during a fight → wife left divorced and deserted</div></div><div class="flow-col"><div class="flow-label">No — Risk of Abandonment (R' Elazar)</div><div class="flow-box result-bad">If even the tofes can't be pre-written, husband traveling abroad <b>won't find a scribe</b> → wife left as an <i>agunah</i></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Solution:</b> Allow pre-writing the <i>tofes</i> only — fast enough to prevent abandonment, slow enough to prevent impulsive divorce</div></div><div class="callout" style="margin-top:20px"><strong>Balance</strong> The Sages crafted a middle path: pre-write the boilerplate, but require the personal details to be written fresh each time.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Why Must the Date Be Written — Even for Betrothal?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The mishna requires a date on <b>all</b> gittin — whether divorcing from marriage or from betrothal. Why?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">View 1</div><div class="speech">The date prevents a husband from protecting his adulterous wife with an undated get (the <b>"daughter of his sister"</b> case). This applies even to betrothal — <b>adultery law begins at betrothal</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">View 2</div><div class="speech">The date protects the wife's right to <b>produce</b> from her property after divorce. But a <i>betrothed</i> woman's husband has no rights to her produce yet!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">So according to the "produce" reason, why require a date for a betrothal divorce?</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Ulla</div><div class="speech">The date is for <b>the benefit of the child</b> — to establish that the get was written after marriage, not before.</div></div></div><div class="callout" style="margin-top:20px"><strong>Ulla's Principle</strong> A get written for a betrothed woman to be used after marriage is <b>invalid</b>. The date proves the get was written at the proper time, protecting the legitimacy of any children.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 26 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:4px solid #4a90d9; padding:12px;"><b>Scribe prepares document templates</b><br>Standard boilerplate written in advance</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a1e; border-left:4px solid #4caf50; padding:12px;"><b>Essential details left blank</b><br>Names, date, "permitted to any man"</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a1e; border-left:4px solid #e74c3c; padding:10px;"><b>R' Meir's concern:</b><br>Prevent impulsive divorce — husband shouldn't have a ready get to throw in anger</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a3e; border-left:4px solid #9b59b6; padding:10px;"><b>R' Elazar's concern:</b><br>Prevent abandonment — allow quick completion so traveling husband doesn't leave wife stranded</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:4px solid #c9a84c; padding:12px;"><b>The date must always be included</b><br>Protects against adultery cover-ups and ensures legitimacy of children (Ulla)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 26a-26b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 26a-26b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../25/">← Daf 25</a><a href="../27/">Daf 27 →</a></div>
+</body>
+</html>

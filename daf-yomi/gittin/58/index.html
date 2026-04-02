@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 58 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">😢</div>
+  <h1>Gittin 58</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין נח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💀 Destruction of Beitar — The horrific scale of the massacre<br>
+    ✨ Beauty of Zion's Children — 'Comparable to fine gold'<br>
+    📖 Captive Children & Torah — Two boys find suffering foretold in Torah<br>
+    🔓 Ransoming R' Yishmael — R' Yehoshua redeems a child prodigy in Rome<br>
+    💔 Siblings in Captivity — Tragic tale of R' Yishmael ben Elisha's children<br>
+    ⚖️ Sicarius Property Laws — Purchasing land from violent occupiers<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 58: Churban Beitar & Captive Children</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">בְּנֵי צִיּוֹן הַיְקָרִים הַמְסֻלָּאִים בַּפָּז — Lamentations 4:2</div><div class="callout"><strong>THEMES</strong> <b>Amud A</b> is one of the most emotionally devastating passages in the Talmud — a series of aggadic accounts of the destruction of <b>Beitar</b> and the suffering of Jewish captives, especially children. The Gemara mourns the scale of death, the beauty of Zion's sons, and tells heartbreaking stories of captive children, including the ransoming of the future <b>R' Yishmael ben Elisha</b>. <b>Amud B</b> returns to the halakhic discussion of <b>Sicarius laws</b> — purchasing property from violent occupiers — including disputes between Rav and Shmuel, and the rule that courts may advance claims on behalf of buyers and heirs.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Scale of Destruction at Beitar</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yannai b. R' Yishmael</div><div class="speech">Three baskets of <b>40 se'ah each</b> of tefillin boxes were found on the heads of those killed at Beitar</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Baraita</div><div class="speech"><b>Forty</b> baskets of <b>3 se'ah each</b> were found</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">They do not disagree: one refers to <b>tefillin shel rosh</b> (head), the other to <b>tefillin shel yad</b> (arm) — they differ in size</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Asi</div><div class="speech"><b>Four kav</b> of children's brains were found on a single stone</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Ulla</div><div class="speech"><b>Nine kav</b> were found on one stone</div></div></div><div class="callout" style="margin-top:20px"><strong>VERSE</strong> Psalms 137:8–9 — <i>"Happy is he who shall seize and dash your little ones against the rock"</i> — the Gemara sees this as foretelling the cruelty of Beitar</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Beauty of Zion's Children</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">בְּנֵי צִיּוֹן הַיְקָרִים הַמְסֻלָּאִים בַּפָּז</div><div class="callout"><strong>LAMENTATIONS 4:2</strong> <b>"The precious sons of Zion, comparable to fine gold (מְסֻלָּאִים בַּפָּז)"</b><br><br>The school of R' Sheila taught: Only <b>two istira-weights</b> of fine gold (<i>piza</i>) exist in the entire world — one in Rome, one everywhere else. So "comparable to fine gold" cannot mean they were <i>covered</i> in gold.<br><br>Rather: the people of Jerusalem were <b>so beautiful</b> that they would <b>disgrace fine gold</b> by comparison. Roman noblemen would tie Jewish children to their beds so they could gaze upon their beauty.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Two Captive Children Discuss Torah</h2>
+  
+  <div class="process-bar"><div class="process-step">🏛️ Two Jewish children are held captive by Romans</div><div class="process-arrow">↓</div><div class="process-step highlight">❓ One asks: 'Where is this affliction written in the Torah?'</div><div class="process-arrow">↓</div><div class="process-step highlight">📖 The other answers: Devarim 28:61 — 'Every sickness and plague not written in this Torah'</div><div class="process-arrow">↓</div><div class="process-step">📏 'How far was I from reaching that verse?' — 'Only one and a half columns (pusta)'</div><div class="process-arrow">↓</div><div class="process-step highlight">💡 'Had I reached it, I would not have needed you' — showing remarkable Torah knowledge even in captivity</div></div><div class="callout" style="margin-top:20px"><strong>INSIGHT</strong> Even in unimaginable suffering, these children sought meaning through Torah — finding their own fate encoded in Deuteronomy's curses</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>R' Yehoshua Ransoms a Child in Rome</h2>
+  
+  <div class="flowchart"><div class="flow-box action">R' Yehoshua ben Chananya travels to <b>Rome</b> and hears of a captive Jewish child with <b>beautiful eyes and curly hair</b></div><div class="flow-arrow">↓</div><div class="flow-box question">He stands at the prison entrance and recites: <i>"Who gave Jacob for a spoil?"</i> (Isaiah 42:24)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">The child completes the verse: <i>"Did not Hashem, He against Whom we have sinned..."</i></div><div class="flow-arrow">↓</div><div class="flow-box action">R' Yehoshua swears: <b>"I will not move until I ransom him!"</b> — He pays a great sum</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Within days the child issues <b>halakhic rulings</b> — this was <b>R' Yishmael ben Elisha</b></div></div><div class="callout" style="margin-top:20px"><strong>PIDYON SHVUYIM</strong> This story illustrates the supreme importance of ransoming captives — R' Yehoshua recognized greatness in a child and spared no expense</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Tragic Tale of R' Yishmael's Son & Daughter</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">The Son</h3><ul><li>Son of R' Yishmael ben Elisha the Kohen Gadol</li><li>Taken captive and sold as a slave</li><li>His master boasted: 'I have a male slave of unmatched beauty'</li><li>Sat in the corner and declared: 'I am a Kohen — shall I marry a slave?'</li><li>Wept all night — at dawn recognized his sister</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">The Daughter</h3><ul><li>Daughter of the Kohen Gadol</li><li>Taken captive and sold to a different master</li><li>Her master boasted: 'I have a female slave of unmatched beauty'</li><li>Sat in the corner and declared: 'I am a Kohen's daughter — shall I marry a slave?'</li><li>They fell upon each other weeping until their souls departed</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>LAMENT</strong> Lamentations 1:16 — <i>"For these things I weep; my eye, my eye runs down with water"</i> — Yirmiyahu mourns such tragedies</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 58 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#3a1a1a; border-left: 3px solid #e74c3c; padding: 8px;"><b>Churban Beitar</b><br>Massive casualties — tefillin, children's suffering</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3a; border-left: 3px solid #c9a84c; padding: 8px;"><b>Beauty of Zion</b><br>Children 'comparable to fine gold' — exploited by Romans</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 8px;"><b>Redemption Through Torah</b><br>R' Yehoshua ransoms R' Yishmael ben Elisha in Rome</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a3a; border-left: 3px solid #9b59b6; padding: 8px;"><b>Tragedy</b><br>R' Yishmael's children die in captivity rather than compromise their priestly dignity</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Sicarius Laws</b><br>Courts protect innocent buyers; silence = waiver in Babylonia</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 58a-58b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 58a-58b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../57/">← Daf 57</a><a href="../59/">Daf 59 →</a></div>
+</body>
+</html>

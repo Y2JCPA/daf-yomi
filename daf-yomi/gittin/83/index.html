@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 83 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🦁</div>
+  <h1>Gittin 83</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין פג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔓 Partial Permission — Rav Ashi's dilemmas on retracting marriage restrictions<br>
+    ⚔️ Four Sages vs. Rabbi Eliezer — Post-mortem refutations of conditional divorce<br>
+    📜 Keritut (Severance) — R' Elazar ben Azarya's definitive argument<br>
+    🦁 Lion After Death — R' Yehoshua's principle of posthumous respect<br>
+    ⚖️ Exception vs. Stipulation — R' Akiva's dual refutations analyzed<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Can a Get Contain Conditions Limiting Remarriage?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rabbi Eliezer</div><div class="speech">A husband may stipulate in a <i>get</i> that the wife may not marry a specific man — this is still a valid act of <b>keritut</b> (severance)</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Four Sages</div><div class="speech">After R' Eliezer's death, <b>R' Tarfon, R' Yosei HaGelili, R' Elazar ben Azarya, and R' Akiva</b> each refute this position</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">All the refutations can be countered — <b>except</b> that of R' Elazar ben Azarya, which stands unrefuted</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Yehoshua</div><div class="speech"><b>אין משיבין את הארי לאחר מיתה</b> — One does not refute a lion after his death</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> Does a conditional divorce that restricts whom a woman may marry qualify as <b>sefer keritut</b> — a 'scroll of complete severance'?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav Ashi's Dilemmas: Retracting a Restriction</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Husband first forbids marriage to <b>Reuven & Shimon</b>, then gives a second <i>get</i> permitting marriage</div><div class="flow-arrow">↓</div><div class="flow-box question">He says: <b>'You are permitted to Reuven'</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Possibility A</div><div class="flow-box result-good">He mentioned Reuven because he was <b>listed first</b> — she is permitted to <b>both</b></div></div><div class="flow-col"><div class="flow-label">Possibility B</div><div class="flow-box result-bad">He <b>specifically</b> meant only Reuven — Shimon remains forbidden</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Teyku</strong> All of Rav Ashi's dilemmas — including whether <b>'also Shimon'</b> means 'in addition to Reuven' or 'in addition to everyone else' — remain <b>unresolved</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Four Refutations of Rabbi Eliezer</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a237e"><h3 style="color:#c9a84c">R' Tarfon</h3><ul><li>If she marries the <b>brother</b> of the forbidden man and he dies childless…</li><li>She cannot perform <i>yibum</i> with the forbidden man</li><li>The husband's stipulation <b>uproots a Torah mitzvah</b></li><li>∴ This is not valid keritut</li></ul></div><div class="compare-box" style="border-top-color:#1b5e20"><h3 style="color:#c9a84c">R' Yosei HaGelili</h3><ul><li>Where do we find something <b>forbidden to one and permitted to another</b>?</li><li>What is forbidden is forbidden to <b>all</b></li><li>What is permitted is permitted to <b>all</b></li><li>∴ This is not valid keritut</li></ul></div><div class="compare-box" style="border-top-color:#4a148c"><h3 style="color:#c9a84c">R' Elazar b. Azarya</h3><ul><li><b>ספר כריתות</b> — Scroll of SEVERANCE</li><li>Must <b>completely sever</b> bond between husband and wife</li><li>A restriction means she is <b>still bound</b> to him</li><li>∴ This is not valid keritut</li></ul></div><div class="compare-box" style="border-top-color:#b71c1c"><h3 style="color:#c9a84c">R' Akiva</h3><ul><li>If she remarries, then marries the forbidden man — the <i>get</i> is <b>retroactively void</b></li><li>Her children from husband #2 would be <b>mamzerim</b>!</li><li>Torah would not sanction such a divorce</li><li>∴ This is not valid keritut</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Verdict</strong> All refutations have counter-arguments — <b>except R' Elazar ben Azarya's</b>, which is unassailable. R' Yosei in a baraita agrees his is the strongest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Lion After Death</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">דברים כ״ד:א׳–ב׳</div><div class="callout"><strong>אין משיבין את הארי לאחר מיתה</strong> <b>R' Yehoshua</b> told the four Sages: <i>One does not refute a lion after his death.</i> After a Sage has passed away, one cannot reject his opinion based on a difficulty — he may have provided an answer had it been raised in his lifetime.<br><br>The Gemara reveals that R' Yehoshua <b>himself</b> had a refutation of R' Eliezer, based on <b>Devarim 24:1–2</b>: just as before her first marriage she was not bound to any man, so too before her second marriage she should not be bound to any man.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>R' Akiva's Second Argument: The Kohen Problem</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech">If the forbidden man is a <b>Kohen</b> and the ex-husband dies — she is a <b>widow</b> regarding him but a <b>divorcée</b> to all others</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech"><b>Kal va-chomer:</b> If the <i>minor</i> prohibition of a divorcée marrying a Kohen applies to him, surely the <i>major</i> prohibition of <b>eishet ish</b> should apply to all men!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">This can be refuted: the prohibition of marrying into <b>Kehunah is unique</b> and cannot be used for a <i>kal va-chomer</i> to other prohibitions</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Rava follows <b>R' Yannai</b>, who says R' Eliezer derives his view from <b>Devarim 24:2</b>, not from the Kohen verse — so the Kohen comparison is irrelevant</div></div></div><div class="callout" style="margin-top:20px"><strong>Exception vs. Stipulation</strong> R' Akiva raised objections to <b>both versions</b> of R' Eliezer — one for those who understood it as an exception, another for those who understood it as a stipulation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rava's Assessment of Each Refutation</h2>
+  
+  <table><tr><th>Sage</th><th>Argument</th><th>Rava's Counter</th></tr><tr><td>R' Tarfon</td><td>Stipulation uproots yibum (Torah law)</td><td>The stipulation merely creates a circumstance — it doesn't directly uproot the mitzvah</td></tr><tr><td>R' Yosei HaGelili</td><td>Nothing can be forbidden to one and permitted to another</td><td>There are such cases (e.g., certain food restrictions, terumah)</td></tr><tr><td>R' Elazar b. Azarya</td><td>Sefer keritut requires COMPLETE severance</td><td>❌ <b>No refutation found</b></td></tr><tr><td>R' Akiva (#1)</td><td>Mamzerut risk — get becomes retroactively void</td><td>This concern applies only after she violates the condition</td></tr><tr><td>R' Akiva (#2)</td><td>Kal va-chomer from Kohen prohibition</td><td>Kehunah prohibition is unique — cannot extrapolate from it</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Takeaway</strong> R' Elazar ben Azarya's textual argument from the <b>meaning of keritut itself</b> proves most resilient because it addresses the fundamental <i>definition</i> of divorce.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 83 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #e67e22;"><b>Rabbi Eliezer:</b> A husband may condition a <i>get</i> on not marrying a specific man</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a1a2e; border-left: 3px solid #4a90d9;"><b>Four Sages</b> raise refutations after his death — each from a different angle</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border: 2px solid #4caf50;"><b>R' Elazar b. Azarya:</b> Keritut = complete severance — <span style='color:#4caf50'>UNREFUTED</span></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a1a; border: 2px solid #e74c3c;"><b>Others:</b> Valid arguments but Rava finds counter-arguments for each</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a1a; border-left: 3px solid #c9a84c;"><b>R' Yehoshua:</b> אין משיבין את הארי לאחר מיתה — One does not refute a lion after his death</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 83a-83b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 83a-83b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../82/">← Daf 82</a><a href="../84/">Daf 84 →</a></div>
+</body>
+</html>

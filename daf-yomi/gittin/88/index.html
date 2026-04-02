@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 88 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Gittin 88</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין פח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Signature Placement — Where witnesses may sign on a get<br>
+    🌐 Mixed Languages — Hebrew and Greek in gittin<br>
+    ✍️ Scribe as Witness — When scribe's handwriting validates a get<br>
+    👊 Compelled Divorce — Jewish vs. gentile court compulsion<br>
+    🏛️ Judicial Agency — Babylonian courts acting as agents of Eretz Yisrael<br>
+    📢 Rumors — Legal force of public rumor for betrothal and divorce<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 88: Compulsion, Courts & Validity</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Husband compelled to give a get</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">By Jewish Court</div><div class="flow-box result-good"><b>Lawfully:</b> Valid ✅<br/><b>Unlawfully:</b> Invalid but disqualifies from <i>kehuna</i></div></div><div class="flow-col"><div class="flow-label">By Gentiles</div><div class="flow-box result-bad"><b>Lawfully:</b> Invalid but disqualifies from <i>kehuna</i><br/><b>Unlawfully:</b> Not a get at all</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> A valid divorce requires the husband's genuine consent — the source of compulsion and its legal basis determine the get's status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Where Can Witnesses Sign?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Mishna</div><div class="speech">If witnesses signed at the <b>top of the column</b> or <b>on the side</b>, the get is <b>invalid</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But didn't <b>Rav</b> sign on the side?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Rav positioned the <b>top of his signature facing the text</b>, making it clear he was signing that document.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But what about two gittin written in opposite directions with signatures between them?</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Resolution</div><div class="speech">Those signatures were <b>perpendicular</b> (like a door bolt), so they don't clearly face either text. Rav only signed on the side for <b>letters and rulings</b>, not gittin.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Rule</strong> Signatures on a get must appear <b>below</b> the text. Side-signing is only acceptable for non-legal documents.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Mixed-Language Gittin: What's Valid?</h2>
+  
+  <table><tr><th>Scenario</th><th>Status</th></tr><tr><td>Written in <b>Hebrew</b>, witnesses signed in <b>Greek</b></td><td>✅ Valid</td></tr><tr><td>Written in <b>Greek</b>, witnesses signed in <b>Hebrew</b></td><td>✅ Valid</td></tr><tr><td>One witness signed <b>Hebrew</b>, one signed <b>Greek</b></td><td>✅ Valid</td></tr><tr><td>Scribe's handwriting recognized + <b>one</b> witness verified</td><td>✅ Valid (like two witnesses)</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' Yirmeya's Clarification</strong> The scribe's handwriting validates only when <b>the scribe also signed as a witness</b> — the text alone is insufficient.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Surnames in a Get: How Many Generations?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Tanna Kamma</h3><ul><li>Ancestral surname valid for <b>10 generations</b></li><li>Broad recognition window</li><li>Practical for well-known families</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">R' Shimon ben Elazar</h3><ul><li>Valid for only <b>3 generations</b></li><li>Based on <i>venoshantem</i> (Deut. 4:25)</li><li>After grandchildren, a name is 'old' and forgotten</li><li>R' Ḥanina follows this view</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Verse Source</strong> "When you beget children and children's children" — after three generations, a matter is considered <i>yashan</i> (old).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Compelled Divorce: The Four-Way Matrix</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Husband compelled to give a get</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Jewish Court</div><div class="flow-box action">Ordained judges with halakhic authority</div></div><div class="flow-col"><div class="flow-label">Gentile Court</div><div class="flow-box action">Non-Jewish legal authority</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Jews — Lawfully</div><div class="flow-box result-good">✅ <b>Fully valid get</b><br/>Husband was obligated to divorce</div></div><div class="flow-col"><div class="flow-label">Jews — Unlawfully</div><div class="flow-box result-bad">⚠️ <b>Invalid</b> but disqualifies wife from <i>kehuna</i></div></div><div class="flow-col"><div class="flow-label">Gentiles — Lawfully</div><div class="flow-box result-bad">⚠️ <b>Invalid</b> but disqualifies from <i>kehuna</i> (decree lest people confuse with Jewish compulsion)</div></div><div class="flow-col"><div class="flow-label">Gentiles — Unlawfully</div><div class="flow-box result-bad">❌ <b>Not a get at all</b><br/>No disqualification whatsoever</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Shmuel's Ruling</strong> The validity depends on <b>two factors</b>: who compelled the husband, and whether there was a halakhic obligation to divorce.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Why Does Gentile Compulsion Disqualify from Kehuna?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">If gentiles can't legally compel — it should carry <b>no weight at all!</b> If they can — it should be <b>fully valid!</b></div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Mesharshiyya</div><div class="speech">By Torah law, gentile compulsion <b>is valid</b>. The Rabbis invalidated it so women wouldn't manipulate gentile courts to free themselves.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech"><b>Rejected!</b> If Torah-valid, then unlawful gentile compulsion should still disqualify from <i>kehuna</i> — but Shmuel says it doesn't!</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Resolution</div><div class="speech">Gentile compulsion is fundamentally <b>not a get</b>. The <i>kehuna</i> disqualification in lawful cases is a <b>rabbinic decree</b> — to prevent confusion with valid Jewish compulsion.</div></div></div><div class="callout" style="margin-top:20px"><strong>Underlying Logic</strong> Unlawful gentile compulsion is too dissimilar from lawful Jewish compulsion to cause confusion — so no decree was needed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 88 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9;"><b>Compelled Get</b><br/>Husband pressured to divorce</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left:3px solid #4caf50;"><b>Jewish Court — Lawfully</b><br/>✅ Valid</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a; border-left:3px solid #e67e22;"><b>Jewish Court — Unlawfully</b><br/>⚠️ Invalid / disqualifies <i>kehuna</i></div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border-left:3px solid #e74c3c;"><b>Gentile Court — Lawfully</b><br/>⚠️ Invalid / disqualifies <i>kehuna</i> (rabbinic decree)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a1a2e; border-left:3px solid #9b59b6;"><b>Gentile Court — Unlawfully</b><br/>❌ Not a get at all</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left:3px solid #c9a84c;"><b>Babylonian Courts</b> act as agents of Eretz Yisrael for <b>common matters</b> only</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 88a-88b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 88a-88b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../87/">← Daf 87</a><a href="../89/">Daf 89 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 86 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Gittin 86</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין פו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Three Invalid Gittin — bills of divorce that are invalid but don't impair offspring lineage<br>
+    ✍️ Handwriting vs. Witnesses — debate over whose handwriting validates a get<br>
+    ⚖️ Must She Leave? — when a woman who remarried on an invalid get must leave her second husband<br>
+    🔍 Why Only Three? — Gemara's analysis of why other invalid gittin aren't listed<br>
+    👥 R' Eliezer's View — witnesses to delivery vs. witnesses on the document<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 86: The Three Invalid Bills of Divorce</h2>
+  
+  <div class="callout"><strong>CORE MISHNA</strong> Three types of <i>gittin</i> are <b>invalid <i>ab initio</i></b> but if the woman remarries, the <b>offspring's lineage is unflawed</b>: (1) husband's handwriting with no witness signatures, (2) witness signatures but no date, (3) a date but only one witness. The Gemara analyzes why <i>specifically</i> these three — and not other invalid gittin — are listed, and debates whether the remarried woman must leave her second husband.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Three Invalid Gittin (Mishna)</h2>
+  
+  <table><tr><th>Case</th><th>What's Present</th><th>What's Missing</th></tr><tr><td>Case 1</td><td>Husband's handwriting (כתב ידו)</td><td>No witness signatures at all</td></tr><tr><td>Case 2</td><td>Witness signatures on document</td><td>No date written</td></tr><tr><td>Case 3</td><td>Date written + one witness</td><td>Second witness signature</td></tr></table><div class="callout" style="margin-top:20px"><strong>KEY RULING</strong> All three are <b>invalid <i>ab initio</i></b> — she may not remarry with them. But if she does remarry, the <b>offspring's lineage is unflawed</b> (<i>ha-vlad kasher</i>).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Eliezer vs. the Sages on Witnesses</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Sages</div><div class="speech">A get <b>requires</b> witness signatures on the document to be valid.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Eliezer</div><div class="speech">Even with <b>no signatures</b> on the document, if he hands it to her <b>before two witnesses</b>, it is a <b>valid get</b>!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Eliezer</div><div class="speech">She can even <b>collect from liened property</b> (<i>meshu'abadim</i>) with such a get.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Eliezer</div><div class="speech">Witnesses sign only for <b>tikkun ha-olam</b> — betterment of the world — not as an essential requirement.</div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> R' Eliezer holds: <b>עדי מסירה כרתי</b> — the witnesses to <i>delivery</i> effect the divorce, not the witnesses who <i>sign</i>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Why Only These Three? — Gemara's Elimination</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Why not list an <b>outdated get</b> (<i>get yashan</i>)?</div><div class="flow-arrow">↓</div><div class="flow-box result-good">An outdated get — she may remarry <b><i>ab initio</i></b>; these three — only <b>after the fact</b></div><div class="flow-box question">Why not list a <b>bare get</b> (missing a signature on a fold)?</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Per <b>R' Meir</b>: a bare get makes offspring a <b>mamzer</b>; these three do not</div><div class="flow-box question">Why not list a get with <b>wrong kingdom dating</b>?</div><div class="flow-arrow">↓</div><div class="flow-box result-good">There she <b>must leave</b> her husband; here (per one view) she <b>need not leave</b></div></div><div class="callout" style="margin-top:20px"><strong>DISTINCTION</strong> The mishna lists <b>specifically</b> those gittin that are invalid yet produce <b>unflawed offspring</b> — each excluded case fails this criterion in some way.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Whose Handwriting? Rav vs. Shmuel</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The mishna's case of 'his handwriting + one witness' means the <b>husband</b> wrote it himself. Only then is the offspring's lineage unflawed.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">Even if a <b>scribe</b> wrote it and one witness signed, the offspring's lineage is still <b>unflawed</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The later mishna (87b) about recognizable scribe handwriting being valid must mean the <b>scribe also signed</b> as a witness — that's <i>ab initio</i>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">No — 87b refers to an <b>expert scribe</b> (<i>sofer mumḥeh</i>); our mishna refers to a <b>non-expert scribe</b>. Both are scribe-written.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Yoḥanan</div><div class="speech">I agree with Rav — the mishna means <b>his</b> (the husband's) handwriting.</div></div></div><div class="callout" style="margin-top:20px"><strong>R' ELAZAR'S QUESTION</strong> R' Elazar challenged R' Yoḥanan: if witnesses signed, why does handwriting matter? R' Yoḥanan clarified he was referring to the <b>latter clause</b> (only one witness).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Must She Leave Her Second Husband?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#c9a84c">Rav's Position</h3><ul><li>If she has <b>children</b> from second husband → need not leave (to avoid slander of mamzerut)</li><li>If she has <b>no children</b> → she must leave</li><li>The invalidity is only <b>rabbinic</b> — by Torah law, the get is valid</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#4a90d9">Levi & R' Yoḥanan</h3><ul><li>She <b>never</b> needs to leave her second husband</li><li>Whether or not she has children — she stays</li><li>R' Yoḥanan told the sons of R' Ḥalafta: your father held this view too</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>OBJECTION TO RAV</strong> Mar Zutra bar Toviya challenged Rav from a mishna in Yevamot: these three gittin create 'uncertain divorce' status for levirate law — implying the woman is validly divorced enough to stay with her second husband.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 86 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Three Invalid Gittin</b><br>No witnesses · No date · One witness</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a1a2e; border-left: 3px solid #e74c3c;"><b>Status:</b> Invalid <i>ab initio</i><br>She may <b>not</b> remarry with these</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>If she remarried anyway:</b><br>Offspring lineage is <b>unflawed</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a1a; border-top: 3px solid #c9a84c;"><b>Rav:</b> Has children → stays<br>No children → must leave</div></div><div class="flow-col"><div class="flow-box" style="background:#1a1a2a; border-top: 3px solid #4a90d9;"><b>Levi & R' Yoḥanan:</b><br>She <b>never</b> must leave</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 86a-86b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 86a-86b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../85/">← Daf 85</a><a href="../87/">Daf 87 →</a></div>
+</body>
+</html>

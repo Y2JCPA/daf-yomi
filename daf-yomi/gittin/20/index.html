@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 20 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">✍️</div>
+  <h1>Gittin 20</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין כ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ✍️ Writing Over (Kesiva al Gabei Kesiva) — Rewriting a get or God's name over existing ink<br>
+    📜 Lishmah Requirement — A get must be written specifically for the woman<br>
+    💰 Monetary Value of a Get — Whether a get needs financial worth<br>
+    📄 Ownership of the Paper — When the husband retains rights to the get's material<br>
+    🪙 Get as Ketubah Payment — Using a gold-plate get to pay the marriage contract<br>
+    🤚 Get Written on a Slave — Whether the slave was transferred or came voluntarily<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 20: Writing, Value & Ownership of a Get</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Can a Torah scroll serve as a get?</b></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">No — must be written <b>lishmah</b> (for her sake) with correct names</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Can you rewrite over a get</b> not written lishmah?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Yehuda</div><div class="flow-box result-good">✅ Passing over with reed pen supplies intent</div></div><div class="flow-col"><div class="flow-label">Rabbis</div><div class="flow-box result-bad">❌ Not written in optimal manner</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Does a get need <b>monetary value</b>?</div><div class="flow-arrow">↓</div><div class="flow-box result-good">No — valid even on <b>forbidden-benefit items</b></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf explores the <b>physical requirements</b> of a get — how it's written, what it's written on, and who owns the material.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rewriting Over Existing Ink (Kesiva al Gabei Kesiva)</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ḥisda</div><div class="speech">If a get was written <b>not lishmah</b> and the scribe passed over it with a reed pen <b>lishmah</b> — this is the dispute of R' Yehuda and the Rabbis.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yehuda</div><div class="speech">If a scribe writing a Torah scroll accidentally wrote God's name without intent, he may <b>pass over it with a reed pen</b> and sanctify it. ✅</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rabbis</div><div class="speech">Even adding a second layer of ink — the name was <b>not written in the optimal manner</b>. ❌</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Aḥa bar Ya'akov</div><div class="speech">Perhaps the Rabbis only object for a <b>Torah scroll</b> due to <i>zeh Eli v'anvehu</i> (beautification of mitzvot). A <b>get has no beauty requirement</b> — even the Rabbis may agree it's valid!</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Dispute</strong> Can a second layer of ink supply the required <b>lishmah</b> intent? R' Yehuda says yes; Rabbis say the writing is not optimal — but perhaps only for sacred items.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why a Torah Scroll Cannot Be a Get</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Could a husband use a <b>Torah scroll</b> to divorce his wife?</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">❌ <b>Lishmah</b> — 'He writes <b>her</b>' requires intent for this specific woman</div><div class="flow-arrow">↓</div><div class="flow-box question">What if he paid the scribe to write the divorce verses for her sake?</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">❌ A get requires <b>his name, her name, his city, her city</b> — these aren't in the Torah</div><div class="flow-arrow">↓</div><div class="flow-box question">So what does <b>Rav Yosef</b> teach us?</div><div class="flow-arrow">↓</div><div class="flow-box action">Novel teaching: <b>gall water on gall water is not permanent</b> — no concern about writing a get on top of a Torah scroll</div></div><div class="callout" style="margin-top:20px"><strong>Rav Yosef's Chiddush</strong> The real novelty is that <b>mei gallin</b> (gall ink) applied over existing gall ink does not create a permanent bond — so there's no concern a get was secretly written atop the scroll.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rav Ḥisda's Challenge: Can All Gittin Be Invalidated?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4a90d9">Rav Ḥisda's Claim</h3><ul><li>"I can invalidate ALL gittin in the world"</li><li>Torah says 'he writes' — but the wife pays the scribe</li><li>Torah says 'and gives' — yet the get has no monetary value</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">Rava's Refutations</h3><ul><li>The Sages transferred ownership of the get to the husband — it counts as 'he writes'</li><li>'And gives' = the act of giving, not monetary value</li><li>Proof: A get on forbidden-benefit items (no value at all) is still valid!</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Ruling</strong> A get <b>need not have monetary value</b>. The Sages of Eretz Yisrael confirmed: a get written on items from which benefit is forbidden is <b>valid</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Get on Gold Plate — Rava's Dilemma to Rav Naḥman</h2>
+  
+  <table><tr><th>Scenario</th><th>Get Valid?</th><th>Ketubah Paid?</th></tr><tr><td>Get on gold plate + husband says 'receive your get and ketubah payment'</td><td>✅ Yes</td><td>✅ Yes — Rav Naḥman</td></tr><tr><td>Get on oversized paper + husband says 'remainder is for ketubah'</td><td>✅ Yes</td><td>✅ Yes — remainder counts</td></tr><tr><td>Get on oversized paper + husband says nothing about remainder</td><td>✅ Yes</td><td>❌ No — remainder is just margin</td></tr><tr><td>Get written on olive leaf (minimal value)</td><td>✅ Yes</td><td>N/A</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> The husband must <b>explicitly designate</b> the extra material as ketubah payment. Otherwise, the blank space is merely the <b>margin of the scroll</b> (gilyono shel sefer).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Ownership vs. Condition: The Paper of the Get</h2>
+  
+  <div class="process-bar"><div class="process-step">📜 Husband says: 'This is your get but the <b>paper is still mine</b>'</div><div class="process-arrow">↓</div><div class="process-step highlight">❌ She is <b>NOT divorced</b> — he only gave the writing, not the document</div><div class="process-arrow">↓</div><div class="process-step">📜 Husband says: 'This is your get <b>on condition you return the paper</b>'</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ She <b>IS divorced</b> — the get belongs to her; returning is just a condition</div><div class="process-arrow">↓</div><div class="process-step">❓ Rav Pappa's dilemma: What if the paper <b>between lines/words</b> remains his but the written parts are hers?</div><div class="process-arrow">↓</div><div class="process-step highlight">🤷 <b>Teiku</b> — unresolved. Is this one scroll or multiple scrolls?</div></div><div class="callout" style="margin-top:20px"><strong>Critical Distinction</strong> Retaining <b>ownership</b> of the paper invalidates the get entirely. Imposing a <b>condition</b> to return it does not — the get is fully hers, she just must fulfill the condition.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 20 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>Writing Requirements</b><br>Must be written specifically for this woman (lishmah) with correct names</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3e; border-left:3px solid #c9a84c; padding:10px;"><b>Material & Value</b><br>No monetary value required — valid even on forbidden-benefit items</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:1px solid #4caf50; padding:8px;"><b>Full Ownership Given</b><br>Paper belongs to her → ✅ Valid get</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border:1px solid #e74c3c; padding:8px;"><b>Paper Retained</b><br>Husband keeps paper → ❌ Not divorced</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; border-left:3px solid #9b59b6; padding:10px;"><b>Condition vs. Ownership</b><br>'Return the paper' as a condition = valid; retaining ownership = invalid</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 20a-20b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 20a-20b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../19/">← Daf 19</a><a href="../21/">Daf 21 →</a></div>
+</body>
+</html>

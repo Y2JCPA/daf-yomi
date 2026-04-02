@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 22 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🌱</div>
+  <h1>Gittin 22</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין כב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🪴 Perforated Pot — Get written on an attached leaf and acquisition rules<br>
+    🗺️ Border Status — Following perforation vs. branches for Eretz Yisrael obligations<br>
+    🌿 Two Gardens — R' Meir vs. R' Yehuda on vegetables growing between terraces<br>
+    📜 Erasable Surfaces — Validity of a get written on material that can be forged<br>
+    ✍️ Who May Write — Even incompetent persons may write a get<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 22: Pots, Borders & Who Writes the Get</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">קיום הגט אינו אלא בחותמיו</div><div class="callout"><strong>DAF OVERVIEW</strong> This daf explores the legal fiction of a <b>perforated pot</b> — is a plant in it "attached to the ground"? The Gemara applies this to <b>divorce law</b>, <b>property acquisition</b>, and <b>tithing obligations</b> at the border of Eretz Yisrael. Amud B shifts to whether a get on <b>erasable material</b> is valid and concludes with the Mishna: <b>anyone</b> may physically write a get, because validity depends on the <b>signatories</b>, not the scribe.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Get Written on a Leaf in a Perforated Pot</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">A get written on a leaf <b>attached</b> in a perforated pot is <b>invalid</b> — the Sages decreed against it lest one <b>detach the leaf</b> and give it alone.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Implication</div><div class="speech">If he gives her <b>the entire pot with the leaf</b> inside, it should be valid — he can take the pot and hand it to her.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">Even so, we <b>decree</b> it invalid. A get <b>fully written while attached</b> to the ground is invalid by consensus.</div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> A perforated pot connects its contents to the ground — so a get written on its leaf is treated as written on something <b>attached (מחובר)</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Acquiring a Perforated Pot & Its Plants</h2>
+  
+  <table><tr><th>Scenario</th><th>Who Sells?</th><th>How to Acquire?</th></tr><tr><td>Pot belongs to A, plants to B</td><td>A sells pot to B</td><td><b>Pulling (משיכה)</b> — pot is movable property</td></tr><tr><td>Pot belongs to A, plants to B</td><td>B sells plants to A</td><td><b>Possession of land (חזקה)</b> — raking/weeding, since plants = ground</td></tr><tr><td>Both belong to one person, sold to buyer</td><td>Buyer takes possession of plants</td><td>Acquires <b>both</b> — movable acquired with land (קרקע)</td></tr><tr><td>Both belong to one person, sold to buyer</td><td>Buyer takes possession of pot only</td><td>Acquires <b>neither</b> — movable can't be acquired by חזקה alone</td></tr></table><div class="callout" style="margin-top:20px"><strong>KEY RULE</strong> <b>נכסים שאין להם אחריות נקנין עם נכסים שיש להם אחריות</b> — Movable property can be acquired together with land (Kiddushin 26a).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Perforated Pot on the Border of Eretz Yisrael</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">We follow the <b>perforation (נקב)</b> — if the hole faces Eretz Yisrael, the produce is <b>obligated</b> in tithes.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">We follow the <b>branches (נוף)</b> — if the growth extends outside Eretz Yisrael, it is <b>exempt</b> from tithes.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">If the plant <b>took root</b> in the ground, all agree we follow the roots. The dispute is only when it <b>did not take root</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>CONTEXT</strong> The perforated pot creates a legal connection to the ground beneath — but does the <b>point of connection</b> or the <b>location of growth</b> determine status?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Two Gardens on Terraces — Who Owns the Vegetables?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">R' Meir</h3><ul><li>Vegetables belong to the <b>upper garden</b> owner</li><li>Reason: If he removes his <b>earth</b>, the vegetables die</li><li>He controls the <b>source of nutrients</b></li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">R' Yehuda</h3><ul><li>Vegetables belong to the <b>lower garden</b> owner</li><li>Reason: If he fills his airspace with <b>earth</b>, the vegetables are buried</li><li>He controls the <b>space of growth</b></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>DISTINCTION</strong> The Gemara distinguishes: this dispute is about <b>control over the plant's survival</b>, not about defining where it grows — so it doesn't resolve the Abaye/Rava border question.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Get on Erasable Material (Amud B)</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A get is written on <b>erased paper</b> (ניר מחוק) — material that can be forged</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Is it valid? Per <b>R' Elazar</b> (Tanna): <b>Yes</b> — witnesses of transmission (עדי מסירה) read the get before delivery</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Elazar (Amora)</div><div class="flow-box result-bad">Valid only if brought to court <b>immediately</b>. After time, we fear she <b>erased a stipulation</b>.</div></div><div class="flow-col"><div class="flow-label">R' Yochanan</div><div class="flow-box result-good">Valid even after <b>10 days</b> — witnesses would <b>remember</b> any stipulation and refuse to verify a forgery.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>SECOND DISPUTE</strong> R' Elazar (Amora): Erasable surfaces valid for <b>gittin only</b> — other documents must last (Jeremiah 32:14). R' Yochanan: Valid for <b>all documents</b> — the verse is merely <b>good advice</b> (עצה טובה).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 22 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Perforated Pot (עציץ נקוב)</b><br/>Plants inside are legally <b>attached to the ground</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1616; border-left: 3px solid #e74c3c;"><b>Get Law:</b> Writing on attached leaf = <b>invalid</b> by decree (Rava)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Acquisition:</b> Plants = land → acquired by <b>חזקה</b>, not pulling</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; border-left: 3px solid #9b59b6;"><b>Borders:</b> Abaye follows <b>perforation</b>; Rava follows <b>branches</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #c9a84c;"><b>Mishna:</b> Anyone can write a get — validity is through the <b>signatories</b> (חותמיו), and erasable surfaces may be valid per R' Elazar</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 22a-22b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 22a-22b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../21/">← Daf 21</a><a href="../23/">Daf 23 →</a></div>
+</body>
+</html>

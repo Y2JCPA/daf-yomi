@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 23 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">✍️</div>
+  <h1>Gittin 23</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין כג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ✍️ Lishma — Must a get be written or signed for her sake?<br>
+    🤝 Gentile & Supervision — Can a non-Jew write a get under supervision?<br>
+    ⚖️ Meir vs. Elazar — Which witnesses effect the divorce?<br>
+    🔗 Slave as Agent — Can a slave serve as agent for receiving a get?<br>
+    👩 Credibility of Women — Hostile women deemed credible to deliver a get<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Who Can Write & Deliver a Get?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Mishna</div><div class="speech">A <b>deaf-mute, shoteh, or minor</b> may write a get if an <b>adult stands over him</b> and supervises.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Naḥman</div><div class="speech">If so, what about a <b>gentile</b> with a Jew supervising? A baraita teaches a gentile is <b>disqualified in any event</b>!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">A gentile <b>acts on his own will</b> (<i>da'ato</i>). Incompetent persons follow the supervisor's intent; a gentile does not.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Naḥman</div><div class="speech">I retract — the Mishna later disqualifies a gentile only as <b>agent</b>, implying he <i>is</i> qualified to <b>write</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> The lishma (for her sake) requirement in writing a get depends on whether <b>signing</b> or <b>writing</b> effects the divorce.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Can a Disqualified Person Write a Get?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Person <b>not halakhically competent</b><br>(deaf-mute, minor, shoteh)</div><div class="flow-arrow">↓</div><div class="flow-box question">Is an <b>adult supervising</b><br>and instructing lishma?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box result-good">✅ <b>Valid</b> — they follow<br>the supervisor's intent</div></div><div class="flow-col"><div class="flow-label">No</div><div class="flow-box result-bad">❌ <b>Invalid</b> — no one<br>directing intent</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">What about a <b>gentile</b><br>with Jewish supervision?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Incompetent Person</div><div class="flow-box result-good">Follows supervisor —<br><b>no independent da'at</b></div></div><div class="flow-col"><div class="flow-label">Gentile</div><div class="flow-box result-bad">Has his own will —<br><b>da'ato shel atzmo</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> A gentile is halakhically competent and <b>acts on his own will</b>, so supervision cannot guarantee lishma intent.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Meir vs. Elazar: What Effects the Divorce?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Meir</div><div class="speech"><b>Signatory witnesses</b> (edei ḥatima) effect the divorce. Therefore, lishma applies to <b>signing</b>, not writing.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Elazar</div><div class="speech"><b>Witnesses of transmission</b> (edei mesira) effect the divorce. The verse 'and he writes her' means the <b>writing</b> must be lishma.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Naḥman / Shmuel</div><div class="speech">Per R' Meir: Even a get found in the <b>garbage dump</b> with matching names is valid — just have it <b>signed</b> lishma!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">But the verse says <i>'v'katav lah'</i> — <b>'and he writes her'</b> — this refers to writing, not signing!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Naḥman</div><div class="speech">No — <i>'v'katav'</i> can refer to the <b>signing</b>. R' Meir reads it as: the signatures must be for her sake.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> Per R' Meir: the body of the get need not be written lishma — only <b>signed</b> lishma. Per R' Elazar: the actual <b>writing</b> must be lishma.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Essential vs. Standard Parts of the Get</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Toref (Essential Part)</h3><ul><li>Names of husband and wife</li><li>Date of the document</li><li>The expression: 'You are permitted to any man'</li><li>MUST be written lishma (per R' Elazar)</li><li>Shmuel: incompetent person must leave this unwritten</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Tofes (Standard Part)</h3><ul><li>Boilerplate formulaic language</li><li>General conditions and terms</li><li>Need not be written lishma</li><li>Can be written by anyone</li><li>Incompetent person may write this portion</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Shmuel & Ulla</strong> The Mishna permitting incompetent writers applies only when the <b>toref</b> (essential part) is left for a competent person to complete.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Who Can Serve as Agent? — Slave, Gentile & 'Members of the Covenant'</h2>
+  
+  <table><tr><th>Category</th><th>Member of Covenant?</th><th>Agent for Get?</th><th>Reason</th></tr><tr><td>Jewish man</td><td>✅ Yes</td><td>✅ Fit</td><td>Included in divorce & betrothal</td></tr><tr><td>Jewish woman</td><td>✅ Yes</td><td>✅ Fit</td><td>Included in divorce & betrothal</td></tr><tr><td>Slave (eved)</td><td>✅ Yes (circumcised, keeps some mitzvot)</td><td>❌ Unfit for receiving get</td><td>Not included in halakhot of divorce</td></tr><tr><td>Slave (eved)</td><td>✅ Yes</td><td>✅ Fit for other agency</td><td>Can be agent for matters that apply to him</td></tr><tr><td>Gentile</td><td>❌ No</td><td>❌ Unfit</td><td>'So you also' — agents must be bnei brit</td></tr><tr><td>Samaritan (Kuti)</td><td>❌ No</td><td>❌ Unfit for Jewish teruma agency</td><td>Even though their own teruma is valid</td></tr></table><div class="callout" style="margin-top:20px"><strong>School of R' Yannai</strong> '<i>Atem gam atem</i>' — Just as <b>you</b> are members of the covenant, so too your <b>agents</b> must be. Slaves qualify as bnei brit; gentiles do not.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Ubar Yerech Imo — The Fetus Is Part of Its Mother</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">עובר ירך אמו הוא</div><div class="callout"><strong>R' Yehuda HaNasi's Principle</strong> A master tells his pregnant maidservant: <i>'You remain a slave but your child is free.'</i> How can the mother receive freedom for the child from their <b>common master</b>?<br><br>Answer: The fetus is considered <b>part of the mother's body</b> (<i>ubar yerech imo</i>). The master is effectively freeing a <b>portion of her</b> — not using her as an agent for a separate person. This avoids the rule that a slave cannot receive a bill of manumission for a fellow slave from a shared master.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 23 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>Who writes the get?</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Incompetent person</b><br>(deaf-mute, minor)<br>with adult supervision:<br><span style='color:#4caf50'>Valid — follows supervisor</span></div></div><div class="flow-col"><div class="flow-box" style="background:#3e1616; color:#fff; padding:10px; border-radius:8px;"><b>Gentile</b><br>even with supervision:<br><span style='color:#e74c3c'>Invalid — acts on own will</span><br>(per R' Elazar)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>Lishma requirement: Writing or Signing?</b></div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2e2a16; color:#fff; padding:10px; border-radius:8px;"><b>R' Meir:</b> Signing lishma<br>Edei ḥatima effect divorce<br><span style='color:#c9a84c'>Even garbage-dump get valid</span></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1640; color:#fff; padding:10px; border-radius:8px;"><b>R' Elazar:</b> Writing lishma<br>Edei mesira effect divorce<br><span style='color:#9b59b6'>Toref must be written lishma</span></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Agency:</b> Slaves are bnei brit but excluded from gittin — hostile women credible to <i>deliver</i> a get because the document proves itself</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 23a-23b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 23a-23b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../22/">← Daf 22</a><a href="../24/">Daf 24 →</a></div>
+</body>
+</html>

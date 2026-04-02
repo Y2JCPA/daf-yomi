@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 62 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Gittin 62</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין סב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🍞 Chaver & Am Ha'aretz — Preparing challah and teruma oil while maintaining purity<br>
+    💼 Livelihood Leniency — Rabbinic leniencies for kneaders and olive pressers<br>
+    🏺 Vessel Types — Using vessels that don't contract impurity to protect teruma<br>
+    📜 Agency for Get — Distinguishing agent of receipt vs. agent of delivery<br>
+    🔄 Retraction Rules — When a husband can or cannot retract a bill of divorce<br>
+    ⚖️ Deliver vs. Acquire — Gemara debate on whether 'deliver' equals 'acquire'<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 62: Purity, Livelihood & Divorce Agency</h2>
+  
+  <div class="callout"><strong>DAF OVERVIEW</strong> <b>Amud A</b> addresses how a <em>chaver</em> (meticulous observer) can prepare <b>challah</b> or <b>teruma oil</b> for an <em>am ha'aretz</em> while preserving ritual purity — permitted for the sake of <b>livelihood</b>.<br/><br/><b>Amud B</b> introduces the Mishna on <b>divorce agency</b>: the critical distinction between an <em>agent of receipt</em> (שליח קבלה) and an <em>agent of delivery</em> (שליח הולכה), and whether the husband can retract once the get is handed over.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Does the Wife of an Am Ha'aretz Take Food?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">If we worry she steals food from her husband to give to others, shouldn't we also worry she <b>exchanges</b> her food with the other woman's?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech">She rationalizes: <b>'The ox may eat from its threshing'</b> (השור אוכל מדישתו) — while preparing food, she feels entitled to eat from it. That's not the same as exchanging.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">So her taking is <em>self-justified eating</em>, not deliberate theft or exchange. We cannot learn from here that every am ha'aretz is suspected of exchanging food.</div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> A person's self-serving rationalization (eating while working) does not prove a broader suspicion of deliberate deception.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Chaver Preparing for an Am Ha'aretz: Two Cases</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">🍞 Kneader (Challah)</h3><ul><li>Cannot prepare the challah loaf directly in purity for the am ha'aretz</li><li>May prepare ALL the dough in purity</li><li>Separates challah and places it in a <b>kefisha</b> (basket) or <b>anchuta</b> (vessel) that doesn't contract impurity</li><li>Am ha'aretz takes both dough and challah</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">🫒 Olive Presser (Teruma)</h3><ul><li>Cannot prepare teruma oil directly in purity for the am ha'aretz</li><li>May press ALL olives in purity</li><li>Separates teruma oil into vessels of dung, stone, or clay — which don't contract impurity</li><li>Am ha'aretz takes both ordinary oil and teruma</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>SOURCE</strong> Baraita (Tosefta Demai 3:1) — testified by R' Yosei ben HaMeshullam in the name of R' Yochanan his brother, in the name of R' Elazar ben Chasma.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Why Are Both Cases (Kneader & Olive Presser) Needed?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>R' Yochanan:</b> The leniency is for the sake of <em>livelihood</em> (פרנסה)</div><div class="flow-arrow">↓</div><div class="flow-box question">If only <b>kneader</b> was taught...</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Kneader Only</div><div class="flow-box result-bad">His pay is <b>small</b> → more in need of help. Maybe we wouldn't be lenient with a well-paid olive presser.</div></div><div class="flow-col"><div class="flow-label">Olive Presser Only</div><div class="flow-box result-bad">His work is <b>uncommon</b> (seasonal) → greater livelihood concern. Maybe we wouldn't be lenient with the year-round kneader.</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Both are needed: each has a unique reason for leniency</div></div><div class="callout" style="margin-top:20px"><strong>TALMUDIC METHOD</strong> Classic <em>tzrikhuta</em> — explaining why neither case alone would suffice to teach the other.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Mishna: Agency for a Get — When Can the Husband Retract?</h2>
+  
+  <table><tr><th>Scenario</th><th>Agent Type</th><th>Can Husband Retract?</th></tr><tr><td>Husband says: <b>Receive</b> this get for my wife</td><td>Agent of Delivery (husband's)</td><td>✅ Yes — until get reaches wife</td></tr><tr><td>Husband says: <b>Deliver</b> this get to my wife</td><td>Agent of Delivery (husband's)</td><td>✅ Yes — until get reaches wife</td></tr><tr><td><b>Wife</b> says to agent: <b>Receive</b> my get for me</td><td>Agent of Receipt (wife's)</td><td>❌ No — divorce effective on receipt by agent</td></tr><tr><td>Husband to wife's agent: <b>I don't want</b> you to receive; <b>deliver</b> it instead</td><td>Converted to Delivery (husband's)</td><td>✅ Yes — until get reaches wife</td></tr><tr><td><b>R' Shimon b. Gamliel:</b> Wife says <b>Take</b> my get</td><td>Agent of Receipt (wife's)</td><td>❌ No — 'take' = 'receive'</td></tr></table><div class="callout" style="margin-top:20px"><strong>KEY DISTINCTION</strong> <b>שליח קבלה</b> (agent of receipt) = wife's agent → get effective immediately upon agent's receipt.<br/><b>שליח הולכה</b> (agent of delivery) = husband's agent → get effective only when it reaches the wife.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Does 'Deliver' (הולך) Equal 'Acquire' (זכי)?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Acha b. Rav Avya</div><div class="speech">From the Mishna: If the <em>wife</em> appointed an agent of receipt and the husband said 'deliver' — he still <b>cannot retract</b>. So 'deliver' = 'acquire'!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Ashi / Gemara</div><div class="speech">No proof. The Mishna may mean the husband said <b>'receive'</b> to the wife's agent. The novel teaching is that even when the <em>husband</em> says 'receive' (language he can't normally use), it's valid as a delivery instruction.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Acha b. Rav Avya</div><div class="speech">Another proof: The Mishna says he can retract only because he said <b>'I don't want.'</b> Implying: without that cancellation, 'deliver' <em>would</em> equal 'acquire'!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">This too can be rejected — the emphasis may be on the cancellation itself, not on equating 'deliver' with 'acquire.'</div></div></div><div class="callout" style="margin-top:20px"><strong>UNRESOLVED</strong> The Gemara brings multiple proofs and rejections but does not conclusively resolve whether <b>הולך כזכי</b> — whether saying 'deliver' has the same legal force as 'acquire.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 62 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px;"><b>Amud A:</b> Chaver may prepare dough/oil in purity for am ha'aretz — for the sake of <em>livelihood</em></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left:3px solid #9b59b6; padding:10px;">Challah/teruma placed in vessels that <b>cannot contract impurity</b> — am ha'aretz warned not to touch</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>Amud B:</b> Mishna distinguishes <em>שליח הולכה</em> (delivery) from <em>שליח קבלה</em> (receipt)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:1px solid #4caf50; padding:10px;"><b>Agent of Delivery</b><br/>Husband can retract until get reaches wife</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border:1px solid #e74c3c; padding:10px;"><b>Agent of Receipt</b><br/>Divorce effective immediately — husband cannot retract</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 62a-62b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 62a-62b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../61/">← Daf 61</a><a href="../63/">Daf 63 →</a></div>
+</body>
+</html>

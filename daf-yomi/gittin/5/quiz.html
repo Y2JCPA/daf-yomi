@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 5 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Gittin 5 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">Why is a deaf-mute agent exempt from the declaration requirement?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Because a deaf-mute can never be appointed as an agent</div>
+      <div class="option" onclick="select(1,this,1)">B. Because he became deaf-mute after appointment, and this is an uncommon case the Sages didn't decree for</div>
+      <div class="option" onclick="select(1,this,2)">C. Because two witnesses accompany him instead</div>
+      <div class="option" onclick="select(1,this,3)">D. Because the husband already consented to the divorce</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Rav Yosef explains the case involves someone who was competent when appointed but became deaf-mute. The Gemara exempts him because it is an uncommon situation (milta d'lo shechicha), and the Sages did not extend their decree to uncommon cases.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Why must a woman who brings her own get still make the declaration, even though it's an uncommon case?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Because women are always required to testify about divorce</div>
+      <div class="option" onclick="select(2,this,1)">B. Because the Sages wanted uniformity — so people won't distinguish between types of agency</div>
+      <div class="option" onclick="select(2,this,2)">C. Because she serves as both agent and witness</div>
+      <div class="option" onclick="select(2,this,3)">D. Because R' Yehoshua ben Levi specifically required it</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>The Gemara explains the decree applies to the woman so that people will not make distinctions (שלא תחלוק בשליחות) between different types of agency, maintaining a uniform rule for all agents.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Why is the husband exempt from the declaration when he delivers his own get?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Because the husband is not considered an agent</div>
+      <div class="option" onclick="select(3,this,1)">B. Because the concern is that the husband might contest — but he himself is delivering it, so if he objected he'd simply tear it up</div>
+      <div class="option" onclick="select(3,this,2)">C. Because two witnesses are always present at the delivery</div>
+      <div class="option" onclick="select(3,this,3)">D. Because the husband already testified by writing the get</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>The entire purpose of the declaration is to prevent the husband from later contesting the get's validity. When the husband himself delivers the get, there is no concern — if he didn't want the divorce, he could simply destroy the document.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">What is the core dispute between R' Yochanan (2 witnesses) and R' Chanina (3 witnesses) regarding the delivery quorum?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Whether the declaration is needed at all</div>
+      <div class="option" onclick="select(4,this,1)">B. Whether the agent can serve as witness AND whether a witness can serve as judge</div>
+      <div class="option" onclick="select(4,this,2)">C. Whether overseas gets require ratification</div>
+      <div class="option" onclick="select(4,this,3)">D. Whether Rabba or Rava's reasoning applies</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>Both agree ratification requires a court. R' Yochanan holds a witness can become a judge, so the agent + 2 others = court of 3. R' Chanina holds a witness cannot become a judge, requiring 3 additional people beyond the agent.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">How does the Gemara resolve R' Yehoshua ben Levi's ruling that R' Shimon bar Abba didn't need to make the declaration?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. R' Yehoshua ben Levi disagreed with both Rabba and Rava</div>
+      <div class="option" onclick="select(5,this,1)">B. The get was delivered within Eretz Yisrael, not overseas</div>
+      <div class="option" onclick="select(5,this,2)">C. R' Shimon bar Abba had a second person with him, making them two agents — an uncommon case exempt from the decree</div>
+      <div class="option" onclick="select(5,this,3)">D. The get had already been ratified by a different court</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>The Gemara explains that R' Shimon bar Abba had another (unlearned) person with him, making two agents. Since two agents is uncommon, the Sages' decree didn't apply. The second person wasn't mentioned out of respect for R' Shimon bar Abba's honor.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":1,"3":1,"4":1,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

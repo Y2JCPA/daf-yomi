@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 64 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🤝</div>
+  <h1>Gittin 64</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין סד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Shalish Credibility — Who is believed when husband and third-party disagree about a get?<br>
+    📜 Monetary vs. Ritual — Why monetary disputes differ from divorce in trusting a shalish<br>
+    👨‍👧 Na'arah & Father — Who can receive the get of a betrothed young woman?<br>
+    🧒 Minor's Capacity — When can a minor girl be divorced by receiving her own get?<br>
+    🔑 Acquisition by Minors — Developmental stages for a child acquiring property<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 64: Third-Party Credibility & Minors in Divorce</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Husband vs. Shalish</b><br/>Who is believed about the purpose of the get?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Huna</div><div class="flow-box result-bad"><b>Husband</b> is credible<br/>If for divorce, he'd give directly to wife</div></div><div class="flow-col"><div class="flow-label">Rav Ḥisda</div><div class="flow-box result-good"><b>Shalish</b> is credible<br/>Husband trusted him by handing over the get</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Mishna:</b> Betrothed na'arah — she <i>or</i> her father can receive her get</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Minor's capacity:</b> Can she safeguard her get?<br/>Determines if divorce is valid</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf explores who has authority and credibility in the divorce process — the shalish, the father, or the woman herself.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Who Is Believed: Husband or Shalish?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">The <b>husband</b> is credible — if he meant to divorce her, he would have given the get <b>directly to his wife</b>, not to a third party.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Ḥisda</div><div class="speech">The <b>shalish</b> (third party) is credible — the husband himself <b>deemed him trustworthy</b> by entrusting him with the get.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Abba</div><div class="speech">Objection to Rav Huna! A <b>Tosefta</b> teaches: the shalish's word <b>outweighs both litigants</b> — even more than 100 witnesses of admission!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">Monetary cases are <b>different</b> — debts can be <b>forgiven</b> (meḥilah), so parties accept the shalish's word. But <b>ritual matters like divorce</b> cannot be forgiven.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Dispute</strong> The fundamental question: does entrusting someone with a document grant them credibility about its purpose?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Gittin vs. Shetarot: What Does the Baraita Mean?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Baraita 1: <b>"Likewise for gittin"</b> — shalish is credible</div><div class="flow-arrow">↓</div><div class="flow-box question">Does <i>gittin</i> mean <b>bills of divorce</b> or <b>monetary documents</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Challenge</div><div class="flow-box result-bad">Baraita 2 says: <b>"Likewise for shetarot"</b><br/>If shetarot = monetary docs, then gittin = <b>divorce</b>!</div></div><div class="flow-col"><div class="flow-label">Rejection</div><div class="flow-box result-good">Two <b>separate</b> baraitot — both could refer to <b>monetary documents</b> using different terms</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Terminology</strong> <b>Gittin</b> can mean divorce documents or any legal documents. <b>Shetarot</b> typically means monetary documents. Since the baraitot are separate, no proof can be drawn.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>When Is the Shalish Believed?</h2>
+  
+  <table><tr><th>Condition</th><th>Shalish Credible?</th><th>Reason</th></tr><tr><td>Document in shalish's possession</td><td>✅ Yes</td><td>He controls the item and could act as he wishes</td></tr><tr><td>Document no longer in possession (torn)</td><td>❌ No</td><td>Lost basis for credibility — needs witnesses</td></tr><tr><td>Monetary dispute</td><td>✅ Yes</td><td>Debts can be forgiven (meḥilah)</td></tr><tr><td>Ritual matter (divorce)</td><td>❓ Disputed</td><td>Rav Huna: No / Rav Ḥisda: Yes</td></tr><tr><td>Wife claims 'you divorced me'</td><td>✅ Normally</td><td>Rav Hamnuna: she won't be insolent before husband</td></tr><tr><td>Wife claims divorce + supporting factor exists</td><td>❌ No</td><td>When something supports her claim, she might be bold enough to lie</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rav Hamnuna's Principle</strong> A wife who says <b>"You divorced me"</b> is normally believed — the presumption is she would not be brazen enough to lie to her husband's face. But this fails when external factors embolden her.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Mishna: Who Receives the Na'arah's Get?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Rabbis (Tanna Kamma)</h3><ul><li>Both she AND her father can receive the get</li><li>The Torah grants her an <b>additional hand</b> beyond her father's</li><li>Divorce is effective the moment <b>either one</b> receives the get</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3e"><h3 style="color:#9b59b6">Rabbi Yehuda</h3><ul><li>Only her <b>father</b> receives her get</li><li>Two hands cannot acquire for one person simultaneously</li><li>Where father is alive, her hand has <b>no legal standing</b></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Na'arah Me'orasah</strong> A betrothed young woman (na'arah me'orasah) is between ages 12–12.5. The dispute concerns whether she has independent legal capacity while her father is alive.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Can a Minor Girl Be Divorced? The Safeguarding Test</h2>
+  
+  <div class="process-bar"><div class="process-step">📜 A minor who <b>knows how to safeguard</b> her get — can be divorced</div><div class="process-arrow">↓</div><div class="process-step">❓ What does 'safeguard' mean? She guards <b>something else</b> due to her get...</div><div class="process-arrow">↓</div><div class="process-step highlight">🧠 R' Yoḥanan: She lost her get but <b>guards a substitute</b> thinking it's her get</div><div class="process-arrow">↓</div><div class="process-step">⚠️ Rav Huna bar Manoaḥ objects: That's just an <b>imbecile</b>, not a capable minor!</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ Rav Huna bar Manoaḥ's answer: She <b>distinguishes</b> between her get and less important items — guarding the get specifically</div></div><div class="callout" style="margin-top:20px"><strong>Practical Standard</strong> The test is whether the child understands relative value and importance — she safeguards the get <b>because</b> she recognizes its significance compared to other objects.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 64 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Shalish Dispute</b><br/>Husband gives get to third party — who is believed about its purpose?</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a1a; border: 1px solid #e74c3c;"><b>Rav Huna:</b> Husband credible<br/>(would give directly if for divorce)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a1a; border: 1px solid #4caf50;"><b>Rav Ḥisda:</b> Shalish credible<br/>(husband trusted him)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Na'arah Me'orasah</b><br/>Rabbis: she or father receives get · R' Yehuda: father only</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; border-left: 3px solid #9b59b6;"><b>Minor's Capacity</b><br/>Must distinguish get from other items to be divorced</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #e67e22;"><b>Acquisition by Minors</b><br/>Rav Ḥisda: Minor acquires for self only, never for others (except rabbinic contexts)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 64a-64b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 64a-64b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../63/">← Daf 63</a><a href="../65/">Daf 65 →</a></div>
+</body>
+</html>

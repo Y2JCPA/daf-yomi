@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 63 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔄</div>
+  <h1>Gittin 63</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין סג׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔀 Agent Misrepresentation — When the agent misstates whether he is for receipt or delivery<br>
+    ⚖️ Rav Nachman's Ruling — Husband relies on agent's false statement, divorce invalid<br>
+    📜 'Here You Are' vs. 'Acquire' — Rabbi Natan and Rabbi Yehuda HaNasi debate equivalence<br>
+    👥 Dual Agency — Agent as both husband's delivery agent and wife's receipt agent<br>
+    🚫 Agent from Agent — Whether a woman can appoint an agent to receive from husband's agent<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>When Agents Misrepresent & The Limits of Agency in Divorce</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Nachman</div><div class="speech">If the agent <b>misrepresents</b> what the wife said (delivery vs. receipt), even if the get reaches her — <b>she is not divorced</b></div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Challengers</div><div class="speech">But we know the principle: once a husband <b>decides to divorce</b>, he says 'let her be divorced <b>any way</b> she is divorced!'</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Those cases are different — there, the husband <b>knows</b> the agency is invalid. Here, he genuinely <b>errs</b> based on the agent's false claim.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav</div><div class="speech">A woman <b>cannot</b> appoint an agent to receive her get from the hand of her husband's agent.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">R' Chanina</div><div class="speech">A woman <b>can</b> appoint an agent to receive from the husband's agent.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Tension</strong> Does a husband's general intent to divorce override technical flaws in agency designation?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Agent Misrepresentation: Rav Nachman's Case</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Wife says to agent:<br><b>'Bring me my get'</b><br>(שליחות הולכה)</div><div class="flow-arrow">↓</div><div class="flow-box question">Agent tells husband:<br><b>'Your wife said: Receive my get for me'</b><br>(שליחות קבלה — <em>false!</em>)</div><div class="flow-arrow">↓</div><div class="flow-box action">Husband says: <b>'Here you are, as she said'</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Nachman's Ruling</div><div class="flow-box result-bad"><b>Not divorced</b> — even when get reaches her hand. The agent negated his own agency by misrepresenting his role.</div></div><div class="flow-col"><div class="flow-label">Why Not 'Any Way'?</div><div class="flow-box result-bad">Husband genuinely <b>erred</b> — he relied on the agent's false claim of receipt agency.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The agent's misrepresentation causes the husband to rely on a falsehood, invalidating the entire agency.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Three Challenges to Rav Nachman — All Rejected</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Challenge 1: Mishnah — 'Receive for My Wife'</h3><ul><li>Husband says 'Receive this get for my wife' — she's divorced if he doesn't retract</li><li>Husband can't designate receipt agent — yet it works!</li><li>Principle: 'Let her be divorced any way'</li><li>❌ REJECTED: There husband KNOWS receipt is invalid — here he genuinely ERRS</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Challenge 2: Minor Girl</h3><ul><li>Minor girl says 'receive my get' — not valid until it reaches HER hand</li><li>But once it reaches her — she IS divorced</li><li>Husband must have intended delivery agency</li><li>❌ REJECTED: Husband KNOWS minors can't appoint agents — here he ERRS on agent's word</li></ul></div><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Challenge 3: Baraita (Tosefta 6:2)</h3><ul><li>Agent misrepresents; husband says 'deliver/acquire/receive'</li><li>If husband doesn't retract — once get reaches her, she's divorced</li><li>This directly contradicts Rav Nachman!</li><li>⚡ Gemara resolves: expressions don't match to assertions as assumed</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Pattern</strong> Each challenge invokes 'let her be divorced any way' — each is rejected because those cases involve a husband who KNOWS the agency is flawed, unlike here where he genuinely relies on a lie.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>'Here You Are' vs. 'Deliver' — R' Natan & R' Yehuda HaNasi</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Natan</div><div class="speech">If husband says <b>'Deliver this get'</b> — he <b>can</b> retract.<br>If he says <b>'Here you are'</b> — he <b>cannot</b> retract.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Yehuda HaNasi</div><div class="speech">Even if the husband says <b>'Deliver'</b> — he <b>cannot</b> retract his decision.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">A baraita proves R' Natan's view: <b>'Here you are'</b> is comparable to <b>'Acquire'</b> (זכה) — the agent gains immediate acquisition rights.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Conclusion</div><div class="speech">According to R' Natan: <b>'Here you are' = 'Acquire'</b>.<br>The language of giving determines the agent's power and the husband's ability to retract.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halacha</strong> The husband's choice of words — 'deliver' vs. 'here you are' — determines whether the agent is merely a courier or gains acquisition power on behalf of the wife.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Dual Agency: Rabbi Abba / Rav Huna / Rav</h2>
+  
+  <table><tr><th>Scenario Element</th><th>Detail</th></tr><tr><td>Wife says to agent</td><td>'Receive my get for me' (שליחות קבלה)</td></tr><tr><td>Agent tells husband</td><td>'Your wife said: Receive my get for me'</td></tr><tr><td>Husband responds</td><td>'Deliver and give it to her'</td></tr><tr><td>Agent's status</td><td>BOTH husband's agent for delivery AND wife's agent for receipt</td></tr><tr><td>If husband dies childless before get reaches wife</td><td>She performs <b>ḥalitza</b> (maybe agent was for delivery — not yet divorced)</td></tr><tr><td>Why not levirate marriage?</td><td>Maybe agent was for receipt — she was already divorced and forbidden to brother</td></tr><tr><td>Underlying uncertainty</td><td>Does 'deliver' = 'acquire'? Stringent in ritual law</td></tr></table><div class="callout" style="margin-top:20px"><strong>Monetary vs. Ritual</strong> Rav himself rules that 'deliver' = 'acquire' for monetary matters (lenient in doubt), but is stringent for divorce law — requiring both ḥalitza and forbidding yibum.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Can a Woman Appoint an Agent to Receive from Husband's Agent?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">A woman <b>cannot</b> appoint an agent to receive her get from the hand of her husband's agent.</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Chanina</div><div class="speech">A woman <b>can</b> appoint an agent to receive her get from her husband's agent.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara (Reason 1)</div><div class="speech">Rav's reason: It could be construed as <b>contempt for the husband</b> — she won't even deal with his agent directly.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara (Reason 2)</div><div class="speech">Alternatively: A decree due to <b>her courtyard acquired thereafter</b> — her agent is like property she acquired after the husband placed the get elsewhere.</div></div></div><div class="callout" style="margin-top:20px"><strong>Courtyard Analogy</strong> Just as a get placed in a courtyard she later purchases is invalid, so too her agent (=her 'courtyard') designated after the husband gave the get to his agent may be invalid.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 63 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px; border-radius: 6px;"><b>Agent Misrepresentation</b><br>Agent tells husband the opposite of what wife said</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2d1b3d; border-left: 3px solid #9b59b6; padding: 10px; border-radius: 6px;"><b>Husband Relies on Falsehood</b><br>He genuinely believes the agent's role matches what was stated</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border: 1px solid #e74c3c; padding: 10px; border-radius: 6px;"><b>Rav Nachman:</b> Not divorced — agency entirely negated by the lie</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border: 1px solid #4caf50; padding: 10px; border-radius: 6px;"><b>Distinguished from:</b> Cases where husband <em>knows</em> the flaw — there we say 'any way she is divorced'</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #e67e22; padding: 10px; border-radius: 6px;"><b>Additional Rulings:</b><br>• 'Here you are' = 'Acquire' (R' Natan)<br>• Dual agency creates ḥalitza requirement<br>• Rav: No agent-from-agent for get</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 63a-63b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 63a-63b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../62/">← Daf 62</a><a href="../64/">Daf 64 →</a></div>
+</body>
+</html>

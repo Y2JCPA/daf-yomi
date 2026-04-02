@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 32 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🚫</div>
+  <h1>Gittin 32</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין לב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🚫 Voiding a Get — How a husband cancels a bill of divorce sent with an agent<br>
+    📜 Prescriptive vs. Descriptive — Which verbal formulations effectively void a get<br>
+    ⚖️ Rabban Gamliel's Ordinance — Restricting court-based cancellation for tikkun ha'olam<br>
+    🔄 Reusing a Voided Get — Debate whether a cancelled get can be used again<br>
+    👥 Quorum for Cancellation — How many witnesses needed to void a get<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>When Can a Husband Void a Get?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Husband sends get</b> with an agent</div><div class="flow-arrow">↓</div><div class="flow-box question">Has the get <b>entered the wife's possession</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Not yet</div><div class="flow-box result-good">Husband can <b>void the get</b> — by reaching agent, sending second agent, or reaching wife directly</div></div><div class="flow-col"><div class="flow-label">Already delivered</div><div class="flow-box result-bad"><b>Cannot void</b> — divorce has taken effect, even if he was searching to cancel from the start</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Once the get enters the wife's possession, no retroactive cancellation is possible — the divorce stands.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Three Ways to Cancel a Get Before Delivery</h2>
+  
+  <div class="process-bar"><div class="process-step">📤 Husband sends get with <b>Agent #1</b></div><div class="process-arrow">↓</div><div class="process-step highlight">🏃 Option 1: Husband <b>reaches the agent</b> (even incidentally) and says it's void</div><div class="process-arrow">↓</div><div class="process-step highlight">📨 Option 2: Husband <b>sends Agent #2</b> to tell Agent #1 the get is void</div><div class="process-arrow">↓</div><div class="process-step highlight">👩 Option 3: Husband <b>reaches his wife</b> before the get does and tells her it's void</div><div class="process-arrow">↓</div><div class="process-step">🚫 All three methods effectively <b>cancel the divorce</b></div></div><div class="callout" style="margin-top:20px"><strong>Gemara's Clarification</strong> The Mishna says 'he reached the agent' — not 'he pursued the agent.' Even an incidental encounter suffices. We do not say he merely intends to vex his wife.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why State Each Case Separately?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Why teach sending <b>a second agent</b>? A person's agent is like himself — it's obvious!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Answer</div><div class="speech">Lest you say the <b>second agent's power</b> cannot exceed the first agent's, and only the husband himself can cancel.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Why teach the case of <b>reaching his wife</b>? Also obvious!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Answer</div><div class="speech">Lest you say when he tells <b>her directly</b>, he surely only intends to <b>vex her</b> — not actually cancel.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Why teach <b>sending an agent to her</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Answer</div><div class="speech">Lest you say the husband doesn't care if an agent <b>exerts himself for nothing</b>, so he's only vexing her. The Mishna teaches: it's still void.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Each seemingly redundant case in the Mishna addresses a unique potential misconception about the husband's intent.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Formulations: Which Words Void a Get?</h2>
+  
+  <table><tr><th>Statement</th><th>Effect</th></tr><tr><td><b>בטל הוא</b> — 'It is void' (batel hu)</td><td>✅ Get is voided</td></tr><tr><td><b>אי אפשי בו</b> — 'I do not desire it'</td><td>✅ Get is voided</td></tr><tr><td>'It shall not be effective / shall not release / shall not divorce'</td><td>✅ Prescriptive — voided</td></tr><tr><td>'It shall be pottery / like pottery'</td><td>✅ Prescriptive — voided</td></tr><tr><td><b>פסול הוא</b> — 'It is invalid'</td><td>❌ No effect</td></tr><tr><td>'It is not a bill of divorce'</td><td>❌ No effect — mere description</td></tr><tr><td>'It does not release / does not divorce'</td><td>❌ Descriptive — no effect</td></tr><tr><td>'It is pottery / it is like pottery'</td><td>❌ Descriptive — no effect</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> <b>Prescriptive</b> language ('shall be/shall not') = effective cancellation. <b>Descriptive</b> language ('is/does not') = merely stating a false fact, no legal force.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Batel: Get vs. Gift</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Bill of Divorce (Get)</h3><ul><li>Saying 'batel' means: <b>let it become void</b> from now</li><li>This is a prescriptive, forward-looking statement</li><li>The husband has the power to cancel — so the effective meaning applies</li><li>Result: <b>Get is voided</b></li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Gift (Matana)</h3><ul><li>Saying 'batel' after receiving means: it <b>was void</b> from the start</li><li>This is a descriptive, backward-looking statement</li><li>Recipient already acquired it — cannot undo acquisition</li><li>Result: <b>Gift stands</b>, statement has no effect</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Rule</strong> The word <b>batel</b> has dual meaning. In each context, we interpret it in the way that is <b>legally effective</b> for that domain.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Can a Voided Get Be Reused?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Naḥman</div><div class="speech">He <b>may</b> go back and divorce with it. He only nullified the <b>agency</b>, not the document itself.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Sheshet</div><div class="speech">He may <b>not</b> go back and divorce with it. The get itself was rendered void.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Challenge</div><div class="speech">R' Yoḥanan says speech can retract betrothal within 30 days — shouldn't speech also void the get itself?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Resolution</div><div class="speech">Betrothal is <b>speech vs. speech</b>. But a get is a <b>tangible object</b> — speech cannot destroy a physical document.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Halakha</div><div class="speech"><b>The halakha follows Rav Naḥman</b> — the get may be reused.</div></div></div><div class="callout" style="margin-top:20px"><strong>Legal Logic</strong> Cancellation nullifies the <b>agency of delivery</b>, not the document. A physical object (the get) cannot be undone by mere speech.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 32 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px;"><b>Husband sends get</b> via agent</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:8px;"><b>Before delivery:</b> Can void by reaching agent, sending second agent, or reaching wife</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left:3px solid #9b59b6; padding:8px;">Must use <b>prescriptive</b> language: 'shall be void' ✅ not 'is void' ❌</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:1px solid #4caf50; padding:8px;"><b>Voided get can be reused</b> (Rav Naḥman) — only the agency was cancelled, not the document</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border:1px solid #e74c3c; padding:8px;"><b>After delivery:</b> Cannot void — divorce is final, no retroactive cancellation</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 32a-32b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 32a-32b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../31/">← Daf 31</a><a href="../33/">Daf 33 →</a></div>
+</body>
+</html>

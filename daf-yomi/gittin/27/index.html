@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 27 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔍</div>
+  <h1>Gittin 27</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין כז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Lost Get — When a lost bill of divorce is found, under what conditions is it still valid?<br>
+    🏕️ Caravans & Identity — The role of passing caravans in creating doubt about document ownership<br>
+    👥 Identical Names — Concern about two people named Yosef ben Shimon in one town<br>
+    🔎 Simanim (Distinguishing Marks) — Returning lost documents via identifying features<br>
+    ⏱️ Defining 'Immediately' — How long after losing a get can it still be considered found promptly<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>When Can a Found Get Be Used?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">An agent <b>loses</b> the get he is delivering</div><div class="flow-arrow">↓</div><div class="flow-box question">Was it found <b>immediately</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box result-good">The get is <b>valid</b> ✅</div></div><div class="flow-col"><div class="flow-label">No</div><div class="flow-box result-bad">The get is <b>invalid</b> — concern it belongs to another person with the same name ❌</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Exceptions:</b> Found in his <i>ḥafisa</i> or <i>deluskema</i>, or he <b>recognizes</b> the get itself</div></div><div class="callout" style="margin-top:20px"><strong>Mishna</strong> The core question: how do we verify a found get is the <b>same one</b> that was lost, not a different document with identical names?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Resolving the Contradiction: Lost Get vs. Bava Metzia</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Our Mishna says a lost get found <b>after a delay</b> is invalid. But Bava Metzia 18a implies: if the writer says <b>'Give it,'</b> we give it — even after time has passed!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">No contradiction! Our Mishna deals with a place where <b>caravans are frequently found</b> (שיירות מצויות) — many people pass through, creating identity confusion.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rabba</div><div class="speech">Bava Metzia deals with a place where <b>caravans are NOT frequent</b> — so the found document likely belongs to the known owner.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">And even where caravans ARE frequent — we only worry if it's <b>established</b> (<i>muḥzaq</i>) that two men share the same name in that town.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Rabba introduces a two-factor test: <b>(1)</b> frequency of travelers and <b>(2)</b> established identical names in the locale.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rabba's Framework: When to Return a Found Document</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A document is <b>found</b> after being lost</div><div class="flow-arrow">↓</div><div class="flow-box question">Is this a place where <b>caravans are frequently found</b> (שיירות מצויות)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No</div><div class="flow-box result-good"><b>Return</b> the document — low risk of identity confusion ✅</div></div><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box question">Is it <b>established</b> that two people share the same name in this town?</div></div></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Not established</div><div class="flow-box result-good"><b>Return</b> it — unlikely another person has the same name ✅</div></div><div class="flow-col"><div class="flow-label">Established</div><div class="flow-box result-bad"><b>Do NOT return</b> — real risk of confusion ❌</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Proof</strong> Rabba proved his approach from court enactments (מעשה בית דין) — even Rav Huna's busy court returns documents, since two identical names weren't established.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rabba vs. Rabbi Zeira: Same Question, Different Sources</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">Rabba</h3><ul><li>Raises contradiction from <b>Mishna</b> in Bava Metzia</li><li>Prefers Mishna because Rabbi Yehuda HaNasi's language is <b>more precise</b></li><li>Only concerned when two identical names are <b>established</b> in the town</li><li>Ruled practically in the <b>flax house of Pumbedita</b></li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Rabbi Zeira</h3><ul><li>Raises contradiction from a <b>baraita</b> about finding a get in the marketplace</li><li>Baraita: if husband admits he wrote it → return it to the wife</li><li>Some say he agrees with Rabba (need established names)</li><li>Some say he is <b>stricter</b>: caravans alone suffice to block return</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Dispute</strong> According to one version, Rabbi Zeira holds that in a caravan area, we do <b>not</b> return the get even without established identical names — stricter than Rabba.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Alternative Resolutions to the Contradiction</h2>
+  
+  <table><tr><th>Scholar</th><th>How to Reconcile</th><th>Key Mechanism</th></tr><tr><td><b>Rabba</b></td><td>Distinguish caravan areas from non-caravan areas</td><td>Geographic frequency of travelers + established identical names</td></tr><tr><td><b>Rabbi Zeira</b></td><td>Same geographic distinction, from a baraita</td><td>Possibly stricter — caravans alone may suffice</td></tr><tr><td><b>Rabbi Yirmeya</b></td><td>Witnesses confirm: we never signed another get for a Yosef ben Shimon</td><td>Witness testimony eliminates doubt</td></tr><tr><td><b>Rav Ashi</b></td><td>Owner provides a clear-cut <i>siman</i> (distinguishing mark)</td><td>Hole next to a specific letter = unmistakable identification</td></tr></table><div class="callout" style="margin-top:20px"><strong>Note</strong> Rav Ashi is <b>uncertain</b> whether returning lost items via simanim is Torah law or rabbinic — so for a get, he requires a <b>siman muvhak</b> (clear-cut mark) that all agree is Torah-level.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabba bar bar Ḥana's Lost Get</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">רבה בר בר חנה אירכס ליה גיטא בי מדרשא</div><div class="callout"><strong>Story</strong> Rabba bar bar Ḥana lost a get in the <b>study hall</b>. He said: <i>'I have a distinguishing mark AND I can recognize it visually.'</i> They returned it — but he remained <b>uncertain</b> which basis they relied upon:<br><br>• If by <b>siman</b> → they hold simanim work by Torah law<br>• If by <b>visual recognition</b> (<i>tevi'ut ayin</i>) → they relied on him specifically as a <b>Torah scholar</b> (<i>tzurva me-derabbanan</i>), but an ordinary person might not be trusted</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 27 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px;">📜 <b>Mishna:</b> Lost get found immediately = valid; after delay = invalid</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a1a; border-left:3px solid #e74c3c; padding:8px;">❓ <b>Contradiction:</b> Bava Metzia implies documents can be returned even after a delay</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding:8px;"><b>Rabba:</b> Distinguish caravan areas; only worry if two identical names are established</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; padding:8px;"><b>R' Zeira:</b> Same distinction — possibly stricter about caravans alone</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2e1a; padding:8px;"><b>R' Yirmeya:</b> Witnesses confirm uniqueness</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2e3a; padding:8px;"><b>Rav Ashi:</b> Clear-cut siman (hole next to specific letter)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left:3px solid #c9a84c; padding:8px;">⏱️ <b>'Immediately' defined:</b> R' Natan — time for a caravan to camp; R' Shimon b. Elazar — continuous observation</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 27a-27b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 27a-27b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../26/">← Daf 26</a><a href="../28/">Daf 28 →</a></div>
+</body>
+</html>

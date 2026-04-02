@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 78 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🛏️</div>
+  <h1>Gittin 78</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין עח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🛏️ His Bed vs. Her Bed — Domain status of the wife's bed in the husband's house<br>
+    🧺 Lap & Basket — How personal vessels create a wife's domain<br>
+    📜 Verbal Declaration — Requirement to say 'This is your get'<br>
+    📏 Closer to Him or Her — Defining proximity for a thrown get<br>
+    🛡️ Guarding the Get — R' Yochanan's 'ability to guard' standard<br>
+    💰 Betrothal & Debts — Extending divorce proximity rules to other areas<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 78: Domains, Proximity & Delivering the Get</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Husband throws <b>get</b> to wife in his house</div><div class="flow-arrow">↓</div><div class="flow-box question">Where does it land?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">His bed / His domain</div><div class="flow-box result-bad"><b>Not divorced</b> — still his territory</div></div><div class="flow-col"><div class="flow-label">Her bed / Her lap / Her basket</div><div class="flow-box result-good"><b>Divorced</b> — considered her domain</div></div><div class="flow-col"><div class="flow-label">Thrown on ground</div><div class="flow-box action">Depends on <b>proximity</b> — closer to him or her</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> When a get is delivered within the husband's house, the Gemara must determine what counts as the <b>wife's domain</b> — her bed, her lap, her basket, or the ground near her.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>His Bed vs. Her Bed</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">If he throws the get onto <b>his bed</b> where she sits — she is <b>not divorced</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">But if he throws it onto <b>her bed</b> — she <b>is divorced</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But her bed is in <b>his house</b>! This is like <b>vessels of a buyer in the domain of the seller</b> — can the buyer acquire through them?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Answer: The bed is <b>10 tefachim high</b> — it is its own domain.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But the <b>legs</b> stand on his floor!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">People are <b>not particular</b> about the tiny space under the bed legs.</div></div></div><div class="callout" style="margin-top:20px"><strong>R' Eliezer (Baraita)</strong> Confirms Rava's ruling: his bed → not divorced; her bed → divorced.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Does Her Basket Work? Five Opinions</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Shmuel / R' Oshaya</h3><ul><li>Basket is <b>hanging from her body</b></li><li>Not resting in husband's domain at all</li></ul></div><div class="compare-box" style="border-top-color:#3a1a5c"><h3 style="color:#9b59b6">Reish Lakish</h3><ul><li><b>Tied to her</b> is sufficient</li><li>Need not be hanging off the ground</li></ul></div><div class="compare-box" style="border-top-color:#5c3a1a"><h3 style="color:#e67e22">Rav Adda bar Ahava</h3><ul><li>Basket placed <b>between her thighs</b></li><li>Husband not particular about where she sits</li></ul></div><div class="compare-box" style="border-top-color:#1a3a2a"><h3 style="color:#4caf50">R' Yochanan</h3><ul><li>No special setup needed</li><li>The place of her <b>lap</b> and <b>basket</b> belong to her</li><li>Husband transfers that space to her by default</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Explanation</strong> R' Yochanan's reasoning: a husband is <b>not particular</b> about the place of his wife's lap or basket — it is as though he <b>transferred ownership</b> of that space to her.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>"Take This Promissory Note" — Verbal Declaration Required</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Husband hands wife a document or she finds it behind him</div><div class="flow-arrow">↓</div><div class="flow-box question">Does he say <b>"This is your get"</b> (זה גיטך)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box result-good">✅ <b>Valid get</b> — provided she received it from him</div></div><div class="flow-col"><div class="flow-label">No — says 'take this note'</div><div class="flow-box result-bad">❌ <b>Not valid</b> — even if she reads it and sees it's a get</div></div><div class="flow-col"><div class="flow-label">No — she finds it</div><div class="flow-box result-bad">❌ <b>Not valid</b> — she must also <b>receive</b> it from his hand</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">"Found behind him" = she <b>pulled it from his belt</b>, not picked up from ground</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Rava: "Take your get from the ground" = <b>meaningless</b> — she must receive it <b>from him</b></div></div><div class="callout" style="margin-top:20px"><strong>Mishna</strong> Even if she was <b>sleeping</b> when he placed it in her hand — when she wakes and reads it, it is <b>not valid</b> unless he tells her: <i>This is your get</i>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Proximity of the Thrown Get: Rav vs. R' Yochanan</h2>
+  
+  <table><tr><th></th><th>Rav's View</th><th>R' Yochanan's View</th></tr><tr><td>"Closer to her"</td><td>Within her <b>4 amot</b></td><td>Actually <b>closer to her</b> — even 100 amot away</td></tr><tr><td>"Closer to him"</td><td>Within his <b>4 amot</b></td><td>Actually <b>closer to him</b> — even 100 amot away</td></tr><tr><td>"Equally balanced"</td><td>Between their 4 amot zones — part in each</td><td>Both can guard it, or neither can guard it</td></tr><tr><td>Result if closer to her</td><td><b>Divorced</b></td><td><b>Divorced</b></td></tr><tr><td>Result if closer to him</td><td><b>Not divorced</b></td><td><b>Not divorced</b></td></tr><tr><td>Result if equally balanced</td><td><b>Safek</b> (uncertain)</td><td><b>Safek</b> (uncertain)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rabba & Rav Yosef</strong> "Equally balanced" may refer to <b>conflicting witnesses</b>: one group says it fell closer to him, the other says closer to her.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Yochanan's 'Guarding' Standard</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">R' Yochanan</div><div class="speech">"Closer to her" = she <b>can guard it</b> and he cannot. "Closer to him" = he <b>can guard it</b> and she cannot.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Eliezer</div><div class="speech">If a get is closer to her but a <b>dog snatches it</b> — she is <b>not divorced</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But once it was closer to her, the divorce took effect! Must she guard it forever?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Rather, R' Eliezer means: if a dog <b>could</b> take it and <b>he</b> could guard it but <b>she</b> could not — it's in <b>his domain</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Shmuel</div><div class="speech">"Closer to her" = she could <b>bend down and take it</b>. But do not rule leniently unless the get <b>reaches her hand</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Ruling</strong> Rav Mordekhai reports: in a real case where the get was closer to the woman but was <b>lost</b>, and the husband died — she still required <b>chalitzah</b> due to uncertainty.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 78 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>Delivery Method</b><br/>Husband throws or hands get to wife</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px;"><b>Verbal Declaration</b><br/>Must say: <i>"This is your get"</i> (זה גיטך)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; border-left:3px solid #9b59b6; padding:10px;"><b>Her Domain?</b><br/>Must reach a space considered hers</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding:8px;"><b>Personal vessels</b>: her bed (10t high), lap, basket — husband not particular → her domain</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2e1a; padding:8px;"><b>Ground proximity</b>: closer to her = she can guard it; closer to him = not divorced; equal = safek</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 78a-78b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 78a-78b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../77/">← Daf 77</a><a href="../79/">Daf 79 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 66 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🕳️</div>
+  <h1>Gittin 66</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין סו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Deathbed Gift vs. Get — Rav Huna's parallel between gifts and divorce of a shechiv mera<br>
+    🍷 'From Wine' — Interpreting Geneiva's ambiguous bequest to Rabbi Avina<br>
+    👻 Voice from a Pit — Identifying demons vs. humans by shadow of a shadow<br>
+    ✍️ Agents for Writing a Get — Who writes and who signs when agents are appointed<br>
+    ⚖️ Verbal Directives (Milei) — Whether oral instructions can be delegated to a third party<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 66: Deathbed Instructions & Agency in Divorce</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Shechiv Mera</b> gives instructions</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Gift</div><div class="flow-box result-good">Rav Huna: Parallel to get — no formal kinyan needed if dying</div></div><div class="flow-col"><div class="flow-label">Get</div><div class="flow-box result-bad">If he recovers, the get is revoked just like a gift</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Agency question:</b> Can designated agents delegate writing?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Meir</div><div class="flow-box result-good">3 people told 'Give a get' = court, may delegate writing</div></div><div class="flow-col"><div class="flow-label">R' Yosei</div><div class="flow-box result-bad">Even the Sanhedrin must learn to write it themselves</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Tension</strong> When can deathbed instructions bypass normal legal requirements — and how far does delegated authority extend?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav Huna's Parallel: Get = Gift for a Shechiv Mera</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">A <b>shechiv mera's</b> get is like his gift: if he recovers, <b>both are revoked</b>. And just as 'Write a get' means write <i>and give</i>, so too 'Give a gift' needs <b>no formal kinyan</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Avina</div><div class="speech">Based on Rav Huna, I can collect Geneiva's bequest of <b>400 dinars from wine</b> — no act of acquisition needed!</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">R' Abba</div><div class="speech">Not so fast. Geneiva gave only a <b>portion</b> of his estate. A shechiv mera giving part of his estate <b>requires a kinyan</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Geneiva's case is different — he gave instructions <b>due to imminent death</b> (metzaveh machamat mita). The principle: <b>מצוה לקיים דברי המת</b> — it is a mitzva to fulfill the words of the deceased — applies even to partial gifts.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> A standard shechiv mera gift of part of an estate requires kinyan, but instructions given due to imminent death invoke the principle of fulfilling the deceased's wishes.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>What Did Geneiva Mean by 'From Wine'?</h2>
+  
+  <table><tr><th>Interpretation</th><th>Amora</th><th>Reasoning</th></tr><tr><td>400 dinars <b>of wine</b> (the wine itself)</td><td>Possible reading</td><td>He wanted R' Avina to receive actual wine</td></tr><tr><td>400 dinars <b>in monetary value</b> of wine</td><td>Possible reading</td><td>A cash equivalent</td></tr><tr><td>400 dinars collected <b>from the wine assets</b></td><td>R' Zeira / Eretz Yisrael</td><td>To <b>enhance collection</b> — designating specific property prevents heirs from blocking the gift</td></tr></table><div class="callout" style="margin-top:20px"><strong>Resolution</strong> They sent from Eretz Yisrael: 'From wine' means to enhance R' Avina's ability to collect — Geneiva specified the source to protect the recipient from the heirs' claims.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Voice from a Pit: Is It Human or a Demon?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A man falls into a pit and calls out: <b>'Write a get for my wife!'</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Concern: Maybe the voice is a <b>shed</b> (demon)?</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Check: Does the being have <b>human form</b>?<br>❌ Demons also appear human</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Check: Does it cast a <b>shadow</b> (בבואה)?<br>❌ Demons also have shadows</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Check: Does it have a <b>shadow of a shadow</b> (בבואה דבבואה)?<br>✅ R' Ḥanina: Demons do NOT have this</div><div class="flow-arrow">↓</div><div class="flow-box question">Additional concern: Maybe it's a <b>rival wife</b> (tzara) trying to cause harm?</div><div class="flow-arrow">↓</div><div class="flow-box result-good">School of R' Yishmael: In a <b>time of danger</b>, we write and give the get even without full verification</div></div><div class="callout" style="margin-top:20px"><strong>R' Ḥanina</strong> Yonatan my son taught me: demons have a shadow, but they do not have the shadow of a shadow (בבואה דבבואה).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Appointing Agents: 'Write' vs. 'Give' a Get</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Said to 2: 'Write & give'</h3><ul><li>They must write it themselves</li><li>They sign as witnesses</li><li>Cannot delegate to a scribe</li></ul></div><div class="compare-box" style="border-top-color:#1a3c1a"><h3 style="color:#4caf50">Said to 3: 'Write & give'</h3><ul><li>They must write it themselves</li><li>They also give it to the wife</li><li>3 people = still personal instruction</li></ul></div><div class="compare-box" style="border-top-color:#3c1a3c"><h3 style="color:#9b59b6">Said to 3: 'Give a get'</h3><ul><li>R' Meir: They are a court (beit din)</li><li>They tell others to write it</li><li>Court has authority to delegate</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Mishna Rule</strong> 'Write' = do it yourself. 'Give' to three people = they become a court with power to delegate the writing.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Meir vs. R' Yosei: Can a Court Delegate Writing?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Meir</div><div class="speech">When a man tells <b>three people</b> 'Give a get to my wife,' he has made them a <b>beit din</b>. They may instruct others to write it.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Akiva</div><div class="speech">I received this tradition in prison: telling three 'Give a get' makes them a court — <b>they tell others to write</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Yosei</div><div class="speech">We told R' Ḥanina of Ono: Even if he said this to the <b>Sanhedrin in Jerusalem</b>, they must <b>learn to write</b> and write it themselves!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Shmuel / R' Yehuda HaNasi</div><div class="speech">The <b>halakha</b> follows R' Yosei: <b>מילי לא מימסרן לשליח</b> — verbal directives cannot be delegated to another agent.</div></div></div><div class="callout" style="margin-top:20px"><strong>Halakha</strong> Shmuel rules like R' Yosei: verbal instructions (milei) cannot be transferred to a third party, so agents must write the get themselves.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 66 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:18px; border-radius:14px; font-size:1.18em;"><b>Shechiv Mera</b> gives instructions</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#b6f7c1; padding:14px; border-radius:12px;"><b>Gift:</b> Metzaveh machamat mita — no kinyan needed; מצוה לקיים דברי המת</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1621; color:#f7b6c1; padding:14px; border-radius:12px;"><b>Get:</b> Parallel to gift — revoked if he recovers; void after death</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1e2a3e; color:#c9d6e8; padding:18px; border-radius:14px; font-size:1.1em;"><b>Agency:</b> 'Write' = personal obligation; 'Give' to 3 = court authority</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; color:#d4b6f7; padding:18px; border-radius:14px; font-size:1.15em; border:2px solid #9b59b6;"><b>Halakha (Shmuel/R' Yosei):</b> מילי לא מימסרן לשליח — verbal directives cannot be delegated</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 66a-66b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 66a-66b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../65/">← Daf 65</a><a href="../67/">Daf 67 →</a></div>
+</body>
+</html>

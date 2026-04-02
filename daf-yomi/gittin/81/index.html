@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 81 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Gittin 81</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין פא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📝 Writing vs. Giving a Get — Does merely writing a get disqualify a woman from the priesthood?<br>
+    🔍 Investigating Rumors — When a rumor circulates that a priest divorced his wife<br>
+    ⚖️ Generations of Stringency — Earlier generations were stricter about priestly sanctity<br>
+    🔒 Seclusion After Divorce — Does seclusion imply intercourse and re-betrothal?<br>
+    📄 Bare Bill of Divorce (Get Kere'ach) — A folded get with missing witness signatures<br>
+    🤝 Licentious Intercourse Presumption — Do we assume improper intent in post-divorce relations?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Writing a Get, Rumors, and the Bare Bill of Divorce</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">Even <b>writing</b> a get — without giving it — <b>disqualifies</b> a woman from marrying a <i>kohen</i>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">Even if he <b>gave</b> it conditionally and the condition wasn't fulfilled, she is <b>not disqualified</b>. Only an effective divorce disqualifies.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Shmuel</div><div class="speech">If a rumor circulates that a <i>kohen</i> wrote a get for his wife — <b>she must leave</b>, but the matter requires investigation.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Ashi</div><div class="speech">We are <b>not concerned</b> for any rumor that circulates <b>after marriage</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Gemara</div><div class="speech">Shmuel means she must leave a <b>second husband</b> (a kohen she married after the first husband died), not the first.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Tension</strong> How seriously do we treat <b>incomplete divorce actions</b> and <b>rumors of divorce</b> when it comes to priestly sanctity?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Writing a Get Without Giving It</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Mishna</div><div class="speech">A man <b>wrote a get</b> to divorce his wife but <b>reconsidered</b> and did not give it to her.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">He has <b>disqualified her</b> from marrying into the priesthood (<i>pesulah li-khehunah</i>). The act of writing alone creates a blemish.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">Even if he <b>gave</b> it conditionally and the condition was <b>not fulfilled</b>, she is <b>not disqualified</b>. Only effective divorce disqualifies.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Yehuda bar Elai</div><div class="speech">The <b>earlier generations</b> (Beit Shammai) were more conscientious about maintaining unflawed priestly lineage than the later generations.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Beit Shammai treat the <b>intent to divorce</b> as tainting the marriage, while Beit Hillel require the divorce to <b>actually take effect</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Investigating the Rumor of a Priest's Divorce</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Rumor circulates: <b>A kohen wrote a get</b> for his wife, but she still lives with him</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Shmuel</b>: She must leave, but the matter <b>requires investigation</b></div><div class="flow-arrow">↓</div><div class="flow-box question">What investigation is needed?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Option 1 (Rejected)</div><div class="flow-box result-bad">Can we <b>abolish the rumor</b>?<br/>❌ In Neharde'a (Shmuel's city), they do <b>not abolish rumors</b></div></div><div class="flow-col"><div class="flow-label">Option 2 (Accepted)</div><div class="flow-box result-good">Do locals use <b>'writing'</b> to mean <b>'giving'</b>?<br/>✅ If so, the rumor may mean he <b>actually gave</b> the get</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Linguistic Precision</strong> The investigation hinges on <b>local dialect</b> — if people say 'wrote a get' when they mean 'gave a get,' the rumor is far more serious.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rumors Before vs. After Marriage</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#9b59b6">Shmuel's Ruling</h3><ul><li>She must <b>leave</b> her husband based on the rumor</li><li>Gemara clarifies: she must leave a <b>second</b> husband (kohen she married after the first died)</li><li>She does NOT have to leave the <b>first</b> husband</li><li>This avoids casting aspersions on children from the first marriage</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e67e22">Rav Ashi's Principle</h3><ul><li>We are <b>not concerned</b> for rumors that circulate <b>after marriage</b></li><li>A rumor of betrothal before marriage — we are concerned</li><li>A rumor after marriage — she need not leave</li><li>Shmuel's case applies only to a <b>subsequent</b> marriage to a second kohen</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Reconciliation</strong> The Gemara resolves the contradiction: Shmuel agrees she stays with the <b>first husband</b>. 'She must leave' refers only to a <b>second kohen</b> she marries after the first dies.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Earlier vs. Later Generations on Priestly Sanctity</h2>
+  
+  <table><tr><th>Generation</th><th>Position</th><th>Approach</th></tr><tr><td>Earlier (Beit Shammai)</td><td>Writing a get alone disqualifies from kehunah</td><td>Extremely stringent — even intent matters</td></tr><tr><td>Later (Rabbi Dosa)</td><td>A captive kohen's wife may eat terumah</td><td>More lenient — presume innocence unless proven</td></tr><tr><td>Rabbi Dosa's reasoning</td><td>"Because he fondled her, she's disqualified?"</td><td>Actual violation must be established</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' Yehuda bar Elai</strong> <b>Come and see</b> that the later generations are unlike the earlier generations — the earlier were far more careful about maintaining <b>unflawed priestly lineage</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Seclusion After Divorce — Licentious Intercourse?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Mishna</div><div class="speech">A divorced couple was seen together. Do we assume he <b>re-betrothed</b> her through intercourse, requiring a <b>second get</b>?</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Beit Shammai</div><div class="speech">A person <b>does</b> engage in <i>be'ilat zenut</i> (licentious intercourse). We assume <b>no betrothal intent</b> — no second get needed.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Beit Hillel</div><div class="speech">A person <b>does not</b> engage in licentious intercourse. He intended to <b>betroth her</b> — she needs a <b>second get</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Shimon b. Elazar</div><div class="speech">They only disagree when witnesses <b>saw intercourse</b>. If not seen, all agree — <b>no second get</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Mishna's View</div><div class="speech">They disagree about <b>witnesses of seclusion</b> — Beit Hillel equate seclusion with intercourse; Beit Shammai do not.</div></div></div><div class="callout" style="margin-top:20px"><strong>Beit Hillel's Concession</strong> Even Beit Hillel agree: if divorced <b>from betrothal</b> (not marriage), seclusion doesn't imply intercourse — because <b>he is not accustomed to her</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 81 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #e74c3c;"><b>Writing a Get Without Giving</b><br/>Beit Shammai: Disqualifies from kehunah<br/>Beit Hillel: Only effective divorce disqualifies</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #9b59b6;"><b>Rumors of Divorce</b><br/>Investigate local dialect — does 'wrote' mean 'gave'?<br/>She must leave a second kohen husband, not the first</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1e3a2e; border-left: 3px solid #4a90d9;"><b>Seclusion After Divorce</b><br/>Beit Hillel: Seclusion witnesses = intercourse witnesses<br/>Beit Shammai: Seclusion ≠ intercourse</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top: 2px solid #4caf50;"><b>After Marriage</b><br/>Presumption of familiarity — seclusion is significant</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border-top: 2px solid #e74c3c;"><b>After Betrothal Only</b><br/>No familiarity — all agree seclusion doesn't imply intercourse</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left: 3px solid #e67e22;"><b>Bare Get (Get Kere'ach)</b><br/>More folds than signatures invalidates the document<br/>Dispute: Who may sign to complete it?</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 81a-81b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 81a-81b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../80/">← Daf 80</a><a href="../82/">Daf 82 →</a></div>
+</body>
+</html>

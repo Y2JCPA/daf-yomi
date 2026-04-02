@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 65 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">📜</div>
+  <h1>Gittin 65</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין סה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👶 Stages of a Minor — Rava's three developmental stages for acquisition and legal capacity<br>
+    🔄 Agent Deviating from Instructions — When changing the place or method invalidates an act<br>
+    ⚖️ Rabbi Elazar vs. Rabbis — Is specifying a place a condition or mere indication?<br>
+    🫒 Eiruv with Wrong Food — Dates vs. dried figs and the dispute over deviation<br>
+    💬 Expressions of Divorce — Which verbal formulas validly instruct writing a get<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 65: Minors, Agents & the Power of Words</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Can a minor acquire on behalf of others?</b></div><div class="flow-arrow">↓</div><div class="flow-box action">Rava defines <b>three stages</b> of a minor's legal capacity</div><div class="flow-arrow">↓</div><div class="flow-box question">Mishna: Agent who <b>deviates</b> from instructions — is the act valid?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Husband's Instructions</div><div class="flow-box result-bad">Deviated on place → <b>Invalid</b></div></div><div class="flow-col"><div class="flow-label">Wife's Instructions</div><div class="flow-box result-good">R' Elazar: She merely <b>indicated</b> a place → <b>Valid</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Which <b>verbal expressions</b> constitute a divorce instruction?</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf explores the boundaries of legal agency — who can act, how precisely must instructions be followed, and which words carry legal force.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rava's Three Stages of a Minor's Legal Capacity</h2>
+  
+  <div class="process-bar"><div class="process-step">🪨 <b>Stage 1 — Pebble & Nut:</b> Given a pebble, throws it away; given a nut, keeps it</div><div class="process-arrow">↓</div><div class="process-step highlight">✅ Acquires property <b>for himself</b> only, not on behalf of others</div><div class="process-arrow">↓</div><div class="process-step">👧 Minor girl at this stage: can be betrothed by mother/brother (rabbinic), can refuse (<i>mi'un</i>)</div><div class="process-arrow">↓</div><div class="process-step">🛒 <b>Stage 2 — Ages ~6–8:</b> Purchase and sale of <b>movable property</b> is valid</div><div class="process-arrow">↓</div><div class="process-step highlight">📜 Minor girl at this stage: can receive her own <b>get</b> (even from Torah-level betrothal by father)</div><div class="process-arrow">↓</div><div class="process-step">🙏 <b>Stage 3 — Age of Vows:</b> Vows and consecrations are valid</div><div class="process-arrow">↓</div><div class="process-step highlight">👠 Minor girl at this stage: can perform <b>ḥalitza</b>. Land sale: must wait until age <b>20</b></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Legal capacity develops incrementally — each stage unlocks new halakhic powers for both acquisition and personal status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Can a Minor Acquire Property on Behalf of Others?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Shmuel (per Rav Ḥisda)</div><div class="speech">A <b>minor cannot acquire</b> property on behalf of others.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Avya</div><div class="speech">But a Mishna in <i>Ma'aser Sheni</i> says a <b>Hebrew maidservant</b> (a minor!) can redeem second tithe on behalf of her master!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">That case involves <b>tithes today</b> — rabbinic law only. The Sages ruled <b>leniently</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">But there are no Hebrew maidservants today! That institution ended with the <b>Jubilee Year</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">The produce grew in an <b>unperforated pot</b> (<i>atzitz she'eino nakuv</i>) — tithing is only rabbinic.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The maidservant proof is deflected: the case involves only rabbinic-level obligations, where the Sages applied leniencies regarding minors' acquisition.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Agent Deviates from Instructions: Husband vs. Wife</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Husband Says: 'Give get in Place X'</h3><ul><li>Agent gives it in Place Y → ❌ Invalid</li><li>Husband is <b>insistent</b> on the place</li><li>His specification is a <b>condition</b></li><li>All opinions agree: divorce is invalid</li></ul></div><div class="compare-box" style="border-top-color:#4caf50"><h3 style="color:#ffffff">Husband Says: 'Give get to my wife — she is in Place X'</h3><ul><li>Agent gives it in Place Y → ✅ Valid</li><li>He merely <b>indicated</b> her location</li><li>Not a condition, just helpful info</li><li>All opinions agree: divorce is valid</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Wife Says: 'Receive get in Place X'</h3><ul><li>Agent receives in Place Y → Dispute!</li><li>Rabbis: ❌ She was <b>insistent</b> on place</li><li>R' Elazar: ✅ She merely <b>indicated</b> a place</li><li>She is not particular about location</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> The critical question is whether specifying a place constitutes a binding <b>condition</b> (<i>hakpadah</i>) or a mere <b>indication</b> (<i>mar'eh makom</i>).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Eiruv with the Wrong Food: Three Resolutions</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Agent told: use <b>dates</b> → used <b>dried figs</b> (or vice versa). Valid?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Baraita contradiction:</b> One says valid, one says invalid</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabba's Answer</div><div class="flow-box result-good">Valid baraita = <b>R' Elazar</b> (mere indication)<br/>Invalid baraita = <b>Rabbis</b> (insistence)</div></div><div class="flow-col"><div class="flow-label">Rav Yosef's Answer</div><div class="flow-box result-bad">Both follow Rabbis:<br/>Valid = <b>his own</b> food<br/>Invalid = <b>another's</b> food</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Abaye challenges Rav Yosef:</b> What about tower vs. dovecote — same contradiction exists!</div><div class="flow-arrow">↓</div><div class="flow-box action">Rav Yosef: Same distinction — fruit <b>of the tower</b> vs. fruit <b>of the dovecote</b> may belong to different owners</div></div><div class="callout" style="margin-top:20px"><strong>Insight</strong> Rav Yosef maintains a unified approach: the Rabbis always treat deviation as problematic, but only when someone <b>else's property</b> is involved, since that person authorized only a specific item.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Expressions of Divorce: Valid vs. Invalid Instructions</h2>
+  
+  <table><tr><th>Expression</th><th>Status</th><th>Reason</th></tr><tr><td>"Write a get and give it to her"</td><td>✅ Valid</td><td>Clear divorce intent</td></tr><tr><td>"Divorce her" (<i>garshuha</i>)</td><td>✅ Valid</td><td>Direct divorce language</td></tr><tr><td>"Write a letter and give it to her"</td><td>✅ Valid</td><td>Understood as get</td></tr><tr><td>"Send her" / "Separate her" / "Banish her"</td><td>✅ Valid (Baraita)</td><td>Implies sending away</td></tr><tr><td>"Release her" (<i>patruha</i>)</td><td>⚠️ Dispute</td><td>R' Natan: Valid — means release</td></tr><tr><td>"Exempt her" (<i>pitruha</i>)</td><td>❌ Invalid</td><td>R' Natan: Means exempt, not divorce</td></tr><tr><td>"Sustain her"</td><td>❌ Invalid</td><td>No divorce connotation</td></tr><tr><td>"Treat her according to the law" (<i>nimus</i>)</td><td>❌ Invalid</td><td>Ambiguous — not divorce language</td></tr><tr><td>"Treat her appropriately"</td><td>❌ Invalid</td><td>Too vague</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rava's Note</strong> R' Natan, a Babylonian, distinguished <i>patruha</i> (release) from <i>pitruha</i> (exempt). The Eretz Yisrael tanna of our Mishna did not distinguish between them.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 65 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:18px; border-radius:12px; text-align:center;"><b>Minor's Capacity</b><br/>Three stages: self-acquisition → transactions → vows</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:18px; border-radius:12px; text-align:center;"><b>Agent Deviation</b><br/>Husband insistent on place = invalid | Wife indicates place = R' Elazar validates</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; color:#fff; padding:14px; border-radius:12px; text-align:center;"><b>Eiruv Disputes</b><br/>Rabba: follows R' Elazar vs. Rabbis<br/>Rav Yosef: his food vs. another's food</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2e1a; color:#fff; padding:14px; border-radius:12px; text-align:center;"><b>Divorce Language</b><br/>Clear expressions → valid<br/>Ambiguous expressions → invalid<br/><i>Patruha</i> vs. <i>pitruha</i> — dialect matters</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 65a-65b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 65a-65b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../64/">← Daf 64</a><a href="../66/">Daf 66 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 70 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🩺</div>
+  <h1>Gittin 70</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין ע׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🩺 Medical Remedies — Talmudic treatments for various ailments<br>
+    🔥 Aḥilu & Fire of Bones — Dangerous eating habits and their cure<br>
+    ⚖️ Health & Moderation — Elijah's advice and dietary wisdom<br>
+    📜 Get for the Insane — Writing a divorce when the husband loses lucidity<br>
+    🗣️ Reish Lakish vs. R' Yochanan — Is temporary insanity like sleep or like imbecility?<br>
+    🔪 Slit Throat Testimony — Legal status of a mortally wounded person<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 70: Health, Healing & Mental Competence</h2>
+  
+  <div class="callout"><strong>DAF OVERVIEW</strong> <b>Amud A</b> presents a remarkable catalog of Talmudic medical advice — remedies for skin disease, fatal wounds, <b>aḥilu</b> (bone fever), and dietary wisdom including Elijah's famous 'rule of thirds.' <b>Amud B</b> pivots to a critical halakhic debate: if a husband orders a <i>get</i> while lucid but then becomes temporarily insane, can the court write it immediately? <b>Reish Lakish</b> compares him to a sleeping person (write now), while <b>R' Yochanan</b> compares him to an imbecile (wait for recovery).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Talmudic Medical Remedies</h2>
+  
+  <table><tr><th>Condition</th><th>Remedy</th><th>Sage</th></tr><tr><td>Lichen planus (<i>ḥazazita</i>)</td><td>Oil from 7 wheat kernels roasted on a new hoe blade</td><td>Rav Shimi bar Ashi</td></tr><tr><td>Struck by Persian spears</td><td>Fatty meat roasted on coals + undiluted wine</td><td>Shmuel</td></tr><tr><td>Swallowed a hornet</td><td>Quarter-log of sharp vinegar (<i>shamzag</i>)</td><td>Rav Idi bar Avin</td></tr><tr><td>Aḥilu (fire of bones)</td><td>Fistful of <i>shetita</i> (lentils) + aged wine, then sleep</td><td>Abaye (from his mother)</td></tr><tr><td>Weakness (<i>vitak</i>)</td><td>Avoid inferior white wine (<i>tilya</i>)</td><td>Mar Ukva</td></tr></table><div class="callout" style="margin-top:20px"><strong>NOTE</strong> For Persian spears and swallowed hornets, the remedies only <b>extend life briefly</b> — enough to instruct one's household.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>What Causes Aḥilu (Fire of Bones)?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Ate <b>ox meat with turnip</b></div><div class="flow-arrow">↓</div><div class="flow-box action">Slept by <b>moonlight</b> on 14th/15th of month</div><div class="flow-arrow">↓</div><div class="flow-box action">During the season of <b>Tammuz</b> (summer)</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Afflicted with <b>aḥilu</b> — 'fire of the bones' (<i>esh garmei</i>)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Pappa adds</div><div class="flow-box result-bad">Even <b>overeating dates</b> can cause aḥilu — despite their benefits</div></div><div class="flow-col"><div class="flow-label">General rule</div><div class="flow-box result-bad">Filling one's stomach <b>with anything</b> in excess causes aḥilu</div></div></div></div><div class="callout" style="margin-top:20px"><strong>IRONY</strong> Dates <b>satisfy, warm, strengthen,</b> and act as a laxative — yet even beneficial foods harm when eaten to excess.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Abaye's Remedy for Aḥilu (from His Mother)</h2>
+  
+  <div class="process-bar"><div class="process-step">🍽️ Eat and drink first (unlike most medicines taken on empty stomach)</div><div class="process-arrow">↓</div><div class="process-step">🚻 Enter the bathroom and relieve oneself</div><div class="process-arrow">↓</div><div class="process-step">🧼 Exit and wash hands</div><div class="process-arrow">↓</div><div class="process-step highlight">🥣 Eat a fistful of <i>shetita</i> (lentils) mixed with a fistful of aged wine</div><div class="process-arrow">↓</div><div class="process-step highlight">🛏️ Wrap in a sheet and sleep — let NO ONE wake him</div><div class="process-arrow">↓</div><div class="process-step">⏰ When he awakens on his own, remove the sheet</div><div class="process-arrow">↓</div><div class="process-step">⚠️ If he doesn't follow procedure exactly, the illness returns</div></div><div class="callout" style="margin-top:20px"><strong>UNIQUE</strong> Most medicinal drinks are taken on an <b>empty stomach</b> for 3, 7, or 12 days. Aḥilu is the exception — taken <b>after eating</b>, and continued <b>until healed</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Elijah's Rule of Thirds</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אכול שליש ושתה שליש והנח שליש</div><div class="callout"><strong>PROPHETIC WISDOM</strong> <b>Elijah the Prophet</b> said to <b>Rabbi Natan</b>:<br><br>🍞 Eat <b>a third</b> of your fill<br>🍷 Drink <b>a third</b> of your fill<br>🫁 Leave <b>a third</b> empty<br><br>So that <b>when you become angry, you will become full</b> — anger expands the body, and if your stomach is already full, you will be harmed.<br><br><b>R' Ḥiyya</b> adds: Dip food in <b>wine or vinegar</b> to avoid intestinal disease. Stop eating from a meal <b>you enjoy</b>. Never delay when you need to <b>relieve yourself</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Writing a Get for One Who Became Insane</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Mishna</div><div class="speech">If he said <b>'Write a get for my wife'</b> while lucid, then became temporarily insane and retracted — his latter statement <b>is nothing</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Reish Lakish</div><div class="speech">The court <b>writes and gives the get immediately</b> — even while he is insane. His initial instruction stands!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Yochanan</div><div class="speech">They write the get <b>only once he is healed</b> and returns to a sound state of mind.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Reish Lakish</div><div class="speech">I compare the insane man to <b>a sleeping person</b> — if he said 'write' and fell asleep, we write it without waking him.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Yochanan</div><div class="speech">I compare him to <b>an imbecile</b> (<i>shoteh</i>) — his mind is confused, he lacks intent.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">A sleeper needs <b>no action</b> to awaken. The insane person <b>requires a remedy</b> — that's a meaningful difference.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">But unlike an imbecile, the temporarily insane person <b>has a remedy</b> available — lean red meat + diluted wine (from 67b).</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY DISTINCTION</strong> <b>Reish Lakish:</b> Temporary insanity = sleep (passive state, original intent valid)<br><b>R' Yochanan:</b> Temporary insanity = imbecility (mind is confused, must wait for clarity)</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 70 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#1a2a3a; border-left:3px solid #4a90d9; padding:10px;"><b>Medical Remedies</b><br>Treatments for skin disease, fatal wounds, aḥilu, and dietary wisdom</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left:3px solid #9b59b6; padding:10px;"><b>Elijah's Rule of Thirds</b><br>Eat ⅓, drink ⅓, leave ⅓ — moderation prevents harm from anger</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left:3px solid #c9a84c; padding:10px;"><b>Mishna: Lucid → Insane → Retracts</b><br>The retraction while insane is <i>nothing</i></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left:3px solid #4a90d9; padding:10px;"><b>Reish Lakish:</b> Like a sleeper — write the get <b>now</b></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border-left:3px solid #e74c3c; padding:10px;"><b>R' Yochanan:</b> Like an imbecile — write <b>only after recovery</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px;"><b>Key: Remedy exists</b><br>Unlike an imbecile, the temporarily insane person <i>can</i> be cured — this is what allows Reish Lakish to treat him as merely 'sleeping'</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 70a-70b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 70a-70b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../69/">← Daf 69</a><a href="../71/">Daf 71 →</a></div>
+</body>
+</html>

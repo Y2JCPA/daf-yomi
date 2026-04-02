@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 68 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👹</div>
+  <h1>Gittin 68</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין סח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🕵️ Rav Sheshet's Wisdom — Detecting diseased meat and avoiding a trap at the Exilarch's house<br>
+    👹 Shidda & Shiddot — Interpreting Ecclesiastes: demons vs. carriages<br>
+    🏛️ Building the Temple — Solomon's need for the shamir to cut stone without iron<br>
+    ⛓️ Capturing Ashmedai — Benayahu's clever plan to trap the king of demons<br>
+    🐦 The Shamir & the Hoopoe — How the miraculous stone-cutting creature was obtained<br>
+    👑 Solomon's Downfall — Ashmedai seizes the throne after Solomon removes the chain<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 68: Solomon, the Shamir, and the King of Demons</h2>
+  
+  <div class="process-bar"><div class="process-step">🥩 Rav Sheshet detects diseased meat at the Exilarch's house and avoids a pit trap</div><div class="process-arrow">↓</div><div class="process-step">📖 The Gemara interprets <i>shidda and shiddot</i> (Ecclesiastes 2:8) as male and female demons</div><div class="process-arrow">↓</div><div class="process-step highlight">🏛️ Solomon needs the <b>shamir</b> to cut Temple stones without iron tools</div><div class="process-arrow">↓</div><div class="process-step highlight">⛓️ Benayahu captures <b>Ashmedai</b>, king of demons, using wine and a sacred chain</div><div class="process-arrow">↓</div><div class="process-step">🐦 The shamir is obtained from the <b>wild rooster (hoopoe)</b> using a glass trap</div><div class="process-arrow">↓</div><div class="process-step highlight">👑 Solomon removes Ashmedai's chain — Ashmedai hurls him away and seizes the throne</div></div><div class="callout" style="margin-top:20px"><strong>KEY THEME</strong> This daf narrates the epic aggadic account of Solomon's quest for the shamir and his fateful encounter with Ashmedai — a cautionary tale about the limits of human power.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav Sheshet Outsmarts the Exilarch's Servants</h2>
+  
+  <div class="process-bar"><div class="process-step">🍖 Rav Sheshet is served meat at the Exilarch's house but detects something wrong</div><div class="process-arrow">↓</div><div class="process-step highlight">🔍 He tastes the flavor of <b>white leprous spots</b> and refuses to eat</div><div class="process-arrow">↓</div><div class="process-step">📜 Following Rav Ḥisda's rule: white spots in black skin = disease affliction</div><div class="process-arrow">↓</div><div class="process-step">✅ They check the animal's skin and confirm the disease — servants grow angrier</div><div class="process-arrow">↓</div><div class="process-step highlight">🕳️ Servants dig a <b>covered pit</b> to trap Rav Sheshet as he leaves</div><div class="process-arrow">↓</div><div class="process-step">👦 A child's verse — <i>"Turn to your right or to your left"</i> — alerts him to danger</div><div class="process-arrow">↓</div><div class="process-step">🚶 His servant confirms the mat over the pit; they walk safely around it</div></div><div class="callout" style="margin-top:20px"><strong>THREE CLUES</strong> Rav Sheshet knew of the trap from: (1) Rav Ḥisda's snort, (2) the child's verse, and (3) the servants' known lack of integrity.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Interpreting 'Shidda and Shiddot' (Ecclesiastes 2:8)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#4a90d9">Babylonia</h3><ul><li><b>Shidda</b> = male demons</li><li><b>Shiddetin</b> = female demons</li><li>Solomon used demons to help build the Temple</li><li>Needed them to locate the shamir</li></ul></div><div class="compare-box" style="border-top-color:#1a2e1a"><h3 style="color:#4caf50">Eretz Yisrael</h3><ul><li><b>Shiddeta</b> = carriages</li><li>Refers to royal luxury vehicles</li><li>Part of Solomon's wealth and pleasures</li><li>A more naturalistic reading</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>R' YOḤANAN</strong> There were 300 types of demons in Shiḥin, but <i>"I do not know what the form or nature of a demon itself is."</i></div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Quest for the Shamir</h2>
+  
+  <div class="flowchart"><div class="flow-box question">🏛️ Solomon must build the Temple<br><b>without iron tools</b> (I Kings 6:7)</div><div class="flow-arrow">↓</div><div class="flow-box action">The Sages tell him: Use the <b>shamir</b>,<br>the creature Moses used for the ephod stones</div><div class="flow-arrow">↓</div><div class="flow-box question">❓ Where is the shamir found?</div><div class="flow-arrow">↓</div><div class="flow-box action">Capture male & female demons<br>and <b>torment them together</b></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Demons say: <i>"We don't know —<br>ask <b>Ashmedai</b>, king of demons"</i></div><div class="flow-arrow">↓</div><div class="flow-box action">Solomon sends <b>Benayahu son of Jehoiada</b><br>with chain, ring, wool, and wine</div></div><div class="callout" style="margin-top:20px"><strong>THE SHAMIR</strong> A miraculous worm-like creature that could cut the hardest stone — essential because no iron tools could be used in Temple construction.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Benayahu's Plan to Capture Ashmedai</h2>
+  
+  <div class="process-bar"><div class="process-step">🏔️ Ashmedai's routine: ascends to heavenly study hall, returns to earthly study hall, then drinks from his sealed pit</div><div class="process-arrow">↓</div><div class="process-step highlight">⬇️ Benayahu digs a pit <b>below</b> Ashmedai's and drains the water out</div><div class="process-arrow">↓</div><div class="process-step">🧶 He plugs the drain with <b>fleeces of wool</b></div><div class="process-arrow">↓</div><div class="process-step highlight">⬆️ He digs a pit <b>above</b> and pours <b>wine</b> into Ashmedai's pit</div><div class="process-arrow">↓</div><div class="process-step">🌳 Benayahu climbs a tree and waits</div><div class="process-arrow">↓</div><div class="process-step highlight">🍷 Ashmedai resists at first — quotes Proverbs 20:1 — but eventually drinks and falls asleep</div><div class="process-arrow">↓</div><div class="process-step highlight">⛓️ Benayahu descends and locks the <b>sacred chain</b> around Ashmedai</div></div><div class="callout" style="margin-top:20px"><strong>ASHMEDAI'S WORDS</strong> <i>"Wine is a mocker, strong drink is riotous; and whosoever wallows in it is not wise"</i> (Proverbs 20:1) — yet even the king of demons could not resist.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Ashmedai's Mysterious Behaviors on the Road</h2>
+  
+  <table><tr><th>What He Saw</th><th>What He Did</th><th>Why (Revealed Later)</th></tr><tr><td>A <b>blind man</b> lost on the road</td><td>Guided him to the correct path</td><td>Proclaimed in heaven as <b>completely righteous</b> — doing good earns the World-to-Come</td></tr><tr><td>A <b>drunk man</b> lost on the road</td><td>Guided him to the correct path</td><td>Proclaimed as <b>completely wicked</b> — give him reward now so he has none in the next world</td></tr><tr><td>A <b>wedding</b> celebration</td><td>He <b>cried</b></td><td>The groom would die within <b>30 days</b>; his wife would need to wait years for ḥalitza</td></tr><tr><td>A man ordering <b>shoes for 7 years</b></td><td>He <b>laughed</b></td><td>The man had only <b>7 days</b> to live</td></tr><tr><td>A <b>sorcerer</b> performing magic</td><td>He <b>laughed</b></td><td>The sorcerer sat atop the <b>king's buried treasury</b> and couldn't even sense it</td></tr></table><div class="callout" style="margin-top:20px"><strong>INSIGHT</strong> Ashmedai sees the hidden spiritual reality behind worldly appearances — a sharp contrast to human ignorance of what lies beneath the surface.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 68 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;">🏛️ <b>The Temple requires the shamir</b><br>No iron tools permitted in its construction</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a1a; border-left:3px solid #e74c3c; padding:10px;">⛓️ <b>Ashmedai is captured</b><br>Benayahu uses wine and a sacred chain</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e1a; border-left:3px solid #4caf50; padding:10px;">🐦 <b>The shamir is obtained</b><br>From the hoopoe bird via a glass trap</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e2e1a; border-left:3px solid #c9a84c; padding:10px;">🏛️ <b>Temple completed</b><br>Solomon keeps Ashmedai unnecessarily</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1a2e; border:1px solid #9b59b6; padding:10px;">👑 <b>Solomon's pride</b><br>Challenges Ashmedai and removes the chain</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1616; border:1px solid #e74c3c; padding:10px;">👹 <b>Ashmedai seizes power</b><br>Throws Solomon 400 parasangs, takes the throne</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 68a-68b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 68a-68b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../67/">← Daf 67</a><a href="../69/">Daf 69 →</a></div>
+</body>
+</html>

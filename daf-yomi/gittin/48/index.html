@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 48 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏡</div>
+  <h1>Gittin 48</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין מח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌾 Kinyan Peiros — Does acquiring produce equal acquiring the land itself?<br>
+    📜 Bikkurim & Jubilee — First fruits recitation when land reverts<br>
+    ⚖️ Land Quality Tiers — Damages, debts & ketubah collected from different grades<br>
+    🔗 Liened Property — When creditors can and cannot collect from sold assets<br>
+    👨‍👧 Orphans & Sustenance — Protections for heirs and dependents<br>
+    🔍 Tikkun HaOlam — Ordinances for the betterment of the world<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Acquiring Produce vs. Acquiring Land & Collection from Property Tiers</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yochanan</div><div class="speech"><b>קנין פירות כקנין הגוף</b> — Acquiring produce <b>is like</b> acquiring the item itself. A buyer during Jubilee brings bikkurim <b>and recites</b> the verses.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Reish Lakish</div><div class="speech"><b>קנין פירות לאו כקנין הגוף</b> — Acquiring produce is <b>not like</b> acquiring the item. He brings bikkurim but <b>does not recite</b>, since the land isn't truly his.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Mishna</div><div class="speech">Damages are collected from <b>superior land (עידית)</b>, debts from <b>intermediate (בינונית)</b>, and ketubah from <b>inferior (זיבורית)</b> — all for the betterment of the world.</div></div></div><div class="callout" style="margin-top:20px"><strong>🔑 Key Theme</strong> This daf bridges two major topics: the theoretical debate about the nature of land acquisition during Jubilee, and the practical <b>mishna</b> establishing a tiered system of property collection — both framed as <b>tikkun ha'olam</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Is Acquiring Produce Like Acquiring the Land?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yochanan</div><div class="speech">When a buyer purchases land during Jubilee, <b>קנין פירות כקנין הגוף</b> — it's as if he owns the land itself. He can say <i>'the land which Hashem gave me'</i> and <b>recite the bikkurim verses</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Reish Lakish</div><div class="speech"><b>קנין פירות לאו כקנין הגוף</b> — He only acquired the right to produce, not the land. He <b>brings bikkurim but cannot recite</b> the verses, since calling it 'my land' would be false.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Both cases are necessary: <b>explicit produce sale</b> (where Reish Lakish's view is obvious) and <b>Jubilee sale</b> (where the buyer intended to buy the land itself). Neither can be derived from the other.</div></div></div><div class="callout" style="margin-top:20px"><strong>💡 Why Both Cases?</strong> If we only had the Jubilee case, we might think Reish Lakish agrees the buyer recites since he <i>intended</i> to buy the land. If we only had the produce case, we might think R' Yochanan agrees he doesn't recite since he <i>never intended</i> to buy the land.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Bikkurim Recitation: When Does the Buyer Recite?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A person <b>purchases a field</b> and brings first fruits (bikkurim)</div><div class="flow-arrow">↓</div><div class="flow-box question">Is the <b>Jubilee Year</b> practiced?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No Jubilee</div><div class="flow-box result-good">Permanent acquisition → <b>brings bikkurim AND recites</b> (all agree)</div></div><div class="flow-col"><div class="flow-label">Jubilee practiced</div><div class="flow-box question">Land reverts → <b>R' Yochanan:</b> recites ✅<br/><b>Reish Lakish:</b> does not recite ❌</div></div></div></div><div class="callout" style="margin-top:20px"><strong>📖 Rav Chisda's Distinction</strong> The dispute applies only to land sold during the <b>second Jubilee</b> cycle. During the <b>first Jubilee</b>, all agree the buyer recites — people didn't yet rely on the land being returned.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Proofs Brought For and Against R' Yochanan</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a472a"><h3 style="color:#4caf50">Supporting R' Yochanan</h3><ul><li>Mishna (Bikkurim 1:11): One who acquires a tree <b>and its land</b> — brings bikkurim and <b>recites</b></li><li>Mishna (Bikkurim 1:6): One who acquires <b>three trees</b> acquires the surrounding land and <b>recites</b></li><li>Verse: 'The land which Hashem <b>gave me</b>' — ownership language implies full acquisition</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3a"><h3 style="color:#9b59b6">Supporting Reish Lakish</h3><ul><li>Firstborn takes <b>double portion</b> in field returning in Jubilee — implying father still 'possessed' it at death</li><li>Abaye: Husband needs wife's <b>authorization</b> to litigate about her property — showing produce ≠ ownership</li><li>Verse: 'According to the <b>number of years of crops</b> he sells' — it's produce, not land, that is sold</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>⚖️ Key Rebuttal</strong> Reish Lakish deflects the Bikkurim proofs by saying those mishnayot refer to when <b>Jubilee was not practiced</b> — or per Rav Chisda, to the <b>first Jubilee cycle</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Mishna: Land Quality Tiers for Collection</h2>
+  
+  <table><tr><th>Obligation</th><th>Land Quality</th><th>Rationale</th></tr><tr><td>🔴 <b>Damages</b> (נזיקין)</td><td><b>Superior — עידית</b></td><td>Torah law: 'of the best of his field shall he pay'</td></tr><tr><td>🟡 <b>Creditor's debt</b> (בעל חוב)</td><td><b>Intermediate — בינונית</b></td><td>Standard collection; balances creditor & debtor interests</td></tr><tr><td>🔵 <b>Ketubah</b> (כתובה)</td><td><b>Inferior — זיבורית</b></td><td>So men won't hesitate to marry (Talmudic enactment)</td></tr><tr><td>🔵 <b>Ketubah</b> — R' Meir</td><td><b>Intermediate — בינונית</b></td><td>R' Meir: woman also deserves intermediate-quality collection</td></tr><tr><td>🟢 <b>Orphans' debts</b></td><td><b>Inferior — זיבורית</b></td><td>Protection of orphans' inheritance</td></tr></table><div class="callout" style="margin-top:20px"><strong>📖 R' Yishmael's View</strong> By Torah law, R' Yishmael says we appraise the <b>injured party's</b> best land, not the damager's. The Sages enacted that we appraise <b>the damager's</b> best land — for the betterment of the world.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>When Can a Creditor Collect from Sold (Liened) Property?</h2>
+  
+  <div class="process-bar"><div class="process-step">📋 Debtor owes money to a creditor</div><div class="process-arrow">↓</div><div class="process-step highlight">🔍 First check: Does the debtor still have <b>unsold property</b>?</div><div class="process-arrow">↓</div><div class="process-step">✅ If YES → Collect from <b>debtor's unsold property</b>, even if it's inferior quality</div><div class="process-arrow">↓</div><div class="process-step">❌ If NO unsold property remains → Creditor may collect from <b>liened (sold) property</b></div><div class="process-arrow">↓</div><div class="process-step highlight">⚠️ Exception: <b>Produce value</b> and <b>enhancement</b> can NEVER be collected from liened property</div><div class="process-arrow">↓</div><div class="process-step highlight">⚠️ Exception: Wife & daughters' <b>sustenance</b> — only from unsold property, never liened</div></div><div class="callout" style="margin-top:20px"><strong>🏛️ Tikkun HaOlam</strong> These rules protect buyers who purchased property in good faith. If creditors could always seize sold land, <b>no one would buy property</b> — undermining the entire marketplace.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 48 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>קנין פירות</b><br/>Does acquiring produce = acquiring the land?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>R' Yochanan:</b> Yes — כקנין הגוף<br/>Buyer recites bikkurim verses</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border-left: 3px solid #e74c3c;"><b>Reish Lakish:</b> No — לאו כקנין הגוף<br/>Buyer brings but doesn't recite</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left: 3px solid #9b59b6;"><b>Mishna: Collection Tiers</b><br/>Damages → עידית | Debts → בינונית | Ketubah → זיבורית</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3a; border-left: 3px solid #e67e22;"><b>Liened Property Rule</b><br/>Cannot collect from sold property when unsold property exists. Produce & enhancement — never from liened property.</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #c9a84c;"><b>All for תיקון העולם</b><br/>Protecting buyers, orphans, finders, and the marketplace</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 48a-48b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 48a-48b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../47/">← Daf 47</a><a href="../49/">Daf 49 →</a></div>
+</body>
+</html>

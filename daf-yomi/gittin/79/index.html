@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 79 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏠</div>
+  <h1>Gittin 79</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין עט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏠 Rooftop Divorce — Throwing a get from roof to ground and vice versa<br>
+    🌬️ Secured Airspace — Parapets, lavud, and partitions that secure a domain<br>
+    🔥 Erased or Burned — When destruction of the get mid-flight still counts<br>
+    📐 Divided Domains — Rav Ḥisda's principle that domains are separated for gittin<br>
+    📦 Nested Courtyards & Baskets — Abaye's rule on outer walls servicing inner spaces<br>
+    📜 Outdated Get — Beit Shammai vs Beit Hillel on a get written before seclusion<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 79: Airspace, Domains & Validity of the Get</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Husband throws get</b> between roof and ground</div><div class="flow-arrow">↓</div><div class="flow-box question">Is the <b>receiving domain secured</b> (partitions/parapet)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Secured</div><div class="flow-box result-good">She is <b>divorced</b> once it enters the airspace</div></div><div class="flow-col"><div class="flow-label">No — Unsecured</div><div class="flow-box result-bad">The get is not acquired — <b>not divorced</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> A get thrown between domains is effective only when the receiving domain's airspace is <b>secured</b> — by parapets, <i>lavud</i>, or extending partitions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Throwing a Get: Roof ↔ Ground</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Case 1:</b> Wife on roof, husband throws get <b>upward</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Does the get reach the <b>airspace of the roof</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box result-good">She is <b>divorced</b></div></div><div class="flow-col"><div class="flow-label">No</div><div class="flow-box result-bad"><b>Not divorced</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Case 2:</b> Husband on roof, throws get <b>downward</b></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Once it <b>leaves the roof area</b> — she is divorced, even if erased or burned mid-air</div></div><div class="callout" style="margin-top:20px"><strong>Mishna</strong> The Mishna distinguishes between throwing <b>up</b> (must reach her airspace) and throwing <b>down</b> (effective once it leaves his domain).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>How Is the Roof's Airspace 'Secured'?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The airspace of the roof is <b>unsecured</b> — the get can blow away! How is she divorced?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Shmuel (via Rav Yehuda)</div><div class="speech">We deal with a roof that has a <b>parapet</b> (<i>ma'akeh</i>) — so it is a secured courtyard.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ulla bar Menashya / Avimi</div><div class="speech">The get is within <b>3 tefaḥim</b> of the roof surface — <b><i>lavud</i></b> treats it as if already resting on the roof.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara (Case 2)</div><div class="speech">Below — the courtyard airspace is also unsecured! How is she divorced when the get leaves the roof?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Shmuel / R' Elazar / Ulla</div><div class="speech">The <b>lower partitions</b> of the courtyard <b>extend beyond</b> the upper roof partitions — the get will certainly fall inside.</div></div></div><div class="callout" style="margin-top:20px"><strong>Two Solutions</strong> <b>Parapet</b> or <b><i>lavud</i></b> secures the roof; <b>extending lower walls</b> secure the courtyard below.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Airspace at Rest: Shabbat vs. Gittin</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#c9a84c">Rabbi Yehuda HaNasi</h3><ul><li>An object in airspace is considered <b>at rest</b> (<i>kelutah ke-mi she-naḥah</i>)</li><li>Applies to <b>both</b> Shabbat and gittin</li><li>Once the get enters the airspace of her domain — it's as if it landed</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4a90d9">The Rabbanan</h3><ul><li>Disagree with Rabbi Yehuda HaNasi — but <b>only regarding Shabbat</b></li><li>For Shabbat: object must actually <b>come to rest</b></li><li>For gittin: airspace works because the get is <b>secured</b> (<i>mishamer</i>) within the partitions — even Rabbanan agree she is divorced</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Ulla & R' Asi</strong> The Mishna works even according to the Rabbanan — the key for gittin is that the get is <b>secured</b>, not that airspace = rest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Erased or Burned Mid-Flight: When Does It Count?</h2>
+  
+  <table><tr><th>Scenario</th><th>Divorced?</th><th>Reason</th></tr><tr><td>Writing erased <b>on descent</b> (entering her domain)</td><td>✅ Yes</td><td>Already left his domain and is heading into hers — secured</td></tr><tr><td>Writing erased <b>on ascent</b> (still arching upward)</td><td>❌ No</td><td>Not yet destined for her domain — could blow elsewhere</td></tr><tr><td>Get burned — <b>throwing preceded</b> the fire</td><td>✅ Yes</td><td>Valid get was thrown; fire came after it entered her airspace</td></tr><tr><td>Get burned — <b>fire preceded</b> the throwing</td><td>❌ No</td><td>Get was heading toward destruction from the start — never truly 'given'</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rav Naḥman / Rabba bar Avuh</strong> The critical factor is whether at the moment of destruction, the get was <b>destined to arrive</b> in her domain.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rav Ḥisda: Domains Are Divided for Gittin</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">📐 Rav Ḥisda: A house, courtyard, and roof within the same property are <b>separate domains</b> for gittin</div><div class="process-arrow">↓</div><div class="process-step">📜 Proof: The Mishna says she is divorced once the get reaches <b>the roof's airspace</b> — implying roof ≠ courtyard</div><div class="process-arrow">↓</div><div class="process-step">🏘️ Adjacent roofs on Shabbat: each roof is its own domain (no eiruv = no transfer)</div><div class="process-arrow">↓</div><div class="process-step highlight">💍 But for gittin: if the get falls onto an <b>adjacent roof</b> belonging to the husband, she <b>is</b> divorced — husband is not particular about lending a neighboring roof</div><div class="process-arrow">↓</div><div class="process-step">⚖️ Shabbat is stricter about domain separation than gittin</div></div><div class="callout" style="margin-top:20px"><strong>Rava's Distinction</strong> On Shabbat, roofs are strictly separated. For gittin, a husband is <b>not particular</b> (<i>lo kapid</i>) about lending an adjacent roof he owns.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 79 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px;"><b>Get thrown</b> between husband and wife in different domains</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:8px;">Is her domain <b>secured</b>? (parapet, <i>lavud</i>, extending partitions)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:1px solid #4caf50; padding:8px;"><b>Secured</b> → Divorced once get enters her airspace (even if erased/burned on descent)</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border:1px solid #e74c3c; padding:8px;"><b>Not secured</b> → Not divorced — airspace doesn't acquire</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left:3px solid #9b59b6; padding:8px;">Separate domains for gittin (Rav Ḥisda) — but husband is lenient about lending adjacent roofs</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 79a-79b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 79a-79b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../78/">← Daf 78</a><a href="../80/">Daf 80 →</a></div>
+</body>
+</html>

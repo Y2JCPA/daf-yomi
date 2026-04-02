@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 56 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Gittin 56</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין נו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🎭 Kamtza & Bar Kamtza — A banquet feud that ignited rebellion<br>
+    ⚖️ R' Zekharya ben Avkolas — Excessive humility and its catastrophic cost<br>
+    🏰 Siege of Jerusalem — Zealots burn the storehouses, famine spreads<br>
+    🙏 Rabban Yochanan ben Zakkai — Escaping Jerusalem to save Torah<br>
+    ⚔️ Titus & the Destruction — Desecration of the Temple<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>From Banquet to Destruction — The Chain of Catastrophe</h2>
+  
+  <div class="flowchart"><div class="flow-box action">🎭 Bar Kamtza is <b>humiliated</b> at a feast while Sages remain silent</div><div class="flow-arrow">↓</div><div class="flow-box action">🐂 Bar Kamtza <b>blemishes</b> the emperor's offering — lip or eyelid</div><div class="flow-arrow">↓</div><div class="flow-box question">⚖️ R' Zekharya blocks <b>both</b> sacrificing it and killing Bar Kamtza</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">⚔️ Rome wages war — <b>siege, famine, destruction</b></div></div><div class="callout" style="margin-top:20px"><strong>R' Yochanan</strong> The <b>excessive humility</b> (ענוותנותו) of R' Zekharya ben Avkolas destroyed our Temple, burned our Sanctuary, and exiled us from our land.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Banquet Escalation — Bar Kamtza's Three Offers</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Bar Kamtza</div><div class="speech">I will pay for <b>my portion</b> of the feast — just let me stay.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Host</div><div class="speech"><b>No.</b> You must leave.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Bar Kamtza</div><div class="speech">I will pay for <b>half the feast</b> — don't humiliate me.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Host</div><div class="speech"><b>No.</b> You must leave.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Bar Kamtza</div><div class="speech">I will pay for the <b>entire feast</b> — just let me stay!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Host</div><div class="speech"><b>No.</b> He seized him by the hand and <b>threw him out</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Turning Point</strong> Bar Kamtza concluded: The <b>Sages sat there and did not protest</b> — they must have approved. He resolved to denounce them to Rome.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Blemished Offering — R' Zekharya's Fatal Caution</h2>
+  
+  <div class="flowchart"><div class="flow-box action">🐂 Emperor sends a <b>choice calf</b> as an offering to the Temple</div><div class="flow-arrow">↓</div><div class="flow-box action">Bar Kamtza <b>blemishes</b> its upper lip (or eyelid) — invalid by <i>halakha</i>, valid by Roman standards</div><div class="flow-arrow">↓</div><div class="flow-box question">❓ Should the priests <b>sacrifice it anyway</b> for peace with Rome?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Sages say YES</div><div class="flow-box result-good">Sacrifice it — <b>maintain peace</b> with the government</div></div><div class="flow-col"><div class="flow-label">R' Zekharya says NO</div><div class="flow-box result-bad">People will say <b>blemished animals</b> may be offered!</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">❓ Then should we <b>kill Bar Kamtza</b> to prevent his report?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Sages say YES</div><div class="flow-box result-good">Eliminate the <b>informer</b> before he reaches Rome</div></div><div class="flow-col"><div class="flow-label">R' Zekharya says NO</div><div class="flow-box result-bad">People will say one who blemishes offerings <b>is executed</b>!</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Result</strong> Both options blocked — Bar Kamtza's slander reached Rome, and <b>war began</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Nero's Signs — Why He Fled Rome's Mission</h2>
+  
+  <div class="process-bar"><div class="process-step">🏹 Nero shot arrows in all four directions — every arrow <b>fell on Jerusalem</b></div><div class="process-arrow">↓</div><div class="process-step highlight">👦 He asked a child to recite his verse: <i>'I will lay My vengeance upon Edom by the hand of My people Israel'</i> (Ezekiel 25:14)</div><div class="process-arrow">↓</div><div class="process-step">💭 Nero understood: God wants to destroy His Temple and <b>blame the agent</b></div><div class="process-arrow">↓</div><div class="process-step highlight">🏃 He fled, <b>converted to Judaism</b>, and R' Meir descended from him</div></div><div class="callout" style="margin-top:20px"><strong>Insight</strong> Even a Roman general recognized the theological danger of being God's instrument of punishment — Edom (Rome) would ultimately be held accountable.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Three Wealthy Benefactors of Besieged Jerusalem</h2>
+  
+  <table><tr><th>Name</th><th>Meaning of Name</th><th>Pledge</th></tr><tr><td><b>Nakdimon ben Guryon</b></td><td>The sun <i>shined</i> (נקד) on his behalf</td><td>Wheat & barley</td></tr><tr><td><b>Ben Kalba Savua</b></td><td>Enter hungry as a <i>dog</i> (כלב), leave <i>satiated</i> (שבע)</td><td>Wine, salt & oil</td></tr><tr><td><b>Ben Tzitzit HaKesat</b></td><td><i>Tzitzit</i> dragged on <i>cushions</i> (כסת)</td><td>Wood (most praised)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rav Chisda</strong> One storehouse of wheat requires <b>sixty storehouses of wood</b> — that is why the wood donor received special praise. Together they could sustain Jerusalem for <b>21 years</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Zealots vs. Sages — The Standoff Inside Jerusalem</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">The Sages</h3><ul><li>Urged: <b>Make peace</b> with Rome</li><li>Warned the zealots: You will <b>not succeed</b> in battle</li><li>Counseled patience — wait for the siege to break</li></ul></div><div class="compare-box" style="border-top-color:#3e1a1a"><h3 style="color:#e74c3c">The Zealots (Biryonim)</h3><ul><li>Refused all negotiation</li><li>Wanted to <b>fight Rome</b> head-on</li><li>Burned the storehouses of food to <b>force battle</b></li><li>Created a devastating <b>famine</b></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Consequence</strong> The zealots destroyed <b>21 years of provisions</b> — forcing starvation and ending any hope of outlasting the siege.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 56 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#3e1a1a; border-left: 3px solid #e74c3c; padding: 8px;">🎭 <b>Public humiliation</b> — Bar Kamtza shamed, Sages silent</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e2e1a; border-left: 3px solid #e67e22; padding: 8px;">🐂 <b>Blemished offering</b> — R' Zekharya's caution blocks every solution</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;">⚔️ <b>War with Rome</b> — zealots burn food, siege becomes famine</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border-top: 3px solid #e74c3c; padding: 8px;">🔥 <b>Destruction</b><br>Temple burned, exile begins</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top: 3px solid #4caf50; padding: 8px;">📜 <b>Salvation</b><br>Yavne & its Sages preserved</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 56a-56b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 56a-56b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../55/">← Daf 55</a><a href="../57/">Daf 57 →</a></div>
+</body>
+</html>

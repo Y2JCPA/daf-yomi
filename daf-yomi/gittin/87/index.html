@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gittin 87 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Gittin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">✍️</div>
+  <h1>Gittin 87</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">גיטין פז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Multiple Divorces in One Document — When one get can serve multiple couples<br>
+    🔗 The Conjunctive Vav — How 'and' connects clauses for witness validity<br>
+    🖊️ Signature Formats — Valid ways witnesses may sign a get<br>
+    🔀 Hebrew & Greek Signatures — Mixed-language witness signatures<br>
+    📐 Column Layout — Physical placement of text and signatures on the document<br>
+    🏷️ Nicknames in a Get — Using surnames or nicknames for husband and wife<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Gittin 87: Document Format, Signatures & Layout</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Can <b>one get</b> serve <b>multiple couples</b>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Yochanan</div><div class="flow-box action">One date for all = <b>general wording</b> (valid)<br>Separate dates = <b>separate formula</b> (invalid)</div></div><div class="flow-col"><div class="flow-label">Reish Lakish</div><div class="flow-box action">Separate mention of each couple = <b>separate formula</b> even with one date<br>General = 'We have divorced our wives'</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Mishna: Rules for <b>signature placement</b>, <b>column layout</b>, and <b>mixed-language</b> signatures</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Valid signature formats: name alone, father's name alone, or full name <b>without</b> the word 'witness'</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> The physical layout and wording of a get — including who signs, where they sign, and in what language — determines its validity.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>What Is 'General Wording' vs. 'Separate Formula'?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">If <b>one date</b> is written for all couples, it is a <b>general wording</b> — valid for all. If <b>separate dates</b>, it's a separate formula — only the last is valid.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">Even with <b>one date</b>, if each couple is mentioned separately it's a <b>separate formula</b>. General wording means: <i>'We, so-and-so, have divorced our wives.'</i></div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Abba</div><div class="speech">According to R' Yochanan — with one date, perhaps the witnesses only intended to sign for the <b>last couple</b>? Like a greeting appended after a get!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Abbahu (in R' Yochanan's name)</div><div class="speech">If the greeting says <b>'Ask about the well-being of X'</b> — invalid. But <b>'AND ask about...'</b> with a conjunctive <b>vav</b> — valid, as it's a continuation.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Similarly, the get reads: <i>'So-and-so divorced so-and-so, <b>AND</b> so-and-so divorced so-and-so'</i> — the vav links them as one document.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> The conjunctive vav ('and') transforms separate clauses into a unified document, ensuring witness signatures apply to all.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Day-Written / Night-Signed Problem</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Challenge to R' Yochanan: If <b>separate dates</b> are written for each couple but witnesses sign only once at the end...</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">The witnesses signed on the <b>last date</b> only — earlier couples have a get written on a <b>different date</b> than signed!</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">This is like a get <b>written by day, signed at night</b> — inherently invalid!</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Mar Kashisha b. Rav Chisda</b> answers: Each formula says <b>'On Sunday, on Sunday'</b> — all share the <b>same date</b>.</div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> R' Yochanan's case works when all formulas bear the same calendar date, avoiding the written-day/signed-night problem.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Ravina's Challenge: 'He Writes HER' — One Get per Woman</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1810"><h3 style="color:#e74c3c">The Problem (Reish Lakish)</h3><ul><li>General wording: 'We have divorced our wives'</li><li>Multiple women divorced with ONE document</li><li>Torah says 'v'khatav LAH' — he writes for HER</li><li>Implies: not for her AND another woman</li></ul></div><div class="compare-box" style="border-top-color:#102c1a"><h3 style="color:#4caf50">The Resolution</h3><ul><li>After the general formula, scribe adds individual clauses</li><li>'So-and-so divorced so-and-so, AND so-and-so divorced so-and-so'</li><li>Each woman has her own specific formulation</li><li>The general heading is supplemented by individual entries</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Parallel</strong> Similarly, freeing two slaves with one document requires TWO separate documents given simultaneously — each person needs their own document.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Sage Signature Symbols (Amud B)</h2>
+  
+  <table><tr><th>Sage</th><th>Signature Symbol</th></tr><tr><td>Rav</td><td>Drew a 🐟 fish</td></tr><tr><td>R' Chanina</td><td>Drew a 🌴 date palm</td></tr><tr><td>Rav Chisda</td><td>Wrote the letter ס (samekh)</td></tr><tr><td>Rav Hoshaya</td><td>Wrote the letter ע (ayin)</td></tr><tr><td>Rabba bar Rav Huna</td><td>Drew a ⛵ sail</td></tr></table><div class="callout" style="margin-top:20px"><strong>Halakha</strong> While sages used symbols instead of their names, one would <b>not</b> be so brazen as to use his <b>father's name</b> as a personal symbol — this distinction resolves the ambiguity of the signature 'Ya'akov' after 'Reuven.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Mishna: Physical Placement of Signatures</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">📜 Get written in <b>two columns</b>, witnesses sign below second column → <b>Valid</b></div><div class="process-arrow">↓</div><div class="process-step">⬆️ Witnesses signed at the <b>top</b> of the column → <b>Invalid</b></div><div class="process-arrow">↓</div><div class="process-step">↔️ Witnesses signed on the <b>side</b> → <b>Invalid</b></div><div class="process-arrow">↓</div><div class="process-step">🔄 Witnesses signed on the <b>back</b> of a standard (non-folded) get → <b>Invalid</b></div><div class="process-arrow">↓</div><div class="process-step highlight">🔃 Two gets placed <b>end-to-end</b>, witnesses in middle → the one whose text <b>reads into</b> the signatures is <b>valid</b></div><div class="process-arrow">↓</div><div class="process-step">⬆️⬇️ Two gets placed <b>top-to-top</b>, witnesses in middle → <b>Both invalid</b> (signatures face away from both)</div></div><div class="callout" style="margin-top:20px"><strong>Rule</strong> Witness signatures must appear <b>below</b> the text of the get, reading in the same direction — physical proximity and orientation matter.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Gittin 87 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Multiple Divorces in One Get</b><br>R' Yochanan vs. Reish Lakish on what constitutes 'general wording'</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2a4e; border-left: 3px solid #4a90d9;"><b>R' Yochanan:</b> One date = general (valid); separate dates = separate (only last valid)</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border-left: 3px solid #e74c3c;"><b>Reish Lakish:</b> Separate mention = separate even with one date; must say 'We have divorced'</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Conjunctive Vav</b> ('and') links clauses — witnesses presumed to sign for entire document</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; border-left: 3px solid #9b59b6;"><b>Mishna:</b> Signatures must be <b>below</b> text, same direction · Hebrew/Greek mix OK · Name formats flexible</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2e1a; border-left: 3px solid #c9a84c;"><b>Scrupulous of Jerusalem:</b> Signed full name without the word 'witness' · Nicknames valid for both parties</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Gittin 87a-87b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Gittin 87a-87b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../86/">← Daf 86</a><a href="../88/">Daf 88 →</a></div>
+</body>
+</html>
