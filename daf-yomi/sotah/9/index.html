@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 9 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Sotah 9</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה ט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Midah K'neged Midah — The sotah's punishments mirror each specific sin<br>
+    🐍 The Primeval Snake — Desired what was unfit and lost what it had<br>
+    📜 Verses of Punishment — Why three separate verses are needed for divine retribution<br>
+    👑 Those Who Grasped for Power — Cain, Korah, Absalom and others who overreached<br>
+    🪞 Samson & Absalom — Measure-for-measure punishment of biblical figures<br>
+    🌟 Reward in Kind — Miriam and Joseph rewarded measure for measure<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Sotah 9: The Divine Mirror — Punishment & Reward in Exact Measure</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">במידה שאדם מודד — בה מודדין לו</div><div class="callout"><strong>CORE THEME</strong> This daf explores <b>midah k'neged midah</b> (measure for measure) as a cosmic principle — each element of the sotah's sin corresponds to a specific punishment, those who grasp for what is unfit lose even what they have, and even <b>rewards</b> are calibrated to match the righteous deed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Sotah's Sin & Corresponding Punishment</h2>
+  
+  <table><tr><th>She Did This…</th><th>Therefore…</th></tr><tr><td>Painted her <b>eyes</b> for her paramour</td><td>Her <b>eyes bulge</b> from the water</td></tr><tr><td>Braided her <b>hair</b> for him</td><td>The priest <b>unbraids her hair</b></td></tr><tr><td>Indicated with her <b>finger</b></td><td>Her <b>fingernails fall off</b></td></tr><tr><td>Girded herself with a <b>ribbon belt</b></td><td>Priest ties <b>Egyptian rope</b> above her breasts</td></tr><tr><td>Extended her <b>thigh</b></td><td>Her <b>thigh falls away</b></td></tr><tr><td>Received him on her <b>stomach</b></td><td>Her <b>stomach swells</b></td></tr><tr><td>Fed him <b>delicacies</b></td><td>Her offering is <b>animal food</b> (oats)</td></tr><tr><td>Gave him <b>fine wine in fine cups</b></td><td>Priest gives <b>bitter water in a clay vessel</b></td></tr></table><div class="callout" style="margin-top:20px"><strong>SECRET → PUBLIC</strong> She acted in secret — therefore God, 'Who dwells in secret,' reveals it openly (Proverbs 26:26)</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Three Verses About Punishment?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">R' Yehuda HaNasi derives from <b>Ecclesiastes 7:27</b> that small transgressions combine for punishment. Why also cite <b>Isaiah 9:4</b> ('every boot stamped with fierceness')?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Answer</div><div class="speech">Isaiah 9:4 teaches that even <b>small transgressions</b> are punished <b>by the measure</b> — with a fitting punishment.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Then why also need <b>Isaiah 27:8</b> ('in full measure, when you send her away')?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rav Ḥinnana bar Pappa</div><div class="speech">This teaches: God does not punish a <b>sinful king</b> until his time of <b>final banishment</b> — 'in full measure, when you send her away.'</div></div></div><div class="callout" style="margin-top:20px"><strong>THREE PRINCIPLES</strong> <b>Ecclesiastes 7:27</b> — small sins combine • <b>Isaiah 9:4</b> — punishments fit the sin • <b>Isaiah 27:8</b> — full punishment awaits the end</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Egypt's Three Cups of Misfortune</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Rava:</b> The chief butler's dream (Genesis 40) alludes to <b>three cups</b> of misfortune for Egypt</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Cup 1</div><div class="flow-box result-bad">In the days of <b>Moses</b> — the ten plagues & Exodus</div></div><div class="flow-col"><div class="flow-label">Cup 2</div><div class="flow-box result-bad">In the days of <b>Pharaoh Neco</b> — defeated by Nebuchadnezzar</div></div><div class="flow-col"><div class="flow-label">Cup 3</div><div class="flow-box result-bad">In the <b>future</b> — with the nations in Messianic times</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Challenge:</b> This shows Egypt was punished <b>multiple times</b> — contradicting 'full punishment only at banishment'!</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Resolution:</b> The principle applies to a sinful <b>king</b>, not an entire nation</div></div><div class="callout" style="margin-top:20px"><strong>PROOF OF CONTINUITY</strong> Minyamin the Egyptian convert (student of R' Akiva) observed the three-generation prohibition — proving Egypt's identity persisted</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>The Snake's Punishment: Desired the Unfit, Lost What It Had</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">What the Snake Had</h3><ul><li>👑 King over all animals</li><li>🚶 Walked upright</li><li>🍽️ Ate the same food as humans</li></ul></div><div class="compare-box" style="border-top-color:#3a2e1a"><h3 style="color:#e67e22">What It Desired</h3><ul><li>💀 Kill Adam</li><li>💍 Marry Eve</li><li>🌍 Rule over humanity</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">What It Received</h3><ul><li>🐍 Cursed among all animals</li><li>Goes on its belly</li><li>Eats dust forever</li><li>Enmity with humanity</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> One who places eyes on what is <b>unfit</b> — what they desired is <b>not given</b>, and what they <b>had</b> is taken away</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Those Who Grasped for the Unfit</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🐍 <b>The Snake</b> — wanted Eve → cursed among all creatures</div><div class="process-arrow">↓</div><div class="process-step">🌍 <b>Cain</b> — wanted the whole world → became a wanderer</div><div class="process-arrow">↓</div><div class="process-step">🔥 <b>Korah</b> — desired the priesthood → swallowed by the earth</div><div class="process-arrow">↓</div><div class="process-step">💰 <b>Balaam</b> — desired Balak's money → killed by the sword</div><div class="process-arrow">↓</div><div class="process-step">📖 <b>Doeg</b> — jealous of David → cut off from the world</div><div class="process-arrow">↓</div><div class="process-step highlight">👑 <b>Absalom</b> — wanted the kingdom → hung by his hair</div><div class="process-arrow">↓</div><div class="process-step">📿 <b>Uzziah</b> — wanted to be High Priest → struck with leprosy</div><div class="process-arrow">↓</div><div class="process-step">☠️ <b>Haman</b> — wanted to kill all Jews → hanged on his own gallows</div></div><div class="callout" style="margin-top:20px"><strong>PATTERN</strong> Each person's downfall came through the very thing they grasped for</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 9 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#2d1a3e; border-left: 3px solid #9b59b6"><b>The Sotah</b><br/>Each body part she used to sin is punished correspondingly</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1a1a; border-left: 3px solid #e74c3c"><b>Those Who Grasped</b><br/>Snake, Cain, Korah, Absalom, Haman — desired the unfit, lost what they had</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9"><b>Divine Timing</b><br/>God fills the measure before punishing — arrows consumed, but Israel endures</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e2d1a; border-left: 3px solid #e67e22"><b>Punishment</b><br/>Samson's eyes, Absalom's hair — the sin itself becomes the instrument of justice</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50"><b>Reward</b><br/>Miriam waited one hour → Israel waited seven days for her</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 9a-9b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 9a-9b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../8/">← Daf 8</a><a href="../10/">Daf 10 →</a></div>
+</body>
+</html>

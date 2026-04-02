@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotah 5 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Sotah Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⛰️</div>
+  <h1>Sotah 5</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">סוטה ה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🚫 Prohibition of Arrogance — Biblical sources for the ban on haughtiness<br>
+    ⛰️ God & Humility — Why Sinai was chosen over taller mountains<br>
+    🌿 Arrogance as Idolatry — The haughty compared to an asheira tree<br>
+    💔 Humble Spirit — Worth more than all sacrifices combined<br>
+    ⚠️ Sotah Warning — How kinui (warning) and stirah (seclusion) work<br>
+    🔗 Sotah & Yibum — Why the sotah does chalitza, not levirate marriage<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 5: From Arrogance to the Sotah Process</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Arrogance</b><br/>What is its biblical prohibition?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rava/Ze'eiri</div><div class="flow-box action">Jeremiah 13:15 — <em>"Be not proud"</em></div></div><div class="flow-col"><div class="flow-label">R' Nachman b. Yitzchak</div><div class="flow-box action">Deut 8:14 — <em>"Lest your heart be lifted up"</em></div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>Consequences of arrogance</b><br/>Diminished, dies early (Job 24:24)</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Humility rewarded</b><br/>God chose lowly Sinai & the bush</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Sotah procedure</b><br/>Warning → Seclusion → Forbidden to husband</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf weaves together the dangers of arrogance with God's love for humility, then transitions to the sotah warning procedure.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>What Is the Source Prohibiting Arrogance?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rava (quoting Ze'eiri)</div><div class="speech">From Jeremiah 13:15 — <em>"Hear and give ear, <b>be not proud</b>, for the Lord has spoken."</em></div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Nachman bar Yitzchak</div><div class="speech">From Deuteronomy 8:14 — <em>"Lest your heart be lifted up and you forget the Lord."</em> Combined with 8:11: <em>"<b>Beware</b> lest you forget."</em></div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Avin / R' Ile'a</div><div class="speech">This works because wherever the Torah says <b>"beware" (הִשָּׁמֶר)</b>, <b>"lest" (פֶּן)</b>, or <b>"not" (אַל)</b>, it indicates a <b>prohibition (לאו)</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Arrogance is not merely bad character — it has the status of a biblical prohibition.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Fate of the Arrogant (Job 24:24)</h2>
+  
+  <div class="flowchart"><div class="flow-box action">🧍 Person with <b>arrogance (גַּסּוּת הָרוּחַ)</b></div><div class="flow-arrow">↓</div><div class="flow-box question"><em>"They are exalted for a little while"</em><br/>Raised up only <b>briefly</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Does NOT repent</div><div class="flow-box result-bad"><em>"And they are gone"</em> — dies before his time<br/><em>"Withers like tops of husks"</em></div></div><div class="flow-col"><div class="flow-label">REPENTS</div><div class="flow-box result-good"><em>"Gathered in as all (כַּכֹּל) others"</em> — dies at proper time, <b>like the Avot</b> who were each blessed with <b>"kol"</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Rav Avira</strong> Abraham was blessed "bakkol" (Gen 24:1), Isaac "mikkol" (Gen 27:33), Jacob "kol" (Gen 33:11) — the repentant person merits a death like theirs.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>God Chooses the Humble</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Mountains — God chose Sinai</h3><ul><li>God passed over all tall mountains and hills</li><li>Rested the Shekhinah on lowly Mount Sinai</li><li>Did not raise Sinai up — He came DOWN to it</li><li>Sinai symbolizes humility through its low stature</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Trees — God chose the Bush</h3><ul><li>God passed over all beautiful, grand trees</li><li>Appeared to Moshe in a lowly thornbush (סְנֶה)</li><li>Rav Yosef: Learn proper conduct from your Creator</li><li>Humility is the prerequisite for receiving revelation</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rav Huna vs. Rav Chisda</strong> One says God elevates the humble to be "with Me"; the other says God descends to be with the humble. The Gemara favors the second — as proven by Sinai.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Arrogance Compared to Grave Sins</h2>
+  
+  <table><tr><th>Teaching</th><th>Source</th><th>Speaker</th></tr><tr><td>The arrogant should be <b>hewn down like an asheira</b> (idolatrous tree)</td><td>Isaiah 10:33 ↔ Deut 7:5 — same root <b>ג.ד.ע</b></td><td>R' Elazar</td></tr><tr><td>Arrogance is linked to <b>tzara'at</b> (leprosy) — se'et (שְׂאֵת) = elevation; sapachat (סַפַּחַת) = appendage/diminished</td><td>Lev 14:56, Isaiah 2:14, I Samuel 2:36</td><td>R' Elazar</td></tr><tr><td>A humble spirit = <b>all sacrifices combined</b>: "The sacrifices of God are a broken spirit" (Ps 51:19)</td><td>Psalms 51:19</td><td>R' Yehoshua b. Levi</td></tr><tr><td>One who <b>appraises his ways</b> (שָׂם דֶּרֶךְ) merits seeing God's salvation</td><td>Psalms 50:23 — read as <b>vesham</b> (appraises)</td><td>R' Yehoshua b. Levi</td></tr></table><div class="callout" style="margin-top:20px"><strong>Pattern</strong> The one who starts as se'et (elevated/arrogant) ends as sapachat (a mere appendage) — arrogance carries within it the seeds of its own downfall.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Sotah Warning Procedure (Kinui & Stirah)</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">👨 Husband warns wife (<b>kinui</b>): "Do not seclude yourself with so-and-so"</div><div class="process-arrow">↓</div><div class="process-step">👥 Warning must be issued before <b>two witnesses</b></div><div class="process-arrow">↓</div><div class="process-step highlight">🚪 If she then <b>secludes herself</b> (<b>stirah</b>) with that man for enough time for defilement</div><div class="process-arrow">↓</div><div class="process-step">🚫 She becomes <b>forbidden to her husband</b> and <b>forbidden to eat terumah</b> (if a kohen's wife)</div><div class="process-arrow">↓</div><div class="process-step highlight">💧 She must undergo the <b>sotah water ritual</b> to be permitted again</div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Clarification</strong> Warning about 'speaking' + she merely spoke = nothing. Warning about 'seclusion' + she merely spoke = nothing. Only warning about SECLUSION + actual SECLUSION = forbidden.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Sotah 5 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#2d1b3e; border-left: 3px solid #9b59b6; padding: 8px;"><b>Arrogance Prohibited</b><br/>"Beware," "lest," "not" = biblical לאו</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1b1b; border: 1px solid #e74c3c; padding: 8px;"><b>Does not repent</b><br/>Dies early, withers like husks</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border: 1px solid #4caf50; padding: 8px;"><b>Repents / is humble</b><br/>Gathered like the Avot; equals all sacrifices</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>God chooses the lowly</b><br/>Mount Sinai over tall mountains, bush over grand trees</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e2e16; border-left: 3px solid #e67e22; padding: 8px;"><b>Sotah: Warning + Seclusion</b><br/>Kinui about seclusion → actual stirah → forbidden to husband → chalitza not yibum</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Sotah 5a-5b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Sotah 5a-5b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../4/">← Daf 4</a><a href="../6/">Daf 6 →</a></div>
+</body>
+</html>
