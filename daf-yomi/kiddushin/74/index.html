@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 74 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👶</div>
+  <h1>Kiddushin 74</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין עד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👶 Firstborn Credibility — Who is believed to identify a firstborn son<br>
+    🔍 Beduki vs. Shetuki — Abba Shaul's approach to examining lineage claims<br>
+    👩 Mother's Credibility — When a single woman claims the father's identity<br>
+    💍 Intermarriage of Flawed Lineage — Who may marry whom among the disqualified<br>
+    ⚖️ Mamzer Definitions — Dispute over which forbidden unions produce a mamzer<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 74: Credibility, Lineage & Intermarriage</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Who is believed</b> to identify status?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Firstborn</div><div class="flow-box action">Midwife (immediately)<br>Mother (7 days)<br>Father (forever)</div></div><div class="flow-col"><div class="flow-label">Single Mother</div><div class="flow-box action">Believed re: father's identity<br>(Rabban Gamliel / Abba Shaul)</div></div><div class="flow-col"><div class="flow-label">Flawed Lineage</div><div class="flow-box question">Who may marry whom<br>among the disqualified?</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> This daf explores the boundaries of credibility in establishing personal status and the intermarriage rules among those with flawed lineage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Three Deemed Credible Regarding a Firstborn</h2>
+  
+  <table><tr><th>Person</th><th>Time Window</th><th>Basis</th></tr><tr><td>Midwife</td><td>Immediately after birth</td><td>Present at delivery</td></tr><tr><td>Mother</td><td>First seven days</td><td>Close to birth event</td></tr><tr><td>Father</td><td>Forever</td><td>"He shall <i>acknowledge</i> the firstborn" (Deut. 21:17)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rav Naḥman</strong> The father's unique credibility derives from the Torah itself — he <i>acknowledges</i> his firstborn to others, and this power has no time limit.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Father's Power: Firstborn vs. Disqualification</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yehuda</div><div class="speech">Just as a father is believed to say <b>"This is my firstborn,"</b> a <i>Kohen</i> father is also believed to say <b>"This son is from a divorced woman or ḥalutza"</b> — disqualifying him from <i>kehuna</i>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbanan</div><div class="speech">He is <b>not believed</b> to disqualify his son. His credibility extends <b>only</b> to identifying the firstborn — a matter of giving rights, not removing them.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The dispute hinges on whether the father's Torah-granted credibility for firstborn extends to disqualifying his children from priestly status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Abba Shaul's Beduki: Examining the Mother's Claim</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A <b>shetuki</b> (one who doesn't know his father) — Abba Shaul calls him <b>beduki</b></div><div class="flow-arrow">↓</div><div class="flow-box action">We <i>examine</i> (<b>bodekin</b>) the mother's claim about the father</div><div class="flow-arrow">↓</div><div class="flow-box question">Does she say: "I had relations with a man of <b>unflawed lineage</b>"?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box result-good">She is <b>believed</b> — child has valid lineage<br>(Extends even to her <i>daughter's</i> fitness to marry a Kohen)</div></div><div class="flow-col"><div class="flow-label">No / Silent</div><div class="flow-box result-bad">Child retains <b>shetuki</b> status — uncertain lineage</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Ruling</strong> The halakha follows Abba Shaul — even where most potential fathers would disqualify the child, the mother is still believed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Rabban Gamliel vs. Abba Shaul on Mother's Credibility</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Rabban Gamliel</h3><ul><li>Pregnant single woman is believed about the father's identity</li><li>She herself is fit to marry a Kohen</li><li>Unclear if her daughter is also fit</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Abba Shaul (Beduki)</h3><ul><li>Adds: daughter is also deemed fit to marry a Kohen</li><li>Applies even when most potential fathers would disqualify</li><li>Broader scope: covers betrothed women too</li><li>Rava rules halakha follows Abba Shaul</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Why Both Needed?</strong> One ruling establishes the <i>mother's</i> fitness; the other extends credibility to her <i>daughter's</i> fitness to marry into the priesthood.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Mishna: Intermarriage Among Those with Flawed Lineage</h2>
+  
+  <div class="process-bar"><div class="process-step">📜 Those <b>prohibited from entering the congregation</b> (mamzerim, netinim, etc.)</div><div class="process-arrow">↓</div><div class="process-step highlight">💍 May <b>marry into each other's</b> families (First Tanna)</div><div class="process-arrow">↓</div><div class="process-step">🚫 R' Yehuda: Only those with the <b>same specific flaw</b> may intermarry</div><div class="process-arrow">↓</div><div class="process-step">✅ R' Eliezer: Certain and uncertain — permitted; uncertain and uncertain — prohibited</div><div class="process-arrow">↓</div><div class="process-step highlight">🔎 Gemara struggles to define the exact scope of the mishna's rule</div></div><div class="callout" style="margin-top:20px"><strong>Mishna Rule</strong> The basic principle: those barred from marrying ordinary Jews may still marry each other — but the Tannaim dispute the details.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 74 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>Credibility for Firstborn</b><br>Midwife → Mother → Father (forever)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px;"><b>Mother's Testimony (Beduki)</b><br>Believed about father's identity — even for daughter's status</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left:3px solid #9b59b6; padding:10px;"><b>Intermarriage of Disqualified</b><br>Those barred from the congregation may marry each other</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e2a16; border-left:3px solid #e67e22; padding:10px;"><b>First Tanna:</b> All disqualified may intermarry freely</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1616; border-left:3px solid #e74c3c; padding:10px;"><b>R' Yehuda:</b> Only same-type flaws may intermarry</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 74a-74b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 74a-74b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../73/">← Daf 73</a><a href="../75/">Daf 75 →</a></div>
+</body>
+</html>

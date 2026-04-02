@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 22 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👂</div>
+  <h1>Kiddushin 22</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין כב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👂 Eved Nirtza — Conditions for piercing the Hebrew slave's ear<br>
+    ⚖️ Equal Treatment — A master must treat his Hebrew slave as an equal<br>
+    🚪 Door & Doorpost — Allegorical meaning of the piercing location<br>
+    📜 Canaanite Slave Acquisition — Money, document, or possession<br>
+    🔓 Acquiring Freedom — Dispute between R' Meir and the Rabbis<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Kiddushin 22: The Pierced Slave & Canaanite Slave Acquisition</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Eved Nirtza</b>: Slave who wishes to stay must declare <em>amor yomar</em> — twice</div><div class="flow-arrow">↓</div><div class="flow-box question">Multiple conditions must be met: mutual love, wife & children for both, both healthy</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">All Met</div><div class="flow-box result-good">Ear is pierced at the door/doorpost</div></div><div class="flow-col"><div class="flow-label">Not Met</div><div class="flow-box result-bad">Slave is <b>not</b> pierced — goes free</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Mishna</b>: Canaanite slave acquired by <em>kesef</em>, <em>shtar</em>, or <em>chazakah</em></div></div><div class="callout" style="margin-top:20px"><strong>📖 Key Principle</strong> "Anyone who acquires a Hebrew slave is like one who acquires a master for himself" — because the slave must be treated as an equal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Amor Yomar: The Double Declaration</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">📢 Slave must declare desire to stay — <em>amor yomar</em> (doubled verb)</div><div class="process-arrow">↓</div><div class="process-step">⏳ Must say it at the <b>beginning</b> of the final peruta of work (Rava)</div><div class="process-arrow">↓</div><div class="process-step">⏳ Must <b>also</b> say it at the <b>end</b> of the final peruta</div><div class="process-arrow">↓</div><div class="process-step highlight">💬 "I love my master, my wife, and my children — I will not go out free"</div><div class="process-arrow">↓</div><div class="process-step">❌ If stated only once (beginning OR end) — he is <b>not</b> pierced</div></div><div class="callout" style="margin-top:20px"><strong>Rava's Insight</strong> "Beginning of six" means the start of the last peruta of work; "end of six" means the end of that peruta — both while still technically a slave.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Conditions Required for Ear-Piercing</h2>
+  
+  <table><tr><th>Condition</th><th>Source</th><th>If Not Met</th></tr><tr><td>Slave has wife & children</td><td>"I love my master, <b>my wife, and my children</b>" (Ex. 21:5)</td><td>Not pierced</td></tr><tr><td>Master has wife & children</td><td>"Because he loves you and <b>your house</b>" (Deut. 15:16)</td><td>Not pierced</td></tr><tr><td>Slave loves master</td><td>"Because <b>he loves</b> you" (Deut. 15:16)</td><td>Not pierced</td></tr><tr><td>Master loves slave</td><td>"Because he <b>fares well with you</b>" (Deut. 15:16)</td><td>Not pierced</td></tr><tr><td>Slave is healthy</td><td>"Fares <b>well</b> with you" — excludes illness</td><td>Not pierced</td></tr><tr><td>Master is healthy</td><td>"<b>With you</b>" — equates their condition</td><td>Not pierced</td></tr></table><div class="callout" style="margin-top:20px"><strong>🤔 Unresolved</strong> Rav Beivai bar Abaye's dilemma: If <b>both</b> are ill — is it "with you" (same condition = OK) or do we require "fares well" (well-being required)? <em>Teiku</em>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Why the Ear? Why the Door?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabban Yoḥanan b. Zakkai</div><div class="speech">Why is the <b>ear</b> different from all other limbs? This ear heard on Sinai: <em>"For to Me the children of Israel are slaves"</em> — they shall not be slaves <b>to slaves</b>. Yet this man acquired a master for himself!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Shimon b. R' Yehuda HaNasi</div><div class="speech">Why the <b>door and doorpost</b>? They were witnesses in Egypt when God passed over them and delivered Israel from slavery to freedom. Yet this man went and acquired a master — let him be pierced <b>before these witnesses</b>!</div></div></div><div class="callout" style="margin-top:20px"><strong>🌸 Ḥomer (Allegory)</strong> Both sages read the law as a moral parable: the ear that heard God's declaration of freedom, and the door that witnessed redemption, testify against voluntary servitude.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>"With You" — Equal Treatment of a Hebrew Slave</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Master's Standard</h3><ul><li>Fine bread (<em>pat nekiyah</em>)</li><li>Aged wine (<em>yayin yashan</em>)</li><li>Soft bedding and sheets</li></ul></div><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Slave Must Receive the Same</h3><ul><li>Not inferior bran bread (<em>pat kibbar</em>)</li><li>Not cheap new wine</li><li>Not sleeping on straw</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Famous Saying</strong> "Anyone who acquires a Hebrew slave is like one who acquires a <b>master</b> for himself" — because of the obligation to provide equal living conditions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Piercing Procedure: Ear, Awl, and Door</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Bring slave to <b>beit din</b> (court)</div><div class="flow-arrow">↓</div><div class="flow-box action">Bring him to the <b>door or doorpost</b> — must be upright and attached</div><div class="flow-arrow">↓</div><div class="flow-box action">Take the awl (<em>martzea</em>) and place it <b>through his ear into the door</b></div><div class="flow-arrow">↓</div><div class="flow-box result-good">He bores through the ear until reaching the door — both ear and door are pierced together</div></div><div class="callout" style="margin-top:20px"><strong>⚠️ Key Detail</strong> A detached door is invalid — just as a doorpost is upright and attached, so too the door must be upright and attached (Exodus 21:6).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 22 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Eved Nirtza</b>: Must declare <em>amor yomar</em> — at start AND end of final peruta</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #c9a84c;"><b>6 Conditions</b>: Both have wife & children, mutual love, both healthy</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a2e; border-left: 3px solid #9b59b6;"><b>Piercing</b>: Ear to door — the ear that heard Sinai, the door that witnessed Egypt</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>"With You"</b>: Equal treatment in food, drink, bedding — acquiring a slave = acquiring a master</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #e67e22;"><b>Canaanite Slave</b>: Acquired by kesef, shtar, chazakah — derived from ancestral field</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 22a-22b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 22a-22b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../21/">← Daf 21</a><a href="../23/">Daf 23 →</a></div>
+</body>
+</html>

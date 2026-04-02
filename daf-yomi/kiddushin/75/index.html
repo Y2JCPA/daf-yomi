@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 75 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👰</div>
+  <h1>Kiddushin 75</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין עה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👰 Marrying Widows — whose widow may you marry based on lineage?<br>
+    ⚖️ First Tanna vs. R' Yosei — the case of second-generation Egyptian converts<br>
+    🔍 R' Yosei vs. Rabban Shimon ben Gamliel — Ammonite and Moabite converts<br>
+    ❓ Widow of Questionable Lineage — compound uncertainty in priestly marriage<br>
+    🦁 Status of Samaritans — lion converts vs. true converts<br>
+    📜 Three Opinions on Samaritans — why the Sages disqualified them<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Whose Widow May You Marry?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Principle:</b> "Anyone whose daughter you may marry, you may marry his widow"</div><div class="flow-arrow">↓</div><div class="flow-box question">All Tannaim agree on the rule — but <b>differ on the derivation</b> from High Priest + widow</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">First Tanna</div><div class="flow-box result-bad">Intercourse via <b>transgression</b> → disqualifies her from priesthood</div></div><div class="flow-col"><div class="flow-label">R' Yosei</div><div class="flow-box result-bad"><b>Offspring unfit</b> → disqualifies her from priesthood</div></div><div class="flow-col"><div class="flow-label">R' Shimon b. Gamliel</div><div class="flow-box result-bad"><b>All offspring unfit</b> (male + female) → disqualifies</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Each Tanna derives the same rule from the High Priest/widow case but applies a different criterion — transgression, unfit offspring, or universally unfit offspring — yielding different practical rulings.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>What's the Difference Between First Tanna and R' Yosei?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">They both say the same thing: whose daughter you may marry → you may marry his widow!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yochanan</div><div class="speech">The practical difference is a <b>Jewish woman who had relations with a second-generation Egyptian convert</b> (<i>mitzri sheni</i>).</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">First Tanna</div><div class="speech">Like a High Priest with a widow — his intercourse is a <b>transgression</b>, so he <b>disqualifies her</b>. Same for the Egyptian — his intercourse is forbidden, so she's disqualified from priesthood.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yosei</div><div class="speech">Like a High Priest with a widow — the <b>offspring is unfit</b> (ḥalal), so he disqualifies her. But a 2nd-gen Egyptian's offspring <b>is fit</b> (3rd generation may enter the congregation) — so he does <b>not</b> disqualify her.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Outcome</strong> A Jewish woman who had relations with a second-generation Egyptian convert: First Tanna says she is disqualified from priesthood; R' Yosei says she is not.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Three Tannaim: The High Priest/Widow Derivation</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1810"><h3 style="color:#e74c3c">First Tanna</h3><ul><li>Focus: <b>Transgression</b></li><li>High Priest + widow = forbidden act → disqualifies</li><li>Any forbidden intercourse disqualifies</li><li>Includes: 2nd-gen Egyptian ✗</li></ul></div><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#9b59b6">R' Yosei</h3><ul><li>Focus: <b>Offspring unfit</b></li><li>High Priest + widow = offspring is ḥalal → disqualifies</li><li>Only if offspring would be unfit</li><li>Excludes: 2nd-gen Egyptian ✓</li><li>Includes: Ammonite/Moabite ✗</li></ul></div><div class="compare-box" style="border-top-color:#0d2818"><h3 style="color:#4caf50">R' Shimon b. Gamliel</h3><ul><li>Focus: <b>All offspring unfit</b></li><li>High Priest + widow = all offspring (M+F) unfit → disqualifies</li><li>Only if both sons AND daughters unfit</li><li>Excludes: Ammonite/Moabite ✓ (females permitted)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Verse</strong> Ammonite/Moabite: "An Ammonite man shall not enter the congregation" — but not an Ammonite <i>woman</i>. Since female offspring are fit, R' Shimon b. Gamliel does not disqualify.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Who Disqualifies a Woman from Priesthood?</h2>
+  
+  <table><tr><th>Case</th><th>First Tanna</th><th>R' Yosei</th><th>R' Shimon b. Gamliel</th></tr><tr><td>High Priest + widow</td><td>Disqualifies ✗</td><td>Disqualifies ✗</td><td>Disqualifies ✗</td></tr><tr><td>2nd-gen Egyptian convert</td><td>Disqualifies ✗</td><td>Does NOT disqualify ✓</td><td>Does NOT disqualify ✓</td></tr><tr><td>Ammonite/Moabite convert</td><td>Disqualifies ✗</td><td>Disqualifies ✗</td><td>Does NOT disqualify ✓</td></tr><tr><td>Widow of questionable lineage</td><td>Unfit ✗</td><td>Unfit ✗</td><td>Unfit ✗</td></tr></table><div class="callout" style="margin-top:20px"><strong>Rav Ḥisda</strong> All concede that a widow of questionable lineage (possibly married to a ḥalal) is unfit for priesthood — even the most lenient view of R' Shimon b. Gamliel.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Widow of Questionable Lineage: A Dispute</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">ספק ספיקא — לקולא</div><div class="callout"><strong>Counter-Opinion</strong> <b>Rav Ḥisda</b> says all Tannaim agree she is <b>unfit</b> for priesthood.<br><br>But <b>R' Yehoshua</b> and <b>R' Yehuda ben Beteira</b> testified she is <b>fit</b> — because it is a case of <b>compound uncertainty</b> (<i>sfek sfeka</i>), and we rule leniently in such cases.<br><br>Rav Ḥisda's statement explicitly excludes their lenient view.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Status of Samaritans (Kutim)</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Are <b>Samaritans</b> (<i>Kutim</i>) considered valid converts?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Yishmael</div><div class="flow-box result-bad">They are <b>lion converts</b> (<i>geirei arayot</i>) — converted out of fear, not sincerity → remain <b>gentiles</b></div></div><div class="flow-col"><div class="flow-label">R' Akiva</div><div class="flow-box result-good">They are <b>true converts</b> (<i>geirei emet</i>)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">What about the <b>Jewish priests</b> who assimilated among them?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Yishmael's view</div><div class="flow-box result-bad">"From among themselves" = from the <b>thorns</b> — unfit priests of flawed lineage</div></div><div class="flow-col"><div class="flow-label">R' Akiva's view</div><div class="flow-box result-good">"From among themselves" = from the <b>chosen ones</b> — fit, proper priests</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Verse</strong> II Kings 17:32 — "And made unto them <i>from among themselves</i> priests of the high places" — interpreted in opposite ways by R' Yishmael and R' Akiva.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 75 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Core Rule:</b> Marry his daughter → may marry his widow</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a1a2e; border-left: 3px solid #9b59b6; padding: 8px;"><b>Source:</b> High Priest who has intercourse with a widow — disqualifies her from priesthood</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2c1810; padding: 8px;"><b>First Tanna:</b> Any <em>transgression</em> disqualifies</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2e1a; padding: 8px;"><b>R' Yosei:</b> Only if <em>offspring unfit</em></div></div><div class="flow-col"><div class="flow-box" style="background:#0d2818; padding: 8px;"><b>RSBG:</b> Only if <em>all</em> offspring unfit</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 8px;"><b>Samaritans:</b> Disqualified either as lion converts (R' Yishmael) or due to flawed levirate practice (R' Akiva)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 75a-75b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 75a-75b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../74/">← Daf 74</a><a href="../76/">Daf 76 →</a></div>
+</body>
+</html>

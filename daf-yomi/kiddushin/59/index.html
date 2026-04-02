@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 59 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🤝</div>
+  <h1>Kiddushin 59</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין נט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🕵️ Agent vs. Another — Why the Mishnah uses different terms for the same person<br>
+    🍞 Ani Mehapech — The pauper's loaf principle: competing for acquisitions<br>
+    🏡 Land of the Sages — When neither Rav Giddel nor R' Abba would take the land<br>
+    💍 Betrothal After 30 Days — Does spent money still effect kiddushin?<br>
+    🗣️ Statement vs. Statement — Can words nullify a prior verbal appointment?<br>
+    🔥 Thought vs. Action in Tumah — Rav Pappa's proof from ki yuttan<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Core Flow of Kiddushin 59</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Agent acts for himself</b> instead of the sender</div><div class="flow-arrow">↓</div><div class="flow-box question">Is the act <b>valid</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box result-good"><b>What he did is done</b> — but he is a scoundrel</div></div><div class="flow-col"><div class="flow-label">Related:</div><div class="flow-box result-bad">Competing for another's deal = <b>wicked</b> (ani mehapech)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Can a <b>verbal retraction</b> nullify a prior appointment?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Yochanan</div><div class="flow-box result-good">✅ A statement <b>can</b> nullify a statement</div></div><div class="flow-col"><div class="flow-label">Reish Lakish</div><div class="flow-box result-bad">❌ A statement <b>cannot</b> nullify a statement</div></div></div></div><div class="callout" style="margin-top:20px"><strong>HALAKHA</strong> The law follows <b>R' Yochanan</b> — a verbal retraction cancels a prior agency appointment.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why 'Agent' vs. 'Another'?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Mishna Here: 'Another'</h3><ul><li>Uses the term <b>"another"</b> (not agent)</li><li>Teaches: even a non-agent who acts for himself is a <b>scoundrel</b></li><li>You might think only a trusted agent is deceitful — <i>kol she'kein</i> an outsider too</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Mishna Ch. 2 (50a): 'Agent'</h3><ul><li>Uses the term <b>"agent"</b> (shaliach)</li><li>Teaches: even an agent who deviates in location — betrothal is <b>invalid</b></li><li>You might think an agent would be given latitude — teaches otherwise</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>KEY INSIGHT</strong> Each Mishnah chooses its term to teach the <b>less obvious</b> case — a hallmark of Talmudic precision.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Ravin the Pious & Rav — Agents Who Acted for Themselves</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech"><b>Ravin the Pious</b> was sent to betroth a woman for his son — but betrothed her <b>to himself</b>!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Questioner</div><div class="speech">But the baraita says such a person is a <b>scoundrel</b>! How could a pious man do this?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">The family <b>refused</b> to give her to the son — they would only accept <b>the father</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Questioner</div><div class="speech">He should have <b>informed his son first</b>!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">He feared: <i>In the meantime, someone else will come and betroth her.</i></div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Similarly, <b>Rav</b> bought land for himself instead of for Rabba bar bar Ḥana — the violent locals would only sell to <b>Rav</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> Acting as agent for oneself is normally deceitful, but <b>justified when the principal's deal would fail</b> and delay risks losing the opportunity entirely.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Pauper's Loaf — Rav Giddel vs. Rabbi Abba</h2>
+  
+  <div class="process-bar"><div class="process-step">📋 <b>Rav Giddel</b> is negotiating to buy a plot of land</div><div class="process-arrow">↓</div><div class="process-step highlight">💰 <b>Rabbi Abba</b> comes and purchases it first</div><div class="process-arrow">↓</div><div class="process-step">😤 Rav Giddel complains to <b>R' Zeira</b> → who tells <b>R' Yitzchak Nappacha</b></div><div class="process-arrow">↓</div><div class="process-step highlight">🍞 R' Yitzchak asks: If a <b>pauper</b> is reaching for a loaf and another snatches it — what is the law?</div><div class="process-arrow">↓</div><div class="process-step">⚖️ R' Abba answers: The one who took it is called <b>wicked</b> (rasha)</div><div class="process-arrow">↓</div><div class="process-step highlight">😳 R' Yitzchak: Then why did <b>you</b> do exactly that? R' Abba: I <b>didn't know</b> Rav Giddel was negotiating!</div><div class="process-arrow">↓</div><div class="process-step">🎁 R' Abba offers it as a <b>gift</b> — Rav Giddel refuses, citing <i>"He who hates gifts shall live"</i> (Proverbs 15:27)</div><div class="process-arrow">↓</div><div class="process-step highlight">🏛️ Neither takes the land — it becomes known as <b>"The Land of the Sages"</b></div></div><div class="callout" style="margin-top:20px"><strong>ANI MEHAPECH B'CHARARA</strong> One who takes what another was actively pursuing is called <b>rasha</b> (wicked). This became a foundational principle in Jewish business ethics.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Betrothal After 30 Days — Money Spent</h2>
+  
+  <table><tr><th>Scenario</th><th>Betrothed?</th><th>Reasoning</th></tr><tr><td>Says: <b>Be betrothed after 30 days</b>; another betroths her within 30 days</td><td>To the <b>second</b> man</td><td>First betrothal hasn't taken effect yet</td></tr><tr><td>Says: <b>Be betrothed after 30 days</b>; no one else betroths her; money <b>still exists</b></td><td><b>Yes</b> — to the first</td><td>Betrothal takes effect at 30 days</td></tr><tr><td>Says: <b>Be betrothed after 30 days</b>; money was <b>spent</b> before 30 days</td><td><b>Yes</b> — to the first (Rav & Shmuel)</td><td>Money is <b>neither a loan nor a deposit</b></td></tr><tr><td>Comparable to a <b>loan</b>?</td><td>Would not be betrothed</td><td>Loan money becomes hers — no longer betrothal money</td></tr><tr><td>Comparable to a <b>deposit</b>?</td><td>Would not be betrothed</td><td>Deposit lost = no value transferred</td></tr></table><div class="callout" style="margin-top:20px"><strong>RAV & SHMUEL</strong> The betrothal money exists in a <b>unique halakhic category</b> — it is neither loan nor deposit, so spending it does not invalidate the kiddushin.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Can a Statement Nullify a Statement?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">A woman who appointed an agent for betrothal <b>can retract</b> verbally — a statement <b>nullifies</b> a prior statement.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech">She <b>cannot retract</b> — a statement does <b>not</b> nullify a prior statement.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech"><b>Proof:</b> One who appoints an agent to separate <i>terumah</i> and cancels before he acts — the terumah is <b>invalid</b>!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">That case is different — the owner <b>separated terumah himself</b>, which is an <b>action</b>, not mere words.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Reish Lakish</div><div class="speech"><b>Counter-proof:</b> For <i>tumah</i>, thought to improve a vessel doesn't negate prior thought — showing statements don't nullify statements!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">Tumah is different — thought there has the <b>force of action</b> (per Rav Pappa's derivation from <i>ki yuttan</i>).</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech"><b>Decisive proof:</b> A husband who sends a <i>get</i> through an agent can <b>cancel it verbally</b> — this is a statement nullifying a statement!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Reish Lakish's position is <b>conclusively refuted</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>HALAKHA</strong> The law follows <b>R' Yochanan</b>: a verbal retraction <b>can</b> cancel a prior verbal appointment, even in the version regarding betrothal agency.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 59 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px;"><b>Agent appointed</b> for betrothal or purchase</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a1a1a; border-left:3px solid #e74c3c; padding:8px;"><b>Agent acts for himself</b> — valid but deceitful</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:8px;">Competing for another's deal = <b>ani mehapech b'charara</b> = rasha</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; border:1px solid #4a90d9; padding:8px;"><b>R' Yochanan (Halakha):</b> Statement nullifies statement — agency can be <b>retracted verbally</b></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a2e; border:1px solid #9b59b6; padding:8px;"><b>Reish Lakish (Refuted):</b> Statement cannot nullify statement — proven wrong from <i>get</i> cancellation</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 59a-59b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 59a-59b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../58/">← Daf 58</a><a href="../60/">Daf 60 →</a></div>
+</body>
+</html>

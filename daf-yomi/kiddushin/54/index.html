@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 54 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Kiddushin 54</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין נד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Misuse of Hekdesh — When does consecrated property lose its sanctity?<br>
+    👔 Priestly Garments — Betrothal with bigdei kehuna and 'Torah not given to angels'<br>
+    🪙 Old vs New Shekels — Liability for misuse of chamber funds<br>
+    🧱 Sanctity of Jerusalem — Are the city walls and towers consecrated?<br>
+    🍇 Fourth-Year Vineyard — Beit Shammai vs Beit Hillel on second-tithe analogy<br>
+    📜 Unattributed Mishnayot — Determining halakha for tithe and hekdesh<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Rabbi Meir on Consecrated Property: Intentional vs. Unwitting Misuse</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> Is consecrated property (<i>hekdesh</i>) desacralized when misused?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Intentional Misuse</div><div class="flow-box result-good">Property <b>is</b> desacralized — R' Meir</div></div><div class="flow-col"><div class="flow-label">Unwitting Misuse</div><div class="flow-box result-bad">Property <b>not</b> desacralized — R' Meir</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Halakha follows <b>R' Meir</b> on second tithe (= consecrated)<br/>Halakha follows <b>R' Yehuda</b> on hekdesh (desacralized even unwittingly)</div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The Gemara tests Rabbi Meir's position through priestly garments, shekels, and Jerusalem's walls — ultimately resolving the halakha via unattributed mishnayot.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Does Misuse Desacralize Hekdesh?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">R' Meir holds: consecrated property is <b>not</b> desacralized if misused <b>unwittingly</b>, but <b>is</b> desacralized if misused <b>intentionally</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">We reviewed all of R' Meir's statements — we never found him holding this position about hekdesh in general!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">The mishna refers specifically to <b>priestly tunics</b> (<i>bigdei kehuna</i>) that have <b>not worn out</b> and are still fit for service.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">These garments were given on condition that priests may benefit from them — because <b>the Torah was not given to ministering angels</b> (<i>lo nitnah Torah l'malakhei ha-shareit</i>).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">So only <b>intentional</b> desacralization works for these garments, since the priests already have permitted use of them.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> לא ניתנה תורה למלאכי השרת — The Torah was not given to ministering angels. Priests cannot avoid all incidental benefit from their garments.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Priestly Garments: Worn Out vs. Not Worn Out</h2>
+  
+  <table><tr><th>Status of Garments</th><th>Permitted Non-Sacred Use?</th><th>Misuse Liability (R' Meir)</th><th>Betrothal Valid?</th></tr><tr><td><b>Not worn out</b> — still fit for service</td><td>Yes — given on condition of incidental benefit</td><td>Only if intentional desacralization</td><td>Not betrothed (unwitting) / Betrothed (intentional)</td></tr><tr><td><b>Worn out</b> — no longer fit for service</td><td>No — permission to use lapses</td><td>Liable like regular hekdesh</td><td>Not betrothed (treated as standard consecrated property)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Once garments wear out and can no longer serve in the Temple, the special leniency vanishes and they revert to ordinary hekdesh rules.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Testing R' Meir: Old Shekels & the Chamber Remainder</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Challenge:</b> R' Meir says one is liable for misuse of <b>old shekels</b> (remainder of the chamber)</div><div class="flow-arrow">↓</div><div class="flow-box action">But the remainder funds <b>city walls & towers</b> — and passersby <b>cannot avoid</b> benefiting from their shade!</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">By R' Meir's own logic (Torah not given to angels), there should be <b>no liability</b>!</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Resolution:</b> Emend the mishna — the view about the chamber remainder is <b>R' Yehuda's</b>, not R' Meir's</div></div><div class="callout" style="margin-top:20px"><strong>Textual Emendation</strong> The Gemara resolves the contradiction by re-attributing the statement about old shekels from R' Meir to R' Yehuda.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Is Jerusalem Itself Consecrated?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Yishmael b"R Yitzchak</div><div class="speech">Stones from Jerusalem's walls and towers that fell — one is liable for misuse of hekdesh by using them. This is <b>R' Meir's</b> view.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Emend: say this is <b>R' Yehuda's</b> view, not R' Meir's.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But wait — does R' Yehuda hold Jerusalem is consecrated at all? In Nedarim he says: one who says 'like Jerusalem' <b>has said nothing</b>!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Answer: Two <i>tanna'im</i> disagree about what R' Yehuda actually holds regarding Jerusalem's sanctity.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The tension between different sources attributed to R' Yehuda is resolved by positing a tannaitic dispute about his true position on Jerusalem's consecration.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Fourth-Year Vineyard: Beit Shammai vs. Beit Hillel</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c1810"><h3 style="color:#e74c3c">Beit Shammai</h3><ul><li>No adding one-fifth (חומש) when redeeming</li><li>No obligation of disposal (ביעור) in 4th year of shemitah cycle</li><li>Owner MUST leave פרט (fallen grapes) and עוללות (incomplete clusters) for the poor</li><li>The vineyard is considered the owner's property</li></ul></div><div class="compare-box" style="border-top-color:#0d1f3c"><h3 style="color:#4a90d9">Beit Hillel</h3><ul><li>Adding one-fifth DOES apply (derived from second tithe via גזירה שווה of 'holy')</li><li>Disposal obligation DOES apply</li><li>ALL fruit goes to the winepress — no פרט or עוללות</li><li>Grapes have sanctity like second tithe — no gifts to the poor</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Gezerah Shavah</strong> Beit Hillel derive from קדש (Lev. 19:24) and קדש (Lev. 27:30): just as second tithe has one-fifth and disposal, so does the fourth-year vineyard. Beit Shammai reject this verbal analogy.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 54 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 10px;"><b>R' Meir's Position:</b><br/>Intentional misuse → desacralized<br/>Unwitting misuse → NOT desacralized</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left: 3px solid #9b59b6; padding: 10px;"><b>Special Case: Priestly Tunics</b><br/>Torah not given to angels — priests may benefit incidentally<br/>Only intentional desacralization effective</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a1a; border-left: 3px solid #e74c3c; padding: 10px;"><b>Challenges:</b> Old shekels, city walls, Jerusalem stones<br/>Resolved by emending attributions to R' Yehuda</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top: 3px solid #4caf50; padding: 10px;"><b>Second Tithe</b><br/>Halakha = R' Meir<br/>Tithe is sacred property<br/>(Stam mishna: Beit Hillel on 4th-year vineyard)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2e1a; border-top: 3px solid #e67e22; padding: 10px;"><b>Hekdesh</b><br/>Halakha = R' Yehuda<br/>Desacralized even unwittingly<br/>(Stam mishna: Me'ila 21a — storekeeper case)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 54a-54b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 54a-54b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../53/">← Daf 53</a><a href="../55/">Daf 55 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 72 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🗺️</div>
+  <h1>Kiddushin 72</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין עב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🗺️ Borders of Babylonia — Defining boundaries for lineage purity<br>
+    📜 Gittin vs. Lineage — Whether border disputes apply to both domains<br>
+    🏘️ Regional Lineage Rankings — Haveil Yamma and its glory towns<br>
+    🐻 Persians as Bears — Rav Yosef's teaching on Daniel's vision<br>
+    ⚖️ Pelatiah ben Benaiah — Was his death interpreted for good or evil?<br>
+    🌍 All Lands Presumed Fit — Rabbi Meir vs. the Rabbis on lineage<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Mapping the Borders of Kosher Lineage</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> Which regions have <i>presumed unflawed lineage</i> (yichus)?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Babylonia proper</b> — defined borders for lineage purity</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav Pappa</div><div class="flow-box action">Same borders for <b>gittin</b> and <b>lineage</b></div></div><div class="flow-col"><div class="flow-label">Rav Yosef</div><div class="flow-box action">Borders differ — gittin extends further north</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Surrounding regions ranked: <b>Ḥaveil Yamma → Shunya/Guvya/Tzitzora</b></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Exiled Ten Tribes regions — <b>flawed lineage</b> (Ḥillazon, Hadyav, Nihavnad)</div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Geographic location determined presumptive lineage status — Babylonia's defined borders created a system of trust for marriage eligibility.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Do Gittin and Lineage Share the Same Borders?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Pappa</div><div class="speech">Just as Rav and Shmuel dispute the <b>northern border</b> for lineage, so too they dispute it for <b>bills of divorce</b> (<i>gittin</i>). The borders are identical.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech">The dispute is only about <b>lineage</b>. For gittin, everyone agrees Babylonia extends to the <b>second lake of the bridge</b> that Shmuel mentioned.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">Until where does the border extend on the <b>western side</b> of the Euphrates?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech">Why ask? Even those of <b>pure lineage in Pumbedita</b> marry women from <b>Biram</b> — its residents are presumed fit.</div></div></div><div class="callout" style="margin-top:20px"><strong>Practical Impact</strong> An agent bringing a get from Babylonia need not say 'it was written and signed in my presence' — but the exact boundary of Babylonia was disputed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Regional Lineage Rankings</h2>
+  
+  <table><tr><th>Region</th><th>Status</th><th>Source</th></tr><tr><td><b>Babylonia proper</b></td><td>Unflawed lineage (like Eretz Yisrael)</td><td>Mishna</td></tr><tr><td><b>Ḥaveil Yamma</b></td><td>Glory of Babylonia for lineage</td><td>Rami bar Abba</td></tr><tr><td><b>Shunya & Guvya</b></td><td>Glory of Ḥaveil Yamma</td><td>Rami bar Abba</td></tr><tr><td><b>Tzitzora</b></td><td>Equal to Shunya & Guvya</td><td>Ravina / Baraita</td></tr><tr><td><b>Between the Rivers</b> (Shot Mishot)</td><td>Like the exile (Pumbedita) for lineage</td><td>R' Yosei b. R' Ḥanina</td></tr><tr><td><b>Mushekanei</b></td><td>Like the exile for lineage</td><td>Shmuel</td></tr><tr><td><b>Nihavnad & neighbors</b></td><td>Flawed — Ten Tribes exiled there</td><td>R' Abba bar Kahana</td></tr></table><div class="callout" style="margin-top:20px"><strong>Note</strong> Rav Pappa warned that Samaritans had assimilated into Ḥaveil Yamma — but the Gemara rejects this, explaining it was merely a rejected marriage proposal that sparked the rumor.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Identifying the Exile Locations of the Ten Tribes</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Verse (II Kings 18:11)</h3><ul><li><b>Halah</b> — a place of exile</li><li><b>Habor</b> — on the river of Gozan</li><li><b>Cities of the Medes</b> — eastern regions</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">R' Abba bar Kahana's Identifications</h3><ul><li><b>Halah</b> = Ḥillazon</li><li><b>Habor</b> = Hadyav</li><li><b>River of Gozan</b> = Ginzak</li><li><b>Cities of Medes</b> = Ḥamadan (or Nihavnad)</li></ul></div><div class="compare-box" style="border-top-color:#3e1616"><h3 style="color:#e74c3c">Consequence</h3><ul><li>Ten Tribes assimilated with gentiles</li><li>Jews from these places have <b>flawed lineage</b></li><li>This <b>contradicts</b> Rav who said Ḥillazon Nihavnad is like the exile (unflawed)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Conflict</strong> Rav held Ḥillazon Nihavnad had unflawed lineage; R' Abba bar Kahana identified it as a place where the Ten Tribes were exiled — making its lineage flawed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Ḥillazon Nihavnad: Conflict of Interest?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ika bar Avin</div><div class="speech">Rav Ḥananel says in Rav's name: <b>Ḥillazon Nihavnad is like the exile</b> with regard to lineage — its residents are fit.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">Don't listen to him! A <i>yevama</i> from there fell before him for levirate marriage — he wants to <b>marry her</b>, so he declared the lineage pure!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Ika bar Avin</div><div class="speech">Is this my halakha? It is <b>Rav Ḥananel's</b> teaching! I cannot be accused of bias when I am merely transmitting.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Ḥananel</div><div class="speech"><em>(When asked directly)</em> Indeed, <b>Rav said: Ḥillazon Nihavnad is like the exile</b> with regard to lineage.</div></div></div><div class="callout" style="margin-top:20px"><strong>Lesson</strong> The Gemara scrutinizes potential bias — even when a sage transmits a teaching from his master, personal interest raises suspicion. The teaching was verified by going directly to Rav Ḥananel.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Persians Compared to Bears (Daniel 7:5)</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🐻 Rav Yosef taught: The 'second beast, similar to a bear' = <b>Persians</b></div><div class="process-arrow">↓</div><div class="process-step">🍖 They <b>eat and drink</b> copious amounts like a bear</div><div class="process-arrow">↓</div><div class="process-step">💪 They are <b>corpulent</b> like a bear</div><div class="process-arrow">↓</div><div class="process-step">🧔 They <b>grow hair</b> like a bear</div><div class="process-arrow">↓</div><div class="process-step">🏃 They have <b>no rest</b> like a bear, constantly moving</div><div class="process-arrow">↓</div><div class="process-step highlight">🦴 The 'three ribs in its mouth' = <b>Ḥillazon, Hadyav, and Netzivin</b> — territories Persia sometimes swallows and sometimes discharges</div></div><div class="callout" style="margin-top:20px"><strong>R' Ami</strong> When Rabbi Ami saw a Persian riding, he would say: 'This is a bear on the move.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 72 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:8px;"><b>Babylonia's borders</b> define where lineage is presumed pure</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left:3px solid #9b59b6; padding:8px;"><b>Rav Pappa vs. Rav Yosef:</b> Do gittin and lineage share the same borders?</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:8px;">Surrounding regions ranked: <b>Ḥaveil Yamma → Shunya/Guvya</b> = glory of Babylonia</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1616; border-left:3px solid #e74c3c; padding:8px;">Ten Tribes exile locations = <b>flawed lineage</b> (Ḥillazon, Hadyav, Nihavnad disputed)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e2a16; border-left:3px solid #e67e22; padding:8px;"><b>R' Meir:</b> Only Babylonia has unflawed lineage</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left:3px solid #4caf50; padding:8px;"><b>Rabbis:</b> All lands retain a presumption of unflawed lineage</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 72a-72b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 72a-72b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../71/">← Daf 71</a><a href="../73/">Daf 73 →</a></div>
+</body>
+</html>

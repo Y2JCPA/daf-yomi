@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 76 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔍</div>
+  <h1>Kiddushin 76</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין עו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔍 Lineage Investigation — Tracing priestly family trees through maternal lines<br>
+    ⚖️ Samaritan Disqualification — Multiple reasons Samaritans were barred from marriage<br>
+    🏛️ Presumptive Fitness — When families are assumed to have valid lineage<br>
+    📜 Public Office as Proof — How communal roles verify unflawed descent<br>
+    👑 Sanhedrin Standards — Physical and genealogical requirements for judges<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Verifying Priestly Lineage for Marriage</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Priest seeks to marry</b><br>a woman from a priestly family</div><div class="flow-arrow">↓</div><div class="flow-box action">Must investigate <b>4 mothers</b> (= 8 women)<br>on both maternal and paternal sides</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Marrying Levite/Israelite</div><div class="flow-box result-bad">Add <b>one more generation</b> of investigation</div></div><div class="flow-col"><div class="flow-label">Ancestor served at Altar/Sanhedrin</div><div class="flow-box result-good"><b>No further check needed</b> — already verified</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The depth of genealogical investigation depends on the family's status and whether prior public service already verified their lineage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Were Samaritans Disqualified?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yishmael</div><div class="speech">They exempted <b>married women</b> from <i>ḥalitza</i> and levirate marriage, reading 'outside' as describing only <b>betrothed</b> women</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Akiva</div><div class="speech">The offspring of a <i>yevama</i> who married a stranger is a <b>mamzer</b>, since one who violates a prohibition produces a mamzer</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">R' Eliezer</div><div class="speech">Samaritans are <b>not well versed</b> in the details of mitzvot — their <i>gittin</i> and <i>kiddushin</i> may be invalid</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabban Shimon b. Gamliel</div><div class="speech">Any mitzva Samaritans embraced, they observe <b>more strictly</b> than Jews!</div></div></div><div class="callout" style="margin-top:20px"><strong>Three Opinions</strong> The Sages offered different halakhic grounds — flawed levirate practice, ignorance of mitzvot details, or assimilated mamzerim — to explain the ban on marrying Samaritans.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Samaritan Lineage Flaws: Additional Views</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Rav Naḥman / Rabba bar Avuh:</b><br>A mamzer from a <b>sister</b> and a mamzer from a <b>brother's wife</b> were assimilated among them</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">All Samaritans are <b>mamzerim</b> due to uncertainty (<i>safek mamzer</i>)</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Rava's view:</b><br>A Canaanite <b>slave</b> and <b>maidservant</b> were assimilated among them</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Their descendants may include <b>slaves</b>, further flawing their lineage</div></div><div class="callout" style="margin-top:20px"><strong>Historical Fact</strong> The Gemara clarifies these are not halakhic teachings but reports of what actually happened — the specific incidents that tainted Samaritan lineage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The 4 Mothers (8 Women) Investigation</h2>
+  
+  <table><tr><th>Maternal Side</th><th>Paternal Side</th></tr><tr><td>1. Her <b>mother</b></td><td>5. Mother of her <b>father</b></td></tr><tr><td>2. Mother of her <b>mother</b></td><td>6. Mother of her <b>father's mother</b></td></tr><tr><td>3. Mother of her <b>mother's father</b></td><td>7. Mother of her <b>father's father</b></td></tr><tr><td>4. Mother of her <b>mother's father's mother</b></td><td>8. Mother of her <b>father's father's mother</b></td></tr></table><div class="callout" style="margin-top:20px"><strong>Mishna</strong> A priest marrying a priest's daughter must trace 4 generations of mothers on each side — 8 women total. For a Levite or Israelite woman, add one more generation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Do Families Need Investigation?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">R' Meir (Mishna's View)</h3><ul><li>All priestly families must be investigated</li><li>Check 4 mothers on each side (8 total)</li><li>Levite/Israelite women require one more generation</li><li>Investigation is the default requirement</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4a90d9">The Rabbis</h3><ul><li>All families retain <b>presumptive fitness</b> (ḥezkat kashrut)</li><li>No investigation needed unless objection is raised</li><li>Only investigate when a specific challenge arises</li><li>Rav Ḥama bar Gurya: when objection registered, all agree to investigate</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Rav attributes the Mishna to R' Meir, while the Rabbis hold that families are presumed fit unless challenged. Both agree that a registered objection triggers investigation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Proof of Lineage: No Further Check Needed</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🏛️ Served at the <b>Altar</b> — Sanhedrin verified lineage before Temple service</div><div class="process-arrow">↓</div><div class="process-step">🎵 Sang on the <b>Platform</b> — Levites checked in the Hewn Chamber (<i>Lishkat HaGazit</i>)</div><div class="process-arrow">↓</div><div class="process-step">⚖️ Sat on the <b>Sanhedrin</b> — Court must be 'clean of blemish' (Song of Songs 4:7)</div><div class="process-arrow">↓</div><div class="process-step">📋 Held <b>public office</b> — Officials in Jerusalem required unflawed lineage</div><div class="process-arrow">↓</div><div class="process-step highlight">💰 Served as <b>charity collector</b> — Quarrels with people would have exposed any flaw</div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Prior public service functions as proof of verified lineage — if a flaw existed, it would have been discovered through the vetting process or through public conflict.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 76 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Priest seeks marriage</b><br>Lineage investigation required</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Check 4 mothers × 2 sides = 8 women</b><br>Add 1 generation for Levite/Israelite</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a2e3a; color:#4caf50; padding:10px; border-radius:8px; text-align:center;"><b>Ancestor served publicly?</b><br>Altar, Platform, Sanhedrin, Public Office → <b>No further check</b></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#e74c3c; padding:10px; border-radius:8px; text-align:center;"><b>No prior verification?</b><br>Must complete full investigation unless family has <i>ḥezkat kashrut</i></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 76a-76b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 76a-76b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../75/">← Daf 75</a><a href="../77/">Daf 77 →</a></div>
+</body>
+</html>

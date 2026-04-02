@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 64 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👨‍👧</div>
+  <h1>Kiddushin 64</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין סד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👨‍👧 Father's Credibility — When is a father believed about his daughter's status?<br>
+    ⚖️ 'In His Power' Principle — Credibility linked to the father's legal authority<br>
+    🔗 Disqualification Debate — Can a father disqualify his daughter from priesthood?<br>
+    🤔 Migo (Why Would I Lie?) — R' Yehuda HaNasi vs. R' Natan on presumptive logic<br>
+    👭 Unspecified Betrothal — Which daughters are included when father doesn't specify?<br>
+    📋 R' Meir vs. R' Yosei — Dispute over 'elder' and 'younger' daughter identity<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Father's Credibility: The 'In His Power' Principle</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Father makes a claim<br/>about his daughter's status</div><div class="flow-arrow">↓</div><div class="flow-box question">Is the claimed act currently<br/><b>within his power</b> to perform?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">YES — In His Power</div><div class="flow-box result-good">✅ Father is <b>deemed credible</b><br/>(e.g., betrothing a minor daughter)</div></div><div class="flow-col"><div class="flow-label">NO — Not In His Power</div><div class="flow-box result-bad">❌ Father is <b>not credible</b><br/>(e.g., betrothing adult daughter,<br/>claiming captivity)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> A father's testimony about his daughter is believed only when the act he describes is one he currently has the legal authority to perform.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Father's Credibility: What He Is & Isn't Believed About</h2>
+  
+  <table><tr><th>Domain</th><th>Credible?</th><th>Reason</th></tr><tr><td>Vows (<i>nedarim</i>)</td><td>✅ Yes</td><td>One witness sufficient for ritual matters</td></tr><tr><td>Dedications (<i>charamim</i>)</td><td>✅ Yes</td><td>Monetary/ritual — lower evidentiary bar</td></tr><tr><td>Consecrations & Valuations (<i>arakhin</i>)</td><td>✅ Yes</td><td>Temple obligations — ritual matter</td></tr><tr><td>Lashes / Corporal punishment</td><td>❌ No</td><td>Requires two witnesses; family member disqualified</td></tr><tr><td>"I betrothed her" (she's still minor)</td><td>✅ Yes</td><td>Still in his power to betroth her</td></tr><tr><td>"I betrothed her" (she's now adult)</td><td>❌ No</td><td>No longer in his power</td></tr><tr><td>"She was taken captive"</td><td>❌ No</td><td>Not in his power to hand her to captors</td></tr></table><div class="callout" style="margin-top:20px"><strong>MISHNA</strong> The father's credibility is calibrated to the nature of the claim — ritual matters vs. punitive matters, and whether the act remains within his legal authority.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Can a Father Disqualify His Daughter from Priesthood?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But a father <b>can</b> marry his minor daughter to a <i>ḥalal</i>, disqualifying her from priesthood! So he should be believed about captivity too.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Dostai b. Yehuda</div><div class="speech">Israelite women are a <b>'ritual bath of purity'</b> for <i>ḥalal</i> status — she is <b>not disqualified</b> by marrying a <i>ḥalal</i>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But he can marry her to a <b>mamzer</b>, disqualifying her!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Akiva</div><div class="speech">Betrothal <b>does not take effect</b> with those subject to a prohibition — including a <i>mamzer</i>. So the father cannot disqualify her this way either.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But per R' Simai, R' Akiva agrees betrothal works for a <b>widow to a High Priest</b> — that produces <i>ḥalalim</i>, not <i>mamzerim</i>!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yeshevav</div><div class="speech">R' Akiva holds <b>all</b> forbidden unions produce <i>mamzerim</i> — even a widow to a High Priest. So betrothal never takes effect for any prohibition.</div></div></div><div class="callout" style="margin-top:20px"><strong>RESOLUTION</strong> The Mishna follows a combination of R' Dostai, R' Akiva, and R' Yeshevav — under which a father has <b>no mechanism</b> to disqualify his daughter, so he is not believed when claiming she was taken captive.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Migo (Why Would I Lie?) — R' Yehuda HaNasi vs. R' Natan</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A man says: <b>"I have children"</b><br/>(exempting wife from <i>yibum</i>)</div><div class="flow-arrow">↓</div><div class="flow-box question">We apply <b><i>migo</i></b>: If he were lying,<br/>he could simply divorce her instead</div><div class="flow-arrow">↓</div><div class="flow-box action">At death, he now says:<br/><b>"I have no children"</b></div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Yehuda HaNasi</div><div class="flow-box result-good"><i>Migo</i> = like <b>witnesses</b><br/>→ Can uproot presumption<br/>→ She is <b>exempt</b> from <i>yibum</i><br/>(he cannot retract)</div></div><div class="flow-col"><div class="flow-label">R' Natan</div><div class="flow-box result-bad"><i>Migo</i> = like a <b>presumption</b><br/>→ Cannot uproot another presumption<br/>→ Original status <b>reinstated</b><br/>(she needs <i>yibum</i>)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY DISPUTE</strong> The core question: Is the logical argument of <i>migo</i> as strong as actual witness testimony, or merely equivalent to a legal presumption (<i>ḥazaka</i>)?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Unspecified Betrothal: Who Is Included?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#f8d7da"><h3 style="color:#e74c3c">Adult Daughters</h3><ul><li>❌ NOT included in unspecified betrothal</li><li>Father has no authority to betroth them</li><li>Even if she appointed him as agent</li><li>Principle: A person does not set aside a mitzva imposed upon him for one not imposed upon him</li></ul></div><div class="compare-box" style="border-top-color:#d4edda"><h3 style="color:#4caf50">Minor Daughters</h3><ul><li>✅ INCLUDED in unspecified betrothal</li><li>Father retains full betrothal rights</li><li>Father keeps the betrothal money</li><li>Betrothal is the father's obligation/privilege</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> A person does not set aside a matter from which he derives benefit (betrothing minor — he keeps money) to perform one from which he does not (betrothing adult — she keeps money).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Two Groups of Daughters: R' Meir vs. R' Yosei</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Scenario</div><div class="speech">Father has daughters from <b>two wives</b>. He says: <b>"I betrothed my elder daughter"</b> but doesn't know which one he meant.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Meir</div><div class="speech">All are <b>forbidden</b> except the <b>youngest of the younger group</b> — she certainly cannot be called 'elder.'</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Yosei</div><div class="speech">All are <b>permitted</b> except the <b>eldest of the older group</b> — 'elder' without specification means the absolute oldest.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Scenario</div><div class="speech">If he says: <b>"I betrothed my younger daughter"</b> but doesn't know which one—</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Meir</div><div class="speech">All forbidden except the <b>eldest of the older group</b> — she certainly isn't 'younger.'</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Yosei</div><div class="speech">All permitted except the <b>youngest of the younger group</b> — 'younger' means the absolute youngest.</div></div></div><div class="callout" style="margin-top:20px"><strong>CORE DISPUTE</strong> R' Meir treats unresolved doubt strictly — anyone who <i>might</i> be the one is forbidden. R' Yosei reads 'elder' and 'younger' as referring to the absolute eldest/youngest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 64 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Father's Claim</b><br/>About daughter's status</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px;"><b>Test: In His Power?</b><br/>Can he currently perform this act?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#4caf50; padding:10px; border-radius:8px;">✅ <b>Credible</b><br/>Betrothal of minor<br/>Divorce of minor</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1616; color:#e74c3c; padding:10px; border-radius:8px;">❌ <b>Not Credible</b><br/>Adult betrothal/divorce<br/>Captivity claim</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; color:#d4a5ff; padding:12px; border-radius:8px;"><b>Unspecified Betrothal</b><br/>Adults excluded · R' Meir: doubt = strict · R' Yosei: plain meaning</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 64a-64b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 64a-64b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../63/">← Daf 63</a><a href="../65/">Daf 65 →</a></div>
+</body>
+</html>

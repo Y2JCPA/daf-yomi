@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 52 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Kiddushin 52</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין נב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ YA"L KGA"M — Six cases where halakha follows Abaye over Rava<br>
+    🧺 Five Women Mishna — Four halakhot derived by Rav from one case<br>
+    🚫 Stolen Property — Betrothal with stolen items is invalid<br>
+    🌾 Sabbatical Year — Betrothal with shevi'it produce is valid<br>
+    🏛️ Sacred Offerings — Betrothal with kodashim and ma'aser sheni<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Kiddushin 52: Limits of Betrothal — What Property Can Effect Marriage?</h2>
+  
+  <div class="callout"><strong>DAF OVERVIEW</strong> The Gemara concludes the Abaye-Rava dispute on <b>kiddushin she'eino masurin l'biah</b> (betrothal not given to consummation), ruling for Abaye in one of six famous exceptions. It then analyzes the mishna of <b>five women and a basket of figs</b>, deriving laws about Sabbatical produce, stolen property, and agency in betrothal. Multiple cases illustrate that <b>betrothal with stolen property fails</b>. The new mishna addresses betrothal with <b>sacred offerings, ma'aser sheni, and hekdesh</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Refutation of Rava: 5 Sons & 5 Daughters</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Baraita (Tavyumei)</div><div class="speech">If a father says <b>'One of your daughters is betrothed to one of my sons'</b> — each daughter needs <b>5 gittin</b> (bills of divorce). If one son dies, she needs <b>4 gittin + ḥalitza</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">This betrothal is <b>not given to consummation</b> — no specific couple can marry! It should be <b>invalid</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The baraita says 'one of your daughters to one of my sons' — they were <b>never identified</b>. Yet the betrothal is valid! <b>Conclusive refutation of Rava.</b></div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Abaye</div><div class="speech">Betrothal <b>not given to consummation is still valid</b>. The halakha follows me.</div></div></div><div class="callout" style="margin-top:20px"><strong>HALAKHA</strong> The refutation of Rava is <b>teyuvta</b> — conclusive. Kiddushin that cannot lead to consummation is nonetheless valid betrothal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>YA"L KGA"M: Six Cases Where Halakha Follows Abaye</h2>
+  
+  <table><tr><th>Letter</th><th>Case</th><th>Topic</th></tr><tr><td><b>י</b> Yod</td><td>יאוש שלא מדעת</td><td>Unconscious despair of recovering lost property</td></tr><tr><td><b>ע</b> Ayin</td><td>עדים זוממין</td><td>Conspiring witnesses disqualified retroactively</td></tr><tr><td><b>ל</b> Lamed</td><td>לחי העומד מאליו</td><td>A side post standing on its own for eruv</td></tr><tr><td><b>ק</b> Kuf</td><td>קידושין שאינן מסורין לביאה</td><td>Betrothal not given to consummation <b>(this daf!)</b></td></tr><tr><td><b>ג</b> Gimmel</td><td>גילוי דעת בגט</td><td>Revealing intent with a bill of divorce</td></tr><tr><td><b>מ</b> Mem</td><td>מומר</td><td>An apostate who sins rebelliously</td></tr></table><div class="callout" style="margin-top:20px"><strong>RULE</strong> In all disputes between Abaye and Rava, <b>halakha follows Rava</b> — except in these six cases, remembered by the mnemonic <b>יע"ל קג"ם</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rav's Four Halakhot from the Five Women Mishna</h2>
+  
+  <div class="process-bar"><div class="process-step">🧺 A man gathered figs <b>from the women's field</b> during <b>Shevi'it</b> and betrothed all five women</div><div class="process-arrow">↓</div><div class="process-step highlight">🌾 <b>Halakha 1:</b> Betrothal with <b>Sabbatical Year produce is valid</b> — not limited to eating only</div><div class="process-arrow">↓</div><div class="process-step highlight">🚫 <b>Halakha 2:</b> Betrothal with <b>stolen property is invalid</b> — even if stolen from her</div><div class="process-arrow">↓</div><div class="process-step highlight">👩‍👩‍👧 <b>Halakha 3:</b> A woman can serve as <b>agent to accept betrothal</b> for another — even becoming her rival wife</div><div class="process-arrow">↓</div><div class="process-step">❓ <b>Halakha 4:</b> Betrothal not given to consummation — Rav was <b>uncertain</b> whether to follow Abaye or Rava</div></div><div class="callout" style="margin-top:20px"><strong>KEY PROOF</strong> The mishna specifies the figs were <b>Shevi'it produce from their field</b> — implying only ownerless Shevi'it produce works, but ordinary stolen property would <b>not</b> effect betrothal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Betrothal with Stolen Property: Three Cases</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A man takes property <b>not his own</b> and uses it to betroth a woman</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Woman Washing Feet</div><div class="flow-box result-bad">Man grabs <b>dinars from another person</b>, throws them to her.<br/>Rava: Owner has <b>not despaired</b>.<br/><b>❌ Not betrothed.</b></div></div><div class="flow-col"><div class="flow-label">Sharecropper's Onions</div><div class="flow-box result-bad">Takes a <b>handful (moza)</b> without permission.<br/>Rava: Who gave you these?<br/><b>❌ Not betrothed.</b><br/><em>But a full bundle — permitted, as they split the crop.</em></div></div><div class="flow-col"><div class="flow-label">Brewer's Sediment</div><div class="flow-box result-bad">Uses <b>beer sediment</b> for betrothal. Owner says 'give her the better stuff.'<br/>Rava: Owner spoke from <b>embarrassment</b>, not consent.<br/><b>❌ Not betrothed.</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> In all three cases, Rava rules the woman is <b>not betrothed</b>. Stolen property cannot effect kiddushin — even apparent owner consent may be mere embarrassment.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Teruma Analogy: When Does Owner Silence = Consent?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Teruma (Tithing)</h3><ul><li>Someone separates teruma from another's produce <b>without permission</b></li><li>Owner says: 'Take the better-quality produce instead'</li><li>If better produce <b>actually exists</b> → teruma is valid (sincere approval)</li><li>If it <b>doesn't exist</b> → teruma invalid (sarcastic)</li><li>Owner was <b>obligated</b> to separate teruma anyway — so consent is assumed</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3e"><h3 style="color:#9b59b6">Betrothal</h3><ul><li>Brewer takes sediment to betroth a woman</li><li>Owner says: 'Why not give her the better sediment?'</li><li>Owner was <b>NOT obligated</b> to help the brewer betroth anyone</li><li>Comment stems from <b>embarrassment</b>, not genuine consent</li><li>Therefore: <b>Not valid betrothal</b></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>DISTINCTION</strong> Owner silence or apparent approval counts as consent for <b>teruma</b> (a mitzva the owner must anyway perform), but <b>not for betrothal</b>, where the owner gains nothing and may simply feel too embarrassed to protest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 52 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9;"><b>Abaye vs. Rava:</b> Kiddushin not given to consummation</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50;"><b>Rava refuted conclusively</b> — halakha follows Abaye (YA"L KGA"M)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left:3px solid #c9a84c;"><b>Five Women Mishna:</b> Rav derives 4 halakhot</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-top:3px solid #4caf50;"><b>Valid betrothal:</b><br/>• Shevi'it produce<br/>• Pre-arranged + acceptance</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1620; border-top:3px solid #e74c3c;"><b>Invalid betrothal:</b><br/>• Stolen property<br/>• Kodashim / ma'aser sheni<br/>• Consent from embarrassment</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 52a-52b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 52a-52b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../51/">← Daf 51</a><a href="../53/">Daf 53 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 2 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💍</div>
+  <h1>Kiddushin 2</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין ב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💍 Three Ways of Betrothal — Money, document, or intercourse<br>
+    ⚖️ Beit Shammai vs. Beit Hillel — Minimum value for betrothal<br>
+    📜 Gezera Shava — Deriving money-betrothal from Ephron's field<br>
+    🔒 Why 'Kiddushin'? — Betrothal as consecration<br>
+    🗣️ Language of the Mishna — Why 'a woman is acquired' not 'a man acquires'<br>
+    ✡️ Grammatical Gender of Derekh — Feminine vs. masculine usage<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Kiddushin Daf 2 — How Betrothal Works</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Mishna:</b> A woman is acquired in <b>3 ways</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">💰 Money</div><div class="flow-box action">Beit Shammai: 1 dinar<br>Beit Hillel: 1 peruta</div></div><div class="flow-col"><div class="flow-label">📜 Document</div><div class="flow-box action">Written betrothal deed</div></div><div class="flow-col"><div class="flow-label">🤝 Intercourse</div><div class="flow-box action">With intent of betrothal</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Released in 2 ways:</b><br>Bill of divorce (get) or death of husband</div></div><div class="callout" style="margin-top:20px"><strong>Key Derivation</strong> The term 'acquired' (kinyan) is used because betrothal-through-money is derived from Abraham's purchase of Ephron's field via a gezera shava.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Mishna: Three Ways of Acquisition & Two Ways of Release</h2>
+  
+  <table><tr><th>Category</th><th>Method</th><th>Details</th></tr><tr><td>Betrothal</td><td>💰 Money (Kesef)</td><td>Beit Shammai: 1 dinar; Beit Hillel: 1 peruta (1/8 Italian issar)</td></tr><tr><td>Betrothal</td><td>📜 Document (Shtar)</td><td>A written betrothal document</td></tr><tr><td>Betrothal</td><td>🤝 Intercourse (Bi'ah)</td><td>With explicit intent of betrothal</td></tr><tr><td>Release</td><td>📄 Bill of Divorce (Get)</td><td>Husband gives a get</td></tr><tr><td>Release</td><td>⚰️ Death of Husband</td><td>Marriage ends automatically</td></tr><tr><td>Yevama (Levirate)</td><td>🤝 Intercourse only</td><td>Acquired by yavam; released by ḥalitza or yavam's death</td></tr></table><div class="callout" style="margin-top:20px"><strong>Note</strong> The peruta (Beit Hillel's minimum) is defined as 1/8 of an Italian issar — a tiny silver coin.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Does the Mishna Say 'Acquired' (Nikneit)?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Why does our Mishna use the language of <b>acquisition</b> (nikneit), while the next chapter (42a) uses <b>betrothal</b> (mekadesh)?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara Answers</div><div class="speech">Because the tanna wanted to teach about betrothal through <b>money</b> — the standard means of acquisition.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">How do we derive that <b>money</b> effects betrothal?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara Answers</div><div class="speech">A <b>gezera shava</b> (verbal analogy): <i>'When a man <b>takes</b> a woman'</i> (Deut. 24:1) ↔ <i>'I will give money for the field; <b>take</b> it from me'</i> (Gen. 23:13)</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara Answers</div><div class="speech">Just as Ephron's field was acquired with money, so too a woman can be <b>acquired</b> (betrothed) with money.</div></div></div><div class="callout" style="margin-top:20px"><strong>Gezera Shava</strong> The shared word 'kicha' (taking) links the marriage verse to Abraham's purchase of the Cave of Machpelah from Ephron the Hittite.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Gezera Shava: From Ephron's Field to Betrothal</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Deuteronomy 24:1</b><br><i>'When a man <b>takes</b> (yikach) a woman'</i></div><div class="flow-arrow">↓</div><div class="flow-box question">Shared root: <b>ל-ק-ח</b> (taking)</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Genesis 23:13</b><br><i>'I will give <b>money</b> for the field; <b>take</b> it from me'</i></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Genesis 25:10</b><br><i>'The field which Abraham <b>acquired</b>'</i><br>+ <b>Jeremiah 32:44</b><br><i>'They shall <b>acquire</b> fields with <b>money</b>'</i></div><div class="flow-arrow">↓</div><div class="flow-box result-good">∴ <b>Betrothal can be effected with money</b><br>and is rightly called an <b>acquisition (kinyan)</b></div></div><div class="callout" style="margin-top:20px"><strong>Conclusion</strong> The Torah's use of 'taking' for both marriage and monetary purchase establishes money as a valid method of betrothal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Why Is Betrothal Called 'Kiddushin' (Consecration)?</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">קידושין — שהוא אוסרה על כל העולם כהקדש</div><div class="callout"><strong>Key Concept</strong> The Sages call betrothal <b>kiddushin</b> (קידושין) — literally <b>consecration</b> — because through betrothal, <b>the husband renders her forbidden to all other men</b>, like consecrated property (<i>hekdesh</i>) that is set apart from ordinary use.<br><br>The Torah's language is <b>kicha</b> (taking); the Sages' language is <b>kiddushin</b> (sanctification).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Why 'A Woman Is Acquired' — Not 'A Man Acquires'?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Answer 1: Structural</h3><ul><li>The latter clause teaches: 'And she acquires herself' (release from marriage)</li><li>Since the end of the Mishna focuses on her — the beginning does too</li><li>Keeps the woman as subject throughout for consistency</li></ul></div><div class="compare-box" style="border-top-color:#3a1a2e"><h3 style="color:#e74c3c">Answer 2: Consent</h3><ul><li>'A man acquires' would imply he can betroth her against her will</li><li>'A woman IS acquired' implies: with her consent — yes; without — no</li><li>The passive voice signals that her agreement is required</li></ul></div><div class="compare-box" style="border-top-color:#2e2e1a"><h3 style="color:#e67e22">Why Not 'He Transfers'?</h3><ul><li>Because one method of release is the husband's death</li><li>In that case, it is Heaven — not the husband — that 'transfers' her freedom</li><li>So the Mishna cannot generalize with active male language</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Practical Halakha</strong> A woman's consent is required for betrothal to be valid. This is derived from the Mishna's passive phrasing.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 2 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Mishna</b><br>A woman is acquired in 3 ways</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>💰 Money</b><br>Gezera shava from Ephron's field<br>B"S: dinar / B"H: peruta</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; border-left: 3px solid #9b59b6;"><b>📜 Document</b><br>Written betrothal deed</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2e1a; border-left: 3px solid #e67e22;"><b>🤝 Intercourse</b><br>With intent of betrothal</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3a; border-left: 3px solid #c9a84c;"><b>Why 'Acquired'?</b><br>Money = kinyan language<br><b>Why 'Kiddushin'?</b><br>Renders her forbidden like hekdesh</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a1a1a; border-left: 3px solid #e74c3c;"><b>Key Insight:</b> 'A woman <i>is</i> acquired'<br>= only with her consent</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 2a-2b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 2a-2b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">Daf 3 →</a></div>
+</body>
+</html>

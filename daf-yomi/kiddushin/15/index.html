@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 15 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👂</div>
+  <h1>Kiddushin 15</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין טו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👂 Ear Piercing — Verbal analogy deriving that a Hebrew slave's right ear is pierced<br>
+    🎁 Severance Gift — Who receives ha'anaka and exclusions from 'to him'<br>
+    👩 Canaanite Maidservant — Whether a self-sold slave's master provides one<br>
+    🔗 Creditor Chains — R' Natan's principle of redirecting debts<br>
+    🏛️ Sold to a Gentile — Redemption by relatives vs. after six years<br>
+    ⚖️ Freedom vs. Slavery — R' Yosei HaGelili and R' Akiva on redemption outcomes<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>The Ear, the Gift & the Redemption: Parsing Every Word</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Tanna</div><div class="speech">The word <b>'his ear'</b> teaches that one who <b>sells himself</b> may not be pierced</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Elazar</div><div class="speech"><b>'His ear'</b> teaches piercing applies to <b>his ear but not her ear</b> — only male slaves, not maidservants</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Tanna</div><div class="speech">I derive that from <b>'the slave shall say'</b> — a slave, not a maidservant</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Elazar</div><div class="speech">I need that verse for a different rule: he must declare his wish <b>while still a slave</b></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY THEME</strong> This daf demonstrates how Tannaim derive entirely different halakhot from the same words, each building a coherent system from subtle textual cues.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Deriving Right Ear for Piercing</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Torah says <b>'his ear'</b> regarding piercing a Hebrew slave (Exodus 21:6)</div><div class="flow-arrow">↓</div><div class="flow-box question">Which ear? The Torah doesn't specify right or left</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Gezera shava</b> (verbal analogy): 'Ear' here ↔ 'Right ear' of leper purification (Leviticus 14:14)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Just as the <b>leper's right ear</b> is specified, so too the slave's <b>right ear</b> is pierced</div></div><div class="callout" style="margin-top:20px"><strong>R' ELIEZER</strong> This gezera shava is the primary purpose of the word 'ear' in the piercing verse, linking it to the leper's right ear.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>What Does 'His Ear' Exclude?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Tanna</div><div class="speech">If 'ear' alone suffices for the gezera shava, why say <b>'his ear'</b>? The extra word excludes a <b>self-sold slave</b> from piercing</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Elazar</div><div class="speech"><b>'His ear'</b> — his, not <b>hers</b>. Only a <b>male</b> slave can be pierced, not a maidservant</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Tanna</div><div class="speech">I exclude maidservants from <b>'the slave shall say'</b> (Exodus 21:5) — <i>slave</i>, not maidservant</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Elazar</div><div class="speech">I need that verse to teach: he must say it <b>while still a slave</b>, not after emancipation</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">First Tanna</div><div class="speech">I derive both from <b>'slave'</b> vs. <b>'the slave'</b> — the definite article teaches the additional halakha</div></div></div><div class="callout" style="margin-top:20px"><strong>PATTERN</strong> Each Sage accounts for every word — what one derives from 'his ear,' the other derives from 'the slave,' and vice versa.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Disputed Derivations: 'To Him' (לוֹ)</h2>
+  
+  <table><tr><th>Verse with 'To Him'</th><th>First Tanna's Reading</th><th>R' Elazar's Reading</th></tr><tr><td><b>Severance gift</b>: 'You shall give to him' (Deut. 15:14)</td><td>To him — court-sold slave, <b>not</b> self-sold</td><td>To him — to the slave himself, <b>not</b> to his creditor</td></tr><tr><td><b>Canaanite maidservant</b>: 'If his master give to him a wife' (Ex. 21:4)</td><td>To him — court-sold, <b>not</b> self-sold</td><td>To him — even <b>against his will</b></td></tr><tr><td><b>Piercing</b>: 'His ear' (Ex. 21:6)</td><td>Excludes <b>self-sold</b> slave</td><td>Excludes <b>female</b> slave</td></tr></table><div class="callout" style="margin-top:20px"><strong>NOTE</strong> The First Tanna consistently uses 'to him' to exclude the self-sold slave, while R' Elazar derives independent halakhot from each occurrence.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Slave Sold to a Gentile: Redemption Paths</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Rabbi Yehuda HaNasi</h3><ul><li>Redeemed <b>only</b> through relatives</li><li>NOT released after six years of labor</li><li>'By any of these' (Lev. 25:54) is limiting</li><li>Rejects the gezera shava of 'hired worker'</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Dissenting Tannaim</h3><ul><li>Accept the verbal analogy: 'hired worker' ↔ 'hired worker'</li><li>One sold to a gentile IS released after six years</li><li>Derives additional halakhot from the analogy</li><li>R' Yosei HaGelili and R' Akiva disagree on details</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>A FORTIORI</strong> Rabbi Yehuda HaNasi argues: if a court-sold slave (who can't be redeemed by relatives) goes free after six years, certainly a gentile-sold slave (who CAN be redeemed by relatives) should too — unless the verse specifically excludes it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Redemption from a Gentile: To Freedom or Slavery?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">R' Yosei HaGelili</div><div class="speech">Redeemed <b>by relatives</b> → to <b>freedom</b><br>Redeemed <b>by others</b> → to <b>slavery</b> (must work off the redemption cost)</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Akiva</div><div class="speech">Redeemed <b>by relatives</b> → to <b>slavery</b> (indentured to relatives)<br>Redeemed <b>by others</b> → to <b>freedom</b></div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">R' Yosei HaGelili</div><div class="speech">I compare <b>relatives' redemption</b> to <b>self-redemption</b> (juxtaposed before it) — both lead to freedom</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Akiva</div><div class="speech">I compare <b>others' redemption</b> to <b>self-redemption</b> (juxtaposed after it) — both lead to freedom</div></div></div><div class="callout" style="margin-top:20px"><strong>HERMENEUTIC DISPUTE</strong> R' Yosei HaGelili interprets based on juxtaposition to the PRECEDING phrase; R' Akiva interprets based on juxtaposition to the FOLLOWING phrase.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 15 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>Torah Text</b>: Precise wording of slave laws</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>First Tanna</b>: 'To him' consistently excludes the <b>self-sold slave</b> from piercing, severance gift, and Canaanite maidservant</div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a3e; color:#fff; padding:10px; border-radius:8px;"><b>R' Elazar</b>: Each 'to him' teaches an <b>independent halakha</b> — male not female, to slave not creditor, even against his will</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>Sold to Gentile</b>: Redeemed by relatives (Lev. 25:49)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>R' Yosei HaGelili</b>: By relatives → <b>freedom</b>; by others → <b>slavery</b></div></div><div class="flow-col"><div class="flow-box" style="background:#2a1a3e; color:#fff; padding:10px; border-radius:8px;"><b>R' Akiva</b>: By relatives → <b>slavery</b>; by others → <b>freedom</b></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 15a-15b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 15a-15b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../14/">← Daf 14</a><a href="../16/">Daf 16 →</a></div>
+</body>
+</html>

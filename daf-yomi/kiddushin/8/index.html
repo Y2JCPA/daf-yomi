@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 8 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💰</div>
+  <h1>Kiddushin 8</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין ח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💰 Set Value — Must betrothal money have a clearly defined value?<br>
+    ⚖️ Hebrew Slave Redemption — Money vs. grain and vessels<br>
+    👶 Pidyon HaBen — Redeeming firstborn with non-monetary items<br>
+    🔒 Collateral — Can betrothal be effected through a pledge?<br>
+    🔥 Rejection of Betrothal — Throwing money into sea or fire<br>
+    🪨 Third-Party Payment — Giving betrothal money to father or stranger<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Must Betrothal Use an Item of Set Value?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech">An item used for betrothal must have a <b>clearly defined value</b> (shaveh kesef katzuv), just like money itself.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">No — any item worth a <b>peruta</b> suffices. The baraita about grain/vessels refers to <b>symbolic exchange (chalipin)</b>, not set value.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech">Proof from Hebrew slave: grain and vessels worth a peruta still can't redeem because their value <b>isn't set</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Rejected — the baraita may teach that items <b>under a peruta</b> can't acquire even though their benefit is immediately available.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> Does betrothal require an item with a fixed, appraised value — or is any item worth at least a peruta sufficient?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Set Value Requirement: Rav Yosef vs. Rabba</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech">From Leviticus 25:51 — a Hebrew slave is redeemed with <b>money</b>, not grain or vessels. This proves an item must have a <b>set, defined value</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">The verse 'the price of his redemption' actually <b>includes</b> all equivalents of money. The exclusion of grain/vessels means only that <b>chalipin (symbolic exchange)</b> doesn't work for slaves.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">But according to <b>Rav Naḥman</b>, produce can't effect chalipin at all — so why does the baraita mention grain?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Revised answer: The grain and vessels are <b>worth less than a peruta</b>. The baraita uses the style of <b>'lo tzrikha'</b> — it's not necessary to teach about money, but grain's immediate benefit might mislead us.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Term</strong> <b>Shaveh Kesef (שווה כסף)</b> — 'worth money.' The debate is whether this must be a <i>known, set amount</i> or merely any positive value.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Redeeming a Firstborn Son (Pidyon HaBen)</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Man says to a Kohen:<br><b>'This calf/cloak is for my son's redemption'</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Without stating value</div><div class="flow-box result-bad"><b>Not redeemed</b><br>He 'has said nothing'</div></div><div class="flow-col"><div class="flow-label">States 'worth 5 sela'</div><div class="flow-box result-good"><b>Son is redeemed</b><br>Value is set and sufficient</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Gemara asks: Is this proof that <b>set value</b> is required?</div><div class="flow-arrow">↓</div><div class="flow-box action">Rejected — the first case is where the item is <b>not actually worth 5 sela</b>. The second case is where the <b>Kohen accepts</b> it at that value.</div></div><div class="callout" style="margin-top:20px"><strong>Practical Case</strong> Rav Kahana (a Kohen) accepted a cloth for pidyon haben, saying: <b>'For me, this is worth 5 sela.'</b> Rav Ashi limits this to distinguished individuals who actually need such a cloth.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Betrothal with Collateral (Mashkon)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#e74c3c">Rav Naḥman's Ruling</h3><ul><li>Man says: 'Be betrothed with 100 dinars' and gives collateral</li><li>There is no 100 dinars here — money not yet given</li><li>There is no collateral here — it's security, not a gift</li><li>Result: She is NOT betrothed</li></ul></div><div class="compare-box" style="border-top-color:#1a2e1a"><h3 style="color:#4caf50">Baraita's Exception</h3><ul><li>Collateral belonging to OTHER people in his possession</li><li>Based on R' Yitzḥak: a creditor acquires collateral</li><li>Proof: Returning a pledge is called 'righteousness' (Deut. 24:13)</li><li>He has rights to it — so he CAN betroth with it</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Distinction</strong> His OWN collateral = merely a security, not a transfer of value. Someone ELSE's collateral in his hands = he has acquired rights to it and can use it for betrothal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Woman's Response to Betrothal Money</h2>
+  
+  <table><tr><th>Her Action</th><th>Betrothed?</th><th>Reasoning</th></tr><tr><td>Throws money <b>into the sea or fire</b></td><td>❌ No</td><td>Money is destroyed — no acquisition took place</td></tr><tr><td>Throws money <b>before him</b> (not destroyed)</td><td>❌ No</td><td>She is saying: 'I don't want your betrothal'</td></tr><tr><td>Says: <b>'Give to my/your father'</b></td><td>❌ No</td><td>Directing money elsewhere = not accepting it for herself</td></tr><tr><td>Says: <b>'Give to my/your father on condition he accepts for me'</b></td><td>✅ Yes</td><td>Father acts as her agent — she is accepting through him</td></tr><tr><td>Says: <b>'Give to so-and-so'</b></td><td>❌ No</td><td>Unrelated party — clearly not accepting for herself</td></tr><tr><td>Says: <b>'Give to so-and-so on condition he accepts for me'</b></td><td>✅ Yes</td><td>Even a stranger can serve as her agent if stipulated</td></tr></table><div class="callout" style="margin-top:20px"><strong>Why Both Cases?</strong> The Gemara needs BOTH rulings: we might think a father would hold money on her behalf (so no betrothal without stipulation is novel), and we might think giving to a stranger = a gift from her (so betrothal with stipulation is novel).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Rock Dilemma</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">הניחם על הסלע — אם הסלע שלה, מקודשת</div><div class="callout"><strong>Halakhic Puzzle</strong> If she says <b>'Place them on a rock'</b> — she is <b>not betrothed</b>. If the rock is <b>hers</b> — she <b>is betrothed</b>, because placing money in her domain is like giving it to her hand.<br><br><b>Rav Beivai's unresolved dilemma:</b> What if the rock belongs to <b>both of them</b>? Is placing money on shared property sufficient for acquisition? <b>Teiku</b> — the question stands.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 8 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Man offers betrothal money/item</b><br>Must be worth at least a peruta</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3e; color:#e0e0e0; padding:12px; border-radius:8px; border:1px solid #4a90d9;"><b>Is the value clearly defined?</b><br>Rav Yosef: must be set value<br>Rabba: any item worth a peruta suffices</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#e0e0e0; padding:12px; border-radius:8px;"><b>She accepts</b><br>(takes it, or directs to agent 'on condition he accepts for me')<br>→ Betrothed ✅</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#e0e0e0; padding:12px; border-radius:8px;"><b>She rejects</b><br>(throws into sea, directs to others without condition, destroys it)<br>→ Not betrothed ❌</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Special cases:</b> Collateral from others may work (R' Yitzḥak). Placing on her rock = acceptance. Shared rock = unresolved.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 8a-8b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 8a-8b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../7/">← Daf 7</a><a href="../9/">Daf 9 →</a></div>
+</body>
+</html>

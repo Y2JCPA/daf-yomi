@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 10 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💍</div>
+  <h1>Kiddushin 10</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין י׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⚖️ Fine of Rapist — Does non-virginity exempt the fine?<br>
+    📖 'Levado' Derivation — What the word 'only' teaches<br>
+    ⏳ Beginning vs. End of Intercourse — When does betrothal take effect?<br>
+    💒 Betrothal vs. Marriage — Does intercourse effect marriage or only betrothal?<br>
+    🍞 Teruma & Betrothal — Can a priest's betrothed eat teruma?<br>
+    🔗 A Fortiori Inference — Canaanite maidservant comparison<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Kiddushin 10: When Does Intercourse Take Legal Effect?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>R' Zeira:</b> R' Yehuda HaNasi concedes rapist/seducer pays fine even for non-virgin</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Key Question:</b> Does the <em>beginning</em> or <em>end</em> of intercourse effect acquisition?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Ameimar in name of Rava:</b> Completion of intercourse effects acquisition</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Second Dilemma:</b> Does intercourse effect <em>betrothal only</em> or also <em>marriage</em>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Effects Marriage</div><div class="flow-box result-good">He inherits her property<br>Priest becomes impure to bury her<br>He nullifies her vows alone</div></div><div class="flow-col"><div class="flow-label">Effects Betrothal Only</div><div class="flow-box result-bad">No inheritance rights<br>No impurity obligation<br>Cannot nullify vows alone</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Sugya</strong> The Gemara explores the precise legal mechanics of betrothal through intercourse — both its timing and its scope.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Fine of Rapist/Seducer for Non-Virgin</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Zeira</div><div class="speech"><b>R' Yehuda HaNasi concedes</b> that rapist and seducer pay the fine even for a non-virgin</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Why is the fine different from the death penalty? For death — they are treated as if she were a non-virgin betrothed woman. But for the fine — they pay as if she were a virgin?</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">The verse says <b>"the man <em>only</em>"</b> (Deut. 22:25) — <em>levado</em> indicates only one man is executed for intercourse with a virgin</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Oshaya</div><div class="speech">"Both of them shall die" (Deut. 22:22) — only when <b>both</b> deserve punishment. If one is a minor, neither is executed</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">R' Yonatan</div><div class="speech">"The man <em>only</em>" teaches that sometimes <b>only one</b> of them is liable to the death penalty</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Derivation</strong> The word <b>levado</b> ('only') is used differently by R' Yehuda HaNasi and the Rabbis, yielding different halakhic conclusions about fines vs. capital punishment.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>When Does Intercourse Effect Betrothal?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Dilemma:</b> Does the <em>beginning</em> (ha'ara'a) or <em>end</em> (gemar bi'ah) of intercourse effect acquisition?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Case 1:</b> He begins intercourse, she reaches out and accepts kiddushin from another man mid-act</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Beginning Effects</div><div class="flow-box result-good">She is betrothed to the <b>first</b> man — the second's kiddushin is meaningless</div></div><div class="flow-col"><div class="flow-label">End Effects</div><div class="flow-box result-bad">She is betrothed to the <b>second</b> man — the first hasn't completed the act</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Case 2:</b> A <em>Kohen Gadol</em> (High Priest) betroths a virgin through intercourse — he may only marry a virgin</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Beginning Effects</div><div class="flow-box result-good">Valid — she is still a virgin at moment of betrothal</div></div><div class="flow-col"><div class="flow-label">End Effects</div><div class="flow-box result-bad">Problem — she is no longer a virgin at the moment of betrothal</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> <b>Ameimar in the name of Rava:</b> One who engages in intercourse intends the <em>completion</em> of the act — acquisition takes effect at the end.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Betrothal Only vs. Marriage Through Intercourse</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">If Intercourse = Marriage</h3><ul><li>✅ He inherits her property upon her death</li><li>✅ If a Kohen, he becomes tamei to bury her</li><li>✅ He can nullify her vows alone (without her father)</li><li>✅ She may eat teruma if married to a Kohen</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">If Intercourse = Betrothal Only</h3><ul><li>❌ No inheritance rights</li><li>❌ No impurity obligation for burial</li><li>❌ Cannot nullify her vows alone</li><li>❌ Needs chuppah before eating teruma</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Stakes</strong> This question has major practical consequences for property rights, ritual purity, and religious authority over vows.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Abaye's Proof from the Mishna (Ketubot 46b)</h2>
+  
+  <table><tr><th>Father's Rights (Betrothal)</th><th>Husband's Additional Rights (Marriage)</th></tr><tr><td>Receives kiddushin (money, document, or intercourse)</td><td>Enjoys profits of her property during her lifetime</td></tr><tr><td>Rights to items she finds</td><td>Inherits her property</td></tr><tr><td>Rights to her earnings</td><td>Becomes impure to bury her (if Kohen)</td></tr><tr><td>Nullifies her vows</td><td>Nullifies her vows alone</td></tr><tr><td>Accepts her get (bill of divorce)</td><td>Full marital obligations</td></tr></table><div class="callout" style="margin-top:20px"><strong>Abaye's Argument</strong> The Mishna lists intercourse under betrothal, then <em>separately</em> says 'if she married' — implying intercourse effects <b>only betrothal</b>. The Gemara rejects this: 'if she married' may refer only to money/document betrothal.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Ben Bag Bag & R' Yehuda ben Beteira: Teruma for the Betrothed</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Ben Bag Bag</div><div class="speech">I heard you say a non-priest's daughter betrothed to a Kohen may eat <b>teruma</b>. Is this true?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yehuda ben Beteira</div><div class="speech">Don't you know the <em>kal va'chomer</em>? A Canaanite maidservant — intercourse doesn't let her eat teruma, yet <b>money</b> does. A betrothed woman — intercourse <em>does</em> let her eat teruma, so surely <b>money</b> should too!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yehuda ben Beteira</div><div class="speech">But what can I do? The <b>Sages decreed</b> she may not eat teruma until she enters the <em>chuppah</em> (wedding canopy)</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">This proves intercourse effects <b>marriage</b> — otherwise why would R' Yehuda ben Beteira be so certain intercourse allows teruma?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Nachman bar Yitzchak</div><div class="speech">No — he speaks of intercourse <em>with</em> a chuppah vs. money <em>without</em> a chuppah. The kal va'chomer still works.</div></div></div><div class="callout" style="margin-top:20px"><strong>Ulla's Reason</strong> The Sages prohibited a betrothed woman from eating teruma lest she share it with her father's household (non-priests) while still living at home.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 10 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>Fine of Rapist/Seducer</b><br>R' Yehuda HaNasi: paid even for non-virgin</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left:3px solid #9b59b6; padding:10px;"><b>Timing of Betrothal</b><br>Beginning or end of intercourse?</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px;"><b>Ameimar/Rava:</b> End of intercourse effects acquisition</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a2e; border-left:3px solid #e67e22; padding:10px;"><b>Betrothal or Marriage?</b><br>Does intercourse effect nisuin or only eirusin?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:1px solid #4caf50; padding:8px;"><b>If Marriage:</b> Inherits, becomes tamei, nullifies vows</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border:1px solid #e74c3c; padding:8px;"><b>If Betrothal Only:</b> None of these rights apply</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 10a-10b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 10a-10b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../9/">← Daf 9</a><a href="../11/">Daf 11 →</a></div>
+</body>
+</html>

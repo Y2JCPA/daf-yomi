@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 44 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Kiddushin 44 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to R' Yochanan (following the Rabbis), why can only the father accept kiddushin for a na'arah, but either she or her father can receive a get?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Kiddushin requires consent (father's domain); a get does not require her consent</div>
+      <div class="option" onclick="select(1,this,1)">B. The Torah explicitly grants the father exclusive betrothal rights</div>
+      <div class="option" onclick="select(1,this,2)">C. A na'arah lacks legal competence for any transaction</div>
+      <div class="option" onclick="select(1,this,3)">D. The father owns the kiddushin money but not the get document</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: A — </strong>R' Yochanan's reasoning: Since betrothal requires the consent of the accepting party, only the father — who holds authority — can accept it. A get, which takes effect without her consent, can be received by either her or her father.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">What is R' Yehuda HaNasi's rationale for ruling that levirate betrothal can be performed against the yevama's will?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. He derives levirate betrothal from standard kiddushin</div>
+      <div class="option" onclick="select(2,this,1)">B. He derives levirate betrothal from yibum intercourse — which acquires even against her will</div>
+      <div class="option" onclick="select(2,this,2)">C. He holds the zikah bond automatically creates marriage</div>
+      <div class="option" onclick="select(2,this,3)">D. He rules that a yavam has the same rights as the original husband</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>R' Yehuda HaNasi derives yevama-related law from other yevama-related law: just as yibum intercourse acquires her even against her will, so too levirate betrothal (ma'amar) can be performed without her consent.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Why does the Gemara conclude that levirate betrothal does NOT disprove R' Yochanan's position about standard kiddushin?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Levirate betrothal is only rabbinic in origin</div>
+      <div class="option" onclick="select(3,this,1)">B. The yevama's pre-existing zikah bond to the yavam makes levirate betrothal fundamentally different</div>
+      <div class="option" onclick="select(3,this,2)">C. The baraita is rejected as unreliable</div>
+      <div class="option" onclick="select(3,this,3)">D. R' Yochanan conceded his position after the challenge</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>The Gemara explains that levirate betrothal is different because the yevama is already 'bonded and standing in wait' (zekukah v'omdah) for the yavam, so her accepting betrothal money suffices — this doesn't apply to standard kiddushin.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">In Rava's dilemma about a na'arah, what is the practical difference between being considered her father's 'hand' versus his 'courtyard'?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. A hand can receive a get but a courtyard cannot</div>
+      <div class="option" onclick="select(4,this,1)">B. A hand can appoint an agent; a courtyard can only receive directly</div>
+      <div class="option" onclick="select(4,this,2)">C. A courtyard requires witnesses but a hand does not</div>
+      <div class="option" onclick="select(4,this,3)">D. A hand creates immediate acquisition but a courtyard delays it</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>If the na'arah is like her father's hand, she has active legal power and can potentially delegate (appoint an agent). If she is like his courtyard, she can only passively receive items placed into her possession — she cannot delegate to an agent.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Why does Shmuel (confirmed by Rav) require BOTH a get and mi'un for a minor betrothed without her father's consent?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. The get covers Torah-level doubt; mi'un covers rabbinic-level doubt</div>
+      <div class="option" onclick="select(5,this,1)">B. Perhaps the father desired the betrothal (needing a get) or perhaps he didn't (needing mi'un) — we don't know</div>
+      <div class="option" onclick="select(5,this,2)">C. One dissolves the betrothal and the other dissolves the marriage</div>
+      <div class="option" onclick="select(5,this,3)">D. Mi'un is required by Torah law and get is required by rabbinic law</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>The uncertainty is whether the father desired the betrothal. If he did, it was a valid kiddushin requiring a get. If he didn't, it was only a rabbinic-level betrothal requiring mi'un. Since we don't know, both are required to cover both possibilities.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":0,"2":1,"3":1,"4":1,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

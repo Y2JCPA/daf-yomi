@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 6 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💬</div>
+  <h1>Kiddushin 6</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין ו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💬 Betrothal Expressions — Which verbal formulas create valid kiddushin<br>
+    ❓ Ambiguous Phrases — Dilemmas over unclear betrothal language<br>
+    📜 Context Requirement — Whether prior discussion of betrothal is needed<br>
+    🔓 'You Are For Yourself' — Divorce and manumission formulas<br>
+    💰 Betrothal With a Loan — Abaye on loans vs. benefit of loans<br>
+    🔄 Conditional Gifts — Rava on gifts given on condition of return<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>The Language of Kiddushin: From Clear to Ambiguous</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Man says a <b>betrothal formula</b> to a woman</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Clear Expressions</div><div class="flow-box result-good">"You are my wife / betrothed / acquired to me" → <b>Betrothed</b></div></div><div class="flow-col"><div class="flow-label">Secondary Expressions</div><div class="flow-box result-good">"You are mine / under my authority / bound to me" → <b>Betrothed</b></div></div><div class="flow-col"><div class="flow-label">Ambiguous Expressions</div><div class="flow-box question">"You are my unique one / helper / rib..." → <b>Dilemma</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Key question: Was he already <b>speaking with her about betrothal</b>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — Context exists</div><div class="flow-box result-good">Even <b>silence + money</b> suffices per R' Yosei. Ambiguous words may be for <b>labor</b>, not betrothal.</div></div><div class="flow-col"><div class="flow-label">No — No context</div><div class="flow-box result-bad">She doesn't know what he means → <b>Not betrothed</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> The Torah says "when a man <b>takes</b> a woman" — the man must act upon the woman's status, not declare his own. Valid formulas address <i>her</i> new status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Shmuel's Ruling: Man-Directed vs. Woman-Directed Language</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">If he says <b>"I am your man"</b> or <b>"I am not your man"</b> — these are <b>nothing</b>. No betrothal, no divorce.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Why not? Because the Torah writes <b>"when a man takes a woman"</b> — <i>he</i> acts on <i>her</i> status.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">And for divorce: <b>"and sends her"</b> — he sends <i>her</i>, not himself from her.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Shmuel</div><div class="speech">The novelty is that these man-directed formulas have <b>no concern at all</b> — not even a doubt (safek).</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Valid betrothal language must be directed at <b>the woman's status</b>, not the man's. The Torah's phrasing sets the template.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Two Sets of Valid Betrothal Expressions (Baraita)</h2>
+  
+  <table><tr><th>Set 1 — Primary</th><th>Set 2 — Secondary</th></tr><tr><td>"You are hereby <b>my wife</b>" (ishti)</td><td>"You are hereby <b>mine</b>" (sheli)</td></tr><tr><td>"You are hereby <b>my betrothed</b>" (mekudeshet li)</td><td>"You are hereby <b>under my authority</b>" (birshuti)</td></tr><tr><td>"You are hereby <b>acquired to me</b>" (knuyah li)</td><td>"You are hereby <b>bound to me</b>" (tzrurah li)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Why Two Groups?</strong> The Tanna <b>heard them as two separate teachings</b> from his teachers, so he preserved them as two sets of three — though all six are equally valid.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Ambiguous Expressions: Betrothal Dilemmas</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Resolved</h3><ul><li>"You are my <b>taken one</b>" (lekuḥati) → Betrothed, from "when a man <i>takes</i>"</li><li>"You are my <b>espoused one</b>" (ḥarufati) → Betrothed, from Lev. 19:20 <i>neḥerefet</i></li><li>In Judea: ḥarufa = betrothed woman (local usage confirms)</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Unresolved (Teyku)</h3><ul><li>"You are my <b>unique one</b>" (meyuḥedet)</li><li>"You are my <b>designated one</b>" (mezumenet)</li><li>"You are my <b>helper / counterpart</b>" (ezer / neged)</li><li>"You are my <b>rib</b>" (tzela)</li><li>"You are my <b>closed one / beneath me</b>"</li><li>"You are my <b>seized one</b>" (tefisat yadi)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Key Factor</strong> The dilemma: did he say these words <b>for betrothal</b> or <b>to hire her for labor</b>? Context alone may not clarify intent.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Context Requirement: R' Yosei vs. R' Yehuda</h2>
+  
+  <div class="flowchart"><div class="flow-box action">He was <b>speaking with her</b> about betrothal matters</div><div class="flow-arrow">↓</div><div class="flow-box action">He then gives her <b>money or a document</b></div><div class="flow-arrow">↓</div><div class="flow-box question">But he says <b>nothing</b> — or says an <b>ambiguous phrase</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Yosei</div><div class="flow-box result-good"><b>Sufficient</b> — context makes intent clear. Halakha follows R' Yosei (per Shmuel).</div></div><div class="flow-col"><div class="flow-label">R' Yehuda</div><div class="flow-box result-bad"><b>Insufficient</b> — he must explicitly clarify his action.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>So Why the Dilemmas?</strong> If context + silence suffices, why ask about ambiguous words? Because his <b>words might indicate labor, not betrothal</b> — actively contradicting the context.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>'You Are For Yourself': Divorce or Just Earnings?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">If a husband says <b>"You are hereby for yourself"</b> — is she divorced? Or did he just mean she can keep her <b>earnings</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ravina</div><div class="speech">A baraita teaches: the core of a <b>bill of manumission</b> is "You are a freeman" <i>or</i> "You are for yourself."</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Ravina</div><div class="speech"><b>Kal va-ḥomer</b>: A slave whose <i>body</i> is owned — "for yourself" frees him. A wife whose body is <i>not</i> owned — certainly divorced!</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Naḥman</div><div class="speech">Similarly: <b>"I have no business with you"</b> = valid manumission, proven from the case of selling a slave to a gentile.</div></div></div><div class="callout" style="margin-top:20px"><strong>Proof from Slavery</strong> Rav Sheshet: When a master sells a slave to a gentile, the document reads <b>"When you escape, I have no business with you"</b> — confirming this as a valid emancipation formula.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 6 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Language of Kiddushin</b><br/>Must address <i>her</i> status, not his — derived from "when a man <b>takes</b> a woman"</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Clear formulas</b>: wife, betrothed, acquired, mine, bound → Valid</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a; border-left: 3px solid #e67e22;"><b>Ambiguous</b>: unique, helper, rib → Unresolved; "taken" and "espoused" → Valid</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left: 3px solid #9b59b6;"><b>Value at Time of Betrothal</b><br/>Loan = no (obligation, not money). Benefit of loan extension = yes, but prohibited (ribbit). Conditional return = no real transfer.</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3a; border-left: 3px solid #c9a84c;"><b>"You are for yourself"</b> = valid divorce formula<br/>Proven kal va-ḥomer from manumission of slaves</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 6a-6b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 6a-6b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../5/">← Daf 5</a><a href="../7/">Daf 7 →</a></div>
+</body>
+</html>

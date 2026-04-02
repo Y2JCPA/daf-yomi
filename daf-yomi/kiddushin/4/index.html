@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 4 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💰</div>
+  <h1>Kiddushin 4</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין ד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💰 Father's Right to Betrothal Money — derived from 'she shall go out for nothing'<br>
+    🔤 Expounding the Yod in 'Ein' — extra letter yields new halakhot<br>
+    👧 Hebrew Maidservant's Release — youth vs. adulthood as triggers for freedom<br>
+    💍 Three Modes of Betrothal — money, document, and intercourse each proven from verses<br>
+    ⚖️ A Fortiori Inferences — building and refuting kal va'chomer arguments<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>From 'She Shall Go Out' to the Three Modes of Kiddushin</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Exodus 21:11</b><br>"She shall go out for nothing, <em>ein kasef</em>"</div><div class="flow-arrow">↓</div><div class="flow-box question">Why is <b>ein</b> spelled with a <em>yod</em>?<br>Could have written <b>en</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Ravina's Reading</div><div class="flow-box result-good"><b>Ein kasef</b> = No money for <em>this</em> master,<br>but money for a <em>different</em> master — her <b>father</b></div></div><div class="flow-col"><div class="flow-label">Baraita's Reading</div><div class="flow-box result-good">"For nothing" = days of <b>adulthood</b><br>"Without money" = days of <b>youth</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Separate verse needed: <b>Deut 24:1</b><br>"When a man <em>takes</em> a woman" = taking is with <b>money</b></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Both verses together establish:<br>Father receives betrothal money &amp; man gives it</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf traces how multiple verses work together to establish the father's right to betrothal money and the three modes of kiddushin — money, document, and intercourse.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Does 'Ein Kasef' Teach About the Father's Right?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The verse says <b>"she shall go out for nothing, without money"</b> — this teaches a Hebrew maidservant leaves upon <em>adulthood</em> and <em>youth</em>. The verse is used up!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Ravina</div><div class="speech">If that were the only teaching, the verse should say <b>en kasef</b> without the <em>yod</em>. The full spelling <b>ein kasef</b> teaches: <em>no money for this master, but money for a different master</em> — her <b>father</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">How do we know the <em>yod</em> in <b>ein</b> is expounded this way?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Ravina</div><div class="speech">We see that <b>me'en</b> (refuses) in Numbers 22:14 and Deuteronomy 25:7 is written <em>without</em> a yod. Here the yod is extra — it must be for exposition.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> A superfluous letter in the Torah is never accidental — it generates new halakhic derivations.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Yod in 'Ein Lah' — Priest's Daughter Returns to Teruma</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Leviticus 22:13</b><br>"She has no child (<em>ein lah</em>)…<br>she may eat of her father's bread"</div><div class="flow-arrow">↓</div><div class="flow-box question">Why is <b>ein</b> spelled with a <em>yod</em>?<br>Read as: <b>ayyein lah</b> — <em>examine her</em>!</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">First Derivation</div><div class="flow-box result-bad"><b>Grandchildren</b> count as children — if she has descendants from a non-priest, she cannot eat <em>teruma</em></div></div><div class="flow-col"><div class="flow-label">Second Derivation</div><div class="flow-box result-bad">Even children of <b>flawed lineage</b> (<em>mamzerim</em>) count as her children for this halakha</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Gemara resolves: Grandchildren = children is an <b>established principle</b>,<br>so the verse actually teaches about <em>flawed lineage</em></div></div><div class="callout" style="margin-top:20px"><strong>Parallel</strong> The same technique of expounding the yod in 'ein' applies both to the Hebrew maidservant and the priest's daughter — showing a consistent hermeneutical method.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Why Two Verses? Betrothal Money vs. Earnings</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">Betrothal Money → Father</h3><ul><li>Derived from 'ein kasef' (Exodus 21:11)</li><li>She did NOT toil for it</li><li>Comes from an external source (the husband)</li><li>Without this verse: maybe earnings alone go to father</li></ul></div><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Earnings → Father</h3><ul><li>Derived from a separate verse</li><li>She DID toil for these wages</li><li>Father sustains her from his property</li><li>Without this verse: maybe only betrothal money goes to father</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Necessity</strong> Neither halakha can be derived from the other — each has a unique rationale that the other lacks. Both verses are indispensable.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Hebrew Maidservant: Release Triggers</h2>
+  
+  <table><tr><th>Trigger</th><th>Source Phrase</th><th>Stage of Life</th><th>Special Case</th></tr><tr><td>Signs of youth (<em>na'arut</em>)</td><td>"Without money" (<em>ein kasef</em>)</td><td>Becomes a young woman</td><td>Standard release</td></tr><tr><td>Adulthood (<em>bagrot</em>)</td><td>"She shall go out for nothing"</td><td>Becomes an adult</td><td>Includes <em>ailonit</em></td></tr><tr><td>Yovel (Jubilee)</td><td>Separate verse</td><td>Any age</td><td>All slaves freed</td></tr><tr><td>Death of master</td><td>Separate derivation</td><td>Any age</td><td>No heir continues ownership</td></tr></table><div class="callout" style="margin-top:20px"><strong>Mar bar Rav Ashi</strong> He holds adulthood could be derived by a fortiori from youth — if youth releases her, certainly adulthood does. The verse is needed to include the ailonit, who has no 'youth' stage.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Deriving Betrothal by Money from 'When a Man Takes'</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Baraita</div><div class="speech">"When a man <b>takes</b> a woman" (Deut 24:1) — <em>taking</em> means with <b>money</b>, as we find: "I will give <b>money</b> for the field; <em>take</em> it from me" (Gen 23:13).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But can't we derive this by <em>kal va'chomer</em> from a Hebrew maidservant? She can't be acquired through intercourse, yet she <em>can</em> be acquired through money!</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Objector</div><div class="speech">A <b>yevama</b> disproves this! She IS acquired through intercourse but NOT through money.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">A yevama is different — she can't be acquired through a <b>document</b> either. A wife CAN be acquired by document, so the refutation fails.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Ashi</div><div class="speech">The verse is still needed! The <em>kal va'chomer</em> has an <b>initial flaw</b>: a maidservant can be <em>released</em> with money, but a wife <em>cannot</em> be divorced with money. So the a fortiori fails from the start.</div></div></div><div class="callout" style="margin-top:20px"><strong>Rav Ashi's Method</strong> When an a fortiori inference has a fundamental structural weakness from the outset, the verse is not redundant — it is the actual source of the halakha.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 4 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #c9a84c; padding:10px;"><b>Exodus 21:11</b> — "Ein kasef"<br>Extra <em>yod</em> teaches: no money for <em>this</em> master,<br>but money for the <em>father</em></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3e; border-left:3px solid #4a90d9; padding:10px;"><b>Deut 24:1</b> — "When a man <em>takes</em>"<br>Taking = money, proven from<br>Abraham's purchase of the field</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:1px solid #4caf50; padding:10px;">Together: <b>The man gives</b> betrothal money → <b>father receives</b> it</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border:1px solid #e74c3c; padding:10px;">Each mode of kiddushin needs its <b>own verse</b> — no a fortiori suffices</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 4a-4b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 4a-4b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../3/">← Daf 3</a><a href="../5/">Daf 5 →</a></div>
+</body>
+</html>

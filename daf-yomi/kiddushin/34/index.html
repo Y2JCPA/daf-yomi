@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 34 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⏰</div>
+  <h1>Kiddushin 34</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין לד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⏰ Time-Bound Mitzvot — Women's exemption from positive, time-bound commandments<br>
+    📜 Derivation from Tefillin — Juxtaposition of tefillin to Torah study as source<br>
+    🚫 Exceptions to the Rule — Matza, simcha, and hakhel where women ARE obligated<br>
+    🔗 Gezera Shava — Verbal analogies between Sukkot/Pesach and appearance/assembly<br>
+    ⚖️ Two Verses as One — Principle limiting derivation from paired exceptions<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Women & Positive Time-Bound Mitzvot: The Principle and Its Limits</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>General Principle:</b> Women are <em>exempt</em> from positive, time-bound mitzvot (מצוות עשה שהזמן גרמא)</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Source:</b> Derived from <em>tefillin</em> → linked to <em>Torah study</em> (both exempt women)</div><div class="flow-arrow">↓</div><div class="flow-box question">But are there exceptions?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Women ARE obligated</div><div class="flow-box result-bad">Matza, Simcha, Hakhel — time-bound yet obligatory</div></div><div class="flow-col"><div class="flow-label">Women ARE exempt</div><div class="flow-box result-bad">Torah study, procreation, pidyon haben — NOT time-bound yet exempt</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>R' Yochanan:</b> One does not learn halakha from general statements — even with stated exceptions</div></div><div class="callout" style="margin-top:20px"><strong>Key Insight</strong> The Mishna's categories are guidelines, not absolute rules. Each mitzva's obligation requires its own textual derivation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Categorizing Mitzvot: Time-Bound vs. Not Time-Bound</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a1a2e"><h3 style="color:#e74c3c">Positive Time-Bound (Women Exempt)</h3><ul><li>🏗️ <b>Sukka</b> — 7 specific days per year</li><li>🌿 <b>Lulav</b> — during Sukkot</li><li>📯 <b>Shofar</b> — Rosh Hashana</li><li>📿 <b>Tefillin</b> — not Shabbat/night</li></ul></div><div class="compare-box" style="border-top-color:#1a2e1a"><h3 style="color:#4caf50">Positive Non-Time-Bound (Women Obligated)</h3><ul><li>🚪 <b>Mezuza</b> — always applies</li><li>🏠 <b>Ma'akeh</b> (parapet) — permanent obligation</li><li>📦 <b>Returning lost items</b> — whenever found</li><li>🐦 <b>Shiluach haken</b> — whenever encountered</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Note</strong> This clean division is the Mishna's framework, but the Gemara immediately challenges it with exceptions on both sides.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Exceptions That Break the Rule</h2>
+  
+  <table><tr><th>Mitzva</th><th>Time-Bound?</th><th>Women's Status</th><th>Problem</th></tr><tr><td>🍞 Matza (Pesach night)</td><td>✅ Yes</td><td>Obligated</td><td>Should be exempt!</td></tr><tr><td>🎉 Simcha (Festival joy)</td><td>✅ Yes</td><td>Obligated</td><td>Should be exempt!</td></tr><tr><td>📢 Hakhel (assembly)</td><td>✅ Yes</td><td>Obligated</td><td>Should be exempt!</td></tr><tr><td>📖 Torah Study</td><td>❌ No</td><td>Exempt</td><td>Should be obligated!</td></tr><tr><td>👶 Procreation</td><td>❌ No</td><td>Exempt</td><td>Should be obligated!</td></tr><tr><td>💰 Pidyon HaBen</td><td>❌ No</td><td>Exempt</td><td>Should be obligated!</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' Yochanan's Resolution</strong> אין למדין מן הכללות — One does not derive practical halakha from general statements, even where exceptions are explicitly listed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>How Do We Derive Women's Exemption from Tefillin?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Torah Study</b> (Deut. 11:19)<br>"ולמדתם <em>אותם</em> את <em>בניכם</em>" — your <em>sons</em>, not daughters → Women exempt</div><div class="flow-arrow">↓</div><div class="flow-box action">Tefillin is juxtaposed to Torah study in <b>both</b> paragraphs of Shema (Deut. 6:7–8 and 11:18–19)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">∴ Women are exempt from <b>tefillin</b></div><div class="flow-arrow">↓</div><div class="flow-box question">But why not compare tefillin to <b>mezuza</b> (also in the passage)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Tefillin ↔ Torah Study</div><div class="flow-box result-good">Juxtaposed in <b>both</b> paragraphs of Shema → <em>stronger link</em></div></div><div class="flow-col"><div class="flow-label">Tefillin ↔ Mezuza</div><div class="flow-box result-bad">Juxtaposed only in <b>second</b> paragraph → <em>weaker link</em></div></div></div></div><div class="callout" style="margin-top:20px"><strong>Follow-Up</strong> The Gemara asks: if so, derive that women are exempt from mezuza too! Answer: Mezuza promises long life — surely women also need life!</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Why Does the Torah Need a Special Verse to Exempt Women from Sukka?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The verse says "<b>ha-ezrach</b>" (the homeborn) in Lev. 23:42 to <em>exclude</em> women from sukka. But if women are already exempt from all time-bound mitzvot, why is this verse needed?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">Without this verse, I'd say: "<b>teshvu k'ein taduru</b>" — reside in the sukka <em>as you live at home</em>. Just as husband and wife dwell together, both should be obligated in sukka!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">Without the verse, I'd derive a <b>gezera shava</b>: Sukkot says "the 15th of the 7th month" and Pesach says "the 15th of this month." Since women are obligated in matza, they should be obligated in sukka too!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The same logic applies to <b>re'iyah</b> (pilgrimage appearance). The Torah specifies "<em>your males</em>" (Ex. 23:17) — because without it, we'd derive from <em>hakhel</em> that women must appear too.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> Each specific exclusion in the Torah is necessary to counter a potential gezera shava (verbal analogy) that would otherwise obligate women.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Simcha Question: Are Women Directly Obligated?</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">אשה — בעלה משמחה (קידושין לד:)</div><div class="callout"><strong>Abaye's Teaching</strong> Women are not <em>directly</em> obligated in simcha (Festival joy). Rather, <b>a married woman</b> is rendered joyful <em>by her husband</em> — the obligation falls on him.<br><br>The Gemara challenges: <b>What about a widow?</b> She has no husband!<br><br>Answer: The obligation falls on <b>those present with her</b> — they must ensure she rejoices on the Festival.<br><br>This means simcha <em>cannot</em> serve as a source to obligate women in all time-bound mitzvot, since women's obligation in simcha is only <em>indirect</em>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 34 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>Torah Study</b><br>"בניכם" excludes women</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e1a; border-left:3px solid #4caf50; padding:10px;"><b>Tefillin</b><br>Juxtaposed to Torah study in both paragraphs → women exempt</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a2e; border-left:3px solid #9b59b6; padding:10px;"><b>All Time-Bound Mitzvot</b><br>Derived from tefillin: women are exempt</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2e1a1a; border-left:3px solid #e74c3c; padding:10px;"><b>Exceptions (obligated):</b><br>Matza, Hakhel — two verses as one, no precedent</div></div><div class="flow-col"><div class="flow-box" style="background:#2e2a1a; border-left:3px solid #e67e22; padding:10px;"><b>Extra verses needed:</b><br>Sukka ("ha-ezrach"), Re'iyah ("males") — counter potential gezera shava</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 34a-34b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 34a-34b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../33/">← Daf 33</a><a href="../35/">Daf 35 →</a></div>
+</body>
+</html>

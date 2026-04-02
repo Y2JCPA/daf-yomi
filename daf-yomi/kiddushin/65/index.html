@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 65 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Kiddushin 65</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין סה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🗣️ Conflicting Betrothal Claims — When he says 'I betrothed you' and she denies it<br>
+    👨‍👩‍👧 Mother vs. Daughter Disputes — Cross-claims about who was betrothed<br>
+    👁️ One-Witness Betrothal — Is kiddushin valid with only one witness?<br>
+    🏠 Seclusion & Intercourse — Beit Shammai vs. Beit Hillel on witnesses<br>
+    📜 Verbal Analogy (Gezeira Shava) — 'Matter' linking testimony rules across domains<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Kiddushin 65: Disputed Betrothal & Witness Requirements</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">האומר לאשה קדשתיך והיא אומרת לא קדשתני</div><div class="callout"><strong>CORE THEME</strong> <b>When betrothal is disputed</b>, each party bears the consequences of their own claim: the one who claims betrothal is forbidden to the other's relatives. The daf then examines whether <b>betrothal with one witness</b> has any legal standing — with Rav ruling it does not, even if both parties concede.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Mishna: Conflicting Betrothal Claims</h2>
+  
+  <table><tr><th>Scenario</th><th>His Status</th><th>Her Status</th></tr><tr><td>He says: 'I betrothed you'<br>She says: 'You did not'</td><td>🚫 Forbidden to <b>her</b> relatives</td><td>✅ Permitted to <b>his</b> relatives</td></tr><tr><td>She says: 'You betrothed me'<br>He says: 'I did not'</td><td>✅ Permitted to <b>her</b> relatives</td><td>🚫 Forbidden to <b>his</b> relatives</td></tr><tr><td>He says: 'I betrothed you'<br>She says: 'You betrothed my daughter'</td><td>🚫 Forbidden to <b>mother's</b> relatives</td><td>Mother ✅ permitted; Daughter ✅ permitted</td></tr><tr><td>He says: 'I betrothed your daughter'<br>She says: 'You betrothed me'</td><td>🚫 Forbidden to <b>daughter's</b> relatives</td><td>Mother 🚫 forbidden; Daughter ✅ permitted</td></tr></table><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> Each party is bound by the consequences of their <b>own claim</b> — you cannot impose restrictions on others based on your unilateral assertion.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Does the Mishna List All These Cases?</h2>
+  
+  <div class="debate"><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Questioner</div><div class="speech">Once we learn <b>'I betrothed you / You didn't'</b> — the principle is clear. Why state more cases?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Case 1 alone might suggest: a <b>man</b> isn't credible (he doesn't care what he says — he can marry another). But a <b>woman</b> who claims betrothal — since it forbids her to all others — perhaps she <i>is</i> more credible?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">The mother/daughter case is needed because you might think: since the Torah deems a <b>father</b> credible about his daughter's betrothal, perhaps the Sages made a <b>mother</b> credible by rabbinic law?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Mishna</div><div class="speech">No — each case teaches that <b>only the claimant</b> bears the restriction. A mother's claim does not bind her daughter.</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY TEACHING</strong> A father has Torah-level credibility (<i>ne'emanut</i>) about his daughter's betrothal. A mother does not — not even rabbinically.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Witnesses of Seclusion: Beit Shammai vs. Beit Hillel</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Beit Shammai</h3><ul><li>Witnesses of <b>seclusion</b> are NOT witnesses of <b>intercourse</b></li><li>Seclusion alone does not create a presumption of intimacy</li><li>No second get required from seclusion alone</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Beit Hillel</h3><ul><li>Witnesses of <b>seclusion</b> ARE treated as witnesses of <b>intercourse</b></li><li>We presume intimacy occurred during seclusion</li><li>A second get IS required</li><li><b>Exception:</b> Divorced from betrothal — since he is 'not accustomed to her,' no presumption of intercourse</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>AGREEMENT</strong> Beit Hillel concede to Beit Shammai: for a woman <b>divorced from betrothal</b> (not nisuin), seclusion does NOT imply intercourse — he is not accustomed to her.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Betrothal with One Witness — Is It Valid?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">A man <b>betroths a woman</b> in the presence of <b>only one witness</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav / Rav Kahana</div><div class="flow-box result-good">🚫 <b>No concern</b> — betrothal has <b>not</b> taken effect, even if both parties concede</div></div><div class="flow-col"><div class="flow-label">Rav Pappa</div><div class="flow-box result-bad">⚠️ <b>Concern exists</b> — the betrothal may have taken effect</div></div></div></div><div class="callout" style="margin-top:20px"><strong>SOURCE</strong> Rav Kahana derives from a <i>gezeira shava</i>: 'דבר' (matter) in Deut. 24:1 and Deut. 19:15 — betrothal, like monetary cases, requires <b>two witnesses</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Gezeira Shava Challenge: Admission of a Litigant</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Ashi</div><div class="speech">If you derive betrothal rules from monetary law via <i>gezeira shava</i> of <b>'דבר'</b> — then just as in monetary law, <b>admission of a litigant equals 100 witnesses</b> — shouldn't mutual admission of betrothal also be valid?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Kahana</div><div class="speech">There's a critical difference: in monetary matters, admission <b>harms only oneself</b>. But in betrothal, their mutual admission <b>affects others</b> — forbidding each other's relatives. Since third parties are impacted, personal admission is insufficient.</div></div></div><div class="callout" style="margin-top:20px"><strong>LEGAL DISTINCTION</strong> <b>הודאת בעל דין</b> (admission of a litigant) works in monetary law because only the admitter is affected. In betrothal, relatives become forbidden — so the admission impacts third parties and cannot stand alone.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 65 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Disputed Betrothal Claims</b><br>He says 'I betrothed you' / She denies</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#4a1a2e; color:#fff; padding:10px; border-radius:8px;"><b>The Claimant</b><br>Forbidden to the other's relatives — bound by own words</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>The Denier</b><br>Permitted to the other's relatives — not bound by opponent's claim</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; color:#fff; padding:12px; border-radius:8px;"><b>One-Witness Betrothal?</b><br>Rav/Rav Kahana: No concern — derived from gezeira shava of 'דבר'</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3e; color:#fff; padding:12px; border-radius:8px;"><b>Why not apply 'admission = 100 witnesses'?</b><br>Because betrothal affects third parties (relatives), unlike monetary admission</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 65a-65b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 65a-65b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../64/">← Daf 64</a><a href="../66/">Daf 66 →</a></div>
+</body>
+</html>

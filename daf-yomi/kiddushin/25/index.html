@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 25 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐘</div>
+  <h1>Kiddushin 25</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין כה׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🖐️ Extra Finger — When removing a sixth finger emancipates a slave<br>
+    📜 24 Extremities — Body parts exempt from unaffected-skin impurity rules<br>
+    ⚖️ Castration & Emancipation — Whether destroying testicles frees a slave<br>
+    👅 Exposed Limbs — Debate over tongue, lips, and sprinkling purification water<br>
+    🐄 Animal Acquisition — Modes of acquiring large vs. small domesticated animals<br>
+    🐘 The Elephant Problem — Creative methods to acquire an unliftable animal<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Kiddushin 25 — Slave Emancipation & Animal Acquisition</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Extra Finger</b><br>Master severs slave's sixth finger</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">In line with others</div><div class="flow-box result-good">Slave goes <b>free</b><br>(Rav Huna)</div></div><div class="flow-col"><div class="flow-label">Protrudes elsewhere</div><div class="flow-box result-bad">Mere growth — <b>not</b> emancipated</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>24 Extremities</b> resolve the castration question<br>Rabbi Yehuda HaNasi: Castration of <em>testicles</em> also frees a slave</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Mishna:</b> Modes of acquiring animals<br>Large → passing (mesira) · Small → lifting or pulling</div></div><div class="callout" style="margin-top:20px"><strong>KEY THEME</strong> This daf bridges two major topics: <b>which injuries emancipate a slave</b> and <b>how ownership of animals is legally transferred</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Extra Finger: When Does Removal Emancipate?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Slave has <b>six fingers</b> on one hand</div><div class="flow-arrow">↓</div><div class="flow-box action">Master <b>severs</b> the extra finger</div><div class="flow-arrow">↓</div><div class="flow-box question">Can the finger be <b>counted along the back of the hand</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes — in line</div><div class="flow-box result-good">Classified as a <b>finger</b><br>Slave is <b>emancipated</b></div></div><div class="flow-col"><div class="flow-label">No — protrudes elsewhere</div><div class="flow-box result-bad">Classified as a <b>mere growth</b><br>Slave is <b>not freed</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>RAV HUNA</strong> The determining factor is position: the extra finger must be <b>on the same line</b> as the other five to count as a true limb.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Elders of Nezonya vs. Rav Hamnuna</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Ḥisda</div><div class="speech">Go and <b>ostracize</b> the Elders of Nezonya — they disrespect the Sages by not attending my lecture.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Elders of Nezonya</div><div class="speech">Why should we come? We asked Rav Ḥisda a question and he couldn't resolve it!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Hamnuna</div><div class="speech">Ask <em>me</em> — I'll resolve anything you raise!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Elders of Nezonya</div><div class="speech">If a master <b>castrates</b> his slave's testicles — is the slave emancipated?</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Hamnuna</div><div class="speech"><em>(Unable to answer)</em></div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Elders of Nezonya</div><div class="speech">You're not <b>Hamnuna</b> (hot fish) — you're <b>Karnuna</b> (cold fish)!</div></div></div><div class="callout" style="margin-top:20px"><strong>NARRATIVE</strong> Rav Hamnuna returns to Rav Ḥisda, who resolves the dilemma from a <b>baraita about 24 extremities</b> — a teaching Rav Hamnuna should have known.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The 24 Extremities (Mishna Nega'im 6:7)</h2>
+  
+  <table><tr><th>Body Part</th><th>Count</th><th>Significance</th></tr><tr><td>Fingertips & Toes</td><td>20</td><td>Cannot become impure from unaffected skin</td></tr><tr><td>Ear tips</td><td>2</td><td>Shape prevents seeing entirety at once</td></tr><tr><td>Nose tip</td><td>1</td><td>Same principle applies</td></tr><tr><td>Tip of the penis</td><td>1</td><td>Listed as exposed extremity</td></tr><tr><td>Nipples of a woman</td><td>2*</td><td>R' Yehuda: men's nipples also included</td></tr></table><div class="callout" style="margin-top:20px"><strong>RESOLUTION</strong> A baraita teaches: <b>A slave is emancipated for injuries to all 24 extremities.</b> Rabbi Yehuda HaNasi adds: <b>castration of the testicles</b> also entails freedom.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Is the Tongue an 'Exposed' Limb?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4caf50">Ben Azzai</div><div class="speech">The <b>tongue</b> is exposed — it is visible when one speaks. Severing it frees the slave.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yehuda HaNasi</div><div class="speech">I include <b>castration</b> but do <em>not</em> need to list the tongue separately.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But Rabbi — you rule that sprinkling purification water on one's <b>mouth</b> is valid! Doesn't that prove the tongue is exposed?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara (answer)</div><div class="speech">That ruling refers to the <b>lips</b>, not the tongue.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara (challenge)</div><div class="speech">But a baraita <em>explicitly</em> says sprinkling on the <b>tongue</b> is valid per Rabbi!</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Resolution</div><div class="speech">Rabbi agrees the tongue is exposed — his statement means castration is included <b>and it goes without saying</b> for the tongue.</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY SHIFT</strong> Rabbi Yehuda HaNasi doesn't <em>exclude</em> the tongue — he considers it <b>obvious</b>. His <em>chiddush</em> is that castration of the testicles <b>also</b> emancipates.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Mishna: Acquiring Large vs. Small Animals</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Large Animal (בהמה גסה)</h3><ul><li>Acquired by <b>passing</b> (מסירה)</li><li>Transfer of reins or bit</li><li>R' Meir & R' Eliezer's view</li><li>Rav initially said pulling, then <b>retracted</b></li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Small Animal (בהמה דקה)</h3><ul><li>Acquired by <b>lifting</b> (הגבהה)</li><li>R' Meir & R' Eliezer's view</li><li>Rabbis: also by <b>pulling</b> (משיכה)</li><li>R' Shimon: <b>both</b> types only by lifting</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>BARAITA</strong> The Rabbis say both large and small animals are acquired by <b>pulling (meshikha)</b>. Rav ultimately adopted this view.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 25 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>24 Extremities</b><br>Fingers, toes, ears, nose, penis — injuries to these free a slave</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px;"><b>R' Yehuda HaNasi's Addition</b><br>Castration of testicles also emancipates</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a3e; border-left:3px solid #9b59b6; padding:10px;"><b>Large Animal</b><br>Passing (מסירה) — transfer of reins</div></div><div class="flow-col"><div class="flow-box" style="background:#3e2a16; border-left:3px solid #e67e22; padding:10px;"><b>Small Animal</b><br>Lifting (הגבהה) or pulling (משיכה)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left:3px solid #c9a84c; padding:10px;"><b>Creative Acquisition</b><br>Even an elephant can be acquired — via חליפין, renting land, or buyer's vessels</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 25a-25b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 25a-25b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../24/">← Daf 24</a><a href="../26/">Daf 26 →</a></div>
+</body>
+</html>

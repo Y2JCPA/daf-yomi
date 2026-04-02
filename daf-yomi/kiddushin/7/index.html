@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 7 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🤝</div>
+  <h1>Kiddushin 7</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין ז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔗 Third-Party Betrothal — Giving kiddushin money to someone other than the bride<br>
+    ⚖️ Guarantor & Slave Proofs — Deriving novel acquisition modes from arev and eved Kena'ani<br>
+    💰 Woman Pays for Betrothal — Rava's dilemma when the woman gives money to the man<br>
+    ✂️ Half-Betrothal Dilemmas — Series of unresolved questions about betrothing in halves<br>
+    👗 Silk Garment Betrothal — Dispute whether appraisal is needed for valuable goods<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Third-Party Betrothal & Half-Betrothal Dilemmas</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Standard Kiddushin:</b> Man gives money directly to the woman</div><div class="flow-arrow">↓</div><div class="flow-box question">What if money goes to a <b>third party</b> instead?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Arev (Guarantor)</div><div class="flow-box action">Commits without receiving benefit</div></div><div class="flow-col"><div class="flow-label">Eved Kena'ani</div><div class="flow-box action">Acquires freedom via another's payment</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Combined proof → Third-party betrothal <b>is valid</b></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Series of <b>unresolved dilemmas</b> about partial betrothal</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf explores how far betrothal mechanics can stretch — through third parties, reversed payments, and fractional formulations.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Three Modes of Third-Party Betrothal</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Case 1:</b> Woman says: <i>"Give 100 dinars to that person and I will be betrothed to you"</i></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Derived from <b>Arev</b> (Guarantor) — she commits without receiving benefit</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Case 2:</b> Man gives 100 dinars to the woman and says: <i>"Become betrothed to so-and-so"</i></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Derived from <b>Eved Kena'ani</b> — third party acquires without losing his own money</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Case 3:</b> Woman says: <i>"Give 100 dinars to so-and-so and I will be betrothed to him"</i></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Derived from <b>both proofs combined</b> (arev + eved)</div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> The Gemara proves each case step by step, using the guarantor and slave paradigms to show benefit need not flow directly to the party being acquired.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Guarantor vs. Canaanite Slave — The Two Proof Sources</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#c9a84c">Arev (Guarantor)</h3><ul><li>Commits to repay the debt</li><li>Receives <b>no direct benefit</b></li><li>The loan money goes to the debtor</li><li>Proves: One can commit without receiving</li></ul></div><div class="compare-box" style="border-top-color:#3a1a3a"><h3 style="color:#9b59b6">Eved Kena'ani (Slave)</h3><ul><li>Acquires his own freedom</li><li>Loses <b>nothing of his own</b></li><li>A third party pays the master</li><li>Proves: One can acquire through another's payment</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Why Both?</strong> Neither proof alone suffices. The guarantor proves commitment without benefit, but there the payer acquires. The slave proves acquisition without loss, but there the acquirer transfers himself. Only together do they cover Case 3.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Can a Woman Pay for Her Own Betrothal?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech"><b>Dilemma:</b> A woman says <i>"Here are 100 dinars and I will be betrothed to you"</i> — what is the halakha?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Mar Zutra (in name of Rav Pappa)</div><div class="speech"><b>She is betrothed.</b></div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rav Ashi</div><div class="speech"><b>Objection:</b> This would mean <i>nichsei she-yesh lahen aḥarayut</i> (people, like land) are acquired through <i>nichsei she-ein lahen aḥarayut</i> (money) — but the Mishnah says the reverse!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Mar Zutra</div><div class="speech">We are dealing with an <b>adam ḥashuv</b> (important man) — the <b>benefit of his acceptance</b> of her gift is itself sufficient for her to transfer herself.</div></div></div><div class="callout" style="margin-top:20px"><strong>Adam Ḥashuv</strong> The satisfaction a woman derives from an important man accepting her gift counts as valid 'benefit' — transforming the transaction from a monetary acquisition into a consent-based one.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Rava's Unresolved Half-Betrothal Dilemmas (Teiku)</h2>
+  
+  <table><tr><th>Formulation</th><th>Core Question</th><th>Status</th></tr><tr><td>"Half of you with ½ peruta, half with ½ peruta"</td><td>Did he divide his statement or count toward a full peruta?</td><td>Teiku</td></tr><tr><td>"Half of you with 1 peruta, half with 1 peruta"</td><td>Two separate (invalid) acts, or one combined betrothal?</td><td>Teiku</td></tr><tr><td>"Half today with 1 peruta, half tomorrow with 1 peruta"</td><td>Does 'tomorrow' divide the statement, or does it start now and complete then?</td><td>Teiku</td></tr><tr><td>"Your two halves with 1 peruta"</td><td>Valid single statement, or can a woman never be betrothed in halves?</td><td>Teiku</td></tr></table><div class="callout" style="margin-top:20px"><strong>Pattern</strong> Each dilemma builds on the previous one. If you resolve the easier case, you encounter a harder variation — all ultimately left unresolved.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Combined Betrothal Dilemmas — Daughters, Cows & Land</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Rava:</b> "Your two daughters to my two sons with <b>one peruta</b>"</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Follow Giver/Receiver</div><div class="flow-box result-good">One peruta given and received → <b>Valid</b></div></div><div class="flow-col"><div class="flow-label">Follow Individuals</div><div class="flow-box result-bad">Less than one peruta per couple → <b>Invalid</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Rav Pappa:</b> "Your daughter and your cow with one peruta"</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Split Payment</div><div class="flow-box result-bad">½ peruta each → neither works</div></div><div class="flow-col"><div class="flow-label">Full Peruta + Meshikha</div><div class="flow-box result-good">Daughter with peruta, cow by pulling → <b>Valid</b></div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Rav Ashi:</b> "Your daughter and your land with one peruta" — same structure</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">All three dilemmas: <b>Teiku</b></div></div><div class="callout" style="margin-top:20px"><strong>Note</strong> These dilemmas test whether different acquisition methods (money, pulling, possession) can operate simultaneously within a single transaction.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 7 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Standard Kiddushin</b><br>Man gives money directly to woman</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Third-Party Betrothal</b><br>Proven valid via Arev + Eved Kena'ani</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2a1a; border-left: 3px solid #c9a84c;"><b>Woman Pays (Adam Ḥashuv)</b><br>Valid if he is an important man — benefit of acceptance suffices</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a2e; border-left: 3px solid #9b59b6;"><b>Half-Betrothal Dilemmas</b><br>Can you betroth in halves? Split statements? Across days?</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a1a1a; border-left: 3px solid #e74c3c;"><b>All Unresolved — Teiku</b><br>Combined acquisitions (daughter + cow, daughter + land) also unresolved</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 7a-7b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 7a-7b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../6/">← Daf 6</a><a href="../8/">Daf 8 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiddushin 50 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Kiddushin Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">💭</div>
+  <h1>Kiddushin 50</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">קידושין נ׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    💭 Devarim Shebalev — Are unspoken thoughts legally significant?<br>
+    🔄 Coerced Consent — Forced offerings, divorce, and manumission<br>
+    💍 Mistaken Betrothal — Betrothing under false assumptions<br>
+    🎁 Concern for Gifts — When gifts may constitute betrothal<br>
+    📜 Local Custom — How minhag determines the meaning of gifts<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Kiddushin 50: Thoughts vs. Words</h2>
+  
+  <div class="callout"><strong>CORE QUESTION</strong> The Gemara launches a sweeping inquiry: <b>Are unspoken thoughts in the heart legally significant (דברים שבלב)?</b> Through five attempted proofs — from coerced offerings, forced divorce, mistaken betrothal, conditional kiddushin, and misuse of consecrated property — the sugya tests whether inner intent can override explicit statements. Amud B shifts to whether gifts sent after a failed betrothal can themselves effect kiddushin.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Paradox of Coerced Consent</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A man pledged a <b>burnt-offering (עולה)</b> but refuses to bring it</div><div class="flow-arrow">↓</div><div class="flow-box question">The verse says both <b>"he shall offer it"</b> (coerce him) AND <b>"according to his will"</b></div><div class="flow-arrow">↓</div><div class="flow-box action">Resolution: <b>They coerce him until he says 'I want to'</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Proof?</div><div class="flow-box result-good">His heart disagrees → proves unspoken thoughts are <b>not significant</b></div></div><div class="flow-col"><div class="flow-label">Rejection</div><div class="flow-box result-bad">He truly <b>wants atonement</b> deep down — his consent is genuine</div></div></div></div><div class="callout" style="margin-top:20px"><strong>LEVITICUS 1:3</strong> "He shall offer it... according to his will before the Lord" — the Torah itself embeds the tension between coercion and willingness.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Five Attempts to Prove Devarim Shebalev Einam Devarim</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech"><b>Attempt 1:</b> Coerced korban — he says 'I want' but doesn't mean it. Proof that unspoken thoughts don't matter?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rejection</div><div class="speech">No — deep down he <b>wants atonement</b>. His consent is real.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech"><b>Attempt 2:</b> Coerced <b>gittin</b> and <b>manumission</b> — same logic applies?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rejection</div><div class="speech">No — it's a <b>mitzvah to listen to the Sages</b>. He truly wants to comply.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech"><b>Attempt 3:</b> Betrothal with mistaken assumptions — she's betrothed despite his wrong beliefs.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">No — she only <b>requires a get as a stringency</b>, not definitively betrothed.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech"><b>Attempt 4:</b> Mishna says woman who says 'I intended to be betrothed' is <b>still not betrothed</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rejection</div><div class="speech">No — her thoughts can't <b>uproot his explicit condition</b>. Different principle.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Ḥiyya bar Avin</div><div class="speech"><b>Attempt 5:</b> Agent brings consecrated item from the specified place — owner liable for me'ilah despite claiming different intent.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">Perhaps he's <b>lying to avoid an offering</b>? But he could say it was intentional...</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> <b>דברים שבלב אינם דברים</b> — Unspoken matters in the heart are not significant matters. The Gemara struggles to find a clean, unrejectable proof.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Five Proofs & Their Rejections</h2>
+  
+  <table><tr><th>Proof Source</th><th>Logic</th><th>Why Rejected</th></tr><tr><td>Coerced <b>Korban</b></td><td>Says 'I want' under duress</td><td>Truly wants <b>atonement</b></td></tr><tr><td>Coerced <b>Get / Shichrur</b></td><td>Forced divorce/manumission</td><td>Mitzvah to <b>listen to Sages</b></td></tr><tr><td><b>Mistaken Betrothal</b> (Rav Yosef)</td><td>Betrothed despite wrong assumptions</td><td>Only requires get <b>as stringency</b></td></tr><tr><td><b>Woman's Intent</b> (Abaye)</td><td>Her 'I intended' is irrelevant</td><td>Can't uproot <b>his explicit condition</b></td></tr><tr><td><b>Me'ilah Agent</b> (Rav Ḥiyya b. Avin)</td><td>Owner liable despite claiming different intent</td><td>Suspect he's <b>lying to dodge liability</b></td></tr></table><div class="callout" style="margin-top:20px"><strong>PATTERN</strong> Each proof follows the same structure: someone's words contradict their inner thoughts, yet halakha follows the words — but each time, an alternative explanation is found.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Why All Three Mishna Cases Are Needed (Amud B)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Two Women, One Peruta</h3><ul><li>He thinks one peruta can betroth two women</li><li>Since money 'goes out' — he genuinely erred</li><li>Gifts sent later are NOT for betrothal</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Less Than One Peruta</h3><ul><li>Maybe he KNOWS less than a peruta doesn't work</li><li>You'd think later gifts ARE for betrothal</li><li>Mishna teaches: still NOT betrothed</li></ul></div><div class="compare-box" style="border-top-color:#2d1a3e"><h3 style="color:#9b59b6">Minor Who Betroths</h3><ul><li>EVERYONE knows a minor's betrothal is void</li><li>Strongest case that later gifts = new betrothal</li><li>Mishna teaches: STILL not betrothed</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>LEGAL LOGIC</strong> Each case is progressively stronger — if the Gemara only taught the weaker cases, we might have thought the stronger ones come out differently.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Must We Be Concerned About Gifts (שושבינות)?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">If she agreed to betrothal and he sent gifts with witnesses — <b>we must be concerned</b> that the gifts constitute betrothal.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabba</div><div class="speech">I agree. But we raised an objection from the mishna: <b>'Even if he sent gifts, she is not betrothed.'</b></div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech">The mishna is different — there, he sent gifts <b>on account of the first betrothal</b>. Where there's no prior betrothal, gifts may indeed effect kiddushin.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabba (v.2)</div><div class="speech">Alternative version: The mishna itself <b>proves</b> my point — it's only because he thought the first betrothal worked that gifts don't count.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Abaye (v.2)</div><div class="speech">Or maybe the mishna uses the style of <b>'לא מיבעיא'</b> (it is not necessary) — you can't derive the general rule from it.</div></div></div><div class="callout" style="margin-top:20px"><strong>TWO VERSIONS</strong> The Gemara presents two versions (lishna'ot) of the Rabba-Abaye exchange, each deriving opposite conclusions from the same mishna.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Kiddushin 50 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Core Question:</b> Do inner thoughts (דברים שבלב) have legal standing?</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2d1a3e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Five attempted proofs</b> that unspoken thoughts are NOT significant — each rejected with an alternative explanation</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Amud B:</b> If prior betrothal failed, later gifts are sent <b>on account of first betrothal</b>, not as new kiddushin</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a2d16; color:#fff; padding:10px; border-radius:8px; text-align:center;"><b>Betroth-then-gift custom:</b><br/>Concerned about gifts as betrothal</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; color:#fff; padding:10px; border-radius:8px; text-align:center;"><b>Gift-then-betroth custom:</b><br/>NOT concerned about gifts</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Kiddushin 50a-50b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Kiddushin 50a-50b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../49/">← Daf 49</a><a href="../51/">Daf 51 →</a></div>
+</body>
+</html>
