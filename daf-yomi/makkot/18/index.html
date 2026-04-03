@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makkot 18 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Makkot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Makkot 18</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">מכות יח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 Superfluous Verse — Deriving multiple prohibitions from Deuteronomy 12:17<br>
+    🔨 Five Sets of Lashes — Rava's ruling on a non-priest eating burnt-offering flesh<br>
+    🩸 Before Blood Sprinkling — Eating sacrificial meat before atonement is achieved<br>
+    🔄 Prohibition from Positive Mitzva — Does an inference carry the force of a prohibition?<br>
+    🍇 First Fruits (Bikkurim) — Whether placement and recitation invalidate the offering<br>
+    🫗 Rabbi Zeira's Principle — Fitness for a ritual act determines whether omission invalidates<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Makkot 18: Prohibitions, Lashes & First Fruits</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Deuteronomy 12:17</b> is a <em>superfluous verse</em> — items already listed in 12:6–7</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Repetition = <b>separate prohibition</b> for each item enumerated</div><div class="flow-arrow">↓</div><div class="flow-box action">Rava: Non-priest eats burnt-offering before sprinkling — <b>5 sets of lashes</b> (R' Shimon)</div><div class="flow-arrow">↓</div><div class="flow-box question">Gemara challenges: Why not <em>more</em> lashes for additional prohibitions?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Each rejected because</div><div class="flow-box result-bad">Burnt-offering flesh is <b>never fit</b> for consumption — prohibitions only apply when item was once fit</div></div><div class="flow-col"><div class="flow-label">Exception</div><div class="flow-box result-good">R' Eliezer's rule on <em>kalil</em> (entirely burned): adds a 5th prohibition</div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> A prohibition applies only when the item was previously fit for the permitted use — if it was <em>never</em> fit, the specific prohibition doesn't attach.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Is Deuteronomy 12:17 Superfluous?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Deut. 12:6–7</b> already lists all items eaten in Jerusalem: tithes, vows, firstborn, etc.</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Deut. 12:17</b> repeats: <em>"You may not eat within your gates the tithe of your grain…"</em></div><div class="flow-arrow">↓</div><div class="flow-box question">Why repeat? Could have said <em>"You may not eat them"</em> generally</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Each specific enumeration = <b>a separate prohibition</b> carrying its own set of lashes</div></div><div class="callout" style="margin-top:20px"><strong>R' SHIMON</strong> R' Shimon derives additional prohibitions via <b>a fortiori</b> (<em>kal va-chomer</em>) inferences rather than from the superfluous verse.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rava's Five Lashes & the Gemara's Challenges</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rava</div><div class="speech">A <b>non-priest</b> (<em>zar</em>) who ate <b>burnt-offering</b> flesh before blood sprinkling, outside the walls — per R' Shimon, he receives <b>5 sets of lashes</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Why not also for <em>"A non-priest may not eat, as they are sacred"</em> (Ex. 29:33)?</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Answer</div><div class="speech">That prohibition applies only where food is <b>fit for priests</b>. Burnt-offering is not fit for <em>anyone</em>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Why not for <em>"Flesh torn in the field you shall not eat"</em> — meat taken outside its partition?</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Answer</div><div class="speech">That applies only when meat is <b>fit for consumption inside</b> the courtyard. Burnt-offering is never fit for eating.</div></div></div><div class="callout" style="margin-top:20px"><strong>PATTERN</strong> Each challenge is rejected with the same logic: the prohibition requires prior <b>fitness</b> for the permitted use.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rejected Additional Prohibitions — Why Each Doesn't Apply</h2>
+  
+  <table><tr><th>Proposed Prohibition</th><th>Source Verse</th><th>Why It Doesn't Apply</th></tr><tr><td>Non-priest eating sacred food</td><td>Exodus 29:33</td><td>Only when food is fit for priests — burnt-offering is not</td></tr><tr><td>Flesh outside its partition</td><td>Exodus 22:30</td><td>Only when fit for consumption inside — burnt-offering is not</td></tr><tr><td>Disqualified sacred food</td><td>Exodus 29:34 (R' Eliezer)</td><td>Only when item was once fit before disqualification</td></tr><tr><td>Item to be entirely burned (<em>kalil</em>)</td><td>Leviticus 6:16 (R' Eliezer)</td><td>This one <b>does</b> apply — adds the 5th set of lashes</td></tr></table><div class="callout" style="margin-top:20px"><strong>TOTAL</strong> 4 prohibitions from Deut. 12:17 (superfluous verse) + 1 from Lev. 6:16 (<em>kalil</em>) = <b>5 sets of lashes</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Priest vs. Non-Priest: Eating Before Blood Sprinkling</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Kohen (Priest)</h3><ul><li>Eats sin/guilt offering before sprinkling</li><li>Rav (original version): Flogged</li><li>Reason: "They shall eat them, with which they were atoned" — after atonement yes, before — no</li><li>Rava objects: Inference from positive mitzva = positive mitzva, not a prohibition</li><li>Conclusion: Original statement retracted</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Zar (Non-Priest)</h3><ul><li>Eats sin/guilt offering before sprinkling</li><li>Rav Giddel/Rav (revised): Exempt from lashes</li><li>Reason: "A non-priest may not eat" only applies where priests may eat</li><li>Before sprinkling, even priests may not eat</li><li>Therefore the non-priest prohibition doesn't attach</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>MNEMONIC</strong> The Gemara provides a mnemonic: <b>כ-ו-ז-א</b> (Kaf, Vav, Zayin, Alef) for Rav Giddel's statements.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Does a Prohibition Inferred from a Positive Mitzva Carry Force?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">A prohibition derived from a positive mitzva has the <b>status of a prohibition</b> — one is flogged for its violation.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech"><em>"That, you may eat"</em> (Deut. 14:6) implies: other animals you may <b>not</b> eat. If this inference = a prohibition, why do we need <em>"This you may not eat"</em> (14:7)?</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">The explicit verse proves the inference alone is <b>insufficient</b> — it has the status of a <em>positive mitzva</em> only.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Conclusion</div><div class="speech">Rav's original statement about the <em>kohen</em> is <b>retracted</b>. The revised teaching applies to the <em>zar</em> instead.</div></div></div><div class="callout" style="margin-top:20px"><strong>HALACHA</strong> <b>Lav ha-ba mi-klal aseh</b> (לאו הבא מכלל עשה) — a prohibition inferred from a positive commandment has the status of a positive commandment, not a negative one.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Makkot 18 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Superfluous Verse</b><br>Deut. 12:17 repeats items from 12:6–7 → each repetition = separate prohibition</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Five Lashes (Rava / R' Shimon)</b><br>Non-priest eats burnt-offering before sprinkling, outside walls</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1a1a; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Fitness Requirement</b><br>Additional prohibitions rejected — burnt-offering was <em>never fit</em> for consumption</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Lav from Aseh</b><br>Prohibition inferred from positive mitzva = status of <em>aseh</em> only → no lashes</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2e3a; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Bikkurim</b><br>Placement invalidates; recitation doesn't — unless recitation becomes <em>impossible</em> (R' Zeira)</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Makkot 18a-18b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Makkot 18a-18b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../17/">← Daf 17</a><a href="../19/">Daf 19 →</a></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makkot 24 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Makkot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🦊</div>
+  <h1>Makkot 24</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">מכות כד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    📜 613 to One — Prophets distill the mitzvot to core principles<br>
+    👑 David's Eleven — Psalm 15 as a moral blueprint<br>
+    🔥 Isaiah's Six — Walking righteously and speaking uprightly<br>
+    😢 Weeping at Destruction — Sages mourn the Temple's ruin<br>
+    🦊 The Fox in the Holy of Holies — Rabbi Akiva's famous laughter<br>
+    🌅 Linked Prophecies — Uriah's destruction guarantees Zechariah's comfort<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>The Distillation of Torah & The Promise of Restoration</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">📜 Rabbi Simlai: Moses transmitted 613 mitzvot (611 + 2 heard directly from God)</div><div class="process-arrow">↓</div><div class="process-step">👑 David reduced them to 11 principles (Psalm 15)</div><div class="process-arrow">↓</div><div class="process-step">📖 Isaiah reduced them to 6, then prophets distilled further</div><div class="process-arrow">↓</div><div class="process-step">🦊 Sages see a fox emerge from the Holy of Holies and weep</div><div class="process-arrow">↓</div><div class="process-step highlight">😄 Rabbi Akiva laughs — destruction's fulfillment guarantees redemption</div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> The Torah's essence can be distilled to fundamental principles, and even destruction contains the seeds of future consolation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rabbi Simlai: The Distillation of 613 Mitzvot</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">📜 Moses taught 611 mitzvot (<b>תורה</b> = 611 in gematria)</div><div class="process-arrow">↓</div><div class="process-step">🔊 2 more — '<b>I am the Lord</b>' and '<b>You shall have no other gods</b>' — heard directly from the Almighty</div><div class="process-arrow">↓</div><div class="process-step">👑 David came and established them upon <b>11</b> principles (Psalm 15)</div><div class="process-arrow">↓</div><div class="process-step">📖 Isaiah reduced to <b>6</b> (Isaiah 33:15)</div><div class="process-arrow">↓</div><div class="process-step highlight">🎯 The prophets progressively distilled the Torah to its moral core</div></div><div class="callout" style="margin-top:20px"><strong>Mnemonic</strong> ד מ ש מ ק ס ק — David, Micah, Isaiah, Amos, Habakkuk, Amos, Ezekiel</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>David's 11 Principles (Psalm 15)</h2>
+  
+  <table><tr><th>Attribute</th><th>Exemplar</th><th>Explanation</th></tr><tr><td>Walks wholeheartedly</td><td>Abraham</td><td>"Walk before Me and be wholehearted" (Gen 17:1)</td></tr><tr><td>Works righteousness</td><td>Abba Ḥilkiyyahu</td><td>Would not pause labor even to greet people</td></tr><tr><td>Speaks truth in his heart</td><td>Rav Safra</td><td>Honored his inner intent to accept a buyer's first offer</td></tr><tr><td>No slander on his tongue</td><td>Jacob</td><td>Reluctant to deceive his father Isaac</td></tr><tr><td>No evil to his neighbor</td><td>—</td><td>Does not infringe on another's trade</td></tr><tr><td>No reproach against relatives</td><td>—</td><td>Draws relatives near despite embarrassment</td></tr><tr><td>Despises the vile</td><td>Hezekiah</td><td>Dragged bones of his wicked father Ahaz in ropes</td></tr><tr><td>Honors God-fearers</td><td>Jehoshaphat</td><td>Would rise, hug, and kiss Torah scholars</td></tr><tr><td>Keeps oaths to his detriment</td><td>R' Yoḥanan</td><td>Fasted to fulfill a vow made as a polite excuse</td></tr><tr><td>No interest even to gentiles</td><td>—</td><td>Goes beyond Torah law requirements</td></tr><tr><td>No bribe against the innocent</td><td>R' Yishmael b. R' Yosei</td><td>Refused to judge his sharecropper's case</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Dispute</strong> Rabban Gamliel wept: must one fulfill <b>all</b> eleven? The Sages replied: even <b>one</b> suffices — just as impurity applies to <b>one</b> transgression, not all.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Must One Fulfill All Eleven?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabban Gamliel</div><div class="speech"><i>He who performs <b>these</b> shall never be moved.</i> — Only one who does <b>all</b> of them is secure!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabban Gamliel</div><div class="speech">😢 He would weep upon reaching this verse.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">The Sages</div><div class="speech">It says '<b>these</b>' — not '<b>all</b> these.' Even performing <b>one</b> earns a place in the World-to-Come.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">The Sages</div><div class="speech">Proof: Leviticus 18:24 says 'Do not impurify with <b>all</b> these' — yet even <b>one</b> transgression defiles. The same logic applies here in reverse.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> A single righteous quality can secure one's place — the Torah does not demand perfection in all areas simultaneously.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Isaiah's Six Principles (Isaiah 33:15)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Actions</h3><ul><li>Walks righteously — like Abraham (Gen 18:19)</li><li>Despises gain of oppressions — like R' Yishmael ben Elisha</li><li>Shakes hands from holding bribes</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Speech & Senses</h3><ul><li>Speaks uprightly — does not shame others in public</li><li>Stops ears from hearing blood(shed)</li><li>Shuts eyes from looking upon evil</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Pattern</strong> Isaiah distills David's 11 into 6, grouping them into righteous <b>conduct</b> and guarding one's <b>speech and senses</b>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabbi Akiva and the Fox: Linked Prophecies</h2>
+  
+  <div class="flowchart"><div class="flow-box action">The Sages ascend to Jerusalem after the <b>destruction of the Temple</b></div><div class="flow-arrow">↓</div><div class="flow-box action">At the Temple Mount, a <b>fox emerges</b> from the Holy of Holies</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">The Sages</div><div class="flow-box result-bad">😢 Weep — 'Where a non-priest who approaches shall die, now foxes walk!'</div></div><div class="flow-col"><div class="flow-label">Rabbi Akiva</div><div class="flow-box result-good">😄 Laughs — 'This is exactly why I rejoice!'</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Uriah</b> prophesied destruction: 'Zion shall be plowed as a field' (Micah 3:12)<br/><b>Zechariah</b> prophesied restoration: 'Elderly men and women shall sit in Jerusalem's streets' (Zech 8:4)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Scripture <b>links</b> these prophecies (Isaiah 8:2) — fulfillment of destruction <b>guarantees</b> fulfillment of restoration</div></div><div class="callout" style="margin-top:20px"><strong>Famous Conclusion</strong> <b>"Akiva, you have comforted us; Akiva, you have comforted us."</b> — The Sages acknowledged that destruction itself is proof that redemption will come.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Makkot 24 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>613 Mitzvot</b><br/>611 from Moses + 2 heard directly from God</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px;"><b>Prophetic Distillation</b><br/>David → 11 &nbsp;|&nbsp; Isaiah → 6<br/>Each generation found the Torah's essence</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; color:#fff; padding:12px; border-radius:8px;"><b>Even One Suffices</b><br/>Rabban Gamliel wept, but the Sages taught:<br/>performing even one principle earns a share in the World-to-Come</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; color:#fff; padding:10px; border-radius:8px;"><b>🦊 Destruction Fulfilled</b><br/>Uriah's prophecy: Zion plowed as a field — foxes in the Holy of Holies</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>🌅 Restoration Guaranteed</b><br/>Zechariah's prophecy: Elders shall yet sit in Jerusalem's streets</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Makkot 24a-24b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Makkot 24a-24b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../23/">← Daf 23</a></div>
+</body>
+</html>

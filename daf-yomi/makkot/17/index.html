@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makkot 17 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Makkot Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Makkot 17</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">מכות יז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🌾 Ma'aser Ani — Whether poor man's tithe renders produce untithed<br>
+    📏 Minimum Measure — How much untithed produce triggers lashes<br>
+    🐜 The Ant Analogy — R' Shimon's argument from intact creation<br>
+    🏛️ Sacred Boundaries — Eating offerings outside permitted areas<br>
+    🐦 Shiluach HaKen — Lav she-nitak la'aseh and mother bird<br>
+    🔥 Rava's Praise of R' Shimon — A fortiori derivations for offering prohibitions<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Core Structure of Makkot 17</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Ma'aser Ani</b><br/>Does failure to separate poor man's tithe make produce <i>tevel</i>?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Eliezer</div><div class="flow-box result-good">Amei ha'aretz not suspected of withholding — mere designation suffices</div></div><div class="flow-col"><div class="flow-label">Rabbis</div><div class="flow-box result-bad">Exertion involved — they don't even separate it</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>Minimum Quantity for Lashes</b><br/>Eating untithed produce (<i>tevel</i>)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Shimon</div><div class="flow-box result-bad">Any amount — even one kernel of wheat</div></div><div class="flow-col"><div class="flow-label">Rabbis</div><div class="flow-box result-good">Only a <i>kezayit</i> (olive-bulk)</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Mishna: Cases of Malkot</b><br/>First fruits, sacred offerings, Paschal bone, mother bird</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> This daf explores the boundaries of prohibition — minimum quantities, sacred spaces, and whether positive commands can cancel lashes.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Don't Amei Ha'aretz Separate Ma'aser Ani?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Yosef</div><div class="speech">R' Eliezer and the Rabbis disagree whether <b>poor man's tithe</b> renders produce <i>tevel</i> at all</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">If that were the dispute, they should argue about a case of <b>certainty</b>, not uncertainty!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Abaye</div><div class="speech">Rather, <b>all agree</b> unseparated ma'aser ani makes produce tevel. The dispute is whether <i>amei ha'aretz</i> are suspected of not separating it</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Eliezer</div><div class="speech">It's only money — no sanctity involved. They <b>do</b> separate it, just don't give it to the poor</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbis</div><div class="speech">Since it involves <b>exertion</b>, they don't even bother to separate it</div></div></div><div class="callout" style="margin-top:20px"><strong>Abaye's Logic</strong> If the dispute were about the fundamental status of ma'aser ani, we'd expect them to debate a case of certainty, not the uncertain case of demai.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Minimum Amount of Tevel for Lashes</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">R' Shimon — Any Amount</h3><ul><li>Even one kernel of wheat triggers lashes</li><li>Argues: a kernel is 'in the form of its creation' like an ant</li><li>According to R' Yirmeya / Reish Lakish: even any amount of flour</li><li>Baraita supports: any amount forbidden; olive-bulk only for sin-offering</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Rabbis — Olive-Bulk (Kezayit)</h3><ul><li>Liable only if one eats a kezayit</li><li>An ant is different — it's a living creature with a soul</li><li>A kernel of wheat is not inherently significant</li><li>Both Rav Beivai and R' Yirmeya cite Reish Lakish, but disagree on flour</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>The Ant Argument</strong> R' Shimon: 'You concede that eating an ant of any size incurs lashes — a kernel of wheat is also in its created form!' Rabbis: 'An entity with a soul is significant; a kernel is not.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Mishna: Who Gets Lashes?</h2>
+  
+  <table><tr><th>Case</th><th>Lashes?</th><th>Reason</th></tr><tr><td>Priest eats <b>bikkurim</b> before recitation of verses</td><td>✅ Yes</td><td>Eaten before the mitzvah process is complete</td></tr><tr><td>Eating <b>kodshei kodashim</b> outside the courtyard</td><td>✅ Yes</td><td>Must be eaten within the curtains / courtyard</td></tr><tr><td>Eating <b>kodashim kalim / ma'aser sheni</b> outside Jerusalem walls</td><td>✅ Yes</td><td>Must be eaten within Jerusalem</td></tr><tr><td>Breaking bone of a <b>pure</b> Paschal offering</td><td>✅ Yes</td><td>Explicit Torah prohibition</td></tr><tr><td>Leaving Paschal flesh <b>until morning</b></td><td>❌ No</td><td>Positive command (burn it) — lav ha-nitak la'aseh</td></tr><tr><td>Breaking bone of an <b>impure</b> Paschal offering</td><td>❌ No</td><td>Prohibition applies only to valid offering</td></tr></table><div class="callout" style="margin-top:20px"><strong>Principle</strong> Lav she-nitak la'aseh — a prohibition that is 'attached' to a positive command does not carry lashes, because the Torah provides a corrective action.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Shiluach HaKen: Lav She-Nitak La'Aseh</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Yehuda</div><div class="speech">One who takes the mother bird with fledglings <b>is flogged</b> and does not send the mother</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbis</div><div class="speech">He <b>sends the mother</b> and is <b>not flogged</b> — the positive command cancels the lashes</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rabbis</div><div class="speech">This is the principle: any prohibition that entails a command to <b>arise and perform</b> a mitzvah — he is not liable to lashes</div></div></div><div class="callout" style="margin-top:20px"><strong>לאו שניתק לעשה</strong> R' Yehuda treats the taking as an irreversible violation. The Rabbis hold that since the Torah commands 'send the mother,' the positive mitzvah repairs the prohibition, removing liability for lashes.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Shimon's A Fortiori Chain for Offering Prohibitions</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Bikkurim</b> (First Fruits)<br/>Forbidden to non-priests</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Ma'aser Sheni</b><br/>Forbidden to acute mourner → more stringent</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Todah & Shelamim</b><br/>Require blood & portions on altar</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Bechor</b> (Firstborn)<br/>Sanctity from the womb</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Chatat & Asham</b><br/>Kodshei kodashim</div><div class="flow-arrow">↓</div><div class="flow-box result-bad"><b>Olah</b> (Burnt-offering)<br/>Entirely consumed on altar</div></div><div class="callout" style="margin-top:20px"><strong>Rava's Praise</strong> Rava said: If a mother is bearing a child like R' Shimon, she should bear him — even though each step in his chain can be refuted, his method of transposing the verse to derive prohibitions is brilliantly creative.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Makkot 17 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Ma'aser Ani</b><br/>Dispute whether amei ha'aretz separate it — affects tevel status of demai</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Minimum Quantity</b><br/>R' Shimon: any amount (even one kernel) • Rabbis: olive-bulk required</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1a3e; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Mishna's Cases</b><br/>Bikkurim, sacred offerings outside boundaries, Paschal bone</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e2a16; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Lav + Aseh</b><br/>Prohibition attached to positive command → no lashes (Rabbis)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a2e3e; color:#e0e0e0; padding:12px; border-radius:8px;"><b>Kal VaChomer</b><br/>R' Shimon derives prohibitions via a fortiori — mere issur, not malkot</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Makkot 17a-17b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Makkot 17a-17b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../16/">← Daf 16</a><a href="../18/">Daf 18 →</a></div>
+</body>
+</html>
