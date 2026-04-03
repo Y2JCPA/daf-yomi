@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 100 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⏰</div>
+  <h1>Zevachim 100</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים ק׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🕐 Timing of Death — Whether the relative died before or after midday on the 14th of Nisan<br>
+    📜 Aninut (Acute Mourning) — Torah law vs. rabbinic law status of the acute mourner<br>
+    🐑 Korban Pesach — Can an onen send or partake of the Paschal offering?<br>
+    ⚖️ Resolving Contradictions — Multiple Amoraim reconcile conflicting baraitot about Rabbi Shimon<br>
+    🍖 Indispensability of Eating — Whether consuming the Paschal offering is me'akev (essential)<br>
+    📅 Day of Burial vs. Day of Death — Different mourning rules and their nighttime implications<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Can an Acute Mourner Bring the Paschal Offering?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Rabbi Shimon seems to <b>contradict himself</b>: in one baraita he says an <i>onen</i> may NOT send a Paschal offering, but a mishna in Pesaḥim says he immerses and eats it!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Rav Mari</div><div class="speech">Death on the 14th = Torah-level <i>aninut</i> at night → overrides Pesach. Death on the 13th, burial on 14th = rabbinic → Pesach overrides it.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Ashi</div><div class="speech">But Rabbi Shimon himself cites the mishna as proof! Rabbi Yehuda could just dismiss it as a different case. <b>Difficulty stands.</b></div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">Death <b>before midday</b> = never fit for Pesach → aninut applies. Death <b>after midday</b> = already obligated → aninut doesn't block Pesach.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Both after midday! Death <b>before slaughter</b> → may not send. Death <b>after slaughter</b> → since eating is <i>me'akev</i>, Sages suspend rabbinic aninut.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> Multiple Amoraim propose different ways to resolve Rabbi Shimon's apparent contradiction about whether an acute mourner may participate in the Paschal offering.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav Mari's Resolution: Day of Death vs. Day of Burial</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Died on 14th Nisan</h3><ul><li>Aninut on day of death = Torah law</li><li>Nighttime aninut is also Torah law</li><li>Paschal offering does NOT override</li><li>Onen may NOT send the offering</li></ul></div><div class="compare-box" style="border-top-color:#4caf50"><h3 style="color:#ffffff">Died on 13th, Buried on 14th</h3><ul><li>14th is only day of burial</li><li>Aninut is rabbinic only</li><li>Nighttime aninut is rabbinic</li><li>Paschal offering OVERRIDES it</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Refuted</strong> Rav Ashi challenges: if so, Rabbi Yehuda could dismiss Rabbi Shimon's proof from the mishna, since the mishna discusses burial day (rabbinic) while the dispute concerns death day (Torah). This difficulty stands against Rav Mari.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Abaye's Resolution: Before vs. After Midday</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Relative dies on <b>14th of Nisan</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Before Midday</div><div class="flow-box result-bad">Never became obligated in Pesach → <b>aninut applies</b> → may NOT send offering</div></div><div class="flow-col"><div class="flow-label">After Midday</div><div class="flow-box result-good">Already obligated in Pesach → <b>aninut does not apply</b> to this mitzva → immerses and eats</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Proof</strong> Abaye cites the incident of Yosef the priest whose wife died on Erev Pesach — his fellow priests forcibly rendered him impure. This supports a distinction based on midday timing.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Challenge to Abaye: The Yosef/Nazirite Contradiction</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Baraita 1</div><div class="speech">Yosef the priest's wife died on Erev Pesach. He didn't want to become <i>tamei</i>. His fellow priests <b>forced him</b> to become impure — burying relatives is obligatory.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Baraita 2</div><div class="speech">A nazirite going to slaughter his Pesach or circumcise his son who hears a relative died — he shall <b>NOT become impure</b>. The Pesach/milah override.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">Baraita 1 (priest) = death <b>before midday</b>. Baraita 2 (nazirite) = death <b>after midday</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Perhaps both are <b>after midday</b>! One follows R' Yishmael, the other R' Akiva — a <i>tannaitic</i> dispute, not a timing difference.</div></div></div><div class="callout" style="margin-top:20px"><strong>Result</strong> The Gemara undermines Abaye's proof by suggesting the contradiction can be resolved through a tannaitic dispute rather than a midday distinction.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Rava's Resolution: Before vs. After Slaughter</h2>
+  
+  <div class="process-bar"><div class="process-step">🕐 Relative dies after midday on 14th Nisan</div><div class="process-arrow">↓</div><div class="process-step highlight">🔪 Has the Pesach already been slaughtered and its blood sprinkled?</div><div class="process-arrow">↓</div><div class="process-step">❌ If BEFORE slaughter — onen may NOT send the offering</div><div class="process-arrow">↓</div><div class="process-step">✅ If AFTER slaughter — since nighttime aninut is only rabbinic...</div><div class="process-arrow">↓</div><div class="process-step highlight">🍖 And eating the Pesach is INDISPENSABLE (me'akev)...</div><div class="process-arrow">↓</div><div class="process-step">📜 The Sages suspend rabbinic aninut to allow him to eat the Pesach</div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> Ravina explains: partaking of the Paschal offering is me'akev (essential to the mitzva), so the Sages did not apply their decree of aninut to prevent consumption — unlike other sacrificial meat.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabba bar Rav Huna's Baraita: Tidings, Bones & Burial</h2>
+  
+  <table><tr><th>Scenario</th><th>Mourning Status</th><th>Pesach Meat?</th><th>Other Sacrificial Meat?</th></tr><tr><td>Day of distant tidings (שמועה)</td><td>Like day of burial for 7/30-day periods</td><td>✅ Immerses & eats</td><td>✅ Eats in evening</td></tr><tr><td>Day of gathering bones (ליקוט עצמות)</td><td>Lighter form of mourning</td><td>✅ Immerses & eats</td><td>✅ Eats in evening</td></tr><tr><td>Day of burial — before sunset</td><td>Acute mourning (rabbinic)</td><td>✅ Immerses & eats</td><td>✅ Eats in evening</td></tr><tr><td>Burial after sunset (night of 15th)</td><td>Acute mourning into the night</td><td>✅ Pesach only (me'akev)</td><td>❌ May not eat</td></tr></table><div class="callout" style="margin-top:20px"><strong>Proof</strong> The distinction between Pesach and other sacrificial meat after nightfall burial proves that eating the Pesach is indispensable — the Sages suspended their aninut decree specifically for it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 100 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Contradiction in R' Shimon</b><br>Baraita: onen may NOT send Pesach<br>Mishna: onen immerses & eats Pesach</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#fff; padding:10px; border-radius:8px;"><b>Rav Mari</b><br>Day of death (Torah) vs. day of burial (rabbinic)<br><span style='color:#e74c3c'>❌ Refuted by Rav Ashi</span></div></div><div class="flow-col"><div class="flow-box" style="background:#3a2a1a; color:#fff; padding:10px; border-radius:8px;"><b>Abaye</b><br>Before midday (never obligated) vs. after midday (already obligated)<br><span style='color:#e67e22'>⚠️ Challenged</span></div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Rava</b><br>Before slaughter vs. after slaughter — eating is me'akev<br><span style='color:#4caf50'>✅ Accepted</span></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a3a; color:#fff; padding:12px; border-radius:8px; border:2px solid #4a90d9;"><b>Conclusion:</b> Eating the Pesach is me'akev → Sages suspend rabbinic aninut for it, but not for other sacrificial meat</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 100a-100b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 100a-100b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../99/">← Daf 99</a><a href="../101/">Daf 101 →</a></div>
+</body>
+</html>

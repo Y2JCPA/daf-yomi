@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 99 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍖</div>
+  <h1>Zevachim 99</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים צט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🍖 Shares of Sacrificial Meat — Who receives a portion?<br>
+    ⚖️ Fitness for Atonement — Deriving the rule from Scripture<br>
+    🩹 Blemished & Impure Priests — Exceptions and limits<br>
+    😢 Acute Mourner (Onen) — Touching vs. partaking of kodshim<br>
+    🌙 Mourning at Night — Torah law or rabbinic?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Who Gets a Share of Sacrificial Meat?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Leviticus 6:19</b><br>"The priest who effects atonement <em>shall eat it</em>"</div><div class="flow-arrow">↓</div><div class="flow-box question">Does this mean only the priest who <b>actually performed</b> the service?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Too narrow</div><div class="flow-box result-bad">All priests of the <b>mishmar</b> (watch) eat — not just the one who served</div></div><div class="flow-col"><div class="flow-label">Reish Lakish's reading</div><div class="flow-box result-good">Any priest <b>fit for atonement</b> receives a share</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">"<em>Shall eat it</em>" = shall <b>receive a share</b><br>Fit for partaking → gets a share<br>Unfit for partaking → no share</div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> A priest must be <b>fit to eat</b> sacrificial meat at the time of service in order to <b>receive a share</b> of it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Deriving the Rule: Who Gets a Share?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Reish Lakish</div><div class="speech">"The priest who effects atonement shall eat it" (Lev 6:19) — only a priest <b>fit for atonement</b> partakes.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">But the whole <b>mishmar</b> (priestly watch) eats, even though only one priest sprinkled the blood!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Reish Lakish</div><div class="speech">It means any priest <b>fit for</b> service — not necessarily the one who performed it.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">But a <b>minor</b> eats sacrificial meat and he's unfit for service!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Reish Lakish</div><div class="speech">"Shall eat it" means <b>shall receive a share</b>. Minors eat what others give them — they don't get their own portion.</div></div></div><div class="callout" style="margin-top:20px"><strong>VERSE</strong> The word <b>יאכלנה</b> ("shall eat it") is reinterpreted as entitlement to a <b>share</b>, not merely permission to eat.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>The Blemished Priest Exception</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A <b>blemished priest</b> (בעל מום) is unfit for service</div><div class="flow-arrow">↓</div><div class="flow-box question">Should he be excluded from shares?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Without the verse</div><div class="flow-box result-bad">He would be excluded — he can't perform atonement</div></div><div class="flow-col"><div class="flow-label">Lev 6:22</div><div class="flow-box result-good">"<b>Every male</b> among the priests shall eat it" — includes blemished priests</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Why include <b>blemished</b> over <b>tevul yom</b> (immersed that day)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Blemished priest</div><div class="flow-box result-good">Can <b>eat</b> kodshim even though he can't serve — closer fit</div></div><div class="flow-col"><div class="flow-label">Tevul yom</div><div class="flow-box result-bad">Cannot eat kodshim at all right now — too removed</div></div></div></div><div class="callout" style="margin-top:20px"><strong>R' YOSEF'S READING</strong> "Shall eat it" teaches: only one <b>fit to eat</b> gets a share. A blemished priest can eat; a <em>tevul yom</em> cannot.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Reish Lakish's Dilemma: Blemished AND Impure</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Maybe He Gets a Share</h3><ul><li>A blemished priest is already unfit for service</li><li>The Torah included him despite unfitness</li><li>Adding impurity shouldn't matter — he's already excluded from service</li><li>What difference does it make why he can't serve?</li></ul></div><div class="compare-box" style="border-top-color:#3e1a1a"><h3 style="color:#e74c3c">Maybe He Does Not</h3><ul><li>The principle: must be fit to EAT to receive a share</li><li>An impure priest cannot eat kodshim</li><li>Blemished priest was included because he CAN eat</li><li>Impurity removes the basis for the exception</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>RESOLUTION (Rabba)</strong> From the baraita about the <b>Kohen Gadol as onen</b>: he sacrifices but does not eat and does <b>not receive a share</b> for evening — proving fitness to eat is required.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Categories of Priests & Their Share Rights</h2>
+  
+  <table><tr><th>Category</th><th>Perform Service?</th><th>Eat Kodshim?</th><th>Receive Share?</th></tr><tr><td>Fit priest of the mishmar</td><td>✅ Yes</td><td>✅ Yes</td><td>✅ Yes</td></tr><tr><td>Fit priest not of mishmar</td><td>❌ No (not his turn)</td><td>✅ Yes</td><td>❌ No share this week</td></tr><tr><td>Minor (קטן)</td><td>❌ No</td><td>✅ Yes (from others)</td><td>❌ No own share</td></tr><tr><td>Blemished (בעל מום)</td><td>❌ No</td><td>✅ Yes</td><td>✅ Yes (special inclusion)</td></tr><tr><td>Tevul yom (טבול יום)</td><td>❌ No</td><td>❌ Not until evening</td><td>❌ No</td></tr><tr><td>Blemished + impure</td><td>❌ No</td><td>❌ No</td><td>❌ No</td></tr><tr><td>Impure priest (communal offering)</td><td>✅ Yes (communal)</td><td>❌ Not until evening</td><td>❌ No</td></tr><tr><td>Onen Kohen Gadol</td><td>✅ Yes (special)</td><td>❌ No</td><td>❌ No</td></tr></table><div class="callout" style="margin-top:20px"><strong>TWO REQUIREMENTS</strong> To receive a share a priest needs: (1) fitness for atonement <b>or</b> Torah inclusion, AND (2) fitness to <b>eat</b> the meat.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>The Acute Mourner (Onen): Touching vs. Eating</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Contradiction</div><div class="speech">Our mishna: An onen may <b>touch</b> sacrificial meat.<br>Chagiga: An onen must <b>immerse</b> — implying he's impure!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Abba bar Memel</div><div class="speech">R' Yehuda HaNasi teaches: one who eats <em>teruma</em> with 3rd-degree impurity may not <b>eat</b> teruma but may <b>touch</b> it.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Abba bar Memel</div><div class="speech">Similarly, the Sages were <b>stricter about eating</b> (requiring immersion) but <b>lenient about touching</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Gemara</div><div class="speech">The mishna says an onen doesn't get a <b>share</b> — but if others invite him, he may eat in the <b>evening</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Contradiction</div><div class="speech">But Pesachim 91b says an onen may eat the <b>Paschal offering</b> but NOT other kodshim!</div></div></div><div class="callout" style="margin-top:20px"><strong>DISTINCTION</strong> Touching kodshim and eating kodshim have <b>different standards</b> of purity for an onen — the Sages imposed a higher bar for consumption.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 99 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px;"><b>"The priest who effects atonement shall eat it"</b><br>(Lev 6:19) — fitness for service required</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; border-left:3px solid #9b59b6; padding:10px;"><b>"Every male among the priests"</b><br>(Lev 6:22) — includes <em>blemished</em> priests</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px;"><b>"Shall eat it" = shall receive a share</b><br>Must be fit to <em>eat</em> — excludes tevul yom & impure</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border-left:3px solid #e74c3c; padding:10px;"><b>Onen Kohen Gadol</b><br>Serves but cannot eat → <b>no share</b></div></div><div class="flow-col"><div class="flow-box" style="background:#3e2e1a; border-left:3px solid #e67e22; padding:10px;"><b>Blemished + Impure</b><br>Included but can't eat → <b>no share</b></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 99a-99b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 99a-99b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../98/">← Daf 98</a><a href="../100/">Daf 100 →</a></div>
+</body>
+</html>

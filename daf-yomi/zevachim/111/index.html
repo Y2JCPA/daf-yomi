@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 111 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🍷</div>
+  <h1>Zevachim 111</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים קיא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🍷 Libations Outside — Liability for pouring wine/water libations outside the courtyard<br>
+    ⛰️ Bamot & Libations — Whether libations were required on private altars<br>
+    🏜️ Wilderness Libations — Dispute if libations were offered before entering Eretz Yisrael<br>
+    📏 Overfill of Vessels — Is liquid above the rim of a service vessel consecrated?<br>
+    🐦 Bird Offerings Outside — Pinching vs. slaughtering and liability for offering up outside<br>
+    🌙 Slaughter at Night — Ze'eiri's resolution of Rabbi Shimon's ruling<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Libations Outside the Courtyard & Bird Offering Liability</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b> When is one liable for pouring a libation <i>outside</i> the courtyard?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Must be consecrated first?</div><div class="flow-box question">Dispute: Does the wine need prior consecration in a <b>service vessel</b> (כלי שרת)?</div></div><div class="flow-col"><div class="flow-label">Bird offerings outside</div><div class="flow-box question">Parallel question: How do <b>pinching</b> vs. <b>slaughter</b> affect liability for offering birds outside?</div></div></div></div><div class="callout" style="margin-top:20px"><strong>DAF THEME</strong> This daf explores the boundaries of sacrificial liability outside the Temple — connecting libation laws to wilderness practice, private altars, and the mechanics of bird offerings.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Libations Outside: Why the Dispute?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rav Adda bar Rav Yitzḥak</div><div class="speech">Both agree libation must be <b>consecrated in a service vessel</b> first. They disagree about the <b>overfill</b> (שפיכת מידות) — is liquid <i>above the rim</i> also consecrated?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">First Tanna</div><div class="speech">Yes — overfill is consecrated. If one collects <b>3 log</b> of overfill and pours it outside, he is <b>liable</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">R' Elazar b'R' Shimon</div><div class="speech">No — only wine <b>within the walls</b> of the vessel is consecrated. Overfill poured outside = <b>exempt</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Ravina</div><div class="speech">Actually, <b>everyone agrees</b> wine libations are valid without a service vessel. The real dispute is whether <b>water libation</b> liability can be derived from wine.</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY POINT</strong> Three different explanations are offered for the same Tanna'ic dispute — each reframes the fundamental disagreement.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Were Libations Offered in the Wilderness?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbi Yishmael</h3><ul><li>Libations were NOT offered in the wilderness</li><li>Numbers 15:2 ('When you come into the land') teaches that libations begin upon entering Eretz Yisrael</li><li>'Lakhem' (plural 'you') = public altar used by everyone</li><li>The verse introduces libations for the great public altar</li></ul></div><div class="compare-box" style="border-top-color:#5c1a1a"><h3 style="color:#e74c3c">Rabbi Akiva</h3><ul><li>Libations WERE offered in the wilderness</li><li>Numbers 15:2 teaches that libations are required even on private altars (bamot)</li><li>'Land of your dwellings' = altars in all your dwelling places = private altars</li><li>The verse extends an existing obligation to a new context</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>CONNECTION</strong> This Yishmael/Akiva dispute underpins the question of whether libations need service-vessel consecration — since private altars had no service vessels.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Private Altars (Bamot) and Service Vessels</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Were libations brought on <b>private altars</b> (bamot)?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">YES — Rabbis</div><div class="flow-box result-bad">Private altars have <b>no service vessels</b> → libations are valid <i>without</i> consecration in a vessel → <b>Liable</b> for unconsecrated libation poured outside</div></div><div class="flow-col"><div class="flow-label">NO — R' Yehuda HaNasi</div><div class="flow-box result-good">No precedent for libation without a service vessel → libation must be consecrated first → <b>Exempt</b> for unconsecrated libation poured outside</div></div></div></div><div class="callout" style="margin-top:20px"><strong>RAVA B'RABBA</strong> This is Rava son of Rabba's explanation: the Tanna'ic dispute about liability for unconsecrated libations outside depends on whether bamot required libations.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Bird Offerings: Pinching vs. Slaughter — Inside vs. Outside</h2>
+  
+  <table><tr><th>Scenario</th><th>Liability for Offering Up Outside</th></tr><tr><td><b>Pinch inside</b> → offer up outside</td><td>✅ Liable</td></tr><tr><td><b>Pinch outside</b> → offer up outside</td><td>❌ Exempt (invalid pinching)</td></tr><tr><td><b>Slaughter inside</b> → offer up outside</td><td>❌ Exempt (slaughter disqualifies bird)</td></tr><tr><td><b>Slaughter outside</b> → offer up outside</td><td>✅ Liable</td></tr></table><div class="callout" style="margin-top:20px"><strong>PARADOX</strong> The proper method done <i>inside</i> (pinching) creates liability outside, while the improper method done <i>outside</i> (slaughter) also creates liability — each context has its own rules of validity.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>What Is Rabbi Shimon Really Saying?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Gemara</div><div class="speech">Rabbi Shimon says: Any killing that creates liability outside should also create liability when done inside. But which clause is he disputing?</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara (Attempt 1)</div><div class="speech">Is he disputing pinching? If nape-pinching inside → liable, then outside → also liable? <b>Rejected</b> — his wording doesn't fit.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara (Attempt 2)</div><div class="speech">Is he disputing slaughter of birds? If slaughter outside → liable, then inside → also liable? <b>Rejected</b> — he explicitly exempts slaughter inside.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Ze'eiri</div><div class="speech">Rabbi Shimon refers to <b>slaughter at night</b> inside the courtyard. The first tanna exempts (nighttime disqualifies), but Rabbi Shimon holds one is <b>liable</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>RESOLUTION</strong> Ze'eiri identifies a hidden case: slaughtering an animal offering at night inside, then offering it up outside. The first tanna says nighttime slaughter disqualifies it (exempt); Rabbi Shimon disagrees.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 111 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9;"><b>Libations Outside</b><br>Is one liable for pouring a libation outside without prior consecration in a service vessel?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left:3px solid #4caf50;"><b>Depends on bamot</b><br>If libations were brought on private altars (no service vessels) → consecration not required → <b>liable</b></div></div><div class="flow-col"><div class="flow-box" style="background:#3e1621; border-left:3px solid #e74c3c;"><b>Depends on wilderness</b><br>R' Yishmael: no libations in wilderness; R' Akiva: libations existed → affects whether bamot had libations</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; border-left:3px solid #9b59b6;"><b>Bird Offerings</b><br>Pinching inside → liable outside; Slaughter outside → liable outside<br>Each method creates liability in its 'opposite' context</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3a; border-left:3px solid #e67e22;"><b>Rabbi Shimon</b><br>Ze'eiri: He adds liability for <b>nighttime slaughter</b> inside + offering up outside — the first tanna exempts, Rabbi Shimon holds liable</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 111a-111b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 111a-111b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../110/">← Daf 110</a><a href="../112/">Daf 112 →</a></div>
+</body>
+</html>

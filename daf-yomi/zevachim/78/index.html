@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 78 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🫗</div>
+  <h1>Zevachim 78</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים עח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🩸 Blood Mixtures — When mixed bloods are fit or unfit for altar presentation<br>
+    💧 Water into Blood vs. Blood into Water — Order of mixing determines nullification<br>
+    ⚖️ Prohibitions Nullifying Each Other — Piggul, notar, and impure meat mixed together<br>
+    🌾 Flavor vs. Majority — Does imparting taste (נותן טעם) override majority rule?<br>
+    🛁 Mikveh Mixtures — White wine, milk, and urine in ritual immersion<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>When Are Mixtures Nullified?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Blood or substance is <b>mixed</b> with another</div><div class="flow-arrow">↓</div><div class="flow-box question">Is it <b>min b'mino</b> (same type)?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Same Type</div><div class="flow-box result-good">Follow the <b>majority</b> (רוב)</div></div><div class="flow-col"><div class="flow-label">Different Type</div><div class="flow-box result-bad">Follow the <b>flavor</b> (נותן טעם)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> This daf establishes the fundamental distinction between <b>min b'mino</b> (same-type mixtures) governed by majority, and <b>min b'she'eino mino</b> (different-type mixtures) governed by flavor.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Blood Mixed with Blood — The Mishna's Cases</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna Kamma</div><div class="speech">If <b>water</b> mixed with blood and it still <b>appears like blood</b> — it is <b>fit</b> for presentation.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yehuda</div><div class="speech"><b>Blood does not nullify blood</b> (דם אינו מבטל דם). Therefore, present the mixed blood on the altar.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna Kamma</div><div class="speech">If fit blood mixed with <b>unfit blood</b> (פסולין) — the entire mixture is <b>poured into the drain</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">R' Eliezer</div><div class="speech">Even blood mixed with <b>dam hatkaza</b> (exudate blood) — I deem it <b>fit</b> for presentation.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Tanna Kamma</div><div class="speech">Even so: if the priest <b>already presented</b> the mixed blood <b>without consulting</b> — the offering is <b>fit</b> (בדיעבד).</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> R' Yehuda holds same-type substances (blood + blood) cannot nullify each other. The Tanna Kamma focuses on <b>appearance</b> (מראה) as the determining factor.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Yochanan: Order of Mixing Matters</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Blood and water are <b>mixed</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Which fell into which?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Water into Blood</div><div class="flow-box result-good">If appearance is blood → <b>Fit</b> ✅</div></div><div class="flow-col"><div class="flow-label">Blood into Water</div><div class="flow-box result-bad">Each drop nullified on arrival → <b>Unfit</b> ❌</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Rav Pappa's Exception:</b> For <b>כיסוי הדם</b> (covering the blood), even blood into water — if it looks like blood, the mitzvah applies</div></div><div class="callout" style="margin-top:20px"><strong>R' Yochanan (via R' Chiyya bar Abba)</strong> Each drop of blood falling into water is nullified individually. But Rav Pappa holds: <b>אין דחייה אצל מצוות</b> — there is no permanent rejection regarding mitzvot.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Reish Lakish: Three Meats Mixed Together</h2>
+  
+  <table><tr><th>Meat Type</th><th>Prohibition</th><th>Minimum Quantity</th></tr><tr><td><b>Piggul</b> (פיגול)</td><td>Intent to eat beyond designated time</td><td>Olive-bulk (כזית)</td></tr><tr><td><b>Notar</b> (נותר)</td><td>Leftover past its permitted time</td><td>Olive-bulk (כזית)</td></tr><tr><td><b>Tamei</b> (טמא)</td><td>Ritually impure sacrificial meat</td><td>Olive-bulk (כזית)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Ruling</strong> If one eats all three mixed together — <b>exempt from lashes</b>. Each type is less than a majority, and it's impossible that one type doesn't overpower another. Since we can't identify <b>which</b> prohibition applies, the forewarning (התראה) is uncertain and invalid.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Three Conclusions from Reish Lakish</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">1. Prohibitions Nullify</h3><ul><li>Prohibited items nullify <b>each other</b> in a majority</li><li>Just as permitted items nullify prohibited ones</li><li>Each meat is nullified by the other two combined</li></ul></div><div class="compare-box" style="border-top-color:#2a1a3e"><h3 style="color:#9b59b6">2. נותן טעם Is Rabbinic</h3><ul><li>The principle that flavor imparting prohibits is <b>not Torah law</b></li><li>If it were Torah law, he should be liable — the different meats impart flavor to each other</li><li>Since exempt → flavor rule is only <b>rabbinic</b></li></ul></div><div class="compare-box" style="border-top-color:#3e2a1a"><h3 style="color:#e67e22">3. Uncertain Forewarning</h3><ul><li>התראת ספק — uncertain forewarning is <b>not</b> a valid forewarning</li><li>Witnesses can't specify <b>which</b> prohibition will be transgressed</li><li>Therefore: no lashes can be administered</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Analytical Note</strong> These three principles are derived from a single statement of Reish Lakish — a classic Talmudic move of extracting multiple legal principles from one ruling.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rava's Challenge: The Wheat-Rice Dough</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">Objection! A dough of <b>wheat and rice</b>: if it <b>tastes like wheat</b>, it's obligated in <b>challah</b> — even if rice is the majority!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Perhaps the challah obligation there is only <b>rabbinic</b> (מדרבנן)?</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">But the <b>next clause</b> says one fulfills the <b>mitzvah of matzah</b> on Pesach with this dough — that must be <b>Torah law</b>!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">We must distinguish: <b>min b'she'eino mino</b> (different types like wheat/rice) → follow <b>flavor</b>. <b>Min b'mino</b> (same type like piggul/notar meat) → follow <b>majority</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> Rava's challenge forces a key distinction: Reish Lakish's rule of majority applies only to <b>same-type mixtures</b>. Different-type mixtures are governed by <b>taste</b> (נותן טעם), which is Torah law in that context.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 78 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>Mishna:</b> Blood mixed with water — if it looks like blood, it's fit</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3e; color:#fff; padding:10px; border-radius:8px;"><b>R' Yochanan:</b> Only if water fell into blood; blood into water = each drop nullified</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3e; color:#fff; padding:10px; border-radius:8px;"><b>Reish Lakish:</b> Three prohibited meats mixed → exempt from lashes</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Min b'Mino</b><br/>Same type → <b>Majority</b> (רוב) rules</div></div><div class="flow-col"><div class="flow-box" style="background:#3e2a1a; color:#fff; padding:10px; border-radius:8px;"><b>Min b'She'eino Mino</b><br/>Different type → <b>Flavor</b> (נותן טעם) rules</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>Mikveh Application:</b> Rabbanan follow majority; R' Yehuda uses the "view as red wine" test</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 78a-78b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 78a-78b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../77/">← Daf 77</a><a href="../79/">Daf 79 →</a></div>
+</body>
+</html>

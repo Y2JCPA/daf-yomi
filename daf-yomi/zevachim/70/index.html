@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 70 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐄</div>
+  <h1>Zevachim 70</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים ע׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🧈 Chelev Purity — Which animal fats are ritually pure or impure<br>
+    📜 Leviticus 7:24 — Exegesis of 'fat of a carcass and fat of a tereifa'<br>
+    ⚖️ Multiple Prohibitions — Can issur tereifa overlap with issur chelev<br>
+    🐦 Melikat Tereifa — Pinching a bird found to be tereifa<br>
+    🪓 Eglah Arufah — Purity of the heifer whose neck is broken<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Chelev Purity: Which Fats Are Pure?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Leviticus 7:24</b><br>"The fat of a <em>neveila</em> and the fat of a <em>tereifa</em> may be used for any service"</div><div class="flow-arrow">↓</div><div class="flow-box question">Which animals does this purity apply to?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Kosher Domesticated</div><div class="flow-box result-good">Chelev is <b>pure</b> — fat forbidden, meat permitted</div></div><div class="flow-col"><div class="flow-label">Kosher Undomesticated</div><div class="flow-box result-bad">Chelev is <b>impure</b> — "you shall not eat of it" excludes these</div></div><div class="flow-col"><div class="flow-label">Non-Kosher Animals</div><div class="flow-box result-bad">Chelev is <b>impure</b> — tereifa doesn't apply to their species</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The word <em>tereifa</em> in the verse limits the purity of chelev to species where the concept of tereifa is meaningful — i.e., kosher domesticated animals.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Does the Verse Say 'Tereifa'?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The impurity of a non-kosher animal's chelev can already be derived from <em>"you shall not eat of it"</em> — it excludes fats not forbidden as chelev. So <em>tereifa</em> in the verse seems superfluous!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Initial Answer</div><div class="speech">Perhaps <em>tereifa</em> includes the chelev of a kosher <b>undomesticated animal</b> (<em>chaya</em>) carcass, teaching it is pure.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But if a chaya's chelev is pure, why would a non-kosher animal's chelev be impure? In both cases fat is not distinct from meat!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Abaye</div><div class="speech"><em>Tereifa</em> teaches that the chelev of a <b>tereifa of a kosher domesticated animal</b> is pure — don't compare it to a non-kosher animal just because both are forbidden while alive.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But can you really derive tereifa from non-kosher? A tereifa once had a kosher period — a non-kosher animal never did. They are incomparable!</div></div></div><div class="callout" style="margin-top:20px"><strong>Challenge</strong> A <em>kal va-chomer</em> from non-kosher to tereifa fails because the two categories are fundamentally different — tereifa had a prior kosher status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rava: Double Liability for Chelev</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Chelev of a Neveila</h3><ul><li>Prohibition of chelev already exists</li><li>Prohibition of neveila <b>takes effect on top</b></li><li>Liable for <b>two</b> prohibitions</li><li>Needed because: neveila imparts <em>tumah</em></li></ul></div><div class="compare-box" style="border-top-color:#2a1a3e"><h3 style="color:#9b59b6">Chelev of a Tereifa</h3><ul><li>Prohibition of chelev already exists</li><li>Prohibition of tereifa <b>takes effect on top</b></li><li>Liable for <b>two</b> prohibitions</li><li>Needed because: tereifa is forbidden <em>while alive</em></li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Reading</strong> Both terms in the verse teach <em>issur chal al issur</em> — a new prohibition takes effect even where another already applies. Each case is needed because neither could be derived from the other.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Chelev Purity by Animal Category</h2>
+  
+  <table><tr><th>Animal Type</th><th>Chelev vs Meat</th><th>Tereifa Applies?</th><th>Chelev Status</th></tr><tr><td>Kosher domesticated (beheima)</td><td>Fat forbidden, meat permitted</td><td>Yes</td><td>✅ Pure</td></tr><tr><td>Kosher undomesticated (chaya)</td><td>Both fat & meat permitted</td><td>Yes</td><td>❌ Impure</td></tr><tr><td>Non-kosher animal</td><td>Both forbidden</td><td>No (irrelevant)</td><td>❌ Impure</td></tr><tr><td>Tereifa of kosher beheima</td><td>Fat forbidden, meat forbidden</td><td>Yes — this is it</td><td>✅ Pure</td></tr></table><div class="callout" style="margin-top:20px"><strong>Baraita's Conclusion</strong> "You shall not eat of it" limits purity to animals whose chelev is distinctly forbidden — kosher domesticated animals only.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>R' Meir: Pinching a Bird Found to Be Tereifa</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Mishna (R' Meir)</div><div class="speech">A bird offering whose nape was pinched (<em>melika</em>) and was found to be a tereifa does <b>not</b> impart impurity as a carcass (<em>neveila</em>).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">R' Meir deemed pure only <b>unblemished</b> birds — those actually fit for sacrifice. Blemished birds are <b>not</b> purified by melika.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">R' Elazar</div><div class="speech">R' Meir deemed even <b>blemished</b> birds pure. He did not distinguish between them.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Rav Beivai / R' Elazar</div><div class="speech">R' Meir would even deem <b>geese and chickens</b> pure — species never brought as offerings and never subject to melika!</div></div></div><div class="callout" style="margin-top:20px"><strong>Dispute</strong> R' Yochanan limits R' Meir's leniency to Temple-eligible birds; R' Elazar extends it to all birds, even species that are never sacrificed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Yirmeya's Dilemma: Breaking the Neck of a Goat</h2>
+  
+  <div class="flowchart"><div class="flow-box action">R' Meir (per R' Elazar): Melika purifies even <b>geese & chickens</b>, because they are <em>species of birds</em></div><div class="flow-arrow">↓</div><div class="flow-box question">Does breaking the neck of a <b>goat</b> similarly prevent neveila impurity?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Not Pure</div><div class="flow-box result-bad">A goat is <em>small livestock</em>; a heifer is <em>large livestock</em>. They are different species — no analogy.</div></div><div class="flow-col"><div class="flow-label">Pure</div><div class="flow-box result-good">A goat is still a <em>domesticated animal</em> like a heifer — close enough to extend the analogy.</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Underlying Assumption</strong> This dilemma assumes the <em>eglah arufah</em> (heifer whose neck is broken) is itself pure — a point Abaye immediately questions.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 70 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Leviticus 7:24</b><br>Chelev of neveila & tereifa may be used for service</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>"Tereifa"</b> limits purity to species where tereifa is meaningful → <em>kosher domesticated animals only</em></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; border-left: 3px solid #9b59b6;"><b>Rava:</b> Both words teach <em>issur chal al issur</em> — double liability for chelev + neveila/tereifa</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e2a16; border-left: 3px solid #c9a84c;"><b>R' Meir:</b> Melika on a tereifa bird → <em>no</em> neveila impurity</div></div><div class="flow-col"><div class="flow-box" style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Eglah Arufah:</b> Neck-breaking = kaparah → <em>no</em> carcass impurity</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 70a-70b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 70a-70b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../69/">← Daf 69</a><a href="../71/">Daf 71 →</a></div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 88 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Zevachim 88 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Shmuel, what is unique about blood-collection cups compared to other liquid service vessels?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. They sanctify both liquid and dry items</div>
+      <div class="option" onclick="select(1,this,1)">B. They sanctify items even when perforated</div>
+      <div class="option" onclick="select(1,this,2)">C. They sanctify items placed on their exterior</div>
+      <div class="option" onclick="select(1,this,3)">D. They sanctify items even without full measures</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: A — </strong>Shmuel distinguishes cups from liquid measures: cups sanctify dry items too, based on Numbers 7:13 where cups held flour for meal offerings.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">According to Rabbi Yoḥanan, when does a service vessel sanctify a partial amount of an item?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. When the vessel is brand new</div>
+      <div class="option" onclick="select(2,this,1)">B. When the priest intends to add more later</div>
+      <div class="option" onclick="select(2,this,2)">C. When the item is a liquid rather than dry</div>
+      <div class="option" onclick="select(2,this,3)">D. When the vessel is used in the Sanctuary rather than the courtyard</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>R' Yoḥanan teaches that if the priest initially intended to add more to the vessel, each partial amount placed inside becomes sanctified immediately, even before the full measure is reached.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Which priestly garment atones for idol worship, and what is the scriptural basis?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. The breastplate — 'breastplate of judgment'</div>
+      <div class="option" onclick="select(3,this,1)">B. The frontplate — 'upon Aaron's forehead'</div>
+      <div class="option" onclick="select(3,this,2)">C. The ephod — 'without ephod or teraphim' (Hosea 3:4)</div>
+      <div class="option" onclick="select(3,this,3)">D. The robe — because its bells ward off foreign worship</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: C — </strong>The ephod atones for idol worship. Hosea 3:4 links the absence of an ephod with the presence of teraphim (idols), implying that the ephod's presence prevents idol worship.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">Why does R' Yehoshua ben Levi's teaching pose a challenge to R' Inini bar Sason's list of garment-based atonements?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. R' Yehoshua ben Levi says vestments have no sanctity at all</div>
+      <div class="option" onclick="select(4,this,1)">B. He says bloodshed and malicious speech have no offering-based atonement — they are atoned by eglah arufah and incense respectively</div>
+      <div class="option" onclick="select(4,this,2)">C. He says only four garments effect atonement, not all eight</div>
+      <div class="option" onclick="select(4,this,3)">D. He says atonement requires both a garment and an offering together</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>R' Yehoshua ben Levi teaches that bloodshed and malicious speech lack offering-based atonement, being atoned instead by the eglah arufah and incense — creating tension with R' Inini's claim that the tunic and robe atone for these very sins.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">How many bells were on the High Priest's robe according to the first opinion in the baraita, and how were they arranged?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. 36 total — 18 per side, alternating with pomegranates</div>
+      <div class="option" onclick="select(5,this,1)">B. 72 total — 36 per side, alternating with pomegranates</div>
+      <div class="option" onclick="select(5,this,2)">C. 72 total — arranged in three rows of 24</div>
+      <div class="option" onclick="select(5,this,3)">D. 36 total — all on the front of the robe</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>The first opinion states 72 golden bells with 72 clappers, suspended on the skirts with 36 bells and 36 pomegranates on each side, alternating as stated in Exodus 39:26.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":0,"2":1,"3":2,"4":1,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

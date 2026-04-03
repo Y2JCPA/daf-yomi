@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 104 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Zevachim 104</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים קד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🩸 Blood & Hide — Does sprinkling accept the hide independently of the flesh?<br>
+    ⚖️ Flesh & Blood Link — R' Eliezer vs R' Yehoshua on interdependence of blood and flesh<br>
+    🏛️ The Bira — Identifying the place where disqualified offerings are burned<br>
+    🗑️ Three Ash Places — Locations for burning different categories of disqualified offerings<br>
+    🌙 Linah & Bulls — Does being left overnight disqualify bulls that are burned?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Zevachim 104 — Hides, Burning Places & Overnight Disqualification</h2>
+  
+  <div class="callout"><strong>DAF OVERVIEW</strong> This daf explores <b>whether blood sprinkling can save the hide</b> when flesh is disqualified, details <b>three distinct burning locations</b> in and around the Temple, and raises the question of whether <b>linah (overnight)</b> disqualifies the flesh of bulls and goats that are burned.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Does Blood Accept the Hide Independently?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yehuda HaNasi</div><div class="speech">The <b>blood effects acceptance of the hide by itself</b> after flaying — even if the flesh is later disqualified.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Elazar b'R' Shimon</div><div class="speech">The blood does <b>not</b> effect acceptance of the hide by itself.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Elazar b'R' Shimon</div><div class="speech">But if the disqualification arose <b>after sprinkling</b> while hide is on the flesh — the flesh was <b>accepted for a time</b>, so the priest may flay it and keep the hide.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yehuda HaNasi</div><div class="speech">If the hide is <b>still on the flesh</b> when disqualification occurs — whether before or after sprinkling — the hide follows the flesh and <b>both are burned</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY DISTINCTION</strong> They disagree on hides already separated from the flesh. For hides still attached, timing of disqualification matters differently for each opinion.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>When Is the Hide Saved from Burning?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Disqualification arises in the <b>offering's flesh</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Was the hide already <b>flayed</b> from the flesh?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">YES — Already Flayed</div><div class="flow-box result-bad"><b>R' Yehuda HaNasi:</b> Hide goes to priests (blood accepted it)<br/><b>R' Elazar b'R' Shimon:</b> Hide burned (blood doesn't accept independently)</div></div><div class="flow-col"><div class="flow-label">NO — Still Attached</div><div class="flow-box action">Was blood <b>already sprinkled?</b><br/>• Before sprinkling → Both burn (all agree)<br/>• After sprinkling → <b>R' Elazar:</b> Flay & priests keep hide; <b>Rebbi:</b> Both burn</div></div></div></div><div class="callout" style="margin-top:20px"><strong>R' CHANINA</strong> The Deputy Kohen Gadol testified: <b>"In all my days I never saw a hide go out to burning"</b> — he holds like R' Yehuda HaNasi.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Eliezer vs R' Yehoshua: Flesh & Blood Interdependence</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">R' Yehoshua</h3><ul><li>No blood → no flesh; no flesh → no blood</li><li>Flesh and blood are interdependent</li><li>Source: "the flesh AND the blood" (Deut. 12:27)</li><li>Concedes: if sprinkled anyway — accepted after the fact</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">R' Eliezer</h3><ul><li>Blood is sprinkled even without flesh</li><li>Source: "the blood shall be poured out"</li><li>Verse teaches: flesh is tossed onto altar (like blood is sprinkled)</li><li>Proves: there is a gap between the ramp and the altar</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>CONNECTION</strong> R' Yehuda HaNasi argues: even R' Yehoshua would agree blood saves the <b>hide</b> — because where priests suffer a loss, the blood should still effect acceptance.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Three Places of Ashes (שלוש בית הדשנים)</h2>
+  
+  <table><tr><th>Location</th><th>Rav Nachman's Version</th><th>Levi's Version</th></tr><tr><td><b>1. Great Ash-Place</b><br/>(Temple Courtyard)</td><td>Disqualified <i>kodshei kodashim</i>, disqualified <i>eimurim</i> of lesser sanctity, bulls/goats burned if disqualified <b>before</b> sprinkling</td><td>Same — but includes bulls/goats disqualified <b>before OR after</b> sprinkling</td></tr><tr><td><b>2. Temple Mount</b></td><td>Bulls/goats burned if disqualified <b>after</b> sprinkling</td><td>Bulls/goats burned if disqualified <b>upon exiting</b> the Temple courtyard</td></tr><tr><td><b>3. Outside Jerusalem</b><br/>(Outside 3 camps)</td><td>Bulls and goats burned <b>according to their mitzvah</b> (not disqualified)</td><td>Same — bulls and goats burned <b>according to their mitzvah</b></td></tr></table><div class="callout" style="margin-top:20px"><strong>THE BIRA</strong> <b>R' Yochanan:</b> A specific place on the Temple Mount called <i>bira</i>. <b>Reish Lakish:</b> The entire Temple is called <i>bira</i>, as in I Chronicles 29:19.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Does Linah Disqualify Bulls That Are Burned?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">R' Yirmeya</div><div class="speech">Dilemma: Linah (being left overnight) disqualifies most offerings. Does it also disqualify <b>bulls/goats that are burned</b> — whose flesh is neither eaten nor offered on the altar?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rava</div><div class="speech">Abaye raised this too. I resolved it: <b>piggul</b> intent for burning these bulls does nothing — so linah shouldn't disqualify either!</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Gemara</div><div class="speech">Rejected! Perhaps <b>improper intention</b> doesn't disqualify, but <b>actual overnight</b> passage does disqualify — they are different mechanisms.</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">Gemara</div><div class="speech">Proof from Me'ilah 9a: These offerings are susceptible to disqualification through <b>tevul yom</b>, <b>mechusar kippurim</b>, and <b>linah</b>!</div></div></div><div class="callout" style="margin-top:20px"><strong>ANALYSIS</strong> The Gemara debates whether the mishnah in Me'ilah refers to the <b>flesh</b> or only the <b>eimurim</b> (sacrificial portions). The latter clause discussing flesh suggests the former clause also addresses flesh.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 104 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Offering Disqualified</b> — Does blood save the hide?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2a1a3e; color:#fff; padding:10px; border-radius:8px;"><b>R' Yehuda HaNasi:</b> Blood accepts hide independently after flaying</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>R' Elazar b'R' Shimon:</b> Blood does NOT accept hide independently</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e2a16; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Three Burning Locations:</b> Courtyard (disqualified kodashim), Temple Mount (disqualified after sprinkling), Outside Jerusalem (valid mitzvah burning)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><b>Linah Dilemma:</b> Does overnight disqualify bulls/goats that are burned? Gemara brings proof from Me'ilah that it does apply to the flesh</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 104a-104b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 104a-104b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../103/">← Daf 103</a><a href="../105/">Daf 105 →</a></div>
+</body>
+</html>

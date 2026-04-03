@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 96 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🏺</div>
+  <h1>Zevachim 96</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים צו׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏺 Earthenware in the Temple — why pots must be broken, not re-fired<br>
+    🔥 Kilns & Jerusalem — no kilns allowed due to smoke<br>
+    ✨ Miraculous Absorption — shards absorbed in their place<br>
+    🍳 Temple Oven — why it must be metal, not clay<br>
+    🧽 Partial Cooking — does the whole vessel need scouring?<br>
+    📜 Scouring vs. Sprinkling — comparing stringencies<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Zevachim 96 — Earthenware, Metal Ovens & Scouring Rules</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Earthenware absorbs sacrificial flavor</b><br>Can kindling cleanse it?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">If Yes</div><div class="flow-box question">Why break Temple pots?<br>Return them to kilns!</div></div><div class="flow-col"><div class="flow-label">If No</div><div class="flow-box result-bad">Pots must be broken<br>as Torah commands</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>R' Zeira:</b> No kilns in Jerusalem<br>(smoke prohibition)</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Temple oven = metal</b><br>Service vessels cannot be earthenware</div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> The Gemara explores why earthenware is excluded from Temple service and when scouring/rinsing (<i>merikah u-sheti'fah</i>) applies to vessels used for sacred meat.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Not Return Pots to Kilns?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e74c3c">Challenger</div><div class="speech">If kindling cleanses earthenware, why does the Torah say to <b>break</b> Temple pots? Just return them to the kilns!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Zeira</div><div class="speech">A <i>baraita</i> teaches: <b>Kilns may not be built in Jerusalem</b> because of the great smoke they produce.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Abaye</div><div class="speech">But if there are no kilns, are there scrap heaps in the courtyard? The same <i>baraita</i> says no scrap heaps in Jerusalem either!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Abaye forgot what <b>Shemaya taught in Kalnevo</b>: the shards of earthenware were <b>miraculously absorbed in their place</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>Miracle</strong> Broken Temple pottery did not accumulate — it was absorbed into the ground miraculously, one of the wonders of the Temple courtyard.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Is the Temple Oven Made of Metal?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">If kindling cleanses earthenware from within...</div><div class="flow-arrow">↓</div><div class="flow-box question">Why did <b>Rav Naḥman</b> (citing Rabba bar Avuh) say:<br>The Temple oven must be <b>metal</b>?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Two Loaves</b> (Shavuot) and <b>Shewbread</b><br>are baked in the oven</div><div class="flow-arrow">↓</div><div class="flow-box action">These are <b>sanctified by the oven</b> itself<br>(not kneaded in a service vessel)</div><div class="flow-arrow">↓</div><div class="flow-box result-good">The oven is therefore a <b>service vessel</b> (<i>kli shareit</i>)<br>— and service vessels <b>cannot be earthenware</b></div></div><div class="callout" style="margin-top:20px"><strong>R' Yosei b. R' Yehuda</strong> Even he, who allows wooden service vessels, agrees that earthenware is too insignificant a material for sacred use.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rav Yitzḥak bar Yehuda Chooses a Teacher</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rami bar Ḥama</div><div class="speech">You left me for Rav Sheshet — do you think just being near him (<i>alkafta</i> analogy) makes you like him?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Yitzḥak bar Yehuda</div><div class="speech">Master, you resolve questions through <b>reasoning</b> (<i>sevara</i>). When I find a contradicting <i>mishna</i>, it refutes your answer entirely.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rav Yitzḥak bar Yehuda</div><div class="speech">Rav Sheshet resolves through <b>citing a <i>mishna</i></b>. A contradicting <i>mishna</i> is merely a <b>dispute between sources</b> — it doesn't refute his answer.</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rami bar Ḥama</div><div class="speech">Ask me something — I'll resolve it from a <i>mishna</i> too!</div></div></div><div class="callout" style="margin-top:20px"><strong>Methodology</strong> This passage highlights two approaches to Talmudic reasoning: logical deduction vs. textual citation. Mishna-based answers are more resilient to challenge.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Partial Cooking — Does the Whole Vessel Need Scouring?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#c9a84c">Rami bar Ḥama's View</h3><ul><li>Only the part where meat was cooked needs scouring</li><li>Analogous to blood sprinkling on a garment</li><li>Just as you launder only the stained area...</li><li>...scour only the cooking area</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">Baraita (Tosefta 10:15)</h3><ul><li>The ENTIRE vessel requires scouring and rinsing</li><li>Cooking flavor spreads throughout the vessel</li><li>Unlike blood, which doesn't penetrate the whole garment</li><li>Derived from: "in a copper vessel" (Lev. 6:21)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rami's Concession</strong> "If this baraita is taught, it is taught" — Rami bar Ḥama accepted the authoritative teaching, demonstrating intellectual honesty.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Sprinkling vs. Scouring & Rinsing — Stringencies Compared</h2>
+  
+  <table><tr><th>Criterion</th><th>Sprinkling (Blood on Garment)</th><th>Scouring & Rinsing (Vessels)</th></tr><tr><td>Which sin offerings?</td><td>External AND internal</td><td>External only</td></tr><tr><td>Timing</td><td>Even before sprinkling blood on altar</td><td>Only after sprinkling on altar</td></tr><tr><td>Which sanctity level?</td><td>Sin offerings only</td><td>Most sacred AND lesser sanctity</td></tr><tr><td>Partial contact?</td><td>Launder only the stained area</td><td>Entire vessel must be scoured</td></tr><tr><td>Scope of offerings?</td><td>Sin offerings specifically</td><td>Extended to all sacrificial meat</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Blood stays localized on a garment, but cooking flavor permeates the entire vessel — hence the broader requirement for scouring.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 96 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px; border-radius:6px;"><b>Earthenware Temple Pots</b><br>Must be broken — kilns banned in Jerusalem; shards miraculously absorbed</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px; border-radius:6px;"><b>Temple Oven = Metal</b><br>Oven sanctifies Two Loaves & Shewbread → it is a <i>kli shareit</i> → cannot be earthenware</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2d1a3e; border-left:3px solid #9b59b6; padding:10px; border-radius:6px;"><b>Partial Cooking</b><br>Flavor spreads throughout → entire vessel needs <i>merikah u-sheti'fah</i></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border:1px solid #4caf50; padding:8px; border-radius:6px;"><b>Included:</b><br>Most sacred & lesser sanctity offerings</div></div><div class="flow-col"><div class="flow-box" style="background:#3e1a1a; border:1px solid #e74c3c; padding:8px; border-radius:6px;"><b>Excluded:</b><br>Terumah — derived from "of it"</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 96a-96b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 96a-96b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../95/">← Daf 95</a><a href="../97/">Daf 97 →</a></div>
+</body>
+</html>

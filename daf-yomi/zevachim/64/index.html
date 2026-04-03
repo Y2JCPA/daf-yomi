@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 64 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐦</div>
+  <h1>Zevachim 64</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים סד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🩸 Blood Placement — Sprinkling below the red line and squeezing at the base for bird sin offerings<br>
+    📐 Southwest Corner — Three rites below and three above the red line at this altar corner<br>
+    🔥 Ramp Navigation — Standard ascent via right side with exceptions for libations and bird offerings<br>
+    💨 Smoke Concern — Why priests skip circling the altar for wine libations and bird offerings<br>
+    ✋ Pinching Technique — The precise hand grip for meliqa of the bird sin offering<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 64: The Southwest Corner & Bird Sin Offering</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Southwest Corner of the Altar</b><br>Serves as the location for six distinct rites</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Below Red Line</div><div class="flow-box result-good">Bird sin offering<br>Meal offerings<br>Pouring remaining blood</div></div><div class="flow-col"><div class="flow-label">Above Red Line</div><div class="flow-box result-good">Water libation<br>Wine libation<br>Bird burnt offering (overflow)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> The southwest corner is a uniquely versatile location on the altar, serving different rites above and below the red line (<i>ḥut ha-sikra</i>).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Six Rites at the Southwest Corner</h2>
+  
+  <table><tr><th>Rite</th><th>Position</th><th>Source</th></tr><tr><td>Bird sin offering (<i>ḥatat ha-of</i>)</td><td>Below red line</td><td>Derived by comparison to meal offerings (63b)</td></tr><tr><td>Bringing meal offerings near (<i>hagasha</i>)</td><td>Below red line</td><td>"He shall bring it to the front of the altar"</td></tr><tr><td>Pouring remaining blood (<i>shefikhat shirayim</i>)</td><td>Below red line</td><td>Leviticus 4:7 — "at the base of the altar"</td></tr><tr><td>Water libation (<i>nisukh ha-mayim</i>)</td><td>Above red line</td><td>Taught in the Mishna</td></tr><tr><td>Wine libation (<i>nisukh ha-yayin</i>)</td><td>Above red line</td><td>Taught in the Mishna</td></tr><tr><td>Bird burnt offering (overflow)</td><td>Above red line</td><td>When southeast corner is too crowded</td></tr></table><div class="callout" style="margin-top:20px"><strong>Note</strong> The bird burnt offering is ideally performed at the <b>southeast corner</b> — it only moves to the southwest when overcrowded.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why the Southeast Corner for Bird Burnt Offerings?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">What is the reason the bird burnt offering (<i>olat ha-of</i>) is ideally at the <b>southeast corner</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yoḥanan</div><div class="speech">Because it is <b>closest to the place of the ashes</b> (<i>beit ha-deshen</i>), where the crop and feathers are placed.</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yoḥanan</div><div class="speech">Come and see the <b>strength of the priests</b>! The crop and feathers are the lightest parts, yet priests could toss them <b>over 30 cubits</b> from the southwest corner to the ash-place!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But the distance is actually <b>over 31 cubits</b>!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yoḥanan</div><div class="speech">I did not factor in the space occupied by the priest himself standing on the altar.</div></div></div><div class="callout" style="margin-top:20px"><strong>Insight</strong> R' Yoḥanan marvels at priestly athleticism — tossing tiny bird parts over 30 cubits (~15 meters) across the altar.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Standard vs. Exception: Ascending the Ramp</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Priest approaches the ramp</b></div><div class="flow-arrow">↓</div><div class="flow-box question">Is this for a <b>libation</b> or <b>bird burnt offering</b> at the southwest corner?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">No — Standard</div><div class="flow-box result-good">Ascend via <b>right side</b> (east)<br>↓<br>Circle entire altar to southwest<br>↓<br>Descend via <b>left side</b> (west)</div></div><div class="flow-col"><div class="flow-label">Yes — Exception</div><div class="flow-box result-bad">Ascend <b>directly</b> to the southwest corner via the <b>west side</b><br>↓<br>Perform the rite<br>↓<br>Descend the <b>same west side</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>R' Yoḥanan's Reason</strong> <b>Libations:</b> Circling would cause wine/water to absorb altar smoke. <b>Bird offering:</b> The bird might <b>die from inhaling smoke</b> before the rite is performed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Does the High Priest Circle with Wine?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But a Mishna in Tamid says the High Priest <b>circles the altar</b> and then is <b>given wine to pour</b>! This contradicts R' Yoḥanan's smoke concern!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">R' Yoḥanan</div><div class="speech">The circling is done <b>empty-handed</b> (<i>raglit</i>). He receives the wine <b>only after arriving</b> at the southwest corner.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Rava</div><div class="speech">The Mishna's language confirms this: it says he '<b>is given</b> wine to pour' — not that he is '<b>told</b> to pour wine.' This implies he didn't have it yet.</div></div></div><div class="callout" style="margin-top:20px"><strong>Proof</strong> Rava's precise reading (<i>diyuk</i>) of the Mishna supports R' Yoḥanan: the passive "is given" shows the wine was handed to the Kohen Gadol only at the destination.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Bird Sin Offering Blood: Above or Below the Red Line?</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#3a1c1c"><h3 style="color:#e74c3c">Logical Argument (Rejected)</h3><ul><li>Animal offerings: burnt = below, sin = above</li><li>Bird offerings: burnt = above the red line</li><li>So bird sin offering should also be above?</li><li>This kal va-ḥomer would place blood above the line</li></ul></div><div class="compare-box" style="border-top-color:#1c3a1c"><h3 style="color:#4caf50">Verse Overrides (Accepted)</h3><ul><li>Leviticus 5:9 — remaining blood "yimmatze" at the base</li><li>Blood must drain naturally to the altar base</li><li>The ledge blocks blood sprinkled above it</li><li>Therefore: sprinkling must be BELOW the red line</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rava's Key Insight</strong> The verse uses <b><i>yimmatze</i></b> (passive — 'it shall be drained') not <i>yematze</i> (active — 'he shall drain'). The blood must trickle down <b>on its own</b> to the base, requiring placement below the ledge.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 64 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:3px solid #4a90d9; padding:10px; border-radius:6px;"><b>Southwest Corner Below Red Line</b><br>Bird sin offering · Meal offerings · Remaining blood</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left:3px solid #4caf50; padding:10px; border-radius:6px;"><b>Southwest Corner Above Red Line</b><br>Wine libation · Water libation · Bird burnt offering (overflow)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1621; border-left:3px solid #e74c3c; padding:10px; border-radius:6px;"><b>Ramp Exceptions</b><br>Libations & bird offerings go directly to southwest — no circling, to avoid smoke</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; border-left:3px solid #9b59b6; padding:10px; border-radius:6px;"><b>Bird Sin Offering Procedure</b><br>Pinch nape · Sprinkle below line · Squeeze at base · Priests consume the bird</div></div><div class="flow-col"><div class="flow-box" style="background:#3a2e16; border-left:3px solid #e67e22; padding:10px; border-radius:6px;"><b>Yimmatze Teaching</b><br>Passive form proves blood must drain naturally to the base — mandating placement below the ledge</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 64a-64b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 64a-64b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../63/">← Daf 63</a><a href="../65/">Daf 65 →</a></div>
+</body>
+</html>

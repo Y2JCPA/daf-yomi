@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 74 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔗</div>
+  <h1>Zevachim 74</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים עד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔗 Mixtures — When a prohibited item separates from a mixture<br>
+    🪙 Idol Worship Ring — Rav's ruling on intermingled rings<br>
+    ⚖️ Compound Uncertainty — Shmuel vs. the Baraita on sfek sfeka<br>
+    🛢️ Teruma Barrel — Reish Lakish on sealed barrels in mixtures<br>
+    🔓 Opening Barrels — R' Elazar's method for nullifying teruma<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Core Question: Can We Assume the Lost Item Is the Prohibited One?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">A <b>prohibited item</b> is mixed with permitted items</div><div class="flow-arrow">↓</div><div class="flow-box action">One item <b>separates</b> or is lost from the mixture</div><div class="flow-arrow">↓</div><div class="flow-box question">Can we say the <b>lost item</b> was the prohibited one?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rav / Reish Lakish</div><div class="flow-box result-good"><b>Yes</b> — we assume the prohibited item is the one that left</div></div><div class="flow-col"><div class="flow-label">Shmuel (re: idolatry)</div><div class="flow-box result-bad"><b>No</b> — idol worship's uncertainty remains <b>forever</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY THEME</strong> This daf explores whether separation from a mixture can retroactively resolve the prohibited status of the remaining items.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Rav's Ring Ruling & Rava's Challenge</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav (via Rav Naḥman)</div><div class="speech">An <b>idol worship ring</b> mixed with 100 permitted rings — if one falls into the <b>Great Sea</b>, all are permitted. We assume the lost one was prohibited.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">But the Mishna says offerings mixed with prohibited animals — even 1 in 10,000 — <b>all must die!</b> Why not say the first to die was the prohibited one?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Naḥman</div><div class="speech">Rav follows <b>R' Eliezer</b>, who says if one head was already sacrificed, we assume it was the disqualified one, and all the rest may be offered.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava</div><div class="speech">But R' Elazar says R' Eliezer only permits them <b>two by two</b> — not one by one! How can Rav permit rings without qualification?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Naḥman</div><div class="speech">Indeed — Rav also means the rings may only be <b>sold two at a time</b>, ensuring at least one is certainly permitted.</div></div></div><div class="callout" style="margin-top:20px"><strong>PRINCIPLE</strong> Even when we assume the lost item is prohibited, we still require safeguards — selling two at a time guarantees at least one is permitted.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rav's 40/60 Split: Which Group Bears the Prohibition?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">1 idol ring mixed with <b>100 permitted rings</b></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>40</b> separate to one place, <b>60</b> to another</div><div class="flow-arrow">↓</div><div class="flow-box question">Which group is assumed to contain the prohibited ring?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Group of 40</div><div class="flow-box result-good">If all 40 mix with other rings → <b>permitted</b> (prohibition follows the majority — the 60)</div></div><div class="flow-col"><div class="flow-label">Group of 60</div><div class="flow-box result-bad">If all 60 mix with other rings → <b>prohibited</b> (the prohibited ring is assumed to be here)</div></div></div></div><div class="callout" style="margin-top:20px"><strong>NOTE</strong> Rav's ruling applies only when the entire subgroup separates — not when a single ring leaves a group, as the majority principle wouldn't apply the same way.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Shmuel vs. The Baraita: Compound Uncertainty (Sfek Sfeka)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">Shmuel</h3><ul><li>Idol worship is <b>uniquely stringent</b></li><li>Its uncertainty and compound uncertainty are <b>prohibited forever</b></li><li>No amount of additional mixtures can dilute the prohibition</li><li>Disregard Rav's leniency regarding the 40/60 split</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4caf50">Baraita (Objection)</h3><ul><li>A cup of idol worship falls into a storeroom — all <b>prohibited</b> (first uncertainty)</li><li>One cup separates and falls into 10,000 cups — still uncertain</li><li>From those 10,000, one falls into another 10,000 — <b>permitted</b></li><li>Compound uncertainty of idol worship <b>is</b> permitted!</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>RESOLUTION</strong> The Gemara must reconcile Shmuel's blanket stringency with this baraita that explicitly permits compound uncertainties of idol worship.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Reish Lakish: The Teruma Barrel in the Dead Sea</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">A sealed <b>teruma barrel</b> mixed with 100 non-sacred barrels cannot be nullified — sealed barrels are <b>significant</b> (davar she-b'minyan).</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">But if one barrel falls into the <b>Dead Sea</b>, all remaining barrels are permitted — we assume the one that fell was the teruma barrel.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Why do we need <b>both</b> Rav Naḥman's ring ruling and Reish Lakish's barrel ruling?</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">From the ring case alone, I'd think leniency applies only to idol worship items which have <b>no permitting factors</b>. Teruma can be sold to a Kohen!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">From the barrel case alone, I'd think leniency applies only when the <b>falling is noticeable</b>. A ring's falling is not noticeable. Both are needed.</div></div></div><div class="callout" style="margin-top:20px"><strong>DISTINCTION</strong> Each ruling teaches a unique chiddush: the ring case — even when there are no permitting factors; the barrel case — even when permitting factors exist.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabba vs. Rav Yosef: Does Size Matter for Separation?</h2>
+  
+  <table><tr><th>Position</th><th>Barrel Falls?</th><th>Fig Falls?</th><th>Reasoning</th></tr><tr><td><b>Rabba</b></td><td>✅ Remaining items permitted</td><td>❌ Remaining items NOT permitted</td><td>A barrel's fall is <b>noticeable</b>; a fig's fall is not — people won't know it was permitted</td></tr><tr><td><b>Rav Yosef</b></td><td>✅ Remaining items permitted</td><td>✅ Remaining items permitted</td><td>Just as <b>entering</b> the mixture prohibited everything, <b>leaving</b> the mixture permits everything — regardless of size</td></tr></table><div class="callout" style="margin-top:20px"><strong>CORE DISPUTE</strong> Is the leniency based on publicizing the separation (Rabba), or on the symmetric logic of entering and leaving a mixture (Rav Yosef)?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 74 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; padding:10px; border-radius:8px; color:white;"><b>Prohibited item</b> mixed with permitted items</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; padding:10px; border-radius:8px; color:white;">One item <b>separates</b> from the mixture</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding:10px; border-radius:8px; color:#4caf50;"><b>Rav / Reish Lakish:</b><br>Remaining items <b>permitted</b> — assume the lost item was prohibited<br>(sell two at a time per R' Eliezer)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; padding:10px; border-radius:8px; color:#e74c3c;"><b>Shmuel (idol worship):</b><br>Uncertainty persists <b>forever</b> — even compound uncertainty cannot resolve idol worship prohibition</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3e; padding:10px; border-radius:8px; color:#bb86fc;"><b>Sealed items</b> (barrels) require <b>opening</b> before nullification applies — significance prevents automatic bitul</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 74a-74b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 74a-74b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../73/">← Daf 73</a><a href="../75/">Daf 75 →</a></div>
+</body>
+</html>

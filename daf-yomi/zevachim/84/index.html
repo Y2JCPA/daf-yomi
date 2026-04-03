@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 84 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Zevachim 84</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים פד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔥 Altar Acceptance — Which disqualified offerings stay if they ascend<br>
+    ⚖️ Mishna's Core List — Categories of offerings that shall not descend<br>
+    🔄 Disqualification in Sanctity — R' Shimon's key principle<br>
+    📜 Scriptural Sources — Deriving the halakhot from Leviticus 6:2<br>
+    🐑 Disqualifications Not in Sanctity — Inherent unfitness vs. procedural error<br>
+    🌙 Slaughter at Night — R' Yehuda vs. R' Shimon on nighttime slaughter<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Zevachim 84 — The Altar Renders Acceptable</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">זֹאת תּוֹרַת הָעֹלָה הִוא הָעֹלָה עַל מוֹקְדָהּ עַל הַמִּזְבֵּחַ — Leviticus 6:2</div><div class="callout"><strong>Core Question</strong> When a <b>disqualified offering</b> ascends the altar, does it stay or come down? The Mishna lists specific disqualifications where it <b>shall not descend</b>, and the Gemara traces each to its scriptural or logical source. The pivotal debate: does the distinction depend on whether the <b>disqualification occurred in sanctity</b> (during Temple service) or not?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Mishna's List: Ascended → Shall Not Descend</h2>
+  
+  <table><tr><th>Disqualification</th><th>Category</th></tr><tr><td>Blood, portions, or limbs <b>left overnight</b> (לינה)</td><td>Time-based</td></tr><tr><td>Offering that <b>emerged</b> from the courtyard (יוצא)</td><td>Location-based</td></tr><tr><td>Offering that became <b>ritually impure</b> (טמא)</td><td>Purity-based</td></tr><tr><td>Slaughtered with intent <b>beyond its time</b> (פיגול)</td><td>Intent-based</td></tr><tr><td>Slaughtered with intent <b>outside its area</b> (חוץ למקומו)</td><td>Intent-based</td></tr><tr><td>Blood collected/sprinkled by <b>unfit persons</b></td><td>Personnel-based</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Rule</strong> All these are disqualified — yet once they ascend the altar, <b>they shall not descend</b>. The altar sanctifies what is placed upon it.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Three-Way Dispute: What Descends from the Altar?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Yehuda</div><div class="speech">Slaughtered <b>at night</b>, blood <b>spilled on the floor</b>, or blood that <b>emerged outside</b> the curtains — even if it ascended, <b>it shall descend</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Shimon</div><div class="speech">In <b>all these cases</b>, if it ascended it <b>shall not descend</b> — because the disqualification occurred <b>in sanctity</b> (בקודש).</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Tanna Kamma</div><div class="speech">The six listed disqualifications — those stay. But the three R' Yehuda mentions? Those <b>shall descend</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Shimon</div><div class="speech">My principle: <b>any disqualification in sanctity</b> — the sacred area renders it acceptable. Only disqualifications <b>not in sanctity</b> — those descend.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> R' Shimon's rule: <b>פסולו בקודש</b> (disqualification occurred during Temple service) = stays on altar. <b>Not in sanctity</b> = descends.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Disqualification IN Sanctity vs. NOT in Sanctity</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">In Sanctity — Shall NOT Descend</h3><ul><li>Left overnight (לינה)</li><li>Emerged from courtyard (יוצא)</li><li>Became impure (טמא)</li><li>Piggul — beyond its time</li><li>Outside its designated area</li><li>Collected by unfit persons</li><li>Slaughtered at night (R' Shimon)</li><li>Blood spilled on floor (R' Shimon)</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">NOT in Sanctity — Shall Descend</h3><ul><li>Animal that copulated with a person (רובע)</li><li>Object of bestiality (נרבע)</li><li>Set aside for idol worship (מוקצה)</li><li>Worshipped as a deity (נעבד)</li><li>Payment to a prostitute (אתנן)</li><li>Price of a dog (מחיר כלב)</li><li>Mixed kinds (כלאים) / Tereifa / Caesarean</li><li>Blemished animals (dispute: R' Akiva vs. R' Ḥanina)</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>R' Akiva vs. R' Ḥanina</strong> R' Akiva: blemished animals that ascended <b>shall not descend</b>. R' Ḥanina the deputy HP: my father would <b>reject blemished animals</b> from the altar.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>R' Yehuda's Scriptural Derivation (Leviticus 6:2)</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>"This is the law of the burnt offering:<br/>It is the burnt offering on the pyre upon the altar"</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">"This" (זאת)</div><div class="flow-box result-bad">Excludes one category from staying on altar</div></div><div class="flow-col"><div class="flow-label">"It" (היא)</div><div class="flow-box result-bad">Excludes a second category</div></div><div class="flow-col"><div class="flow-label">"The" (ה)</div><div class="flow-box result-bad">Excludes a third category</div></div></div><div class="flow-arrow">↓</div><div class="flow-box result-bad">R' Yehuda excludes: <b>slaughtered at night</b>, <b>blood spilled</b>, <b>blood left courtyard</b></div></div><div class="callout" style="margin-top:20px"><strong>Method</strong> Three restrictive terms (<b>מיעוטים</b>) in one verse — each excludes one type of disqualified offering that <b>must descend</b> even if placed on the altar.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Yehuda's Chain of Derivations (Baraita)</h2>
+  
+  <div class="process-bar"><div class="process-step">🩸 <b>Blood left overnight</b> → derived from sacrificial portions left overnight being fit</div><div class="process-arrow">↓</div><div class="process-step">🥩 <b>Portions left overnight</b> → derived from meat of peace offering (eaten 2 days + 1 night)</div><div class="process-arrow">↓</div><div class="process-step highlight">🚪 <b>Emerged from courtyard</b> → derived from private altars (במה), which have no boundary</div><div class="process-arrow">↓</div><div class="process-step">🫧 <b>Became impure</b> → derived from communal offerings, which may be offered when impure</div><div class="process-arrow">↓</div><div class="process-step highlight">⏰ <b>Piggul</b> → blood sprinkling effects acceptance for piggul status, proving it's still an offering</div><div class="process-arrow">↓</div><div class="process-step">📍 <b>Outside its area</b> → juxtaposed to piggul (beyond its time)</div><div class="process-arrow">↓</div><div class="process-step">👤 <b>Unfit persons</b> → derived from impure priests who serve for communal offerings</div></div><div class="callout" style="margin-top:20px"><strong>Gemara's Challenge</strong> Can one derive the <b>unfit</b> from the <b>fit</b>? Answer: the tanna relied on the verse (Lev 6:2) which amplified the halakha broadly; these derivations are merely <b>supports</b> (אסמכתא).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 84 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left:4px solid #4a90d9; padding:10px;"><b>Disqualified offering</b> placed on the altar</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; padding:10px; border:1px solid #4caf50;"><b>Disqualification in sanctity</b><br/>(overnight, impure, piggul, emerged, unfit persons)<br/>→ <span style='color:#4caf50;'>Shall NOT descend</span></div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; padding:10px; border:1px solid #e74c3c;"><b>Disqualification NOT in sanctity</b><br/>(bestiality, idol worship, prostitute payment, tereifa, etc.)<br/>→ <span style='color:#e74c3c;'>Shall descend</span></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left:4px solid #9b59b6; padding:10px;"><b>Dispute:</b> R' Yehuda excludes 3 more cases (night slaughter, spilled blood, blood outside). R' Shimon includes them. R' Akiva includes blemished animals.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 84a-84b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 84a-84b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../83/">← Daf 83</a><a href="../85/">Daf 85 →</a></div>
+</body>
+</html>

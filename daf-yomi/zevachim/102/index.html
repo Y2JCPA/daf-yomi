@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 102 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">👑</div>
+  <h1>Zevachim 102</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים קב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    👑 Moses's Status — Was Moses a priest, a king, or both?<br>
+    🔬 Miriam's Leprosy — Why God Himself quarantined Miriam<br>
+    🎉 Elisheva's Five Joys — Honor and mourning on dedication day<br>
+    ⚖️ Respect for Kingship — Moses's conduct before Pharaoh<br>
+    🍖 Priestly Shares — Which priests receive sacrificial meat?<br>
+    🛁 Immersed Priest — Can a tevul yom receive a share for evening?<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Was Moses a High Priest? & Who Receives Priestly Shares?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav</div><div class="speech">Moses served as a <b>Kohen Gadol</b> during the seven days of inauguration.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Objection</div><div class="speech">A baraita about Elisheva calls Moses a <b>king</b> — implying he was <em>not</em> a priest!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">He was a king <b>as well</b> — in addition to being a High Priest.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Shimon ben Yoḥai</div><div class="speech">God told Moses: <b>'You were to be the priest, he the Levite — now reversed.'</b> Aaron is called 'Levite' as proof.</div></div><div class="debate-line"><div class="speaker" style="background:#4caf50">Rabbis</div><div class="speech">Moses was a priest only during the <b>seven days of inauguration</b>, then it expired.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Some Say</div><div class="speech">The priesthood expired only for Moses's <b>descendants</b> — Moses himself remained a priest.</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY VERSE</strong> <b>"Moses and Aaron among His priests"</b> (Psalms 99:6) — cited as proof that Moses retained priestly status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Couldn't Moses or Aaron Inspect Miriam's Leprosy?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Miriam is stricken with <b>tzara'at</b> (leprosy)</div><div class="flow-arrow">↓</div><div class="flow-box question">Who can inspect her leprous marks?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Moses?</div><div class="flow-box result-bad">❌ A <b>non-priest</b> may not inspect leprous marks (or: excluded by Lev. 13:2)</div></div><div class="flow-col"><div class="flow-label">Aaron?</div><div class="flow-box result-bad">❌ A <b>relative</b> may not inspect leprous marks</div></div><div class="flow-col"><div class="flow-label">God Himself</div><div class="flow-box result-good">✅ 'I am a Priest — <b>I will quarantine her</b> for seven days'</div></div></div></div><div class="callout" style="margin-top:20px"><strong>HONOR</strong> God bestowed <b>great honor</b> on Miriam by personally serving as the inspecting priest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Elisheva's Five Joys — and Her Mourning</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">🎉 Five Reasons for Joy</h3><ul><li>Brother-in-law <b>Moses</b> — King of Israel</li><li>Husband <b>Aaron</b> — Kohen Gadol</li><li>Son <b>Elazar</b> — Deputy High Priest (Segan)</li><li>Grandson <b>Pinehas</b> — Priest Anointed for War</li><li>Brother <b>Nahshon</b> — Prince of Judah, first to bring offering</li></ul></div><div class="compare-box" style="border-top-color:#3e1a1a"><h3 style="color:#e74c3c">😢 Her Mourning</h3><ul><li>Sons <b>Nadav and Avihu</b> died on that very same day</li><li>The day of the Tabernacle's dedication became a day of both joy and grief</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>OBJECTION</strong> The baraita calls Moses a <b>king</b> — implying not a priest. The Gemara answers: he was a king <b>as well</b>, in addition to priesthood.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Tannaitic Dispute: Did Moses Retain the Priesthood?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yehoshua ben Korḥa</div><div class="speech">God's burning anger at Moses at the bush had <b>no stated consequence</b> — unlike every other anger in Torah.</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Shimon ben Yoḥai</div><div class="speech">The consequence <em>is</em> stated: Aaron is called <b>'the Levite'</b> — meaning Moses <b>lost</b> the priesthood to Aaron.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">Moses was priest for the <b>seven days of inauguration only</b>. Then it expired.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Some Say</div><div class="speech">It expired only for his <b>descendants</b>: 'His sons are named among the tribe of Levi' — but Moses himself stayed a priest.</div></div></div><div class="callout" style="margin-top:20px"><strong>DOUBLE PROOF</strong> If the verse in Chronicles only assigns descendants to Levi, a second verse confirms: <b>"Moses and Aaron among His priests"</b> (Psalms 99:6).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Moses and Pharaoh — Respect for Kingship</h2>
+  
+  <table><tr><th>Sage</th><th>Interpretation of 'Stand by the River'</th></tr><tr><td><b>Reish Lakish</b></td><td>Pharaoh is a king — <b>be amiable</b> toward him</td></tr><tr><td><b>R' Yoḥanan</b></td><td>Pharaoh is wicked — <b>be insolent</b> toward him</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' YANNAI</strong> <b>Fear of kingship should always be upon you.</b> Moses told Pharaoh 'your servants will bow to me' — but did not say this of Pharaoh himself, preserving royal dignity even for a wicked king.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Which Priests Receive a Share of Sacrificial Meat?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Mishna's principle:</b> Any priest unfit for service <em>that day</em> does not receive a share</div><div class="flow-arrow">↓</div><div class="flow-box question">Objection: What about exceptions?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Blemished Priest</div><div class="flow-box result-good">Unfit for <em>service</em> but <b>may partake</b> of meat → receives share (derived from 'every male')</div></div><div class="flow-col"><div class="flow-label">Impure Priest</div><div class="flow-box result-bad">Fit for <em>communal service</em> but <b>may not partake</b> → no share</div></div><div class="flow-col"><div class="flow-label">Minor</div><div class="flow-box result-bad">Fit to <em>partake</em> but <b>not to serve</b> → no share</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Resolution:</b> The mishna's principle means unfit <em>to partake</em>, not unfit for service</div></div><div class="callout" style="margin-top:20px"><strong>KEY RULE</strong> The mishna only teaches its <b>explicit statement</b> — we cannot derive the inverse that every fit priest necessarily receives a share.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 102 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #c9a84c;">Was Moses a <b>Kohen Gadol</b>?<br>Rav says yes — disputed by Tannaim</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3e1628; border: 1px solid #9b59b6;">R' Shimon b. Yoḥai: Moses <b>lost</b> priesthood to Aaron at the burning bush</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border: 1px solid #4caf50;">Rabbis: Priest for <b>7 inauguration days</b> only</div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a0e; border: 1px solid #e67e22;">Some Say: His <b>descendants</b> lost it — Moses stayed a priest</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Priestly shares:</b> Fitness to <em>partake</em> determines eligibility — blemished priest yes, impure priest no</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3e; border-left: 3px solid #e74c3c;"><b>Abba Shaul:</b> Must be pure from sprinkling <em>through</em> burning of fats — Rav Ashi's dilemma is <em>teiku</em></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 102a-102b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 102a-102b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../101/">← Daf 101</a><a href="../103/">Daf 103 →</a></div>
+</body>
+</html>
