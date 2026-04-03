@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 9 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐑</div>
+  <h1>Zevachim 9</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים ט׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔄 Diversion — Why does a Paschal offering become specifically a peace offering?<br>
+    ⚖️ Categories — Eaten by all vs. priests; lesser vs. most sacred sanctity<br>
+    🚫 Challenges — Why not tithe, firstborn, substitute, or thanks offering?<br>
+    📜 Scriptural Proofs — Verses excluding tithe, firstborn, and substitute<br>
+    🕐 Three Scenarios — Leftover Paschal offerings at different stages<br>
+    🩸 Nahshon's Sin Offering — Mavog's halakha on slaughtering for Nahshon<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Zevachim 9: Why Specifically a Peace Offering?</h2>
+  
+  <div class="hebrew" style="text-align:center;font-size:1.2em;margin-bottom:20px">ואם זבח שלמים קרבנו מן הצאן (ויקרא ג:ו)</div><div class="callout"><strong>DAF OVERVIEW</strong> The Gemara explores <strong>why a Paschal offering (korban Pesach)</strong> slaughtered not for its sake becomes specifically a <strong>peace offering (shelamim)</strong> — and not any other sacrifice. A series of challenges asks: why not animal tithe, firstborn, substitute, or thanks offering? Each is refuted through scriptural derivation. The daf then discusses <strong>three necessary verses</strong> for leftover Paschal offerings, and concludes with <strong>Mavog's halakha</strong> about a sin offering slaughtered for the sake of Nahshon's sin offering.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why Does the Paschal Become a Peace Offering?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Initial Answer</div><div class="speech">Offerings <strong>eaten by everyone</strong> (Paschal) are diverted to other offerings eaten by everyone (<strong>shelamim</strong>), not to offerings eaten only by priests (sin/guilt offerings).</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">R' Yosei b. R' Avin</div><div class="speech">Offerings of <strong>lesser sanctity</strong> (kodashim kalim) are diverted to other offerings of lesser sanctity — i.e., <strong>shelamim</strong> — not to offerings of the most sacred order (kodshei kodashim).</div></div></div><div class="callout" style="margin-top:20px"><strong>KEY PRINCIPLE</strong> The Paschal offering can only 'fall' into a category that shares its fundamental halachic characteristics.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Challenge: Why Not Animal Tithe (Ma'aser Behemah)?</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Paschal offering slaughtered for the sake of <strong>animal tithe</strong></div><div class="flow-arrow">↓</div><div class="flow-box action">Both are <strong>kodashim kalim</strong> — so it should become tithe!</div><div class="flow-arrow">↓</div><div class="flow-box action">If so: <strong>no libations required</strong>, and selling it would violate <em>'lo yiga'el'</em> (Lev. 27:33)</div><div class="flow-arrow">↓</div><div class="flow-box result-good"><strong>Answer:</strong> 'הָעֲשִׂירִי יִהְיֶה קֹּדֶשׁ' — '<em>The tenth</em> shall be holy' (Lev. 27:32). <strong>The tenth</strong> is tithe; another animal slaughtered for its sake is <strong>not</strong>.</div></div><div class="callout" style="margin-top:20px"><strong>SCRIPTURAL EXCLUSION</strong> The definite article 'ha-asiri' (the tenth) limits tithe status to the actual tenth animal counted under the rod.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Series of Challenges and Refutations</h2>
+  
+  <table><tr><th>Challenge: Why Not...?</th><th>Practical Difference</th><th>Scriptural Answer</th></tr><tr><td><strong>Animal Tithe</strong> (ma'aser behemah)</td><td>No libations; selling = lashes</td><td>'The <em>tenth</em> shall be holy' (Lev. 27:32) — only the tenth</td></tr><tr><td><strong>Firstborn</strong> (bechor)</td><td>No libations; must give to kohanim</td><td>Gezeirah shavah: <em>ha'avarta / ya'avor</em> (Ex. 13:12 ↔ Lev. 27:32)</td></tr><tr><td><strong>Substitute</strong> (temurah)</td><td>Lashes for substituting; cannot be sold</td><td>'Both <em>it</em> and its substitute shall be holy' (Lev. 27:33) — only it</td></tr><tr><td><strong>Thanks Offering</strong> (todah)</td><td>Would require 40 loaves of bread</td><td>Implausible: the Paschal itself needs no bread, yet its leftover would?</td></tr></table><div class="callout" style="margin-top:20px"><strong>PATTERN</strong> Each challenge targets an offering sharing a key characteristic with the Paschal, and each is refuted by a specific scriptural exclusion.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Thanks Offering Challenge — The 'Bread' Objection</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#e74c3c">The Challenge</h3><ul><li>A todah is kodashim kalim — same as Paschal</li><li>If diverted to todah, it would require 40 loaves</li><li>This would be a practical consequence</li></ul></div><div class="compare-box" style="border-top-color:#2c3e50"><h3 style="color:#4caf50">The Refutation</h3><ul><li>A Paschal offering itself doesn't require bread</li><li>Can its leftover suddenly require bread?</li><li>No leftover of a todah itself requires bread</li><li>So a leftover from another category certainly doesn't</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>LOGIC</strong> The Gemara distinguishes: shelamim leftover requiring libations is acceptable because shelamim inherently require libations. But a todah leftover doesn't require bread — so another offering's leftover certainly shouldn't.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Three Verses for Leftover Paschal Offerings</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">📅 <strong>Scenario 1:</strong> Both Passover eve <em>and</em> its first year have passed — completely disqualified as Paschal</div><div class="process-arrow">↓</div><div class="process-step">📅 <strong>Scenario 2:</strong> Passover eve passed, but still in first year — could still serve for Pesach Sheni</div><div class="process-arrow">↓</div><div class="process-step">📅 <strong>Scenario 3:</strong> Neither time nor year passed — still fully eligible as a Paschal offering</div><div class="process-arrow">↓</div><div class="process-step highlight">📜 All three verses are necessary — each scenario requires its own source that it may be sacrificed as a <strong>shelamim</strong></div></div><div class="callout" style="margin-top:20px"><strong>WHY ALL THREE?</strong> Without each verse, we might think the more 'eligible' the animal remains for Pesach, the less it can become a peace offering. Each verse teaches otherwise.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 9 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px; text-align:center;"><strong>Paschal Offering</strong> slaughtered not for its sake (shelo lishmah)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2a4e; color:#fff; padding:12px; border-radius:8px; text-align:center;">Must be diverted to an offering sharing its characteristics: <strong>eaten by all / kodashim kalim</strong></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#fff; padding:10px; border-radius:8px; text-align:center;"><strong>Tithe?</strong> ❌<br/>'The tenth shall be holy'</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#fff; padding:10px; border-radius:8px; text-align:center;"><strong>Firstborn?</strong> ❌<br/>Gezeirah shavah excludes</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#fff; padding:10px; border-radius:8px; text-align:center;"><strong>Substitute?</strong> ❌<br/>'It and its exchange'</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; color:#fff; padding:10px; border-radius:8px; text-align:center;"><strong>Todah?</strong> ❌<br/>Bread requirement illogical</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:12px; border-radius:8px; text-align:center; font-size:1.1em;">✅ Therefore: becomes a <strong>Shelamim</strong> (Peace Offering)</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 9a-9b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 9a-9b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../8/">← Daf 8</a><a href="../10/">Daf 10 →</a></div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 39 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Zevachim 39 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to the baraita, what three halakhic consequences apply to 'blood that requires the base'?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Laundering, piggul intent, and liability for offering outside</div>
+      <div class="option" onclick="select(1,this,1)">B. Laundering, me'ila, and disqualification if it enters the Sanctuary</div>
+      <div class="option" onclick="select(1,this,2)">C. Piggul intent, notar, and liability for offering outside</div>
+      <div class="option" onclick="select(1,this,3)">D. Laundering, disqualification if delayed, and me'ila</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: A — </strong>The baraita lists three stringencies for blood requiring the base: it requires laundering of a sprayed garment, improper intent renders it piggul, and one who offers it outside the Temple is liable.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Why does the Gemara reject the interpretation that the baraita refers to the remainder blood of a standard (outer) sin offering?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Because the remainder blood of an outer sin offering is never poured on the base</div>
+      <div class="option" onclick="select(2,this,1)">B. Because piggul applies only to services indispensable for atonement, and pouring the remainder is not indispensable</div>
+      <div class="option" onclick="select(2,this,2)">C. Because R' Neḥemya disagrees with the baraita entirely</div>
+      <div class="option" onclick="select(2,this,3)">D. Because the remainder blood has already become disqualified</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>The Gemara cites another baraita: piggul applies only to indispensable services. Since pouring the remainder is not indispensable for atonement, piggul cannot apply to it — contradicting the first baraita if it referred to standard remainder blood.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">Why does the baraita contrast remainder blood with drain blood rather than contrasting inner vs. outer sin offering remainders?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. Because outer sin offerings have no remainder blood</div>
+      <div class="option" onclick="select(3,this,1)">B. Because R' Neḥemya holds one is liable for offering even outer remainder blood outside, so there is no leniency to contrast</div>
+      <div class="option" onclick="select(3,this,2)">C. Because the drain blood is more commonly encountered</div>
+      <div class="option" onclick="select(3,this,3)">D. Because inner and outer sin offerings follow identical rules</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>Since the baraita follows R' Neḥemya, who holds that offering even the remainder of an outer sin offering outside the Temple creates liability, there would be no three-for-three contrast between inner and outer. The tanna chose drain blood to create a clean parallel of three stringencies vs. three leniencies.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">Why are the goats for unwitting communal idol worship included in the same procedure as the communal bull, while Festival and New Moon goats are excluded?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. Because idol worship goats are more expensive</div>
+      <div class="option" onclick="select(4,this,1)">B. Because idol worship goats atone for a known mitzvah transgression, similar to the communal bull</div>
+      <div class="option" onclick="select(4,this,2)">C. Because Festival and New Moon goats are individual offerings</div>
+      <div class="option" onclick="select(4,this,3)">D. Because idol worship goats are brought only once a year</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: B — </strong>The Gemara explains that the idol worship goats are similar to the communal bull because both atone for the known transgression of a specific mitzvah. Festival and New Moon goats atone for defilement of the Temple — a different category — and are therefore excluded.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">What is the Gemara's reasoning for treating the seven sprinklings as indispensable but semicha and pouring the remainder as non-indispensable?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. The seven sprinklings are performed by the Kohen Gadol, while the others are not</div>
+      <div class="option" onclick="select(5,this,1)">B. The Torah explicitly states each ruling without need for reasoning</div>
+      <div class="option" onclick="select(5,this,2)">C. The seven sprinklings are indispensable in all cases universally, while semicha and pouring the remainder are not universally indispensable</div>
+      <div class="option" onclick="select(5,this,3)">D. Semicha and pouring the remainder were added by rabbinic decree</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>The Gemara's principle: a service that is indispensable universally (in all offerings where it applies) is indispensable here too. Semicha and pouring the remainder are not universally indispensable, so they cannot be deemed indispensable for the communal bull either.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":0,"2":1,"3":1,"4":1,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

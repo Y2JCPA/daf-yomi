@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 11 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Zevachim 11</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים יא׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🩸 Blood Entering the Sanctuary — Which offerings are disqualified?<br>
+    🔄 Kal Va'chomer Cycle — Burnt offering, meal offering, and guilt offering<br>
+    📖 "Whose Blood" — Leviticus 6:23 and its implications<br>
+    ⬆️ Shimon Brother of Azarya — Greater vs. lesser sanctity principle<br>
+    🤔 Propitiation Dilemma — Fit offerings that may not fulfill obligations<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 11: Blood in the Sanctuary & the Sanctity Hierarchy</h2>
+  
+  <div class="flowchart"><div class="flow-box question">Does blood entering the <b>Sanctuary</b> disqualify an offering?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Sin Offering</div><div class="flow-box result-bad"><b>Disqualified</b> per Lev. 6:23</div></div><div class="flow-col"><div class="flow-label">Other Kodshei Kodashim</div><div class="flow-box result-good"><b>Not disqualified</b> — derived from "whose blood"</div></div></div><div class="flow-arrow">↓</div><div class="flow-box action">Separate question: Slaughtering for the sake of a <b>different offering</b></div><div class="flow-arrow">↓</div><div class="flow-box result-good"><b>Shimon brother of Azarya:</b> For <em>greater</em> sanctity → fit; for <em>lesser</em> sanctity → unfit</div></div><div class="callout" style="margin-top:20px"><strong>Key Theme</strong> The Gemara explores two distinct mechanisms of disqualification: blood entering the Sanctuary, and sacrificing an offering for the wrong purpose — and whether sanctity hierarchy determines the outcome.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Kal Va'chomer: Does Guilt Offering Blood Survive Entering the Sanctuary?</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Burnt offering (Olah)</b> — entirely consumed on altar, yet blood entering Sanctuary doesn't disqualify</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Kal va'chomer: <b>Guilt offering (Asham)</b> — not entirely consumed — should certainly not be disqualified!</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Refutation: Olah is unique — it <b>doesn't atone for sin</b></div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Meal offering of a sinner</b> proves the point — atones for sin yet not disqualified</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Refutation: Meal offering is <b>not a slaughtered offering</b></div><div class="flow-arrow">↓</div><div class="flow-box result-good">Back to Olah (which <em>is</em> slaughtered) → <b>Tzad HaShaveh</b> from both together</div></div><div class="callout" style="margin-top:20px"><strong>Talmudic Method</strong> The Gemara uses a classic revolving kal va'chomer (a fortiori) that fails individually but succeeds as a <b>tzad hashaveh</b> (common element argument) combining burnt offering and sinner's meal offering.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Rava of Barnish Challenges the Tzad HaShaveh</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The common element of Olah and sinner's meal offering: both are <b>Kodshei Kodashim</b> and blood entering the Sanctuary doesn't disqualify → same should apply to <b>Asham</b></div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava of Barnish</div><div class="speech">But both Olah and sinner's meal offering have <b>no fixed monetary value</b>! An Asham <em>does</em> have a fixed value — you can't derive from them!</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Rather, the <b>Rabbis'</b> true source is the verse: <em>"Any sin offering <b>whose blood</b> is brought into the Tent of Meeting"</em> (Lev. 6:23)</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">"<b>Whose blood</b>" — the blood of <em>this</em> offering (sin offering) is disqualified, <b>not the blood of other offerings</b></div></div></div><div class="callout" style="margin-top:20px"><strong>Pirka</strong> The kal va'chomer was only an initial attempt. The actual halakhic source is a gezeirat hakatuv — a Scriptural derivation from the word "דָּמָהּ" (whose blood).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rabbi Eliezer vs. Rabbis: Interpreting "Whose Blood" (דָּמָהּ)</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbis (Chachamim)</h3><ul><li>"Whose blood" excludes TWO things:</li><li>1) Blood of OTHER offerings — not disqualified by entering Sanctuary</li><li>2) FLESH of a sin offering — not disqualified by entering Sanctuary</li><li>Derived from redundancy: could have said just "blood" instead of "whose blood"</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Rabbi Eliezer</h3><ul><li>"Whose blood" teaches only ONE thing:</li><li>Only the BLOOD is disqualified — not the FLESH</li><li>Does NOT exclude other offerings' blood</li><li>Does not derive extra meaning from "whose blood" vs. "blood"</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Practical Difference</strong> For the Rabbis, a guilt offering whose blood enters the Sanctuary remains fit. For Rabbi Eliezer, it is disqualified — just like a sin offering.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Meal Offering Juxtaposition: "As the Sin Offering and as the Guilt Offering" (Lev. 6:10)</h2>
+  
+  <table><tr><th>Derivation</th><th>Like Sin Offering (חַטָּאת)</th><th>Like Guilt Offering (אָשָׁם)</th></tr><tr><td>R' Shimon: <b>Not for its sake</b></td><td>Sinner's meal offering — handful removed not for its sake is <b>UNFIT</b></td><td>Voluntary meal offering — handful removed not for its sake is <b>FIT</b></td></tr><tr><td>R' Shimon: <b>Service method</b></td><td>By hand → must use <b>RIGHT hand</b></td><td>With a vessel → may use <b>LEFT hand</b></td></tr><tr><td>According to R' Eliezer</td><td>Juxtaposition teaches the hand/vessel rule only</td><td>Juxtaposition teaches the hand/vessel rule only</td></tr></table><div class="callout" style="margin-top:20px"><strong>R' Yehuda b. R' Chiyya</strong> Rabbi Shimon derives <em>both</em> halakhot from the same verse: the primary teaching is about right hand vs. vessel, while the not-for-its-sake rule comes from the word "הִוא" (it) written regarding sin offerings.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rabbi Yehoshua Refutes Rabbi Eliezer on Pesach/Olah</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Eliezer</div><div class="speech">A Paschal offering slaughtered for the sake of another offering should render that <em>other</em> offering unfit — kal va'chomer from sin offering</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Yehoshua</div><div class="speech">Your logic backfires! A <b>leftover sin offering</b> becomes a burnt offering, but a leftover burnt offering does NOT become a sin offering</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Yehoshua</div><div class="speech">By your reasoning: if a sin offering slaughtered as an Olah is unfit — then an Olah slaughtered as a sin offering should <em>certainly</em> be unfit! Yet it's <b>fit</b>!</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Eliezer</div><div class="speech">A sin offering is fit for its sake <b>all year</b>. A Paschal offering is fit for its sake only <b>at its designated time</b> — this distinction matters!</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Distinction</strong> Rabbi Eliezer argues the Paschal offering's time-limited validity makes it uniquely susceptible to disqualification when another offering is sacrificed for its sake.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 11 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9;"><b>Blood Enters Sanctuary</b><br>Which offerings are disqualified?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;"><b>Rabbis:</b> Only <em>sin offering</em> blood is disqualified ("דָּמָהּ" — <em>its</em> blood)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border-left: 3px solid #e74c3c;"><b>R' Eliezer:</b> All <em>Kodshei Kodashim</em> blood is disqualified upon entering</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2a1a3a; border-left: 3px solid #9b59b6;"><b>Shimon brother of Azarya's Principle</b><br>Sanctity hierarchy determines validity of wrong-name sacrifice</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; border-left: 3px solid #4caf50;">For sake of <b>greater</b> sanctity → <b>Fit</b> (but likely does not propitiate)</div></div><div class="flow-col"><div class="flow-box" style="background:#3a1a1a; border-left: 3px solid #e74c3c;">For sake of <b>lesser</b> sanctity → <b>Unfit</b></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 11a-11b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 11a-11b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../10/">← Daf 10</a><a href="../12/">Daf 12 →</a></div>
+</body>
+</html>

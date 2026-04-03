@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 48 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🐐</div>
+  <h1>Zevachim 48</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים מח׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔪 Northward Slaughter — Why the mishna prioritizes sin offerings over burnt offerings<br>
+    📜 Vav Ha-Chibur — Deriving that bull burnt offerings require slaughter in the north<br>
+    ⚖️ Provisional Guilt Offering — R' Akiva vs. Rabbis on uncertain misuse of hekdesh<br>
+    🔗 Gezeira Shava — Verbal analogy linking guilt offering to sin offering requirements<br>
+    🏛️ Nahshon's Goat — Excluding the princes' offerings from northward slaughter<br>
+    ✋ Semicha Requirement — R' Yehuda vs. R' Shimon on hand-placing for special goats<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Deriving Northward Slaughter for All Offerings</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Leviticus 1:11</b> — Sheep burnt offering must be slaughtered <em>northward</em></div><div class="flow-arrow">↓</div><div class="flow-box action">Vav ha-chibur (וְ) in Lev 1:10 connects <b>bull burnt offering</b> to the same rule</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Leviticus 6:18</b> — Sin offering slaughtered <em>in the place of the burnt offering</em></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yom Kippur Sin Offerings</div><div class="flow-box result-good">Listed first — blood enters innermost sanctum, <em>dear to the tanna</em></div></div><div class="flow-col"><div class="flow-label">External Sin Offerings</div><div class="flow-box result-good">Also require northward slaughter — derived from same verse</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> The sin offering's northward requirement is derived from the burnt offering — yet the tanna teaches it first because <b>interpreted halakhot are dear</b> to the one who derives them.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Why List Sin Offerings Before Burnt Offerings?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The Torah explicitly states northward slaughter only for <b>burnt offerings</b> (Lev 1:11). Why does the mishna list <b>sin offerings</b> first?</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Answer</div><div class="speech">Since the sin offering's location is <b>derived through interpretation</b> (Lev 6:18), it is <em>dear to the tanna</em> — so he gives it precedence.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But then teach the <b>external sin offerings</b> first — those are what the verse directly references!</div></div><div class="debate-line right"><div class="speaker" style="background:#c9a84c">Answer</div><div class="speech">The <b>Yom Kippur</b> sin offerings are taught first because their blood <b>enters the innermost sanctum</b> — making them dearest of all.</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> The ordering of the mishna reflects the tanna's pedagogical priorities: <b>derived halakhot</b> are beloved, and <b>inner-sanctum</b> offerings hold the highest status.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Deriving Northward Slaughter for Bulls</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Leviticus 1:11</b> — Sheep (כֶּבֶשׂ) burnt offering: slaughter <em>on the north side of the altar</em></div><div class="flow-arrow">↓</div><div class="flow-box question">What about a <b>bull</b> burnt offering? Where is the source?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Leviticus 1:10</b> — The conjunctive <b>vav</b> (וְאִם) links the flock passage to the preceding cattle passage</div><div class="flow-arrow">↓</div><div class="flow-box result-good">The <b>upper passage</b> (bull) learns from the <b>lower passage</b> (sheep) — northward slaughter applies to both</div></div><div class="callout" style="margin-top:20px"><strong>Vav Ha-Chibur</strong> The letter <b>vav</b> at the start of Lev 1:10 connects the passages, allowing us to derive the law of one from the other.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Akiva vs. Rabbis: Provisional Guilt Offering for Uncertain Me'ilah</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Rabbi Akiva</h3><ul><li>We learn the upper passage from the lower passage</li><li>The provisional guilt offering passage follows the me'ilah guilt offering</li><li>One who is uncertain whether he committed me'ilah must bring an asham talui</li><li>Derives from the juxtaposition of the passages</li></ul></div><div class="compare-box" style="border-top-color:#5c1a1a"><h3 style="color:#e74c3c">Rabbis (Chakhamim)</h3><ul><li>Also agree we learn upper from lower passages</li><li>But use a gezeira shava to limit the asham talui</li><li>Just as sin offerings are only for acts punishable by karet — so too asham talui</li><li>Me'ilah is NOT punishable by karet → no asham talui required</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Rav Pappa's Clarification</strong> Both sides agree on learning upper from lower passages. The dispute is about the <b>gezeira shava</b> comparing the asham talui to the sin offering for forbidden fats (Lev 4:27).</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>What the Gezeira Shava Teaches Each Opinion</h2>
+  
+  <table><tr><th>Opinion</th><th>Source Verse</th><th>Derivation</th></tr><tr><td><b>Rabbis</b></td><td>Lev 5:17 ↔ Lev 4:27 — "commandments not to be done"</td><td>Asham talui only for sins punishable by <b>karet</b> with a fixed sin offering for unwitting violation</td></tr><tr><td><b>R' Akiva</b></td><td>Same gezeira shava</td><td>Asham talui only for uncertain violation of a sin requiring a <b>fixed</b> (not sliding-scale) sin offering</td></tr><tr><td><b>R' Akiva excludes</b></td><td>Tumah of Mikdash/Kodshim</td><td>Sliding-scale offering (oleh v'yored) — not fixed → no asham talui</td></tr><tr><td><b>Rabbis respond</b></td><td>Principle: no gezeira shava for half</td><td>Once compared, the offerings must be <b>completely similar</b> — both derivations apply</td></tr></table><div class="callout" style="margin-top:20px"><strong>Ein Gezeira Shava L'Chetzain</strong> The Rabbis hold: you cannot apply a verbal analogy <b>partially</b>. If two cases are compared, all aspects of the comparison must follow.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Fixing Northward Slaughter for Sin Offerings</h2>
+  
+  <div class="process-bar"><div class="process-step">📖 Lev 6:18 establishes that sin offerings are slaughtered where burnt offerings are — in the <b>north</b></div><div class="process-arrow">↓</div><div class="process-step highlight">🐐 Lev 4:24 singles out the king's goat sin offering for northward slaughter</div><div class="process-arrow">↓</div><div class="process-step">❓ Why single it out if we already know the general rule?</div><div class="process-arrow">↓</div><div class="process-step highlight">🔒 To teach: if NOT slaughtered in the north, the sin offering is <b>disqualified even after the fact</b> (b'di'eved)</div><div class="process-arrow">↓</div><div class="process-step">📜 Lev 4:29 & 4:33 repeat the rule for lamb and she-goat sin offerings — confirming <b>all</b> sin offerings are disqualified if not in the north</div></div><div class="callout" style="margin-top:20px"><strong>L'Kav'oah Lo Makom</strong> The Torah specifies northward slaughter for the king's sin offering to <b>fix the place</b> — teaching disqualification, not merely a preferred practice.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 48 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>Burnt Offering</b> — Lev 1:11 states northward slaughter explicitly</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Vav Ha-Chibur</b> — Extends rule from sheep to bull burnt offerings</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1621; color:#fff; padding:10px; border-radius:8px;"><b>Lev 6:18</b> — Sin offering slaughtered in the place of the burnt offering</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#16213e; color:#fff; padding:10px; border-radius:8px;"><b>L'khat'chila & B'di'eved</b><br/>Repetition in Lev 4:29, 4:33 teaches disqualification after the fact</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Nahshon Excluded</b><br/>"It" in Lev 4:24 excludes the princes' inauguration offerings from northward slaughter</div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 48a-48b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 48a-48b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../47/">← Daf 47</a><a href="../49/">Daf 49 →</a></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 42 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🩸</div>
+  <h1>Zevachim 42</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים מב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🏛️ Inner Blood Presentations — Piggul intent during Yom Kippur sprinklings<br>
+    ⚖️ R' Meir vs. Rabbis — Can half a permitting factor create piggul?<br>
+    🔄 Reish Lakish's Defense — Initial intent carries through silent services<br>
+    🔢 Counting Presentations — 43, 47, or 48 sprinklings on Yom Kippur<br>
+    🐂 Multiple Bulls & Goats — Rabba and Rava on completing permitting factors<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Piggul in Inner Blood Presentations</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Meir</div><div class="speech">If the priest had <b>piggul intent</b> during <em>any one</em> of the three sets of inner sprinklings, the offering is <b>piggul</b> and one is liable for <b>karet</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">There is <b>no karet liability</b> unless the priest had piggul intent during the <b>entire permitting factor</b> — not just part of it.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">R' Meir's reason: <b>anyone who performs an action performs it with his initial intent</b> — silence continues the first intention.</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rav Yitzchak bar Avin</div><div class="speech">The case is improper intent during <b>slaughter</b> (a complete permitting factor), not during the sprinklings themselves.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Issue</strong> Can piggul intent during only <em>part</em> of a multi-step blood service (half a permitting factor) render the entire offering piggul?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>The Three Sets of Inner Presentations (Yom Kippur)</h2>
+  
+  <div class="process-bar"><div class="process-step highlight">🩸 <b>Set 1:</b> Sprinklings inside the <b>Holy of Holies</b> (toward the Ark cover)</div><div class="process-arrow">↓</div><div class="process-step">📜 <b>Set 2:</b> Sprinklings on the <b>Parokhet</b> (Curtain separating the chambers)</div><div class="process-arrow">↓</div><div class="process-step">🪔 <b>Set 3:</b> Sprinklings on the <b>Inner Altar</b> (golden altar of incense)</div><div class="process-arrow">↓</div><div class="process-step highlight">🔢 Total: <b>43 presentations</b> of blood from the bull and goat combined</div></div><div class="callout" style="margin-top:20px"><strong>Context</strong> Each set is part of one composite <b>mattir</b> (permitting factor). The debate is whether piggul intent in one set taints the whole offering.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Meir vs. The Rabbis on Partial Piggul Intent</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Meir</div><div class="speech">Intent during the <b>first, second, OR third</b> set of sprinklings — the offering is <b>piggul</b> with karet liability.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Rabbis</div><div class="speech">No karet unless piggul intent was present during the <b>performance of the entire permitting factor</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">The baraita says 'whether first, second, or third' — this proves R' Meir holds one can render piggul with <b>half a mattir</b>!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Reish Lakish</div><div class="speech">Not necessarily — R' Meir's reason is that <b>silence continues the original intent</b>, so all sets are covered by the first intent.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Principle</strong> <b>כל העושה — על דעת ראשונה הוא עושה</b><br>Anyone who performs an action performs it with his initial intent.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rav Yitzchak bar Avin's Resolution</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Priest sprinkles blood of <b>first bull</b> inside the Holy of Holies</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">The remaining blood <b>spills</b>!</div><div class="flow-arrow">↓</div><div class="flow-box action">Must <b>slaughter a new bull</b> for the next set of sprinklings</div><div class="flow-arrow">↓</div><div class="flow-box question">Did the priest have <b>piggul intent during the slaughter</b>?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Meir</div><div class="flow-box result-bad"><b>Piggul</b> — slaughter is one <em>complete</em> permitting factor, not half</div></div><div class="flow-col"><div class="flow-label">Rabbis (= R' Eliezer)</div><div class="flow-box result-good"><b>Not piggul</b> — each separate slaughter is its own act; must taint <em>all</em> of them</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Resolution</strong> The case involves piggul intent during <b>slaughter</b> of replacement animals, not during sprinklings — so each intent involves a <em>whole</em> mattir, not half.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Identifying 'The Rabbis' — Rava's Key Move</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">R' Eliezer's Position</h3><ul><li>Burning part of a meal offering outside = <b>exempt</b></li><li>Must sacrifice the <b>whole item</b> outside to be liable</li><li>Completion of the entire service is required</li><li>This is 'the Rabbis' who oppose R' Meir</li></ul></div><div class="compare-box" style="border-top-color:#2d1a1a"><h3 style="color:#e74c3c">Challenge to R' Eliezer</h3><ul><li>Rava himself says R' Eliezer <b>concedes regarding blood</b></li><li>Even part of blood sprinkled outside = liable</li><li>Each individual sprinkling is its own act (Yoma 60a)</li><li>So R' Eliezer <b>cannot</b> be 'the Rabbis' here!</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Difficulty</strong> Since R' Eliezer treats each blood sprinkling independently, he would <em>agree</em> with R' Meir — so who are the Rabbis?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>How Many Blood Presentations on Yom Kippur?</h2>
+  
+  <table><tr><th>Count</th><th>Opinion / Basis</th><th>Explanation</th></tr><tr><td><b>43</b></td><td>Blood of bull & goat is <b>mixed</b> before inner altar corners</td><td>8 (Holy of Holies) + 8 (Curtain) + 4 (mixed, corners) + 7 (mixed, top of altar) × applicable sets</td></tr><tr><td><b>47</b></td><td>Blood is <b>not mixed</b> before the corners</td><td>Bull and goat each get 4 separate corner sprinklings = 4 extra presentations</td></tr><tr><td><b>48</b></td><td>Pouring remainder (<b>shefikhat shirayim</b>) is <b>indispensable</b></td><td>Adds 1 more presentation (pouring leftover blood on the outer altar base)</td></tr></table><div class="callout" style="margin-top:20px"><strong>Note</strong> The count depends on (1) when the blood is mixed and (2) whether pouring the remainder counts as an essential act.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 42 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:10px; border-radius:8px;">Priest performs <b>inner blood presentations</b> (Holy of Holies → Curtain → Inner Altar)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a1a1a; color:#fff; padding:10px; border-radius:8px;">Has <b>piggul intent</b> during one or more sets of sprinklings</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>R' Meir:</b> Piggul + karet — silence continues initial intent, or each slaughter is a whole mattir</div></div><div class="flow-col"><div class="flow-box" style="background:#1a1a3a; color:#fff; padding:10px; border-radius:8px;"><b>Rabbis:</b> No karet — must have piggul intent during the <em>entire</em> permitting factor</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2e1a3a; color:#fff; padding:10px; border-radius:8px;"><b>Rava:</b> Even invalid sprinklings effect acceptance for piggul — <em>הזאה מועלת לפיגול</em></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 42a-42b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 42a-42b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../41/">← Daf 41</a><a href="../43/">Daf 43 →</a></div>
+</body>
+</html>

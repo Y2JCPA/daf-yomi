@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 24 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🦶</div>
+  <h1>Zevachim 24</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים כד׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🦶 Interposition — Nothing may come between the priest's feet and the Temple floor<br>
+    🪨 Loose Stones — R' Ami's dilemma about a detached floor tile<br>
+    🏗️ Sanctification Depth — Did David sanctify the Temple site to the depths of the earth?<br>
+    🤚 Right Hand — Dispute whether blood collection requires the right hand<br>
+    ☝️ Finger & Priesthood — Deriving the right-hand requirement from Torah language<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 24 — Priestly Service: Feet & Hands</h2>
+  
+  <div class="flowchart"><div class="flow-box action"><b>Temple Floor</b><br>Sanctifies the priest for service</div><div class="flow-arrow">↓</div><div class="flow-box question">Can anything <b>interpose</b> between priest and floor?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Vessels / Animals / People</div><div class="flow-box result-bad"><b>Disqualified</b> — each case is necessary</div></div><div class="flow-col"><div class="flow-label">One Foot on Floor</div><div class="flow-box result-good"><b>R' Eliezer:</b> Valid if he can stand on one foot</div></div></div><div class="flow-arrow">↓</div><div class="flow-box question">Which <b>hand</b> must the priest use for blood rites?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Rabbis</div><div class="flow-box result-bad">Both <b>collection</b> and <b>placing</b> require the right hand</div></div><div class="flow-col"><div class="flow-label">R' Shimon</div><div class="flow-box result-good">Only <b>placing</b> requires the right hand</div></div></div></div><div class="callout" style="margin-top:20px"><strong>KEY THEME</strong> The Torah's requirements for priestly service extend to <b>where</b> the priest stands and <b>how</b> he uses his hands.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Floor & Vestments: The Sanctification Analogy</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a5c"><h3 style="color:#4a90d9">Service Vessels (Vestments)</h3><ul><li>Priestly vestments sanctify the priest</li><li>Nothing may interpose between priest and garment</li><li>Direct contact is required</li></ul></div><div class="compare-box" style="border-top-color:#3a1a1a"><h3 style="color:#e74c3c">Temple Floor (רצפה)</h3><ul><li>Floor of the Azarah sanctifies the priest</li><li>Nothing may interpose between priest and floor</li><li>Derived via analogy from vestments</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>SOURCE</strong> The school of <b>R' Yishmael</b> taught: Just as vestments require direct contact, so does the floor — <i>a kal va-chomer</i> from the common feature of sanctification.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Three Cases of Interposition — Why Each Is Needed</h2>
+  
+  <table><tr><th>Interposing Object</th><th>Why You Might Think It's OK</th><th>Ruling</th></tr><tr><td><b>Vessel</b> (כלי)</td><td>—</td><td>Disqualified — not flesh</td></tr><tr><td><b>Animal</b> (בהמה)</td><td>It is flesh, like the priest</td><td>Disqualified — not human</td></tr><tr><td><b>Another Person</b></td><td>Human, like the priest</td><td>Still disqualified — interposes</td></tr></table><div class="callout" style="margin-top:20px"><strong>TALMUDIC METHOD</strong> Each case refutes a potential <i>hava amina</i> (mistaken assumption). The progression — vessel → animal → person — narrows the logical gap each time.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>R' Eliezer: One Foot on a Vessel, One on the Floor</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Priest stands with <b>one foot on a vessel/stone</b> and one on the floor</div><div class="flow-arrow">↓</div><div class="flow-box question">If the vessel or stone were <b>removed</b>, could he still stand on one foot?</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">Yes</div><div class="flow-box result-good">✅ Service is <b>valid</b></div></div><div class="flow-col"><div class="flow-label">No</div><div class="flow-box result-bad">❌ Service is <b>disqualified</b></div></div></div></div><div class="callout" style="margin-top:20px"><strong>R' ELIEZER'S PRINCIPLE</strong> The interposition invalidates only if the priest is <b>dependent</b> on the non-floor surface. If he can serve without it, it doesn't count as a barrier.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>R' Ami's Dilemmas: Loose Tiles & Missing Stones</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Ami</div><div class="speech">If a floor tile came <b>loose</b> and the priest stood on it — what is the law?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">If he doesn't intend to reattach it — certainly it interposes. The dilemma is only when he <b>intends to reattach</b> it.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">R' Ami</div><div class="speech">Is intent to reattach enough to consider it <b>as if attached</b>?</div></div><div class="debate-line right"><div class="speaker" style="background:#e67e22">Rabba Zuti</div><div class="speech">The real dilemma: if a tile was <b>uprooted</b> and the priest stood in the empty space — is that valid?</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">David sanctified the Temple to the <b>depths of the earth</b>. The question is: is standing on unfinished ground a <b>normal manner</b> of service?</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech"><b>תיקו</b> — The dilemma stands <b>unresolved</b>.</div></div></div><div class="callout" style="margin-top:20px"><strong>TIKU</strong> This is one of the Talmud's famous unresolved dilemmas. David's sanctification reaches the depths, but whether the <i>derech sherut</i> (normal manner of service) applies remains unanswered.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Right Hand for Blood Collection: Rabbis vs. R' Shimon</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabbis</div><div class="speech">The verse says <b>"the priest shall take... with his finger and put it"</b> (Lev. 4:25). "Finger" modifies <b>both</b> the taking (collection) and the placing — both require the <b>right hand</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Shimon</div><div class="speech">The word <b>"hand"</b> is not stated for collection! "With his finger" only modifies <b>"and put it"</b> — only <i>placing</i> requires the right hand.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">They disagree about <b>juxtaposition</b>: does "finger" modify the language <b>before</b> it (collection) or only <b>after</b> it (placing)?</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rabbis</div><div class="speech">A verse is interpreted based on the language <b>both before and after</b> — so "finger" applies to collection too.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Shimon</div><div class="speech">A verse is interpreted only based on the language <b>following</b> it — "finger" applies only to placing.</div></div></div><div class="callout" style="margin-top:20px"><strong>HERMENEUTICAL KEY</strong> This debate rests on a fundamental rule of Torah interpretation: does a qualifying word in the middle of a verse modify what comes <b>before</b> it, <b>after</b> it, or <b>both</b>?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 24 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>🦶 Floor Contact</b><br>Nothing may interpose between priest and floor (analogy to vestments)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 8px;"><b>🪨 R' Eliezer</b><br>One foot on floor + can stand independently = valid</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2a1a; border-left: 3px solid #e67e22; padding: 8px;"><b>❓ R' Ami's Dilemma</b><br>Loose tile / missing tile — תיקו (unresolved)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2c1a3a; border-left: 3px solid #c9a84c; padding: 8px;"><b>Rabbis:</b> "Finger" modifies both directions → collection & placing need <b>right hand</b></div></div><div class="flow-col"><div class="flow-box" style="background:#1a2a3a; border-left: 3px solid #4a90d9; padding: 8px;"><b>R' Shimon:</b> "Finger" modifies only what follows → only <b>placing</b> needs right hand</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; border-left: 3px solid #9b59b6; padding: 8px;"><b>☝️ R' Yochanan's Rule</b><br>"Finger" or "Priesthood" + indispensable for atonement = right hand required</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 24a-24b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 24a-24b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../23/">← Daf 23</a><a href="../25/">Daf 25 →</a></div>
+</body>
+</html>

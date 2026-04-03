@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 29 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Zevachim 29 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to R' Yannai, what happens when a priest mixes piggul intent (beyond time) with outside-area intent in the same offering?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. The offering is piggul and karet applies</div>
+      <div class="option" onclick="select(1,this,1)">B. The offering is disqualified but not piggul — intentions displace each other</div>
+      <div class="option" onclick="select(1,this,2)">C. The offering remains valid since the intents cancel out</div>
+      <div class="option" onclick="select(1,this,3)">D. Only the first intent expressed takes effect</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>R' Yannai derives from 'lo yeḥashev' that intentions displace one another — mixing other improper intentions with piggul intent prevents the offering from being rendered piggul, though it is still disqualified.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">What does the singular 'it shall be' (rather than 'they shall be') in Leviticus 7:18 teach?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. Only one offering can be piggul at a time</div>
+      <div class="option" onclick="select(2,this,1)">B. Half a k'zayit beyond time and half a k'zayit outside area combine to disqualify</div>
+      <div class="option" onclick="select(2,this,2)">C. The offering can only be disqualified by one priest</div>
+      <div class="option" onclick="select(2,this,3)">D. Piggul applies only to individual offerings, not communal ones</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>The singular form teaches that half an olive-bulk of beyond-time intent and half an olive-bulk of outside-area intent join together to constitute the minimum measure needed to disqualify the offering.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">How does R' Akiva argue that retroactive disqualification of an offering is possible?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. From the principle that all Torah prohibitions apply retroactively</div>
+      <div class="option" onclick="select(3,this,1)">B. From the analogy to a zav/zava whose purity is retroactively negated by a new discharge</div>
+      <div class="option" onclick="select(3,this,2)">C. From a gezeira shava between 'third day' and 'third year'</div>
+      <div class="option" onclick="select(3,this,3)">D. From the rule that intent follows the final act</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>R' Akiva cites the case of a zav or zava who has presumptive purity after immersing, but a new discharge the same day retroactively negates their purity and renders impure everything they touched.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">According to the Mishna, what is the critical condition for piggul to carry karet liability?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. The offering must be a voluntary sacrifice</div>
+      <div class="option" onclick="select(4,this,1)">B. The intent must be expressed verbally</div>
+      <div class="option" onclick="select(4,this,2)">C. The permitting factor (blood) must be sacrificed in accordance with its mitzva</div>
+      <div class="option" onclick="select(4,this,3)">D. At least two of the four blood services must have beyond-time intent</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>The Mishna states explicitly that piggul with karet applies only 'provided that the permitting factor is sacrificed in accordance with its mitzva' — meaning no competing outside-area intent corrupted any of the blood services.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">According to Ben Azzai, what does the word 'it' in Leviticus 7:18 exclude?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Communal offerings from piggul liability</div>
+      <div class="option" onclick="select(5,this,1)">B. Sin offerings from the piggul rule</div>
+      <div class="option" onclick="select(5,this,2)">C. Offerings brought late from a delayed vow from 'it shall not be accepted'</div>
+      <div class="option" onclick="select(5,this,3)">D. Offerings of non-priests from being disqualified</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: C — </strong>Ben Azzai teaches that 'it' — specifically the piggul offering — is included in 'it shall not be accepted,' but an offering from someone who was merely late in fulfilling a vow is not included and remains valid.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":1,"3":1,"4":2,"5":2};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

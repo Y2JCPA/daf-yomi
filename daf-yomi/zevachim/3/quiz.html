@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 3 — Quiz</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  .breadcrumb { margin-bottom: 30px; }
+  .breadcrumb a { color: #c9a84c; text-decoration: none; }
+  h1 { font-size: 2.2em; color: #c9a84c; margin-bottom: 6px; text-align: center; }
+  .subtitle { color: #aaa; font-size: 1em; margin-bottom: 40px; text-align: center; }
+  .quiz { max-width: 650px; width: 100%; }
+  .question { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .question.correct { border-color: #4caf50; }
+  .question.incorrect { border-color: #e74c3c; }
+  .q-num { color: #c9a84c; font-size: 0.85em; font-weight: bold; margin-bottom: 8px; }
+  .q-text { font-size: 1.05em; line-height: 1.6; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { background: #1a1a2e; border: 2px solid #444; border-radius: 8px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; line-height: 1.4; }
+  .option:hover { border-color: #c9a84c; background: #1a2a4e; }
+  .option.selected { border-color: #c9a84c; background: #1a2a4e; }
+  .option.right { border-color: #4caf50; background: #1a3a2a; }
+  .option.wrong { border-color: #e74c3c; background: #3a1a1a; }
+  .option.disabled { pointer-events: none; opacity: 0.7; }
+  .option.disabled.right { opacity: 1; }
+  .explanation { display: none; margin-top: 14px; padding: 14px; background: #0d1b2a; border-radius: 8px; font-size: 0.9em; line-height: 1.6; border-left: 3px solid #c9a84c; }
+  .explanation.show { display: block; }
+  .submit-btn { display: block; margin: 30px auto; padding: 16px 48px; background: #c9a84c; color: #1a1a2e; border: none; border-radius: 10px; font-size: 1.15em; font-weight: bold; cursor: pointer; font-family: 'Georgia', serif; }
+  .submit-btn:disabled { background: #555; color: #999; cursor: not-allowed; }
+  .results { display: none; text-align: center; background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 30px; margin-top: 10px; }
+  .results.show { display: block; }
+  .score { font-size: 2.5em; color: #c9a84c; font-weight: bold; }
+  .score-label { color: #aaa; margin-top: 6px; }
+  .score-msg { margin-top: 14px; font-size: 1.1em; }
+  .retry-btn { display: inline-block; margin-top: 20px; padding: 12px 36px; background: transparent; color: #c9a84c; border: 2px solid #c9a84c; border-radius: 8px; font-size: 1em; cursor: pointer; font-family: 'Georgia', serif; text-decoration: none; }
+  .retry-btn:hover { background: #c9a84c; color: #1a1a2e; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; color: #e8d5a3; }</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="./">← Back to Slides</a></div>
+<div style="font-size:2em;margin-bottom:10px">📝</div>
+<h1>Zevachim 3 Quiz</h1>
+<div class="subtitle">5 questions · Self-graded · Test your learning!</div>
+<div class="quiz" id="quiz">
+  <div class="question" id="q1">
+    <div class="q-num">QUESTION 1 OF 5</div>
+    <div class="q-text">According to Rava, why is a get written for the sake of a gentile woman invalid?</div>
+    <div class="options">
+      <div class="option" onclick="select(1,this,0)">A. Because a gentile woman is 'of the same type' as a Jewish woman for divorce</div>
+      <div class="option" onclick="select(1,this,1)">B. Because removing the gentile-woman intent leaves a stam get, which is pasul</div>
+      <div class="option" onclick="select(1,this,2)">C. Because the Torah explicitly forbids writing a get for a gentile woman</div>
+      <div class="option" onclick="select(1,this,3)">D. Because the scribe had improper intent during the writing</div>
+    </div>
+    <div class="explanation" id="e1"><strong>Correct: B — </strong>Rava's key principle: strip away the invalid intent and assess what remains. A stam (unspecified) get is pasul, unlike a stam offering which is kasher.</div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="q-num">QUESTION 2 OF 5</div>
+    <div class="q-text">Why does the Gemara reject the first proof from Gittin that a stam get is invalid (the case of two men with the same name)?</div>
+    <div class="options">
+      <div class="option" onclick="select(2,this,0)">A. The mishna is discussing a rabbinic, not biblical, disqualification</div>
+      <div class="option" onclick="select(2,this,1)">B. The get was specifically designated for the first man's divorce, so it's not truly stam</div>
+      <div class="option" onclick="select(2,this,2)">C. The get lacked proper witnesses</div>
+      <div class="option" onclick="select(2,this,3)">D. The two men lived in different towns</div>
+    </div>
+    <div class="explanation" id="e2"><strong>Correct: B — </strong>Each attempted proof is rejected because the get in question was written with a specific person in mind — it was designated, not unspecified (stam). The Gemara seeks a case proving stam itself is invalid.</div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="q-num">QUESTION 3 OF 5</div>
+    <div class="q-text">How does Rav Yosef bar Ami resolve the apparent contradiction between type deviation and owner deviation?</div>
+    <div class="options">
+      <div class="option" onclick="select(3,this,0)">A. He says one ruling is Rav's and the other is Shmuel's</div>
+      <div class="option" onclick="select(3,this,1)">B. Each disqualification derives from a different verse with different scope</div>
+      <div class="option" onclick="select(3,this,2)">C. He applies the stam principle differently to each case</div>
+      <div class="option" onclick="select(3,this,3)">D. He says the contradiction stands and Rav retracted one statement</div>
+    </div>
+    <div class="explanation" id="e3"><strong>Correct: B — </strong>'V'shachat otah l'chatat' governs type (another chatat still qualifies as 'l'chatat'). 'V'nislach lo' governs owner ('he' excludes a similar person). Different verses, different rules.</div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="q-num">QUESTION 4 OF 5</div>
+    <div class="q-text">According to R' Elazar, what is the actual source for Rav's ruling that non-sacred intent doesn't disqualify an offering?</div>
+    <div class="options">
+      <div class="option" onclick="select(4,this,0)">A. A kal vachomer from gittin</div>
+      <div class="option" onclick="select(4,this,1)">B. The principle that 'not of its type' doesn't affect it</div>
+      <div class="option" onclick="select(4,this,2)">C. The verse 'they shall not desecrate the sacred items' — only sacred intent desecrates sacred items</div>
+      <div class="option" onclick="select(4,this,3)">D. A tradition from Moshe at Sinai (halacha l'Moshe miSinai)</div>
+    </div>
+    <div class="explanation" id="e4"><strong>Correct: C — </strong>R' Elazar derives from Leviticus 22:15 that only intent involving sacred items (other offerings) can desecrate sacred items — non-sacred (chulin) intent cannot.</div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="q-num">QUESTION 5 OF 5</div>
+    <div class="q-text">Why can't the verse 'el tocho' (into its interior) be used to override R' Eliezer's kal vachomer about partitions in earthenware ovens?</div>
+    <div class="options">
+      <div class="option" onclick="select(5,this,0)">A. Because R' Eliezer doesn't accept that verse as authoritative</div>
+      <div class="option" onclick="select(5,this,1)">B. Because that verse is needed to teach that food kneaded in clay placed in an impure oven is still tamei</div>
+      <div class="option" onclick="select(5,this,2)">C. Because the verse only applies to creeping animals, not to ovens</div>
+      <div class="option" onclick="select(5,this,3)">D. Because a kal vachomer always overrides a verse</div>
+    </div>
+    <div class="explanation" id="e5"><strong>Correct: B — </strong>The verse 'el tocho' is expended teaching that clay-covered food in an impure oven is still impure — it cannot simultaneously be used to exclude R' Eliezer's kal vachomer about partitions.</div>
+  </div>
+
+</div>
+<button class="submit-btn" id="submitBtn" onclick="grade()" disabled>Answer all 5 to submit</button>
+<div class="results" id="results">
+  <div class="score" id="scoreNum"></div>
+  <div class="score-label">out of 5 correct</div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <a href="./" class="retry-btn">← Back to Slides</a>
+  <button class="retry-btn" onclick="retry()" style="margin-left:10px">Try Again ↻</button>
+</div>
+<script>
+const answers={"1":1,"2":1,"3":1,"4":2,"5":1};const selected={};
+function select(q,el,idx){if(document.getElementById('q'+q).classList.contains('correct')||document.getElementById('q'+q).classList.contains('incorrect'))return;const opts=el.parentElement.children;for(let o of opts)o.classList.remove('selected');el.classList.add('selected');selected[q]=idx;document.getElementById('submitBtn').disabled=Object.keys(selected).length<5;if(Object.keys(selected).length>=5)document.getElementById('submitBtn').textContent='Submit Answers ✓';}
+function grade(){let score=0;for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);const opts=qEl.querySelectorAll('.option');const correct=answers[q];const picked=selected[q];opts.forEach((o,i)=>{o.classList.add('disabled');if(i===correct)o.classList.add('right');if(i===picked&&i!==correct)o.classList.add('wrong');});if(picked===correct){qEl.classList.add('correct');score++;}else{qEl.classList.add('incorrect');}document.getElementById('e'+q).classList.add('show');}document.getElementById('submitBtn').style.display='none';const results=document.getElementById('results');results.classList.add('show');document.getElementById('scoreNum').textContent=score+' / 5';const msgs=["Review the slides and try again! 📖","Getting there! 💪","Not bad! One more pass will help. 👍","Solid learning! 🎯","Almost perfect! 🔥","Perfect score! Talmid Chacham! 🏆"];document.getElementById('scoreMsg').textContent=msgs[score];}
+function retry(){for(let q=1;q<=5;q++){const qEl=document.getElementById('q'+q);qEl.classList.remove('correct','incorrect');qEl.querySelectorAll('.option').forEach(o=>{o.classList.remove('selected','right','wrong','disabled');});document.getElementById('e'+q).classList.remove('show');}Object.keys(selected).forEach(k=>delete selected[k]);document.getElementById('submitBtn').style.display='block';document.getElementById('submitBtn').disabled=true;document.getElementById('submitBtn').textContent='Answer all 5 to submit';document.getElementById('results').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

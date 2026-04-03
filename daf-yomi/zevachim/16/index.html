@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 16 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">⚖️</div>
+  <h1>Zevachim 16</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים טז׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🔄 Kal VaChomer — A fortiori reasoning to prove a non-priest desecrates the service<br>
+    👨‍⚖️ Blemished & Impure Priests — Using disqualified kohanim as sources for derivation<br>
+    🏛️ Private Altars (Bamot) — Refutation based on non-priest's permission on bamot<br>
+    😢 Acute Mourner (Onen) — Deriving that an onen desecrates the service<br>
+    🪑 Sitting Priest — Rav Mesharshiyya's alternative derivation<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Who Desecrates the Temple Service?</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Core Question:</b><br>Does a <em>zar</em> (non-priest) or <em>onen</em> (acute mourner) who performs sacrificial rites desecrate the service?</div><div class="flow-arrow">↓</div><div class="flow-box action">Attempt <b>kal va'chomer</b> from blemished priest (<em>ba'al mum</em>)</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">Each single-source derivation is <b>refuted</b> — unique stringencies exist</div><div class="flow-arrow">↓</div><div class="flow-box result-good">Use <b>tzad hashaveh</b> (common element) of multiple cases to derive the law</div></div><div class="callout" style="margin-top:20px"><strong>Key Method</strong> The Gemara employs a revolving <em>kal va'chomer</em>: when each source is refuted, the common element of two or more sources establishes the derivation.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>Kal VaChomer: Non-Priest from Blemished Priest</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">A <b>blemished priest</b> (<em>ba'al mum</em>) may eat sacrificial meat, yet if he serves — he <b>desecrates</b> the service.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">A <b>non-priest</b> (<em>zar</em>) may <em>not</em> even eat most-sacred meat. <em>Kal va'chomer</em> — he should certainly desecrate!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Refutation</div><div class="speech">A blemished priest has a <b>unique stringency</b>: the Torah equates blemished <em>animals</em> with blemished <em>priests</em> — both are disqualified.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">An <b>impure priest</b> (<em>kohen tamei</em>) will prove it — no animal–priest equivalence for impurity, yet he desecrates!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Refutation</div><div class="speech">An impure priest has his own stringency: he <b>imparts impurity</b> to others.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">A blemished priest proves that doesn't matter — he <b>cannot</b> impart his blemish. The derivation revolves back!</div></div></div><div class="callout" style="margin-top:20px"><strong>Pirka Pattern</strong> Each source is refuted by a unique stringency, then proved by the other source — a classic revolving <em>kal va'chomer</em>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Tzad HaShaveh — Common Element for Non-Priest</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#1a3a2e"><h3 style="color:#4caf50">Blemished Priest (Ba'al Mum)</h3><ul><li>Unique: animal–priest equivalence for blemishes</li><li>Does NOT impart blemish to others</li><li>May eat sacrificial meat</li><li>Prohibited from serving → desecrates</li></ul></div><div class="compare-box" style="border-top-color:#16213e"><h3 style="color:#4a90d9">Impure Priest (Kohen Tamei)</h3><ul><li>No animal–priest equivalence for impurity</li><li>Unique: DOES impart impurity to others</li><li>May eat sacrificial meat (when pure)</li><li>Prohibited from serving → desecrates</li></ul></div><div class="compare-box" style="border-top-color:#3e1621"><h3 style="color:#e74c3c">Non-Priest (Zar) — Derived</h3><ul><li>No animal–priest equivalence</li><li>Does NOT impart status to others</li><li>Common element applies: prohibited from serving</li><li>CONCLUSION: desecrates the service</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Result</strong> Their <b>common element</b>: both are <em>prohibited</em> from serving and <em>desecrate</em> if they do. This applies equally to a non-priest.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>The Bamot (Private Altars) Refutation</h2>
+  
+  <div class="flowchart"><div class="flow-box result-bad"><b>Refutation:</b> Blemished & impure priests were <em>never</em> permitted on <b>bamot</b> (private altars)</div><div class="flow-arrow">↓</div><div class="flow-box question">But a <b>non-priest</b> WAS permitted to serve on bamot!</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">This shared stringency of blemished + impure is <b>not shared</b> by the non-priest</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>Solution:</b> Replace impure priest with <b>acute mourner</b> (<em>onen</em>) in the derivation</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">But then…</div><div class="flow-box result-bad">An onen is prohibited from <b>ma'aser sheni</b> (second tithe) — a non-priest is not!</div></div><div class="flow-col"><div class="flow-label">Response</div><div class="flow-box result-good">A blemished priest <em>may</em> eat ma'aser sheni — proves this isn't decisive</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Bamot</strong> Before the Temple was built permanently, private altars were permitted. Non-priests could serve on them — this created a key distinction from disqualified priests.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Amud B: Deriving That an Onen Desecrates the Service</h2>
+  
+  <table><tr><th>Source Case</th><th>Refutation (Pirka)</th><th>Counter-Proof</th></tr><tr><td>Blemished Priest → Onen</td><td>Animal–priest equivalence unique to blemishes</td><td>Non-priest proves (no such equivalence, yet desecrates)</td></tr><tr><td>Non-Priest → Onen</td><td>Non-priest has NO remedy — can never serve</td><td>Blemished priest proves (has remedy if healed, yet desecrates)</td></tr><tr><td>Common element: Ba'al Mum + Zar</td><td>Their prohibition was NEVER permitted (but High Priest onen may serve!)</td><td>Add impure priest — impurity IS permitted for communal offerings</td></tr><tr><td>Final tzad hashaveh: 3 sources</td><td>Ba'al mum + zar + tamei kohen → common element</td><td>All prohibited from serving, all desecrate → onen desecrates too</td></tr></table><div class="callout" style="margin-top:20px"><strong>Source for Onen</strong> The onen's prohibition derives from <em>"This day have they offered their sin offering"</em> (Lev. 10:19) — Aaron's offering was burned because of his acute mourning.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Rav Mesharshiyya's Alternative: The Sitting Priest</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Mesharshiyya</div><div class="speech">A <b>sitting priest</b> may eat offerings, yet if he serves while sitting he <b>desecrates</b>. A non-priest/onen who can't even eat — <em>kal va'chomer</em>!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech"><b>Pirka:</b> A sitting person is also disqualified from <b>bearing witness</b> — an added stringency a non-priest doesn't share!</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">Rav Mesharshiyya</div><div class="speech">A sitting <b>Torah scholar</b> (<em>talmid chakham</em>) IS permitted to sit while testifying — so sitting isn't inherently disqualifying!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Gemara</div><div class="speech">The <em>general category</em> of sitting still disqualifies witnesses, even with exceptions.</div></div><div class="debate-line"><div class="speaker" style="background:#4a90d9">Response</div><div class="speech">One refutes derivations only from <b>concrete cases</b>, not abstract <b>categories</b> (<em>milta</em>).</div></div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> <em>Ein meshivin mi-milta</em> — One cannot refute an a fortiori inference using a general conceptual category; only concrete parallel cases are valid refutations.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 16 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; border-left: 3px solid #4a90d9; padding: 8px;"><b>Question:</b> Does a <em>zar</em> or <em>onen</em> desecrate the service?</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a3a2e; border-left: 3px solid #4caf50; padding: 8px;"><b>Attempt:</b> Kal va'chomer from blemished priest / impure priest</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1621; border-left: 3px solid #e74c3c; padding: 8px;"><b>Refuted:</b> Each source has a unique stringency</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#2e1a3e; border-left: 3px solid #9b59b6; padding: 8px;"><b>Tzad Hashaveh:</b><br>Common element of 2–3 sources → prohibited from serving & desecrate if they do</div></div><div class="flow-col"><div class="flow-box" style="background:#3e2e16; border-left: 3px solid #e67e22; padding: 8px;"><b>Rav Mesharshiyya:</b><br>Alternative derivation from sitting priest — <em>ein meshivin mi-milta</em></div></div></div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 16a-16b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 16a-16b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../15/">← Daf 15</a><a href="../17/">Daf 17 →</a></div>
+</body>
+</html>

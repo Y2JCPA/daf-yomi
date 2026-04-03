@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 12 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔥</div>
+  <h1>Zevachim 12</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים יב׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    ⏰ Timing of the Korban Pesach — When can it be slaughtered according to Ben Beteira?<br>
+    🐑 Designation & Disqualification — When must a Paschal offering be designated to remain valid?<br>
+    🚫 Permanent Disqualification — Once disqualified, can an offering become fit again?<br>
+    ⚖️ Apostate & Imbecile Cases — R' Yochanan on offerings whose owners become unfit<br>
+    🔥 Ben Azzai's Tradition — Adding the Olah to offerings disqualified when not for their sake<br>
+    📐 Kal VaChomer Reasoning — Deriving the Olah's status from the Chatat<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Daf 12: Paschal Timing, Permanent Disqualification & Ben Azzai's Tradition</h2>
+  
+  <div class="flowchart"><div class="flow-box question"><b>Ben Beteira's View:</b> Can the Korban Pesach be sacrificed all day on the 14th?</div><div class="flow-arrow">↓</div><div class="flow-box action"><b>R' Yochanan:</b> No — slaughtered in the morning = <em>pasul</em>, whether for its sake or not</div><div class="flow-arrow">↓</div><div class="flow-box question"><b>R' Abbahu's Challenge:</b> If so, when can it ever be valid?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Abbahu</div><div class="flow-box result-good">Designate after noon on the 14th</div></div><div class="flow-col"><div class="flow-label">Abaye</div><div class="flow-box result-good">Even morning — same-day arrival is not 'time not yet arrived'</div></div><div class="flow-col"><div class="flow-label">Rav Pappa</div><div class="flow-box result-good">Even previous night — nighttime designation is valid</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Core Theme</strong> This daf explores the precise timing rules for the Korban Pesach, the concept of permanent disqualification (<b>dichuy</b>), and Ben Azzai's addition of the <b>Olah</b> to offerings invalidated when sacrificed not for their sake.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>R' Yochanan vs. R' Oshaya on Ben Beteira</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Oshaya</div><div class="speech">Ben Beteira holds <b>bein ha'arbayim</b> means the entire day — a Pesach slaughtered in the morning <em>for its sake</em> is valid.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But R' Yehuda HaNasi argued on Ben Beteira's behalf that only <b>part</b> of the 14th is fit for the Pesach — implying not the whole day!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">Rather, Ben Beteira holds: slaughtered in the morning on the 14th = <b>pasul</b>, whether for its sake or not for its sake.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">R' Yochanan</div><div class="speech">It is unfit even <em>shelo lishmah</em> because part of the day (the afternoon) <b>is</b> fit for it as a Pesach.</div></div></div><div class="callout" style="margin-top:20px"><strong>Key Rejection</strong> R' Oshaya's interpretation is rejected because it contradicts R' Yehuda HaNasi's own argument on behalf of Ben Beteira — that only <em>part</em> of the 14th is fit.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>R' Abbahu's Challenge: When Is a Pesach Ever Valid?</h2>
+  
+  <div class="flowchart"><div class="flow-box action">Per R' Yochanan: Pesach slaughtered in the morning of the 14th = <b>pasul</b></div><div class="flow-arrow">↓</div><div class="flow-box question"><b>R' Abbahu asks:</b> If designated in the morning, it can't be sacrificed — so it's disqualified from the start!<br>If designated the previous day, it was fit <em>shelo lishmah</em> but becomes disqualified the next morning.<br><b>Once disqualified, it can never become fit again!</b></div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-label">R' Abbahu's Answer</div><div class="flow-box result-good">Designate it on the 14th <b>after noon</b> — when it can already be sacrificed</div></div><div class="flow-col"><div class="flow-label">Abaye's Answer</div><div class="flow-box result-good">Even morning is fine — an offering <b>whose time arrives that same day</b> is not considered 'time not yet arrived'</div></div><div class="flow-col"><div class="flow-label">Rav Pappa's Answer</div><div class="flow-box result-good">Even the previous <b>night</b> — citing the school of R' Yishmael: an animal on the night before its 8th day can enter the pen for tithing</div></div></div></div><div class="callout" style="margin-top:20px"><strong>Proof Text</strong> <b>R' Appetoriki</b> resolves Leviticus 22:27 — at night an animal is fit for <em>consecration</em>; in the day it is fit for <em>sacrifice</em>. Nighttime designation does not create 'dichuy.'</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Permanent Disqualification: Three Cases</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#e74c3c"><h3 style="color:#ffffff">Apostate (Ulla / R' Yochanan)</h3><ul><li>Ate forbidden fat, designated a Chatat</li><li>Then apostatized — unfit to bring offerings</li><li>Later recanted his apostasy</li><li>Ruling: Offering is PERMANENTLY disqualified</li><li>Needed: because he disqualified himself by choice</li></ul></div><div class="compare-box" style="border-top-color:#9b59b6"><h3 style="color:#ffffff">Imbecile (R' Yirmeya / R' Abbahu)</h3><ul><li>Ate forbidden fat, designated a Chatat</li><li>Then became a shoteh (imbecile)</li><li>Later regained competence</li><li>Ruling: Offering is PERMANENTLY disqualified</li><li>Needed: even involuntary disqualification is permanent</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Court Ruling (R' Yirmeya's Dilemma)</h3><ul><li>Ate forbidden fat, designated a Chatat</li><li>Court ruled that fat is actually permitted</li><li>Court later retracted its ruling</li><li>A certain elder: THIS is the primary case</li><li>Here the offering itself was disqualified — even more obvious</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Why Both Cases?</strong> If only apostate: maybe involuntary (imbecile) is different. If only imbecile: maybe when it's in his power to return (apostate), it's not permanent. Both are needed.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Ben Azzai's Tradition: Offerings Not Lishmah</h2>
+  
+  <table><tr><th>Offering</th><th>If Slaughtered Not for Its Sake</th><th>Source</th></tr><tr><td>Chatat (Sin Offering)</td><td>❌ Disqualified</td><td>Mishna (Daf 2a)</td></tr><tr><td>Korban Pesach</td><td>❌ Disqualified (at its proper time)</td><td>Mishna (Daf 2a)</td></tr><tr><td>Olah (Burnt Offering)</td><td>❌ Disqualified — Ben Azzai adds this</td><td>Tradition of 72 elders</td></tr><tr><td>Asham (Guilt Offering)</td><td>✅ Fit</td><td>Not disqualified despite 'it' (הוא)</td></tr><tr><td>Shelamim (Peace Offering)</td><td>✅ Fit</td><td>Standard rule: fit but no credit</td></tr><tr><td>All other offerings eaten</td><td>✅ Fit — but owner not credited</td><td>Mishna</td></tr></table><div class="callout" style="margin-top:20px"><strong>72 Elders</strong> The Gemara notes the singular <b>zaken</b> (elder) rather than plural <b>zekenim</b> — because they all held <b>one unified opinion</b> on this halakha.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>Deriving Ben Azzai's Rule: Why Is the Olah Disqualified?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">The verse says <b>'It is (הוא) a burnt offering'</b> (Lev. 1:13) — <em>'it'</em> teaches: for its sake = fit; not for its sake = unfit.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">But <b>'הוא'</b> is also written regarding an <em>Asham</em> (Lev. 7:5), yet an Asham is not disqualified!</div></div><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Huna</div><div class="speech">That 'הוא' is written <b>after the burning of the portions</b> — since the offering is valid even without burning, it can't disqualify.</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">The Olah's 'הוא' is also after the burning! And 'הוא' appears twice for the Asham too!</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Gemara</div><div class="speech">Rather, Ben Azzai derives it by <b>kal vachomer</b>: If a Chatat (partially eaten) is disqualified not lishmah, then an Olah (entirely burned) — <em>all the more so!</em></div></div></div><div class="callout" style="margin-top:20px"><strong>Attempted Refutation</strong> The Gemara challenges: A Chatat is unique because it <b>atones for sin</b>. A Korban Pesach can prove the point — but it too is unique because it has a <b>fixed time</b>. The kal vachomer remains under scrutiny.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 12 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Ben Beteira & the Korban Pesach</b><br>R' Yochanan: Morning slaughter on the 14th = pasul</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#2c1a3e; color:#fff; padding:12px; border-radius:8px;"><b>R' Abbahu's Challenge</b><br>When can a Pesach ever be valid?</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>R' Abbahu:</b> After noon</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Abaye:</b> Morning OK (same day)</div></div><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#fff; padding:10px; border-radius:8px;"><b>Rav Pappa:</b> Previous night OK</div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3e1616; color:#fff; padding:12px; border-radius:8px;"><b>Dichuy Principle</b><br>Once disqualified → permanently disqualified<br>(Apostate, imbecile, court ruling cases)</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#16213e; color:#fff; padding:12px; border-radius:8px;"><b>Ben Azzai's Tradition</b><br>72 elders: Olah is also disqualified shelo lishmah<br>Derived via kal vachomer from Chatat</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 12a-12b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 12a-12b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../11/">← Daf 11</a><a href="../13/">Daf 13 →</a></div>
+</body>
+</html>

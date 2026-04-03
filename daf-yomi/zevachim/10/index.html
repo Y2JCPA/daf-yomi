@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevachim 10 — Daf Yomi Visual Guide</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; }
+  .slide { min-height: 100vh; padding: 40px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 3px solid #c9a84c; position: relative; }
+  .slide-num { position: absolute; top: 20px; right: 30px; font-size: 14px; color: #c9a84c; opacity: 0.7; }
+  h1 { font-size: 2.8em; color: #c9a84c; text-align: center; margin-bottom: 10px; }
+  h2 { font-size: 2em; color: #c9a84c; text-align: center; margin-bottom: 30px; }
+  h3 { font-size: 1.4em; color: #daa520; margin-bottom: 15px; }
+  .subtitle { font-size: 1.2em; color: #aaa; text-align: center; margin-bottom: 40px; }
+  .hebrew { font-family: 'David', 'Times New Roman', serif; direction: rtl; font-size: 1.1em; color: #e8d5a3; }
+  .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; }
+  .flow-box { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 280px; max-width: 520px; font-size: 1em; line-height: 1.5; }
+  .flow-box.action { background: #1a3a5c; border-color: #4a90d9; }
+  .flow-box.result-good { background: #1a4a2a; border-color: #4caf50; }
+  .flow-box.result-bad { background: #4a1a1a; border-color: #e74c3c; }
+  .flow-box.result-partial { background: #4a3a1a; border-color: #f39c12; }
+  .flow-box.question { background: #3a1a4a; border-color: #9b59b6; }
+  .flow-arrow { font-size: 28px; color: #c9a84c; line-height: 1; padding: 4px 0; }
+  .flow-branch { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .flow-branch .flow-col { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 200px; }
+  .flow-label { font-size: 0.85em; color: #aaa; font-style: italic; padding: 2px 0; }
+  table { border-collapse: collapse; margin: 20px auto; max-width: 800px; width: 100%; }
+  th { background: #c9a84c; color: #1a1a2e; padding: 12px 16px; font-size: 0.95em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #333; font-size: 0.95em; text-align: center; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  .check { color: #4caf50; font-size: 1.3em; }
+  .cross { color: #e74c3c; font-size: 1.3em; }
+  .partial { color: #f39c12; font-size: 1.3em; }
+  .compare-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; width: 100%; }
+  .compare-box { flex: 1; min-width: 260px; max-width: 400px; background: #16213e; border-radius: 12px; padding: 24px; border-top: 4px solid #c9a84c; }
+  .compare-box h3 { text-align: center; }
+  .compare-box ul { list-style: none; padding: 0; }
+  .compare-box li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.95em; }
+  .compare-box li:last-child { border-bottom: none; }
+  .process-bar { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 700px; width: 100%; margin: 20px 0; }
+  .process-step { background: #16213e; border: 2px solid #c9a84c; border-radius: 12px; width: 100%; padding: 14px 18px; text-align: center; font-size: 0.95em; line-height: 1.5; }
+  .process-arrow { font-size: 24px; color: #c9a84c; padding: 4px 0; }
+  .process-step.highlight { border-color: #4caf50; background: #1a4a2a; }
+  .callout { background: #16213e; border-left: 5px solid #c9a84c; padding: 20px 24px; max-width: 700px; width: 100%; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 1.05em; line-height: 1.6; }
+  .callout strong { color: #c9a84c; }
+  .debate { max-width: 650px; width: 100%; }
+  .debate-line { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .debate-line.right { flex-direction: row-reverse; text-align: right; }
+  .speaker { background: #c9a84c; color: #1a1a2e; border-radius: 20px; min-width: 48px; max-width: 80px; height: auto; min-height: 40px; padding: 8px 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.65em; flex-shrink: 0; text-align: center; line-height: 1.15; word-break: break-word; }
+  .speech { background: #16213e; border-radius: 12px; padding: 12px 16px; max-width: 500px; line-height: 1.5; font-size: 0.95em; }
+  .debate-line.right .speech { background: #1a3a5c; }
+  .emoji { font-size: 1.3em; }
+  .nav { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .nav a { background: #c9a84c; color: #1a1a2e; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  .nav a:hover { background: #daa520; }</style>
+</head>
+<body>
+<div style="position:fixed;top:15px;left:20px;z-index:100"><a href="../" style="color:#c9a84c;text-decoration:none;font-size:.85em;opacity:.8">← Zevachim Index</a></div>
+<div class="slide" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+  <div class="slide-num">1 / 9</div>
+  <div style="font-size:3em;margin-bottom:20px">🔗</div>
+  <h1>Zevachim 10</h1>
+  <div class="subtitle">Daf Yomi Visual Guide</div>
+  <div class="hebrew" style="font-size:1.3em;margin:20px 0">זבחים י׳</div>
+  <div style="margin-top:30px;text-align:center;max-width:600px;line-height:1.8;color:#aaa">
+    <strong style="color:#c9a84c">Key Topics:</strong><br>
+    🐂 Idolatrous Slaughter — Intent from one sacrificial rite affecting another<br>
+    ⚖️ R' Yochanan vs Reish Lakish — Deriving outside-Temple laws from inside-Temple laws<br>
+    📐 Kal VaChomer Attempts — Rav Yirmeya's logical proof and objections<br>
+    📖 The Word 'It' (הוא) — Deriving disqualification for guilt offerings<br>
+    🔄 R' Eliezer vs R' Yehoshua — Is an asham not-for-its-sake unfit?<br>
+    🧱 Distinguishing Chatat from Asham — Multiple refutations and answers<br>
+  </div>
+</div>
+<div class="slide">
+  <div class="slide-num">2 / 9</div>
+  <h2>Intent Across Rites & Deriving Halakhot</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">R' Yochanan</div><div class="speech">If one <b>slaughters</b> intending to <b>sprinkle blood</b> for idolatry — the animal is <b>forbidden</b>. We derive outside-Temple laws from inside-Temple laws (piggul).</div></div><div class="debate-line right"><div class="speaker" style="background:#4a90d9">Reish Lakish</div><div class="speech">The animal is <b>permitted</b>. One cannot have intent from one rite affect another, and we do <b>not</b> derive outside from inside the Temple.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">Both disputes — idol worship and <i>shelo lishmo</i> — are necessary. Each case has a <i>chiddush</i> that couldn't be derived from the other.</div></div></div><div class="callout" style="margin-top:20px"><strong>Core Principle</strong> Can <b>machshava</b> (intent) during one sacrificial service (e.g., shechita) disqualify based on a different service (e.g., zerika)?</div>
+</div>
+<div class="slide">
+  <div class="slide-num">3 / 9</div>
+  <h2>R' Yochanan vs Reish Lakish: Intent Across Rites</h2>
+  
+  <div class="compare-row"><div class="compare-box" style="border-top-color:#c9a84c"><h3 style="color:#ffffff">R' Yochanan</h3><ul><li>Intent during shechita for zerika to idolatry → animal is FORBIDDEN</li><li>One CAN have machshava from one rite affect another</li><li>We DERIVE outside-Temple halakhot from inside-Temple (piggul)</li><li>Same logic: shechita with intent to sprinkle shelo lishmo → PASUL</li></ul></div><div class="compare-box" style="border-top-color:#4a90d9"><h3 style="color:#ffffff">Reish Lakish</h3><ul><li>Intent during shechita for zerika to idolatry → animal is PERMITTED</li><li>One CANNOT have machshava from one rite affect another</li><li>We do NOT derive outside-Temple from inside-Temple laws</li><li>Shechita with intent to sprinkle shelo lishmo → KASHER</li></ul></div></div><div class="callout" style="margin-top:20px"><strong>Tzrikhuta</strong> Both cases (idol worship & shelo lishmo) must be stated — neither could be derived from the other alone.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">4 / 9</div>
+  <h2>Why Both Disputes Are Necessary</h2>
+  
+  <div class="flowchart"><div class="flow-box question">If only the <b>idol worship</b> case were taught…</div><div class="flow-arrow">↓</div><div class="flow-box action">We'd think Reish Lakish only disagrees because we don't derive <b>outside</b> from <b>inside</b> the Temple</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">But for <i>shelo lishmo</i> (both inside Temple) — maybe he'd <b>concede</b> to R' Yochanan?</div><div class="flow-arrow">↓</div><div class="flow-box question">If only the <b>shelo lishmo</b> case were taught…</div><div class="flow-arrow">↓</div><div class="flow-box action">We'd think R' Yochanan only rules strictly <b>inside</b> the Temple</div><div class="flow-arrow">↓</div><div class="flow-box result-bad">But for idol worship (outside Temple) — maybe he'd <b>concede</b> to Reish Lakish?</div><div class="flow-arrow">↓</div><div class="flow-box result-good">∴ <b>Both statements are necessary</b> (צריכי)</div></div><div class="callout" style="margin-top:20px"><strong>Principle</strong> A <i>tzrikhuta</i> demonstrates that two seemingly redundant rulings each contain a unique <i>chiddush</i>.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">5 / 9</div>
+  <h2>Rav Yirmeya's Kal VaChomer & Objections</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#c9a84c">Rav Yirmeya</div><div class="speech"><b>Kal vachomer</b> supporting R' Yochanan: If intent regarding <b>time</b> (chutz lizmano) disqualifies across rites — <i>shelo lishmo</i> (which is stricter at the slaughter stage) should certainly disqualify across rites!</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava bar Ahilai</div><div class="speech"><b>Objection:</b> Chutz lizmano has its own stringency — it carries <b>karet</b>! You can't say shelo lishmo is automatically stricter.</div></div><div class="debate-line right"><div class="speaker" style="background:#e74c3c">Rava bar Ahilai</div><div class="speech"><b>Correction:</b> The kal vachomer should be from <b>chutz limkomo</b> (outside designated area) — which has no karet.</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Ashi</div><div class="speech"><b>Objection:</b> Chutz limkomo applies to <b>all</b> offerings, but shelo lishmo only disqualifies <b>Pesach and Chatat</b>!</div></div><div class="debate-line"><div class="speaker" style="background:#9b59b6">Rav Ashi</div><div class="speech"><b>Better source:</b> Derive from <b>shinui ba'alim</b> (deviation of owner) — it's fit at slaughter but unfit at zerika, just like shelo lishmo.</div></div></div><div class="callout" style="margin-top:20px"><strong>Final Kal VaChomer</strong> If <b>shinui ba'alim</b> — where saying 'for so-and-so' at slaughter is fit — still disqualifies at zerika, then <b>shelo lishmo</b> — where even slaughter itself is unfit — certainly disqualifies at zerika.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">6 / 9</div>
+  <h2>Three Attempted Kal VaChomers for R' Yochanan</h2>
+  
+  <table><tr><th>Source for Kal VaChomer</th><th>Logic</th><th>Objection</th><th>Who Objects</th></tr><tr><td>Chutz Lizmano (beyond time)</td><td>If time-intent disqualifies across rites, shelo lishmo should too</td><td>Chutz lizmano carries KARET — it's uniquely stringent</td><td>Rava bar Ahilai</td></tr><tr><td>Chutz Limkomo (outside area)</td><td>No karet issue — still disqualifies across rites</td><td>Applies to ALL offerings; shelo lishmo only to Pesach & Chatat</td><td>Rav Ashi</td></tr><tr><td>Shinui Ba'alim (wrong owner)</td><td>Fit at slaughter, unfit at zerika — parallel structure</td><td>✓ No refutation — this kal vachomer stands</td><td>None</td></tr></table><div class="callout" style="margin-top:20px"><strong>Key Insight</strong> The Gemara iteratively refines the kal vachomer until finding a source (<b>shinui ba'alim</b>) that perfectly parallels shelo lishmo without unique stringencies.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">7 / 9</div>
+  <h2>R' Eliezer vs R' Yehoshua: Is Asham Shelo Lishmo Unfit?</h2>
+  
+  <div class="debate"><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Eliezer</div><div class="speech">The word <b>"הוא" (it)</b> appears for chatat, Pesach, AND asham. In each case: for its sake = fit; not for its sake = <b>unfit</b>.</div></div><div class="debate-line right"><div class="speaker" style="background:#4caf50">R' Yehoshua</div><div class="speech">For chatat and Pesach, "הוא" is stated at <b>shechita</b>. But for asham, "הוא" appears only after <b>burning the fats</b> — and since an offering is valid even without burning, the asham is <b>fit</b>.</div></div><div class="debate-line"><div class="speaker" style="background:#e67e22">R' Eliezer</div><div class="speech">But the verse says: <b>"As is the chatat, so is the asham"</b> (Lev. 7:7) — they are juxtaposed! Just as chatat shelo lishmo is pasul, so too the asham!</div></div><div class="debate-line right"><div class="speaker" style="background:#9b59b6">Gemara</div><div class="speech">R' Yehoshua keeps finding <b>distinctions</b> between chatat and asham to block the comparison: blood placement, karet, number of applications…</div></div></div><div class="callout" style="margin-top:20px"><strong>The Word הוא</strong> The restrictive word <b>"it"</b> in sacrificial verses teaches: specifically <i>this</i> offering, for <i>its own</i> sake — otherwise unfit. But <b>where</b> the word appears matters.</div>
+</div>
+<div class="slide">
+  <div class="slide-num">8 / 9</div>
+  <h2>📋 Zevachim 10 — Summary Map</h2>
+  <div class="flowchart" style="max-width:800px"><div class="flow-box " style="background:#16213e; color:#e0e0e0; padding:12px; border-radius:8px; text-align:center;"><b>Shechita</b> performed with intent for a <i>different rite</i> (zerika/haktara)</div><div class="flow-arrow">↓</div><div class="flow-branch"><div class="flow-col"><div class="flow-box" style="background:#1a3a2e; color:#e0e0e0; padding:10px; border-radius:8px;"><b>R' Yochanan:</b> Machshava from one rite affects another → <span style='color:#e74c3c;'>PASUL / FORBIDDEN</span><br><i>Derive outside from inside Temple</i></div></div><div class="flow-col"><div class="flow-box" style="background:#2e1a3a; color:#e0e0e0; padding:10px; border-radius:8px;"><b>Reish Lakish:</b> Machshava does NOT cross rites → <span style='color:#4caf50;'>KASHER / PERMITTED</span><br><i>Cannot derive outside from inside</i></div></div></div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#1a2e3a; color:#e0e0e0; padding:12px; border-radius:8px; text-align:center;">Rav Yirmeya supports R' Yochanan via <b>kal vachomer</b> from shinui ba'alim; R' Ila supports Reish Lakish from the Torah's structure</div><div class="flow-arrow">↓</div><div class="flow-box " style="background:#3a2e1a; color:#e0e0e0; padding:12px; border-radius:8px; text-align:center;">Parallel debate: R' Eliezer vs R' Yehoshua — does <b>"הוא"</b> disqualify an <b>asham</b> shelo lishmo? Multiple distinctions between chatat and asham explored.</div></div>
+  <div style="margin-top:30px;text-align:center;color:#666;font-size:0.85em">
+    Zevachim 10a-10b · Daf Yomi · Sources: Sefaria (William Davidson Edition), DafYomi.co.il
+  </div>
+</div>
+<div class="slide" style="background:linear-gradient(135deg,#16213e,#1a1a2e)">
+  <div class="slide-num">9 / 9</div>
+  <div style="font-size:3.5em;margin-bottom:20px">📝</div>
+  <h2>Ready to Test Yourself?</h2>
+  <div style="color:#aaa;font-size:1.1em;margin:20px 0 30px;text-align:center;max-width:500px;line-height:1.6">
+    5 multiple-choice questions on today's daf.<br>Self-graded with explanations for each answer.
+  </div>
+  <a href="quiz.html" style="display:inline-block;padding:18px 48px;background:#c9a84c;color:#1a1a2e;text-decoration:none;border-radius:12px;font-size:1.3em;font-weight:bold;font-family:'Georgia',serif">Take the Quiz →</a>
+  <div style="margin-top:40px;color:#555;font-size:0.85em">
+    Zevachim 10a-10b · Daf Yomi
+  </div>
+</div>
+<div class="nav"><a href="../9/">← Daf 9</a><a href="../11/">Daf 11 →</a></div>
+</body>
+</html>
