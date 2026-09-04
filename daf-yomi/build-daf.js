@@ -257,7 +257,7 @@ function renderProcess(slide) {
   return html;
 }
 
-function buildIndex(data, masechet, daf, totalDapim) {
+function buildIndex(data, masechet, daf, totalDapim, minDaf = 2) {
   const names = MASECHET_NAMES[masechet] || { en: masechet, he: masechet };
   const heDaf = HEB_DAF[daf] || String(daf);
   const totalSlides = 9;
@@ -356,7 +356,7 @@ function buildIndex(data, masechet, daf, totalDapim) {
 </div>`;
 
   // Nav
-  const prevLink = daf > 2 ? `<a href="../${daf - 1}/">← Daf ${daf - 1}</a>` : '';
+  const prevLink = daf > minDaf ? `<a href="../${daf - 1}/">← Daf ${daf - 1}</a>` : '';
   const nextLink = daf < totalDapim ? `<a href="../${daf + 1}/">Daf ${daf + 1} →</a>` : '';
   const nav = `<div class="nav">${prevLink}${nextLink}</div>`;
 
@@ -444,6 +444,7 @@ const jsonDir = process.argv[2] || '/tmp/daf_content';
 const repoDir = process.argv[3] || path.join(__dirname);
 const masechet = process.argv[4] || 'chullin';
 const totalDapim = parseInt(process.argv[5]) || 142;
+const minDaf = parseInt(process.argv[6]) || 2; // Tamid's Gemara starts at daf 25
 
 const files = fs.readdirSync(jsonDir).filter(f => f.startsWith(`${masechet}_`) && f.endsWith('.json'));
 console.log(`Building ${files.length} dapim for ${masechet}...`);
@@ -457,7 +458,7 @@ for (const file of files) {
   const outDir = path.join(repoDir, masechet, String(daf));
   fs.mkdirSync(outDir, { recursive: true });
 
-  fs.writeFileSync(path.join(outDir, 'index.html'), buildIndex(data, masechet, daf, totalDapim));
+  fs.writeFileSync(path.join(outDir, 'index.html'), buildIndex(data, masechet, daf, totalDapim, minDaf));
   fs.writeFileSync(path.join(outDir, 'quiz.html'), buildQuiz(data, masechet, daf));
   built++;
 }
