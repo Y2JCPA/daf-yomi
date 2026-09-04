@@ -105,7 +105,8 @@ function validateHtml(html, slug, daf) {
 }
 
 if (require.main === module) {
-  const [slug, ...dafArgs] = process.argv.slice(2);
+  const argv = process.argv.slice(2);
+  const [slug, ...dafArgs] = argv.filter(a => !a.startsWith('--'));
   if (!slug) { console.error('usage: node validate.js <masechet> [daf ...]'); process.exit(2); }
   const dir = path.join(__dirname, 'content');
   let files = fs.readdirSync(dir).filter(f => f.startsWith(`${slug}_`) && f.endsWith('.json'));

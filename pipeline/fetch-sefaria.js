@@ -63,10 +63,16 @@ async function main() {
     const out = path.join(outDir, `${slug}_${daf}.md`);
     if (fs.existsSync(out) && fs.statSync(out).size > 2000) { console.log(`skip ${slug} ${daf} (exists)`); continue; }
     try {
-      const a = await fetchAmud(name, `${daf}a`);
-      let b;
-      try { b = await fetchAmud(name, `${daf}b`); }
-      catch (e) { if (/no text|HTTP 404/i.test(e.message)) { b = { enText: [], heText: [] }; console.log(`  (${name} ${daf}b has no text — last daf)`); } else throw e; }
+      const grab = async (ref) => {
+        try { return await fetchAmud(name, ref); }
+        catch (e) {
+          if (/no text|HTTP 404/i.test(e.message)) { console.log(`  (${name} ${ref} has no text)`); return { enText: [], heText: [] }; }
+          throw e;
+        }
+      };
+      const a = await grab(`${daf}a`);
+      const b = await grab(`${daf}b`);
+      if (!a.enText.length && !b.enText.length) throw new Error('no text on either amud');
       let md = `# ${name.replace('_', ' ')} ${daf} — Sefaria source (${a.enVersion}; Hebrew: ${a.heVersion})\n\n`;
       for (const [amud, t] of [['a', a], ['b', b]]) {
         md += `## ${name.replace('_', ' ')} ${daf}${amud}\n\n`;
